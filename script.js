@@ -1,9 +1,13 @@
+// ================= ELEMENTS =================
+
 const nav = document.getElementById("navbar");
 const topBtn = document.getElementById("topBtn");
 
-// Sticky nav + top button
+// ================= STICKY NAV + TOP BUTTON =================
+
 window.addEventListener("scroll", () => {
-  if (scrollY > 120) {
+
+  if (window.scrollY > 120) {
     nav.classList.add("sticky");
     topBtn.style.display = "block";
   } else {
@@ -14,26 +18,39 @@ window.addEventListener("scroll", () => {
   revealSections();
 });
 
-// Back to top
-topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+// ================= BACK TO TOP =================
 
-// Scroll reveal
+topBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+// ================= SCROLL REVEAL =================
+
 function revealSections() {
-  document.querySelectorAll(".reveal").forEach(sec => {
-    let windowHeight = window.innerHeight;
-    let sectionTop = sec.getBoundingClientRect().top;
+  const reveals = document.querySelectorAll(".reveal");
+
+  reveals.forEach(section => {
+    const windowHeight = window.innerHeight;
+    const sectionTop = section.getBoundingClientRect().top;
 
     if (sectionTop < windowHeight - 100) {
-      sec.classList.add("active");
+      section.classList.add("active");
     }
   });
 }
 
-// Enquiry message
-function showMessage(e) {
-  e.preventDefault();
+// Run once on load
+revealSections();
+
+// ================= ENQUIRY MESSAGE =================
+
+function showMessage() {
   alert("Thank you! Our travel expert will contact you shortly 🌍✈");
-  e.target.reset();
 }
+
+
 
 
