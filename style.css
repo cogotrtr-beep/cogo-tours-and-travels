@@ -457,22 +457,33 @@ footer {
   box-shadow: 0 -10px 30px rgba(10,92,255,.25);
 }
 /* ================= TOUR GALLERY ================= */
+/* ================= PREMIUM TOUR GALLERY ================= */
 
 .tour-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 22px;
-  margin-top: 45px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 55px;
 }
 
 .tour-box {
   position: relative;
-  border-radius: 22px;
+  height: 340px;
+  border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 18px 45px rgba(0,0,0,.7);
   cursor: pointer;
-  transform: scale(1);
-  transition: .5s ease;
+  background: #000;
+  box-shadow: 
+    0 25px 55px rgba(0,0,0,.75),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .6s;
+}
+
+.tour-box:hover {
+  transform: translateY(-14px) scale(1.04);
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.9),
+    0 0 25px rgba(0,229,255,.35);
 }
 
 .tour-box img {
@@ -480,34 +491,86 @@ footer {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(.8);
-  transition: .5s ease;
+  transform: scale(1.05);
+  filter: brightness(.7) saturate(1.15);
+  transition: transform .8s ease, filter .6s ease;
 }
 
 .tour-box:hover img {
-  transform: scale(1.12);
-  filter: brightness(1);
+  transform: scale(1.2);
+  filter: brightness(.95) saturate(1.3);
 }
+
+/* overlay */
 
 .tour-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(2,6,23,.95), transparent 65%);
+  background:
+    radial-gradient(circle at top, rgba(0,229,255,.18), transparent 60%),
+    linear-gradient(to top, rgba(2,6,23,.95), rgba(2,6,23,.35), transparent);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 18px;
+  padding: 22px;
+  backdrop-filter: blur(2px);
 }
+
+/* glowing border on hover */
+
+.tour-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: .5s;
+}
+
+.tour-box:hover::before {
+  opacity: 1;
+}
+
+/* text animation */
 
 .tour-overlay h3 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  letter-spacing: .4px;
+  transform: translateY(18px);
+  opacity: 0;
+  transition: .6s ease;
 }
 
 .tour-overlay span {
-  color: var(--muted);
   font-size: .9rem;
+  color: var(--muted);
+  transform: translateY(18px);
+  opacity: 0;
+  transition: .7s ease;
 }
+
+.tour-box:hover .tour-overlay h3,
+.tour-box:hover .tour-overlay span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* mobile tuning */
+
+@media(max-width:768px) {
+  .tour-box {
+    height: 280px;
+  }
+}
+
 
 
 
