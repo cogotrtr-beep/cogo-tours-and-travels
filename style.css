@@ -484,27 +484,12 @@ footer {
   height: 380px;
   object-fit: cover;
   display: block;
-  filter: brightness(150%);
+  filter: brightness(100%);
 }
 
-/* Text overlay */
-.banner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-  z-index: 5;
-  width: 90%;
-}
 
-.banner-text h1 {
-  font-size: 42px;
-  margin: 0;
-  font-weight: 800;
-  text-shadow: 0 12px 25px rgba(0,0,0,0.55);
-}
+
+
 
 .banner-text p {
   margin-top: 8px;
@@ -519,6 +504,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
