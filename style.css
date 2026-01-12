@@ -18,6 +18,46 @@ body {
   text-align:center;
   padding:25px;
 }
+/* Call button top-right */
+.call-link{
+  position:absolute;
+  top:18px;
+  right:18px;
+  background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.35);
+  padding:10px 14px;
+  border-radius:30px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  backdrop-filter: blur(6px);
+  transition:0.25s;
+}
+
+.call-link:hover{
+  background:rgba(255,255,255,0.28);
+  transform:scale(1.03);
+}
+
+/* Make header position relative so top-right works */
+.top-header{
+  position:relative;
+}
+
+/* Responsive: show only icon on small screens */
+@media(max-width: 520px){
+  .call-link span{
+    display:none;
+  }
+  .call-link{
+    padding:10px 12px;
+    border-radius:50%;
+  }
+}
+
 
 nav {
   background: var(--dark);
@@ -167,6 +207,7 @@ footer {
   opacity:1;
   transform:none;
 }
+
 
 
 
