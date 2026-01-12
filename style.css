@@ -2,15 +2,15 @@
 
 /* ================= VARIABLES ================= */
 :root {
-  --bg: #010b1a;
-  --panel: #010f25;
-  --glass: rgba(255,255,255,.05);
-  --primary: #0077b6;
-  --secondary: #00b4d8;
-  --accent: #ff6b35;
-  --danger: #ff3d3d;
-  --text: #e6e6e6;
-  --muted: #94a3b8;
+  --bg: #fffaf5;
+  --panel: #fff0e1;
+  --glass: rgba(255,255,255,0.3);
+  --primary: #ff5e57;     /* Coral */
+  --secondary: #ff9f1c;   /* Sunset Orange */
+  --accent: #2ec4b6;      /* Turquoise */
+  --highlight: #ffbe0b;   /* Sunny Yellow */
+  --text: #1a1a1a;
+  --muted: #555555;
 }
 
 /* ================= GLOBAL ================= */
@@ -22,7 +22,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(180deg, #010b1a, #02091f);
+  background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
 }
@@ -34,12 +34,12 @@ html {
 /* ================= HEADER ================= */
 header .container {
   text-align: center;
-  padding: 38px 20px 30px;
+  padding: 40px 20px 25px;
 }
 
 header h1 {
   font-size: clamp(2.2rem, 4vw, 3rem);
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--highlight));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -47,26 +47,26 @@ header h1 {
 header p {
   color: var(--muted);
   margin-top: 6px;
+  font-weight: 500;
 }
 
 /* ================= NAVBAR ================= */
 nav {
-  background: rgba(1,11,26,.85);
+  background: #ffffffcc;
   backdrop-filter: blur(10px);
   text-align: center;
   padding: 14px;
   position: relative;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
   transition: 0.4s;
 }
 
 nav a {
-  color: #cfd8dc;
+  color: #1a1a1a;
   margin: 0 18px;
   text-decoration: none;
   font-weight: 500;
   position: relative;
-  transition: 0.3s;
 }
 
 nav a::after {
@@ -86,10 +86,10 @@ nav a.active::after {
 }
 
 .nav-btn {
-  background: linear-gradient(135deg, var(--accent), #ff4b2b);
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
   padding: 9px 18px;
   border-radius: 30px;
-  color: var(--bg);
+  color: #fff;
   font-weight: 700;
   transition: 0.4s;
 }
@@ -103,14 +103,14 @@ nav.sticky {
   width: 100%;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 15px 35px rgba(0,0,0,.6);
+  box-shadow: 0 15px 35px rgba(0,0,0,.2);
 }
 
 /* ================= HERO ================= */
 .hero {
-  min-height: 92vh;
+  min-height: 90vh;
   background:
-    linear-gradient(rgba(1,11,26,.6), rgba(1,11,26,.7)),
+    linear-gradient(to bottom, rgba(255,190,11,0.5), rgba(255,94,87,0.5)),
     url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover no-repeat;
   display: flex;
   flex-direction: column;
@@ -119,54 +119,57 @@ nav.sticky {
   text-align: center;
   padding: 20px;
   position: relative;
+  border-radius: 20px;
   overflow: hidden;
 }
 
 .hero h2 {
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  letter-spacing: .5px;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
 }
 
 .hero p {
-  color: var(--muted);
+  color: #fff;
   max-width: 750px;
   margin: 18px auto;
+  font-weight: 500;
 }
 
 .hero .btn {
   margin-top: 18px;
   display: inline-block;
-  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-  color: var(--bg);
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  color: #fff;
   padding: 15px 38px;
   border-radius: 40px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: .5px;
   text-decoration: none;
-  box-shadow: 0 12px 35px rgba(0,119,182,.45);
+  box-shadow: 0 12px 35px rgba(255,190,11,0.4);
   transition: 0.4s;
 }
 
 .hero .btn:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 18px 55px rgba(0,180,216,.65);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 18px 55px rgba(255,190,11,0.6);
 }
 
 /* ================= SECTIONS ================= */
 .section {
-  padding: 95px 20px;
+  padding: 80px 20px;
   text-align: center;
   position: relative;
 }
 
 .section.light {
-  background: linear-gradient(180deg, #010f25, #010b1a);
+  background: #fffaf5;
 }
 
 .section h2 {
   font-size: clamp(2rem, 3vw, 2.6rem);
   margin-bottom: 15px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--highlight));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -180,60 +183,57 @@ nav.sticky {
 /* ================= CARDS ================= */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
   margin-top: 50px;
 }
 
 .card {
-  background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
-  border: 1px solid rgba(255,255,255,.08);
-  padding: 38px 25px;
-  border-radius: 26px;
-  font-weight: 700;
+  background: linear-gradient(135deg, #ffffffcc, #fffaeecc);
+  border-radius: 20px;
+  padding: 30px 20px;
+  font-weight: 600;
   font-size: 1.1rem;
-  position: relative;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 20px 45px rgba(0,0,0,.7);
-  transition: .5s;
-  overflow: hidden;
+  color: var(--text);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+  transition: 0.4s;
 }
 
 .card:hover {
   transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 35px 80px rgba(0,0,0,.8);
-  color: white;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  color: #fff;
 }
 
 /* ================= TOUR GALLERY ================= */
 .tour-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
   margin-top: 55px;
 }
 
 .tour-box {
   position: relative;
-  height: 340px;
-  border-radius: 26px;
+  height: 320px;
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 20px 50px rgba(0,0,0,.6);
-  transition: transform .5s ease, box-shadow .5s ease;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .tour-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(.75);
-  transition: transform .6s ease, filter .5s ease;
+  transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .tour-box:hover img {
-  transform: scale(1.15);
-  filter: brightness(.95);
+  transform: scale(1.12);
+  filter: brightness(0.9);
 }
 
 .tour-overlay {
@@ -242,8 +242,8 @@ nav.sticky {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 22px;
-  background: linear-gradient(to top, rgba(1,11,26,.85), transparent);
+  padding: 18px;
+  background: linear-gradient(to top, rgba(255,94,87,0.85), transparent);
   color: #fff;
   transition: 0.5s;
 }
@@ -251,24 +251,23 @@ nav.sticky {
 .tour-overlay h3 {
   margin: 0;
   font-size: 1.4rem;
-  letter-spacing: .5px;
-  transform: translateY(20px);
   opacity: 0;
-  transition: 0.5s;
+  transform: translateY(20px);
+  transition: 0.4s;
 }
 
 .tour-overlay span {
   font-size: .9rem;
-  color: var(--muted);
-  transform: translateY(20px);
+  color: #ffd166;
   opacity: 0;
-  transition: 0.6s;
+  transform: translateY(20px);
+  transition: 0.5s;
 }
 
 .tour-box:hover .tour-overlay h3,
 .tour-box:hover .tour-overlay span {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 
 .tour-link {
@@ -286,24 +285,23 @@ nav.sticky {
 }
 
 .why-list li {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
-  margin: 14px 0;
-  padding: 15px;
+  background: #fff0e1;
   border-radius: 14px;
-  backdrop-filter: blur(8px);
+  padding: 15px;
+  margin: 12px 0;
+  font-weight: 500;
+  color: var(--text);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
 /* ================= CONTACT FORM ================= */
 .contact-form {
   max-width: 460px;
   margin: 45px auto 0;
-  background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-  padding: 38px;
-  border-radius: 30px;
-  border: 1px solid rgba(255,255,255,.08);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 25px 60px rgba(0,0,0,.8);
+  background: linear-gradient(145deg, #fff5f0, #fffaf0);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
 }
 
 .contact-form input,
@@ -311,16 +309,16 @@ nav.sticky {
   width: 100%;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(2,6,23,.85);
-  color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
   margin: 10px 0;
+  background: #fffefc;
+  color: var(--text);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: var(--secondary);
+  border-color: var(--accent);
 }
 
 .contact-form button {
@@ -329,8 +327,8 @@ nav.sticky {
   border: none;
   padding: 14px;
   border-radius: 25px;
-  font-weight: 800;
-  color: #010b1a;
+  font-weight: 700;
+  color: #fff;
   margin-top: 10px;
   transition: 0.4s;
 }
@@ -360,7 +358,7 @@ nav.sticky {
   display: none;
   border: none;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #010b1a;
+  color: #fff;
   padding: 12px 14px;
   border-radius: 50%;
   font-size: 18px;
@@ -369,18 +367,19 @@ nav.sticky {
 
 /* ================= FOOTER ================= */
 footer {
-  background: #010b1a;
-  color: var(--muted);
+  background: #fffaf5;
+  color: var(--text);
   text-align: center;
   padding: 20px;
-  border-top: 1px solid rgba(255,255,255,.08);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-weight: 500;
 }
 
 /* ================= REVEAL ================= */
 .reveal {
   opacity: 0;
   transform: translateY(60px) scale(.96);
-  transition: 1.1s cubic-bezier(.2,.8,.2,1);
+  transition: 1s cubic-bezier(.2,.8,.2,1);
 }
 
 .reveal.active {
@@ -396,17 +395,19 @@ footer {
   }
 
   .hero {
-    min-height: 85vh;
-  }
-
-  .contact-form {
-    padding: 26px;
+    min-height: 75vh;
   }
 
   .tour-box {
-    height: 280px;
+    height: 260px;
+  }
+
+  .contact-form {
+    padding: 25px;
   }
 }
+
+
 
 
 
