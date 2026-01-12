@@ -39,7 +39,7 @@ p {
 }
 .banner-text h1{
   color:#000 !important;
-  background: rgba(255,255,255,0.75);
+  background: #f8fafc;
   display:inline-block;
   padding: 6px 14px;
   border-radius: 12px;
@@ -528,6 +528,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
