@@ -37,7 +37,7 @@ p {
 
 
 .top-header {
-  background:green;
+  background:#ADD8E6;
   color:black ;
   text-align: center;
   padding: 30px 20px;
@@ -52,7 +52,7 @@ p {
 }
 
 .top-header p {
-  color: #334155;
+  color: red;
   font-weight: 600;
   margin: 6px 0 0;
   opacity: 0.95;
@@ -504,6 +504,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
