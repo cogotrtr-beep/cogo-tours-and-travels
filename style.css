@@ -484,7 +484,7 @@ footer {
   height: 380px;
   object-fit: cover;
   display: block;
-  filter: brightness(100%);
+  filter: brightness(80%);
 }
 
 
@@ -504,6 +504,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
