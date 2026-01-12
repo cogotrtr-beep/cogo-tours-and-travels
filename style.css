@@ -46,7 +46,7 @@ p {
 }
 
 .top-header {
-  background: linear-gradient(120deg, #0a5cff, #00c6ff);
+  background:green;
   color:black ;
   text-align: center;
   padding: 30px 20px;
@@ -528,6 +528,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
