@@ -61,9 +61,11 @@ p {
 }
 
 .top-header p {
+  color:green;
   margin: 6px 0 0;
   opacity: 0.95;
   font-size: 17px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* =========================
@@ -525,6 +527,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
