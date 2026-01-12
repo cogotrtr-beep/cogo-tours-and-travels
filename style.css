@@ -1,86 +1,174 @@
-/* ================= PREMIUM ADD-ONS ================= */
+:root {
+  --main:#0a5cff;
+  --accent:#ff9800;
+  --dark:#0f172a;
+  --light:#f4f7ff;
+}
 
 body {
-  animation: siteFade 1.2s ease;
+  margin:0;
+  font-family: "Poppins", Arial, sans-serif;
+  background:#fff;
+  color:#111;
 }
 
-@keyframes siteFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.top-header {
+  background: linear-gradient(90deg,#0a5cff,#00c6ff);
+  color:white;
+  text-align:center;
+  padding:25px;
 }
 
-nav a:hover {
-  color: white;
-  text-shadow: 0 0 10px rgba(0,229,255,.6);
+nav {
+  background: var(--dark);
+  text-align:center;
+  padding:12px;
+  position:relative;
 }
 
-.hero h2 {
-  animation: glow 3s infinite alternate;
+nav a {
+  color:white;
+  margin:0 15px;
+  text-decoration:none;
+  font-weight:500;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px rgba(10,92,255,.4); }
-  to { text-shadow: 0 0 25px rgba(0,229,255,.8); }
+.nav-btn {
+  background:var(--accent);
+  padding:8px 14px;
+  border-radius:20px;
 }
 
-.card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
-  transform: skewX(-25deg);
+nav.sticky {
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
 }
 
-.card:hover::after {
-  left: 160%;
-  transition: .8s;
+.hero {
+  background:
+  linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover;
+  color:white;
+  text-align:center;
+  padding:120px 20px;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  box-shadow: 0 0 15px rgba(0,229,255,.5);
+.main-btn {
+  background:var(--accent);
+  padding:12px 26px;
+  border-radius:25px;
+  display:inline-block;
+  color:white;
+  text-decoration:none;
+  margin-top:10px;
 }
 
-.contact-form button:hover {
-  cursor: pointer;
-  box-shadow: 0 0 25px rgba(0,229,255,.8);
-  transform: translateY(-2px);
+.section {
+  padding:70px 20px;
+  text-align:center;
+}
+
+.light {
+  background:var(--light);
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-top:25px;
+}
+
+.card {
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 10px 20px rgba(0,0,0,.1);
+  transition:.3s;
+}
+
+.card:hover {
+  transform:translateY(-8px) scale(1.02);
+  background:linear-gradient(135deg,#0a5cff,#00c6ff);
+  color:white;
+}
+
+.why-list {
+  list-style:none;
+  padding:0;
+  font-size:18px;
+}
+
+.contact-form {
+  max-width:420px;
+  margin:auto;
+}
+
+.contact-form input,textarea {
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.contact-form button {
+  width:100%;
+  background:linear-gradient(90deg,#ff9800,#ff5722);
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:20px;
+  font-size:16px;
 }
 
 .whatsapp {
-  animation: bounce 2s infinite;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:14px;
+  border-radius:50%;
+  font-size:24px;
+  color:white;
+  text-decoration:none;
 }
 
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-#topBtn:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 25px rgba(0,229,255,.9);
-  cursor: pointer;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #020617;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--primary), var(--secondary), var(--accent));
-  border-radius: 10px;
+#topBtn {
+  position:fixed;
+  bottom:85px;
+  right:22px;
+  padding:10px;
+  border:none;
+  border-radius:50%;
+  display:none;
+  background:#0a5cff;
+  color:white;
+  font-size:18px;
 }
 
 footer {
-  box-shadow: 0 -10px 30px rgba(10,92,255,.25);
+  background:#020617;
+  color:white;
+  text-align:center;
+  padding:15px;
 }
+
+/* Scroll reveal */
+.reveal {
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
+}
+
+.reveal.active {
+  opacity:1;
+  transform:none;
+}
+
+
 
 
 
