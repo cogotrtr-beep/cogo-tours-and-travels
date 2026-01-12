@@ -354,7 +354,17 @@ nav.sticky + .hero {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 26px 75px rgba(255, 87, 34, 0.50);
 }
+.form-label{
+  display:block;
+  text-align:left;
+  margin-top:12px;
+  margin-bottom:6px;
 
+  font-size:15px;
+  font-weight:800;     /* ✅ Bold */
+  color:#0b1220;       /* ✅ Dark visible */
+  letter-spacing:0.2px;
+}
 /* =========================
    FLOAT BUTTONS
 ========================= */
@@ -502,6 +512,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
