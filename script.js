@@ -1,23 +1,8 @@
-// ================= FORCE PAGE TO START AT TOP =================
-
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-};
-
-window.onload = () => {
-  window.scrollTo(0, 0);
-  revealSections();
-};
-
-// ================= ELEMENTS =================
-
-const nav = document.getElementById("navbar");
+const nav = document.getElementById("navbar"); 
 const topBtn = document.getElementById("topBtn");
 
-// ================= STICKY NAV + TOP BUTTON =================
-
+// Sticky nav + top button
 window.addEventListener("scroll", () => {
-
   if (window.scrollY > 120) {
     nav.classList.add("sticky");
     topBtn.style.display = "block";
@@ -29,37 +14,26 @@ window.addEventListener("scroll", () => {
   revealSections();
 });
 
-// ================= BACK TO TOP =================
+// Back to top
+topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-topBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
-// ================= SCROLL REVEAL =================
-
+// Scroll reveal
 function revealSections() {
-  const reveals = document.querySelectorAll(".reveal");
-
-  reveals.forEach(section => {
-    const windowHeight = window.innerHeight;
-    const sectionTop = section.getBoundingClientRect().top;
+  document.querySelectorAll(".reveal").forEach(sec => {
+    let windowHeight = window.innerHeight;
+    let sectionTop = sec.getBoundingClientRect().top;
 
     if (sectionTop < windowHeight - 100) {
-      section.classList.add("active");
+      sec.classList.add("active");
     }
   });
 }
 
-// ================= ENQUIRY MESSAGE =================
-
-function showMessage() {
+// Enquiry message
+function showMessage(e) {
+  e.preventDefault();
   alert("Thank you! Our travel expert will contact you shortly 🌍✈");
+  e.target.reset();
 }
-
-
-
 
 
