@@ -61,7 +61,8 @@ p {
 }
 
 .top-header p {
-  color:green;
+  color: #334155;
+  font-weight: 600;
   margin: 6px 0 0;
   opacity: 0.95;
   font-size: 17px;
@@ -527,6 +528,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
