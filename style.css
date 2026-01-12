@@ -82,12 +82,7 @@ footer {
   box-shadow: 0 -10px 30px rgba(10,92,255,.25);
 }
 
-/* MOBILE */
-@media(max-width:768px){
-nav a{margin:0 8px;font-size:.9rem}
-.hero{min-height:82vh}
-.section{padding:65px 16px}
-}
+
 
 
 
