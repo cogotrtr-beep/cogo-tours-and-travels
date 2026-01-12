@@ -7,39 +7,42 @@
   <title>Cogo Tours & Travels | Best Tours & Travels in Chennai</title>
 
   <meta name="description" content="Cogo Tours & Travels Chennai offers domestic, international, pilgrimage and customized tour packages. Trusted travel partner in Chennai, India.">
-
   <meta name="keywords" content="Tours and Travels Chennai, Travel Agency Chennai, Domestic Tours India, International Tour Packages, Pilgrimage Tours, Customized Holidays">
-
   <meta name="author" content="Cogo Tours & Travels">
 
-  <!-- ✅ CSS FILE LINK -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="container">
-    <h1>Cogo Tours & Travels</h1>
-    <p>Your Journey, Our Responsibility</p>
-  </div>
+<!-- ================= HEADER ================= -->
+
+<header class="top-header">
+  <h1>Cogo Tours & Travels</h1>
+  <p>Your Journey, Our Responsibility</p>
 </header>
+
+<!-- ================= NAVBAR ================= -->
 
 <nav id="navbar">
   <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#tours">Tours</a>
   <a href="#why">Why Us</a>
-  <a href="#contact" class="btn">Enquire Now</a>
+  <a href="#contact" class="nav-btn">Enquire Now</a>
 </nav>
 
-<section id="home" class="hero section">
+<!-- ================= HERO ================= -->
+
+<section id="home" class="hero">
   <h2>Explore the World with Confidence</h2>
   <p>Domestic • International • Pilgrimage • Customized Tours</p>
-  <a href="#contact" class="btn">Enquire Now</a>
+  <a href="#contact" class="main-btn">Enquire Now</a>
 </section>
 
-<section id="about" class="section">
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="section reveal">
   <h2>About Us</h2>
   <p>
     Cogo Tours & Travels, based in Chennai, India, specializes in delivering
@@ -47,7 +50,9 @@
   </p>
 </section>
 
-<section id="tours" class="section light">
+<!-- ================= TOURS ================= -->
+
+<section id="tours" class="section light reveal">
   <h2>Our Services</h2>
   <div class="cards">
     <div class="card">Domestic Tours</div>
@@ -57,7 +62,9 @@
   </div>
 </section>
 
-<section id="why" class="section">
+<!-- ================= WHY US ================= -->
+
+<section id="why" class="section reveal">
   <h2>Why Choose Cogo?</h2>
   <ul class="why-list">
     <li>✔ Personalized tour planning</li>
@@ -68,10 +75,16 @@
   </ul>
 </section>
 
-<section id="contact" class="section light">
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="section light reveal">
   <h2>Contact Us</h2>
 
-  <form action="https://formspree.io/f/xwvvejeb" method="POST" class="contact-form">
+  <form action="https://formspree.io/f/xwvvejeb"
+        method="POST"
+        class="contact-form"
+        onsubmit="showMessage()">
+
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <input type="tel" name="phone" placeholder="Your Phone Number" required>
@@ -80,16 +93,22 @@
   </form>
 </section>
 
-<a href="https://wa.me/919884066830" class="whatsapp" target="_blank">💬</a>
+<!-- ================= FLOATING BUTTONS ================= -->
+
+<a href="https://wa.me/919080666674" class="whatsapp" target="_blank">💬</a>
+<button id="topBtn">⬆</button>
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
   <p>© 2026 Cogo Tours & Travels. All Rights Reserved.</p>
 </footer>
 
-<!-- ✅ JAVASCRIPT FILE LINK -->
 <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 
