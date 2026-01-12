@@ -4,6 +4,9 @@
   --dark: #0f172a;
   --light: #f4f7ff;
 }
+.top-header h1{
+  color: #000 !important;
+}
 
 html {
   scroll-behavior: smooth;
@@ -22,6 +25,7 @@ body {
 
 h1, h2 {
   letter-spacing: 0.4px;
+  
 }
 
 p {
@@ -512,6 +516,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
