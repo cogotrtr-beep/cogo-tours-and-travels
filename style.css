@@ -484,7 +484,7 @@ footer {
   height: 400px;
   object-fit: cover;
   display: block;
-  filter: brightness(95%);
+  filter: brightness(98%);
 }
 
 
@@ -500,10 +500,11 @@ footer {
 
 /* Mobile responsive banner */
 @media (max-width: 650px) {
-  .banner-img { height: 220px; }
+  .banner-img { height: 230px; }
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
