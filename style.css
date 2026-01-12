@@ -34,16 +34,7 @@ p {
 /* =========================
    TOP HEADER
 ========================= */
-.top-header h1{
-  color: #000 !important;
-}
-.banner-text h1{
-  color:#000 !important;
-  background: #f8fafc;
-  display:inline-block;
-  padding: 6px 14px;
-  border-radius: 12px;
-}
+
 
 .top-header {
   background:green;
@@ -528,6 +519,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
