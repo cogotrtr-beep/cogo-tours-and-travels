@@ -13,46 +13,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body id="top">
+<body>
 
 <!-- ================= HEADER ================= -->
-<header>
-  <div class="container">
-    <h1>Cogo Tours & Travels</h1>
-    <p>Your Journey, Our Responsibility</p>
-  </div>
+
+<header class="top-header">
+  <h1>Cogo Tours & Travels</h1>
+  <p>Your Journey, Our Responsibility</p>
 </header>
 
 <!-- ================= NAVBAR ================= -->
+
 <nav id="navbar">
-  <a href="#top">Home</a>
+  <a href="#home">Home</a>
   <a href="#about">About</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#tours">Services</a>
+  <a href="#tours">Tours</a>
   <a href="#why">Why Us</a>
-  <a href="#contact" class="btn">Enquire Now</a>
+  <a href="#contact" class="nav-btn">Enquire Now</a>
 </nav>
 
 <!-- ================= HERO ================= -->
-<section id="home" class="hero section reveal">
+
+<section id="home" class="hero">
   <h2>Explore the World with Confidence</h2>
   <p>Domestic • International • Pilgrimage • Customized Tours</p>
-  <a href="#contact" class="btn">Plan Your Trip</a>
+  <a href="#contact" class="main-btn">Enquire Now</a>
 </section>
 
 <!-- ================= ABOUT ================= -->
+
 <section id="about" class="section reveal">
   <h2>About Us</h2>
   <p>
-    Cogo Tours & Travels, based in Chennai, specializes in creating memorable and
-    affordable travel experiences across India and abroad. We focus on comfort,
-    safety, transparency, and personalized planning.
+    Cogo Tours & Travels, based in Chennai, India, specializes in delivering
+    memorable travel experiences across India and abroad.
   </p>
 </section>
 
+<!-- ================= TOURS ================= -->
 
-<!-- ================= SERVICES ================= -->
-<section id="tours" class="section reveal">
+<section id="tours" class="section light reveal">
   <h2>Our Services</h2>
   <div class="cards">
     <div class="card">Domestic Tours</div>
@@ -63,7 +63,8 @@
 </section>
 
 <!-- ================= WHY US ================= -->
-<section id="why" class="section light reveal">
+
+<section id="why" class="section reveal">
   <h2>Why Choose Cogo?</h2>
   <ul class="why-list">
     <li>✔ Personalized tour planning</li>
@@ -75,10 +76,15 @@
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="section reveal">
+
+<section id="contact" class="section light reveal">
   <h2>Contact Us</h2>
 
-  <form action="https://formspree.io/f/xwvvejeb" method="POST" class="contact-form">
+  <form action="https://formspree.io/f/xwvvejeb"
+        method="POST"
+        class="contact-form"
+        onsubmit="showMessage()">
+
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <input type="tel" name="phone" placeholder="Your Phone Number" required>
@@ -87,10 +93,13 @@
   </form>
 </section>
 
-<!-- ================= WHATSAPP ================= -->
+<!-- ================= FLOATING BUTTONS ================= -->
+
 <a href="https://wa.me/919080666674" class="whatsapp" target="_blank">💬</a>
+<button id="topBtn">⬆</button>
 
 <!-- ================= FOOTER ================= -->
+
 <footer>
   <p>© 2026 Cogo Tours & Travels. All Rights Reserved.</p>
 </footer>
@@ -98,6 +107,8 @@
 <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 
