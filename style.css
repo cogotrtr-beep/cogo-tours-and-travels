@@ -76,7 +76,7 @@ p {
   position: absolute;
   top: 18px;
   right: 18px;
-  background: rgba(255, 255, 255, 0.18);
+  background: black;
   border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 10px 14px;
   border-radius: 30px;
@@ -528,6 +528,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
