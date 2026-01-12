@@ -1,14 +1,3 @@
-// ================= FORCE PAGE TO START AT TOP =================
-
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-};
-
-window.onload = () => {
-  window.scrollTo(0, 0);
-  revealSections();
-};
-
 // ================= ELEMENTS =================
 
 const nav = document.getElementById("navbar");
@@ -53,11 +42,16 @@ function revealSections() {
   });
 }
 
+// Run once on load
+revealSections();
+
 // ================= ENQUIRY MESSAGE =================
 
 function showMessage() {
   alert("Thank you! Our travel expert will contact you shortly 🌍✈");
 }
+
+
 
 
 
