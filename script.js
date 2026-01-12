@@ -1,4 +1,4 @@
-// ================= ELEMENTS =================
+// ================= BASIC ELEMENTS =================
 
 const nav = document.getElementById("navbar");
 const topBtn = document.getElementById("topBtn");
@@ -9,10 +9,10 @@ window.addEventListener("scroll", () => {
 
   if (window.scrollY > 120) {
     nav.classList.add("sticky");
-    topBtn.style.display = "block";
+    if (topBtn) topBtn.style.display = "block";
   } else {
     nav.classList.remove("sticky");
-    topBtn.style.display = "none";
+    if (topBtn) topBtn.style.display = "none";
   }
 
   revealSections();
@@ -20,29 +20,31 @@ window.addEventListener("scroll", () => {
 
 // ================= BACK TO TOP =================
 
-topBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+if (topBtn) {
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
-});
+}
 
 // ================= SCROLL REVEAL =================
 
 function revealSections() {
   const reveals = document.querySelectorAll(".reveal");
 
-  reveals.forEach(section => {
+  reveals.forEach(sec => {
     const windowHeight = window.innerHeight;
-    const sectionTop = section.getBoundingClientRect().top;
+    const sectionTop = sec.getBoundingClientRect().top;
 
     if (sectionTop < windowHeight - 100) {
-      section.classList.add("active");
+      sec.classList.add("active");
     }
   });
 }
 
-// Run once on load
+// Run reveal once on load
 revealSections();
 
 // ================= ENQUIRY MESSAGE =================
@@ -50,6 +52,8 @@ revealSections();
 function showMessage() {
   alert("Thank you! Our travel expert will contact you shortly 🌍✈");
 }
+
+
 
 
 
