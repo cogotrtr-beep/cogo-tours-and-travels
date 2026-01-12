@@ -1,0 +1,144 @@
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 160px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  background: #004aad;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+nav {
+  background: #222;
+  text-align: center;
+  padding: 10px;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.hero {
+  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.btn {
+  background: #ff9800;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.light {
+  background: #f4f4f4;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.why-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.contact-form button {
+  background: #004aad;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  border: none;
+}
+
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: #fff;
+  font-size: 24px;
+  padding: 15px;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+.map {
+  margin-top: 20px;
+}
+
+.map iframe {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+/* --- VISIBILITY FIX (text color) --- */
+body {
+  color: #111;   /* makes all normal text dark */
+}
+
+.section, .light {
+  color: #111;   /* ensures text stays dark in content sections */
+}
+
+.section h2, .section h3, .section p, .section li {
+  color: #111;
+}
+
+.contact-info p,
+.contact-info a {
+  color: #111;
+}
+footer p {
+  color: #fff;
+}
+
