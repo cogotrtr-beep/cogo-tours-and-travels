@@ -1,86 +1,65 @@
-/* ================= PREMIUM ADD-ONS ================= */
+// ================= FORCE PAGE TO START AT TOP =================
 
-body {
-  animation: siteFade 1.2s ease;
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
+window.onload = () => {
+  window.scrollTo(0, 0);
+  revealSections();
+};
+
+// ================= ELEMENTS =================
+
+const nav = document.getElementById("navbar");
+const topBtn = document.getElementById("topBtn");
+
+// ================= STICKY NAV + TOP BUTTON =================
+
+window.addEventListener("scroll", () => {
+
+  if (window.scrollY > 120) {
+    nav.classList.add("sticky");
+    topBtn.style.display = "block";
+  } else {
+    nav.classList.remove("sticky");
+    topBtn.style.display = "none";
+  }
+
+  revealSections();
+});
+
+// ================= BACK TO TOP =================
+
+topBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+// ================= SCROLL REVEAL =================
+
+function revealSections() {
+  const reveals = document.querySelectorAll(".reveal");
+
+  reveals.forEach(section => {
+    const windowHeight = window.innerHeight;
+    const sectionTop = section.getBoundingClientRect().top;
+
+    if (sectionTop < windowHeight - 100) {
+      section.classList.add("active");
+    }
+  });
 }
 
-@keyframes siteFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+// ================= ENQUIRY MESSAGE =================
+
+function showMessage() {
+  alert("Thank you! Our travel expert will contact you shortly 🌍✈");
 }
 
-nav a:hover {
-  color: white;
-  text-shadow: 0 0 10px rgba(0,229,255,.6);
-}
 
-.hero h2 {
-  animation: glow 3s infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px rgba(10,92,255,.4); }
-  to { text-shadow: 0 0 25px rgba(0,229,255,.8); }
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
-  transform: skewX(-25deg);
-}
-
-.card:hover::after {
-  left: 160%;
-  transition: .8s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  box-shadow: 0 0 15px rgba(0,229,255,.5);
-}
-
-.contact-form button:hover {
-  cursor: pointer;
-  box-shadow: 0 0 25px rgba(0,229,255,.8);
-  transform: translateY(-2px);
-}
-
-.whatsapp {
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-#topBtn:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 25px rgba(0,229,255,.9);
-  cursor: pointer;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #020617;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--primary), var(--secondary), var(--accent));
-  border-radius: 10px;
-}
-
-footer {
-  box-shadow: 0 -10px 30px rgba(10,92,255,.25);
-}
 
 
 
