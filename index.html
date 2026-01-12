@@ -1,112 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cogo Tours & Travels | Chennai</title>
 
-  <title>Cogo Tours & Travels | Best Tours & Travels in Chennai</title>
-
-  <meta name="description" content="Cogo Tours & Travels Chennai offers domestic, international, pilgrimage and customized tour packages. Trusted travel partner in Chennai, India.">
-  <meta name="keywords" content="Tours and Travels Chennai, Travel Agency Chennai, Domestic Tours India, International Tour Packages, Pilgrimage Tours, Customized Holidays">
-  <meta name="author" content="Cogo Tours & Travels">
-
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-<!-- ================= HEADER ================= -->
 
 <header class="top-header">
   <h1>Cogo Tours & Travels</h1>
   <p>Your Journey, Our Responsibility</p>
 </header>
 
-<!-- ================= NAVBAR ================= -->
-
 <nav id="navbar">
   <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#tours">Tours</a>
+  <a href="#destinations">Destinations</a>
+  <a href="#packages">Packages</a>
   <a href="#why">Why Us</a>
-  <a href="#contact" class="nav-btn">Enquire Now</a>
+  <a href="#contact" class="nav-btn">Enquire</a>
 </nav>
 
-<!-- ================= HERO ================= -->
-
-<section id="home" class="hero">
+<section id="home" class="hero reveal">
   <h2>Explore the World with Confidence</h2>
   <p>Domestic • International • Pilgrimage • Customized Tours</p>
-  <a href="#contact" class="main-btn">Enquire Now</a>
+  <a href="#packages" class="main-btn">View Packages</a>
 </section>
 
-<!-- ================= ABOUT ================= -->
-
-<section id="about" class="section reveal">
-  <h2>About Us</h2>
-  <p>
-    Cogo Tours & Travels, based in Chennai, India, specializes in delivering
-    memorable travel experiences across India and abroad.
-  </p>
-</section>
-
-<!-- ================= TOURS ================= -->
-
-<section id="tours" class="section light reveal">
-  <h2>Our Services</h2>
+<!-- 🌍 DESTINATIONS -->
+<section id="destinations" class="section light reveal">
+  <h2>Popular Destinations</h2>
   <div class="cards">
-    <div class="card">Domestic Tours</div>
-    <div class="card">International Tours</div>
-    <div class="card">Pilgrimage Packages</div>
-    <div class="card">Customized Holidays</div>
+    <div class="card">🇮🇳 Kashmir & Himachal</div>
+    <div class="card">🌴 Kerala & Goa</div>
+    <div class="card">🛕 Tirupati & Shirdi</div>
+    <div class="card">✈ Dubai, Thailand, Singapore</div>
   </div>
 </section>
 
-<!-- ================= WHY US ================= -->
+<!-- 📦 PACKAGES -->
+<section id="packages" class="section reveal">
+  <h2>Trending Packages</h2>
+  <div class="package-cards">
 
-<section id="why" class="section reveal">
-  <h2>Why Choose Cogo?</h2>
+    <div class="package">
+      <h3>Kerala Tour</h3>
+      <p>5 Days / 4 Nights</p>
+      <span>₹18,999 onwards</span>
+    </div>
+
+    <div class="package">
+      <h3>Dubai Trip</h3>
+      <p>4 Days / 3 Nights</p>
+      <span>₹42,999 onwards</span>
+    </div>
+
+    <div class="package">
+      <h3>Shirdi + Tirupati</h3>
+      <p>3 Days / 2 Nights</p>
+      <span>₹9,999 onwards</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ⭐ WHY -->
+<section id="why" class="section light reveal">
+  <h2>Why Choose Cogo</h2>
   <ul class="why-list">
-    <li>✔ Personalized tour planning</li>
+    <li>✔ Customized packages</li>
     <li>✔ Transparent pricing</li>
-    <li>✔ Trusted travel partners</li>
-    <li>✔ Customer-first approach</li>
-    <li>✔ Chennai-based local support</li>
+    <li>✔ 24/7 support</li>
+    <li>✔ Trusted partners</li>
+    <li>✔ Chennai based service</li>
   </ul>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<!-- ⭐ TESTIMONIALS -->
+<section class="section reveal">
+  <h2>What Our Customers Say</h2>
+  <div class="testimonials">
+    <div class="review">“Very smooth trip to Kerala. Hotel & travel was perfect.” – Ramesh</div>
+    <div class="review">“Best travel agency in Chennai. Highly trusted.” – Priya</div>
+    <div class="review">“Good support throughout Dubai tour.” – Afsar</div>
+  </div>
+</section>
 
+<!-- 📩 CONTACT -->
 <section id="contact" class="section light reveal">
-  <h2>Contact Us</h2>
+  <h2>Plan Your Trip</h2>
 
-  <form action="https://formspree.io/f/xwvvejeb"
-        method="POST"
-        class="contact-form"
-        onsubmit="showMessage()">
-
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="tel" name="phone" placeholder="Your Phone Number" required>
-    <textarea name="message" placeholder="Your Travel Requirement" required></textarea>
+  <form class="contact-form" onsubmit="showMessage(event)">
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <input type="date" required>
+    <input type="number" placeholder="Number of People" required>
+    <select required>
+      <option value="">Select Budget</option>
+      <option>Below ₹10,000</option>
+      <option>₹10,000 - ₹30,000</option>
+      <option>₹30,000+</option>
+    </select>
+    <textarea placeholder="Where do you want to travel?" required></textarea>
     <button type="submit">Send Enquiry</button>
   </form>
 </section>
 
-<!-- ================= FLOATING BUTTONS ================= -->
-
 <a href="https://wa.me/919080666674" class="whatsapp" target="_blank">💬</a>
 <button id="topBtn">⬆</button>
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
-  <p>© 2026 Cogo Tours & Travels. All Rights Reserved.</p>
+<p>© 2026 Cogo Tours & Travels | Chennai</p>
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 
