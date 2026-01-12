@@ -55,6 +55,7 @@ p {
   color: red;
   font-weight: bold;
   font-family: "Dancing Script", cursive;
+  font-size:15px;
   margin: 6px 0 0;
   opacity: 0.95;
   font-size: 17px;
@@ -505,6 +506,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
