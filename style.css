@@ -481,6 +481,7 @@ footer {
 }
 
 /* banner image */
+
 .banner-img {
   width: 70%;
   height: 340px;
@@ -506,6 +507,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
