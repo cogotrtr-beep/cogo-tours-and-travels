@@ -482,8 +482,8 @@ footer {
 
 /* banner image */
 .banner-img {
-  width: 90%;
-  height: 360px;
+  width: 100%;
+  height: 340px;
   object-fit: cover;
   display: block;
   filter: brightness(98%);
@@ -506,6 +506,7 @@ footer {
   .banner-text h1 { font-size: 28px; }
   .banner-text p { font-size: 14px; }
 }
+
 
 
 
