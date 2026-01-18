@@ -146,7 +146,7 @@ nav.sticky + .hero {
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover;
-  color: white;
+  color: black;
   text-align: center;
   padding: 140px 20px;
 }
@@ -497,6 +497,7 @@ footer {
   margin: 0 auto;
   line-height: 1.8;
 }
+
 
 
 
