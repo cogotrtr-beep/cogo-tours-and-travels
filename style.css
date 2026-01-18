@@ -478,7 +478,12 @@ footer {
   margin: 0;
   padding: 0;
 }
-
+.banner {
+  border: 5px solid red;
+}
+.banner-img {
+  border: 5px solid lime;
+}
 
 /* Mobile responsive banner */
 @media (max-width: 768px) {
@@ -486,6 +491,7 @@ footer {
     height: 50vh;
   }
 }
+
 
 
 
