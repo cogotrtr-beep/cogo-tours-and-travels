@@ -62,26 +62,31 @@ Travel with confidence. Travel with Cogo.
 <section id="tours" class="section light reveal">
   <h2>Our Tour Categories</h2>
 
-  <div class="cards">
-    <div class="card dropdown-card" onclick="toggleDropdown('domesticDropdown')">
+<div class="card">
   🌄 Domestic Tours
-  <span class="drop-arrow" id="arrow-domesticDropdown">▾</span>
 
-  <select class="tour-dropdown" onchange="handleDomesticTour(this.value)">
-    <option value="">Select a City</option>
-    <option value="Ooty">Ooty</option>
-    <option value="Kodaikanal">Kodaikanal</option>
-    <option value="Munnar">Munnar</option>
-    <option value="Kerala">Kerala Package</option>
-    <option value="Goa">Goa</option>
-    <option value="Delhi-Agra">Delhi - Agra</option>
-    <option value="Kashmir">Kashmir</option>
-    <option value="Andaman">Andaman</option>
-    <option value="Manali">Manali</option>
-    <option value="Sikkim">Sikkim</option>
-  </select>
+  <form class="tour-form" onsubmit="goTourInfo(event)">
+    <select class="tour-dropdown" id="domesticTour" required>
+      <option value="">Select a City</option>
+      <option value="ooty">Ooty</option>
+      <option value="kodaikanal">Kodaikanal</option>
+      <option value="munnar">Munnar</option>
+      <option value="goa">Goa</option>
+      <option value="kerala">Kerala Package</option>
+    </select>
+
+    <button type="submit" class="tour-submit-btn">Submit</button>
+  </form>
 </div>
-</div>
+<section id="ooty" class="section light reveal">
+  <h2>Ooty Tour Package</h2>
+  <p class="about-para">
+    Ooty (Udhagamandalam) is one of the most loved hill stations in South India.
+    Our Ooty tour package includes Botanical Garden, Ooty Lake, Doddabetta Peak,
+    Tea Factory visit and sightseeing. Suitable for family, couples, and group trips.
+  </p>
+</section>
+
     <div class="card">✈ International Trips</div>
     <div class="card">🛕 Pilgrimage Tours</div>
     <div class="card">🏖 Honeymoon & Family</div>
@@ -150,6 +155,7 @@ Travel with confidence. Travel with Cogo.
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
