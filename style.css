@@ -527,6 +527,25 @@ footer {
 .tour-submit-btn:hover{
   transform: translateY(-2px);
 }
+/* ✅ Hide all info by default */
+.tour-info {
+  display: none;
+  margin-top: 18px;
+  text-align: left;
+  background: white;
+  padding: 18px 18px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.tour-info h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #0f172a;
+}
+
+
 
 
 
