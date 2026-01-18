@@ -62,37 +62,25 @@ p {
   position: absolute;
   top: 18px;
   right: 18px;
-  background: green;
+  background: #16a34a; /* ✅ Green */
   border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 10px 14px;
   border-radius: 30px;
-  color: white;
+  color: white; /* ✅ Makes symbol + text white */
   text-decoration: none;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
-  backdrop-filter: blur(6px);
   transition: 0.25s;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .call-link:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: #15803d; /* ✅ Darker green hover */
   transform: scale(1.03);
 }
 
-/* Responsive: show only icon */
-@media (max-width: 520px) {
-  .call-link span {
-    display: none;
-  }
-
-  .call-link {
-    padding: 10px 12px;
-    border-radius: 50%;
-  }
-}
 
 /* ========================= NAVBAR ========================= */
 nav {
@@ -486,6 +474,7 @@ footer {
     height: 50vh;
   }
 }
+
 
 
 
