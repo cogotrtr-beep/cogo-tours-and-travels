@@ -35,29 +35,27 @@ function showMessage(e) {
   alert("Thank you! Our travel expert will contact you shortly 🌍✈");
   e.target.reset();
 }
-//submit
-.tour-form{
-  margin-top: 14px;
+function goTourInfo(event) {
+  event.preventDefault(); // stop page refresh
+
+  const selected = document.getElementById("domesticTour").value;
+  if (!selected) return;
+
+  const section = document.getElementById(selected);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+
+    // ✅ Optional: highlight effect for 2 seconds
+    section.style.boxShadow = "0 0 0 6px rgba(10,92,255,0.25)";
+    section.style.borderRadius = "18px";
+
+    setTimeout(() => {
+      section.style.boxShadow = "none";
+    }, 2000);
+  }
 }
 
-.tour-submit-btn{
-  width: 100%;
-  margin-top: 12px;
-  padding: 12px 14px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(90deg, #16a34a, #0f8a3a);
-  color: white;
-  font-size: 15px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: 0.25s;
-  box-shadow: 0 12px 30px rgba(22, 163, 74, 0.30);
-}
 
-.tour-submit-btn:hover{
-  transform: translateY(-2px);
-}
 
 
 
