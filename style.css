@@ -459,42 +459,26 @@ footer {
   position: relative;
 }
 
+/* ✅ Banner wrapper must have height */
+.banner {
+  width: 100%;
+  height: 85vh;         /* ✅ important */
+  overflow: hidden;
+  position: relative;
+  margin-top: 70px;     /* same as navbar height */
+}
+
+/* ✅ Banner image */
 .banner-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Perfect crop */
-  object-position: center top; /* Keeps top visible */
+  object-fit: cover;        /* perfect crop */
+  object-position: center top;
   display: block;
   margin: 0;
   padding: 0;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  margin: 0;
-  padding: 0;
-}
-
-.banner {
-  margin-top: 70px; /* same as navbar height */
-}
-
-.banner-text p {
-  margin-top: 8px;
-  font-size: 18px;
-  opacity: 0.95;
-  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
-}
 
 /* Mobile responsive banner */
 @media (max-width: 768px) {
@@ -502,6 +486,7 @@ header {
     height: 50vh;
   }
 }
+
 
 
 
