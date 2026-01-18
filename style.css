@@ -481,13 +481,14 @@ footer {
 }
 
 /* banner image */
-
 .banner-img {
-  width: 90%;
-  height: 380px;
-  object-fit: cover;
+  width: 100%;              /* Full width */
+  max-width: 100%;
+  height: 85vh;             /* Responsive height based on screen */
+  object-fit: cover;       /* Perfect image fitting */
+  object-position: center; /* Keeps focus in center */
   display: block;
-  filter: brightness(98%);
+  filter: brightness(95%);  /* Slight dark for better text visibility */
 }
 
 
@@ -502,11 +503,12 @@ footer {
 }
 
 /* Mobile responsive banner */
-@media (max-width: 650px) {
-  .banner-img { height: 230px; }
-  .banner-text h1 { font-size: 28px; }
-  .banner-text p { font-size: 14px; }
+@media (max-width: 768px) {
+  .banner-img {
+    height: 50vh;
+  }
 }
+
 
 
 
