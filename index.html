@@ -63,7 +63,23 @@ Travel with confidence. Travel with Cogo.
   <h2>Our Tour Categories</h2>
 
   <div class="cards">
-    <div class="card">🌄 Domestic Tours</div>
+    <div class="card dropdown-card" onclick="toggleDropdown('domesticDropdown')">
+  🌄 Domestic Tours
+  <span class="drop-arrow" id="arrow-domesticDropdown">▾</span>
+
+  <div class="dropdown-box" id="domesticDropdown">
+    <a href="#">Ooty</a>
+    <a href="#">Kodaikanal</a>
+    <a href="#">Munnar</a>
+    <a href="#">Kerala Package</a>
+    <a href="#">Goa</a>
+    <a href="#">Delhi - Agra</a>
+    <a href="#">Kashmir</a>
+    <a href="#">Andaman</a>
+    <a href="#">Manali</a>
+    <a href="#">Sikkim</a>
+  </div>
+</div>
     <div class="card">✈ International Trips</div>
     <div class="card">🛕 Pilgrimage Tours</div>
     <div class="card">🏖 Honeymoon & Family</div>
@@ -132,6 +148,7 @@ Travel with confidence. Travel with Cogo.
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
