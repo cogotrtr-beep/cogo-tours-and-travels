@@ -294,4 +294,27 @@ body {
   left: auto !important;
   z-index: 99999999 !important;
 }
+/* ✅ Make Phone + Plan buttons same style & perfect alignment */
+.call-link,
+.plan-btn-top{
+  width: 230px;                 /* same width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+/* Phone button */
+.call-link{
+  background: linear-gradient(90deg, #16a34a, #0f8a3e);
+}
+
+/* Plan button */
+.plan-btn-top{
+  background: linear-gradient(90deg, #ff9800, #ff5a00);
+}
+
 
