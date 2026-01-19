@@ -326,6 +326,12 @@ body {
   background: rgba(255,255,255,0.14);
   color: #ff9800;
 }
+/* ✅ Banner tagline premium */
+.hero-tagline{
+  font-size: 15px;
+  letter-spacing: 0.4px;
+}
+
 
 
 
