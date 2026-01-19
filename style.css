@@ -286,3 +286,12 @@ body {
   justify-content: center;
   min-width: 190px;
 }
+/* ✅ FORCE PLAN BUTTON to show always */
+.plan-btn-top{
+  position: absolute !important;
+  top: 74px !important;
+  right: 18px !important;
+  left: auto !important;
+  z-index: 99999999 !important;
+}
+
