@@ -91,4 +91,21 @@ window.addEventListener("scroll", () => {
     nav.classList.remove("sticky");
   }
 });
+/* ✅ Mobile Hamburger Menu Toggle */
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const navLinks = document.getElementById("navLinks");
+
+if (hamburgerBtn && navLinks) {
+  hamburgerBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+
+  // ✅ Close menu when clicking any nav link
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+    });
+  });
+}
+
 
