@@ -634,6 +634,24 @@ body {
     left: 12px !important;
   }
 }
+/* =========================
+   DESKTOP: ALIGN PHONE + PLAN WITH COGO
+========================= */
+@media (min-width: 769px) {
+
+  /* Move phone button down */
+  .call-link {
+    top: 42px !important;   /* was 18px */
+    right: 18px !important;
+  }
+
+  /* Move plan button below phone */
+  .plan-btn-top {
+    top: 100px !important;  /* was 74px */
+    right: 18px !important;
+  }
+}
+
 
 
 
