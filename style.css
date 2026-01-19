@@ -634,25 +634,21 @@ body {
     left: 12px !important;
   }
 }
-/* =========================
-   DESKTOP: NAVBAR TOP, PHONE+PLAN ALIGN WITH LOGO
-========================= */
 @media (min-width: 769px) {
 
-  /* ✅ keep navbar near top */
   .top-navbar{
     top: 18px !important;
   }
 
-  /* ✅ move phone button down (align with COGO logo area) */
+  /* ✅ move phone button further down */
   .call-link{
-    top: 160px !important;
+    top: 205px !important;   /* moved down */
     right: 22px !important;
   }
 
   /* ✅ plan button below phone */
   .plan-btn-top{
-    top: 225px !important;
+    top: 272px !important;   /* moved down */
     right: 22px !important;
   }
 }
