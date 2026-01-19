@@ -119,3 +119,29 @@ if (hamburgerBtn && navLinks) {
     });
   });
 }
+/* ✅ Tour Filter Buttons */
+const filterButtons = document.querySelectorAll(".filter-btn");
+const tourCards = document.querySelectorAll(".tour-card");
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    // active button UI
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.getAttribute("data-filter");
+
+    tourCards.forEach(card => {
+      const category = card.getAttribute("data-category");
+
+      if (filter === "all" || category === filter) {
+        card.classList.remove("hide");
+      } else {
+        card.classList.add("hide");
+      }
+    });
+
+  });
+});
+
