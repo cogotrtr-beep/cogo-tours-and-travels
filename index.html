@@ -3,46 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Cogo Tours & Travels | Chennai</title>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
   <!-- ✅ HERO / BANNER -->
-  <header class="banner-header" id="home">
-    <div class="banner">
-      <img class="banner-img" src="cogoindian.jpeg" alt="Cogo Banner" />
+  <header class="hero" id="home">
+    <img class="hero-img" src="cogoindian.jpeg" alt="Cogo Tours Banner" />
 
-      <!-- Text if you want -->
-      <div class="banner-text">
-        <p>Your Journey, Our Responsibility</p>
-      </div>
+    <!-- ✅ PREMIUM TOP NAV -->
+    <nav class="top-navbar">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#tours">Tours</a>
+      <a href="#why">Why Us</a>
+      <a href="#ser">Services</a>
+      <a href="#contact" class="nav-btn">Enquire</a>
+    </nav>
 
-      <!-- ✅ NAVBAR ON BANNER -->
-      <nav id="navbar" class="top-navbar">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#tours">Tours</a>
-        <a href="#why">Why Us</a>
-        <a href="#ser">Services</a>
-        <a href="#contact" class="nav-btn">Enquire</a>
-      </nav>
-
-      <!-- ✅ Call + Plan Button (Top Right) -->
-      <a href="tel:+919884066830" class="call-link" aria-label="Call Cogo Tours">
-        📞 <span>+91 98840 66830</span>
-      </a>
-
-      <a href="#contact" class="plan-btn-top">Plan Your Journey</a>
+    <!-- ✅ Banner text (optional) -->
+    <div class="hero-tagline">
+      <p>Your Journey, Our Responsibility</p>
     </div>
+
+    <!-- ✅ PHONE BUTTON (TOP RIGHT) -->
+    <a href="tel:+919884066830" class="call-link" aria-label="Call Cogo Tours">
+      📞 <span>+91 98840 66830</span>
+    </a>
+
+    <!-- ✅ PLAN BUTTON (BELOW PHONE BUTTON TOP RIGHT) -->
+    <a href="#contact" class="plan-btn-top">
+      Plan Your Journey
+    </a>
   </header>
 
   <!-- ✅ ABOUT -->
-  <section id="about" class="section reveal">
+  <section id="about" class="section">
     <h2>About Us</h2>
-    <p align="justify">
+    <p class="text-justify">
       Cogo Tours & Travels is a Chennai-based travel agency committed to turning travel dreams into memorable real-world experiences.
       Founded with a passion for exploration and a dedication to customer satisfaction, we specialize in delivering personalized,
       affordable, and reliable tour packages across India and around the globe.
@@ -56,13 +57,13 @@
       Travel with confidence. Travel with Cogo.
     </p>
 
-    <h2>Our Tour Categories</h2>
+    <h2 style="margin-top:28px;">Our Tour Categories</h2>
   </section>
 
-  <!-- ✅ DOMESTIC TOURS -->
-  <div class="card">
-    <center>
-      🌄 Domestic Tours
+  <!-- ✅ Domestic -->
+  <section class="section section-light" style="padding-top: 10px;">
+    <div class="card">
+      <div class="card-title">🌄 Domestic Tours</div>
 
       <form class="tour-form" onsubmit="showTourInfo(event)">
         <select class="tour-dropdown" id="domesticTour" required>
@@ -73,14 +74,14 @@
           <option value="goaInfo">Goa</option>
           <option value="keralaInfo">Kerala Package</option>
         </select>
-
-        <button type="submit" class="tour-submit-btn">Submit</button>
+        <button type="submit" class="btn-primary">Submit</button>
       </form>
-    </center>
-  </div>
+    </div>
+  </section>
 
-  <!-- ✅ TOURS SECTION -->
-  <section id="tours" class="section light reveal">
+  <!-- ✅ Tours -->
+  <section id="tours" class="section section-light">
+    <h2>Tours</h2>
 
     <div class="tour-info" id="ootyInfo">
       <h3>Ooty Tour Package</h3>
@@ -107,38 +108,39 @@
       <p>Munnar, Thekkady, Alleppey houseboat and Kochi sightseeing.</p>
     </div>
 
-    <div class="card">✈ International Trips</div>
-    <div class="card">🛕 Pilgrimage Tours</div>
-    <div class="card">🏖 Honeymoon & Family</div>
-
+    <div class="grid-cards">
+      <div class="mini-card">✈ International Trips</div>
+      <div class="mini-card">🛕 Pilgrimage Tours</div>
+      <div class="mini-card">🏖 Honeymoon & Family</div>
+    </div>
   </section>
 
-  <!-- ✅ WHY US -->
-  <section id="why" class="section reveal">
+  <!-- ✅ Why -->
+  <section id="why" class="section">
     <h2>Why Choose Us</h2>
-    <ul class="why-list">
-      <li>✔ Custom packages</li>
-      <li>✔ Affordable pricing</li>
-      <li>✔ 24/7 customer support</li>
-      <li>✔ Local Chennai assistance</li>
-      <li>✔ Trusted bookings</li>
+    <ul class="list-check">
+      <li>Custom packages</li>
+      <li>Affordable pricing</li>
+      <li>24/7 customer support</li>
+      <li>Local Chennai assistance</li>
+      <li>Trusted bookings</li>
     </ul>
   </section>
 
-  <!-- ✅ SERVICES -->
-  <section id="ser" class="section reveal">
-    <h2>SERVICES</h2>
-    <ul class="ser-list">
-      <li>✔ AIR / TRAIN / BUS TICKETING</li>
-      <li>✔ CAB BOOKING</li>
-      <li>✔ CAN ADD LATER</li>
-      <li>✔ CAN ADD LATER</li>
-      <li>✔ CAN ADD LATER</li>
+  <!-- ✅ Services -->
+  <section id="ser" class="section section-light">
+    <h2>Services</h2>
+    <ul class="list-check">
+      <li>AIR / TRAIN / BUS TICKETING</li>
+      <li>CAB BOOKING</li>
+      <li>Hotel booking</li>
+      <li>Visa assistance</li>
+      <li>Customized travel plans</li>
     </ul>
   </section>
 
-  <!-- ✅ CONTACT -->
-  <section id="contact" class="section light reveal">
+  <!-- ✅ Contact -->
+  <section id="contact" class="section">
     <h2>Plan Your Journey</h2>
 
     <form class="contact-form" onsubmit="showMessage(event)">
@@ -146,24 +148,20 @@
       <input type="email" placeholder="Email Address" required />
       <input type="tel" placeholder="Phone Number" required />
       <textarea placeholder="Please share your travel plan place/date/days, we will get back with full package details :)" required></textarea>
-      <button type="submit">Send Enquiry</button>
+      <button type="submit" class="btn-primary full">Send Enquiry</button>
     </form>
+
+    <p class="contact-line">
+      <strong>CONTACT:</strong> # 1817/132, 13TH Main Road, Anna Nagar West, Chennai - 600040.
+      Email: <strong>cogotrtr@gmail.com</strong> | Phone: <strong>9884066830 / 9080666674</strong>
+    </p>
   </section>
 
-  <br><br>
-
-  <center>
-    <b>
-      CONTACT :- # 1817/132, 13TH Main Road, Annanagar West, Chennai- 600040. Tamil Nadu - INDIA.
-      Email - cogotrtr@gmail.com . Phone : 9884066830 / 9080666674
-    </b>
-  </center>
-
-  <a href="https://wa.me/919884066830" class="whatsapp" target="_blank">💬</a>
-  <button id="topBtn">⬆</button>
+  <!-- ✅ WhatsApp -->
+  <a href="https://wa.me/919884066830" class="whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
 
   <!-- ✅ MAP -->
-  <section class="section" id="map">
+  <section class="section section-light" id="map">
     <h2>Find Us on Map</h2>
     <div class="map-box">
       <iframe
@@ -177,7 +175,7 @@
     </div>
   </section>
 
-  <footer>
+  <footer class="footer">
     <p>© 2026 Cogo Tours & Travels | Chennai</p>
   </footer>
 
