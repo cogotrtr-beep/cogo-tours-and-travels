@@ -260,3 +260,29 @@ body {
 }
 
 .tour-info
+/* ✅ FIX LAYERING ISSUE - Buttons must appear above banner image */
+.hero {
+  position: relative;
+}
+
+.hero-img {
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar + phone + plan should be ABOVE image */
+.top-navbar,
+.call-link,
+.plan-btn-top,
+.hero-tagline {
+  position: absolute;
+  z-index: 999999 !important;
+}
+
+/* Make plan button clearly visible */
+.plan-btn-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 190px;
+}
