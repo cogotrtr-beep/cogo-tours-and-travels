@@ -598,6 +598,43 @@ body {
     max-width: 360px;
   }
 }
+/* =========================
+   MOBILE: ALIGN PHONE + PLAN WITH COGO
+========================= */
+@media (max-width: 768px) {
+
+  /* ✅ Move phone button down */
+  .call-link {
+    top: 110px !important;     /* push down */
+    right: 12px !important;
+    width: 190px !important;   /* same width */
+    padding: 9px 12px !important;
+    font-size: 12.5px !important;
+    border-radius: 999px !important;
+  }
+
+  /* ✅ Move plan button below phone */
+  .plan-btn-top {
+    top: 155px !important;     /* below phone */
+    right: 12px !important;
+    width: 190px !important;   /* same width */
+    padding: 9px 12px !important;
+    font-size: 12.5px !important;
+    border-radius: 999px !important;
+  }
+
+  /* ✅ Slightly reduce icon / spacing */
+  .call-link span {
+    font-size: 12.5px !important;
+  }
+
+  /* ✅ Hamburger button also pushed down a little */
+  .top-navbar {
+    top: 28px !important;     /* hamburger down */
+    left: 12px !important;
+  }
+}
+
 
 
 
