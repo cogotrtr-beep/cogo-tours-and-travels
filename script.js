@@ -99,8 +99,15 @@ if (hamburgerBtn && navLinks) {
   hamburgerBtn.addEventListener("click", () => {
     navLinks.classList.toggle("open");
 
-    // ✅ Add class to body when menu is open (to hide phone/plan)
+    // ✅ Add/remove class to body when menu is open (hide phone/plan)
     document.body.classList.toggle("menu-open");
+
+    // ✅ Change icon ☰ to ✕
+    if (navLinks.classList.contains("open")) {
+      hamburgerBtn.textContent = "✕";
+    } else {
+      hamburgerBtn.textContent = "☰";
+    }
   });
 
   // ✅ Close menu when clicking any nav link
@@ -108,13 +115,7 @@ if (hamburgerBtn && navLinks) {
     link.addEventListener("click", () => {
       navLinks.classList.remove("open");
       document.body.classList.remove("menu-open");
+      hamburgerBtn.textContent = "☰";
     });
   });
 }
-if (navLinks.classList.contains("open")) {
-  hamburgerBtn.textContent = "✕";
-} else {
-  hamburgerBtn.textContent = "☰";
-}
-
-
