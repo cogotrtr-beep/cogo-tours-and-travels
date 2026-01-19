@@ -79,3 +79,16 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
+/* ✅ Sticky Navbar on Scroll */
+window.addEventListener("scroll", () => {
+  const nav = document.getElementById("mainNav");
+  if (!nav) return;
+
+  // when scroll down more than 120px
+  if (window.scrollY > 120) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+});
+
