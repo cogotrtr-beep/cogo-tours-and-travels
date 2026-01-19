@@ -111,4 +111,10 @@ if (hamburgerBtn && navLinks) {
     });
   });
 }
+if (navLinks.classList.contains("open")) {
+  hamburgerBtn.textContent = "✕";
+} else {
+  hamburgerBtn.textContent = "☰";
+}
+
 
