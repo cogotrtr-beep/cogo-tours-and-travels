@@ -98,14 +98,17 @@ const navLinks = document.getElementById("navLinks");
 if (hamburgerBtn && navLinks) {
   hamburgerBtn.addEventListener("click", () => {
     navLinks.classList.toggle("open");
+
+    // ✅ Add class to body when menu is open (to hide phone/plan)
+    document.body.classList.toggle("menu-open");
   });
 
   // ✅ Close menu when clicking any nav link
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("open");
+      document.body.classList.remove("menu-open");
     });
   });
 }
-
 
