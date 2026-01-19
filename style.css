@@ -635,24 +635,27 @@ body {
   }
 }
 /* =========================
-   DESKTOP: ALIGN PHONE + PLAN WITH COGO
+   DESKTOP: PERFECT ALIGN WITH COGO AREA
 ========================= */
 @media (min-width: 769px) {
 
-  /* Move phone button down */
-  .call-link {
-    top: 42px !important;   /* was 18px */
-    right: 18px !important;
+  /* ✅ Move navbar down a bit */
+  .top-navbar{
+    top: 40px !important;    /* was 18px */
   }
 
-  /* Move plan button below phone */
-  .plan-btn-top {
-    top: 100px !important;  /* was 74px */
-    right: 18px !important;
+  /* ✅ Move phone button down */
+  .call-link{
+    top: 55px !important;    /* was 18px */
+    right: 22px !important;
+  }
+
+  /* ✅ Move plan button below phone */
+  .plan-btn-top{
+    top: 118px !important;   /* was 74px */
+    right: 22px !important;
   }
 }
-
-
 
 
 
