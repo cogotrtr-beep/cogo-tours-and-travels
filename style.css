@@ -558,5 +558,46 @@ body {
     font-size: 15px !important;
   }
 }
+/* =========================
+   MOBILE NAVBAR - SMALL BOX ONLY
+========================= */
+@media (max-width: 768px) {
+
+  /* make navbar container transparent + small */
+  .top-navbar {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+
+    width: auto !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+
+    left: 12px !important;
+    top: 12px !important;
+    transform: none !important;
+  }
+
+  /* hamburger button gets the background instead */
+  .hamburger {
+    background: rgba(15, 23, 42, 0.72) !important;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+
+    padding: 10px 14px !important;
+    border-radius: 16px !important;
+  }
+
+  /* dropdown menu panel - stays centered */
+  .nav-links.open {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 86vw;
+    max-width: 360px;
+  }
+}
+
 
 
