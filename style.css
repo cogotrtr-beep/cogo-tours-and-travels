@@ -316,5 +316,16 @@ body {
 .plan-btn-top{
   background: linear-gradient(90deg, #ff9800, #ff5a00);
 }
+.top-navbar a {
+  padding: 8px 10px;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.top-navbar a:hover {
+  background: rgba(255,255,255,0.14);
+  color: #ff9800;
+}
+
 
 
