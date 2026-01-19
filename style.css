@@ -1,9 +1,51 @@
-/* ✅ Banner position */
-.banner {
-  position: relative;
+/* =========================
+   GLOBAL RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ✅ Navbar overlay on banner */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: #ffffff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* =========================
+   BANNER / HERO
+========================= */
+.banner {
+  position: relative;
+  width: 100%;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.banner-text {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* =========================
+   TOP NAVBAR
+========================= */
 .top-navbar {
   position: absolute;
   top: 20px;
@@ -11,19 +53,20 @@
   transform: translateX(-50%);
   z-index: 9999;
 
-  background: rgba(40, 40, 40, 0.75);
-  padding: 14px 25px;
-  border-radius: 40px;
-
   display: flex;
   gap: 26px;
   align-items: center;
+
+  background: rgba(40, 40, 40, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 14px 26px;
+  border-radius: 40px;
 }
 
-/* nav links */
 .top-navbar a {
   color: #fff;
   font-weight: 700;
+  font-size: 16px;
   text-decoration: none;
 }
 
@@ -31,7 +74,6 @@
   color: #ff9800;
 }
 
-/* enquire */
 .nav-btn {
   background: #ff9800;
   color: #111 !important;
@@ -39,18 +81,28 @@
   border-radius: 25px;
 }
 
-/* ✅ Call button top-right */
+/* =========================
+   CALL & PLAN BUTTONS
+========================= */
 .call-link {
   position: absolute;
   top: 20px;
   right: 20px;
   z-index: 99999;
+
+  background: #1ea44f;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-weight: 700;
+  text-decoration: none;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* ✅ Plan button below call */
 .plan-btn-top {
   position: absolute;
-  top: 80px;
+  top: 78px;
   right: 20px;
   z-index: 99999;
 
@@ -60,11 +112,184 @@
   border-radius: 30px;
   font-weight: 800;
   text-decoration: none;
+
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* mobile adjustment */
+.plan-btn-top:hover {
+  transform: scale(1.05);
+  transition: 0.2s ease;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.section {
+  padding: 70px 10%;
+}
+
+.section.light {
+  background: #f6f8fc;
+}
+
+.section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+  background: #fff;
+  margin: 25px auto;
+  padding: 25px;
+  width: 80%;
+  max-width: 700px;
+
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* =========================
+   TOUR FORM
+========================= */
+.tour-form {
+  margin-top: 20px;
+}
+
+.tour-dropdown {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.tour-submit-btn {
+  margin-top: 15px;
+  padding: 12px 22px;
+  background: #0a5cff;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* =========================
+   TOUR INFO
+========================= */
+.tour-info {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   LISTS
+========================= */
+.why-list,
+.ser-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.why-list li,
+.ser-list li {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* =========================
+   CONTACT FORM
+========================= */
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 14px;
+  background: #ff9800;
+  border: none;
+  border-radius: 30px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* =========================
+   WHATSAPP & TOP BUTTON
+========================= */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 26px;
+  text-decoration: none;
+  background: #25d366;
+  color: #fff;
+  padding: 12px;
+  border-radius: 50%;
+}
+
+#topBtn {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  border: none;
+  background: #0a5cff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* =========================
+   MAP
+========================= */
+.map-box {
+  margin-top: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #0f172a;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 @media (max-width: 768px) {
+
+  .section {
+    padding: 50px 6%;
+  }
+
   .top-navbar {
     width: 95%;
     gap: 14px;
@@ -73,15 +298,27 @@
     white-space: nowrap;
   }
 
+  .banner-text {
+    font-size: 14px;
+    left: 20px;
+    bottom: 20px;
+  }
+
   .call-link {
     top: 12px;
     right: 12px;
+    padding: 10px 14px;
+    font-size: 14px;
   }
 
   .plan-btn-top {
-    top: 62px;
+    top: 60px;
     right: 12px;
     padding: 10px 14px;
     font-size: 14px;
+  }
+
+  .card {
+    width: 90%;
   }
 }
