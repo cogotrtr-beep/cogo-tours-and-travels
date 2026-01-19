@@ -528,4 +528,35 @@ body {
     font-size: 14px !important;
   }
 }
+/* =========================
+   MOBILE MENU OVERLAP FIX
+========================= */
+
+/* ✅ When menu opens, hide floating CTA buttons */
+.menu-open .call-link,
+.menu-open .plan-btn-top {
+  display: none !important;
+}
+
+/* Better hamburger panel for landscape */
+@media (max-width: 768px) {
+  .nav-links {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+}
+
+/* Landscape tuning */
+@media (max-width: 900px) and (orientation: landscape) {
+  .nav-links {
+    max-height: 60vh;
+    padding: 16px !important;
+  }
+
+  .nav-links a {
+    padding: 10px 14px !important;
+    font-size: 15px !important;
+  }
+}
+
 
