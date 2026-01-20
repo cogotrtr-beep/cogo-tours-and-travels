@@ -444,4 +444,15 @@ body{
     right: 12px !important;
   }
 }
+/* ✅ Ensure plan button looks like link-button (no default button border/outline) */
+.plan-btn-top{
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+.plan-btn-top:focus{
+  outline: none;
+  box-shadow: 0 0 0 5px rgba(255,152,0,0.22);
+}
+
 
