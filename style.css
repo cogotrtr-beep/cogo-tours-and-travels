@@ -515,47 +515,48 @@ body{
   .nav-links a{ font-size:15px; }
 }
 /* =========================
-   STICKY CTA BUTTONS ON SCROLL + ANIMATION
+   STICKY CTA BUTTONS (PREMIUM UX)
 ========================= */
 
-/* smooth animation keyframes */
+/* Slide in */
 @keyframes ctaSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-/* Sticky state */
+/* Slide out (hide) */
+@keyframes ctaSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(28px); }
+}
+
 .call-link.sticky-cta,
 .plan-btn-top.sticky-cta{
   position: fixed !important;
   right: 18px !important;
   z-index: 999999 !important;
-
   animation: ctaSlideIn 0.35s ease forwards;
 }
 
-/* Position below sticky navbar */
-.call-link.sticky-cta{
-  top: 92px !important;
-}
-.plan-btn-top.sticky-cta{
-  top: 148px !important;
-}
+/* Position */
+.call-link.sticky-cta{ top: 92px !important; }
+.plan-btn-top.sticky-cta{ top: 148px !important; }
 
-/* Hover premium pop */
+/* Premium hover */
 .call-link.sticky-cta:hover,
 .plan-btn-top.sticky-cta:hover{
   transform: translateY(-2px);
   transition: 0.2s ease;
 }
 
-/* ✅ Mobile adjustment */
+/* ✅ Hide class (auto-hide on scroll down) */
+.call-link.cta-hide,
+.plan-btn-top.cta-hide{
+  pointer-events: none;
+  animation: ctaSlideOut 0.25s ease forwards;
+}
+
+/* ✅ Mobile position */
 @media (max-width: 768px){
   .call-link.sticky-cta{
     top: 80px !important;
@@ -566,4 +567,3 @@ body{
     right: 12px !important;
   }
 }
-
