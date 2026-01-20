@@ -6,6 +6,7 @@
   <title>Cogo Tours & Travels | Chennai</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- =========================
@@ -22,13 +23,13 @@
 
       <!-- ✅ Nav Links -->
       <div class="nav-links" id="navLinks">
-  <a href="#home" class="active">Home</a>
-  <a href="#tours">Tours</a>
-  <a href="#ser">Services</a>
-  <a href="#about">About</a>
-  <a href="#why">Why Us</a>
-  <a href="#contact" class="nav-btn">Enquire</a>
-</div>
+        <a href="#home" class="active">Home</a>
+        <a href="#tours">Tours</a>
+        <a href="#ser">Services</a>
+        <a href="#about">About</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact" class="nav-btn">Enquire</a>
+      </div>
     </nav>
 
     <!-- ✅ Banner tagline -->
@@ -41,10 +42,10 @@
       📞 <span>+91 98840 66830</span>
     </a>
 
-    <!-- ✅ Plan -->
+    <!-- ✅ Plan (opens modal) -->
     <button class="plan-btn-top" id="openEnquiryModal" type="button">
-  Plan Your Journey
-</button>
+      Plan Your Journey
+    </button>
   </header>
 
   <!-- =========================
@@ -80,7 +81,13 @@
             <li>✔ Tea factory + View points</li>
             <li>✔ Best for family & couples</li>
           </ul>
-          <a href="#contact" class="tour-btn">Get Quote</a>
+
+          <!-- ✅ WhatsApp Quote -->
+          <button class="tour-btn wa-quote"
+            data-place="Ooty Escape"
+            data-days="3D/2N"
+            data-price="₹ 9,999"
+            type="button">WhatsApp Quote</button>
         </div>
       </div>
 
@@ -98,7 +105,12 @@
             <li>✔ Alleppey Houseboat</li>
             <li>✔ Premium stays available</li>
           </ul>
-          <a href="#contact" class="tour-btn">Get Quote</a>
+
+          <button class="tour-btn wa-quote"
+            data-place="Kerala Delight"
+            data-days="5D/4N"
+            data-price="₹ 18,999"
+            type="button">WhatsApp Quote</button>
         </div>
       </div>
 
@@ -116,7 +128,12 @@
             <li>✔ Desert Safari + City tour</li>
             <li>✔ Best for family & groups</li>
           </ul>
-          <a href="#contact" class="tour-btn">Get Quote</a>
+
+          <button class="tour-btn wa-quote"
+            data-place="Dubai Explorer"
+            data-days="4D/3N"
+            data-price="₹ 39,999"
+            type="button">WhatsApp Quote</button>
         </div>
       </div>
 
@@ -134,7 +151,12 @@
             <li>✔ VIP Darshan options</li>
             <li>✔ Comfortable travel support</li>
           </ul>
-          <a href="#contact" class="tour-btn">Get Quote</a>
+
+          <button class="tour-btn wa-quote"
+            data-place="Pilgrimage Special"
+            data-days="3D/2N"
+            data-price="₹ 12,999"
+            type="button">WhatsApp Quote</button>
         </div>
       </div>
 
@@ -152,25 +174,16 @@
             <li>✔ Premium stays</li>
             <li>✔ Tailored itinerary</li>
           </ul>
-          <a href="#contact" class="tour-btn">Get Quote</a>
+
+          <button class="tour-btn wa-quote"
+            data-place="Honeymoon Getaway"
+            data-days="4D/3N"
+            data-price="₹ 24,999"
+            type="button">WhatsApp Quote</button>
         </div>
       </div>
 
     </div>
-  </section>
-
-  <!-- =========================
-       WHY US
-  ========================== -->
-  <section id="why" class="section reveal">
-    <h2>Why Choose Us</h2>
-    <ul class="list-check">
-      <li>Custom packages</li>
-      <li>Affordable pricing</li>
-      <li>24/7 customer support</li>
-      <li>Local Chennai assistance</li>
-      <li>Trusted bookings</li>
-    </ul>
   </section>
 
   <!-- =========================
@@ -186,7 +199,8 @@
       <li>PACKAGE CUSTOMIZATION</li>
     </ul>
   </section>
- <!-- =========================
+
+  <!-- =========================
        ABOUT
   ========================== -->
   <section id="about" class="section reveal">
@@ -197,13 +211,76 @@
       planning a family holiday, honeymoon, spiritual tour, corporate trip, or an international vacation — we design travel plans
       based on your interests and budget. Travel with confidence. Travel with Cogo.
     </p>
+  </section>
 
+  <!-- =========================
+       WHY US
+  ========================== -->
+  <section id="why" class="section reveal">
+    <h2>Why Choose Us</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-ico">💼</div>
+        <h3>Trusted Support</h3>
+        <p>Dedicated travel experts & transparent guidance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">💰</div>
+        <h3>Best Pricing</h3>
+        <p>Affordable packages with flexible customization.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">🕘</div>
+        <h3>24/7 Assistance</h3>
+        <p>We support you before, during and after travel.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">🧾</div>
+        <h3>Honest Service</h3>
+        <p>No hidden charges & clear itineraries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">🚌</div>
+        <h3>Safe Travel</h3>
+        <p>Comfortable transport & verified partners.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">⭐</div>
+        <h3>Memorable Trips</h3>
+        <p>We craft experiences, not just bookings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       TESTIMONIALS (NEW)
+  ========================== -->
+  <section id="testimonials" class="section section-light reveal">
+    <h2>What Our Customers Say</h2>
+    <p class="section-sub">Real feedback from happy travelers.</p>
+
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="test-quote">“Very professional service. Kerala trip was well planned and smooth. Highly recommended!”</p>
+        <div class="test-name">— Priya S, Chennai</div>
+      </div>
+
+      <div class="test-card">
+        <p class="test-quote">“Best pricing and quick response. They arranged everything including hotel & cab.”</p>
+        <div class="test-name">— Rahul M</div>
+      </div>
+
+      <div class="test-card">
+        <p class="test-quote">“Pilgrimage tour was comfortable and safe. Great support throughout the trip.”</p>
+        <div class="test-name">— Kumaravel</div>
+      </div>
+    </div>
   </section>
 
   <!-- =========================
        CONTACT
   ========================== -->
-  <section id="contact" class="section section-light reveal">
+  <section id="contact" class="section reveal">
     <h2>Plan Your Journey</h2>
 
     <form class="contact-form" onsubmit="showMessage(event)">
@@ -220,16 +297,15 @@
     </p>
   </section>
 
-  <!-- WhatsApp -->
+  <!-- WhatsApp floating -->
   <a href="https://wa.me/919884066830" class="whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
 
   <!-- Back to top -->
   <button id="topBtn" aria-label="Back to top">⬆</button>
 
   <!-- Map -->
-  <section class="section" id="map">
+  <section class="section section-light" id="map">
     <h2>Find Us on Map</h2>
-
     <div class="map-box">
       <iframe
         src="https://www.google.com/maps?q=13.094104548113595, 80.20093353664443&z=15&output=embed"
@@ -245,50 +321,47 @@
   <footer class="footer">
     © 2026 Cogo Tours & Travels | Chennai
   </footer>
-<!-- =========================
-     ENQUIRY POPUP MODAL
-========================= -->
-<div class="modal-overlay" id="enquiryModal">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    
-    <div class="modal-header">
-      <h3 id="modalTitle">Plan Your Journey</h3>
-      <button class="modal-close" id="closeEnquiryModal" aria-label="Close">✕</button>
+
+
+  <!-- =========================
+       ENQUIRY POPUP MODAL
+  ========================== -->
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Plan Your Journey</h3>
+        <button class="modal-close" id="closeEnquiryModal" aria-label="Close">✕</button>
+      </div>
+
+      <p class="modal-sub">Share details and we’ll call you back with the best package.</p>
+
+      <form class="modal-form" id="modalEnquiryForm">
+        <input type="text" id="mName" placeholder="Full Name" required>
+        <input type="tel" id="mPhone" placeholder="Phone Number" required>
+        <input type="email" id="mEmail" placeholder="Email Address (optional)">
+
+        <select id="mType" required>
+          <option value="">Select Trip Type</option>
+          <option>Domestic</option>
+          <option>International</option>
+          <option>Pilgrimage</option>
+          <option>Honeymoon</option>
+          <option>Corporate</option>
+        </select>
+
+        <textarea id="mPlan" placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
+
+        <button type="submit" class="modal-submit">Send Enquiry</button>
+
+        <!-- WhatsApp with pre-filled text -->
+        <a class="modal-whatsapp" id="modalWhatsApp" href="#" target="_blank">
+          WhatsApp Enquiry
+        </a>
+      </form>
+
     </div>
-
-    <p class="modal-sub">Share details and we’ll call you back with the best package.</p>
-
-    <form class="modal-form" id="modalEnquiryForm">
-      <input type="text" placeholder="Full Name" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <input type="email" placeholder="Email Address (optional)">
-      
-      <select required>
-        <option value="">Select Trip Type</option>
-        <option>Domestic</option>
-        <option>International</option>
-        <option>Pilgrimage</option>
-        <option>Honeymoon</option>
-        <option>Corporate</option>
-      </select>
-
-      <textarea placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
-
-      <button type="submit" class="modal-submit">Send Enquiry</button>
-
-      <a class="modal-whatsapp" href="https://wa.me/919884066830" target="_blank">
-        WhatsApp Enquiry
-      </a>
-    </form>
-
   </div>
-</div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
