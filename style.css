@@ -458,3 +458,27 @@ body{
   .nav-links.open{ max-height:60vh; }
   .nav-links a{ font-size:15px; }
 }
+/* ✅ Tour cover placeholders (when images not ready) */
+.tour-cover{
+  height: 210px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 1000;
+  font-size: 28px;
+  color:#fff;
+  letter-spacing: 1px;
+}
+
+/* Different premium gradients */
+.cover-international{
+  background: linear-gradient(135deg, #0a5cff, #00d4ff);
+}
+
+.cover-honeymoon{
+  background: linear-gradient(135deg, #ff2d55, #ff9800);
+}
+
+.cover-pilgrimage{
+  background: linear-gradient(135deg, #16a34a, #ff9800);
+}
