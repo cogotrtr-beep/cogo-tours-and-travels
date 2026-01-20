@@ -76,13 +76,12 @@
         <div class="tour-card-body">
           <h3>Ooty Escape</h3>
           <p class="tour-meta">Hill Station • Sightseeing</p>
-          <p class="tour-meta">Hill Station • Sightseeing</p>
 
-<div class="rating">
-  <span class="stars">★★★★★</span>
-  <span class="score">4.8</span>
-  <span class="reviews">(120 reviews)</span>
-</div>
+          <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span class="score">4.8</span>
+            <span class="reviews">(120 reviews)</span>
+          </div>
 
           <ul>
             <li>✔ Ooty Lake & Botanical Garden</li>
@@ -96,10 +95,12 @@
             data-days="3D/2N"
             data-price="₹ 9,999"
             type="button">WhatsApp Quote</button>
+
+          <!-- ✅ Details -->
           <button class="tour-btn details-btn"
-  data-title="Ooty Escape"
-  data-itinerary="Day 1: Chennai → Ooty | Check-in + Sightseeing\nDay 2: Botanical Garden + Doddabetta + Tea Factory\nDay 3: Ooty Lake + Shopping → Return"
-  type="button">View Details</button>
+            data-title="Ooty Escape"
+            data-itinerary="Day 1: Chennai → Ooty | Check-in + Sightseeing\nDay 2: Botanical Garden + Doddabetta + Tea Factory\nDay 3: Ooty Lake + Shopping → Return"
+            type="button">View Details</button>
 
         </div>
       </div>
@@ -113,6 +114,7 @@
         <div class="tour-card-body">
           <h3>Kerala Delight</h3>
           <p class="tour-meta">Nature • Houseboat</p>
+
           <ul>
             <li>✔ Munnar + Thekkady</li>
             <li>✔ Alleppey Houseboat</li>
@@ -124,7 +126,13 @@
             data-days="5D/4N"
             data-price="₹ 18,999"
             type="button">WhatsApp Quote</button>
-        </div
+
+          <button class="tour-btn details-btn"
+            data-title="Kerala Delight"
+            data-itinerary="Day 1: Arrival + Local sightseeing\nDay 2: Munnar tour\nDay 3: Thekkady + Activities\nDay 4: Alleppey Houseboat\nDay 5: Return"
+            type="button">View Details</button>
+
+        </div>
       </div>
 
       <!-- ✅ International: Dubai -->
@@ -136,6 +144,7 @@
         <div class="tour-card-body">
           <h3>Dubai Explorer</h3>
           <p class="tour-meta">Visa Support • City Tour</p>
+
           <ul>
             <li>✔ Visa Assistance</li>
             <li>✔ Desert Safari + City tour</li>
@@ -147,6 +156,12 @@
             data-days="4D/3N"
             data-price="₹ 39,999"
             type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Dubai Explorer"
+            data-itinerary="Day 1: Arrival + Marina\nDay 2: City tour + Burj Khalifa\nDay 3: Desert safari\nDay 4: Shopping + Return"
+            type="button">View Details</button>
+
         </div>
       </div>
 
@@ -160,6 +175,7 @@
         <div class="tour-card-body">
           <h3>Pilgrimage Special</h3>
           <p class="tour-meta">Spiritual • VIP Darshan</p>
+
           <ul>
             <li>✔ South India Temples</li>
             <li>✔ VIP Darshan options</li>
@@ -171,6 +187,12 @@
             data-days="3D/2N"
             data-price="₹ 12,999"
             type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Pilgrimage Special"
+            data-itinerary="Day 1: Temple 1 + 2\nDay 2: Temple 3 + 4\nDay 3: Temple 5 + Return"
+            type="button">View Details</button>
+
         </div>
       </div>
 
@@ -183,6 +205,7 @@
         <div class="tour-card-body">
           <h3>Honeymoon Getaway</h3>
           <p class="tour-meta">Romantic • Premium Stay</p>
+
           <ul>
             <li>✔ Candlelight arrangements</li>
             <li>✔ Premium stays</li>
@@ -194,6 +217,12 @@
             data-days="4D/3N"
             data-price="₹ 24,999"
             type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Honeymoon Getaway"
+            data-itinerary="Day 1: Arrival + Romantic dinner\nDay 2: Sightseeing\nDay 3: Leisure day\nDay 4: Return"
+            type="button">View Details</button>
+
         </div>
       </div>
 
@@ -336,7 +365,6 @@
     © 2026 Cogo Tours & Travels | Chennai
   </footer>
 
-
   <!-- =========================
        ENQUIRY POPUP MODAL
   ========================== -->
@@ -375,34 +403,30 @@
 
     </div>
   </div>
-<!-- =========================
+
+  <!-- =========================
      TOUR DETAILS MODAL
-========================= -->
-<div class="modal-overlay" id="tourDetailsModal">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
-    
-    <div class="modal-header">
-      <h3 id="tourTitle">Tour Details</h3>
-      <button class="modal-close" id="closeTourModal" aria-label="Close">✕</button>
+  ========================= -->
+  <div class="modal-overlay" id="tourDetailsModal">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+
+      <div class="modal-header">
+        <h3 id="tourTitle">Tour Details</h3>
+        <button class="modal-close" id="closeTourModal" aria-label="Close">✕</button>
+      </div>
+
+      <div class="tour-modal-body">
+        <p class="tour-modal-sub">Itinerary</p>
+        <pre class="tour-itinerary" id="tourItinerary"></pre>
+
+        <button class="modal-submit" id="tourWhatsAppBtn" type="button">
+          WhatsApp for This Tour
+        </button>
+      </div>
+
     </div>
-
-    <div class="tour-modal-body">
-      <p class="tour-modal-sub">Itinerary</p>
-      <pre class="tour-itinerary" id="tourItinerary"></pre>
-
-      <button class="modal-submit" id="tourWhatsAppBtn" type="button">
-        WhatsApp for This Tour
-      </button>
-    </div>
-
   </div>
-</div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
