@@ -514,3 +514,56 @@ body{
   .nav-links.open{ max-height:60vh; }
   .nav-links a{ font-size:15px; }
 }
+/* =========================
+   STICKY CTA BUTTONS ON SCROLL + ANIMATION
+========================= */
+
+/* smooth animation keyframes */
+@keyframes ctaSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Sticky state */
+.call-link.sticky-cta,
+.plan-btn-top.sticky-cta{
+  position: fixed !important;
+  right: 18px !important;
+  z-index: 999999 !important;
+
+  animation: ctaSlideIn 0.35s ease forwards;
+}
+
+/* Position below sticky navbar */
+.call-link.sticky-cta{
+  top: 92px !important;
+}
+.plan-btn-top.sticky-cta{
+  top: 148px !important;
+}
+
+/* Hover premium pop */
+.call-link.sticky-cta:hover,
+.plan-btn-top.sticky-cta:hover{
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
+/* ✅ Mobile adjustment */
+@media (max-width: 768px){
+  .call-link.sticky-cta{
+    top: 80px !important;
+    right: 12px !important;
+  }
+  .plan-btn-top.sticky-cta{
+    top: 132px !important;
+    right: 12px !important;
+  }
+}
+
