@@ -1,30 +1,23 @@
-/* =========================
-   COGO TOURS - SCRIPT.JS
-========================= */
-
-/* ✅ 2) Enquiry Form Submit Message */
+/* ✅ Enquiry Form Submit Message */
 function showMessage(event) {
   event.preventDefault();
   alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
   event.target.reset();
 }
 
-/* ✅ 3) Back to Top Button */
+/* ✅ Back to Top Button */
 const topBtn = document.getElementById("topBtn");
-
 if (topBtn) {
   window.addEventListener("scroll", () => {
     topBtn.style.display = window.scrollY > 400 ? "block" : "none";
   });
-
   topBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
 
-/* ✅ 4) Reveal Animation on Scroll */
+/* ✅ Reveal Animation */
 const revealElements = document.querySelectorAll(".reveal");
-
 function revealOnScroll() {
   const triggerPoint = window.innerHeight - 120;
   revealElements.forEach((el) => {
@@ -35,21 +28,19 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
-/* ✅ 5) Smooth Scroll */
+/* ✅ Smooth Scroll */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     const targetID = this.getAttribute("href");
     if (!targetID || targetID === "#") return;
-
     const targetEl = document.querySelector(targetID);
     if (!targetEl) return;
-
     e.preventDefault();
     targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
-/* ✅ Sticky Navbar on Scroll */
+/* ✅ Sticky Navbar */
 window.addEventListener("scroll", () => {
   const nav = document.getElementById("mainNav");
   if (!nav) return;
@@ -57,19 +48,15 @@ window.addEventListener("scroll", () => {
   else nav.classList.remove("sticky");
 });
 
-/* ✅ Mobile Hamburger Menu Toggle */
+/* ✅ Hamburger */
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navLinks = document.getElementById("navLinks");
-
 if (hamburgerBtn && navLinks) {
   hamburgerBtn.addEventListener("click", () => {
     navLinks.classList.toggle("open");
     document.body.classList.toggle("menu-open");
-
-    if (navLinks.classList.contains("open")) hamburgerBtn.textContent = "✕";
-    else hamburgerBtn.textContent = "☰";
+    hamburgerBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
   });
-
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("open");
@@ -82,14 +69,11 @@ if (hamburgerBtn && navLinks) {
 /* ✅ Tour Filter Buttons */
 const filterButtons = document.querySelectorAll(".filter-btn");
 const tourCards = document.querySelectorAll(".tour-card");
-
 filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     filterButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
-
     const filter = btn.getAttribute("data-filter");
-
     tourCards.forEach((card) => {
       const category = card.getAttribute("data-category");
       if (filter === "all" || category === filter) card.classList.remove("hide");
@@ -97,79 +81,83 @@ filterButtons.forEach((btn) => {
     });
   });
 });
-/* ✅ Sticky Phone + Plan Buttons (Premium UX: show on scroll-up, hide on scroll-down) */
-let lastScrollY = window.scrollY;
 
-window.addEventListener("scroll", () => {
-  const phoneBtn = document.querySelector(".call-link");
-  const planBtn = document.querySelector(".plan-btn-top");
-  if (!phoneBtn || !planBtn) return;
+/* ✅ WhatsApp Quote from Tour Cards */
+document.querySelectorAll(".wa-quote").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const place = btn.dataset.place || "Tour Package";
+    const days = btn.dataset.days || "";
+    const price = btn.dataset.price || "";
 
-  const triggerPoint = 350; // after banner
-  const currentY = window.scrollY;
+    const msg =
+      `Hi Cogo Tours!%0A` +
+      `I am interested in this package:%0A` +
+      `*${place}*%0A` +
+      `Duration: ${days}%0A` +
+      `Price: ${price}%0A%0A` +
+      `Please share full itinerary & best offer.`;
 
-  // 1) make buttons sticky only after banner
-  if (currentY > triggerPoint) {
-    phoneBtn.classList.add("sticky-cta");
-    planBtn.classList.add("sticky-cta");
-
-    // 2) hide when scrolling down, show when scrolling up
-    if (currentY > lastScrollY + 5) {
-      // scrolling down
-      phoneBtn.classList.add("cta-hide");
-      planBtn.classList.add("cta-hide");
-    } else if (currentY < lastScrollY - 5) {
-      // scrolling up
-      phoneBtn.classList.remove("cta-hide");
-      planBtn.classList.remove("cta-hide");
-    }
-  } else {
-    // reset before banner
-    phoneBtn.classList.remove("sticky-cta", "cta-hide");
-    planBtn.classList.remove("sticky-cta", "cta-hide");
-  }
-
-  lastScrollY = currentY;
+    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+  });
 });
-/* =========================
-   POPUP ENQUIRY MODAL JS
-========================= */
+
+/* ✅ Modal Open / Close + WhatsApp Prefill */
 const enquiryModal = document.getElementById("enquiryModal");
 const openEnquiryModal = document.getElementById("openEnquiryModal");
 const closeEnquiryModal = document.getElementById("closeEnquiryModal");
 const modalEnquiryForm = document.getElementById("modalEnquiryForm");
+const modalWhatsApp = document.getElementById("modalWhatsApp");
 
 function openModal() {
-  if (!enquiryModal) return;
   enquiryModal.classList.add("show");
-  document.body.style.overflow = "hidden"; // stop background scroll
+  document.body.style.overflow = "hidden";
 }
-
 function closeModal() {
-  if (!enquiryModal) return;
   enquiryModal.classList.remove("show");
-  document.body.style.overflow = ""; // restore scroll
+  document.body.style.overflow = "";
 }
 
-if (openEnquiryModal) {
-  openEnquiryModal.addEventListener("click", openModal);
-}
+if (openEnquiryModal) openEnquiryModal.addEventListener("click", openModal);
+if (closeEnquiryModal) closeEnquiryModal.addEventListener("click", closeModal);
 
-if (closeEnquiryModal) {
-  closeEnquiryModal.addEventListener("click", closeModal);
-}
-
-/* Close modal on outside click */
 if (enquiryModal) {
   enquiryModal.addEventListener("click", (e) => {
     if (e.target === enquiryModal) closeModal();
   });
 }
 
-/* Close modal on ESC key */
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
+
+/* ✅ live WhatsApp message build */
+function buildModalWhatsAppLink() {
+  if (!modalWhatsApp) return;
+
+  const name = document.getElementById("mName")?.value || "";
+  const phone = document.getElementById("mPhone")?.value || "";
+  const email = document.getElementById("mEmail")?.value || "";
+  const type = document.getElementById("mType")?.value || "";
+  const plan = document.getElementById("mPlan")?.value || "";
+
+  const msg =
+    `Hi Cogo Tours!%0A` +
+    `My details:%0A` +
+    `Name: ${name}%0A` +
+    `Phone: ${phone}%0A` +
+    (email ? `Email: ${email}%0A` : "") +
+    (type ? `Trip Type: ${type}%0A` : "") +
+    `%0APlan:%0A${plan}%0A%0A` +
+    `Please share the best package details.`;
+
+  modalWhatsApp.href = `https://wa.me/919884066830?text=${msg}`;
+}
+
+["mName", "mPhone", "mEmail", "mType", "mPlan"].forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener("input", buildModalWhatsAppLink);
+});
+buildModalWhatsAppLink();
 
 /* Submit action */
 if (modalEnquiryForm) {
@@ -177,9 +165,7 @@ if (modalEnquiryForm) {
     e.preventDefault();
     alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
     modalEnquiryForm.reset();
+    buildModalWhatsAppLink();
     closeModal();
   });
 }
-
-
-
