@@ -473,6 +473,28 @@ body{
   font-size: 12px;
   opacity: 0.75;
 }
+/* ✅ Tour details modal content */
+.tour-modal-body{
+  padding: 16px 18px 18px;
+}
+
+.tour-modal-sub{
+  font-weight:1000;
+  opacity:0.85;
+  margin-bottom:10px;
+}
+
+.tour-itinerary{
+  white-space:pre-wrap;
+  background: rgba(15,23,42,0.06);
+  border: 1px solid rgba(15,23,42,0.10);
+  border-radius: 16px;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
 
 
 
