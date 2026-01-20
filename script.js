@@ -169,3 +169,36 @@ if (modalEnquiryForm) {
     closeModal();
   });
 }
+/* ✅ Sticky Phone + Plan Buttons (Premium UX) */
+let lastScrollY_CTA = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  const phoneBtn = document.querySelector(".call-link");
+  const planBtn = document.querySelector(".plan-btn-top");
+
+  if (!phoneBtn || !planBtn) return;
+
+  const triggerPoint = 350; // after banner
+  const currentY = window.scrollY;
+
+  if (currentY > triggerPoint) {
+    phoneBtn.classList.add("sticky-cta");
+    planBtn.classList.add("sticky-cta");
+
+    // Hide on scroll down, show on scroll up
+    if (currentY > lastScrollY_CTA + 6) {
+      phoneBtn.classList.add("cta-hide");
+      planBtn.classList.add("cta-hide");
+    } else if (currentY < lastScrollY_CTA - 6) {
+      phoneBtn.classList.remove("cta-hide");
+      planBtn.classList.remove("cta-hide");
+    }
+  } else {
+    // Reset before banner
+    phoneBtn.classList.remove("sticky-cta", "cta-hide");
+    planBtn.classList.remove("sticky-cta", "cta-hide");
+  }
+
+  lastScrollY_CTA = currentY;
+});
+
