@@ -131,4 +131,55 @@ window.addEventListener("scroll", () => {
 
   lastScrollY = currentY;
 });
+/* =========================
+   POPUP ENQUIRY MODAL JS
+========================= */
+const enquiryModal = document.getElementById("enquiryModal");
+const openEnquiryModal = document.getElementById("openEnquiryModal");
+const closeEnquiryModal = document.getElementById("closeEnquiryModal");
+const modalEnquiryForm = document.getElementById("modalEnquiryForm");
+
+function openModal() {
+  if (!enquiryModal) return;
+  enquiryModal.classList.add("show");
+  document.body.style.overflow = "hidden"; // stop background scroll
+}
+
+function closeModal() {
+  if (!enquiryModal) return;
+  enquiryModal.classList.remove("show");
+  document.body.style.overflow = ""; // restore scroll
+}
+
+if (openEnquiryModal) {
+  openEnquiryModal.addEventListener("click", openModal);
+}
+
+if (closeEnquiryModal) {
+  closeEnquiryModal.addEventListener("click", closeModal);
+}
+
+/* Close modal on outside click */
+if (enquiryModal) {
+  enquiryModal.addEventListener("click", (e) => {
+    if (e.target === enquiryModal) closeModal();
+  });
+}
+
+/* Close modal on ESC key */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
+/* Submit action */
+if (modalEnquiryForm) {
+  modalEnquiryForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
+    modalEnquiryForm.reset();
+    closeModal();
+  });
+}
+
+
 
