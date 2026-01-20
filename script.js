@@ -2,24 +2,6 @@
    COGO TOURS - SCRIPT.JS
 ========================= */
 
-/* ✅ 1) Dropdown (Now works with Filters) */
-function showTourInfo(event) {
-  event.preventDefault();
-
-  const selected = document.getElementById("domesticTour").value;
-  if (!selected) return;
-
-  // scroll to tours section
-  const toursSection = document.getElementById("tours");
-  if (toursSection) {
-    toursSection.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  // auto click the matching filter button
-  const btn = document.querySelector(`.filter-btn[data-filter="${selected}"]`);
-  if (btn) btn.click();
-}
-
 /* ✅ 2) Enquiry Form Submit Message */
 function showMessage(event) {
   event.preventDefault();
@@ -115,3 +97,4 @@ filterButtons.forEach((btn) => {
     });
   });
 });
+
