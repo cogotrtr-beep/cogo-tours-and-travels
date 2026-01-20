@@ -97,4 +97,22 @@ filterButtons.forEach((btn) => {
     });
   });
 });
+/* ✅ Sticky Phone + Plan Buttons (Premium Slide In) */
+window.addEventListener("scroll", () => {
+  const phoneBtn = document.querySelector(".call-link");
+  const planBtn = document.querySelector(".plan-btn-top");
+
+  if (!phoneBtn || !planBtn) return;
+
+  const triggerPoint = 350; // after banner
+
+  if (window.scrollY > triggerPoint) {
+    phoneBtn.classList.add("sticky-cta");
+    planBtn.classList.add("sticky-cta");
+  } else {
+    phoneBtn.classList.remove("sticky-cta");
+    planBtn.classList.remove("sticky-cta");
+  }
+});
+
 
