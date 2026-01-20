@@ -97,22 +97,38 @@ filterButtons.forEach((btn) => {
     });
   });
 });
-/* ✅ Sticky Phone + Plan Buttons (Premium Slide In) */
+/* ✅ Sticky Phone + Plan Buttons (Premium UX: show on scroll-up, hide on scroll-down) */
+let lastScrollY = window.scrollY;
+
 window.addEventListener("scroll", () => {
   const phoneBtn = document.querySelector(".call-link");
   const planBtn = document.querySelector(".plan-btn-top");
-
   if (!phoneBtn || !planBtn) return;
 
   const triggerPoint = 350; // after banner
+  const currentY = window.scrollY;
 
-  if (window.scrollY > triggerPoint) {
+  // 1) make buttons sticky only after banner
+  if (currentY > triggerPoint) {
     phoneBtn.classList.add("sticky-cta");
     planBtn.classList.add("sticky-cta");
-  } else {
-    phoneBtn.classList.remove("sticky-cta");
-    planBtn.classList.remove("sticky-cta");
-  }
-});
 
+    // 2) hide when scrolling down, show when scrolling up
+    if (currentY > lastScrollY + 5) {
+      // scrolling down
+      phoneBtn.classList.add("cta-hide");
+      planBtn.classList.add("cta-hide");
+    } else if (currentY < lastScrollY - 5) {
+      // scrolling up
+      phoneBtn.classList.remove("cta-hide");
+      planBtn.classList.remove("cta-hide");
+    }
+  } else {
+    // reset before banner
+    phoneBtn.classList.remove("sticky-cta", "cta-hide");
+    planBtn.classList.remove("sticky-cta", "cta-hide");
+  }
+
+  lastScrollY = currentY;
+});
 
