@@ -201,4 +201,69 @@ window.addEventListener("scroll", () => {
 
   lastScrollY_CTA = currentY;
 });
+/* ✅ Tour Details Modal */
+const tourModal = document.getElementById("tourDetailsModal");
+const closeTourModal = document.getElementById("closeTourModal");
+const tourTitle = document.getElementById("tourTitle");
+const tourItinerary = document.getElementById("tourItinerary");
+const tourWhatsAppBtn = document.getElementById("tourWhatsAppBtn");
 
+let currentTourName = "";
+let currentTourDays = "";
+let currentTourPrice = "";
+
+// Open modal
+document.querySelectorAll(".details-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const title = btn.dataset.title || "Tour Details";
+    const itinerary = btn.dataset.itinerary || "";
+
+    // Try to pull from same card badges
+    const card = btn.closest(".tour-card");
+    currentTourName = title;
+    currentTourDays = card?.querySelector(".badge.days")?.innerText || "";
+    currentTourPrice = card?.querySelector(".badge.price")?.innerText || "";
+
+    tourTitle.textContent = title;
+    tourItinerary.textContent = itinerary.replaceAll("\\n","\n");
+
+    if(tourModal){
+      tourModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+  });
+});
+
+// Close modal
+function closeTourDetails(){
+  if(!tourModal) return;
+  tourModal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+if(closeTourModal) closeTourModal.addEventListener("click", closeTourDetails);
+
+if(tourModal){
+  tourModal.addEventListener("click", (e) => {
+    if(e.target === tourModal) closeTourDetails();
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeTourDetails();
+});
+
+// WhatsApp from modal
+if(tourWhatsAppBtn){
+  tourWhatsAppBtn.addEventListener("click", () => {
+    const msg =
+      `Hi Cogo Tours!%0A` +
+      `I want details for:%0A` +
+      `*${currentTourName}*%0A` +
+      (currentTourDays ? `Duration: ${currentTourDays}%0A` : "") +
+      (currentTourPrice ? `Price: ${currentTourPrice}%0A` : "") +
+      `%0APlease share itinerary & best offer.`;
+
+    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+  });
+}
