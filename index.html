@@ -1,94 +1,271 @@
-<section id="tours" class="section section-light reveal">
-  <h2>Popular Tour Packages</h2>
-  <p class="section-sub">Browse packages by category and get a custom quote instantly.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cogo Tours & Travels | Chennai</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-  <!-- ✅ Filter Buttons -->
-  <div class="tour-filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="domestic">Domestic</button>
-    <button class="filter-btn" data-filter="international">International</button>
-    <button class="filter-btn" data-filter="pilgrimage">Pilgrimage</button>
-    <button class="filter-btn" data-filter="honeymoon">Honeymoon</button>
-  </div>
+<body>
 
-  <!-- ✅ Tour Cards Grid -->
-  <div class="tour-grid">
+  <!-- =========================
+       HERO / BANNER
+  ========================== -->
+  <header class="hero" id="home">
+    <img class="hero-img" src="cogoindian.jpeg" alt="Cogo Tours Banner" />
 
-    <!-- ✅ Domestic -->
-    <div class="tour-card" data-category="domestic">
-      <img src="cogo1.jpeg" alt="Ooty Tour Package">
-      <div class="tour-card-body">
-        <h3>Ooty Escape</h3>
-        <p class="tour-meta">3 Days / 2 Nights • Hill Station</p>
-        <ul>
-          <li>✔ Ooty Lake & Botanical Garden</li>
-          <li>✔ Tea factory + View points</li>
-          <li>✔ Best for family & couples</li>
-        </ul>
-        <a href="#contact" class="tour-btn">Get Quote</a>
+    <!-- ✅ Premium Top Nav -->
+    <nav class="top-navbar" id="mainNav">
+
+      <!-- ✅ Mobile Hamburger Button -->
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open Menu">☰</button>
+
+      <!-- ✅ Nav Links -->
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#tours">Tours</a>
+        <a href="#why">Why Us</a>
+        <a href="#ser">Services</a>
+        <a href="#contact" class="nav-btn">Enquire</a>
       </div>
+    </nav>
+
+    <!-- ✅ Banner tagline -->
+    <div class="hero-tagline">
+      <p>Your Journey, Our Responsibility</p>
     </div>
 
-    <div class="tour-card" data-category="domestic">
-      <img src="cogotours1.jpeg" alt="Kerala Tour Package">
-      <div class="tour-card-body">
-        <h3>Kerala Delight</h3>
-        <p class="tour-meta">5 Days / 4 Nights • Nature</p>
-        <ul>
-          <li>✔ Munnar + Thekkady</li>
-          <li>✔ Alleppey Houseboat</li>
-          <li>✔ Premium stays available</li>
-        </ul>
-        <a href="#contact" class="tour-btn">Get Quote</a>
-      </div>
+    <!-- ✅ Phone -->
+    <a href="tel:+919884066830" class="call-link" aria-label="Call Cogo Tours">
+      📞 <span>+91 98840 66830</span>
+    </a>
+
+    <!-- ✅ Plan -->
+    <a href="#contact" class="plan-btn-top">
+      Plan Your Journey
+    </a>
+  </header>
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+  <section id="about" class="section reveal">
+    <h2>About Us</h2>
+    <p class="text-justify">
+      Cogo Tours & Travels is a Chennai-based travel agency committed to turning travel dreams into memorable real-world experiences.
+      We specialize in personalized, affordable, and reliable tour packages across India and around the globe. Whether you are
+      planning a family holiday, honeymoon, spiritual tour, corporate trip, or an international vacation — we design travel plans
+      based on your interests and budget. Travel with confidence. Travel with Cogo.
+    </p>
+
+    <h2>Our Tour Categories</h2>
+
+    <div class="card">
+      <div class="card-title">🌄 Domestic Tours</div>
+
+      <!-- dropdown form -->
+      <form class="tour-form" onsubmit="showTourInfo(event)">
+        <select class="tour-dropdown" id="domesticTour" required>
+          <option value="">Select a City</option>
+          <option value="domestic">Domestic Tours</option>
+          <option value="pilgrimage">Pilgrimage Tours</option>
+          <option value="honeymoon">Honeymoon Tours</option>
+          <option value="international">International Tours</option>
+        </select>
+
+        <button type="submit" class="btn-primary full">Show Packages</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =========================
+       TOURS
+  ========================== -->
+  <section id="tours" class="section section-light reveal">
+    <h2>Popular Tour Packages</h2>
+    <p class="section-sub">Browse packages by category and get a custom quote instantly.</p>
+
+    <!-- ✅ Filter Buttons -->
+    <div class="tour-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="domestic">Domestic</button>
+      <button class="filter-btn" data-filter="international">International</button>
+      <button class="filter-btn" data-filter="pilgrimage">Pilgrimage</button>
+      <button class="filter-btn" data-filter="honeymoon">Honeymoon</button>
     </div>
 
-    <!-- ✅ International -->
-    <div class="tour-card" data-category="international">
-  <div class="tour-cover cover-international">International</div>
-  <div class="tour-card-body">
-    <h3>Dubai Explorer</h3>
-    <p class="tour-meta">4 Days / 3 Nights • International</p>
-    <ul>
-      <li>✔ Visa Assistance</li>
-      <li>✔ Desert Safari + City tour</li>
-      <li>✔ Best for family & groups</li>
+    <!-- ✅ Tour Cards Grid -->
+    <div class="tour-grid">
+
+      <!-- ✅ Domestic: Ooty -->
+      <div class="tour-card" data-category="domestic">
+        <img src="cogo1.jpeg" alt="Ooty Tour Package">
+        <span class="badge price">₹ 9,999</span>
+        <span class="badge days">3D / 2N</span>
+
+        <div class="tour-card-body">
+          <h3>Ooty Escape</h3>
+          <p class="tour-meta">Hill Station • Sightseeing</p>
+          <ul>
+            <li>✔ Ooty Lake & Botanical Garden</li>
+            <li>✔ Tea factory + View points</li>
+            <li>✔ Best for family & couples</li>
+          </ul>
+          <a href="#contact" class="tour-btn">Get Quote</a>
+        </div>
+      </div>
+
+      <!-- ✅ Domestic: Kerala -->
+      <div class="tour-card" data-category="domestic">
+        <img src="cogotours1.jpeg" alt="Kerala Tour Package">
+        <span class="badge price">₹ 18,999</span>
+        <span class="badge days">5D / 4N</span>
+
+        <div class="tour-card-body">
+          <h3>Kerala Delight</h3>
+          <p class="tour-meta">Nature • Houseboat</p>
+          <ul>
+            <li>✔ Munnar + Thekkady</li>
+            <li>✔ Alleppey Houseboat</li>
+            <li>✔ Premium stays available</li>
+          </ul>
+          <a href="#contact" class="tour-btn">Get Quote</a>
+        </div>
+      </div>
+
+      <!-- ✅ International: Dubai -->
+      <div class="tour-card" data-category="international">
+        <div class="tour-cover cover-international">International</div>
+        <span class="badge price">₹ 39,999</span>
+        <span class="badge days">4D / 3N</span>
+
+        <div class="tour-card-body">
+          <h3>Dubai Explorer</h3>
+          <p class="tour-meta">Visa Support • City Tour</p>
+          <ul>
+            <li>✔ Visa Assistance</li>
+            <li>✔ Desert Safari + City tour</li>
+            <li>✔ Best for family & groups</li>
+          </ul>
+          <a href="#contact" class="tour-btn">Get Quote</a>
+        </div>
+      </div>
+
+      <!-- ✅ Pilgrimage -->
+      <div class="tour-card" data-category="pilgrimage">
+        <div class="tour-cover cover-pilgrimage">Pilgrimage</div>
+        <span class="badge price">₹ 12,999</span>
+        <span class="badge days">3D / 2N</span>
+
+        <div class="tour-card-body">
+          <h3>Pilgrimage Special</h3>
+          <p class="tour-meta">Spiritual • VIP Darshan</p>
+          <ul>
+            <li>✔ South India Temples</li>
+            <li>✔ VIP Darshan options</li>
+            <li>✔ Comfortable travel support</li>
+          </ul>
+          <a href="#contact" class="tour-btn">Get Quote</a>
+        </div>
+      </div>
+
+      <!-- ✅ Honeymoon -->
+      <div class="tour-card" data-category="honeymoon">
+        <div class="tour-cover cover-honeymoon">Honeymoon</div>
+        <span class="badge price">₹ 24,999</span>
+        <span class="badge days">4D / 3N</span>
+
+        <div class="tour-card-body">
+          <h3>Honeymoon Getaway</h3>
+          <p class="tour-meta">Romantic • Premium Stay</p>
+          <ul>
+            <li>✔ Candlelight arrangements</li>
+            <li>✔ Premium stays</li>
+            <li>✔ Tailored itinerary</li>
+          </ul>
+          <a href="#contact" class="tour-btn">Get Quote</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       WHY US
+  ========================== -->
+  <section id="why" class="section reveal">
+    <h2>Why Choose Us</h2>
+    <ul class="list-check">
+      <li>Custom packages</li>
+      <li>Affordable pricing</li>
+      <li>24/7 customer support</li>
+      <li>Local Chennai assistance</li>
+      <li>Trusted bookings</li>
     </ul>
-    <a href="#contact" class="tour-btn">Get Quote</a>
-  </div>
-</div>
+  </section>
 
-    <!-- ✅ Pilgrimage -->
-    <div class="tour-card" data-category="pilgrimage">
-  <div class="tour-cover cover-pilgrimage">Pilgrimage</div>
-  <div class="tour-card-body">
-    <h3>Pilgrimage Special</h3>
-    <p class="tour-meta">Custom Duration • Spiritual</p>
-    <ul>
-      <li>✔ South India Temples</li>
-      <li>✔ VIP Darshan options</li>
-      <li>✔ Comfortable travel support</li>
+  <!-- =========================
+       SERVICES
+  ========================== -->
+  <section id="ser" class="section reveal">
+    <h2>Services</h2>
+    <ul class="list-check">
+      <li>AIR / TRAIN / BUS TICKETING</li>
+      <li>CAB BOOKING</li>
+      <li>HOTEL BOOKING</li>
+      <li>VISA ASSISTANCE</li>
+      <li>PACKAGE CUSTOMIZATION</li>
     </ul>
-    <a href="#contact" class="tour-btn">Get Quote</a>
-  </div>
-</div>
+  </section>
 
-    <!-- ✅ Honeymoon -->
-    <div class="tour-card" data-category="honeymoon">
-  <div class="tour-cover cover-honeymoon">Honeymoon</div>
-  <div class="tour-card-body">
-    <h3>Honeymoon Getaway</h3>
-    <p class="tour-meta">Custom Duration • Romantic</p>
-    <ul>
-      <li>✔ Candlelight arrangements</li>
-      <li>✔ Premium stays</li>
-      <li>✔ Tailored itinerary</li>
-    </ul>
-    <a href="#contact" class="tour-btn">Get Quote</a>
-  </div>
-</div>
+  <!-- =========================
+       CONTACT
+  ========================== -->
+  <section id="contact" class="section section-light reveal">
+    <h2>Plan Your Journey</h2>
 
-  </div>
-</section>
+    <form class="contact-form" onsubmit="showMessage(event)">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="tel" placeholder="Phone Number" required />
+      <textarea placeholder="Please share your travel plan place/date/days, we will get back with full package details :)" required></textarea>
+      <button type="submit" class="btn-primary full">Send Enquiry</button>
+    </form>
 
+    <p class="contact-line">
+      <b>CONTACT:</b> # 1817/132, 13TH Main Road, Annanagar West, Chennai - 600040.
+      Email - cogotrtr@gmail.com | Phone: 9884066830 / 9080666674
+    </p>
+  </section>
 
+  <!-- WhatsApp -->
+  <a href="https://wa.me/919884066830" class="whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
+
+  <!-- Back to top -->
+  <button id="topBtn" aria-label="Back to top">⬆</button>
+
+  <!-- Map -->
+  <section class="section" id="map">
+    <h2>Find Us on Map</h2>
+
+    <div class="map-box">
+      <iframe
+        src="https://www.google.com/maps?q=13.094104548113595, 80.20093353664443&z=15&output=embed"
+        width="100%"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Cogo Tours & Travels | Chennai
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
