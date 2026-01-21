@@ -498,3 +498,82 @@ body{
 @media(max-width:768px){
   .chennai-banner-inner h3{ font-size: 20px; }
 }
+
+
+/* =========================
+   Sticky CTA Bottom Bar
+========================= */
+.sticky-cta{
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%) translateY(140%);
+  opacity: 0;
+  z-index: 999999;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  background: rgba(255,255,255,0.92);
+  padding: 10px 12px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  backdrop-filter: blur(12px);
+
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+.sticky-cta.show{
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.sticky-cta .cta-btn{
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  font-weight: 1000;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.sticky-cta .cta-btn:hover{
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+.sticky-cta .cta-btn.call{
+  background:#111;
+  color:#fff;
+}
+.sticky-cta .cta-btn.whatsapp{
+  background:#25d366;
+  color:#fff;
+}
+.sticky-cta .cta-btn.enquiry{
+  background: linear-gradient(90deg,var(--brand),var(--brand2));
+  color:#fff;
+}
+
+@media (max-width: 600px){
+  .sticky-cta{
+    width: calc(100% - 20px);
+    left: 50%;
+    bottom: 12px;
+    border-radius: 16px;
+    justify-content: space-between;
+  }
+  .sticky-cta .cta-btn{
+    flex: 1;
+    min-width: auto;
+    font-size: 13px;
+    padding: 12px 10px;
+  }
+}
+
