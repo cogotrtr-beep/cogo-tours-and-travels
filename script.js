@@ -176,3 +176,36 @@ if (modalEnquiryForm) {
     closeModal();
   });
 }
+
+
+/* =========================
+   Sticky CTA Slide Animation
+========================= */
+const stickyCta = document.getElementById("stickyCta");
+const stickyEnquiryBtn = document.getElementById("stickyEnquiryBtn");
+
+if (stickyCta) {
+  // slide up on load
+  window.addEventListener("load", () => {
+    setTimeout(() => stickyCta.classList.add("show"), 350);
+  });
+
+  // hide on scroll down, show on scroll up (premium behavior)
+  let lastScrollY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    const currentY = window.scrollY;
+    if (currentY > lastScrollY && currentY > 180) stickyCta.classList.remove("show");
+    else stickyCta.classList.add("show");
+    lastScrollY = currentY;
+  });
+}
+
+// enquiry opens modal (same as top button)
+if (stickyEnquiryBtn) {
+  stickyEnquiryBtn.addEventListener("click", () => {
+    const openBtn = document.getElementById("openEnquiryModal");
+    if (openBtn) openBtn.click();
+    else document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
