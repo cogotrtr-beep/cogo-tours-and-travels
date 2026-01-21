@@ -16,18 +16,6 @@ if (topBtn) {
   });
 }
 
-/* ✅ Reveal Animation */
-const revealElements = document.querySelectorAll(".reveal");
-function revealOnScroll() {
-  const triggerPoint = window.innerHeight - 120;
-  revealElements.forEach((el) => {
-    const top = el.getBoundingClientRect().top;
-    if (top < triggerPoint) el.classList.add("active");
-  });
-}
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-
 /* ✅ Smooth Scroll */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
@@ -69,33 +57,50 @@ if (hamburgerBtn && navLinks) {
 /* ✅ Tour Filter Buttons */
 const filterButtons = document.querySelectorAll(".filter-btn");
 const tourCards = document.querySelectorAll(".tour-card");
+
 filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     filterButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
+
     const filter = btn.getAttribute("data-filter");
+
     tourCards.forEach((card) => {
       const category = card.getAttribute("data-category");
       if (filter === "all" || category === filter) card.classList.remove("hide");
       else card.classList.add("hide");
     });
+
+    // scroll a bit into tour section after filter click
+    document.getElementById("tours")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
-/* ✅ WhatsApp Quote from Tour Cards */
+/* ✅ WhatsApp Buttons (Smart)
+   - If data-wa exists → use it (custom)
+   - Else → build from place/days/price (old)
+*/
 document.querySelectorAll(".wa-quote").forEach((btn) => {
   btn.addEventListener("click", () => {
+    const customWA = btn.dataset.wa;
+
+    if (customWA && customWA.trim().length > 0) {
+      window.open(`https://wa.me/919884066830?text=${customWA}`, "_blank");
+      return;
+    }
+
+    // fallback old style
     const place = btn.dataset.place || "Tour Package";
     const days = btn.dataset.days || "";
     const price = btn.dataset.price || "";
 
     const msg =
-      `Hi Cogo Tours!%0A` +
+      `Hi Cogo Tours & Travels 😊%0A%0A` +
       `I am interested in this package:%0A` +
       `*${place}*%0A` +
-      `Duration: ${days}%0A` +
-      `Price: ${price}%0A%0A` +
-      `Please share full itinerary & best offer.`;
+      (days ? `Duration: ${days}%0A` : "") +
+      (price ? `Price: ${price}%0A` : "") +
+      `%0APlease share full itinerary & best offer.`;
 
     window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
   });
@@ -141,14 +146,16 @@ function buildModalWhatsAppLink() {
   const plan = document.getElementById("mPlan")?.value || "";
 
   const msg =
-    `Hi Cogo Tours!%0A` +
+    `Cogo Tours & Travels welcomes you 🙏%0A%0A` +
+    `Thank you for contacting us! 😊%0A` +
+    `We have received your enquiry. Our team will get back to you soon with complete details.%0A%0A` +
     `My details:%0A` +
     `Name: ${name}%0A` +
     `Phone: ${phone}%0A` +
     (email ? `Email: ${email}%0A` : "") +
     (type ? `Trip Type: ${type}%0A` : "") +
     `%0APlan:%0A${plan}%0A%0A` +
-    `Please share the best package details.`;
+    `Thanks again for choosing Cogo 🌏✨`;
 
   modalWhatsApp.href = `https://wa.me/919884066830?text=${msg}`;
 }
@@ -167,103 +174,5 @@ if (modalEnquiryForm) {
     modalEnquiryForm.reset();
     buildModalWhatsAppLink();
     closeModal();
-  });
-}
-/* ✅ Sticky Phone + Plan Buttons (Premium UX) */
-let lastScrollY_CTA = window.scrollY;
-
-window.addEventListener("scroll", () => {
-  const phoneBtn = document.querySelector(".call-link");
-  const planBtn = document.querySelector(".plan-btn-top");
-
-  if (!phoneBtn || !planBtn) return;
-
-  const triggerPoint = 350; // after banner
-  const currentY = window.scrollY;
-
-  if (currentY > triggerPoint) {
-    phoneBtn.classList.add("sticky-cta");
-    planBtn.classList.add("sticky-cta");
-
-    // Hide on scroll down, show on scroll up
-    if (currentY > lastScrollY_CTA + 6) {
-      phoneBtn.classList.add("cta-hide");
-      planBtn.classList.add("cta-hide");
-    } else if (currentY < lastScrollY_CTA - 6) {
-      phoneBtn.classList.remove("cta-hide");
-      planBtn.classList.remove("cta-hide");
-    }
-  } else {
-    // Reset before banner
-    phoneBtn.classList.remove("sticky-cta", "cta-hide");
-    planBtn.classList.remove("sticky-cta", "cta-hide");
-  }
-
-  lastScrollY_CTA = currentY;
-});
-/* ✅ Tour Details Modal */
-const tourModal = document.getElementById("tourDetailsModal");
-const closeTourModal = document.getElementById("closeTourModal");
-const tourTitle = document.getElementById("tourTitle");
-const tourItinerary = document.getElementById("tourItinerary");
-const tourWhatsAppBtn = document.getElementById("tourWhatsAppBtn");
-
-let currentTourName = "";
-let currentTourDays = "";
-let currentTourPrice = "";
-
-// Open modal
-document.querySelectorAll(".details-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const title = btn.dataset.title || "Tour Details";
-    const itinerary = btn.dataset.itinerary || "";
-
-    // Try to pull from same card badges
-    const card = btn.closest(".tour-card");
-    currentTourName = title;
-    currentTourDays = card?.querySelector(".badge.days")?.innerText || "";
-    currentTourPrice = card?.querySelector(".badge.price")?.innerText || "";
-
-    tourTitle.textContent = title;
-    tourItinerary.textContent = itinerary.replaceAll("\\n","\n");
-
-    if(tourModal){
-      tourModal.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
-  });
-});
-
-// Close modal
-function closeTourDetails(){
-  if(!tourModal) return;
-  tourModal.classList.remove("show");
-  document.body.style.overflow = "";
-}
-
-if(closeTourModal) closeTourModal.addEventListener("click", closeTourDetails);
-
-if(tourModal){
-  tourModal.addEventListener("click", (e) => {
-    if(e.target === tourModal) closeTourDetails();
-  });
-}
-
-document.addEventListener("keydown", (e) => {
-  if(e.key === "Escape") closeTourDetails();
-});
-
-// WhatsApp from modal
-if(tourWhatsAppBtn){
-  tourWhatsAppBtn.addEventListener("click", () => {
-    const msg =
-      `Hi Cogo Tours!%0A` +
-      `I want details for:%0A` +
-      `*${currentTourName}*%0A` +
-      (currentTourDays ? `Duration: ${currentTourDays}%0A` : "") +
-      (currentTourPrice ? `Price: ${currentTourPrice}%0A` : "") +
-      `%0APlease share itinerary & best offer.`;
-
-    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
   });
 }
