@@ -1,25 +1,8 @@
-/* =========================================================
-   CO GO TOURS & TRAVELS - SCRIPT.JS (FULL)
-   ✅ Fixes:
-   - No alert popups
-   - Contact form success note
-   - All cards (including Chennai/ECR) get:
-        ✅ WhatsApp dynamic message
-        ✅ View Details modal
-        ✅ Removes note/alert blocks
-   - Plan Your Journey WhatsApp + Email
-========================================================= */
-
-/* ✅ Enquiry Form Submit Message (NO alert popup) */
+/* ✅ Enquiry Form Submit Message */
 function showMessage(event) {
   event.preventDefault();
+  alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
   event.target.reset();
-
-  const note = document.getElementById("formSuccessNote");
-  if (note) {
-    note.classList.add("show");
-    setTimeout(() => note.classList.remove("show"), 3000);
-  }
 }
 
 /* ✅ Back to Top Button */
@@ -28,271 +11,168 @@ if (topBtn) {
   window.addEventListener("scroll", () => {
     topBtn.style.display = window.scrollY > 400 ? "block" : "none";
   });
-
   topBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const WA_NUMBER = "919884066830";
-  const EMAIL_ID = "cogotrtr@gmail.com";
-
-  /* ==============================
-     ✅ Modal Creation (View Details)
-  ============================== */
-  let modal = document.getElementById("detailsModal");
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "detailsModal";
-    modal.className = "details-modal";
-    modal.innerHTML = `
-      <div class="details-backdrop" data-close="1"></div>
-      <div class="details-box">
-        <button class="details-close" data-close="1">✕</button>
-        <h3 id="detailsTitle">Package Details</h3>
-        <div id="detailsBody"></div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-
-  modal.addEventListener("click", (e) => {
-    if (e.target.dataset.close) modal.classList.remove("open");
-  });
-
-  function getText(el) {
-    return el ? el.innerText.trim() : "";
-  }
-
-  /* ==============================
-     ✅ WhatsApp message generator
-  ============================== */
-  function buildWaMessage(card) {
-    const title =
-      getText(card.querySelector("h3")) ||
-      getText(card.querySelector("h2")) ||
-      "Tour Package";
-
-    const subtitle =
-      getText(card.querySelector(".tour-meta")) ||
-      getText(card.querySelector(".subtitle")) ||
-      getText(card.querySelector("p")) ||
-      "";
-
-    const duration =
-      getText(card.querySelector(".badge.days")) ||
-      getText(card.querySelector(".duration")) ||
-      "";
-
-    const price =
-      getText(card.querySelector(".badge.price")) ||
-      getText(card.querySelector(".price")) ||
-      "";
-
-    const lis = Array.from(card.querySelectorAll("ul li"))
-      .slice(0, 5)
-      .map(li => li.innerText.replace(/^✔\s*/,"").trim())
-      .filter(Boolean);
-
-    const highlights = lis.length
-      ? "%0AHighlights:%0A" + lis.map(h => `• ${encodeURIComponent(h)}`).join("%0A")
-      : "";
-
-    const msg =
-      `Hi Cogo Tours & Travels 😊%0A%0A` +
-      `I’m interested in: *${encodeURIComponent(title)}*%0A` +
-      (subtitle ? `Type: ${encodeURIComponent(subtitle)}%0A` : "") +
-      (duration ? `Duration: ${encodeURIComponent(duration)}%0A` : "") +
-      (price ? `Budget/Price: ${encodeURIComponent(price)}%0A` : "") +
-      highlights +
-      `%0A%0APlease share full itinerary, inclusions & best quote.`;
-
-    return `https://wa.me/${WA_NUMBER}?text=${msg}`;
-  }
-
-  /* ==============================
-     ✅ View Details modal content
-  ============================== */
-  function openDetails(card) {
-    const title =
-      getText(card.querySelector("h3")) ||
-      getText(card.querySelector("h2")) ||
-      "Package Details";
-
-    const meta =
-      getText(card.querySelector(".tour-meta")) ||
-      getText(card.querySelector(".subtitle")) ||
-      getText(card.querySelector("p")) ||
-      "";
-
-    const lis = Array.from(card.querySelectorAll("ul li"))
-      .slice(0, 8)
-      .map(li => `<li>${li.innerText}</li>`)
-      .join("");
-
-    document.getElementById("detailsTitle").innerText = title;
-
-    document.getElementById("detailsBody").innerHTML = `
-      <p style="opacity:.85;margin-top:6px;"><b>${meta}</b></p>
-      <div class="details-section">
-        <h4>Package Highlights</h4>
-        <ul class="details-list">${lis || "<li>Dummy package highlights will be updated soon.</li>"}</ul>
-      </div>
-      <div class="details-section">
-        <h4>Dummy Itinerary</h4>
-        <p class="details-note">This is a dummy note. You can update full itinerary later.</p>
-        <ol class="details-itinerary">
-          <li>Pickup & start sightseeing</li>
-          <li>Main attractions visit</li>
-          <li>Lunch break</li>
-          <li>Shopping / leisure</li>
-          <li>Drop back</li>
-        </ol>
-      </div>
-    `;
-
-    modal.classList.add("open");
-  }
-
-  /* ==============================
-     ✅ Apply to ALL cards (including Chennai/ECR)
-  ============================== */
-  const cards = document.querySelectorAll(".tour-card, .card, .package-card");
-
-  cards.forEach(card => {
-    // remove old note/alert blocks inside cards
-    card.querySelectorAll(".note, .alert, .info-box").forEach(x => x.remove());
-
-    // find / create actions area
-    let actions =
-      card.querySelector(".tour-actions") ||
-      card.querySelector(".actions");
-
-    if (!actions) {
-      actions = document.createElement("div");
-      actions.className = "tour-actions";
-      actions.style.marginTop = "14px";
-      card.appendChild(actions);
-    }
-
-    // find whatsapp button
-    let waBtn =
-      card.querySelector(".wa-quote") ||
-      card.querySelector(".whatsapp-btn") ||
-      Array.from(card.querySelectorAll("a,button")).find(b => /whatsapp/i.test(b.innerText));
-
-    // create if missing
-    if (!waBtn) {
-      waBtn = document.createElement("a");
-      waBtn.className = "tour-btn wa-quote";
-      waBtn.innerText = "WhatsApp Enquiry";
-      actions.appendChild(waBtn);
-    }
-
-    // if it is button, convert to link
-    if (waBtn.tagName.toLowerCase() === "button") {
-      const a = document.createElement("a");
-      a.className = waBtn.className;
-      a.innerText = waBtn.innerText;
-      waBtn.replaceWith(a);
-      waBtn = a;
-    }
-
-    waBtn.href = buildWaMessage(card);
-    waBtn.target = "_blank";
-    waBtn.rel = "noopener";
-
-    // ensure view details exists
-    let vdBtn =
-      card.querySelector(".view-details") ||
-      Array.from(card.querySelectorAll("button,a")).find(b => /view details/i.test(b.innerText));
-
-    if (!vdBtn) {
-      vdBtn = document.createElement("button");
-      vdBtn.className = "tour-btn view-details";
-      vdBtn.type = "button";
-      vdBtn.innerText = "View Details";
-      actions.appendChild(vdBtn);
-    }
-
-    vdBtn.onclick = () => openDetails(card);
-  });
-
-  /* ==============================
-     ✅ Override ALL WhatsApp links globally
-     (even hardcoded wa.me links)
-  ============================== */
-  document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach((btn) => {
-    const card = btn.closest(".tour-card") || btn.closest(".card") || btn.closest(".package-card");
-    if (!card) return;
-    btn.href = buildWaMessage(card);
-    btn.target = "_blank";
-    btn.rel = "noopener";
-  });
-
-  /* ==============================
-     ✅ Plan Your Journey buttons
-     (works if IDs present)
-  ============================== */
- const pyjWhatsapp = document.getElementById("contactWhatsApp");
-const pyjEmail = document.getElementById("contactEmail");
-  if (pyjWhatsapp) {
-    pyjWhatsapp.addEventListener("click", () => {
-      const msg = `Hi Cogo Tours & Travels 😊%0A%0AI want to plan my journey. Please contact me with details.`;
-      window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
-    });
-  }
-
-  if (pyjEmail) {
-    pyjEmail.addEventListener("click", () => {
-      window.location.href =
-        `mailto:${EMAIL_ID}?subject=Travel%20Enquiry%20-%20Cogo%20Tours&body=Hi%20Cogo%20Team,%0A%0AI%20want%20to%20plan%20my%20journey.%20Please%20share%20details.%0A%0AThanks.`;
-    });
-  }
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const WA_NUMBER = "919884066830";
-
-  function buildMsg(title) {
-    const msg =
-      `Hi Cogo Tours & Travels 😊%0A%0A` +
-      `I’m interested in: *${encodeURIComponent(title)}*%0A%0A` +
-      `Please share full itinerary, inclusions & best quote.`;
-    return `https://wa.me/${WA_NUMBER}?text=${msg}`;
-  }
-
-  // ✅ override EVERY whatsapp link in the entire website
-  document.querySelectorAll('a[href*="wa.me"]').forEach((a) => {
-    const card = a.closest(".tour-card") || a.closest(".card") || a.closest(".package-card");
-    const title =
-      card?.querySelector("h3")?.innerText?.trim() ||
-      card?.querySelector("h2")?.innerText?.trim() ||
-      "Tour Package";
-
-    a.href = buildMsg(title);
-    a.target = "_blank";
-    a.rel = "noopener";
+/* ✅ Smooth Scroll */
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const targetID = this.getAttribute("href");
+    if (!targetID || targetID === "#") return;
+    const targetEl = document.querySelector(targetID);
+    if (!targetEl) return;
+    e.preventDefault();
+    targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
-/* ✅ REMOVE bottom middle fixed CTA bar completely */
-.sticky-cta,
-#stickyCta,
-.bottom-cta,
-.bottom-bar,
-.fixed-cta,
-.floating-cta,
-.mobile-cta,
-.cta-bar,
-.call-whatsapp-bar,
-.whatsapp-call,
-.footer-cta {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+
+/* ✅ Sticky Navbar */
+window.addEventListener("scroll", () => {
+  const nav = document.getElementById("mainNav");
+  if (!nav) return;
+  if (window.scrollY > 120) nav.classList.add("sticky");
+  else nav.classList.remove("sticky");
+});
+
+/* ✅ Hamburger */
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const navLinks = document.getElementById("navLinks");
+if (hamburgerBtn && navLinks) {
+  hamburgerBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    document.body.classList.toggle("menu-open");
+    hamburgerBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
+  });
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      document.body.classList.remove("menu-open");
+      hamburgerBtn.textContent = "☰";
+    });
+  });
 }
 
+/* ✅ Tour Filter Buttons */
+const filterButtons = document.querySelectorAll(".filter-btn");
+const tourCards = document.querySelectorAll(".tour-card");
 
+filterButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filterButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
 
+    const filter = btn.getAttribute("data-filter");
 
+    tourCards.forEach((card) => {
+      const category = card.getAttribute("data-category");
+      if (filter === "all" || category === filter) card.classList.remove("hide");
+      else card.classList.add("hide");
+    });
+
+    // scroll a bit into tour section after filter click
+    document.getElementById("tours")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+/* ✅ WhatsApp Buttons (Smart)
+   - If data-wa exists → use it (custom)
+   - Else → build from place/days/price (old)
+*/
+document.querySelectorAll(".wa-quote").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const customWA = btn.dataset.wa;
+
+    if (customWA && customWA.trim().length > 0) {
+      window.open(`https://wa.me/919884066830?text=${customWA}`, "_blank");
+      return;
+    }
+
+    // fallback old style
+    const place = btn.dataset.place || "Tour Package";
+    const days = btn.dataset.days || "";
+    const price = btn.dataset.price || "";
+
+    const msg =
+      `Hi Cogo Tours & Travels 😊%0A%0A` +
+      `I am interested in this package:%0A` +
+      `*${place}*%0A` +
+      (days ? `Duration: ${days}%0A` : "") +
+      (price ? `Price: ${price}%0A` : "") +
+      `%0APlease share full itinerary & best offer.`;
+
+    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+  });
+});
+
+/* ✅ Modal Open / Close + WhatsApp Prefill */
+const enquiryModal = document.getElementById("enquiryModal");
+const openEnquiryModal = document.getElementById("openEnquiryModal");
+const closeEnquiryModal = document.getElementById("closeEnquiryModal");
+const modalEnquiryForm = document.getElementById("modalEnquiryForm");
+const modalWhatsApp = document.getElementById("modalWhatsApp");
+
+function openModal() {
+  enquiryModal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeModal() {
+  enquiryModal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+if (openEnquiryModal) openEnquiryModal.addEventListener("click", openModal);
+if (closeEnquiryModal) closeEnquiryModal.addEventListener("click", closeModal);
+
+if (enquiryModal) {
+  enquiryModal.addEventListener("click", (e) => {
+    if (e.target === enquiryModal) closeModal();
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
+/* ✅ live WhatsApp message build */
+function buildModalWhatsAppLink() {
+  if (!modalWhatsApp) return;
+
+  const name = document.getElementById("mName")?.value || "";
+  const phone = document.getElementById("mPhone")?.value || "";
+  const email = document.getElementById("mEmail")?.value || "";
+  const type = document.getElementById("mType")?.value || "";
+  const plan = document.getElementById("mPlan")?.value || "";
+
+  const msg =
+    `Cogo Tours & Travels welcomes you 🙏%0A%0A` +
+    `Thank you for contacting us! 😊%0A` +
+    `We have received your enquiry. Our team will get back to you soon with complete details.%0A%0A` +
+    `My details:%0A` +
+    `Name: ${name}%0A` +
+    `Phone: ${phone}%0A` +
+    (email ? `Email: ${email}%0A` : "") +
+    (type ? `Trip Type: ${type}%0A` : "") +
+    `%0APlan:%0A${plan}%0A%0A` +
+    `Thanks again for choosing Cogo 🌏✨`;
+
+  modalWhatsApp.href = `https://wa.me/919884066830?text=${msg}`;
+}
+
+["mName", "mPhone", "mEmail", "mType", "mPlan"].forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener("input", buildModalWhatsAppLink);
+});
+buildModalWhatsAppLink();
+
+/* Submit action */
+if (modalEnquiryForm) {
+  modalEnquiryForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
+    modalEnquiryForm.reset();
+    buildModalWhatsAppLink();
+    closeModal();
+  });
+}
