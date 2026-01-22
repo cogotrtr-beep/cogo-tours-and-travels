@@ -252,5 +252,14 @@ html, body {
     padding-top: 150px !important;
   }
 }
+/* ✅ REMOVE bottom middle sticky CTA tabs */
+.sticky-cta,
+#stickyCta {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 
 
