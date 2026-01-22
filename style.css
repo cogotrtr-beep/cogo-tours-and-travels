@@ -234,3 +234,16 @@ html, body {
 .details-list{ margin:0; padding-left:18px; }
 .details-note{ opacity:.85; margin:0 0 10px 0; }
 .details-itinerary{ margin:0; padding-left:18px; }
+/* ✅ Remove center bottom sticky CTA bar */
+.sticky-cta { 
+  display: none !important; 
+}
+
+/* ✅ Remove any floating whatsapp bubble if present */
+.whatsapp-float,
+.floating-whatsapp,
+.chat-widget,
+.floating-chat {
+  display: none !important;
+}
+
