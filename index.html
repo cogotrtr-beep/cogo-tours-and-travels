@@ -447,12 +447,15 @@
   ========================== -->
 <section class="section reveal" id="contact">
 <h2>Plan Your Journey</h2>
-<form class="contact-form" onsubmit="showMessage(event)">
+<form class="contact-form" id="contactForm">
 <input placeholder="Full Name" required="" type="text"/>
 <input placeholder="Email Address" required="" type="email"/>
 <input placeholder="Phone Number" required="" type="tel"/>
 <textarea placeholder="Please share your travel plan place/date/days, we will get back with full package details :)" required=""></textarea>
-<button class="btn-primary full" type="submit">Send Enquiry</button>
+<div class="enquiry-actions">
+  <button class="btn-primary full" id="contactWhatsApp" type="button">WhatsApp Enquiry</button>
+  <button class="btn-primary full secondary" id="contactEmail" type="submit">Email Enquiry</button>
+</div>
 </form>
 <p class="contact-line">
 <b>CONTACT:</b> # 1817/132, 13TH Main Road, Annanagar West, Chennai - 600040.
@@ -503,11 +506,6 @@
 <button class="modal-submit" id="sendWhatsApp" type="button">WhatsApp Enquiry</button>
 <button class="modal-submit secondary" id="sendEmail" type="submit">Email Enquiry</button>
 </div>
-
-<!-- WhatsApp with pre-filled text -->
-<a class="modal-whatsapp" href="#" id="modalWhatsApp" target="_blank">
-          WhatsApp Enquiry
-        </a>
 </form>
 </div>
 </div>
