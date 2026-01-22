@@ -1,13 +1,7 @@
 /* ✅ Enquiry Form Submit Message */
-function showMessage(event) {
-  event.preventDefault();
-  /* Email enquiry via mailto */
-  const name=document.getElementById("mName")?.value||"";
-  const email=document.getElementById("mEmail")?.value||"";
-  const phone=document.getElementById("mPhone")?.value||"";
-  const msg=document.getElementById("mPlan")?.value||"";
-  const subject=encodeURIComponent("Cogo Tours Enquiry");
-  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${msg}`);
+function showMessage(){ /* message handled in UI */ }
+
+\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${msg}`);
   window.location.href=`mailto:cogottr@gmail.com?subject=${subject}&body=${body}`;
   event.target.reset();
 }
@@ -263,5 +257,81 @@ document.addEventListener("DOMContentLoaded", () => {
       sideEls.forEach(el => el.classList.remove("side-cta-hide"));
     }
     lastY = y;
+  });
+})();
+
+
+/* ✅ WhatsApp helper with relevant message */
+function openWhatsAppWithMessage(message){
+  const phone = "919880466830"; // Cogo Tours
+  const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+
+/* ✅ Package details modal (dummy content for now) */
+(function(){
+  const modal = document.createElement("div");
+  modal.id="packageModal";
+  modal.innerHTML = `
+    <div class="pkg-backdrop"></div>
+    <div class="pkg-box">
+      <button class="pkg-close" aria-label="Close">×</button>
+      <h3 id="pkgTitle">Package Details</h3>
+      <div id="pkgBody" class="pkg-body"></div>
+      <div class="pkg-actions">
+        <button id="pkgWhatsApp" class="pkg-wa">WhatsApp Enquiry</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const close = ()=> modal.classList.remove("show");
+  modal.querySelector(".pkg-backdrop").addEventListener("click", close);
+  modal.querySelector(".pkg-close").addEventListener("click", close);
+
+  window.openPackageModal = (pkgName)=>{
+    document.getElementById("pkgTitle").textContent = pkgName + " - Details";
+    document.getElementById("pkgBody").innerHTML = `
+      <p><b>${pkgName}</b> package details will be updated soon.</p>
+      <ul>
+        <li>Duration, inclusions, exclusions</li>
+        <li>Hotel type, sightseeing, itinerary</li>
+        <li>Price and terms</li>
+      </ul>
+      <p><i>For more info, please WhatsApp or Call us.</i></p>`;
+    document.getElementById("pkgWhatsApp").onclick = ()=> {
+      openWhatsAppWithMessage(`Hi Cogo Tours! I want details for *${pkgName}* package. Please share itinerary, inclusions and price.`);
+    };
+    modal.classList.add("show");
+  };
+
+  document.addEventListener("click", (e)=>{
+    const btn = e.target.closest("[data-package-details]");
+    if(btn){
+      e.preventDefault();
+      openPackageModal(btn.getAttribute("data-package-details"));
+    }
+  });
+
+  // Ensure all cards have View Details button
+  document.querySelectorAll(".tour-card, .package-card, .card").forEach(card=>{
+    const titleEl = card.querySelector("h3, .card-title, .pkg-title");
+    const pkgName = titleEl ? titleEl.textContent.trim() : "Tour Package";
+    const btnWrap = card.querySelector(".card-buttons, .btn-group, .buttons");
+    if(btnWrap && !btnWrap.querySelector(".view-details")){
+      const vd = document.createElement("a");
+      vd.href="#";
+      vd.className="view-details";
+      vd.textContent="View Details";
+      vd.setAttribute("data-package-details", pkgName);
+      btnWrap.appendChild(vd);
+    }
+    // update WhatsApp buttons message
+    const wa = card.querySelector('a[href*="wa.me"], .whatsapp-btn, .wa-btn');
+    if(wa){
+      wa.addEventListener("click",(ev)=>{
+        ev.preventDefault();
+        openWhatsAppWithMessage(`Hi Cogo Tours! I’m interested in *${pkgName}*. Please share details and quote.`);
+      });
+    }
   });
 })();
