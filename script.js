@@ -235,9 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
      ✅ Plan Your Journey buttons
      (works if IDs present)
   ============================== */
-  const pyjWhatsapp = document.getElementById("pyjWhatsapp");
-  const pyjEmail = document.getElementById("pyjEmail");
-
+ const pyjWhatsapp = document.getElementById("contactWhatsApp");
+const pyjEmail = document.getElementById("contactEmail");
   if (pyjWhatsapp) {
     pyjWhatsapp.addEventListener("click", () => {
       const msg = `Hi Cogo Tours & Travels 😊%0A%0AI want to plan my journey. Please contact me with details.`;
@@ -252,3 +251,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
