@@ -275,6 +275,24 @@ document.addEventListener("DOMContentLoaded", () => {
     a.rel = "noopener";
   });
 });
+/* ✅ REMOVE bottom middle fixed CTA bar completely */
+.sticky-cta,
+#stickyCta,
+.bottom-cta,
+.bottom-bar,
+.fixed-cta,
+.floating-cta,
+.mobile-cta,
+.cta-bar,
+.call-whatsapp-bar,
+.whatsapp-call,
+.footer-cta {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 
 
 
