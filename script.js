@@ -251,5 +251,30 @@ const pyjEmail = document.getElementById("contactEmail");
     });
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const WA_NUMBER = "919884066830";
+
+  function buildMsg(title) {
+    const msg =
+      `Hi Cogo Tours & Travels 😊%0A%0A` +
+      `I’m interested in: *${encodeURIComponent(title)}*%0A%0A` +
+      `Please share full itinerary, inclusions & best quote.`;
+    return `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  }
+
+  // ✅ override EVERY whatsapp link in the entire website
+  document.querySelectorAll('a[href*="wa.me"]').forEach((a) => {
+    const card = a.closest(".tour-card") || a.closest(".card") || a.closest(".package-card");
+    const title =
+      card?.querySelector("h3")?.innerText?.trim() ||
+      card?.querySelector("h2")?.innerText?.trim() ||
+      "Tour Package";
+
+    a.href = buildMsg(title);
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+});
+
 
 
