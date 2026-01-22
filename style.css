@@ -246,4 +246,11 @@ html, body {
 .floating-chat {
   display: none !important;
 }
+/* ✅ Fix navbar overlap on hero banner (desktop) */
+@media (min-width: 992px) {
+  .hero, .banner, #home {
+    padding-top: 150px !important;
+  }
+}
+
 
