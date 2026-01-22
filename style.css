@@ -577,3 +577,36 @@ body{
   }
 }
 
+
+/* Side CTA (Call + Plan) sticky */
+.call-link, .plan-btn-top{
+  position: fixed;
+  right: 28px;
+  z-index: 9998;
+  transition: transform .35s ease, opacity .35s ease;
+}
+.call-link{ top: 38%; }
+.plan-btn-top{ top: 48%; }
+.side-cta-hide{ transform: translateX(140%); opacity:0; }
+
+/* Hero banner height fix */
+.hero{ height: 90vh; min-height: 520px; overflow:hidden; }
+.hero-img{ height:100%; object-fit:cover; }
+
+/* Common note */
+.common-note{
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.9);
+  font-weight: 600;
+  line-height:1.4;
+}
+
+/* Enquiry modal actions */
+.enquiry-actions{ display:flex; gap:12px; }
+.modal-submit.secondary{ background:#111; color:#fff; }
+@media(max-width:600px){
+  .call-link, .plan-btn-top{ right: 16px; }
+  .enquiry-actions{ flex-direction:column; }
+}
