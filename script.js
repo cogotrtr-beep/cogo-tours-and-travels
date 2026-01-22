@@ -1,7 +1,14 @@
 /* ✅ Enquiry Form Submit Message */
 function showMessage(event) {
   event.preventDefault();
-  alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
+  /* Email enquiry via mailto */
+  const name=document.getElementById("mName")?.value||"";
+  const email=document.getElementById("mEmail")?.value||"";
+  const phone=document.getElementById("mPhone")?.value||"";
+  const msg=document.getElementById("mPlan")?.value||"";
+  const subject=encodeURIComponent("Cogo Tours Enquiry");
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${msg}`);
+  window.location.href=`mailto:cogottr@gmail.com?subject=${subject}&body=${body}`;
   event.target.reset();
 }
 
@@ -170,7 +177,14 @@ buildModalWhatsAppLink();
 if (modalEnquiryForm) {
   modalEnquiryForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
+    /* Email enquiry via mailto */
+  const name=document.getElementById("mName")?.value||"";
+  const email=document.getElementById("mEmail")?.value||"";
+  const phone=document.getElementById("mPhone")?.value||"";
+  const msg=document.getElementById("mPlan")?.value||"";
+  const subject=encodeURIComponent("Cogo Tours Enquiry");
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${msg}`);
+  window.location.href=`mailto:cogottr@gmail.com?subject=${subject}&body=${body}`;
     modalEnquiryForm.reset();
     buildModalWhatsAppLink();
     closeModal();
@@ -209,3 +223,45 @@ if (stickyEnquiryBtn) {
   });
 }
 
+
+/* Enquiry WhatsApp button */
+document.addEventListener("DOMContentLoaded", () => {
+  const waBtn = document.getElementById("sendWhatsApp");
+  if (!waBtn) return;
+
+  waBtn.addEventListener("click", () => {
+    const name = document.getElementById("mName")?.value || "";
+    const email = document.getElementById("mEmail")?.value || "";
+    const phone = document.getElementById("mPhone")?.value || "";
+    const msg = document.getElementById("mPlan")?.value || "";
+
+    const text =
+      `Hi Cogo Tours,%0A%0A` +
+      `I would like to enquire.%0A` +
+      (name ? `Name: ${name}%0A` : "") +
+      (phone ? `Phone: ${phone}%0A` : "") +
+      (email ? `Email: ${email}%0A` : "") +
+      (msg ? `%0AMessage:%0A${msg}` : "");
+
+    window.open(`https://wa.me/919884066830?text=${text}`, "_blank");
+  });
+});
+
+/* Hide side CTA on scroll down, show on scroll up */
+(() => {
+  let lastY = window.scrollY;
+  const sideEls = [
+    document.querySelector(".call-link"),
+    document.querySelector(".plan-btn-top"),
+  ].filter(Boolean);
+
+  window.addEventListener("scroll", () => {
+    const y = window.scrollY;
+    if (y > lastY && y > 150) {
+      sideEls.forEach(el => el.classList.add("side-cta-hide"));
+    } else {
+      sideEls.forEach(el => el.classList.remove("side-cta-hide"));
+    }
+    lastY = y;
+  });
+})();
