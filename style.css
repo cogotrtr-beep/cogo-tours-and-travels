@@ -521,3 +521,70 @@ body{
 @media (min-width: 992px){
   .hero, .banner, #home { padding-top: 150px !important; }
 }
+/* ===============================
+   View Details Modal Styling
+================================ */
+
+.details-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 999999;
+}
+
+.details-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.details-box {
+  position: relative;
+  width: 92%;
+  max-width: 620px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 22px;
+  z-index: 2;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+  animation: popupFade 0.25s ease;
+}
+
+@keyframes popupFade {
+  from { transform: translateY(25px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.details-close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  border: none;
+  background: #111;
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.details-description {
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #444;
+}
+
+#detailsItinerary {
+  margin-top: 10px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
