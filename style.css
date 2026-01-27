@@ -521,3 +521,54 @@ body{
 @media (min-width: 992px){
   .hero, .banner, #home { padding-top: 150px !important; }
 }
+/* ===============================
+   VIEW DETAILS MODAL
+================================ */
+.details-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:999999;
+}
+.details-modal.show{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.details-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+}
+.details-box{
+  position:relative;
+  width:92%;
+  max-width:620px;
+  background:#fff;
+  border-radius:20px;
+  padding:24px;
+  z-index:2;
+  box-shadow:0 25px 70px rgba(0,0,0,0.4);
+}
+.details-close{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#111;
+  color:#fff;
+  border:none;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.details-description{
+  margin-bottom:12px;
+  color:#444;
+  line-height:1.6;
+}
+#detailsItinerary{
+  line-height:1.7;
+  font-size:14px;
+}
+
