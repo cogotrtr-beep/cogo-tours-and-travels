@@ -579,17 +579,25 @@
   <section id="contact" class="section reveal">
     <h2>Plan Your Journey</h2>
 
-    <form class="contact-form" id="contactForm">" onsubmit="showMessage(event)">
-      <input type="text" placeholder="Full Name" required />
-      <input type="email" placeholder="Email Address" required />
-      <input type="tel" placeholder="Phone Number" required />
-      <textarea placeholder="Please share your travel plan place/date/days, we will get back with full package details :)" required></textarea>
-      <button type="button" id="contactSendEmail" class="btn-primary full">Send Email</button>
-<a id="contactWhatsAppBtn" class="modal-whatsapp" target="_blank">WhatsApp Enquiry</a>
+   <form class="contact-form" id="contactForm">
 
-      <a id="contactWhatsAppBtn" class="modal-whatsapp" target="_blank">WhatsApp Enquiry</a>
+  <input type="text" id="contactName" placeholder="Full Name" required />
 
-    </form>
+  <input type="tel" id="contactPhone" placeholder="Phone Number" required />
+
+  <input type="email" id="contactEmail" placeholder="Email Address (optional)" />
+
+  <textarea id="contactPlan" placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
+
+  <button type="button" id="bottomSendEmailBtn" class="btn-primary full">
+    Send Email
+  </button>
+
+  <a id="bottomWhatsAppBtn" class="modal-whatsapp" target="_blank">
+    WhatsApp Enquiry
+  </a>
+
+</form>
 
     <p class="contact-line">
       <b>CONTACT:</b> # 1817/132, 13TH Main Road, Annanagar West, Chennai - 600040.
@@ -676,6 +684,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
