@@ -71,33 +71,20 @@ filterButtons.forEach((btn) => {
       else card.classList.add("hide");
     });
 
-    // scroll a bit into tour section after filter click
     document.getElementById("tours")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
-/* ✅ WhatsApp Buttons (Smart)
-   - If data-wa exists → use it (custom)
-   - Else → build from place/days/price (old)
-*/
+/* ✅ WhatsApp Buttons */
 document.querySelectorAll(".wa-quote").forEach((btn) => {
   btn.addEventListener("click", () => {
-    const customWA = btn.dataset.wa;
-
-    if (customWA && customWA.trim().length > 0) {
-      window.open(`https://wa.me/919884066830?text=${customWA}`, "_blank");
-      return;
-    }
-
-    // fallback old style
     const place = btn.dataset.place || "Tour Package";
     const days = btn.dataset.days || "";
     const price = btn.dataset.price || "";
 
     const msg =
       `Hi Cogo Tours & Travels 😊%0A%0A` +
-      `I am interested in this package:%0A` +
-      `*${place}*%0A` +
+      `I am interested in *${place}*%0A` +
       (days ? `Duration: ${days}%0A` : "") +
       (price ? `Price: ${price}%0A` : "") +
       `%0APlease share full itinerary & best offer.`;
@@ -106,73 +93,29 @@ document.querySelectorAll(".wa-quote").forEach((btn) => {
   });
 });
 
-/* ✅ Modal Open / Close + WhatsApp Prefill */
-const enquiryModal = document.getElementById("enquiryModal");
-const openEnquiryModal = document.getElementById("openEnquiryModal");
-const closeEnquiryModal = document.getElementById("closeEnquiryModal");
-const modalEnquiryForm = document.getElementById("modalEnquiryForm");
-const modalWhatsApp = document.getElementById("modalWhatsApp");
+/* ===============================
+   ✅ VIEW DETAILS POPUP
+================================ */
+const detailsModal = document.getElementById("detailsModal");
+const detailsTitle = document.getElementById("detailsTitle");
+const detailsDescription = document.getElementById("detailsDescription");
+const detailsItinerary = document.getElementById("detailsItinerary");
 
-function openModal() {
-  enquiryModal.classList.add("show");
-  document.body.style.overflow = "hidden";
-}
-function closeModal() {
-  enquiryModal.classList.remove("show");
-  document.body.style.overflow = "";
-}
-
-if (openEnquiryModal) openEnquiryModal.addEventListener("click", openModal);
-if (closeEnquiryModal) closeEnquiryModal.addEventListener("click", closeModal);
-
-if (enquiryModal) {
-  enquiryModal.addEventListener("click", (e) => {
-    if (e.target === enquiryModal) closeModal();
+document.querySelectorAll(".details-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    detailsTitle.textContent = btn.dataset.title || "Package Details";
+    detailsDescription.textContent = btn.dataset.description || "";
+    detailsItinerary.innerHTML = (btn.dataset.itinerary || "").replace(/\n/g,"<br>");
+    detailsModal.classList.add("show");
+    document.body.style.overflow="hidden";
   });
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
 });
 
-/* ✅ live WhatsApp message build */
-function buildModalWhatsAppLink() {
-  if (!modalWhatsApp) return;
-
-  const name = document.getElementById("mName")?.value || "";
-  const phone = document.getElementById("mPhone")?.value || "";
-  const email = document.getElementById("mEmail")?.value || "";
-  const type = document.getElementById("mType")?.value || "";
-  const plan = document.getElementById("mPlan")?.value || "";
-
-  const msg =
-    `Cogo Tours & Travels welcomes you 🙏%0A%0A` +
-    `Thank you for contacting us! 😊%0A` +
-    `We have received your enquiry. Our team will get back to you soon with complete details.%0A%0A` +
-    `My details:%0A` +
-    `Name: ${name}%0A` +
-    `Phone: ${phone}%0A` +
-    (email ? `Email: ${email}%0A` : "") +
-    (type ? `Trip Type: ${type}%0A` : "") +
-    `%0APlan:%0A${plan}%0A%0A` +
-    `Thanks again for choosing Cogo 🌏✨`;
-
-  modalWhatsApp.href = `https://wa.me/919884066830?text=${msg}`;
+function closeDetails(){
+  detailsModal.classList.remove("show");
+  document.body.style.overflow="";
 }
 
-["mName", "mPhone", "mEmail", "mType", "mPlan"].forEach((id) => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener("input", buildModalWhatsAppLink);
-});
-buildModalWhatsAppLink();
-
-/* Submit action */
-if (modalEnquiryForm) {
-  modalEnquiryForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
-    modalEnquiryForm.reset();
-    buildModalWhatsAppLink();
-    closeModal();
-  });
-}
+document.querySelector(".details-close")?.addEventListener("click",closeDetails);
+document.querySelector(".details-backdrop")?.addEventListener("click",closeDetails);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDetails(); });
