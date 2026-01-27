@@ -309,6 +309,32 @@ if (bottomEmailBtn && bottomWhatsAppBtn) {
     bottomWhatsAppBtn.href = `https://wa.me/919884066830?text=${waMsg}`;
   });
 }
+/* ✅ Send Email from Plan Your Journey POPUP */
+const sendEmailBtn = document.getElementById("sendEmailBtn");
+
+if (sendEmailBtn) {
+  sendEmailBtn.addEventListener("click", () => {
+    const name = document.getElementById("mName").value;
+    const phone = document.getElementById("mPhone").value;
+    const email = document.getElementById("mEmail").value;
+    const type = document.getElementById("mType").value;
+    const plan = document.getElementById("mPlan").value;
+
+    const subject = "New Travel Enquiry - Cogo Tours";
+    const body =
+`Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Trip Type: ${type}
+
+Travel Plan:
+${plan}`;
+
+    window.location.href =
+      `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
+
 
 
 
