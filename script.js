@@ -163,5 +163,33 @@ enquiryModal?.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
+/* ===============================
+   Bottom Form WhatsApp Link
+================================ */
+const contactWhatsAppBtn = document.getElementById("contactWhatsAppBtn");
+
+function updateContactWhatsApp() {
+  if (!contactWhatsAppBtn) return;
+
+  const name = document.querySelector("#contactForm input[type='text']")?.value || "";
+  const phone = document.querySelector("#contactForm input[type='tel']")?.value || "";
+  const email = document.querySelector("#contactForm input[type='email']")?.value || "";
+  const plan = document.querySelector("#contactForm textarea")?.value || "";
+
+  const msg =
+    `Hi Cogo Tours 😊%0A%0A` +
+    `Name: ${name}%0A` +
+    `Phone: ${phone}%0A` +
+    (email ? `Email: ${email}%0A` : "") +
+    `%0ATravel Plan:%0A${plan}`;
+
+  contactWhatsAppBtn.href = `https://wa.me/919884066830?text=${msg}`;
+}
+
+document.querySelectorAll("#contactForm input, #contactForm textarea").forEach(el=>{
+  el.addEventListener("input", updateContactWhatsApp);
+});
+updateContactWhatsApp();
+
 
 
