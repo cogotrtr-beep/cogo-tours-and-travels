@@ -227,6 +227,47 @@ sendEmailBtn?.addEventListener("click", () => {
 
   window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
 });
+/* ===============================
+   POPUP FORM EMAIL + WHATSAPP
+================================ */
+
+const sendEmailBtn = document.getElementById("sendEmailBtn");
+const modalWhatsApp = document.getElementById("modalWhatsApp");
+
+function buildPopupMessage() {
+  const name = document.getElementById("mName")?.value || "";
+  const phone = document.getElementById("mPhone")?.value || "";
+  const email = document.getElementById("mEmail")?.value || "";
+  const type = document.getElementById("mType")?.value || "";
+  const plan = document.getElementById("mPlan")?.value || "";
+
+  return {
+    subject: "New Travel Enquiry - Cogo Tours",
+    body:
+      `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nTrip Type: ${type}\n\nTravel Plan:\n${plan}`
+  };
+}
+
+/* Email button */
+sendEmailBtn?.addEventListener("click", () => {
+  const msg = buildPopupMessage();
+  window.location.href =
+    `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(msg.subject)}&body=${encodeURIComponent(msg.body)}`;
+});
+
+/* WhatsApp button */
+function updatePopupWhatsApp() {
+  if (!modalWhatsApp) return;
+  const msg = buildPopupMessage();
+  modalWhatsApp.href =
+    `https://wa.me/919884066830?text=${encodeURIComponent(msg.body)}`;
+}
+
+["mName","mPhone","mEmail","mType","mPlan"].forEach(id=>{
+  document.getElementById(id)?.addEventListener("input", updatePopupWhatsApp);
+});
+updatePopupWhatsApp();
+
 
 
 
