@@ -190,6 +190,44 @@ document.querySelectorAll("#contactForm input, #contactForm textarea").forEach(e
   el.addEventListener("input", updateContactWhatsApp);
 });
 updateContactWhatsApp();
+/* ===============================
+   Email Send Logic (Popup Form)
+================================ */
+const modalSendEmailBtn = document.getElementById("modalSendEmailBtn");
+
+modalSendEmailBtn?.addEventListener("click", () => {
+  const name = document.getElementById("mName")?.value || "";
+  const phone = document.getElementById("mPhone")?.value || "";
+  const email = document.getElementById("mEmail")?.value || "";
+  const plan = document.getElementById("mPlan")?.value || "";
+
+  const subject = encodeURIComponent("New Travel Enquiry - Cogo Tours");
+  const body = encodeURIComponent(
+    `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nTravel Plan:\n${plan}`
+  );
+
+  window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
+});
+/* ===============================
+   Email Send Logic (Bottom Form)
+================================ */
+const sendEmailBtn = document.getElementById("sendEmailBtn");
+
+sendEmailBtn?.addEventListener("click", () => {
+  const form = document.getElementById("contactForm");
+  const name = form.querySelector("input[type='text']")?.value || "";
+  const phone = form.querySelector("input[type='tel']")?.value || "";
+  const email = form.querySelector("input[type='email']")?.value || "";
+  const plan = form.querySelector("textarea")?.value || "";
+
+  const subject = encodeURIComponent("New Travel Enquiry - Cogo Tours");
+  const body = encodeURIComponent(
+    `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nTravel Plan:\n${plan}`
+  );
+
+  window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
+});
+
 
 
 
