@@ -571,4 +571,14 @@ body{
   line-height:1.7;
   font-size:14px;
 }
+.hide-cta{
+  transform: translateY(-120px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+.call-link, .plan-btn-top{
+  transition: all 0.35s ease;
+}
+
 
