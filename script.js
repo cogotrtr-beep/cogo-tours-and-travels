@@ -36,6 +36,22 @@ window.addEventListener("scroll", () => {
   else nav.classList.remove("sticky");
 });
 
+/* ✅ Hide top CTA buttons when scrolling down */
+const callBtn = document.querySelector(".call-link");
+const planBtn = document.querySelector(".plan-btn-top");
+
+window.addEventListener("scroll", () => {
+  const hidePoint = 120;
+
+  if (window.scrollY > hidePoint) {
+    callBtn?.classList.add("hide-cta");
+    planBtn?.classList.add("hide-cta");
+  } else {
+    callBtn?.classList.remove("hide-cta");
+    planBtn?.classList.remove("hide-cta");
+  }
+});
+
 /* ✅ Hamburger */
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navLinks = document.getElementById("navLinks");
@@ -119,3 +135,4 @@ function closeDetails(){
 document.querySelector(".details-close")?.addEventListener("click",closeDetails);
 document.querySelector(".details-backdrop")?.addEventListener("click",closeDetails);
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDetails(); });
+
