@@ -1,343 +1,172 @@
-/* ✅ Enquiry Form Submit Message */
-function showMessage(event) {
-  event.preventDefault();
-  alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
-  event.target.reset();
-}
+/* ===============================
+   GLOBAL HELPERS
+================================ */
+function qs(sel){ return document.querySelector(sel); }
+function qsa(sel){ return document.querySelectorAll(sel); }
 
-/* ✅ Back to Top Button */
-const topBtn = document.getElementById("topBtn");
+/* ===============================
+   BACK TO TOP
+================================ */
+const topBtn = qs("#topBtn");
 if (topBtn) {
   window.addEventListener("scroll", () => {
     topBtn.style.display = window.scrollY > 400 ? "block" : "none";
   });
-  topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  topBtn.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  );
 }
 
-/* ✅ Smooth Scroll */
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    const targetID = this.getAttribute("href");
-    if (!targetID || targetID === "#") return;
-    const targetEl = document.querySelector(targetID);
-    if (!targetEl) return;
-    e.preventDefault();
-    targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-});
-
-/* ✅ Sticky Navbar */
+/* ===============================
+   STICKY NAVBAR
+================================ */
 window.addEventListener("scroll", () => {
-  const nav = document.getElementById("mainNav");
+  const nav = qs("#mainNav");
   if (!nav) return;
-  if (window.scrollY > 120) nav.classList.add("sticky");
-  else nav.classList.remove("sticky");
+  window.scrollY > 120 ? nav.classList.add("sticky") : nav.classList.remove("sticky");
 });
 
-/* ✅ Hide top CTA buttons when scrolling down */
-const callBtn = document.querySelector(".call-link");
-const planBtn = document.querySelector(".plan-btn-top");
-
+/* Hide top CTA buttons on scroll */
+const callBtn = qs(".call-link");
+const planBtn = qs(".plan-btn-top");
 window.addEventListener("scroll", () => {
-  const hidePoint = 120;
-
-  if (window.scrollY > hidePoint) {
-    callBtn?.classList.add("hide-cta");
-    planBtn?.classList.add("hide-cta");
-  } else {
-    callBtn?.classList.remove("hide-cta");
-    planBtn?.classList.remove("hide-cta");
-  }
+  const hide = window.scrollY > 120;
+  callBtn?.classList.toggle("hide-cta", hide);
+  planBtn?.classList.toggle("hide-cta", hide);
 });
 
-/* ✅ Hamburger */
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.getElementById("navLinks");
+/* ===============================
+   HAMBURGER
+================================ */
+const hamburgerBtn = qs("#hamburgerBtn");
+const navLinks = qs("#navLinks");
 if (hamburgerBtn && navLinks) {
   hamburgerBtn.addEventListener("click", () => {
     navLinks.classList.toggle("open");
     document.body.classList.toggle("menu-open");
     hamburgerBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
   });
-  navLinks.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("open");
-      document.body.classList.remove("menu-open");
-      hamburgerBtn.textContent = "☰";
-    });
-  });
 }
 
-/* ✅ Tour Filter Buttons */
-const filterButtons = document.querySelectorAll(".filter-btn");
-const tourCards = document.querySelectorAll(".tour-card");
-
-filterButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach((b) => b.classList.remove("active"));
+/* ===============================
+   TOUR FILTER
+================================ */
+qsa(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    qsa(".filter-btn").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
-
-    const filter = btn.getAttribute("data-filter");
-
-    tourCards.forEach((card) => {
-      const category = card.getAttribute("data-category");
-      if (filter === "all" || category === filter) card.classList.remove("hide");
-      else card.classList.add("hide");
+    const filter = btn.dataset.filter;
+    qsa(".tour-card").forEach(card=>{
+      const cat = card.dataset.category;
+      card.classList.toggle("hide", filter!=="all" && cat!==filter);
     });
-
-    document.getElementById("tours")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
-/* ✅ WhatsApp Buttons */
-document.querySelectorAll(".wa-quote").forEach((btn) => {
-  btn.addEventListener("click", () => {
+/* ===============================
+   WHATSAPP (PACKAGE CARDS)
+================================ */
+qsa(".wa-quote").forEach(btn=>{
+  btn.addEventListener("click",()=>{
     const place = btn.dataset.place || "Tour Package";
     const days = btn.dataset.days || "";
     const price = btn.dataset.price || "";
-
     const msg =
-      `Hi Cogo Tours & Travels 😊%0A%0A` +
-      `I am interested in *${place}*%0A` +
-      (days ? `Duration: ${days}%0A` : "") +
-      (price ? `Price: ${price}%0A` : "") +
-      `%0APlease share full itinerary & best offer.`;
+`Hi Cogo Tours 😊
 
-    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+I am interested in *${place}*
+${days ? "Duration: "+days : ""}
+${price ? "Price: "+price : ""}
+
+Please share full itinerary & best offer.`;
+
+    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`,"_blank");
   });
 });
 
 /* ===============================
-   ✅ VIEW DETAILS POPUP
+   VIEW DETAILS MODAL
 ================================ */
-const detailsModal = document.getElementById("detailsModal");
-const detailsTitle = document.getElementById("detailsTitle");
-const detailsDescription = document.getElementById("detailsDescription");
-const detailsItinerary = document.getElementById("detailsItinerary");
+const detailsModal = qs("#detailsModal");
+if(detailsModal){
+  const title = qs("#detailsTitle");
+  const desc = qs("#detailsDescription");
+  const iti = qs("#detailsItinerary");
 
-document.querySelectorAll(".details-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    detailsTitle.textContent = btn.dataset.title || "Package Details";
-    detailsDescription.textContent = btn.dataset.description || "";
-    detailsItinerary.innerHTML = (btn.dataset.itinerary || "").replace(/\n/g,"<br>");
-    detailsModal.classList.add("show");
-    document.body.style.overflow="hidden";
-  });
-});
-
-function closeDetails(){
-  detailsModal.classList.remove("show");
-  document.body.style.overflow="";
-}
-
-document.querySelector(".details-close")?.addEventListener("click",closeDetails);
-document.querySelector(".details-backdrop")?.addEventListener("click",closeDetails);
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDetails(); });
-/* ===============================
-   ENQUIRY MODAL OPEN/CLOSE
-================================ */
-
-const enquiryModal = document.getElementById("enquiryModal");
-const openEnquiryModalBtn = document.getElementById("openEnquiryModal");
-const closeEnquiryModalBtn = document.getElementById("closeEnquiryModal");
-
-function openModal() {
-  enquiryModal?.classList.add("show");
-  document.body.style.overflow = "hidden";
-}
-
-function closeModal() {
-  enquiryModal?.classList.remove("show");
-  document.body.style.overflow = "";
-}
-
-openEnquiryModalBtn?.addEventListener("click", openModal);
-closeEnquiryModalBtn?.addEventListener("click", closeModal);
-
-enquiryModal?.addEventListener("click", (e) => {
-  if (e.target === enquiryModal) closeModal();
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
-});
-/* ===============================
-   Bottom Form WhatsApp Link
-================================ */
-const contactWhatsAppBtn = document.getElementById("contactWhatsAppBtn");
-
-function updateContactWhatsApp() {
-  if (!contactWhatsAppBtn) return;
-
-  const name = document.querySelector("#contactForm input[type='text']")?.value || "";
-  const phone = document.querySelector("#contactForm input[type='tel']")?.value || "";
-  const email = document.querySelector("#contactForm input[type='email']")?.value || "";
-  const plan = document.querySelector("#contactForm textarea")?.value || "";
-
-  const msg =
-    `Hi Cogo Tours 😊%0A%0A` +
-    `Name: ${name}%0A` +
-    `Phone: ${phone}%0A` +
-    (email ? `Email: ${email}%0A` : "") +
-    `%0ATravel Plan:%0A${plan}`;
-
-  contactWhatsAppBtn.href = `https://wa.me/919884066830?text=${msg}`;
-}
-
-document.querySelectorAll("#contactForm input, #contactForm textarea").forEach(el=>{
-  el.addEventListener("input", updateContactWhatsApp);
-});
-updateContactWhatsApp();
-/* ===============================
-   Email Send Logic (Popup Form)
-================================ */
-const modalSendEmailBtn = document.getElementById("modalSendEmailBtn");
-
-modalSendEmailBtn?.addEventListener("click", () => {
-  const name = document.getElementById("mName")?.value || "";
-  const phone = document.getElementById("mPhone")?.value || "";
-  const email = document.getElementById("mEmail")?.value || "";
-  const plan = document.getElementById("mPlan")?.value || "";
-
-  const subject = encodeURIComponent("New Travel Enquiry - Cogo Tours");
-  const body = encodeURIComponent(
-    `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nTravel Plan:\n${plan}`
-  );
-
-  window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
-});
-/* ===============================
-   Email Send Logic (Bottom Form)
-================================ */
-const sendEmailBtn = document.getElementById("sendEmailBtn");
-
-sendEmailBtn?.addEventListener("click", () => {
-  const form = document.getElementById("contactForm");
-  const name = form.querySelector("input[type='text']")?.value || "";
-  const phone = form.querySelector("input[type='tel']")?.value || "";
-  const email = form.querySelector("input[type='email']")?.value || "";
-  const plan = form.querySelector("textarea")?.value || "";
-
-  const subject = encodeURIComponent("New Travel Enquiry - Cogo Tours");
-  const body = encodeURIComponent(
-    `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nTravel Plan:\n${plan}`
-  );
-
-  window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
-});
-/* ===============================
-   POPUP FORM EMAIL + WHATSAPP
-================================ */
-
-const sendEmailBtn = document.getElementById("sendEmailBtn");
-const modalWhatsApp = document.getElementById("modalWhatsApp");
-
-function buildPopupMessage() {
-  const name = document.getElementById("mName")?.value || "";
-  const phone = document.getElementById("mPhone")?.value || "";
-  const email = document.getElementById("mEmail")?.value || "";
-  const type = document.getElementById("mType")?.value || "";
-  const plan = document.getElementById("mPlan")?.value || "";
-
-  return {
-    subject: "New Travel Enquiry - Cogo Tours",
-    body:
-      `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nTrip Type: ${type}\n\nTravel Plan:\n${plan}`
-  };
-}
-
-/* Email button */
-sendEmailBtn?.addEventListener("click", () => {
-  const msg = buildPopupMessage();
-  window.location.href =
-    `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(msg.subject)}&body=${encodeURIComponent(msg.body)}`;
-});
-
-/* WhatsApp button */
-function updatePopupWhatsApp() {
-  if (!modalWhatsApp) return;
-  const msg = buildPopupMessage();
-  modalWhatsApp.href =
-    `https://wa.me/919884066830?text=${encodeURIComponent(msg.body)}`;
-}
-
-["mName","mPhone","mEmail","mType","mPlan"].forEach(id=>{
-  document.getElementById(id)?.addEventListener("input", updatePopupWhatsApp);
-});
-updatePopupWhatsApp();
-/* ===============================
-   Bottom Contact Form Actions
-================================ */
-const bottomEmailBtn = document.getElementById("bottomSendEmailBtn");
-const bottomWhatsAppBtn = document.getElementById("bottomWhatsAppBtn");
-
-if (bottomEmailBtn && bottomWhatsAppBtn) {
-  bottomEmailBtn.addEventListener("click", () => {
-    const name = document.querySelector("#contactForm input[type='text']").value;
-    const phone = document.querySelector("#contactForm input[type='tel']").value;
-    const email = document.querySelector("#contactForm input[type='email']").value;
-    const message = document.querySelector("#contactForm textarea").value;
-
-    const subject = "New Travel Enquiry - Cogo Tours";
-    const body =
-      `Hello Cogo Tours,%0A%0A` +
-      `I would like to enquire about a travel package.%0A%0A` +
-      `Name: ${name}%0A` +
-      `Phone: ${phone}%0A` +
-      (email ? `Email: ${email}%0A` : "") +
-      `%0ATravel Plan:%0A${message}%0A%0AThanks.`;
-
-    window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
+  qsa(".details-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      title.textContent = btn.dataset.title || "Package Details";
+      desc.textContent = btn.dataset.description || "";
+      iti.innerHTML = (btn.dataset.itinerary||"").replace(/\n/g,"<br>");
+      detailsModal.classList.add("show");
+      document.body.style.overflow="hidden";
+    });
   });
 
-  bottomWhatsAppBtn.addEventListener("click", () => {
-    const name = document.querySelector("#contactForm input[type='text']").value;
-    const phone = document.querySelector("#contactForm input[type='tel']").value;
-    const email = document.querySelector("#contactForm input[type='email']").value;
-    const message = document.querySelector("#contactForm textarea").value;
-
-    const waMsg =
-      `Hi Cogo Tours 😊%0A%0A` +
-      `I want to enquire about a travel plan.%0A` +
-      `Name: ${name}%0A` +
-      `Phone: ${phone}%0A` +
-      (email ? `Email: ${email}%0A` : "") +
-      `%0ATravel Plan:%0A${message}`;
-
-    bottomWhatsAppBtn.href = `https://wa.me/919884066830?text=${waMsg}`;
-  });
+  qs(".details-close")?.addEventListener("click",closeDetails);
+  qs(".details-backdrop")?.addEventListener("click",closeDetails);
+  function closeDetails(){
+    detailsModal.classList.remove("show");
+    document.body.style.overflow="";
+  }
 }
-/* ✅ Send Email from Plan Your Journey POPUP */
-const sendEmailBtn = document.getElementById("sendEmailBtn");
 
-if (sendEmailBtn) {
-  sendEmailBtn.addEventListener("click", () => {
-    const name = document.getElementById("mName").value;
-    const phone = document.getElementById("mPhone").value;
-    const email = document.getElementById("mEmail").value;
-    const type = document.getElementById("mType").value;
-    const plan = document.getElementById("mPlan").value;
+/* ===============================
+   ENQUIRY POPUP MODAL
+================================ */
+const enquiryModal = qs("#enquiryModal");
+qs("#openEnquiryModal")?.addEventListener("click",()=> enquiryModal.classList.add("show"));
+qs("#closeEnquiryModal")?.addEventListener("click",()=> enquiryModal.classList.remove("show"));
 
-    const subject = "New Travel Enquiry - Cogo Tours";
-    const body =
-`Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Trip Type: ${type}
+/* ===============================
+   POPUP FORM – EMAIL + WHATSAPP
+================================ */
+const sendEmailBtn = qs("#modalSendEmailBtn");
+const modalWhatsApp = qs("#modalWhatsApp");
+
+function buildPopupMsg(){
+  return `
+Name: ${qs("#mName")?.value || ""}
+Phone: ${qs("#mPhone")?.value || ""}
+Email: ${qs("#mEmail")?.value || ""}
+Trip Type: ${qs("#mType")?.value || ""}
 
 Travel Plan:
-${plan}`;
-
-    window.location.href =
-      `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  });
+${qs("#mPlan")?.value || ""}`;
 }
 
+sendEmailBtn?.addEventListener("click",()=>{
+  window.location.href =
+  `mailto:cogotrtr@gmail.com?subject=New Travel Enquiry&body=${encodeURIComponent(buildPopupMsg())}`;
+});
 
+["mName","mPhone","mEmail","mType","mPlan"].forEach(id=>{
+  qs("#"+id)?.addEventListener("input",()=>{
+    modalWhatsApp.href = `https://wa.me/919884066830?text=${encodeURIComponent(buildPopupMsg())}`;
+  });
+});
 
+/* ===============================
+   BOTTOM CONTACT FORM
+================================ */
+const bottomEmailBtn = qs("#bottomSendEmailBtn");
+const bottomWhatsAppBtn = qs("#bottomWhatsAppBtn");
 
+function buildBottomMsg(){
+  return `
+Name: ${qs("#contactName")?.value || ""}
+Phone: ${qs("#contactPhone")?.value || ""}
+Email: ${qs("#contactEmail")?.value || ""}
 
+Travel Plan:
+${qs("#contactPlan")?.value || ""}`;
+}
 
+bottomEmailBtn?.addEventListener("click",()=>{
+  window.location.href =
+  `mailto:cogotrtr@gmail.com?subject=New Travel Enquiry&body=${encodeURIComponent(buildBottomMsg())}`;
+});
 
+bottomWhatsAppBtn?.addEventListener("click",()=>{
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(buildBottomMsg())}`,"_blank");
+});
