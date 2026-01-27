@@ -267,6 +267,49 @@ function updatePopupWhatsApp() {
   document.getElementById(id)?.addEventListener("input", updatePopupWhatsApp);
 });
 updatePopupWhatsApp();
+/* ===============================
+   Bottom Contact Form Actions
+================================ */
+const bottomEmailBtn = document.getElementById("bottomSendEmailBtn");
+const bottomWhatsAppBtn = document.getElementById("bottomWhatsAppBtn");
+
+if (bottomEmailBtn && bottomWhatsAppBtn) {
+  bottomEmailBtn.addEventListener("click", () => {
+    const name = document.querySelector("#contactForm input[type='text']").value;
+    const phone = document.querySelector("#contactForm input[type='tel']").value;
+    const email = document.querySelector("#contactForm input[type='email']").value;
+    const message = document.querySelector("#contactForm textarea").value;
+
+    const subject = "New Travel Enquiry - Cogo Tours";
+    const body =
+      `Hello Cogo Tours,%0A%0A` +
+      `I would like to enquire about a travel package.%0A%0A` +
+      `Name: ${name}%0A` +
+      `Phone: ${phone}%0A` +
+      (email ? `Email: ${email}%0A` : "") +
+      `%0ATravel Plan:%0A${message}%0A%0AThanks.`;
+
+    window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
+  });
+
+  bottomWhatsAppBtn.addEventListener("click", () => {
+    const name = document.querySelector("#contactForm input[type='text']").value;
+    const phone = document.querySelector("#contactForm input[type='tel']").value;
+    const email = document.querySelector("#contactForm input[type='email']").value;
+    const message = document.querySelector("#contactForm textarea").value;
+
+    const waMsg =
+      `Hi Cogo Tours 😊%0A%0A` +
+      `I want to enquire about a travel plan.%0A` +
+      `Name: ${name}%0A` +
+      `Phone: ${phone}%0A` +
+      (email ? `Email: ${email}%0A` : "") +
+      `%0ATravel Plan:%0A${message}`;
+
+    bottomWhatsAppBtn.href = `https://wa.me/919884066830?text=${waMsg}`;
+  });
+}
+
 
 
 
