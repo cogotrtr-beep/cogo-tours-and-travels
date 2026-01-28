@@ -70,6 +70,8 @@ filterButtons.forEach(btn => {
 ================================= */
 document.querySelectorAll(".wa-quote").forEach(btn => {
   btn.addEventListener("click", () => {
+     if (btn.id === "bottomWhatsAppBtn" || btn.id === "modalWhatsApp") return;
+
     const place = btn.dataset.place || "Tour Package";
     const days = btn.dataset.days || "";
     const price = btn.dataset.price || "";
@@ -306,6 +308,7 @@ Please share package details.`;
     window.open(waURL, "_blank");
   });
 }
+
 
 
 
