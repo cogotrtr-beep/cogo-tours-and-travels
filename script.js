@@ -203,8 +203,7 @@ if (bottomWhatsAppBtn) {
     const email = document.getElementById("contactEmail").value;
     const plan = document.getElementById("contactPlan").value;
 
-    const msg =
-`Hi Cogo Tours & Travels 😊
+    const msg = `Hi Cogo Tours & Travels 😊
 
 I would like to enquire about a trip.
 
@@ -221,5 +220,61 @@ Please share package details.`;
     window.open(waURL, "_blank");
   });
 }
+
+/* ✅ Modal Form Buttons */
+const sendEmailBtn = document.getElementById("sendEmailBtn");
+const modalWhatsAppBtn = document.getElementById("modalWhatsAppBtn");
+
+if (sendEmailBtn) {
+  sendEmailBtn.addEventListener("click", () => {
+    const name = document.getElementById("mName")?.value || "";
+    const phone = document.getElementById("mPhone")?.value || "";
+    const email = document.getElementById("mEmail")?.value || "";
+    const type = document.getElementById("mType")?.value || "";
+    const plan = document.getElementById("mPlan")?.value || "";
+
+    const subject = "New Travel Enquiry – Cogo Tours";
+    const body =
+`Hello Cogo Tours,
+
+New enquiry received:
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Trip Type: ${type}
+
+Travel Plan:
+${plan}
+
+Please contact the customer soon.`;
+
+    window.location.href =
+      `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
+
+if (modalWhatsAppBtn) {
+  modalWhatsAppBtn.addEventListener("click", () => {
+    const name = document.getElementById("mName")?.value || "";
+    const phone = document.getElementById("mPhone")?.value || "";
+    const email = document.getElementById("mEmail")?.value || "";
+    const type = document.getElementById("mType")?.value || "";
+    const plan = document.getElementById("mPlan")?.value || "";
+
+    const msg =
+      `Hi Cogo Tours & Travels 👋%0A%0A` +
+      `I would like to enquire about a trip.%0A%0A` +
+      `Name: ${name}%0A` +
+      `Phone: ${phone}%0A` +
+      (email ? `Email: ${email}%0A` : "") +
+      (type ? `Trip Type: ${type}%0A` : "") +
+      `%0ATravel Plan:%0A${plan}%0A%0A` +
+      `Please share package details.`;
+
+    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+  });
+}
+
 
 
