@@ -192,4 +192,35 @@ bottomWhatsAppBtn?.addEventListener("click", () => {
     "_blank"
   );
 });
+/* ===============================
+   ENQUIRY MODAL OPEN / CLOSE
+================================ */
+
+const enquiryModal = document.getElementById("enquiryModal");
+const openEnquiryModalBtn = document.getElementById("openEnquiryModal");
+const closeEnquiryModalBtn = document.getElementById("closeEnquiryModal");
+
+function openModal() {
+  if (!enquiryModal) return;
+  enquiryModal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  if (!enquiryModal) return;
+  enquiryModal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+openEnquiryModalBtn?.addEventListener("click", openModal);
+closeEnquiryModalBtn?.addEventListener("click", closeModal);
+
+enquiryModal?.addEventListener("click", (e) => {
+  if (e.target === enquiryModal) closeModal();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
 
