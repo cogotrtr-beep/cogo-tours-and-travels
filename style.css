@@ -580,5 +580,78 @@ body{
 .call-link, .plan-btn-top{
   transition: all 0.35s ease;
 }
+/* ===== Plan Your Journey Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-box {
+  width: min(560px, 94%);
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-close {
+  border: none;
+  background: #ff5a00;
+  color: #fff;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.modal-submit {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(90deg, #0a5cff, #00d4ff);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-whatsapp {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 
 
