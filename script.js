@@ -261,3 +261,33 @@ modalEnquiryForm?.addEventListener("submit", (e) => {
   updateModalWhatsApp();
   closeModal();
 });
+/* ✅ Modal WhatsApp Button (Plan Your Journey) */
+const modalWAButton = document.getElementById("modalWhatsAppBtn");
+
+function updateModalWhatsApp() {
+  if (!modalWAButton) return;
+
+  const name = document.getElementById("mName")?.value || "";
+  const phone = document.getElementById("mPhone")?.value || "";
+  const email = document.getElementById("mEmail")?.value || "";
+  const type = document.getElementById("mType")?.value || "";
+
+  const msg =
+    `Hi Cogo Tours & Travels 👋%0A%0A` +
+    `I submitted an enquiry from your website.%0A%0A` +
+    `Name: ${name}%0A` +
+    `Phone: ${phone}%0A` +
+    (email ? `Email: ${email}%0A` : "") +
+    (type ? `Trip Type: ${type}%0A` : "") +
+    `%0APlease share package details. Thank you!`;
+
+  modalWAButton.href = `https://wa.me/919884066830?text=${msg}`;
+}
+
+["mName", "mPhone", "mEmail", "mType"].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener("input", updateModalWhatsApp);
+});
+
+updateModalWhatsApp();
+
