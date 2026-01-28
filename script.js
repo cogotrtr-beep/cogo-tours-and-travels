@@ -196,7 +196,8 @@ ${plan}`;
 }
 
 if (bottomWhatsAppBtn) {
-  bottomWhatsAppBtn.addEventListener("click", () => {
+ bottomWhatsAppBtn.removeAttribute("href"); // stop old default 
+   bottomWhatsAppBtn.addEventListener("click", () => {
     const name = document.getElementById("contactName").value;
     const phone = document.getElementById("contactPhone").value;
     const email = document.getElementById("contactEmail").value;
@@ -220,4 +221,5 @@ Please share package details.`;
     window.open(waURL, "_blank");
   });
 }
+
 
