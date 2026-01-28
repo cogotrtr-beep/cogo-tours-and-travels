@@ -254,4 +254,38 @@ function updateBottomWhatsApp() {
   if(el) el.addEventListener("input", updateBottomWhatsApp);
 });
 updateBottomWhatsApp();
+/* ===============================
+   🧳 PLAN YOUR JOURNEY MODAL LOGIC
+================================= */
+
+const enquiryModal = document.getElementById("enquiryModal");
+const openEnquiryModal = document.getElementById("openEnquiryModal");
+const closeEnquiryModal = document.getElementById("closeEnquiryModal");
+
+// Open modal
+if (openEnquiryModal && enquiryModal) {
+  openEnquiryModal.addEventListener("click", () => {
+    enquiryModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  });
+}
+
+// Close modal when X clicked
+if (closeEnquiryModal && enquiryModal) {
+  closeEnquiryModal.addEventListener("click", () => {
+    enquiryModal.classList.remove("show");
+    document.body.style.overflow = "";
+  });
+}
+
+// Close modal when clicking outside box
+if (enquiryModal) {
+  enquiryModal.addEventListener("click", (e) => {
+    if (e.target === enquiryModal) {
+      enquiryModal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+  });
+}
+
 
