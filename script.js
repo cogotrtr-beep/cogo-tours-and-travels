@@ -196,8 +196,7 @@ ${plan}`;
 }
 
 if (bottomWhatsAppBtn) {
- bottomWhatsAppBtn.removeAttribute("href"); // stop old default 
-   bottomWhatsAppBtn.addEventListener("click", () => {
+  bottomWhatsAppBtn.addEventListener("click", () => {
     const name = document.getElementById("contactName").value;
     const phone = document.getElementById("contactPhone").value;
     const email = document.getElementById("contactEmail").value;
@@ -275,6 +274,7 @@ if (modalWhatsAppBtn) {
     window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
   });
 }
+
 
 
 
