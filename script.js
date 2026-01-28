@@ -290,4 +290,31 @@ function updateModalWhatsApp() {
 });
 
 updateModalWhatsApp();
+/* ✅ OPEN / CLOSE PLAN YOUR JOURNEY MODAL */
+const openBtn = document.getElementById("openEnquiryModal");
+const modal = document.getElementById("enquiryModal");
+const closeBtn = document.getElementById("closeEnquiryModal");
+
+if (openBtn && modal) {
+  openBtn.addEventListener("click", () => {
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  });
+}
+
+if (closeBtn && modal) {
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+    document.body.style.overflow = "";
+  });
+}
+
+/* close when clicking outside box */
+modal?.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+    document.body.style.overflow = "";
+  }
+});
+
 
