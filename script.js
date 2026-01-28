@@ -199,6 +199,8 @@ bottomWhatsAppBtn?.addEventListener("click", () => {
 const enquiryModal = document.getElementById("enquiryModal");
 const openEnquiryModalBtn = document.getElementById("openEnquiryModal");
 const closeEnquiryModalBtn = document.getElementById("closeEnquiryModal");
+const modalEnquiryForm = document.getElementById("modalEnquiryForm");
+const modalWhatsAppBtn = document.getElementById("modalWhatsAppBtn");
 
 function openModal() {
   if (!enquiryModal) return;
@@ -223,4 +225,39 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
 
+/* ===============================
+   WHATSAPP PREFILL (USING YOUR FIELDS)
+================================ */
 
+function updateModalWhatsApp() {
+  if (!modalWhatsAppBtn) return;
+
+  const name = document.getElementById("mName")?.value || "";
+  const phone = document.getElementById("mPhone")?.value || "";
+  const email = document.getElementById("mEmail")?.value || "";
+  const type = document.getElementById("mType")?.value || "";
+
+  const msg =
+    `Hi Cogo Tours 😊%0A%0A` +
+    `Name: ${name}%0A` +
+    `Phone: ${phone}%0A` +
+    (email ? `Email: ${email}%0A` : "") +
+    (type ? `Trip Type: ${type}%0A` : "");
+
+  modalWhatsAppBtn.href = `https://wa.me/919884066830?text=${msg}`;
+}
+
+["mName","mPhone","mEmail","mType"].forEach(id=>{
+  document.getElementById(id)?.addEventListener("input", updateModalWhatsApp);
+});
+
+updateModalWhatsApp();
+
+/* Form Submit */
+modalEnquiryForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  alert("✅ Thank you! We received your enquiry. Our team will contact you shortly.");
+  modalEnquiryForm.reset();
+  updateModalWhatsApp();
+  closeModal();
+});
