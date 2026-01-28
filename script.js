@@ -274,6 +274,39 @@ if (modalWhatsAppBtn) {
     window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
   });
 }
+/* ===============================
+   FORCE FIX — Bottom WhatsApp
+================================= */
+
+const bottomWA = document.getElementById("bottomWhatsAppBtn");
+
+if (bottomWA) {
+  bottomWA.addEventListener("click", function (e) {
+    e.preventDefault(); // STOP link default
+
+    const name = document.getElementById("contactName").value || "";
+    const phone = document.getElementById("contactPhone").value || "";
+    const email = document.getElementById("contactEmail").value || "";
+    const plan = document.getElementById("contactPlan").value || "";
+
+    const msg = `Hi Cogo Tours & Travels 😊
+
+I would like to enquire about a trip.
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Travel Plan:
+${plan}
+
+Please share package details.`;
+
+    const waURL = "https://wa.me/919884066830?text=" + encodeURIComponent(msg);
+    window.open(waURL, "_blank");
+  });
+}
+
 
 
 
