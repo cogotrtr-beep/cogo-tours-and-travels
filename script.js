@@ -184,7 +184,7 @@ Please share package details.`;
 
 if (bottomWhatsAppBtn) {
   bottomWhatsAppBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+    e.preventDefault(); // stop page jump
 
     const name = document.getElementById("contactName").value;
     const phone = document.getElementById("contactPhone").value;
@@ -205,12 +205,15 @@ ${plan}
 
 Please share package details.`;
 
-    window.open(
-      `https://wa.me/919884066830?text=${encodeURIComponent(msg)}`,
-      "_blank"
-    );
+    const waLink = `https://wa.me/919884066830?text=${encodeURIComponent(msg)}`;
+
+    // Instead of window.open (which browsers block),
+    // we turn the button itself into the link
+    bottomWhatsAppBtn.href = waLink;
+    bottomWhatsAppBtn.target = "_blank";
   });
 }
+
 
 /* ✅ Modal Form Buttons */
 const sendEmailBtn = document.getElementById("sendEmailBtn");
@@ -298,6 +301,7 @@ Please share package details.`;
     window.open(waURL, "_blank");
   });
 }
+
 
 
 
