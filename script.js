@@ -77,13 +77,14 @@ document.querySelectorAll(".wa-quote").forEach(btn => {
     const price = btn.dataset.price || "";
 
     const msg =
-      `Hi Cogo Tours & Travels 😊%0A%0A` +
-      `I am interested in:%0A*${place}*%0A` +
-      (days ? `Duration: ${days}%0A` : "") +
-      (price ? `Price: ${price}%0A` : "") +
-      `%0APlease share full details.`;
+  `Hi Cogo Tours & Travels 😊\n\n` +
+  `I am interested in:\n${place}\n` +
+  (days ? `Duration: ${days}\n` : "") +
+  (price ? `Price: ${price}\n` : "") +
+  `\nPlease share full details.`;
 
-    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
+
   });
 });
 
@@ -308,6 +309,7 @@ Please share package details.`;
     window.open(waURL, "_blank");
   });
 }
+
 
 
 
