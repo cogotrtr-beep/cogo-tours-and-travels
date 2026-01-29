@@ -181,7 +181,9 @@ const bottomEmailBtn = document.getElementById("bottomSendEmailBtn");
 const bottomWhatsAppBtn = document.getElementById("bottomWhatsAppBtn");
 
 if (bottomEmailBtn) {
-  bottomEmailBtn.addEventListener("click", () => {
+  bottomEmailBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
     const name = document.getElementById("contactName").value;
     const phone = document.getElementById("contactPhone").value;
     const email = document.getElementById("contactEmail").value;
@@ -189,25 +191,7 @@ if (bottomEmailBtn) {
 
     const subject = "New Travel Enquiry - Cogo Tours";
     const body =
-`Name: ${name}
-Phone: ${phone}
-Email: ${email}
-
-Travel Plan:
-${plan}`;
-
-    window.location.href = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  });
-}
-
-if (bottomWhatsAppBtn) {
-  bottomWhatsAppBtn.addEventListener("click", () => {
-    const name = document.getElementById("contactName").value;
-    const phone = document.getElementById("contactPhone").value;
-    const email = document.getElementById("contactEmail").value;
-    const plan = document.getElementById("contactPlan").value;
-
-    const msg = `Hi Cogo Tours & Travels 😊
+`Hi Cogo Tours & Travels,
 
 I would like to enquire about a trip.
 
@@ -220,8 +204,38 @@ ${plan}
 
 Please share package details.`;
 
-    const waURL = `https://wa.me/919884066830?text=${encodeURIComponent(msg)}`;
-    window.open(waURL, "_blank");
+    window.location.href =
+      `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
+
+if (bottomWhatsAppBtn) {
+  bottomWhatsAppBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("contactName").value;
+    const phone = document.getElementById("contactPhone").value;
+    const email = document.getElementById("contactEmail").value;
+    const plan = document.getElementById("contactPlan").value;
+
+    const msg =
+`Hi Cogo Tours & Travels 😊
+
+I would like to enquire about a trip.
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Travel Plan:
+${plan}
+
+Please share package details.`;
+
+    window.open(
+      `https://wa.me/919884066830?text=${encodeURIComponent(msg)}`,
+      "_blank"
+    );
   });
 }
 
@@ -311,6 +325,7 @@ Please share package details.`;
     window.open(waURL, "_blank");
   });
 }
+
 
 
 
