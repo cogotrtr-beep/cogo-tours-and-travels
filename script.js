@@ -64,33 +64,6 @@ filterButtons.forEach(btn => {
   });
 });
 
-
-/* ===============================
-   ✅ WHATSAPP BUTTONS (SMART)
-================================= */
-document.querySelectorAll(".wa-quote").forEach(btn => {
-  btn.addEventListener("click", () => {
-
-    // ⛔ Skip bottom form + modal WhatsApp (they have their own logic)
-    if (btn.id === "bottomWhatsAppBtn" || btn.id === "modalWhatsApp") return;
-
-    const place = btn.dataset.place || "Tour Package";
-    const days = btn.dataset.days || "";
-    const price = btn.dataset.price || "";
-
-    const msg =
-      `Hi Cogo Tours & Travels 😊\n\n` +
-      `I am interested in:\n${place}\n` +
-      (days ? `Duration: ${days}\n` : "") +
-      (price ? `Price: ${price}\n` : "") +
-      `\nPlease share full details.`;
-
-    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
-  });
-});
-
-
-
 /* ===============================
    ✅ VIEW DETAILS MODAL
 ================================= */
@@ -325,6 +298,7 @@ Please share package details.`;
     window.open(waURL, "_blank");
   });
 }
+
 
 
 
