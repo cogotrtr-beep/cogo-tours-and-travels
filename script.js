@@ -1,6 +1,6 @@
 /* ===============================
    STICKY NAVBAR + HIDE TOP CTAs
-================================= */
+================================ */
 const nav = document.getElementById("mainNav");
 const callBtn = document.querySelector(".call-link");
 const planBtn = document.querySelector(".plan-btn-top");
@@ -10,19 +10,19 @@ window.addEventListener("scroll", () => {
 
   if (window.scrollY > 120) {
     nav.classList.add("sticky");
-    if (callBtn) callBtn.style.opacity = "0";
-    if (planBtn) planBtn.style.opacity = "0";
+    callBtn && (callBtn.style.opacity = "0");
+    planBtn && (planBtn.style.opacity = "0");
   } else {
     nav.classList.remove("sticky");
-    if (callBtn) callBtn.style.opacity = "1";
-    if (planBtn) planBtn.style.opacity = "1";
+    callBtn && (callBtn.style.opacity = "1");
+    planBtn && (planBtn.style.opacity = "1");
   }
 });
 
 
 /* ===============================
    HAMBURGER MENU
-================================= */
+================================ */
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navLinks = document.getElementById("navLinks");
 
@@ -45,7 +45,7 @@ if (hamburgerBtn && navLinks) {
 
 /* ===============================
    TOUR FILTERS
-================================= */
+================================ */
 const filterButtons = document.querySelectorAll(".filter-btn");
 const tourCards = document.querySelectorAll(".tour-card");
 
@@ -68,7 +68,7 @@ filterButtons.forEach(btn => {
 
 /* ===============================
    VIEW DETAILS MODAL
-================================= */
+================================ */
 const detailsModal = document.getElementById("detailsModal");
 const detailsTitle = document.getElementById("detailsTitle");
 const detailsDescription = document.getElementById("detailsDescription");
@@ -92,12 +92,14 @@ function closeDetails() {
 }
 
 detailsClose?.addEventListener("click", closeDetails);
-detailsModal?.addEventListener("click", e => { if (e.target === detailsModal) closeDetails(); });
+detailsModal?.addEventListener("click", e => {
+  if (e.target === detailsModal) closeDetails();
+});
 
 
 /* ===============================
    PLAN YOUR JOURNEY MODAL
-================================= */
+================================ */
 const enquiryModal = document.getElementById("enquiryModal");
 const openEnquiryBtn = document.getElementById("openEnquiryModal");
 const closeEnquiryBtn = document.getElementById("closeEnquiryModal");
@@ -113,12 +115,14 @@ function closeEnquiry() {
 }
 
 closeEnquiryBtn?.addEventListener("click", closeEnquiry);
-enquiryModal?.addEventListener("click", e => { if (e.target === enquiryModal) closeEnquiry(); });
+enquiryModal?.addEventListener("click", e => {
+  if (e.target === enquiryModal) closeEnquiry();
+});
 
 
 /* ===============================
    HELPER → BUILD MESSAGE TEXT
-================================= */
+================================ */
 function buildMessage(name, phone, email, type, plan) {
   return `Hi Cogo Tours & Travels 😊
 
@@ -138,7 +142,7 @@ Please share package details.`;
 
 /* ===============================
    MODAL FORM → EMAIL + WHATSAPP
-================================= */
+================================ */
 const sendEmailBtn = document.getElementById("sendEmailBtn");
 const modalWhatsAppBtn = document.getElementById("modalWhatsAppBtn");
 
@@ -170,7 +174,7 @@ modalWhatsAppBtn?.addEventListener("click", () => {
 
 /* ===============================
    BOTTOM FORM → EMAIL + WHATSAPP
-================================= */
+================================ */
 const bottomEmailBtn = document.getElementById("bottomSendEmailBtn");
 const bottomWhatsAppBtn = document.getElementById("bottomWhatsAppBtn");
 
