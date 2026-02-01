@@ -680,10 +680,30 @@
     <div id="detailsItinerary"></div>
   </div>
 </div>
+<!-- Travel Enquiry Modal -->
+<div class="modal-overlay" id="enquiryModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Travel Enquiry</h3>
+      <button class="modal-close" id="closeEnquiryModal">✕</button>
+    </div>
+
+    <form class="enquiry-form">
+      <input type="text" id="mName" placeholder="Full Name" required>
+      <input type="tel" id="mPhone" placeholder="Phone Number" required>
+      <input type="email" id="mEmail" placeholder="Email Address (optional)">
+      <textarea id="mPlan" placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
+
+      <button type="button" id="modalSendEmailBtn" class="btn-primary">Send Email</button>
+      <button type="button" id="modalWhatsAppBtn" class="btn-whatsapp">WhatsApp Enquiry</button>
+    </form>
+  </div>
+</div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
