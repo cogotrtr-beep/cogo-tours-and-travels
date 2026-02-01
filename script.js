@@ -80,3 +80,82 @@ document.getElementById("bottomWhatsAppBtn")?.addEventListener("click", () => {
   const msg = buildMessage(contactName.value, contactPhone.value, contactEmail.value, contactPlan.value);
   window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
 });
+/* =================================
+   🌍 TRAVEL ENQUIRY – GLOBAL LOGIC
+================================= */
+
+function buildMessage(name, phone, email, plan) {
+  return `Hi Cogo Tours & Travels 😊
+
+I would like to enquire about a trip.
+
+Name: ${name}
+Phone: ${phone}
+${email ? "Email: " + email : ""}
+
+Travel Plan:
+${plan}
+
+Please share package details.`;
+}
+
+/* ===============================
+   📩 EMAIL FROM MODAL
+================================= */
+document.getElementById("modalSendEmailBtn")?.addEventListener("click", () => {
+  const name = document.getElementById("mName").value;
+  const phone = document.getElementById("mPhone").value;
+  const email = document.getElementById("mEmail").value;
+  const plan = document.getElementById("mPlan").value;
+
+  const subject = "New Travel Enquiry - Cogo Tours";
+  const body = buildMessage(name, phone, email, plan);
+
+  window.location.href =
+    `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
+/* ===============================
+   📲 WHATSAPP FROM MODAL
+================================= */
+document.getElementById("modalWhatsAppBtn")?.addEventListener("click", () => {
+  const name = document.getElementById("mName").value;
+  const phone = document.getElementById("mPhone").value;
+  const email = document.getElementById("mEmail").value;
+  const plan = document.getElementById("mPlan").value;
+
+  const msg = buildMessage(name, phone, email, plan);
+
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
+});
+
+/* ===============================
+   📩 EMAIL FROM BOTTOM FORM
+================================= */
+document.getElementById("bottomSendEmailBtn")?.addEventListener("click", () => {
+  const name = document.getElementById("contactName").value;
+  const phone = document.getElementById("contactPhone").value;
+  const email = document.getElementById("contactEmail").value;
+  const plan = document.getElementById("contactPlan").value;
+
+  const subject = "New Travel Enquiry - Cogo Tours";
+  const body = buildMessage(name, phone, email, plan);
+
+  window.location.href =
+    `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
+/* ===============================
+   📲 WHATSAPP FROM BOTTOM FORM
+================================= */
+document.getElementById("bottomWhatsAppBtn")?.addEventListener("click", () => {
+  const name = document.getElementById("contactName").value;
+  const phone = document.getElementById("contactPhone").value;
+  const email = document.getElementById("contactEmail").value;
+  const plan = document.getElementById("contactPlan").value;
+
+  const msg = buildMessage(name, phone, email, plan);
+
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
+});
+
