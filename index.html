@@ -621,45 +621,7 @@
   <footer class="footer">
     © 2026 Cogo Tours & Travels | Chennai
   </footer>
-
-  <!-- =========================
-       ENQUIRY POPUP MODAL
-  ========================== -->
-  <div class="modal-overlay" id="enquiryModal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-header">
-        <h3 id="modalTitle">Plan Your Journey</h3>
-        <button class="modal-close" id="closeEnquiryModal" aria-label="Close">✕</button>
-      </div>
-
-      <p class="modal-sub">Share details and we’ll call you back with the best package.</p>
-
-      <form class="modal-form" id="modalEnquiryForm">
-        <input type="text" id="mName" placeholder="Full Name" required>
-        <input type="tel" id="mPhone" placeholder="Phone Number" required>
-        <input type="email" id="mEmail" placeholder="Email Address (optional)">
-
-        <select id="mType" required>
-          <option value="">Select Trip Type</option>
-          <option>Domestic</option>
-          <option>International</option>
-          <option>Pilgrimage</option>
-          <option>Honeymoon</option>
-          <option>Corporate</option>
-          <option>Chennai Packages</option>
-        </select>
-
-        <textarea id="mPlan" placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
-
-        <button type="button" id="sendEmailBtn" class="modal-submit">Send Email</button>
-<button type="button" id="modalWhatsAppBtn" class="modal-whatsapp">
-  WhatsApp Enquiry
-</button>
-
-
-      </form>
-
-    </div>
+  
   </div>
 <!-- ✅ View Details Modal -->
 <div id="detailsModal" class="details-modal">
@@ -674,8 +636,33 @@
 </div>
 
   <script src="script.js"></script>
+<!-- Travel Enquiry Modal -->
+<div class="modal-overlay" id="enquiryModal">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h3>Travel Enquiry</h3>
+      <button class="modal-close" id="closeEnquiryModal">✕</button>
+    </div>
+
+    <form class="modal-form" id="modalEnquiryForm">
+
+      <input type="text" id="mName" placeholder="Full Name" required>
+      <input type="tel" id="mPhone" placeholder="Phone Number" required>
+      <input type="email" id="mEmail" placeholder="Email Address (optional)">
+      <textarea id="mPlan" placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
+
+      <button type="button" id="sendEmailBtn" class="btn-primary">Send Email</button>
+      <button type="button" id="modalWhatsAppBtn" class="btn-whatsapp">WhatsApp Enquiry</button>
+
+    </form>
+
+  </div>
+</div>
+
 </body>
 </html>
+
 
 
 
