@@ -145,30 +145,41 @@ document.getElementById("modalWhatsAppBtn")?.addEventListener("click", () => {
   const msg = buildMessage(name, phone, email, plan);
   window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
 });
+/* ===============================
+   BOTTOM FORM → EMAIL
+================================= */
+
+const bottomEmailBtn = document.getElementById("bottomSendEmailBtn");
+
+if (bottomEmailBtn) {
+  bottomEmailBtn.addEventListener("click", function () {
+
+    const name  = document.getElementById("contactName")?.value || "";
+    const phone = document.getElementById("contactPhone")?.value || "";
+    const email = document.getElementById("contactEmail")?.value || "";
+    const plan  = document.getElementById("contactPlan")?.value || "";
+
+    const subject = "New Travel Enquiry - Cogo Tours";
+
+    const body = `Hi Cogo Tours & Travels,
+
+I would like to enquire about a trip.
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Travel Plan:
+${plan}
+
+Please share package details.`;
+
+    window.location.href =
+      "mailto:cogotrtr@gmail.com?subject=" +
+      encodeURIComponent(subject) +
+      "&body=" +
+      encodeURIComponent(body);
+  });
+}
 
 
-/* =====================================
-   BOTTOM FORM BUTTONS
-===================================== */
-document.getElementById("bottomSendEmailBtn")?.addEventListener("click", () => {
-  const name = document.getElementById("contactName").value;
-  const phone = document.getElementById("contactPhone").value;
-  const email = document.getElementById("contactEmail").value;
-  const plan = document.getElementById("contactPlan").value;
-
-  const subject = "New Travel Enquiry - Cogo Tours";
-  const body = buildMessage(name, phone, email, plan);
-
-  window.location.href =
-    `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-});
-
-document.getElementById("bottomWhatsAppBtn")?.addEventListener("click", () => {
-  const name = document.getElementById("contactName").value;
-  const phone = document.getElementById("contactPhone").value;
-  const email = document.getElementById("contactEmail").value;
-  const plan = document.getElementById("contactPlan").value;
-
-  const msg = buildMessage(name, phone, email, plan);
-  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
-});
