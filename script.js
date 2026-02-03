@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 /* ===============================
    STICKY NAVBAR + HIDE TOP BUTTONS
 ================================= */
@@ -184,4 +185,7 @@ document.getElementById("bottomWhatsAppBtn")?.addEventListener("click", () => {
 
   const msg = buildMessage(name, phone, email, plan);
   window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
+document.addEventListener("DOMContentLoaded", function () {
+
 });
+
