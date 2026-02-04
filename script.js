@@ -34,13 +34,13 @@ function displayTours(filter = "all") {
 
 // 3. WHATSAPP FUNCTION
 function sendInquiry(tourName = "General Inquiry") {
-    const name = document.getElementById("contactName")?.value || "Guest";
+    const name = document.getElementById("contactName")?.value || "";
     const phone = document.getElementById("contactPhone")?.value || "";
     const email = document.getElementById("contactEmail")?.value || "";
     const plan = document.getElementById("contactPlan")?.value || "";
 
-    if (!phone) {
-        alert("Please enter your phone number!");
+    if (!name || !phone) {
+        alert("Please enter your Name and Phone number");
         return;
     }
 
@@ -51,7 +51,8 @@ function sendInquiry(tourName = "General Inquiry") {
     if(email) msg += `📧 *Email:* ${encodeURIComponent(email)}%0A`;
     msg += `📝 *Plan:* ${encodeURIComponent(plan)}`;
 
-    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+    window.open(`https://wa.me/919884066830?text=${msg}`, '_blank');
+}
 }
 
 // 4. FILTERS & SCROLL
@@ -79,3 +80,4 @@ document.getElementById("backToTop")?.addEventListener("click", () => {
 
 // INITIALIZE
 displayTours();
+
