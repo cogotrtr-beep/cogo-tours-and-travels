@@ -1,9 +1,9 @@
-
 :root {
   --brand: #ff9800;
   --brand2: #ff5a00;
-  --primary: #ff9800; /* Added this to match Footer */
+  --primary: #ff9800; /* Add this line */
   --dark: #0f172a;
+  --bg2: #f6f8fc;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
@@ -242,4 +242,5 @@ input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid 
   border-radius: 5px;
   display: block; /* Puts each box on a new line */
 }
+
 
