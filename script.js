@@ -68,36 +68,40 @@ function displayTours(filter = "all") {
 }
 
 /* ===============================
-   ✅ NEW REUSABLE WHATSAPP FUNCTION
+   ✅ FINAL REUSABLE WHATSAPP FUNCTION
 ================================= */
-function sendInquiry(tourName = "General") {
-    // 1. Get values from the Contact Form
+function sendInquiry(tourName = "General Inquiry") {
+    // 1. Pulling all the data from your HTML boxes
     const name = document.getElementById("contactName")?.value || "Guest";
     const phone = document.getElementById("contactPhone")?.value || "";
     const email = document.getElementById("contactEmail")?.value || "";
     const plan = document.getElementById("contactPlan")?.value || "";
 
-    // 2. Check if phone is empty
+    // 2. Simple check to make sure they gave you a number
     if (!phone) {
         alert("Please enter your phone number so we can reach you!");
         return;
     }
 
-    // 3. Build the Message
+    // 3. Crafting the message for WhatsApp
+    // The (email ? ...) part makes sure the email only shows up if they typed one!
     const msg = `Hi Cogo Tours & Travels! 👋%0A%0A` +
-                `My Name: ${name}%0A` +
-                `Phone: ${phone}%0A` +
-                (email ? `Email: ${email}%0A` : "") +
-                `Interested in: ${tourName}%0A` +
-                `Plan: ${plan}`;
+                `*New Enquiry Details:*%0A` +
+                `--------------------------%0A` +
+                `👤 Name: ${name}%0A` +
+                `📞 Phone: ${phone}%0A` +
+                (email ? `📧 Email: ${email}%0A` : "") +
+                `📍 Interested in: ${tourName}%0A` +
+                `📝 Plan: ${plan}%0A` +
+                `--------------------------%0A` +
+                `Please get back to me with the best price!`;
 
-    // 4. Open WhatsApp
+    // 4. Open the WhatsApp window
     window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
 
-    // 5. Show Success Message
-    alert("Thank you " + name + "! Your WhatsApp is opening now.");
+    // 5. Success alert
+    alert("Thank you " + name + "! Opening WhatsApp to send your enquiry now.");
 }
-
 // 4. NAVIGATION & FILTER LOGIC
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -134,6 +138,7 @@ backTopBtn.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
 
 
 
