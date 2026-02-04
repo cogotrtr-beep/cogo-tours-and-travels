@@ -63,3 +63,27 @@ html { scroll-behavior: smooth; }
 .contact-container { max-width: 600px; margin: auto; padding: 40px 20px; text-align: center; }
 input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; }
 .submit-btn { background: #25D366; color: #fff; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
+/* Styling the Review Cards */
+.testimonial-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px 5%;
+  flex-wrap: wrap;
+}
+
+.review-card {
+  background: #fdfdfd;
+  border-left: 5px solid var(--brand); /* The orange stripe */
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  font-style: italic;
+}
+
+.review-card h4 {
+  margin-top: 15px;
+  color: var(--brand2);
+  font-style: normal;
+}
