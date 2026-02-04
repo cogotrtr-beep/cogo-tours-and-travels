@@ -1,25 +1,46 @@
-// 1. YOUR TOUR DATABASE
+// YOUR TOUR DATABASE - Add or change tours here!
 const tours = [
-    {
-        title: "Magnificent Dubai",
-        category: "international",
-        price: "₹ 45,000",
-        image: "cogotours1.jpeg",
-        desc: "Explore the Burj Khalifa and Desert Safari."
+    { 
+        title: "Refreshing Ooty", 
+        cat: "domestic", 
+        price: "₹9,999", 
+        img: "cogo1.jpeg",
+        desc: "3 Days / 2 Nights trip to the Queen of Hill Stations."
     },
-    {
-        title: "Ooty & Kodaikanal",
-        category: "domestic",
-        price: "₹ 12,500",
-        image: "cogo1.jpeg",
-        desc: "Relax in the queen of hill stations."
+    { 
+        title: "Dubai City Lights", 
+        cat: "international", 
+        price: "₹48,500", 
+        img: "cogotours1.jpeg",
+        desc: "Explore Burj Khalifa, Desert Safari, and Gold Souk."
     },
-    {
-        title: "Chennai Local Heritage",
-        category: "chennai",
-        price: "₹ 2,500",
-        image: "cogoindian.jpeg",
-        desc: "Temple tours and beach visits."
+    { 
+        title: "Spiritual Madurai", 
+        cat: "pilgrimage", 
+        price: "₹4,500", 
+        img: "cogoindian.jpeg",
+        desc: "Divine visit to Meenakshi Amman Temple and local sights."
+    },
+    { 
+        title: "Singapore & Malaysia", 
+        cat: "international", 
+        price: "₹65,000", 
+        img: "cogotours1.jpeg",
+        desc: "5 Days of fun at Universal Studios and Sentosa."
+    },
+    { 
+        title: "Magical Munnar", 
+        cat: "domestic", 
+        price: "₹11,000", 
+        img: "cogo1.jpeg", 
+        desc: "Tea gardens, waterfalls, and cool mountain breezes."
+    },
+    { 
+        title: "Chennai Local Pride", 
+        cat: "chennai", 
+        price: "₹2,500", 
+        img: "cogoindian.jpeg",
+        desc: "Marina Beach, Kapaleeshwarar Temple, and Museum."
     }
 ];
 
@@ -97,4 +118,5 @@ backTopBtn.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
 
