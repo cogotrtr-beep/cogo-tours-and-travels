@@ -125,3 +125,28 @@ input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid 
     border-radius: 50%;
   }
 }
+/* BACK TO TOP STYLING */
+.back-to-top {
+  position: fixed;
+  bottom: 90px;      /* Positioned above the Call button we added earlier */
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--brand); /* Uses your orange brand color */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;      /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  background-color: var(--brand2); /* Turns darker orange on hover */
+  transform: translateY(-5px);    /* Bounces up slightly */
+}
