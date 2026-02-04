@@ -78,3 +78,23 @@ window.addEventListener('scroll', () => {
 
 // Start the page
 displayTours();
+// BACK TO TOP LOGIC
+const backTopBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  // If user scrolls down more than 300px, show the button
+  if (window.scrollY > 300) {
+    backTopBtn.style.display = "flex";
+  } else {
+    backTopBtn.style.display = "none";
+  }
+});
+
+// When the user clicks the button, scroll to the top smoothly
+backTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
