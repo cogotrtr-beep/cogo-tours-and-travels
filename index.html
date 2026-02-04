@@ -57,18 +57,18 @@
     </div>
   </section>
 
-  <section id="contact" class="section section-dark">
-    <div class="contact-container">
-      <h2>Plan Your Journey</h2>
-      <form id="contactForm">
-        <input type="text" id="contactName" placeholder="Your Name" required>
-        <input type="tel" id="contactPhone" placeholder="Phone Number (10 Digits)" required>
-        <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
-        <textarea id="contactPlan" placeholder="Tell us where you want to go..."></textarea>
-        <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
-      </form>
-    </div> 
-  </section>
+<section id="contact" class="section section-dark">
+  <div class="contact-container">
+    <h2>Plan Your Journey</h2>
+    <form id="contactForm">
+      <input type="text" id="contactName" placeholder="Your Name" required>
+      <input type="tel" id="contactPhone" placeholder="Phone Number (10 Digits)" required pattern="[0-9]{10}">
+      <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
+      <textarea id="contactPlan" placeholder="Tell us where you want to go..."></textarea>
+      <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
+    </form>
+  </div>
+</section>
 
   <footer class="main-footer">
     <div class="footer-container">
@@ -90,3 +90,4 @@
   <button id="backToTop" class="back-to-top">↑</button>
 </body>
 </html>
+
