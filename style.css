@@ -87,3 +87,41 @@ input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid 
   color: var(--brand2);
   font-style: normal;
 }
+/* FLOATING CALL BUTTON STYLES */
+.float-call-btn {
+  position: fixed;
+  bottom: 25px;      /* Distance from bottom */
+  right: 25px;       /* Distance from right */
+  background-color: #007bff; /* Professional Blue (or use #ff9800 for Orange) */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 9999;     /* Keeps it on top of everything */
+  transition: transform 0.3s ease;
+}
+
+.float-call-btn:hover {
+  transform: scale(1.1); /* Grows slightly when hovered */
+  color: white;
+}
+
+.call-icon {
+  font-size: 20px;
+}
+
+/* On very small phones, we can hide the text and just show the icon */
+@media (max-width: 480px) {
+  .call-text {
+    display: none;
+  }
+  .float-call-btn {
+    padding: 15px;
+    border-radius: 50%;
+  }
+}
