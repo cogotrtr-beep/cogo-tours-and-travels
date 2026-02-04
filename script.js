@@ -102,31 +102,34 @@ ${plan}
 Please share package details.`;
   }
 
-  emailBtn?.addEventListener("click", function () {
-    const name = document.getElementById("contactName").value;
-    const phone = document.getElementById("contactPhone").value;
-    const email = document.getElementById("contactEmail").value;
-    const plan = document.getElementById("contactPlan").value;
+const contactForm = document.getElementById("contactForm");
 
-    const subject = "Travel Enquiry - Cogo Tours";
-    const body = buildMessage(name, phone, email, plan);
+contactForm?.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    window.location.href =
-      `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  });
+  const name = document.getElementById("contactName").value;
+  const phone = document.getElementById("contactPhone").value;
+  const email = document.getElementById("contactEmail").value;
+  const plan = document.getElementById("contactPlan").value;
 
-  waBtn?.addEventListener("click", function () {
-    const name = document.getElementById("contactName").value;
-    const phone = document.getElementById("contactPhone").value;
-    const email = document.getElementById("contactEmail").value;
-    const plan = document.getElementById("contactPlan").value;
+  const subject = "Travel Enquiry - Cogo Tours";
+  const body = `Hi Cogo Tours & Travels 😊
 
-    const msg = buildMessage(name, phone, email, plan);
-    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
-  });
+I would like to enquire about a trip.
 
+Name: ${name}
+Phone: ${phone}
+${email ? "Email: " + email : ""}
+
+Travel Plan:
+${plan}
+
+Please share package details.`;
+
+  window.location.href =
+    `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
-
+  
 
 /* ===============================
    BACK TO TOP BUTTON
@@ -141,3 +144,4 @@ window.addEventListener("scroll", () => {
 topBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
