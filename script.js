@@ -67,19 +67,35 @@ function displayTours(filter = "all") {
     });
 }
 
-// 3. WHATSAPP INQUIRY LOGIC
-function handleInquiry(tourName = "General Inquiry") {
-    const name = document.getElementById("contactName").value;
-    const phone = document.getElementById("contactPhone").value;
-    const plan = document.getElementById("contactPlan").value;
+/* ===============================
+   ✅ NEW REUSABLE WHATSAPP FUNCTION
+================================= */
+function sendInquiry(tourName = "General") {
+    // 1. Get values from the Contact Form
+    const name = document.getElementById("contactName")?.value || "Guest";
+    const phone = document.getElementById("contactPhone")?.value || "";
+    const email = document.getElementById("contactEmail")?.value || "";
+    const plan = document.getElementById("contactPlan")?.value || "";
 
-    if(!name || !phone) {
-        alert("Please enter your Name and Phone number");
+    // 2. Check if phone is empty
+    if (!phone) {
+        alert("Please enter your phone number so we can reach you!");
         return;
     }
 
-    const message = `Hi Cogo Tours! %0A My Name: ${name} %0A Interested in: ${tourName} %0A Message: ${plan}`;
-    window.open(`https://wa.me/919884066830?text=${message}`, '_blank');
+    // 3. Build the Message
+    const msg = `Hi Cogo Tours & Travels! 👋%0A%0A` +
+                `My Name: ${name}%0A` +
+                `Phone: ${phone}%0A` +
+                (email ? `Email: ${email}%0A` : "") +
+                `Interested in: ${tourName}%0A` +
+                `Plan: ${plan}`;
+
+    // 4. Open WhatsApp
+    window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
+
+    // 5. Show Success Message
+    alert("Thank you " + name + "! Your WhatsApp is opening now.");
 }
 
 // 4. NAVIGATION & FILTER LOGIC
@@ -118,5 +134,6 @@ backTopBtn.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
 
 
