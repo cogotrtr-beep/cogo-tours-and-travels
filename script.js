@@ -1,68 +1,80 @@
-document.addEventListener("DOMContentLoaded", function () {
+// 1. YOUR TOUR DATABASE
+const tours = [
+    {
+        title: "Magnificent Dubai",
+        category: "international",
+        price: "₹ 45,000",
+        image: "cogotours1.jpeg",
+        desc: "Explore the Burj Khalifa and Desert Safari."
+    },
+    {
+        title: "Ooty & Kodaikanal",
+        category: "domestic",
+        price: "₹ 12,500",
+        image: "cogo1.jpeg",
+        desc: "Relax in the queen of hill stations."
+    },
+    {
+        title: "Chennai Local Heritage",
+        category: "chennai",
+        price: "₹ 2,500",
+        image: "cogoindian.jpeg",
+        desc: "Temple tours and beach visits."
+    }
+];
 
-  /* ===============================
-     BOTTOM TRAVEL ENQUIRY FORM
-  ================================= */
+// 2. FUNCTION TO DISPLAY TOURS
+function displayTours(filter = "all") {
+    const container = document.getElementById("tourContainer");
+    container.innerHTML = ""; // Clear existing
 
-  const emailBtn = document.getElementById("bottomSendEmailBtn");
-  const whatsappBtn = document.getElementById("bottomWhatsAppBtn");
+    const filteredTours = tours.filter(t => filter === "all" || t.category === filter);
 
-  function getFormData() {
-    return {
-      name: document.getElementById("contactName")?.value.trim() || "",
-      phone: document.getElementById("contactPhone")?.value.trim() || "",
-      email: document.getElementById("contactEmail")?.value.trim() || "",
-      plan: document.getElementById("contactPlan")?.value.trim() || ""
-    };
-  }
-
-  function buildMessage({ name, phone, email, plan }) {
-    return `Hi Cogo Tours & Travels 😊
-
-I would like to enquire about a trip.
-
-Name: ${name}
-Phone: ${phone}
-${email ? "Email: " + email : ""}
-
-Travel Plan:
-${plan}
-
-Please share package details.`;
-  }
-
-  /* 📧 EMAIL BUTTON */
-  if (emailBtn) {
-    emailBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const data = getFormData();
-      const subject = "New Travel Enquiry - Cogo Tours";
-      const body = buildMessage(data);
-
-      const mailURL =
-        "https://mail.google.com/mail/?view=cm&fs=1" +
-        "&to=cogotrtr@gmail.com" +
-        "&su=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-
-      window.open(mailURL, "_blank");
+    filteredTours.forEach(tour => {
+        const html = `
+            <div class="tour-card">
+                <img src="${tour.image}" alt="${tour.title}">
+                <div class="tour-card-body">
+                    <h3>${tour.title}</h3>
+                    <p>${tour.desc}</p>
+                    <p class="price-tag">${tour.price}</p>
+                    <button class="filter-btn" onclick="handleInquiry('${tour.title}')">Enquire</button>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', html);
     });
-  }
+}
 
-  /* 💬 WHATSAPP BUTTON */
-  if (whatsappBtn) {
-    whatsappBtn.addEventListener("click", function (e) {
-      e.preventDefault();
+// 3. WHATSAPP INQUIRY LOGIC
+function handleInquiry(tourName = "General Inquiry") {
+    const name = document.getElementById("contactName").value;
+    const phone = document.getElementById("contactPhone").value;
+    const plan = document.getElementById("contactPlan").value;
 
-      const data = getFormData();
-      const message = buildMessage(data);
+    if(!name || !phone) {
+        alert("Please enter your Name and Phone number");
+        return;
+    }
 
-      const waURL =
-        "https://wa.me/919884066830?text=" + encodeURIComponent(message);
+    const message = `Hi Cogo Tours! %0A My Name: ${name} %0A Interested in: ${tourName} %0A Message: ${plan}`;
+    window.open(`https://wa.me/919884066830?text=${message}`, '_blank');
+}
 
-      window.open(waURL, "_blank");
+// 4. NAVIGATION & FILTER LOGIC
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        btn.classList.add('active');
+        displayTours(btn.dataset.filter);
     });
-  }
-
 });
+
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if(window.scrollY > 50) nav.classList.add('sticky');
+    else nav.classList.remove('sticky');
+});
+
+// Start the page
+displayTours();
