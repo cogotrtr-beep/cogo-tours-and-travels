@@ -4,12 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cogo Tours & Travels | Your Journey Our Responsibility</title>
-  
   <meta name="description" content="Cogo Tours & Travels - Best deals on Domestic, International, and Pilgrimage packages in Chennai.">
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
   <header class="hero" id="home">
@@ -19,8 +17,7 @@
       <div class="nav-links" id="navLinks">
         <a href="#home" class="active">Home</a>
         <a href="#tours">Tours</a>
-        <a href="#ser">Services</a>
-        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
         <a href="#contact" class="nav-btn">Enquire Now</a>
       </div>
     </nav>
@@ -31,125 +28,65 @@
 
   <section id="tours" class="section">
     <h2 class="center-title">Popular Tour Packages</h2>
-    <div class="tour-filters">
+    <div class="tour-filters" style="text-align: center;">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="domestic">Domestic</button>
         <button class="filter-btn" data-filter="international">International</button>
         <button class="filter-btn" data-filter="chennai">Chennai Special</button>
     </div>
-
     <div class="tour-grid" id="tourContainer"></div>
   </section>
-<section id="video-tour" class="section section-dark">
-  <div class="container center-title">
-    <h2>Experience the Magic</h2>
-    <p>Take a virtual tour of our most loved destinations.</p>
-    
-    <div class="video-wrapper">
-      <iframe 
-        id="promoVideo"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-        title="Travel Promo" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
+
+  <section id="video-tour" class="section section-dark">
+    <div class="container center-title" style="text-align: center;">
+      <h2>Experience the Magic</h2>
+      <div class="video-wrapper">
+        <iframe id="promoVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Travel Promo" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
-  </div>
-</section>
-  <footer class="main-footer">
-  <div class="footer-container">
-    <div class="footer-info">
-      <h3>Cogo<span>Tours</span></h3>
-      <p>Your Journey, Our Responsibility. Based in Chennai, serving travelers worldwide.</p>
-    </div>
-    
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#tours">Packages</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-      </ul>
-    </div>
-    
-    <div class="footer-contact">
-      <h4>Contact Info</h4>
-      <p>📍 Chennai, Tamil Nadu, India</p>
-      <p>📞 +91 98840 66830</p>
-      <p>📧 cogotrtr@gmail.com</p>
-    </div>
-  </div>
-  
-  <div class="footer-bottom">
-    <p>&copy; 2024 Cogo Tours & Travels. All Rights Reserved.</p>
-  </div>
-</footer>
-  
-  <section id="contact" class="section section-dark">
-   <div class="contact-container">
-  <h2>Plan Your Journey</h2>
-  <form id="contactForm">
-    <input type="text" id="contactName" placeholder="Your Name" required>
-    
-    <input type="tel" id="contactPhone" placeholder="Phone Number (10 Digits)" required pattern="[0-9]{10}">
-    
-    <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
-    
-    <textarea id="contactPlan" placeholder="Tell us where you want to go..."></textarea>
-    
-    <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
-  </form>
-</div> 
   </section>
+
   <section id="gallery" class="section section-light">
-  <div class="container">
-    <h2 class="center-title">Travel Memories</h2>
-    <p class="section-sub center-title">Glimpses of journeys we've curated</p>
-    
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Beach"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Mountains"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?w=500" alt="India Temple"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1523233127167-35c182212064?w=500" alt="Singapore"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=500" alt="Hill Station"></div>
-    </div>
-  </div>
-</section>
-  <section id="reviews" class="section section-light">
-  <div class="container">
-    <h2 class="center-title">What Our Travelers Say</h2>
-    <div class="testimonial-grid">
-      <div class="review-card">
-        <p>"Best experience with Cogo! Our Dubai trip was seamless."</p>
-        <h4>- Rajesh Kumar</h4>
-      </div>
-      <div class="review-card">
-        <p>"Very professional service. Highly recommend their Chennai packages."</p>
-        <h4>- Sarah J.</h4>
+    <div class="container">
+      <h2 class="center-title">Travel Memories</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Beach"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?w=500" alt="India Temple"></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section id="contact" class="section section-dark">
+    <div class="contact-container">
+      <h2>Plan Your Journey</h2>
+      <form id="contactForm">
+        <input type="text" id="contactName" placeholder="Your Name" required>
+        <input type="tel" id="contactPhone" placeholder="Phone Number (10 Digits)" required>
+        <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
+        <textarea id="contactPlan" placeholder="Tell us where you want to go..."></textarea>
+        <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
+      </form>
+    </div> 
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <h3>Cogo<span>Tours</span></h3>
+        <p>Your Journey, Our Responsibility.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <p>📞 +91 98840 66830</p>
+        <p>📧 cogotrtr@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2024 Cogo Tours & Travels.</p></div>
+  </footer>
 
   <script src="script.js"></script>
-  <a href="tel:+919884066830" class="float-call-btn">
-  <span class="call-icon">📞</span>
-  <span class="call-text">Call Now</span>
-</a>
-  <button id="backToTop" class="back-to-top" title="Go to top">
-  <span class="arrow-up">↑</span>
-</button>
+  <a href="tel:+919884066830" class="float-call-btn"><span class="call-icon">📞</span><span class="call-text">Call Now</span></a>
+  <button id="backToTop" class="back-to-top">↑</button>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
