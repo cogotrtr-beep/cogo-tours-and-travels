@@ -1,6 +1,3 @@
-/* ==========================================
-   1. TOUR DATA
-   ========================================== */
 const tours = [
     { title: "Refreshing Ooty", cat: "domestic", price: "₹9,999", img: "cogo1.jpeg", desc: "3 Days / 2 Nights trip to Ooty." },
     { title: "Dubai City Lights", cat: "international", price: "₹48,500", img: "cogotours1.jpeg", desc: "Explore Burj Khalifa & Desert Safari." },
@@ -10,9 +7,6 @@ const tours = [
     { title: "Chennai Local Pride", cat: "chennai", price: "₹2,500", img: "cogoindian.jpeg", desc: "Marina Beach and local sights." }
 ];
 
-/* ==========================================
-   2. DISPLAY TOURS
-   ========================================== */
 function displayTours(filter = "all") {
     const container = document.getElementById("tourContainer");
     if (!container) return;
@@ -35,23 +29,17 @@ function displayTours(filter = "all") {
     });
 }
 
-/* ==========================================
-   3. WHATSAPP SEND FUNCTION
-   ========================================== */
 function sendInquiry(tourName = "General Inquiry") {
-    // Collect values
     const name = document.getElementById("contactName").value;
     const phone = document.getElementById("contactPhone").value;
     const email = document.getElementById("contactEmail").value;
     const plan = document.getElementById("contactPlan").value;
 
-    // Basic Validation
     if (!name || !phone) {
         alert("Please enter your Name and Phone number");
         return;
     }
 
-    // Build Message
     let msg = "Hi Cogo Tours! 👋%0A%0A";
     msg += "*New Enquiry:* " + tourName + "%0A";
     msg += "👤 *Name:* " + encodeURIComponent(name) + "%0A";
@@ -59,20 +47,38 @@ function sendInquiry(tourName = "General Inquiry") {
     if(email) msg += "📧 *Email:* " + encodeURIComponent(email) + "%0A";
     msg += "📝 *Plan:* " + encodeURIComponent(plan);
 
-    // Open WhatsApp
     window.open("https://wa.me/919884066830?text=" + msg, "_blank");
 }
 
-/* ==========================================
-   4. SCROLL & FILTER INITIALIZATION
-   ========================================== */
+// Initialize everything
 window.onload = function() {
     displayTours();
 
-    // Sticky Nav
+    // Filter Button Logic
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.onclick = function() {
+            document.querySelector('.filter-btn.active').classList.remove('active');
+            btn.classList.add('active');
+            displayTours(btn.getAttribute('data-filter'));
+        };
+    });
+
+    // Scroll Logic
     window.onscroll = function() {
         const nav = document.getElementById('mainNav');
+        const btt = document.getElementById('backToTop');
+        
+        // Sticky Nav
         if (window.scrollY > 50) nav.classList.add('sticky');
         else nav.classList.remove('sticky');
+
+        // Back to Top visibility
+        if (window.scrollY > 400) btt.style.display = "flex";
+        else btt.style.display = "none";
+    };
+
+    // Back to Top Click
+    document.getElementById('backToTop').onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 };
