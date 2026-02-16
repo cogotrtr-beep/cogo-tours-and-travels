@@ -34,50 +34,69 @@ html { scroll-behavior: smooth; }
 }
 
 .tour-card {
-  background: #fff; border-radius: 15px; overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  transition: 0.3s; position: relative;
-  animation: fadeIn 0.8s ease;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
 }
 
-.tour-card:hover { transform: translateY(-10px); }
-
-.tour-card img { width: 100%; height: 200px; object-fit: cover; transition: 0.5s; }
-.tour-card:hover img { transform: scale(1.1); }
-
-.tour-card-body { padding: 20px; }
-.price-tag { color: var(--brand2); font-weight: 800; font-size: 1.2rem; }
-
-.filter-btn {
-  padding: 8px 20px; margin: 5px; border: 1px solid var(--brand);
-  background: none; border-radius: 20px; cursor: pointer;
+/* Smooth Lift Effect */
+.tour-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
 }
 
-.filter-btn.active { background: var(--brand); color: #fff; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* ✨ Safe Premium Border Glow */
-.tour-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:22px;
-  pointer-events:none;
-  border:2px solid transparent;
-  background:
-    linear-gradient(#fff, #fff) padding-box,
-    linear-gradient(120deg,#ff9800,#ff5a00,#0ea5e9,#ff9800) border-box;
-  background-size:300% 300%;
-  opacity:0;
-  transition:opacity .3s ease;
+/* Image Zoom */
+.tour-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-.tour-card:hover::after{
-  opacity:1;
+.tour-card:hover img {
+  transform: scale(1.08);
 }
+
+/* Text Lift Animation */
+.tour-card-body {
+  padding: 22px;
+  transition: transform 0.4s ease;
+}
+
+.tour-card:hover .tour-card-body {
+  transform: translateY(-6px);
+}
+
+/* PREMIUM GLOW BORDER */
+.tour-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    #ff9800,
+    #ff5a00,
+    #ff9800
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tour-card:hover::before {
+  opacity: 1;
+}
+
 
 /* Form Styles */
 .contact-container { max-width: 600px; margin: auto; padding: 40px 20px; text-align: center; }
@@ -303,6 +322,7 @@ input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid 
     padding-bottom: 60px;
   }
 }
+
 
 
 
