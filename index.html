@@ -27,8 +27,8 @@
   </header>
 
   <section id="tours" class="section">
-    <h2 class="center-title">Popular Tour Packages</h2>
-    <div class="tour-filters" style="text-align: center;">
+    <h2 class="center-title" style="text-align: center; margin-top: 40px;">Popular Tour Packages</h2>
+    <div class="tour-filters" style="text-align: center; margin-bottom: 20px;">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="domestic">Domestic</button>
         <button class="filter-btn" data-filter="international">International</button>
@@ -37,18 +37,9 @@
     <div class="tour-grid" id="tourContainer"></div>
   </section>
 
-  <section id="video-tour" class="section section-dark">
-    <div class="container center-title" style="text-align: center;">
-      <h2>Experience the Magic</h2>
-      <div class="video-wrapper">
-        <iframe id="promoVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Travel Promo" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
   <section id="gallery" class="section section-light">
     <div class="container">
-      <h2 class="center-title">Travel Memories</h2>
+      <h2 class="center-title" style="text-align: center; margin-bottom: 30px;">Travel Memories</h2>
       <div class="gallery-grid">
         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Beach"></div>
         <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai"></div>
@@ -57,18 +48,18 @@
     </div>
   </section>
 
-<section id="contact" class="section section-dark">
-  <div class="contact-container">
-    <h2>Plan Your Journey</h2>
-    <form id="contactForm">
-      <input type="text" id="contactName" placeholder="Your Name" required>
-      <input type="tel" id="contactPhone" placeholder="Phone Number (10 Digits)" required pattern="[0-9]{10}">
-      <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
-      <textarea id="contactPlan" placeholder="Tell us where you want to go..."></textarea>
-      <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
-    </form>
-  </div>
-</section>
+  <section id="contact" class="section section-dark">
+    <div class="contact-container">
+      <h2>Plan Your Journey</h2>
+      <form id="contactForm">
+        <input type="text" id="contactName" placeholder="Your Name" required>
+        <input type="tel" id="contactPhone" placeholder="Phone Number" required>
+        <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
+        <textarea id="contactPlan" placeholder="Tell us where you want to go..."></textarea>
+        <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
+      </form>
+    </div> 
+  </section>
 
   <footer class="main-footer">
     <div class="footer-container">
@@ -84,21 +75,13 @@
     </div>
     <div class="footer-bottom"><p>&copy; 2024 Cogo Tours & Travels.</p></div>
   </footer>
-<!-- Sticky Mobile Action Bar -->
-<div class="mobile-action-bar">
-  <a href="tel:+919884066830" class="mobile-call">
-    📞 Call Now
-  </a>
 
-  <a href="https://wa.me/919884066830" target="_blank" class="mobile-wa">
-    💬 WhatsApp
-  </a>
-</div>
+  <div class="mobile-action-bar">
+    <a href="tel:+919884066830" class="mobile-call">📞 Call Now</a>
+    <a href="https://wa.me/919884066830" target="_blank" class="mobile-wa">💬 WhatsApp</a>
+  </div>
 
   <script src="script.js"></script>
-  <a href="tel:+919884066830" class="float-call-btn"><span class="call-icon">📞</span><span class="call-text">Call Now</span></a>
   <button id="backToTop" class="back-to-top">↑</button>
 </body>
 </html>
-
-
