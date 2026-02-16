@@ -76,3 +76,25 @@ window.onload = function() {
         else nav.classList.remove('sticky');
     };
 };
+/* ===============================
+   TOUR CARD SCROLL ANIMATION
+================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const cards = document.querySelectorAll(".tour-card");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show-card");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach(card => {
+    observer.observe(card);
+  });
+
+});
+
