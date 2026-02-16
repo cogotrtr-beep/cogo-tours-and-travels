@@ -33,48 +33,31 @@ html { scroll-behavior: smooth; }
   gap: 25px; padding: 40px 5%;
 }
 
-.tour-card{
-  position:relative;
-  background:#fff;
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:0 18px 55px rgba(0,0,0,0.12);
-  transition:transform .3s ease, box-shadow .3s ease;
+.tour-card {
+  background: #fff; border-radius: 15px; overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: 0.3s; position: relative;
+  animation: fadeIn 0.8s ease;
 }
 
-/* ✨ Premium Glow Border */
-.tour-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:22px;
-  padding:2px;
-  background:linear-gradient(
-    120deg,
-    #ff9800,
-    #ff5a00,
-    #0ea5e9,
-    #ff9800
-  );
-  background-size:300% 300%;
-  animation:glowMove 6s linear infinite;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
-  opacity:0;
-  transition:opacity .3s ease;
+.tour-card:hover { transform: translateY(-10px); }
+
+.tour-card img { width: 100%; height: 200px; object-fit: cover; transition: 0.5s; }
+.tour-card:hover img { transform: scale(1.1); }
+
+.tour-card-body { padding: 20px; }
+.price-tag { color: var(--brand2); font-weight: 800; font-size: 1.2rem; }
+
+.filter-btn {
+  padding: 8px 20px; margin: 5px; border: 1px solid var(--brand);
+  background: none; border-radius: 20px; cursor: pointer;
 }
 
-.tour-card:hover::before{
-  opacity:1;
-}
+.filter-btn.active { background: var(--brand); color: #fff; }
 
-@keyframes glowMove{
-  0%{ background-position:0% 50%; }
-  50%{ background-position:100% 50%; }
-  100%{ background-position:0% 50%; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Form Styles */
@@ -301,4 +284,6 @@ input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid 
     padding-bottom: 60px;
   }
 }
+
+
 
