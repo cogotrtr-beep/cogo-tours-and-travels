@@ -12,12 +12,24 @@ filtered.forEach(tour => {
 container.innerHTML += ** **<div class="tour-card">** **<img src="${tour.img}">** **<div class="tour-card-body">** **<h3>${tour.title}</h3>** **<p>${tour.desc}</p>** **<p style="color:#ff5a00; font-weight:bold;">${tour.price}</p>** **</div>** **</div>;
 });
 }
-
 window.onscroll = function() {
-const nav = document.getElementById("mainNav");
-const btt = document.getElementById("backToTop");
-if (window.pageYOffset > 50) { nav.classList.add("sticky"); } else { nav.classList.remove("sticky"); }
-if (window.pageYOffset > 400) { btt.style.display = "flex"; } else { btt.style.display = "none"; }
+var nav = document.getElementById("mainNav");
+var btt = document.getElementById("backToTop");
+
+// Use both ways to measure scroll to be safe
+var scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+if (scrollPos > 50) {
+nav.classList.add("sticky");
+} else {
+nav.classList.remove("sticky");
+}
+
+if (scrollPos > 400) {
+if(btt) btt.style.display = "flex";
+} else {
+if(btt) btt.style.display = "none";
+}
 };
 
 function sendInquiry() {
@@ -36,3 +48,4 @@ displayTours(btn.getAttribute("data-filter"));
 };
 });
 };
+
