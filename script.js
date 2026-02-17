@@ -48,11 +48,13 @@ window.onload = () => {
             displayTours(btn.getAttribute('data-filter'));
         };
     });
-    window.onscroll = () => {
-        const nav = document.getElementById('mainNav');
-        const btt = document.getElementById('backToTop');
-        if (window.scrollY > 50) nav.classList.add('sticky'); else nav.classList.remove('sticky');
-        btt.style.display = window.scrollY > 400 ? "flex" : "none";
-    };
-    document.getElementById('backToTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+   window.onscroll = () => {
+const nav = document.getElementById('mainNav');
+const btt = document.getElementById('backToTop');
+
+};
+
+// This makes the button actually scroll you back to the top
+document.getElementById('backToTop').onclick = () => {
+window.scrollTo({ top: 0, behavior: 'smooth' });
 };
