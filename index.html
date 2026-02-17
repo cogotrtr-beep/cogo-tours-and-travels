@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cogo Tours & Travels | Your Journey Our Responsibility</title>
+<title>Cogo Tours & Travels</title>
 <link rel="stylesheet" href="style.css">
 <link href="" rel="stylesheet">
 </head>
 <body>
 
 <header class="hero" id="home">
-<img class="hero-img" src="cogoindian.jpeg" alt="Cogo Tours Banner">
+<img class="hero-img" src="cogoindian.jpeg" alt="Banner">
 <nav class="top-navbar" id="mainNav">
 <div class="nav-container">
 <div class="nav-links">
@@ -23,17 +23,13 @@
 </nav>
 </header>
 
-<section id="about" style="padding: 80px 5%; text-align: center; background: white;">
-<div class="container">
-<h2 style="margin-bottom: 25px; color: #0f172a; font-size: 2.5rem;">About Cogo Tours</h2>
-<p style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 1.1rem;">
-Welcome to Cogo Tours & Travels. We are your trusted partner in crafting unforgettable journeys. From the serene hills of Ooty to the magnificent skyscrapers of Dubai, we ensure every trip is seamless, safe, and special. Your journey truly is our responsibility.
-</p>
-</div>
+<section id="about" style="padding: 60px 5%; text-align: center;">
+<h2>About Cogo Tours</h2>
+<p>Your journey is our responsibility. We handle everything from Ooty to Dubai!</p>
 </section>
 
-<section id="tours" class="section">
-<h2 style="text-align:center; margin: 40px 0 20px;">Popular Tour Packages</h2>
+<section id="tours" style="padding: 40px 5%;">
+<h2 style="text-align:center;">Popular Tour Packages</h2>
 <div class="tour-filters" style="text-align: center; margin-bottom: 30px;">
 <button class="filter-btn active" data-filter="all">All</button>
 <button class="filter-btn" data-filter="domestic">Domestic</button>
@@ -42,26 +38,15 @@ Welcome to Cogo Tours & Travels. We are your trusted partner in crafting unforge
 <div class="tour-grid" id="tourContainer"></div>
 </section>
 
-<section id="contact" class="section section-dark">
-<div class="contact-container">
-<h2>Plan Your Journey</h2>
-<form id="contactForm">
-<input type="text" id="contactName" placeholder="Your Name" required>
-<input type="tel" id="contactPhone" placeholder="Phone Number" required>
-<textarea id="contactPlan" placeholder="Where do you want to go?"></textarea>
-<button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
-</form>
+<section id="contact" style="background:#0f172a; color:white; padding: 60px 5%;">
+<div style="max-width:500px; margin:auto; text-align:center;">
+<h2>Enquire Now</h2>
+<input type="text" id="contactName" placeholder="Name" style="width:100%; margin:10px 0; padding:10px;">
+<input type="tel" id="contactPhone" placeholder="Phone" style="width:100%; margin:10px 0; padding:10px;">
+<textarea id="contactPlan" placeholder="Your Plan" style="width:100%; margin:10px 0; padding:10px;"></textarea>
+<button class="submit-btn" onclick="sendInquiry()" style="background:#25D366; color:white; width:100%; padding:15px; border:none; cursor:pointer; font-weight:bold;">WhatsApp Us</button>
 </div>
 </section>
-
-<footer class="main-footer">
-<p>Cogo Tours © 2026 | Chennai, India | +91 98840 66830</p>
-</footer>
-
-<div class="mobile-action-bar">
-<a href="tel:+919884066830" class="mobile-call">Call Now</a>
-<a href="" class="mobile-wa">WhatsApp</a>
-</div>
 
 <button id="backToTop" class="back-to-top">↑</button>
 <script src="script.js"></script>
