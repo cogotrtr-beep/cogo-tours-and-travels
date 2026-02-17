@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cogo Tours & Travels | Your Journey Our Responsibility</title>
-  <meta name="description" content="Cogo Tours & Travels - Best deals on Domestic, International, and Pilgrimage packages in Chennai.">
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
@@ -13,39 +12,23 @@
   <header class="hero" id="home">
     <img class="hero-img" src="cogoindian.jpeg" alt="Cogo Tours Banner" />
     <nav class="top-navbar" id="mainNav">
-      <button class="hamburger" id="hamburgerBtn">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#home" class="active">Home</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
         <a href="#tours">Tours</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact" class="nav-btn">Enquire Now</a>
+        <a href="#contact">Enquire</a>
       </div>
     </nav>
-    <div class="hero-tagline">
-      <p>Your Journey, Our Responsibility</p>
-    </div>
+    <div class="hero-tagline"><p>Your Journey, Our Responsibility</p></div>
   </header>
 
   <section id="tours" class="section">
-    <h2 class="center-title" style="text-align: center; margin-top: 40px;">Popular Tour Packages</h2>
-    <div class="tour-filters" style="text-align: center; margin-bottom: 20px;">
+    <h2 class="center-title" style="text-align:center; margin: 40px 0 20px;">Popular Tour Packages</h2>
+    <div class="tour-filters" style="text-align: center; margin-bottom: 30px;">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="domestic">Domestic</button>
         <button class="filter-btn" data-filter="international">International</button>
-        <button class="filter-btn" data-filter="chennai">Chennai Special</button>
     </div>
     <div class="tour-grid" id="tourContainer"></div>
-  </section>
-
-  <section id="gallery" class="section section-light">
-    <div class="container">
-      <h2 class="center-title" style="text-align: center; margin-bottom: 30px;">Travel Memories</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Beach"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?w=500" alt="India Temple"></div>
-      </div>
-    </div>
   </section>
 
   <section id="contact" class="section section-dark">
@@ -54,8 +37,8 @@
       <form id="contactForm">
         <input type="text" id="contactName" placeholder="Your Name" required>
         <input type="tel" id="contactPhone" placeholder="Phone Number" required>
-        <input type="email" id="contactEmail" placeholder="Your Email (Optional)">
-        <textarea id="contactPlan" placeholder="Tell us where you want to go..."></textarea>
+        <input type="email" id="contactEmail" placeholder="Email (Optional)">
+        <textarea id="contactPlan" placeholder="Where do you want to go?"></textarea>
         <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
       </form>
     </div> 
@@ -63,17 +46,9 @@
 
   <footer class="main-footer">
     <div class="footer-container">
-      <div class="footer-info">
-        <h3>Cogo<span>Tours</span></h3>
-        <p>Your Journey, Our Responsibility.</p>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact Info</h4>
-        <p>📞 +91 98840 66830</p>
-        <p>📧 cogotrtr@gmail.com</p>
-      </div>
+      <div><h3>Cogo Tours</h3><p>Chennai, India</p></div>
+      <div><p>📞 +91 98840 66830</p></div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2024 Cogo Tours & Travels.</p></div>
   </footer>
 
   <div class="mobile-action-bar">
@@ -81,7 +56,7 @@
     <a href="https://wa.me/919884066830" target="_blank" class="mobile-wa">💬 WhatsApp</a>
   </div>
 
-  <script src="script.js"></script>
   <button id="backToTop" class="back-to-top">↑</button>
+  <script src="script.js"></script>
 </body>
 </html>
