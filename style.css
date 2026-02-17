@@ -14,11 +14,56 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   position: absolute; top: 0; width: 100%; padding: 20px;
   display: flex; justify-content: center; z-index: 100;
 }
-.top-navbar.sticky {
-  position: fixed; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.top-navbar {
+  position: absolute; 
+  top: 0; 
+  width: 100%; 
+  padding: 25px 0;
+  display: flex; 
+  justify-content: center; 
+  z-index: 100;
+  transition: 0.3s ease;
 }
-.nav-links a { margin: 0 15px; text-decoration: none; color: white; font-weight: 600; }
-.top-navbar.sticky .nav-links a { color: var(--dark); }
+
+/* The semi-transparent "Tab" background */
+.nav-links {
+  background: rgba(255, 255, 255, 0.15); /* Light transparent white */
+  backdrop-filter: blur(8px); /* Blurs the image behind it */
+  -webkit-backdrop-filter: blur(8px);
+  padding: 10px 25px;
+  border-radius: 50px; /* Makes it a capsule/pill shape */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a { 
+  margin: 0 15px; 
+  text-decoration: none; 
+  color: white; 
+  font-weight: 600; 
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+/* Hover effect for the tabs */
+.nav-links a:hover {
+  color: var(--brand);
+}
+
+/* Special styling for the Enquire button to make it pop */
+.nav-enquire {
+  background: var(--brand);
+  padding: 6px 15px;
+  border-radius: 20px;
+  color: white !important;
+}
+
+/* Style when the user scrolls down */
+.top-navbar.sticky .nav-links {
+  background: rgba(15, 23, 42, 0.9); /* Darker when sticky */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
 .tour-grid {
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -100,4 +145,5 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
   background: var(--brand); color: white; border: none; border-radius: 50%;
   display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 1000;
 }
+
 
