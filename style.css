@@ -9,17 +9,21 @@ body { padding-bottom: 60px; background: #f8f9fa; }
 
 .hero { position: relative; width: 100%; background: var(--dark); }
 .hero-img { width: 100%; height: auto; opacity: 0.8; }
-.top-navbar {
-position: absolute;
+.top-navbar.sticky {
+position: fixed !important;
 top: 0;
+left: 0;
 width: 100%;
-padding: 25px 0;
-display: flex;
-justify-content: center;
-z-index: 1000;
-transition: all 0.4s ease-in-out;
+padding: 10px 0;
+background: transparent;
+animation: slideDown 0.5s ease forwards;
+z-index: 9999;
 }
 
+@keyframes slideDown {
+from { transform: translateY(-100%); }
+to { transform: translateY(0); }
+}
 .nav-links {
 background: rgba(255, 255, 255, 0.15);
 backdrop-filter: blur(10px);
@@ -172,6 +176,7 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
   background: var(--brand); color: white; border: none; border-radius: 50%;
   display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 1000;
 }
+
 
 
 
