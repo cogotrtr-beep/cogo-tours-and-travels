@@ -48,7 +48,7 @@ window.onload = () => {
             displayTours(btn.getAttribute('data-filter'));
         };
     });
-   window.onscroll = () => {
+  window.onscroll = function() {
 const nav = document.getElementById('mainNav');
 const btt = document.getElementById('backToTop');
 
@@ -58,3 +58,4 @@ const btt = document.getElementById('backToTop');
 document.getElementById('backToTop').onclick = () => {
 window.scrollTo({ top: 0, behavior: 'smooth' });
 };
+
