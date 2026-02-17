@@ -19,19 +19,61 @@ body { padding-bottom: 60px; background: #f8f9fa; }
 }
 .nav-links a { margin: 0 15px; text-decoration: none; color: white; font-weight: 600; }
 .top-navbar.sticky .nav-links a { color: var(--dark); }
-
 .tour-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px; padding: 20px 5%;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Space for the glow */
+  padding: 40px 5%;
 }
+
 .tour-card {
-  background: white; border-radius: 15px; overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s;
-  position: relative; border: 1px solid #eee;
+  background: white; 
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+  transition: 0.3s;
+  position: relative; 
+  z-index: 1; 
 }
-.tour-card:hover { transform: translateY(-10px); }
-.tour-card img { width: 100%; height: 200px; object-fit: cover; }
-.tour-card-body { padding: 20px; }
+
+/* Round the image corners manually since overflow is now visible */
+.tour-card img { 
+  width: 100%; 
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 15px 15px 0 0; 
+}
+
+.tour-card-body { 
+  padding: 20px; 
+}
+
+.tour-card:hover { 
+  transform: translateY(-10px); 
+}
+
+/* THE GOLD PROJECTION */
+.tour-card::before {
+  content: "";
+  position: absolute;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  z-index: -1; 
+  border-radius: 18px; 
+  background: linear-gradient(45deg, var(--brand), #ffd700, var(--brand2), #ffd700);
+  background-size: 400% 400%;
+  animation: goldMove 3s ease infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tour-card:hover::before {
+  opacity: 1; 
+}
+
+@keyframes goldMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 .filter-btn {
   padding: 8px 18px; margin: 5px; border: 1px solid var(--brand);
@@ -58,3 +100,4 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
   background: var(--brand); color: white; border: none; border-radius: 50%;
   display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 1000;
 }
+
