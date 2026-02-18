@@ -20,7 +20,41 @@
     </nav>
     <div class="hero-tagline"><p>Your Journey, Our Responsibility</p></div>
   </header>
+<section id="book-cab" class="cab-booking-section">
+  <div class="cab-container">
+    <div class="cab-header">
+      <h2>🚖 Instant Cab Booking</h2>
+      <p>Chennai Local & Outstation | Best Rates Guaranteed</p>
+    </div>
+    
+    <form class="cab-form" id="cabForm">
+      <div class="form-row">
+        <input type="text" id="pickup" placeholder="Pickup Location" required>
+        <input type="text" id="drop" placeholder="Drop Location / Destination" required>
+      </div>
+      
+      <div class="form-row">
+        <select id="vehicleType" required>
+          <option value="" disabled selected>Select Vehicle</option>
+          <option value="Sedan">Sedan (4 Seater)</option>
+          <option value="SUV">SUV (6 Seater)</option>
+          <option value="Innova">Innova Crysta</option>
+          <option value="Tempo">Tempo Traveler</option>
+          <option value="MiniBus">Mini Bus</option>
+        </select>
+        
+        <select id="tripType" required>
+          <option value="" disabled selected>Select Package</option>
+          <option value="4hrs">Short Trip (4hrs / 40km)</option> <option value="8hrs">Full Day (8hrs / 80km)</option>
+          <option value="Outstation">Outstation (Round Trip)</option>
+          <option value="Airport">Airport Transfer</option>
+        </select>
+      </div>
 
+      <button type="submit" class="cab-btn">Check Availability & WhatsApp Price</button>
+    </form>
+  </div>
+</section>
   <section id="tours" class="section">
     <h2 class="center-title" style="text-align:center; margin: 40px 0 20px;">Popular Tour Packages</h2>
     <div class="tour-filters" style="text-align: center; margin-bottom: 30px;">
@@ -95,6 +129,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
