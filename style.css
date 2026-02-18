@@ -352,3 +352,47 @@ input, textarea {
   .about-stats { gap: 15px; }
   .stat-box { min-width: 100px; padding: 15px; }
 }
+.cab-booking-section {
+  padding: 40px 5%;
+  background: #fffbeb; /* Light yellow background */
+  border-bottom: 2px solid #fef3c7;
+}
+
+.cab-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.cab-header { text-align: center; margin-bottom: 20px; }
+.cab-header h2 { color: var(--dark); margin-bottom: 5px; }
+
+.cab-form { display: flex; flex-direction: column; gap: 15px; }
+.form-row { display: flex; gap: 15px; }
+.form-row input, .form-row select { 
+  flex: 1; 
+  padding: 12px; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  font-size: 0.9rem;
+}
+
+.cab-btn {
+  background: #fbbf24; /* Taxi Yellow */
+  color: #000;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cab-btn:hover { background: #f59e0b; }
+
+@media (max-width: 600px) {
+  .form-row { flex-direction: column; }
+}
