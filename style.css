@@ -137,6 +137,20 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
   display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 1000;
 }
 
+/* Makes the 'Enquire' link look like a button inside the tab */
+.nav-links a:last-child {
+  background: var(--brand); /* Using your orange brand color */
+  color: white !important;
+  padding: 5px 15px;
+  border-radius: 20px;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.nav-links a:last-child:hover {
+  background: var(--brand2); /* Darker orange on hover */
+  transform: scale(1.05);
+}
 
 
 
