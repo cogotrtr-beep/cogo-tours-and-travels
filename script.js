@@ -50,7 +50,6 @@ function sendInquiry() {
     let msg = `Hi Cogo Tours!%0A%0A*New Website Inquiry*%0A👤 *Name:* ${encodeURIComponent(name)}%0A📞 *Phone:* ${encodeURIComponent(phone)}%0A📝 *Plan:* ${encodeURIComponent(plan)}`;
     window.open(`https://wa.me/919884066830?text=${msg}`, "_blank");
 }
-
 window.onload = () => {
     displayTours();
     
@@ -78,4 +77,18 @@ window.onload = () => {
         // Back to top visibility
         btt.style.display = window.scrollY > 400 ? "flex" : "none";
     };
+
+    // --- ADD THIS PART BELOW ---
+    // Back to Top Click Action
+    const bttButton = document.getElementById('backToTop');
+    if (bttButton) {
+        bttButton.onclick = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+    }
+    // ---------------------------
 };
+
