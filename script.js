@@ -98,5 +98,28 @@ window.onload = () => {
     }
     // ---------------------------
 };
+document.getElementById('cabForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get values from form
+    const pickup = document.getElementById('pickup').value;
+    const drop = document.getElementById('drop').value;
+    const vehicle = document.getElementById('vehicleType').value;
+    const trip = document.getElementById('tripType').value;
+    
+    // Your WhatsApp Number (Keep it in international format without +)
+    const phone = "919884066830"; 
+    
+    // Create the message
+    const message = `Hello Cogo Tours! I would like to book a cab.%0A%0A` +
+                    `*Pickup:* ${pickup}%0A` + 
+                    `*Drop:* ${drop}%0A` +
+                    `*Vehicle:* ${vehicle}%0A` +
+                    `*Package:* ${trip}%0A%0A` +
+                    `Please let me know the availability and price.`;
+
+    // Open WhatsApp
+    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+});
 
 
