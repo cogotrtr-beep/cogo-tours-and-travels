@@ -207,17 +207,16 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
   transform: scale(1.05);
 }
 /* --- NEW UPGRADES --- */
-
-/* Better Sticky Centering: This ensures the menu stays centered on all screens */
+/* 3. This handles the 'Sticky' logic - FIXED for perfect centering */
 .top-navbar.sticky {
   position: fixed !important;
-  top: 10px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  transform: none; /* Fixes the jumpy alignment issue */
+  top: 15px;      /* Distance from the top when scrolling */
+  left: 0;        /* Stretch from left edge... */
+  right: 0;       /* ...to right edge */
+  width: 100% !important; 
+  display: flex; 
+  justify-content: center; /* This pulls the pill back to the dead center */
+  transform: none !important; /* This removes the 'push' to the right */
 }
 
 /* Category Tag: Small labels for 'Domestic' or 'International' on tour cards */
@@ -243,6 +242,7 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
 .tour-card .submit-btn:hover {
     background: var(--brand2);
 }
+
 
 
 
