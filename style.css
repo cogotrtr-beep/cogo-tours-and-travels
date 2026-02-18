@@ -33,12 +33,16 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   transition: 0.3s;
 }
 
-/* 3. This handles the 'Sticky' logic when scrolling */
+/* 3. This handles the 'Sticky' logic - FIXED for perfect centering */
 .top-navbar.sticky {
   position: fixed !important;
-  width: auto !important;
-  left: 50% !important;
-  transform: translateX(-75%);
+  top: 15px;      /* Distance from the top when scrolling */
+  left: 0;        /* Stretch from left edge... */
+  right: 0;       /* ...to right edge */
+  width: 100% !important; 
+  display: flex; 
+  justify-content: center; /* This pulls the pill back to the dead center */
+  transform: none !important; /* This removes the 'push' to the right */
 }
 
 /* 4. Keeps the text links clean */
@@ -239,6 +243,7 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
 .tour-card .submit-btn:hover {
     background: var(--brand2);
 }
+
 
 
 
