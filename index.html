@@ -51,135 +51,94 @@
       <h2>🚖 Instant Cab Booking</h2>
       <p>Chennai Local & Outstation | Best Rates Guaranteed</p>
     </div>
-    
-  <form class="cab-form" id="cabForm">
-  <div class="form-row">
-    <input type="text" id="custName" placeholder="Your Name" required>
-    <input type="tel" id="custPhone" placeholder="Mobile Number" required>
-  </div>
 
-  <div class="form-row">
-    <input type="text" id="pickup" placeholder="Pickup Location" required>
-    <input type="text" id="drop" placeholder="Drop Location / Destination" required>
-  </div>
-  
-  <div class="form-row">
-    <select id="vehicleType" required>
-      <option value="" disabled selected>Select Vehicle</option>
-      <option value="Sedan">Sedan (4 Seater)</option>
-      <option value="SUV">SUV (6 Seater)</option>
-      <option value="Innova">Innova Crysta</option>
-      <option value="Tempo">Tempo Traveler</option>
-      <option value="MiniBus">Mini Bus</option>
-    </select>
-    
-    <select id="tripType" required>
-      <option value="" disabled selected>Select Package</option>
-      <option value="4hrs">Short Trip (4hrs / 40km)</option>
-      <option value="8hrs">Full Day (8hrs / 80km)</option>
-      <option value="Outstation">Outstation (Round Trip)</option>
-      <option value="Airport">Airport Transfer</option>
-    </select>
-  </div>
-
-  <button type="submit" class="cab-btn">Check Availability & WhatsApp Price</button>
-</form> 
-<p style="font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 10px;">
-  ⚡ *Average response time: 2 minutes*
-</p>    
+    <form class="cab-form" id="cabForm">
+      <div class="form-row">
+        <input type="text" id="custName" placeholder="Your Name" required>
+        <input type="tel" id="custPhone" placeholder="Mobile Number" required>
+      </div>
+      <div class="form-row">
+        <input type="text" id="pickup" placeholder="Pickup Location" required>
+        <input type="text" id="drop" placeholder="Drop / Destination" required>
+      </div>
+      <div class="form-row">
+        <select id="vehicleType" required>
+          <option value="" disabled selected>Select Vehicle</option>
+          <option value="Sedan">Sedan (4 Seater)</option>
+          <option value="SUV">SUV (6 Seater)</option>
+          <option value="Innova">Innova Crysta</option>
+          <option value="Tempo">Tempo Traveler</option>
+        </select>
+        <select id="tripType" required>
+          <option value="" disabled selected>Select Package</option>
+          <option value="4hrs">Short Trip (4hrs / 40km)</option>
+          <option value="8hrs">Full Day (8hrs / 80km)</option>
+          <option value="Outstation">Outstation (Round Trip)</option>
+        </select>
+      </div>
+      <button type="submit" class="cab-btn">Check Availability & WhatsApp Price</button>
+    </form>
+    <p style="font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 10px;">
+      ⚡ *Average response time: 2 minutes*
+    </p>
   </div>
 </section>
- <section id="tours" class="section">
-    <div class="container">
-      <h2 class="center-title" style="text-align:center; margin: 40px 0 20px;">Popular Tour Packages</h2>
-      
-      <h3 class="category-title">📍 Chennai Local Sightseeing</h3>
-      <div class="tour-grid">
-        <div class="tour-card">
-          <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=500" alt="Chennai City">
-          <div class="tour-info">
-            <h4>Full Day City Wonders</h4>
-            <p>Marina Beach, Kapaleeshwarar Temple, Fort St. George & Museum.</p>
-            <div class="tour-meta">
-              <span>⏱️ 10 Hours</span>
-              <span class="price">From ₹2,800</span>
-            </div>
-            <button class="submit-btn" onclick="quickEnquiry('Full Day Chennai City Wonders')">Enquire Now</button>
-          </div>
-        </div>
-        <div class="tour-card">
-          <img src="https://images.unsplash.com/photo-1623343354452-921443423f0e?auto=format&fit=crop&w=500" alt="Mylapore">
-          <div class="tour-info">
-            <h4>Short Heritage Trip</h4>
-            <p>Quick visit to Santhome Cathedral and Mylapore spiritual hub.</p>
-            <div class="tour-meta">
-              <span>⏱️ 4 Hours</span>
-              <span class="price">From ₹1,200</span>
-            </div>
-            <button class="submit-btn" onclick="quickEnquiry('Short Heritage Trip')">Enquire Now</button>
-          </div>
-        </div>
-      </div>
 
-      <h3 class="category-title">🙏 Spiritual & Pilgrim Packages</h3>
-      <div class="tour-grid">
-        <div class="tour-card">
-          <img src="https://images.unsplash.com/photo-1621259599593-9c88467f3942?auto=format&fit=crop&w=500" alt="Tirupati">
-          <div class="tour-info">
-            <h4>One Day Tirupati Darshan</h4>
-            <p>Confirmed Darshan assistance and round-trip AC transport from Chennai.</p>
-            <div class="tour-meta">
-              <span>⏱️ 1 Day</span>
-              <span class="price">From ₹5,800</span>
-            </div>
-            <button class="submit-btn" onclick="quickEnquiry('One Day Tirupati Darshan')">Enquire Now</button>
-          </div>
-        </div>
-        <div class="tour-card">
-          <img src="https://images.unsplash.com/photo-1609141933069-4f7f6da51e60?auto=format&fit=crop&w=500" alt="Kanchipuram">
-          <div class="tour-info">
-            <h4>Kanchipuram Temple Tour</h4>
-            <p>Explore the "City of Thousand Temples" and famous silk weaving centers.</p>
-            <div class="tour-meta">
-              <span>⏱️ 1 Day</span>
-              <span class="price">From ₹3,700</span>
-            </div>
-            <button class="submit-btn" onclick="quickEnquiry('Kanchipuram Temple Tour')">Enquire Now</button>
-          </div>
+<section id="tours" class="section">
+  <div class="container">
+    <h2 class="center-title" style="text-align:center; margin: 40px 0;">Popular Tour Packages</h2>
+
+    <h3 class="category-title">📍 Chennai Local Sightseeing</h3>
+    <div class="tour-grid">
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=500" alt="Chennai">
+        <div class="tour-info">
+          <h4>Full Day City Wonders</h4>
+          <div class="tour-meta"><span>⏱️ 10 Hours</span><span class="price">₹2,800</span></div>
+          <a href="#contact" class="book-mini-btn">Enquire Now</a>
         </div>
       </div>
     </div>
-  </section>
 
-  <section id="contact" class="section section-dark">
-    <div class="contact-container">
-      <h2>Plan Your Journey</h2>
-      <form id="contactForm">
-        <input type="text" id="contactName" placeholder="Your Name" required>
-        <input type="tel" id="contactPhone" placeholder="Phone Number" required>
-        <input type="email" id="contactEmail" placeholder="Email (Optional)">
-        <textarea id="contactPlan" placeholder="Where do you want to go?"></textarea>
-        <button type="button" class="submit-btn" onclick="sendInquiry()">Send WhatsApp Enquiry</button>
-      </form>
-    </div> 
-  </section>
+    <h3 class="category-title">🙏 Spiritual & Pilgrim Packages</h3>
+    <div class="tour-grid">
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1621259599593-9c88467f3942?w=500" alt="Tirupati">
+        <div class="tour-info">
+          <h4>One Day Tirupati Darshan</h4>
+          <div class="tour-meta"><span>⏱️ 1 Day</span><span class="price">₹5,800</span></div>
+          <a href="#contact" class="book-mini-btn">Enquire Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="features-bar trust-footer">
-    <div class="feature-item">
-      <div class="feature-icon">🛡️</div>
-      <h4>Safe & Secure</h4>
-      <p>Verified stays and 24/7 travel support for your peace of mind.</p>
+  <div class="feature-item"><h4>🛡️ Safe & Secure</h4><p>Verified stays and 24/7 support.</p></div>
+  <div class="feature-item"><h4>💰 Best Value</h4><p>Premium experiences at competitive prices.</p></div>
+  <div class="feature-item"><h4>🗺️ Expert Guides</h4><p>Local experts leading your journey.</p></div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="about-container">
+    <div class="about-content">
+      <span class="subtitle">Our Story</span>
+      <h2>About Cogo Tours & Travels</h2>
+      <p>Your dedicated travel partner based in Chennai, specializing in seamless journeys and spiritual pilgrimages.</p>
+
+      <div class="about-stats">
+        <div class="stat-box"><strong>10+</strong><span>Years Exp.</span></div>
+        <div class="stat-box"><strong>500+</strong><span>Tours Done</span></div>
+        <div class="stat-box"><strong>100%</strong><span>Safe Travel</span></div>
+      </div>
+
+      <div class="seo-keywords" style="margin-top: 30px; font-size: 0.85rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+        <p><strong>Reliable Cab Services:</strong> 24/7 taxi services in Chennai covering T. Nagar, Adyar, Velachery, and OMR. Experts in Chennai airport pickups and outstation trips.</p>
+      </div>
     </div>
-    <div class="feature-item">
-      <div class="feature-icon">💰</div>
-      <h4>Best Value</h4>
-      <p>Premium experiences at competitive prices with no hidden costs.</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">🗺️</div>
-      <h4>Expert Guides</h4>
-      <p>Hand-picked local experts to lead your journey responsibly.</p>
-    </div>
-  </section>
+  </div>
+</section>
   <section id="about" class="about-section">
   <div class="about-container">
     <div class="about-content">
@@ -235,6 +194,7 @@ In your **SEO Keywords** block, you've mentioned the major areas (Adyar, T. Naga
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
