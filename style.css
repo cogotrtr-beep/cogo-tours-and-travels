@@ -1,16 +1,37 @@
+/* --- COGO TOURS & TRAVELS MASTER STYLESHEET --- */
+
 :root {
   --brand: #ff9800;
   --brand2: #ff5a00;
   --dark: #0f172a;
 }
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-html { scroll-behavior: smooth; }
-body { padding-bottom: 60px; background: #f8f9fa; }
 
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  font-family: 'Poppins', sans-serif; 
+}
+
+html { scroll-behavior: smooth; }
+
+body { 
+  padding-bottom: 60px; 
+  background: #f8f9fa; 
+}
+
+/* HERO SECTION */
 .hero { position: relative; width: 100%; background: var(--dark); }
 .hero-img { width: 100%; height: auto; opacity: 0.8; }
+.hero-tagline { 
+  text-align: center; 
+  color: white; 
+  padding: 20px; 
+  font-weight: 600; 
+  font-size: 1.2rem; 
+}
 
-/* 1. Main wrapper that handles positioning */
+/* NAVIGATION - INITIAL STATE */
 .top-navbar {
   position: absolute; 
   top: 15px; 
@@ -18,34 +39,20 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   display: flex; 
   justify-content: center; 
   z-index: 9999;
+  transition: all 0.3s ease;
 }
 
-/* 2. This creates the 50% transparent Glass Tab (Always Visible) */
 .nav-links {
-  background: rgba(15, 23, 42, 0.5) !important; /* 50% Transparency */
-  backdrop-filter: blur(10px); /* The Glass Blur effect */
+  background: rgba(15, 23, 42, 0.5) !important;
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 10px 25px;
-  border-radius: 50px; /* Oval shape */
+  border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  transition: 0.3s;
 }
 
-/* 3. This handles the 'Sticky' logic - FIXED for perfect centering */
-.top-navbar.sticky {
-  position: fixed !important;
-  top: 15px;      /* Distance from the top when scrolling */
-  left: 0;        /* Stretch from left edge... */
-  right: 0;       /* ...to right edge */
-  width: 100% !important; 
-  display: flex; 
-  justify-content: center; /* This pulls the pill back to the dead center */
-  transform: none !important; /* This removes the 'push' to the right */
-}
-
-/* 4. Keeps the text links clean */
 .nav-links a { 
   margin: 0 15px; 
   text-decoration: none; 
@@ -55,14 +62,41 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   transition: 0.3s;
 }
 
-/* Optional: Slight glow when sticky to help it pop */
+/* Special Button Style for 'Enquire' in Nav */
+.nav-links a:last-child {
+  background: var(--brand);
+  padding: 5px 15px;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
+.nav-links a:last-child:hover {
+  background: var(--brand2);
+  transform: scale(1.05);
+}
+
+/* STICKY NAVIGATION - ACTIVATED ON SCROLL */
+.top-navbar.sticky {
+  position: fixed !important;
+  top: 15px;      
+  left: 0;        
+  right: 0;       
+  width: 100% !important; 
+  display: flex; 
+  justify-content: center; 
+  transform: none !important; /* FIXED: Prevents sliding to the right */
+}
+
 .top-navbar.sticky .nav-links {
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  background: rgba(15, 23, 42, 0.8) !important; /* Slightly darker when scrolling */
 }
+
+/* TOUR SECTION & GRID */
 .tour-grid {
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px; /* Space for the glow */
+  gap: 30px; 
   padding: 40px 5%;
 }
 
@@ -75,7 +109,8 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   z-index: 1; 
 }
 
-/* Round the image corners manually since overflow is now visible */
+.tour-card:hover { transform: translateY(-10px); }
+
 .tour-card img { 
   width: 100%; 
   height: 200px; 
@@ -83,15 +118,9 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   border-radius: 15px 15px 0 0; 
 }
 
-.tour-card-body { 
-  padding: 20px; 
-}
+.tour-card-body { padding: 20px; }
 
-.tour-card:hover { 
-  transform: translateY(-10px); 
-}
-
-/* THE GOLD PROJECTION */
+/* THE GOLD PROJECTION HOVER EFFECT */
 .tour-card::before {
   content: "";
   position: absolute;
@@ -105,9 +134,7 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   transition: opacity 0.3s ease;
 }
 
-.tour-card:hover::before {
-  opacity: 1; 
-}
+.tour-card:hover::before { opacity: 1; }
 
 @keyframes goldMove {
   0% { background-position: 0% 50%; }
@@ -115,111 +142,7 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   100% { background-position: 0% 50%; }
 }
 
-.filter-btn {
-  padding: 8px 18px; margin: 5px; border: 1px solid var(--brand);
-  background: white; border-radius: 20px; cursor: pointer; transition: 0.3s;
-}
-.filter-btn.active { background: var(--brand); color: white; }
-
-.contact-container { max-width: 500px; margin: auto; padding: 40px 20px; text-align: center; }
-input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; }
-.submit-btn { background: #25D366; color: white; border: none; padding: 15px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; }
-
-.section-dark { background: var(--dark); color: white; }
-.main-footer { background: #070d1a; color: white; padding: 40px 5%; text-align: center; }
-
-/* Modern Floating Mobile Bar */
-.mobile-action-bar {
-  position: fixed;
-  bottom: 15px; /* Floats it off the bottom edge */
-  left: 5%;
-  right: 5%;
-  width: 90%; /* Creates a floating centered container */
-  display: flex;
-  gap: 12px; /* Adds space between the two buttons */
-  z-index: 10000;
-}
-
-.mobile-action-bar a {
-  flex: 1;
-  text-align: center;
-  padding: 14px;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 50px; /* Fully rounded 'pill' shape to match top tab */
-  font-size: 0.9rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-
-/* Call Button - Professional Dark Blue Gradient */
-.mobile-call {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* WhatsApp Button - Vibrant Green Gradient */
-.mobile-wa {
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Press effect for mobile touch */
-.mobile-action-bar a:active {
-  transform: scale(0.95);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-.back-to-top {
-  position: fixed; 
-  bottom: 90px !important; /* This ensures it stays safely above the floating WhatsApp button */
-  right: 20px; 
-  width: 45px; 
-  height: 45px;
-  background: var(--brand); 
-  color: white; 
-  border: none; 
-  border-radius: 50%;
-  display: none; /* Controlled by the scroll logic in script.js */
-  justify-content: center; 
-  align-items: center; 
-  cursor: pointer; 
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Added a shadow to match the new buttons */
-}
-
-/* Makes the 'Enquire' link look like a button inside the tab */
-.nav-links a:last-child {
-  background: var(--brand); /* Using your orange brand color */
-  color: white !important;
-  padding: 5px 15px;
-  border-radius: 20px;
-  margin-left: 10px;
-  transition: 0.3s;
-}
-
-.nav-links a:last-child:hover {
-  background: var(--brand2); /* Darker orange on hover */
-  transform: scale(1.05);
-}
-/* --- NEW UPGRADES --- */
-/* 3. This handles the 'Sticky' logic - FIXED for perfect centering */
-.top-navbar.sticky {
-  position: fixed !important;
-  top: 15px;      /* Distance from the top when scrolling */
-  left: 0;        /* Stretch from left edge... */
-  right: 0;       /* ...to right edge */
-  width: 100% !important; 
-  display: flex; 
-  justify-content: center; /* This pulls the pill back to the dead center */
-  transform: none !important; /* This removes the 'push' to the right */
-}
-
-/* Category Tag: Small labels for 'Domestic' or 'International' on tour cards */
+/* UTILITY CLASSES */
 .category-tag {
     font-size: 0.7rem;
     background: #f1f5f9;
@@ -233,19 +156,77 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
     letter-spacing: 0.5px;
 }
 
-/* Optional: Make the Enquire button in the card stand out more */
+.filter-btn {
+  padding: 8px 18px; margin: 5px; border: 1px solid var(--brand);
+  background: white; border-radius: 20px; cursor: pointer; transition: 0.3s;
+}
+
+.filter-btn.active { background: var(--brand); color: white; }
+
+/* CONTACT FORM */
+.contact-container { max-width: 500px; margin: auto; padding: 40px 20px; text-align: center; }
+
+input, textarea { 
+  width: 100%; padding: 12px; margin: 8px 0; 
+  border: 1px solid #ddd; border-radius: 8px; 
+}
+
+.submit-btn { 
+  background: #25D366; color: white; border: none; 
+  padding: 15px; border-radius: 8px; width: 100%; 
+  font-weight: bold; cursor: pointer; 
+}
+
 .tour-card .submit-btn {
     background: var(--dark);
-    transition: background 0.3s ease;
+    padding: 10px;
 }
 
-.tour-card .submit-btn:hover {
-    background: var(--brand2);
+.tour-card .submit-btn:hover { background: var(--brand2); }
+
+/* FOOTER & MOBILE BARS */
+.section-dark { background: var(--dark); color: white; }
+.main-footer { background: #070d1a; color: white; padding: 40px 5%; text-align: center; }
+
+.mobile-action-bar {
+  position: fixed;
+  bottom: 15px;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  display: flex;
+  gap: 12px;
+  z-index: 10000;
 }
 
+.mobile-action-bar a {
+  flex: 1; text-align: center; padding: 14px;
+  color: white; text-decoration: none; font-weight: 600;
+  display: flex; justify-content: center; align-items: center;
+  gap: 8px; border-radius: 50px; font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
 
+.mobile-call { background: linear-gradient(135deg, #0f172a, #1e293b); }
+.mobile-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
 
+.back-to-top {
+  position: fixed; 
+  bottom: 90px !important; 
+  right: 20px; 
+  width: 45px; height: 45px;
+  background: var(--brand); color: white; border: none; border-radius: 50%;
+  display: none; justify-content: center; align-items: center; 
+  z-index: 1000;
+}
 
-
-
-
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 600px) {
+  .top-navbar.sticky .nav-links {
+    padding: 8px 15px;
+    width: auto; 
+    max-width: 95%;
+  }
+  .nav-links a { margin: 0 8px; font-size: 0.8rem; }
+  .hero-img { height: 250px; object-fit: cover; }
+}
