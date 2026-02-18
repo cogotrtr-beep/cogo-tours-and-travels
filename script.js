@@ -14,7 +14,7 @@ function displayTours(filter = "all") {
     
     const filtered = tours.filter(t => filter === "all" || t.cat === filter);
     
-    filtered.forEach(tour => {
+filtered.forEach(tour => {
         const html = `
             <div class="tour-card">
                 <img src="${tour.img}" alt="${tour.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Cogo+Tours'">
@@ -22,12 +22,19 @@ function displayTours(filter = "all") {
                     <span class="category-tag">${tour.cat.toUpperCase()}</span>
                     <h3>${tour.title}</h3>
                     <p>${tour.desc}</p>
+                    
+                    <div class="tour-icons" style="margin: 15px 0; display: flex; gap: 10px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #eee; padding-top: 10px;">
+                        <span>🏨 Hotel</span>
+                        <span>🚌 Transport</span>
+                        <span>🍱 Meals</span>
+                    </div>
+
                     <p style="color:#ff5a00; font-weight:bold; font-size:1.2rem;">${tour.price}</p>
                     <button class="submit-btn" style="padding:10px; margin-top:10px; background:#0f172a;" onclick="quickEnquiry('${tour.title}')">Enquire Now</button>
                 </div>
             </div>`;
         container.insertAdjacentHTML('beforeend', html);
-    });
+    });   
 }
 
 // Specific function for clicking a tour card
@@ -91,4 +98,5 @@ window.onload = () => {
     }
     // ---------------------------
 };
+
 
