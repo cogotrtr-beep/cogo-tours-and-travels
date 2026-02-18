@@ -275,3 +275,80 @@ input, textarea {
   border-top: 1px solid #e2e8f0;
   padding: 60px 5%;
 }
+/* ABOUT US SECTION STYLES */
+.about-section {
+  background: #0f172a; /* Deep dark background to contrast with the trust bar */
+  color: white;
+  padding: 80px 5%;
+  overflow: hidden;
+}
+
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.about-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--brand);
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  color: var(--brand2);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.about-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 120px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-box strong {
+  display: block;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.stat-box span {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Mobile Fix for About Us */
+@media (max-width: 600px) {
+  .about-content h2 { font-size: 1.8rem; }
+  .about-stats { gap: 15px; }
+  .stat-box { min-width: 100px; padding: 15px; }
+}
