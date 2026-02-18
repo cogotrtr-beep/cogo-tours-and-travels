@@ -38,7 +38,7 @@ body { padding-bottom: 60px; background: #f8f9fa; }
   position: fixed !important;
   width: auto !important;
   left: 50% !important;
-  transform: translateX(-50%);
+  transform: translateX(-75%);
 }
 
 /* 4. Keeps the text links clean */
@@ -136,6 +136,7 @@ input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #
   background: var(--brand); color: white; border: none; border-radius: 50%;
   display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 1000;
 }
+
 
 
 
