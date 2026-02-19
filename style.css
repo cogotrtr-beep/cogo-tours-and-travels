@@ -719,11 +719,11 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
-/* --- FIX: Tab on Image & Full Screen Picture --- */
 
+/* --- Optimized Position to clear Logo & Mobile Fix --- */
 .top-navbar {
   position: fixed !important;
-  top: 30px !important; /* This lowers the tab onto the image */
+  top: 15px !important; /* Moves it to the very top edge to clear your logo */
   left: 0;
   right: 0;
   display: flex;
@@ -732,16 +732,31 @@ input, textarea {
 }
 
 .hero {
-  height: 100vh !important; /* Makes the pic fill the full screen */
+  height: 100vh !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
+  overflow: hidden;
 }
 
 .hero-img {
   height: 100% !important;
-  object-fit: cover !important; /* Stops stretching/distortion */
+  width: 100% !important;
+  object-fit: cover !important;
 }
 
+/* MOBILE VIEW: Makes the tab thinner so it doesn't hide the image */
+@media (max-width: 600px) {
+  .top-navbar {
+    top: 10px !important;
+  }
+  .nav-links {
+    padding: 6px 15px !important;
+    gap: 8px !important;
+  }
+  .nav-links a {
+    font-size: 12px !important;
+  }
+}
 
 
 
