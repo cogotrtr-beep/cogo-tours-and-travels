@@ -1,23 +1,28 @@
-/* 1. Global Reset to remove white gaps and repetition */
+/* 1. GLOBAL RESET - Fixes white space gaps */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 2. Fix the Oval Bar to the screen */
+html {
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 2. STICKY NAV - Lock it to the screen */
 .top-navbar {
-  position: fixed;       /* This makes it follow you when scrolling */
+  position: fixed;
   top: 20px;
   left: 0;
   right: 0;
-  z-index: 9999;         /* Keeps it on top of everything */
+  z-index: 9999;
   display: flex;
   justify-content: center;
 }
 
 .nav-links {
-  background: rgba(30, 41, 59, 0.9); 
+  background: rgba(30, 41, 59, 0.9);
   backdrop-filter: blur(10px);
   padding: 10px 25px;
   border-radius: 50px;
@@ -26,712 +31,146 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* 3. Fix the "Repeating" Banner Image */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.enquire-btn {
+  background: #ff9800;
+  padding: 5px 15px;
+  border-radius: 20px;
+  color: white !important;
+}
+
+/* 3. HERO BANNER - Fixes the repetition */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;        /* Makes image fill the screen */
+  height: 100vh;
   overflow: hidden;
 }
 
 .hero-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;    /* Ensures image doesn't repeat or stretch */
+  object-fit: cover;
   display: block;
 }
 
-
-/* This ensures your background image fills the whole top area */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
-}
-/* 3. Styling the actual Oval shape */
-.nav-links {
-  pointer-events: auto;  /* Makes sure you can click the buttons */
-  background: rgba(30, 41, 59, 0.85); /* Semi-transparent dark blue */
-  backdrop-filter: blur(10px);        /* Modern glass effect */
-  padding: 10px 25px;
-  border-radius: 50px;
-  display: flex;
-  gap: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-/* Ensures the buttons inside remain clickable */
-.nav-links {
-  pointer-events: auto;
-}
-/* This targets the actual oval shape seen in your screenshot */
-.nav-links {
-  background: rgba(30, 41, 59, 0.9); /* Dark semi-transparent color */
-  backdrop-filter: blur(8px);       /* Modern blurred glass effect */
-  padding: 10px 25px;
-  border-radius: 50px;              /* Makes it oval */
-  display: flex;
-  gap: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-/* This removes the white gap at the very top of your site */
-body {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
-}
-
-/* This pushes the rest of the site down so it's not hidden under the header */
-body {
-  padding-top: 80px !important; 
-}
-
-/* This ensures when you click 'Home', the smooth scroll lands perfectly */
-header#home {
-  scroll-margin-top: 100px;
-}
-:root {
-  --brand: #ff9800;
-  --brand2: #ff5a00;
-  --dark: #0f172a;
-}
-
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
-  font-family: 'Poppins', sans-serif; 
-}
-
-html { scroll-behavior: smooth; }
-
-body { 
-  padding-bottom: 60px; 
-  background: #f8f9fa; 
-}
-
-/* HERO SECTION */
-.hero { position: relative; width: 100%; background: var(--dark); }
-.hero-img { width: 100%; height: auto; opacity: 0.8; }
-.hero-tagline { 
-  text-align: center; 
-  color: white; 
-  padding: 20px; 
-  font-weight: 600; 
-  font-size: 1.2rem; 
-}
-
-/* NAVIGATION - INITIAL STATE */
-.top-navbar {
-  position: absolute; 
-  top: 15px; 
-  width: 100%; 
-  display: flex; 
-  justify-content: center; 
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-
-.nav-links {
-  background: rgba(15, 23, 42, 0.5) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 10px 25px;
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-}
-
-.nav-links a { 
-  margin: 0 15px; 
-  text-decoration: none; 
-  color: white !important; 
-  font-weight: 600; 
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-
-/* Special Button Style for 'Enquire' in Nav */
-.nav-links a:last-child {
-  background: var(--brand);
-  padding: 5px 15px;
-  border-radius: 20px;
-  margin-left: 10px;
-}
-
-.nav-links a:last-child:hover {
-  background: var(--brand2);
-  transform: scale(1.05);
-}
-
-/* STICKY NAVIGATION - ACTIVATED ON SCROLL */
-.top-navbar.sticky {
-  position: fixed !important;
-  top: 15px;      
-  left: 0;        
-  right: 0;       
-  width: 100% !important; 
-  display: flex; 
-  justify-content: center; 
-  transform: none !important; /* FIXED: Prevents sliding to the right */
-}
-
-.top-navbar.sticky .nav-links {
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  background: rgba(15, 23, 42, 0.8) !important; /* Slightly darker when scrolling */
-}
-
-/* TOUR SECTION & GRID */
-.tour-grid {
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px; 
-  padding: 40px 5%;
-}
-
-.tour-card {
-  background: white; 
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-  transition: 0.3s;
-  position: relative; 
-  z-index: 1; 
-}
-
-.tour-card:hover { transform: translateY(-10px); }
-
-.tour-card img { 
-  width: 100%; 
-  height: 200px; 
-  object-fit: cover; 
-  border-radius: 15px 15px 0 0; 
-}
-
-.tour-card-body { padding: 20px; }
-
-/* THE GOLD PROJECTION HOVER EFFECT */
-.tour-card::before {
-  content: "";
+.hero-tagline {
   position: absolute;
-  top: -3px; left: -3px; right: -3px; bottom: -3px;
-  z-index: -1; 
-  border-radius: 18px; 
-  background: linear-gradient(45deg, var(--brand), #ffd700, var(--brand2), #ffd700);
-  background-size: 400% 400%;
-  animation: goldMove 3s ease infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.tour-card:hover::before { opacity: 1; }
-
-@keyframes goldMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* UTILITY CLASSES */
-.category-tag {
-    font-size: 0.7rem;
-    background: #f1f5f9;
-    padding: 3px 10px;
-    border-radius: 10px;
-    color: #475569;
-    display: inline-block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.filter-btn {
-  padding: 8px 18px; margin: 5px; border: 1px solid var(--brand);
-  background: white; border-radius: 20px; cursor: pointer; transition: 0.3s;
-}
-
-.filter-btn.active { background: var(--brand); color: white; }
-
-/* CONTACT FORM */
-.contact-container { max-width: 500px; margin: auto; padding: 40px 20px; text-align: center; }
-
-input, textarea { 
-  width: 100%; padding: 12px; margin: 8px 0; 
-  border: 1px solid #ddd; border-radius: 8px; 
-}
-
-.submit-btn { 
-  background: #25D366; color: white; border: none; 
-  padding: 15px; border-radius: 8px; width: 100%; 
-  font-weight: bold; cursor: pointer; 
-}
-
-.tour-card .submit-btn {
-    background: var(--dark);
-    padding: 10px;
-}
-
-.tour-card .submit-btn:hover { background: var(--brand2); }
-
-/* FOOTER & MOBILE BARS */
-.section-dark { background: var(--dark); color: white; }
-.main-footer { background: #070d1a; color: white; padding: 40px 5%; text-align: center; }
-
-.mobile-action-bar {
-  position: fixed;
-  bottom: 15px;
-  left: 5%;
+  bottom: 10%;
   right: 5%;
-  width: 90%;
-  display: flex;
-  gap: 12px;
-  z-index: 10000;
-}
-
-.mobile-action-bar a {
-  flex: 1; text-align: center; padding: 14px;
-  color: white; text-decoration: none; font-weight: 600;
-  display: flex; justify-content: center; align-items: center;
-  gap: 8px; border-radius: 50px; font-size: 0.9rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.mobile-call { background: linear-gradient(135deg, #0f172a, #1e293b); }
-.mobile-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
-
-.back-to-top {
-  position: fixed; 
-  bottom: 90px !important; 
-  right: 20px; 
-  width: 45px; height: 45px;
-  background: var(--brand); color: white; border: none; border-radius: 50%;
-  display: none; justify-content: center; align-items: center; 
-  z-index: 1000;
-}
-
-/* RESPONSIVE MEDIA QUERIES */
-@media (max-width: 600px) {
-  .top-navbar.sticky .nav-links {
-    padding: 8px 15px;
-    width: auto; 
-    max-width: 95%;
-  }
-  .nav-links a { margin: 0 8px; font-size: 0.8rem; }
-  .hero-img { height: 250px; object-fit: cover; }
-}
-/* WHY CHOOSE US SECTION */
-.features-bar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 40px 5%;
-  background: white;
-  text-align: center;
-  gap: 20px;
-}
-
-.feature-item {
-  flex: 1;
-  min-width: 250px;
-  padding: 20px;
-  transition: 0.3s;
-}
-
-.feature-item:hover {
-  transform: translateY(-5px);
-}
-
-.feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.feature-item h4 {
-  color: var(--dark);
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-}
-
-.feature-item p {
-  color: #64748b;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-/* Styling for the trust bar when placed at the bottom */
-.trust-footer {
-  background: #f1f5f9;
-  border-top: 1px solid #e2e8f0;
-  padding: 60px 5%;
-}
-/* ABOUT US SECTION STYLES */
-.about-section {
-  background: #0f172a; /* Deep dark background to contrast with the trust bar */
   color: white;
-  padding: 80px 5%;
-  overflow: hidden;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
-.about-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-content {
-  text-align: center;
-  max-width: 800px;
-}
-
-.about-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: var(--brand);
-}
-
-.about-content p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #cbd5e1;
-  margin-bottom: 20px;
-}
-
-.subtitle {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-  color: var(--brand2);
-  font-weight: bold;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.about-stats {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
-.stat-box {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 20px;
-  border-radius: 15px;
-  min-width: 120px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stat-box strong {
-  display: block;
-  font-size: 1.8rem;
-  color: white;
-}
-
-.stat-box span {
-  font-size: 0.8rem;
-  color: #94a3b8;
-}
-
-/* Mobile Fix for About Us */
-@media (max-width: 600px) {
-  .about-content h2 { font-size: 1.8rem; }
-  .about-stats { gap: 15px; }
-  .stat-box { min-width: 100px; padding: 15px; }
-}
+/* 4. CAB BOOKING */
 .cab-booking-section {
-  padding: 40px 5%;
-  background: #fffbeb; /* Light yellow background */
-  border-bottom: 2px solid #fef3c7;
+  padding: 60px 20px;
+  background: #f8fafc;
 }
 
 .cab-container {
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
   background: white;
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.cab-header { text-align: center; margin-bottom: 20px; }
-.cab-header h2 { color: var(--dark); margin-bottom: 5px; }
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
 
-.cab-form { display: flex; flex-direction: column; gap: 15px; }
-.form-row { display: flex; gap: 15px; }
-.form-row input, .form-row select { 
-  flex: 1; 
-  padding: 12px; 
-  border: 1px solid #ddd; 
-  border-radius: 10px; 
-  font-size: 0.9rem;
+.form-row input, .form-row select {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
 }
 
 .cab-btn {
-  background: #fbbf24; /* Taxi Yellow */
-  color: #000;
-  border: none;
+  width: 100%;
   padding: 15px;
+  background: #22c55e;
+  color: white;
+  border: none;
   border-radius: 10px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.cab-btn:hover { background: #f59e0b; }
-
-@media (max-width: 600px) {
-  .form-row { flex-direction: column; }
-}
-/* Fix Card Image Aspect Ratio */
-.tour-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* This stops images from stretching */
-    display: block;
-}
-
-/* Make cards same height */
-.tour-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-.tour-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-/* Style the Tags */
-.tag {
-    background: #e2e8f0;
-    color: #475569;
-    padding: 4px 10px;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.tag.international {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-/* --- Tour Card Fixes --- */
+/* 5. TOUR GRID - Responsiveness */
 .tour-grid {
   display: grid;
+  gap: 30px;
+  padding: 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  margin-bottom: 50px;
-}
-/* Style for Date/Time Input Groups */
-.input-group {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
-.cab-form input[type="date"],
-.cab-form input[type="time"] {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-family: inherit;
-  color: #1e293b;
-}
-
-/* Ensure mobile compatibility */
-@media (max-width: 480px) {
-  .cab-form .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
 .tour-card {
-  background: #fff;
-  border-radius: 12px;
+  background: white;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Makes all cards in a row the same height */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .tour-card img {
   width: 100%;
   height: 200px;
-  object-fit: cover; /* Keeps images uniform */
-}
-
-.tour-info {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* Pushes the button to the bottom */
-}
-
-.tour-info h4 { margin: 10px 0; font-size: 1.2rem; }
-.tour-info p { font-size: 0.9rem; color: #667085; line-height: 1.4; margin-bottom: 15px; }
-
-.tour-meta {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-  margin-top: auto; /* Ensures meta and button stay at bottom */
-}
-
-.price { font-weight: 800; color: #1e293b; }
-
-/* --- Button Styling --- */
-.book-mini-btn {
-  display: block;
-  text-align: center;
-  background: #25d366; /* WhatsApp Green */
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top: 15px;
-  transition: 0.3s;
-}
-
-.book-mini-btn:hover {
-  background: #128c7e;
-  transform: translateY(-2px);
-}
-
-/* --- Topic Navigation Buttons --- */
-.topic-btn {
-  background: #f1f5f9;
-  color: #475569;
-  padding: 8px 20px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: 1px solid #e2e8f0;
-  transition: 0.3s;
-}
-
-.topic-btn:hover {
-  background: #1e293b;
-  color: white;
-}
-/* --- Tour Navigation Bar --- */
-.tour-nav-bar {
-  text-align: center;
-  margin-bottom: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-
-.topic-btn {
-  background: #f8fafc;
-  color: #1e293b;
-  padding: 10px 22px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: 1px solid #cbd5e1;
-  transition: all 0.3s ease;
-}
-
-.topic-btn:hover {
-  background: #1e293b;
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* --- The 3-Card Grid Fix --- */
-.tour-grid {
-  display: grid;
-  gap: 30px;
-  margin-bottom: 60px;
-  /* Default: 1 column for mobile */
-  grid-template-columns: 1fr;
-}
-
-/* TABLET VIEW: 2 Columns */
-@media (min-width: 768px) {
-  .tour-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* PC VIEW: Exactly 3 Columns */
-@media (min-width: 1024px) {
-  .tour-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px; /* Prevents cards from getting too wide on huge screens */
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-/* --- Card & Button Styling --- */
-.tour-card {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border: 1px solid #f1f5f9;
-}
-
-.tour-card img {
-  width: 100%;
-  height: 220px; /* Fixed height for rectangular look */
   object-fit: cover;
 }
 
-.tour-info {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
+.tour-info { padding: 20px; }
 
 .book-mini-btn {
-  display: block;
-  text-align: center;
-  background: #25d366;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 20px;
+  background: #1e293b;
   color: white;
-  padding: 14px;
-  border-radius: 10px;
   text-decoration: none;
-  font-weight: 700;
-  margin-top: 20px;
-  transition: 0.3s;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+  border-radius: 5px;
 }
 
-.book-mini-btn:hover {
-  background: #128c7e;
-  transform: scale(1.02);
+/* 6. MOBILE BUTTONS */
+.mobile-action-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  z-index: 9999;
 }
 
+.mobile-call, .mobile-wa {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
 
+.mobile-call { background: #1e293b; }
+.mobile-wa { background: #22c55e; }
 
-
-
-
-
-
-
-
+/* 7. BACK TO TOP */
+.back-to-top {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  padding: 10px 15px;
+  background: #ff9800;
+  color: white;
+  border-radius: 50%;
+  display: none;
+  z-index: 1000;
+}
