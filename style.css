@@ -731,17 +731,20 @@ input, textarea {
   z-index: 9999;
 }
 
-.hero {
-  height: 100vh !important;
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  overflow: hidden;
+.top-navbar {
+  position: fixed !important;
+  top: 5px !important; /* This moves it to the very top edge */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
 }
 
-.hero-img {
-  height: 100% !important;
-  width: 100% !important;
-  object-fit: cover !important;
+/* Make the oval slightly more transparent so the blue background shows through */
+.nav-links {
+  background: rgba(30, 41, 59, 0.7) !important; 
+  backdrop-filter: blur(5px);
 }
 
 /* MOBILE VIEW: Makes the tab thinner so it doesn't hide the image */
@@ -757,6 +760,7 @@ input, textarea {
     font-size: 12px !important;
   }
 }
+
 
 
 
