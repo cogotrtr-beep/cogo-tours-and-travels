@@ -1,4 +1,11 @@
-/* --- COGO TOURS & TRAVELS MASTER STYLESHEET --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* This ensures that when you click 'Home', it doesn't get hidden behind the navbar */
+header#home {
+  scroll-margin-top: 100px;
+}/* --- COGO TOURS & TRAVELS MASTER STYLESHEET --- */
 
 :root {
   --brand: #ff9800;
@@ -635,4 +642,5 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
 
