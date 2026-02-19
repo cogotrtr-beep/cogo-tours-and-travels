@@ -1,4 +1,4 @@
-/* 1. Global Reset - This removes the messy white space at the top */
+/* 1. Global Reset - This kills the white space at the top */
 * {
   margin: 0;
   padding: 0;
@@ -9,18 +9,35 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 2. Making ONLY the Oval Bar Sticky */
+/* 2. Fix ONLY the Oval Bar to the top of the screen */
 .top-navbar {
-  position: fixed;       /* This pins the bar to the top of the screen */
-  top: 20px;             /* Keeps it 20px from the top edge */
+  position: fixed;       /* This pins the bar to the screen */
+  top: 20px;             /* Distance from the very top */
   left: 0;
   right: 0;
-  z-index: 9999;         /* Keeps it on top of all images and tours */
+  z-index: 9999;         /* Keeps it on top of everything */
   display: flex;
   justify-content: center;
-  pointer-events: none;  /* Allows clicking through empty space */
 }
 
+/* Styling the oval shape and making it look modern */
+.nav-links {
+  background: rgba(30, 41, 59, 0.9); /* Dark semi-transparent */
+  backdrop-filter: blur(8px);       /* Glass effect */
+  padding: 10px 25px;
+  border-radius: 50px;              /* Makes it oval */
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* This ensures your background image fills the whole top area */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
 /* 3. Styling the actual Oval shape */
 .nav-links {
   pointer-events: auto;  /* Makes sure you can click the buttons */
@@ -697,6 +714,7 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
 
 
 
