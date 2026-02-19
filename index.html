@@ -28,15 +28,28 @@
         <p>Chennai Local & Outstation | Best Rates Guaranteed</p>
       </div>
       
-      <form class="cab-form" id="cabForm">
+     <form class="cab-form" id="cabForm">
         <div class="form-row">
           <input type="text" id="custName" placeholder="Your Name" required>
           <input type="tel" id="custPhone" placeholder="Mobile Number" required>
         </div>
+
         <div class="form-row">
           <input type="text" id="pickup" placeholder="Pickup Location" required>
-          <input type="text" id="drop" placeholder="Drop Location / Destination" required>
+          <input type="text" id="drop" placeholder="Drop / Destination" required>
         </div>
+
+        <div class="form-row">
+          <div class="input-group">
+            <label for="pickupDate" style="font-size: 0.7rem; color: #64748b; margin-left: 5px;">Pickup Date</label>
+            <input type="date" id="pickupDate" required>
+          </div>
+          <div class="input-group">
+            <label for="pickupTime" style="font-size: 0.7rem; color: #64748b; margin-left: 5px;">Pickup Time</label>
+            <input type="time" id="pickupTime" required>
+          </div>
+        </div>
+
         <div class="form-row">
           <select id="vehicleType" required>
             <option value="" disabled selected>Select Vehicle</option>
@@ -55,7 +68,7 @@
           </select>
         </div>
         <button type="submit" class="cab-btn">Check Availability & WhatsApp Price</button>
-      </form> 
+      </form>
       <p style="font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 10px;">
         ⚡ *Average response time: 2 minutes*
       </p>    
@@ -222,6 +235,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
