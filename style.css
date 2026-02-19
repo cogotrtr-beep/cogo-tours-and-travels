@@ -761,6 +761,49 @@ input, textarea {
   }
 }
 
+/* --- CLEAN VIEW: Fits Logo and Moves Tab to Top Blue Strip --- */
+
+.hero {
+  height: 100vh !important;
+  width: 100%;
+  /* This dark blue matches the top of your photo exactly */
+  background-color: #0b1d35 !important; 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0 !important;
+}
+
+.hero-img {
+  width: 100% !important;
+  height: 100% !important;
+  /* 'contain' ensures the logo never gets cut off by the screen edges */
+  object-fit: contain !important; 
+  background-color: #0b1d35 !important;
+}
+
+.top-navbar {
+  position: fixed !important;
+  /* 5px puts it in the very top blue margin of your photo */
+  top: 5px !important; 
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Mobile Tweak: Keeps the tab tiny on phones */
+@media (max-width: 600px) {
+  .top-navbar {
+    top: 2px !important;
+  }
+  .nav-links {
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+  }
+}
 
 
 
