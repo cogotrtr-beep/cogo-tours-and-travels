@@ -396,3 +396,42 @@ input, textarea {
 @media (max-width: 600px) {
   .form-row { flex-direction: column; }
 }
+/* Fix Card Image Aspect Ratio */
+.tour-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* This stops images from stretching */
+    display: block;
+}
+
+/* Make cards same height */
+.tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.tour-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Style the Tags */
+.tag {
+    background: #e2e8f0;
+    color: #475569;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.tag.international {
+    background: #fee2e2;
+    color: #b91c1c;
+}
