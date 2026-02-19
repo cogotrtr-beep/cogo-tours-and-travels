@@ -61,3 +61,12 @@ window.onscroll = function() {
 backToTop.onclick = function() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 };
+// This makes the navbar change color/size when you scroll
+window.addEventListener('scroll', function() {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+        nav.classList.add('sticky');
+    } else {
+        nav.classList.remove('sticky');
+    }
+});
