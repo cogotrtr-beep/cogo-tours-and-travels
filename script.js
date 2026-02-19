@@ -1,6 +1,7 @@
-// 1. CAB FORM TO WHATSAPP
+// 1. CAB FORM LOGIC
 document.getElementById('cabForm').addEventListener('submit', function(e) {
     e.preventDefault();
+
     const name = document.getElementById('custName').value;
     const phone = document.getElementById('custPhone').value;
     const pickup = document.getElementById('pickup').value;
@@ -10,24 +11,53 @@ document.getElementById('cabForm').addEventListener('submit', function(e) {
     const vehicle = document.getElementById('vehicleType').value;
     const trip = document.getElementById('tripType').value;
 
-    const msg = `*New Booking*%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0ATime: ${time}%0APickup: ${pickup}%0ADrop: ${drop}%0AVehicle: ${vehicle}%0APackage: ${trip}`;
-    window.open(`https://wa.me/919884066830?text=${msg}`, '_blank');
+    const myNumber = "919884066830"; 
+
+    const message = `*New Cab Booking Request*%0A` +
+                    `--------------------------%0A` +
+                    `👤 *Name:* ${name}%0A` +
+                    `📞 *Phone:* ${phone}%0A` +
+                    `📅 *Date:* ${date}%0A` +
+                    `⏰ *Time:* ${time}%0A` +
+                    `📍 *Pickup:* ${pickup}%0A` +
+                    `🏁 *Drop:* ${drop}%0A` +
+                    `🚗 *Vehicle:* ${vehicle}%0A` +
+                    `📦 *Package:* ${trip}%0A` +
+                    `--------------------------`;
+
+    const whatsappUrl = `https://wa.me/${myNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
 });
 
-// 2. SMOOTH SCROLLING
+// 2. SMOOTH SCROLL FIX FOR NAV LINKS (Fixes the 'Home' tab issue)
 document.querySelectorAll('.nav-links a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
+        
+        // Only run this if it's an internal link (starts with #)
         if (targetId.startsWith('#')) {
             e.preventDefault();
-            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
 });
 
 // 3. BACK TO TOP BUTTON
-const btt = document.getElementById("backToTop");
-window.onscroll = () => {
-  btt.style.display = (window.scrollY > 300) ? "block" : "none";
+const backToTop = document.getElementById("backToTop");
+window.onscroll = function() {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
 };
-btt.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+backToTop.onclick = function() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+};
