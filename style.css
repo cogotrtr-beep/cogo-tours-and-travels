@@ -2,16 +2,33 @@ html {
   scroll-behavior: smooth;
 }
 
-/* --- STICKY NAVIGATION BAR --- */
+/* --- FIXED OVAL NAVIGATION --- */
 header {
-  position: fixed;      /* This pins it to the top */
-  top: 0;
+  position: fixed;      /* This pins the menu so it moves when you scroll */
+  top: 20px;            /* Distance from the very top */
   left: 0;
-  width: 100%;
-  z-index: 2000;        /* Keeps it above all tour cards */
-  background: white;    /* Ensures text behind it doesn't show through */
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1); /* Adds a professional shadow */
-  padding: 10px 0;      /* Keeps the bar slim */
+  right: 0;
+  z-index: 9999;        /* Ensures it stays on top of all tour cards */
+  display: flex;
+  justify-content: center; 
+  background: transparent; /* Removes the white block background */
+}
+
+/* This targets the actual oval shape seen in your screenshot */
+.nav-links {
+  background: rgba(30, 41, 59, 0.9); /* Dark semi-transparent color */
+  backdrop-filter: blur(8px);       /* Modern blurred glass effect */
+  padding: 10px 25px;
+  border-radius: 50px;              /* Makes it oval */
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* This removes the white gap at the very top of your site */
+body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 /* This pushes the rest of the site down so it's not hidden under the header */
@@ -658,6 +675,7 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
 
 
 
