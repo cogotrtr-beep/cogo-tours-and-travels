@@ -442,7 +442,30 @@ input, textarea {
   gap: 25px;
   margin-bottom: 50px;
 }
+/* Style for Date/Time Input Groups */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
+.cab-form input[type="date"],
+.cab-form input[type="time"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+  color: #1e293b;
+}
+
+/* Ensure mobile compatibility */
+@media (max-width: 480px) {
+  .cab-form .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 .tour-card {
   background: #fff;
   border-radius: 12px;
@@ -612,3 +635,4 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
