@@ -1,213 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cogo Tours & Travels | Your Journey Our Responsibility</title>
-    <link rel="stylesheet" href="style.css" />
-    <link href="[https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap](https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap)" rel="stylesheet">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "[https://schema.org](https://schema.org)",
-      "@type": "TaxiService",
-      "name": "Cogo Tours & Travels",
-      "description": "Premium cab services in Chennai including airport transfers, local 4hr/8hr rentals, and outstation trips.",
-      "url": "[https://www.cogotours.com](https://www.cogotours.com)",
-      "telephone": "+919884066830",
-      "priceRange": "₹₹",
-      "areaServed": {
-        "@type": "City",
-        "name": "Chennai"
-      },
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Cogo Tours & Travels",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Chennai",
-          "addressRegion": "TN",
-          "addressCountry": "IN"
-        }
-      }
-    }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cogo Tours & Travels | Your Journey Our Responsibility</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="hero" id="home">
-        <img class="hero-img" src="cogoindian.jpeg" alt="Cogo Tours Banner" />
-        <nav class="top-navbar" id="mainNav">
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#tours">Tours</a>
-                <a href="#about">About</a> 
-                <a href="#contact">Enquire</a>
-            </div>
-        </nav>
-        <div class="hero-tagline"><p>Your Journey, Our Responsibility</p></div>
-    </header>
+  <header class="hero" id="home">
+    <img class="hero-img" src="cogoindian.jpeg" alt="Cogo Tours Banner" />
+    <nav class="top-navbar" id="mainNav">
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#tours">Tours</a>
+        <a href="#about">About</a>  
+        <a href="#contact">Enquire</a>
+      </div>
+    </nav>
+    <div class="hero-tagline"><p>Your Journey, Our Responsibility</p></div>
+  </header>
 
-    <section id="book-cab" class="cab-booking-section">
-        <div class="cab-container">
-            <div class="cab-header">
-                <h2>🚖 Instant Cab Booking</h2>
-                <p>Chennai Local & Outstation | Best Rates Guaranteed</p>
-            </div>
-
-            <form class="cab-form" id="cabForm">
-                <div class="form-row">
-                    <input type="text" id="custName" placeholder="Your Name" required>
-                    <input type="tel" id="custPhone" placeholder="Mobile Number" required>
-                </div>
-                <div class="form-row">
-                    <input type="text" id="pickup" placeholder="Pickup Location" required>
-                    <input type="text" id="drop" placeholder="Drop / Destination" required>
-                </div>
-                <div class="form-row">
-                    <select id="vehicleType" required>
-                        <option value="" disabled selected>Select Vehicle</option>
-                        <option value="Sedan">Sedan (4 Seater)</option>
-                        <option value="SUV">SUV (6 Seater)</option>
-                        <option value="Innova">Innova Crysta</option>
-                        <option value="Tempo">Tempo Traveler</option>
-                    </select>
-                    <select id="tripType" required>
-                        <option value="" disabled selected>Select Package</option>
-                        <option value="4hrs">Short Trip (4hrs / 40km)</option>
-                        <option value="8hrs">Full Day (8hrs / 80km)</option>
-                        <option value="Outstation">Outstation (Round Trip)</option>
-                    </select>
-                </div>
-                <button type="submit" class="cab-btn">Check Availability & WhatsApp Price</button>
-            </form>
-            <p style="font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 10px;">
-                ⚡ *Average response time: 2 minutes*
-            </p>
+  <section id="book-cab" class="cab-booking-section">
+    <div class="cab-container">
+      <div class="cab-header">
+        <h2>🚖 Instant Cab Booking</h2>
+        <p>Chennai Local & Outstation | Best Rates Guaranteed</p>
+      </div>
+      
+      <form class="cab-form" id="cabForm">
+        <div class="form-row">
+          <input type="text" id="custName" placeholder="Your Name" required>
+          <input type="tel" id="custPhone" placeholder="Mobile Number" required>
         </div>
-    </section>
-
-   <section id="tours" class="section">
-        <div class="container">
-            <h2 class="center-title" style="text-align:center; margin: 40px 0;">Popular Tour Packages</h2>
-
-            <h3 class="category-title">📍 Chennai Local Sightseeing</h3>
-            <div class="tour-grid">
-                <div class="tour-card">
-                    <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=500" alt="Chennai">
-                    <div class="tour-info">
-                        <span class="tag">Local</span>
-                        <h4>Full Day City Wonders</h4>
-                        <p>Marina Beach, Kapaleeshwarar Temple, and Museum tour.</p>
-                        <div class="tour-meta"><span>⏱️ 10 Hours</span><span class="price">₹2,800</span></div>
-                        <a href="https://wa.me/919884066830?text=Interested in Chennai Local Wonders" class="book-mini-btn">Enquire Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <h3 class="category-title">🚗 Popular Getaways</h3>
-            <div class="tour-grid">
-                <div class="tour-card">
-                    <img src="https://images.unsplash.com/photo-1600100397608-f09074aa889c?w=500" alt="Pondicherry">
-                    <div class="tour-info">
-                        <span class="tag">Domestic</span>
-                        <h4>Pondicherry Coastal Escape</h4>
-                        <p>Explore the French Colony, Auroville, and Paradise Beach.</p>
-                        <div class="tour-meta"><span>⏱️ 2 Days</span><span class="price">₹5,500</span></div>
-                        <a href="https://wa.me/919884066830?text=Interested in Pondicherry Package" class="book-mini-btn">Enquire Now</a>
-                    </div>
-                </div>
-
-                <div class="tour-card">
-                    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=500" alt="Kerala">
-                    <div class="tour-info">
-                        <span class="tag">Domestic</span>
-                        <h4>Kerala Backwaters</h4>
-                        <p>Experience Munnar hills and Alleppey houseboats.</p>
-                        <div class="tour-meta"><span>⏱️ 4 Days</span><span class="price">₹12,500</span></div>
-                        <a href="https://wa.me/919884066830?text=Interested in Kerala Package" class="book-mini-btn">Enquire Now</a>
-                    </div>
-                </div>
-
-                <div class="tour-card">
-                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai">
-                    <div class="tour-info">
-                        <span class="tag international">International</span>
-                        <h4>Dubai City Lights</h4>
-                        <p>Burj Khalifa, Desert Safari, and Marina Cruise.</p>
-                        <div class="tour-meta"><span>⏱️ 5 Days</span><span class="price">Enquire</span></div>
-                        <a href="https://wa.me/919884066830?text=Interested in Dubai International Package" class="book-mini-btn">Enquire Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <h3 class="category-title">🙏 Spiritual & Pilgrim Packages</h3>
-            <div class="tour-grid">
-                <div class="tour-card">
-                    <img src="https://images.unsplash.com/photo-1621259599593-9c88467f3942?w=500" alt="Tirupati">
-                    <div class="tour-info">
-                        <span class="tag">Pilgrim</span>
-                        <h4>One Day Tirupati Darshan</h4>
-                        <p>Confirmed Darshan assistance and round-trip AC transport.</p>
-                        <div class="tour-meta"><span>⏱️ 1 Day</span><span class="price">₹5,800</span></div>
-                        <a href="https://wa.me/919884066830?text=Interested in Tirupati Package" class="book-mini-btn">Enquire Now</a>
-                    </div>
-                </div>
-            </div>
+        <div class="form-row">
+          <input type="text" id="pickup" placeholder="Pickup Location" required>
+          <input type="text" id="drop" placeholder="Drop Location / Destination" required>
         </div>
-    </section>
-
-    <section class="features-bar trust-footer">
-        <div class="feature-item"><h4>🛡️ Safe & Secure</h4><p>Verified stays and 24/7 support.</p></div>
-        <div class="feature-item"><h4>💰 Best Value</h4><p>Premium experiences at competitive prices.</p></div>
-        <div class="feature-item"><h4>🗺️ Expert Guides</h4><p>Local experts leading your journey.</p></div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="about-container">
-            <div class="about-content">
-                <span class="subtitle">Our Story</span>
-                <h2>About Cogo Tours & Travels</h2>
-                <p>Based in Chennai, we specialize in crafting seamless journeys that turn dreams into lifelong memories.</p>
-
-                <div class="about-stats">
-                    <div class="stat-box"><strong>10+</strong><span>Years Exp.</span></div>
-                    <div class="stat-box"><strong>500+</strong><span>Tours Done</span></div>
-                    <div class="stat-box"><strong>100%</strong><span>Safe Travel</span></div>
-                </div>
-
-                <div class="seo-keywords" style="margin-top: 30px; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; text-align: left; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-                    <p>
-                        <strong>Reliable Cab Services in Chennai:</strong> We provide 24/7 <strong>taxi services in Chennai</strong> covering T. Nagar, Adyar, Velachery, and OMR. Specialists in <strong>Chennai airport pickups</strong> and outstation trips.
-                    </p>
-                </div>
-            </div> 
-        </div> 
-    </section>
-
-    <footer class="main-footer" id="contact">
-        <div class="footer-container">
-            <div><h3>Cogo Tours</h3><p>Chennai, India</p></div>
-            <div><p>📞 +91 98840 66830</p></div>
-            <div><p>📧 cogotrtr@gmail.com</p></div>
+        <div class="form-row">
+          <select id="vehicleType" required>
+            <option value="" disabled selected>Select Vehicle</option>
+            <option value="Sedan">Sedan (4 Seater)</option>
+            <option value="SUV">SUV (6 Seater)</option>
+            <option value="Innova">Innova Crysta</option>
+            <option value="Tempo">Tempo Traveler</option>
+            <option value="MiniBus">Mini Bus</option>
+          </select>
+          <select id="tripType" required>
+            <option value="" disabled selected>Select Package</option>
+            <option value="4hrs">Short Trip (4hrs / 40km)</option>
+            <option value="8hrs">Full Day (8hrs / 80km)</option>
+            <option value="Outstation">Outstation (Round Trip)</option>
+            <option value="Airport">Airport Transfer</option>
+          </select>
         </div>
-    </footer>
-    <footer class="main-footer" id="contact">
-        <div class="footer-container">
-            <div><h3>Cogo Tours</h3><p>Chennai, India</p></div>
-            <div><p>📞 +91 98840 66830</p></div>
-            <div><p>📧 cogotrtr@gmail.com</p></div>
-        </div>
-    </footer>
-
-    <div class="mobile-action-bar">
-        <a href="tel:+919884066830" class="mobile-call">📞 Call Now</a>
-        <a href="[https://wa.me/919884066830](https://wa.me/919884066830)" target="_blank" class="mobile-wa">💬 WhatsApp</a>
+        <button type="submit" class="cab-btn">Check Availability & WhatsApp Price</button>
+      </form> 
+      <p style="font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 10px;">
+        ⚡ *Average response time: 2 minutes*
+      </p>    
     </div>
+  </section>
 
-    <button id="backToTop" class="back-to-top">↑</button>
-    
-    <script src="script.js"></script>
+  <section id="tours" class="section">
+    <div class="container">
+      <h2 class="center-title" style="text-align:center; margin: 40px 0 20px;">Popular Tour Packages</h2>
+
+      <h3 class="category-title">📍 Chennai Local Sightseeing</h3>
+      <div class="tour-grid">
+        <div class="tour-card">
+          <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=500" alt="Chennai">
+          <div class="tour-info">
+            <span class="tag">Local</span>
+            <h4>Full Day City Wonders</h4>
+            <p>Marina Beach, Kapaleeshwarar Temple, and Museum tour.</p>
+            <div class="tour-meta"><span>⏱️ 10 Hours</span><span class="price">₹2,800</span></div>
+            <a href="https://wa.me/919884066830?text=Interested in Chennai Local Wonders" class="book-mini-btn">Enquire Now</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="category-title">🚗 Popular Getaways</h3>
+      <div class="tour-grid">
+        <div class="tour-card">
+          <img src="https://images.unsplash.com/photo-1600100397608-f09074aa889c?w=500" alt="Pondicherry">
+          <div class="tour-info">
+            <span class="tag">Domestic</span>
+            <h4>Pondicherry Coastal Escape</h4>
+            <p>French Colony, Auroville, and Paradise Beach.</p>
+            <div class="tour-meta"><span>⏱️ 2 Days</span><span class="price">₹5,500</span></div>
+            <a href="https://wa.me/919884066830?text=Interested in Pondicherry Package" class="book-mini-btn">Enquire Now</a>
+          </div>
+        </div>
+        <div class="tour-card">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai">
+          <div class="tour-info">
+            <span class="tag international">International</span>
+            <h4>Dubai City Lights</h4>
+            <p>Burj Khalifa, Desert Safari, and Marina Cruise.</p>
+            <div class="tour-meta"><span>⏱️ 5 Days</span><span class="price">Enquire</span></div>
+            <a href="https://wa.me/919884066830?text=Interested in Dubai Package" class="book-mini-btn">Enquire Now</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="category-title">🙏 Spiritual & Pilgrim Packages</h3>
+      <div class="tour-grid">
+        <div class="tour-card">
+          <img src="https://images.unsplash.com/photo-1621259599593-9c88467f3942?w=500" alt="Tirupati">
+          <div class="tour-info">
+            <span class="tag">Pilgrim</span>
+            <h4>One Day Tirupati Darshan</h4>
+            <p>Confirmed Darshan assistance and round-trip AC transport.</p>
+            <div class="tour-meta"><span>⏱️ 1 Day</span><span class="price">₹5,800</span></div>
+            <a href="https://wa.me/919884066830?text=Interested in Tirupati Package" class="book-mini-btn">Enquire Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-bar trust-footer">
+    <div class="feature-item">
+      <div class="feature-icon">🛡️</div>
+      <h4>Safe & Secure</h4>
+      <p>Verified stays and 24/7 travel support.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💰</div>
+      <h4>Best Value</h4>
+      <p>Premium experiences at competitive prices.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🗺️</div>
+      <h4>Expert Guides</h4>
+      <p>Hand-picked local experts to lead your journey.</p>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <div class="about-content">
+        <span class="subtitle">Our Story</span>
+        <h2>About Cogo Tours & Travels</h2>
+        <p>
+          Based in Chennai, we specialize in crafting seamless journeys that turn dreams into memories.
+        </p>
+        <div class="about-stats">
+          <div class="stat-box"><strong>10+</strong><span>Years Exp.</span></div>
+          <div class="stat-box"><strong>500+</strong><span>Tours Done</span></div>
+          <div class="stat-box"><strong>100%</strong><span>Safe Travel</span></div>
+        </div>
+        <div class="seo-keywords" style="margin-top: 30px; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; text-align: left; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+          <p>
+            <strong>Reliable Cab Services in Chennai:</strong> We provide 24/7 <strong>taxi services in Chennai</strong> covering T. Nagar, Adyar, Velachery, and OMR. Specialists in airport pickups and outstation cabs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer" id="contact">
+    <div class="footer-container">
+      <div><h3>Cogo Tours</h3><p>Chennai, India</p></div>
+      <div><p>📞 +91 98840 66830</p></div>
+      <div><p>📧 cogotrtr@gmail.com</p></div>
+    </div>
+  </footer>
+
+  <div class="mobile-action-bar">
+    <a href="tel:+919884066830" class="mobile-call">📞 Call Now</a>
+    <a href="https://wa.me/919884066830" target="_blank" class="mobile-wa">💬 WhatsApp</a>
+  </div>
+
+  <button id="backToTop" class="back-to-top">↑</button>
+  <script src="script.js"></script>
 </body>
 </html>
-
