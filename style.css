@@ -41,16 +41,6 @@
   display: block;
 }
 
-/* Styling the oval shape and making it look modern */
-.nav-links {
-  background: rgba(30, 41, 59, 0.9); /* Dark semi-transparent */
-  backdrop-filter: blur(8px);       /* Glass effect */
-  padding: 10px 25px;
-  border-radius: 50px;              /* Makes it oval */
-  display: flex;
-  gap: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
 
 /* This ensures your background image fills the whole top area */
 .hero {
@@ -735,6 +725,7 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
 
 
 
