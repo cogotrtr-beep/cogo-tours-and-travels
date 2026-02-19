@@ -2,11 +2,27 @@ html {
   scroll-behavior: smooth;
 }
 
-/* This ensures that when you click 'Home', it doesn't get hidden behind the navbar */
+/* --- STICKY NAVIGATION BAR --- */
+header {
+  position: fixed;      /* This pins it to the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;        /* Keeps it above all tour cards */
+  background: white;    /* Ensures text behind it doesn't show through */
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1); /* Adds a professional shadow */
+  padding: 10px 0;      /* Keeps the bar slim */
+}
+
+/* This pushes the rest of the site down so it's not hidden under the header */
+body {
+  padding-top: 80px !important; 
+}
+
+/* This ensures when you click 'Home', the smooth scroll lands perfectly */
 header#home {
   scroll-margin-top: 100px;
-}/* --- COGO TOURS & TRAVELS MASTER STYLESHEET --- */
-
+}
 :root {
   --brand: #ff9800;
   --brand2: #ff5a00;
@@ -642,5 +658,6 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
 
 
