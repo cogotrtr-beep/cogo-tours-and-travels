@@ -1,4 +1,4 @@
-/* 1. Global Reset to remove white gaps */
+/* 1. Global Reset - This removes the messy white space at the top */
 * {
   margin: 0;
   padding: 0;
@@ -9,21 +9,29 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 2. The Sticky Header Container */
-header {
-  position: fixed;      /* Pins it to the screen */
-  top: 0;               /* Anchors to the very top */
+/* 2. Making ONLY the Oval Bar Sticky */
+.top-navbar {
+  position: fixed;       /* This pins the bar to the top of the screen */
+  top: 20px;             /* Keeps it 20px from the top edge */
   left: 0;
   right: 0;
-  height: 80px;         /* Gives the header space */
+  z-index: 9999;         /* Keeps it on top of all images and tours */
   display: flex;
-  align-items: center;  /* Vertically centers the oval bar */
-  justify-content: center; 
-  z-index: 9999;        /* Keeps it above all images */
-  background: transparent; /* Ensures no white block background */
-  pointer-events: none;    /* Allows clicking through the empty space */
+  justify-content: center;
+  pointer-events: none;  /* Allows clicking through empty space */
 }
 
+/* 3. Styling the actual Oval shape */
+.nav-links {
+  pointer-events: auto;  /* Makes sure you can click the buttons */
+  background: rgba(30, 41, 59, 0.85); /* Semi-transparent dark blue */
+  backdrop-filter: blur(10px);        /* Modern glass effect */
+  padding: 10px 25px;
+  border-radius: 50px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
 /* Ensures the buttons inside remain clickable */
 .nav-links {
   pointer-events: auto;
@@ -689,6 +697,7 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
 
 
 
