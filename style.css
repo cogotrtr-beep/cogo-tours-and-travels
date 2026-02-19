@@ -1,19 +1,33 @@
+/* 1. Global Reset to remove white gaps */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* --- FIXED OVAL NAVIGATION --- */
+/* 2. The Sticky Header Container */
 header {
-  position: fixed;      /* This pins the menu so it moves when you scroll */
-  top: 20px;            /* Distance from the very top */
+  position: fixed;      /* Pins it to the screen */
+  top: 0;               /* Anchors to the very top */
   left: 0;
   right: 0;
-  z-index: 9999;        /* Ensures it stays on top of all tour cards */
+  height: 80px;         /* Gives the header space */
   display: flex;
+  align-items: center;  /* Vertically centers the oval bar */
   justify-content: center; 
-  background: transparent; /* Removes the white block background */
+  z-index: 9999;        /* Keeps it above all images */
+  background: transparent; /* Ensures no white block background */
+  pointer-events: none;    /* Allows clicking through the empty space */
 }
 
+/* Ensures the buttons inside remain clickable */
+.nav-links {
+  pointer-events: auto;
+}
 /* This targets the actual oval shape seen in your screenshot */
 .nav-links {
   background: rgba(30, 41, 59, 0.9); /* Dark semi-transparent color */
@@ -675,6 +689,7 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
+
 
 
 
