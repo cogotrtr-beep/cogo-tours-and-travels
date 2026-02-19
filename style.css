@@ -122,8 +122,6 @@ body {
 }
 
 /* NAVIGATION - INITIAL STATE */
-.top-navbar {
-  position: absolute; 
   top: 15px; 
   width: 100%; 
   display: flex; 
@@ -724,6 +722,11 @@ input, textarea {
 .book-mini-btn:hover {
   background: #128c7e;
   transform: scale(1.02);
+}
+/* Add this at the very end of your CSS file */
+.top-navbar {
+  position: fixed !important;
+  top: 20px;
 }
 
 
