@@ -719,12 +719,28 @@ input, textarea {
   background: #128c7e;
   transform: scale(1.02);
 }
-/* Add this at the very end of your CSS file */
+/* --- FIX: Tab on Image & Full Screen Picture --- */
+
 .top-navbar {
   position: fixed !important;
-  top: 20px;
+  top: 30px !important; /* This lowers the tab onto the image */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
 }
 
+.hero {
+  height: 100vh !important; /* Makes the pic fill the full screen */
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-img {
+  height: 100% !important;
+  object-fit: cover !important; /* Stops stretching/distortion */
+}
 
 
 
