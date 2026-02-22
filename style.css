@@ -513,3 +513,12 @@ transition: transform 0.2s;
 .stat-box { padding: 14px 18px; min-width: 85px; }
 .stat-box strong { font-size: 1.3rem; }
 }
+
+/* --- FROSTED GLASS TAB FIX --- */
+
+.nav-links {
+background: rgba(255, 255, 255, 0.1) !important;
+backdrop-filter: blur(10px) !important;
+-webkit-backdrop-filter: blur(10px) !important;
+border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
