@@ -593,3 +593,51 @@ body {
     .stat-box { padding: 14px 18px; min-width: 85px; }
     .stat-box strong { font-size: 1.3rem; }
 }
+/* --- NEW BENTO & FEATURED DEVELOPMENTS --- */
+
+/* 1. Logic for the Bento Grid (Desktop only) */
+@media (min-width: 1024px) {
+    .bento-layout {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 240px; /* Controls the height of the grid rows */
+        gap: 25px;
+    }
+
+    .tour-card.featured {
+        grid-column: span 2; /* Makes the card 2 columns wide */
+        grid-row: span 2;    /* Makes the card 2 rows tall */
+    }
+
+    .tour-card.featured img {
+        height: 320px; /* Scales the image for the larger card */
+    }
+}
+
+/* 2. Style for the 'Best Seller' badge */
+.card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--brand), var(--brand2));
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 3. Extra breathing room for the featured card text */
+.tour-card.featured .tour-info h4 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.tour-card.featured .tour-info p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
