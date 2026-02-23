@@ -1,7 +1,7 @@
 /* ============================================
 COGO TOURS & TRAVELS — Full Premium Stylesheet
 ============================================ */
-
+/* --- VARIABLES & RESET --- */
 :root {
   --brand: #ff9800;
   --brand2: #ff5a00;
@@ -16,23 +16,20 @@ COGO TOURS & TRAVELS — Full Premium Stylesheet
   --shadow: 0 4px 20px rgba(0,0,0,0.08);
   --radius: 12px;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--light-bg);
   color: var(--dark);
   padding-bottom: 70px;
 }
 
-/* --- 1. NAVIGATION (STUCK & CENTERED) --- */
+/* --- 1. NAVIGATION (FIXED OVAL) --- */
 .top-navbar {
   position: fixed;
   top: 12px;
@@ -42,51 +39,44 @@ body {
   justify-content: center;
   z-index: 9999;
 }
-
 .nav-links {
   background: rgba(15, 23, 42, 0.75) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   padding: 9px 22px;
   border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.2) !important;
+  border: 1px solid rgba(255,255,255,0.12);
   display: flex;
   align-items: center;
   gap: 4px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-/* --- ORANGE FONT WITH WHITE OUTLINE (Home, Tours, About, Cab) --- */
+/* --- FONT FIX: Orange with White Outline --- */
 .nav-links a:not(.enquire-btn) {
   color: #ff9800 !important;
-  text-decoration: none !important;
+  text-decoration: none;
   font-size: 0.82rem;
-  font-weight: 800 !important; /* Bold makes the outline look sharper */
+  font-weight: 800 !important;
   padding: 5px 12px;
   border-radius: 30px;
   transition: 0.25s;
-  
-  /* The White Outline Effect */
-  text-shadow: 
-    -1px -1px 0 #fff,  
-     1px -1px 0 #fff,
-    -1px  1px 0 #fff,
-     1px  1px 0 #fff !important;
+  /* The White Outline */
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff !important;
 }
 
-/* --- ENQUIRE BUTTON (Solid White Font, No Outline) --- */
 .nav-links a.enquire-btn {
   background: var(--brand) !important;
   color: white !important;
-  margin-left: 6px;
   padding: 6px 18px !important;
   border-radius: 20px !important;
+  margin-left: 6px;
   text-shadow: none !important;
-  font-weight: 600 !important;
   text-decoration: none;
+  font-weight: 600;
 }
 
-/* --- 2. HERO SECTION --- */
+/* --- 2. HERO --- */
 .hero {
   position: relative;
   width: 100%;
@@ -98,7 +88,6 @@ body {
   overflow: hidden;
   background: var(--dark);
 }
-
 .hero-img {
   position: absolute;
   inset: 0;
@@ -108,70 +97,70 @@ body {
   z-index: 1;
   opacity: 0.75;
 }
-
 .hero-tagline {
   position: relative;
   z-index: 3;
   text-align: center;
   padding-bottom: 70px;
   color: white;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
-/* --- 3. TOURS GRID & CARDS (Restored full logic) --- */
+/* --- 3. TOURS GRID (RESTORED 3-COLUMN LOGIC) --- */
 .tour-grid {
   display: grid;
   gap: 30px;
   padding: 20px;
   grid-template-columns: 1fr;
 }
-
 @media (min-width: 768px) { .tour-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .tour-grid { grid-template-columns: repeat(3, 1fr); max-width: 1200px; margin: 0 auto; } }
+@media (min-width: 1024px) { 
+  .tour-grid { 
+    grid-template-columns: repeat(3, 1fr); 
+    max-width: 1200px; 
+    margin: 0 auto; 
+  } 
+}
 
 .tour-card {
   background: white;
-  border-radius: 15px;
+  border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  height: 100%;
-  border: 1px solid var(--border);
   transition: transform 0.3s;
 }
-
 .tour-card:hover { transform: translateY(-10px); }
+.tour-card img { width: 100%; height: 200px; object-fit: cover; }
+.tour-info { padding: 16px; flex-grow: 1; }
 
-.tour-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-/* --- 4. TAGS & SPECIAL STYLES --- */
+/* --- 4. SPECIAL TAGS (INTERNATIONAL/PILGRIM) --- */
 .tag {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 20px;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
 }
-
 .tag.international { background: #fee2e2; color: #b91c1c; }
 .tag.pilgrim { background: #fef9c3; color: #a16207; }
 
-/* --- 5. CAB SECTION --- */
-.cab-section { padding: 60px 20px; background: #fffbeb; }
-.cab-container {
-  max-width: 600px;
-  margin: 0 auto;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
+/* --- 5. ABOUT SECTION STATS --- */
+.about-stats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 30px;
 }
+.stat-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 18px 24px;
+}
+.stat-box strong { display: block; font-size: 1.6rem; color: var(--brand); }
 
 /* --- 6. FOOTER & MOBILE BAR --- */
 .main-footer {
@@ -180,7 +169,6 @@ body {
   padding: 40px 20px 120px;
   text-align: center;
 }
-
 .mobile-action-bar {
   position: fixed;
   bottom: 12px;
@@ -190,7 +178,6 @@ body {
   gap: 10px;
   z-index: 10000;
 }
-
 .mobile-action-bar a {
   flex: 1;
   text-align: center;
@@ -200,22 +187,5 @@ body {
   font-weight: 700;
   border-radius: 50px;
 }
-
-.mobile-call { background: linear-gradient(135deg, #0f172a, #1e293b); }
-.mobile-wa { background: linear-gradient(135deg, #25d366, #128c7e); }
-
-/* --- BACK TO TOP --- */
-.back-to-top {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 45px;
-  height: 45px;
-  background: var(--brand);
-  color: white;
-  border-radius: 50%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
+.mobile-call { background: #1e293b; }
+.mobile-wa { background: #25d366; }
