@@ -522,3 +522,8 @@ backdrop-filter: blur(10px) !important;
 -webkit-backdrop-filter: blur(20px) !important;
 border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
+/* Specifically target the 'Home' link and change its font color to Orange */
+.nav-links a[href="#home"] {
+  color: #ff9800 !important;
+  font-weight: 600; /* Makes it a bit bolder so the orange stands out better */
+}
