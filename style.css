@@ -522,7 +522,7 @@ backdrop-filter: blur(10px) !important;
 -webkit-backdrop-filter: blur(20px) !important;
 border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
-/* --- THE MASTER COLOR FIX --- */
+/* --- THE MASTER COLOR FIX (CORRECTED) --- */
 
 /* 1. This makes Home, Tours, and About ORANGE */
 .nav-links a {
@@ -532,7 +532,8 @@ border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 /* 2. This specifically forces the Enquire Button text to be WHITE */
-.nav-links a.enquire-btn {
+/* Note: Changed .enquire-btn to .nav-enquire to match your HTML */
+.nav-links a.nav-enquire {
   color: #ffffff !important; 
   background-color: #ff9800 !important;
   padding: 6px 18px !important;
