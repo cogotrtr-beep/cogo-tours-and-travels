@@ -41,7 +41,6 @@
       <h2 class="section-title">🚖 Book a Cab</h2>
       <p class="section-sub">Chennai Local & Outstation · Best Rates Guaranteed</p>
 
-```
   <form class="cab-form" id="cabForm">
     <div class="form-row">
       <input type="text" id="custName" placeholder="Your Name" required>
@@ -82,198 +81,116 @@
   </form>
   <p class="response-note">⚡ Average response time: 2 minutes</p>
 </div>
-```
 
   </section>
-
-  <!-- TOURS -->
 
   <section id="tours" class="tours-section">
-    <div class="container">
-      <div class="section-label">Handpicked For You</div>
-      <h2 class="section-title">Our Exclusive Tour Packages</h2>
+  <div class="container">
+    <div class="section-label">Handpicked For You</div>
+    <h2 class="section-title">Our Exclusive Tour Packages</h2>
 
-```
-  <div class="tour-nav-bar">
-    <a href="#popular" class="topic-btn">⭐ Popular</a>
-    <a href="#chennai" class="topic-btn">📍 Chennai</a>
-    <a href="#domestic" class="topic-btn">🇮🇳 Domestic</a>
-    <a href="#international" class="topic-btn">🌍 International</a>
-    <a href="#pilgrim" class="topic-btn">🙏 Pilgrim</a>
+    <div class="tour-nav-bar">
+      <a href="#popular" class="topic-btn">⭐ Popular</a>
+      <a href="#chennai" class="topic-btn">📍 Chennai</a>
+      <a href="#domestic" class="topic-btn">🇮🇳 Domestic</a>
+      <a href="#international" class="topic-btn">🌍 International</a>
+      <a href="#pilgrim" class="topic-btn">🙏 Pilgrim</a>
+    </div>
+
+    <h3 id="popular" class="category-title">⭐ Popular Picks</h3>
+    <div class="tour-grid bento-layout">
+      <div class="tour-card featured">
+        <div class="card-badge">Best Seller</div>
+        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&h=600&fit=crop" alt="Kerala">
+        <div class="tour-info">
+          <span class="tag">Domestic</span>
+          <h4>Kerala Backwaters & Hill Stations</h4>
+          <p>Munnar hills, Alleppey houseboats, and scenic backwaters. A complete luxury experience in God's Own Country.</p>
+          <div class="tour-meta">
+            <span>⏱️ 4 Days</span>
+            <span class="price">₹12,500</span>
+          </div>
+          <a href="https://wa.me/919884066830?text=Inquiry: Kerala Package" class="book-mini-btn">Enquire on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1590050752117-23a9d7fc217c?w=600&h=400&fit=crop" alt="Pondicherry">
+        <div class="tour-info">
+          <span class="tag">Domestic</span>
+          <h4>Pondicherry Coastal</h4>
+          <p>Explore the French Colony, Auroville, and Paradise Beach.</p>
+          <div class="tour-meta">
+            <span>⏱️ 2 Days</span>
+            <span class="price">₹5,500</span>
+          </div>
+          <a href="https://wa.me/919884066830?text=Inquiry: Pondicherry" class="book-mini-btn">Enquire Now</a>
+        </div>
+      </div>
+
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1621259599593-9c88467f3942?w=600&h=400&fit=crop" alt="Tirupati">
+        <div class="tour-info">
+          <span class="tag pilgrim">Pilgrim</span>
+          <h4>Tirupati Darshan</h4>
+          <p>Confirmed Darshan assistance and transport from Chennai.</p>
+          <div class="tour-meta">
+            <span>⏱️ 1 Day</span>
+            <span class="price">₹5,800</span>
+          </div>
+          <a href="https://wa.me/919884066830?text=Inquiry: Tirupati" class="book-mini-btn">Enquire Now</a>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="chennai" class="category-title">📍 Chennai Local Sightseeing</h3>
+    <div class="tour-grid">
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop" alt="Chennai City">
+        <div class="tour-info">
+          <span class="tag">Local</span>
+          <h4>Chennai City Wonders</h4>
+          <div class="tour-meta">
+            <span>⏱️ 10 Hours</span>
+            <span class="price">₹2,800</span>
+          </div>
+          <a href="https://wa.me/919884066830?text=Inquiry: Chennai City Wonders" class="book-mini-btn">Enquire Now</a>
+        </div>
+      </div>
+      </div>
+
+    <h3 id="international" class="category-title">🌍 International Tours</h3>
+    <div class="tour-grid bento-layout">
+      <div class="tour-card featured">
+        <img src="https://images.unsplash.com/photo-1525625239514-4641b3c9ef5e?w=800&h=600&fit=crop" alt="Thailand">
+        <div class="tour-info">
+          <span class="tag international">International</span>
+          <h4>Amazing Thailand: Bangkok & Pattaya</h4>
+          <p>The perfect blend of city life and tropical paradise beaches.</p>
+          <div class="tour-meta">
+            <span>⏱️ 5 Days</span>
+            <span class="price">₹35,000</span>
+          </div>
+          <a href="https://wa.me/919884066830?text=Inquiry: Thailand Package" class="book-mini-btn">Enquire Now</a>
+        </div>
+      </div>
+
+      <div class="tour-card">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop" alt="Dubai">
+        <div class="tour-info">
+          <span class="tag international">International</span>
+          <h4>Dubai Shopping Fest</h4>
+          <div class="tour-meta">
+            <span>⏱️ 5 Days</span>
+            <span class="price">₹48,500</span>
+          </div>
+          <a href="https://wa.me/919884066830?text=Inquiry: Dubai Package" class="book-mini-btn">Enquire Now</a>
+        </div>
+      </div>
+    </div>
+    
   </div>
-
-  <!-- Popular -->
-  <h3 id="popular" class="category-title">⭐ Popular Picks</h3>
-  <div class="tour-grid">
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&h=400&fit=crop" alt="Kerala">
-      <div class="tour-info">
-        <span class="tag">Domestic</span>
-        <h4>Kerala Backwaters</h4>
-        <p>Munnar hills, Alleppey houseboats, and scenic backwaters.</p>
-        <div class="tour-meta">
-          <span>⏱️ 4 Days</span>
-          <span class="price">₹12,500</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Kerala Package" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1590050752117-23a9d7fc217c?w=600&h=400&fit=crop" alt="Pondicherry">
-      <div class="tour-info">
-        <span class="tag">Domestic</span>
-        <h4>Pondicherry Coastal</h4>
-        <p>Explore the French Colony, Auroville, and Paradise Beach.</p>
-        <div class="tour-meta">
-          <span>⏱️ 2 Days</span>
-          <span class="price">₹5,500</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Pondicherry" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1621259599593-9c88467f3942?w=600&h=400&fit=crop" alt="Tirupati">
-      <div class="tour-info">
-        <span class="tag pilgrim">Pilgrim</span>
-        <h4>Tirupati Darshan</h4>
-        <p>Confirmed Darshan assistance and round-trip transport from Chennai.</p>
-        <div class="tour-meta">
-          <span>⏱️ 1 Day</span>
-          <span class="price">₹5,800</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Tirupati" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Chennai -->
-  <h3 id="chennai" class="category-title">📍 Chennai Local Sightseeing</h3>
-  <div class="tour-grid">
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop" alt="Chennai City">
-      <div class="tour-info">
-        <span class="tag">Local</span>
-        <h4>Chennai City Wonders</h4>
-        <p>Marina Beach, Kapaleeshwarar Temple, and Museum tour.</p>
-        <div class="tour-meta">
-          <span>⏱️ 10 Hours</span>
-          <span class="price">₹2,800</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Chennai City Wonders" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1542732056-6268886367f0?w=600&h=400&fit=crop" alt="Mahabalipuram">
-      <div class="tour-info">
-        <span class="tag">Day Trip</span>
-        <h4>Mahabalipuram Heritage</h4>
-        <p>Shore Temple, Five Rathas, and scenic ECR drive.</p>
-        <div class="tour-meta">
-          <span>⏱️ 12 Hours</span>
-          <span class="price">₹3,500</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Mahabalipuram Day Trip" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1623343354452-921443423f0e?w=600&h=400&fit=crop" alt="Spiritual Chennai">
-      <div class="tour-info">
-        <span class="tag">Spiritual</span>
-        <h4>Mylapore Spiritual Walk</h4>
-        <p>Explore Kapaleeshwarar and Santhome Cathedral.</p>
-        <div class="tour-meta">
-          <span>⏱️ 6 Hours</span>
-          <span class="price">₹1,800</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Mylapore Spiritual Tour" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Domestic -->
-  <h3 id="domestic" class="category-title">🇮🇳 Domestic Getaways</h3>
-  <div class="tour-grid">
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1548013146-72479768bbf4?w=600&h=400&fit=crop" alt="Varanasi">
-      <div class="tour-info">
-        <span class="tag">Domestic</span>
-        <h4>Spiritual Kashi / Varanasi</h4>
-        <p>Holy Ganges Aarti, Temple tours, and heritage walks in the oldest city.</p>
-        <div class="tour-meta">
-          <span>⏱️ 3 Days</span>
-          <span class="price">₹14,999</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Varanasi Package" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=600&h=400&fit=crop" alt="Ooty">
-      <div class="tour-info">
-        <span class="tag">Domestic</span>
-        <h4>Ooty & Coonoor Hills</h4>
-        <p>Tea gardens, Botanical gardens, and Pykara lake sightseeing.</p>
-        <div class="tour-meta">
-          <span>⏱️ 3 Days</span>
-          <span class="price">₹7,500</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Ooty Package" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- International -->
-  <h3 id="international" class="category-title">🌍 International Tours</h3>
-  <div class="tour-grid">
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1525625239514-4641b3c9ef5e?w=600&h=400&fit=crop" alt="Thailand">
-      <div class="tour-info">
-        <span class="tag international">International</span>
-        <h4>Amazing Thailand</h4>
-        <p>Bangkok city life and the beautiful beaches of Pattaya.</p>
-        <div class="tour-meta">
-          <span>⏱️ 5 Days</span>
-          <span class="price">₹35,000</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Thailand Package" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop" alt="Dubai">
-      <div class="tour-info">
-        <span class="tag international">International</span>
-        <h4>Dubai Shopping Fest</h4>
-        <p>Burj Khalifa visit, Desert Safari, and Gold Souk shopping.</p>
-        <div class="tour-meta">
-          <span>⏱️ 5 Days</span>
-          <span class="price">₹48,500</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Dubai Package" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pilgrim -->
-  <h3 id="pilgrim" class="category-title">🙏 Spiritual & Pilgrim Packages</h3>
-  <div class="tour-grid">
-    <div class="tour-card">
-      <img src="https://images.unsplash.com/photo-1605335198031-279269be9992?w=600&h=400&fit=crop" alt="Madurai">
-      <div class="tour-info">
-        <span class="tag pilgrim">Pilgrim</span>
-        <h4>Southern Temple Tour</h4>
-        <p>Madurai Meenakshi Amman, Rameshwaram, and Kanyakumari.</p>
-        <div class="tour-meta">
-          <span>⏱️ 4 Days</span>
-          <span class="price">₹11,000</span>
-        </div>
-        <a href="https://wa.me/919884066830?text=Inquiry: Southern Temple Tour" class="book-mini-btn">Enquire Now</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-```
-
-  </section>
+</section>
 
   <!-- ABOUT -->
 
