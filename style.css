@@ -522,24 +522,25 @@ backdrop-filter: blur(10px) !important;
 -webkit-backdrop-filter: blur(20px) !important;
 border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
-/* 1. Target only Home, Tours, and About - Make them ORANGE */
-.nav-links a:not(.enquire-btn) {
-  color: #ff9800 !important;
-  font-weight: 600;
+/* 1. Target Home, Tours, and About - Make them ORANGE */
+.nav-links a {
+  color: #ff9800 !important; /* This is your brand orange */
   text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-/* 2. Target the Enquire Button specifically - Keep font WHITE */
+/* 2. Target the Enquire Button specifically - Make text WHITE */
 .nav-links a.enquire-btn {
-  background-color: #ff9800 !important; /* Button background remains orange */
-  color: #ffffff !important;           /* FONT IS FORCED TO BE WHITE */
+  background-color: #ff9800 !important; /* Background is Orange */
+  color: #ffffff !important;           /* TEXT IS WHITE */
   padding: 6px 18px;
   border-radius: 20px;
-  font-weight: 600;
+  display: inline-block;
+  margin-left: 10px;
 }
 
-/* 3. Hover effect: Links turn white when you point at them */
+/* 3. Optional: Make links turn white when you hover over them */
 .nav-links a:not(.enquire-btn):hover {
   color: #ffffff !important;
-  transition: 0.3s;
 }
