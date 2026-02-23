@@ -1,556 +1,221 @@
 /* ============================================
-COGO TOURS & TRAVELS — Premium Stylesheet
-Clean, single-definition, mobile-first
+COGO TOURS & TRAVELS — Full Premium Stylesheet
 ============================================ */
-/* --- VARIABLES & RESET --- */
+
 :root {
---brand: #ff9800;
---brand2: #ff5a00;
---dark: #0f172a;
---dark2: #1e293b;
---text: #475569;
---light-bg: #f8fafc;
---border: #e2e8f0;
---white: #ffffff;
---wa-green: #25d366;
---wa-dark: #128c7e;
---shadow: 0 4px 20px rgba(0,0,0,0.08);
---radius: 12px;
+  --brand: #ff9800;
+  --brand2: #ff5a00;
+  --dark: #0f172a;
+  --dark2: #1e293b;
+  --text: #475569;
+  --light-bg: #f8fafc;
+  --border: #e2e8f0;
+  --white: #ffffff;
+  --wa-green: #25d366;
+  --wa-dark: #128c7e;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --radius: 12px;
 }
+
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+
 html { scroll-behavior: smooth; }
+
 body {
-background: var(--light-bg);
-color: var(--dark);
-padding-bottom: 70px;
+  background: var(--light-bg);
+  color: var(--dark);
+  padding-bottom: 70px;
 }
-/* --- NAVIGATION --- */
+
+/* --- 1. NAVIGATION (STUCK & CENTERED) --- */
 .top-navbar {
-position: fixed;
-top: 12px;
-left: 0;
-right: 0;
-display: flex;
-justify-content: center;
-z-index: 9999;
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
 }
-.nav-links {
-background: rgba(15, 23, 42, 0.75);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-padding: 9px 22px;
-border-radius: 50px;
-border: 1px solid rgba(255,255,255,0.12);
-display: flex;
-align-items: center;
-gap: 4px;
-box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.nav-links a {
-color: white;
-text-decoration: none;
-font-size: 0.82rem;
-font-weight: 600;
-padding: 5px 12px;
-border-radius: 30px;
-transition: background 0.25s;
-}
-.nav-links a:hover { background: rgba(255,255,255,0.12); }
-.nav-enquire {
-background: var(--brand) !important;
-color: white !important;
-margin-left: 6px;
-}
-.nav-enquire:hover { background: var(--brand2) !important; }
-/* --- HERO --- */
-.hero {
-position: relative;
-width: 100%;
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-items: center;
-overflow: hidden;
-background: var(--dark);
-}
-.hero-img {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-object-fit: cover;
-z-index: 1;
-opacity: 0.75;
-}
-.hero-overlay {
-position: absolute;
-inset: 0;
-background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-z-index: 2;
-}
-.hero-tagline {
-position: relative;
-z-index: 3;
-text-align: center;
-padding-bottom: 70px;
-}
-.brand-name {
-font-family: 'Playfair Display', serif;
-font-size: 1.6rem;
-color: var(--brand);
-letter-spacing: 3px;
-text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-}
-.tagline-text {
-font-size: 1rem;
-color: rgba(255,255,255,0.9);
-font-weight: 400;
-letter-spacing: 1px;
-margin-top: 6px;
-text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-}
-/* --- SHARED SECTION STYLES --- */
-.section-label {
-font-size: 0.7rem;
-font-weight: 700;
-text-transform: uppercase;
-letter-spacing: 2px;
-color: var(--brand2);
-margin-bottom: 6px;
-}
-.section-title {
-font-size: 1.5rem;
-font-weight: 800;
-color: var(--dark);
-margin-bottom: 6px;
-}
-.section-title.light { color: white; }
-.section-sub {
-font-size: 0.82rem;
-color: var(--text);
-margin-bottom: 20px;
-}
-/* --- CAB BOOKING SECTION --- */
-.cab-section {
-padding: 40px 16px;
-background: #fffbeb;
-border-bottom: 2px solid #fef3c7;
-}
-.cab-container {
-max-width: 560px;
-margin: 0 auto;
-background: var(--white);
-padding: 24px 20px;
-border-radius: 18px;
-box-shadow: 0 8px 30px rgba(0,0,0,0.07);
-text-align: center;
-}
-.cab-form {
-display: flex;
-flex-direction: column;
-gap: 12px;
-margin-top: 16px;
-text-align: left;
-}
-.form-row {
-display: flex;
-gap: 10px;
-}
-.form-row input,
-.form-row select {
-flex: 1;
-padding: 11px 13px;
-border: 1px solid var(--border);
-border-radius: 9px;
-font-size: 0.85rem;
-font-family: inherit;
-color: var(--dark);
-background: var(--light-bg);
-transition: border 0.2s;
-}
-.form-row input:focus,
-.form-row select:focus {
-outline: none;
-border-color: var(--brand);
-background: white;
-}
-.input-group {
-display: flex;
-flex-direction: column;
-flex: 1;
-gap: 4px;
-}
-.input-group label {
-font-size: 0.68rem;
-color: #94a3b8;
-font-weight: 600;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-padding-left: 3px;
-}
-.cab-btn {
-background: linear-gradient(135deg, var(--brand), var(--brand2));
-color: white;
-border: none;
-padding: 14px;
-border-radius: 10px;
-font-weight: 700;
-font-size: 0.9rem;
-cursor: pointer;
-transition: transform 0.2s, box-shadow 0.2s;
-box-shadow: 0 4px 15px rgba(255,152,0,0.35);
-}
-.cab-btn:hover {
-transform: translateY(-2px);
-box-shadow: 0 6px 20px rgba(255,152,0,0.45);
-}
-.response-note {
-font-size: 0.72rem;
-color: #94a3b8;
-text-align: center;
-margin-top: 10px;
-}
-/* --- TOURS SECTION --- */
-.tours-section {
-padding: 40px 16px;
-}
-.container {
-max-width: 1160px;
-margin: 0 auto;
-text-align: center;
-}
-.tour-nav-bar {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 8px;
-margin: 16px 0 30px;
-}
-.topic-btn {
-background: var(--white);
-color: var(--dark2);
-padding: 8px 18px;
-border-radius: 50px;
-text-decoration: none;
-font-weight: 600;
-font-size: 0.8rem;
-border: 1px solid var(--border);
-transition: all 0.25s;
-}
-.topic-btn:hover {
-background: var(--dark);
-color: white;
-transform: translateY(-2px);
-}
-.category-title {
-font-size: 1.1rem;
-font-weight: 700;
-color: var(--dark2);
-text-align: left;
-margin: 30px 0 16px;
-padding-left: 4px;
-border-left: 4px solid var(--brand);
-padding-left: 12px;
-}
-/* --- TOUR GRID --- */
-.tour-grid {
-display: grid;
-grid-template-columns: 1fr;
-gap: 20px;
-margin-bottom: 10px;
-text-align: left;
-}
-@media (min-width: 600px) {
-.tour-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1024px) {
-.tour-grid { grid-template-columns: repeat(3, 1fr); }
-}
-/* --- TOUR CARD --- */
-.tour-card {
-background: var(--white);
-border-radius: var(--radius);
-overflow: hidden;
-box-shadow: var(--shadow);
-border: 1px solid var(--border);
-display: flex;
-flex-direction: column;
-position: relative;
-transition: transform 0.25s, box-shadow 0.25s;
-}
-.tour-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 12px 30px rgba(0,0,0,0.13);
-}
-/* Gold glow on hover */
-.tour-card::before {
-content: "";
-position: absolute;
-inset: -2px;
-z-index: -1;
-border-radius: 14px;
-background: linear-gradient(45deg, var(--brand), #ffd700, var(--brand2));
-background-size: 300% 300%;
-animation: goldMove 3s ease infinite;
-opacity: 0;
-transition: opacity 0.3s;
-}
-.tour-card:hover::before { opacity: 1; }
-@keyframes goldMove {
-0%,100% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-}
-.tour-card img {
-width: 100%;
-height: 180px;
-object-fit: cover;
-display: block;
-}
-.tour-info {
-padding: 16px;
-display: flex;
-flex-direction: column;
-flex-grow: 1;
-}
-.tour-info h4 {
-font-size: 1rem;
-font-weight: 700;
-margin: 6px 0 5px;
-color: var(--dark);
-}
-.tour-info p {
-font-size: 0.82rem;
-color: var(--text);
-line-height: 1.5;
-flex-grow: 1;
-}
-.tour-meta {
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-top: 1px solid var(--border);
-margin-top: 12px;
-padding-top: 10px;
-font-size: 0.8rem;
-color: var(--text);
-}
-.price {
-font-weight: 800;
-font-size: 0.95rem;
-color: var(--dark);
-}
-/* --- TAGS --- */
-.tag {
-display: inline-block;
-background: #f1f5f9;
-color: #475569;
-padding: 3px 10px;
-border-radius: 20px;
-font-size: 0.65rem;
-font-weight: 700;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-}
-.tag.international {
-background: #fee2e2;
-color: #b91c1c;
-}
-.tag.pilgrim {
-background: #fef9c3;
-color: #a16207;
-}
-/* --- ENQUIRE BUTTON --- */
-.book-mini-btn {
-display: block;
-text-align: center;
-background: var(--wa-green);
-color: white;
-padding: 11px;
-border-radius: 8px;
-text-decoration: none;
-font-weight: 700;
-font-size: 0.85rem;
-margin-top: 14px;
-transition: background 0.2s, transform 0.2s;
-}
-.book-mini-btn:hover {
-background: var(--wa-dark);
-transform: translateY(-2px);
-}
-/* --- ABOUT SECTION --- */
-.about-section {
-background: var(--dark);
-padding: 50px 20px;
-text-align: center;
-}
-.about-container {
-max-width: 700px;
-margin: 0 auto;
-}
-.about-section .section-label { color: var(--brand); }
-.about-text {
-font-size: 0.92rem;
-line-height: 1.8;
-color: #cbd5e1;
-margin-bottom: 14px;
-}
-.about-stats {
-display: flex;
-justify-content: center;
-gap: 16px;
-margin: 30px 0;
-flex-wrap: wrap;
-}
-.stat-box {
-background: rgba(255,255,255,0.05);
-border: 1px solid rgba(255,255,255,0.1);
-border-radius: 12px;
-padding: 18px 24px;
-min-width: 100px;
-}
-.stat-box strong {
-display: block;
-font-size: 1.6rem;
-color: var(--brand);
-font-weight: 800;
-}
-.stat-box span {
-font-size: 0.75rem;
-color: #94a3b8;
-}
-.seo-note {
-font-size: 0.75rem;
-color: #64748b;
-margin-top: 20px;
-border-top: 1px solid rgba(255,255,255,0.08);
-padding-top: 16px;
-}
-/* --- FOOTER --- */
-.main-footer {
-background: #070d1a;
-color: white;
-padding: 36px 20px 120px;
-text-align: center;
-}
-.main-footer h3 {
-font-size: 1.4rem;
-margin-bottom: 10px;
-color: var(--brand);
-}
-.main-footer p {
-font-size: 0.85rem;
-opacity: 0.8;
-margin-bottom: 6px;
-}
-.footer-copy {
-font-size: 0.72rem;
-opacity: 0.4;
-margin-top: 16px;
-}
-/* --- MOBILE ACTION BAR --- */
-.mobile-action-bar {
-position: fixed;
-bottom: 12px;
-left: 5%;
-right: 5%;
-display: flex;
-gap: 10px;
-z-index: 10000;
-}
-.mobile-action-bar a {
-flex: 1;
-text-align: center;
-padding: 13px;
-color: white;
-text-decoration: none;
-font-weight: 700;
-font-size: 0.88rem;
-border-radius: 50px;
-box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-transition: transform 0.2s;
-}
-.mobile-action-bar a:hover { transform: scale(1.03); }
-.mobile-call { background: linear-gradient(135deg, #0f172a, #1e293b); }
-.mobile-wa { background: linear-gradient(135deg, #25d366, #128c7e); }
-/* --- BACK TO TOP --- */
-.back-to-top {
-position: fixed;
-bottom: 80px;
-right: 18px;
-width: 42px;
-height: 42px;
-background: var(--brand);
-color: white;
-border: none;
-border-radius: 50%;
-font-size: 1.1rem;
-cursor: pointer;
-display: none;
-align-items: center;
-justify-content: center;
-z-index: 1000;
-box-shadow: 0 4px 14px rgba(255,152,0,0.4);
-transition: transform 0.2s;
-}
-.back-to-top:hover { transform: translateY(-3px); }
-/* --- MOBILE ADJUSTMENTS --- */
-@media (max-width: 480px) {
-.nav-links { padding: 7px 14px; gap: 2px; }
-.nav-links a { font-size: 0.75rem; padding: 4px 8px; }
-.brand-name { font-size: 1.2rem; letter-spacing: 2px; }
-.tagline-text { font-size: 0.85rem; }
-.hero-tagline { padding-bottom: 90px; }
-.cab-container { padding: 20px 14px; }
-.form-row { flex-direction: column; }
-.section-title { font-size: 1.25rem; }
-.about-stats { gap: 10px; }
-.stat-box { padding: 14px 18px; min-width: 85px; }
-.stat-box strong { font-size: 1.3rem; }
-}
-
-/* --- FROSTED GLASS TAB FIX --- */
 
 .nav-links {
-background: rgba(255, 255, 255, 0.1) !important;
-backdrop-filter: blur(10px) !important;
--webkit-backdrop-filter: blur(20px) !important;
-border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 9px 22px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
-/* --- THE MASTER COLOR FIX (CORRECTED) --- */
 
-/* 1. This makes Home, Tours, and About ORANGE */
-.nav-links a {
-  color: #ff9800 !important; 
-  font-weight: 600 !important;
+/* --- ORANGE FONT WITH WHITE OUTLINE (Home, Tours, About, Cab) --- */
+.nav-links a:not(.enquire-btn) {
+  color: #ff9800 !important;
   text-decoration: none !important;
+  font-size: 0.82rem;
+  font-weight: 800 !important; /* Bold makes the outline look sharper */
+  padding: 5px 12px;
+  border-radius: 30px;
+  transition: 0.25s;
+  
+  /* The White Outline Effect */
+  text-shadow: 
+    -1px -1px 0 #fff,  
+     1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff !important;
 }
 
-/* 2. This specifically forces the Enquire Button text to be WHITE */
-/* Note: Changed .enquire-btn to .nav-enquire to match your HTML */
-.nav-links a.nav-enquire {
-  color: #ffffff !important; 
-  background-color: #ff9800 !important;
+/* --- ENQUIRE BUTTON (Solid White Font, No Outline) --- */
+.nav-links a.enquire-btn {
+  background: var(--brand) !important;
+  color: white !important;
+  margin-left: 6px;
   padding: 6px 18px !important;
   border-radius: 20px !important;
-}
-/* --- MAKING THE OVAL NAV STICKY --- */
-.nav-container, .navbar, .header-nav { 
-  position: fixed;      /* This pins the menu to the top */
-  top: 20px;            /* Gives it a little space from the very top edge */
-  left: 50%;
-  transform: translateX(-50%); /* Centers the oval bar */
-  z-index: 9999;        /* Ensures it stays above all images and cards */
-  width: auto;
+  text-shadow: none !important;
+  font-weight: 600 !important;
+  text-decoration: none;
 }
 
-/* This removes the white space at the very top */
-body {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+/* --- 2. HERO SECTION --- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.hero-tagline {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding-bottom: 70px;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+/* --- 3. TOURS GRID & CARDS (Restored full logic) --- */
+.tour-grid {
+  display: grid;
+  gap: 30px;
+  padding: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) { .tour-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .tour-grid { grid-template-columns: repeat(3, 1fr); max-width: 1200px; margin: 0 auto; } }
+
+.tour-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--border);
+  transition: transform 0.3s;
+}
+
+.tour-card:hover { transform: translateY(-10px); }
+
+.tour-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* --- 4. TAGS & SPECIAL STYLES --- */
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.tag.international { background: #fee2e2; color: #b91c1c; }
+.tag.pilgrim { background: #fef9c3; color: #a16207; }
+
+/* --- 5. CAB SECTION --- */
+.cab-section { padding: 60px 20px; background: #fffbeb; }
+.cab-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+/* --- 6. FOOTER & MOBILE BAR --- */
+.main-footer {
+  background: #070d1a;
+  color: white;
+  padding: 40px 20px 120px;
+  text-align: center;
+}
+
+.mobile-action-bar {
+  position: fixed;
+  bottom: 12px;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  gap: 10px;
+  z-index: 10000;
+}
+
+.mobile-action-bar a {
+  flex: 1;
+  text-align: center;
+  padding: 13px;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 50px;
+}
+
+.mobile-call { background: linear-gradient(135deg, #0f172a, #1e293b); }
+.mobile-wa { background: linear-gradient(135deg, #25d366, #128c7e); }
+
+/* --- BACK TO TOP --- */
+.back-to-top {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: var(--brand);
+  color: white;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
