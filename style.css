@@ -539,3 +539,18 @@ border: 1px solid rgba(255, 255, 255, 0.2) !important;
   padding: 6px 18px !important;
   border-radius: 20px !important;
 }
+/* --- MAKING THE OVAL NAV STICKY --- */
+.nav-container, .navbar, .header-nav { 
+  position: fixed;      /* This pins the menu to the top */
+  top: 20px;            /* Gives it a little space from the very top edge */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the oval bar */
+  z-index: 9999;        /* Ensures it stays above all images and cards */
+  width: auto;
+}
+
+/* This removes the white space at the very top */
+body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
