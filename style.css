@@ -522,14 +522,13 @@ backdrop-filter: blur(10px) !important;
 -webkit-backdrop-filter: blur(20px) !important;
 border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
-/* Change Home, Tours, and About font colors to Orange */
-.nav-links a:not(.enquire-btn) {
+/* 1. Make Home, Tours, and About font colors Orange */
+.nav-links a {
   color: #ff9800 !important;
-  font-weight: 600; /* Makes the text stand out clearly */
+  font-weight: 600;
 }
 
-/* Optional: Add a slight hover effect so they glow when touched */
-.nav-links a:not(.enquire-btn):hover {
+/* 2. FORCE the Enquire button to stay White font only */
+.nav-links a.enquire-btn {
   color: #ffffff !important;
-  transition: 0.3s;
 }
