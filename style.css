@@ -522,8 +522,14 @@ backdrop-filter: blur(10px) !important;
 -webkit-backdrop-filter: blur(20px) !important;
 border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
-/* Specifically target the 'Home' link and change its font color to Orange */
-.nav-links a[href="#home"] {
+/* Change Home, Tours, and About font colors to Orange */
+.nav-links a:not(.enquire-btn) {
   color: #ff9800 !important;
-  font-weight: 600; /* Makes it a bit bolder so the orange stands out better */
+  font-weight: 600; /* Makes the text stand out clearly */
+}
+
+/* Optional: Add a slight hover effect so they glow when touched */
+.nav-links a:not(.enquire-btn):hover {
+  color: #ffffff !important;
+  transition: 0.3s;
 }
