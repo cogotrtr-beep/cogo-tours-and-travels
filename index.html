@@ -1,250 +1,712 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cogo Tours & Travels | Your Journey Our Responsibility</title>
+  <title>Cogo Tours & Travels | Chennai</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- NAVIGATION -->
-
-  <nav class="top-navbar" id="mainNav">
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#book-cab">Cab</a>
-      <a href="#tours">Tours</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="nav-enquire">Enquire</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-
+  <!-- =========================
+       HERO / BANNER
+  ========================== -->
   <header class="hero" id="home">
     <img class="hero-img" src="cogoindian.jpeg" alt="Cogo Tours Banner" />
-    <div class="hero-overlay"></div>
+
+    <!-- ✅ Premium Top Nav -->
+    <nav class="top-navbar" id="mainNav">
+
+      <!-- ✅ Mobile Hamburger Button -->
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open Menu">☰</button>
+
+      <!-- ✅ Nav Links -->
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#tours">Tours</a>
+        <a href="#ser">Services</a>
+        <a href="#about">About</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact" class="nav-btn">Enquire</a>
+      </div>
+    </nav>
+
+    <!-- ✅ Banner tagline -->
     <div class="hero-tagline">
-      <p class="brand-name">COGO TOURS & TRAVELS</p>
-      <p class="tagline-text">Your Journey, Our Responsibility</p>
+      <p>Your Journey, Our Responsibility</p>
     </div>
+
+    <!-- ✅ Phone: Click to call -->
+    <a href="tel:+919884066830" class="call-link" aria-label="Call Cogo Tours">
+      📞 <span>Click to Call</span>
+    </a>
+
+    <!-- ✅ Plan (opens modal) -->
+    <button class="plan-btn-top" id="openEnquiryModal" type="button">
+      Plan Your Journey
+    </button>
   </header>
 
-  <!-- CAB BOOKING -->
+  <!-- =========================
+       TOURS
+  ========================== -->
+  <section id="tours" class="section section-light reveal">
+    <h2 class="center-title">Popular Tour Packages</h2>
+    <p class="section-sub">Browse packages by category and get a custom quote instantly.</p>
 
-  <section id="book-cab" class="cab-section">
-    <div class="cab-container">
-      <div class="section-label">⚡ Instant Booking</div>
-      <h2 class="section-title">🚖 Book a Cab</h2>
-      <p class="section-sub">Chennai Local & Outstation · Best Rates Guaranteed</p>
+    <!-- ✅ Filter Buttons -->
+    <div class="tour-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="domestic">Domestic</button>
+      <button class="filter-btn" data-filter="international">International</button>
+      <button class="filter-btn" data-filter="pilgrimage">Pilgrimage</button>
+      <button class="filter-btn" data-filter="honeymoon">Honeymoon</button>
 
-  <form class="cab-form" id="cabForm">
-    <div class="form-row">
-      <input type="text" id="custName" placeholder="Your Name" required>
-      <input type="tel" id="custPhone" placeholder="Mobile Number" required>
-    </div>
-    <div class="form-row">
-      <input type="text" id="pickup" placeholder="Pickup Location" required>
-      <input type="text" id="drop" placeholder="Drop / Destination" required>
-    </div>
-    <div class="form-row">
-      <div class="input-group">
-        <label for="pickupDate">Pickup Date</label>
-        <input type="date" id="pickupDate" required>
-      </div>
-      <div class="input-group">
-        <label for="pickupTime">Pickup Time</label>
-        <input type="time" id="pickupTime" required>
-      </div>
-    </div>
-    <div class="form-row">
-      <select id="vehicleType" required>
-        <option value="" disabled selected>Select Vehicle</option>
-        <option value="Sedan">Sedan (4 Seater)</option>
-        <option value="SUV">SUV (6 Seater)</option>
-        <option value="Innova">Innova Crysta</option>
-        <option value="Tempo">Tempo Traveler</option>
-        <option value="MiniBus">Mini Bus</option>
-      </select>
-      <select id="tripType" required>
-        <option value="" disabled selected>Select Package</option>
-        <option value="4hrs">Short Trip (4hrs / 40km)</option>
-        <option value="8hrs">Full Day (8hrs / 80km)</option>
-        <option value="Outstation">Outstation (Round Trip)</option>
-        <option value="Airport">Airport Transfer</option>
-      </select>
-    </div>
-    <button type="submit" class="cab-btn">Check Availability & WhatsApp Price</button>
-  </form>
-  <p class="response-note">⚡ Average response time: 2 minutes</p>
-</div>
-
-  </section>
-
-  <section id="tours" class="tours-section">
-  <div class="container">
-    <div class="section-label">Handpicked For You</div>
-    <h2 class="section-title">Our Exclusive Tour Packages</h2>
-
-    <div class="tour-nav-bar">
-      <a href="#popular" class="topic-btn">⭐ Popular</a>
-      <a href="#chennai" class="topic-btn">📍 Chennai</a>
-      <a href="#domestic" class="topic-btn">🇮🇳 Domestic</a>
-      <a href="#international" class="topic-btn">🌍 International</a>
-      <a href="#pilgrim" class="topic-btn">🙏 Pilgrim</a>
+      <!-- ✅ NEW -->
+      <button class="filter-btn" data-filter="chennai">Chennai Packages</button>
     </div>
 
-    <h3 id="popular" class="category-title">⭐ Popular Picks</h3>
-    <div class="tour-grid bento-layout">
-      <div class="tour-card featured">
-        <div class="card-badge">Best Seller</div>
-        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&h=600&fit=crop" alt="Kerala">
-        <div class="tour-info">
-          <span class="tag">Domestic</span>
-          <h4>Kerala Backwaters & Hill Stations</h4>
-          <p>Munnar hills, Alleppey houseboats, and scenic backwaters. A complete luxury experience in God's Own Country.</p>
-          <div class="tour-meta">
-            <span>⏱️ 4 Days</span>
-            <span class="price">₹12,500</span>
-          </div>
-          <a href="https://wa.me/919884066830?text=Inquiry: Kerala Package" class="book-mini-btn">Enquire on WhatsApp</a>
-        </div>
-      </div>
-
-      <div class="tour-card">
-        <img src="https://images.unsplash.com/photo-1590050752117-23a9d7fc217c?w=600&h=400&fit=crop" alt="Pondicherry">
-        <div class="tour-info">
-          <span class="tag">Domestic</span>
-          <h4>Pondicherry Coastal</h4>
-          <p>Explore the French Colony, Auroville, and Paradise Beach.</p>
-          <div class="tour-meta">
-            <span>⏱️ 2 Days</span>
-            <span class="price">₹5,500</span>
-          </div>
-          <a href="https://wa.me/919884066830?text=Inquiry: Pondicherry" class="book-mini-btn">Enquire Now</a>
-        </div>
-      </div>
-
-      <div class="tour-card">
-        <img src="https://images.unsplash.com/photo-1621259599593-9c88467f3942?w=600&h=400&fit=crop" alt="Tirupati">
-        <div class="tour-info">
-          <span class="tag pilgrim">Pilgrim</span>
-          <h4>Tirupati Darshan</h4>
-          <p>Confirmed Darshan assistance and transport from Chennai.</p>
-          <div class="tour-meta">
-            <span>⏱️ 1 Day</span>
-            <span class="price">₹5,800</span>
-          </div>
-          <a href="https://wa.me/919884066830?text=Inquiry: Tirupati" class="book-mini-btn">Enquire Now</a>
-        </div>
+    <!-- ✅ Chennai Packages Mini Banner (only shows on Chennai filter) -->
+    <div class="tour-card chennai-banner" data-category="chennai">
+      <div class="chennai-banner-inner">
+        <h3>Chennai One Day Cab Packages 🚖</h3>
+        <p>City tours, ECR trips, theme parks & pilgrim routes — fully planned with comfortable cab service.</p>
+        <p class="banner-note">
+          Spot coverage depends on guest cooperation to follow timings. Traffic/crowd/weather may affect the route.
+        </p>
       </div>
     </div>
 
-    <h3 id="chennai" class="category-title">📍 Chennai Local Sightseeing</h3>
+    <!-- ✅ Tour Cards Grid -->
     <div class="tour-grid">
-      <div class="tour-card">
-        <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop" alt="Chennai City">
-        <div class="tour-info">
-          <span class="tag">Local</span>
-          <h4>Chennai City Wonders</h4>
-          <div class="tour-meta">
-            <span>⏱️ 10 Hours</span>
-            <span class="price">₹2,800</span>
+
+      <!-- ✅ Domestic: Ooty -->
+      <div class="tour-card" data-category="domestic">
+        <img src="cogo1.jpeg" alt="Ooty Tour Package">
+        <span class="badge price">₹ 9,999</span>
+        <span class="badge days">3D / 2N</span>
+
+        <div class="tour-card-body">
+          <h3>Ooty Escape</h3>
+          <p class="tour-meta">Hill Station • Sightseeing</p>
+
+          <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span class="score">4.8</span>
+            <span class="reviews">(120 reviews)</span>
           </div>
-          <a href="https://wa.me/919884066830?text=Inquiry: Chennai City Wonders" class="book-mini-btn">Enquire Now</a>
+
+          <ul>
+            <li>✔ Ooty Lake & Botanical Garden</li>
+            <li>✔ Tea factory + View points</li>
+            <li>✔ Best for family & couples</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-place="Ooty Escape"
+            data-days="3D/2N"
+            data-price="₹ 9,999"
+            type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Ooty Escape"
+            data-itinerary="Day 1: Chennai → Ooty | Check-in + Sightseeing\nDay 2: Botanical Garden + Doddabetta + Tea Factory\nDay 3: Ooty Lake + Shopping → Return"
+            type="button">View Details</button>
         </div>
-      </div>
       </div>
 
-    <h3 id="international" class="category-title">🌍 International Tours</h3>
-    <div class="tour-grid bento-layout">
-      <div class="tour-card featured">
-        <img src="https://images.unsplash.com/photo-1525625239514-4641b3c9ef5e?w=800&h=600&fit=crop" alt="Thailand">
-        <div class="tour-info">
-          <span class="tag international">International</span>
-          <h4>Amazing Thailand: Bangkok & Pattaya</h4>
-          <p>The perfect blend of city life and tropical paradise beaches.</p>
-          <div class="tour-meta">
-            <span>⏱️ 5 Days</span>
-            <span class="price">₹35,000</span>
-          </div>
-          <a href="https://wa.me/919884066830?text=Inquiry: Thailand Package" class="book-mini-btn">Enquire Now</a>
+      <!-- ✅ Domestic: Kerala -->
+      <div class="tour-card" data-category="domestic">
+        <img src="cogotours1.jpeg" alt="Kerala Tour Package">
+        <span class="badge price">₹ 18,999</span>
+        <span class="badge days">5D / 4N</span>
+
+        <div class="tour-card-body">
+          <h3>Kerala Delight</h3>
+          <p class="tour-meta">Nature • Houseboat</p>
+
+          <ul>
+            <li>✔ Munnar + Thekkady</li>
+            <li>✔ Alleppey Houseboat</li>
+            <li>✔ Premium stays available</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-place="Kerala Delight"
+            data-days="5D/4N"
+            data-price="₹ 18,999"
+            type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Kerala Delight"
+            data-itinerary="Day 1: Arrival + Local sightseeing\nDay 2: Munnar tour\nDay 3: Thekkady + Activities\nDay 4: Alleppey Houseboat\nDay 5: Return"
+            type="button">View Details</button>
         </div>
       </div>
 
-      <div class="tour-card">
-        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop" alt="Dubai">
-        <div class="tour-info">
-          <span class="tag international">International</span>
-          <h4>Dubai Shopping Fest</h4>
-          <div class="tour-meta">
-            <span>⏱️ 5 Days</span>
-            <span class="price">₹48,500</span>
-          </div>
-          <a href="https://wa.me/919884066830?text=Inquiry: Dubai Package" class="book-mini-btn">Enquire Now</a>
+      <!-- ✅ International: Dubai -->
+      <div class="tour-card" data-category="international">
+        <div class="tour-cover cover-international">International</div>
+        <span class="badge price">₹ 39,999</span>
+        <span class="badge days">4D / 3N</span>
+
+        <div class="tour-card-body">
+          <h3>Dubai Explorer</h3>
+          <p class="tour-meta">Visa Support • City Tour</p>
+
+          <ul>
+            <li>✔ Visa Assistance</li>
+            <li>✔ Desert Safari + City tour</li>
+            <li>✔ Best for family & groups</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-place="Dubai Explorer"
+            data-days="4D/3N"
+            data-price="₹ 39,999"
+            type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Dubai Explorer"
+            data-itinerary="Day 1: Arrival + Marina\nDay 2: City tour + Burj Khalifa\nDay 3: Desert safari\nDay 4: Shopping + Return"
+            type="button">View Details</button>
         </div>
       </div>
-    </div>
-    
-  </div>
-</section>
 
-  <!-- ABOUT -->
+      <!-- ✅ Pilgrimage -->
+      <div class="tour-card" data-category="pilgrimage">
+        <div class="tour-cover cover-pilgrimage">Pilgrimage</div>
+        <div class="ribbon">BEST SELLER</div>
+        <span class="badge price">₹ 12,999</span>
+        <span class="badge days">3D / 2N</span>
 
-  <section id="about" class="about-section">
-    <div class="about-container">
-      <span class="section-label">Our Story</span>
-      <h2 class="section-title light">About Cogo Tours & Travels</h2>
-      <p class="about-text">
-        Founded with a passion for discovery, <strong>Cogo Tours & Travels</strong> is more than just a travel agency — we are your dedicated travel partners. Based in Chennai, we specialize in crafting seamless journeys that turn dreams into lifelong memories.
-      </p>
-      <p class="about-text">
-        Whether it's a spiritual pilgrimage, a refreshing hill station escape, or an international adventure, our mission remains the same: <em>Your Journey, Our Responsibility.</em>
-      </p>
-      <div class="about-stats">
-        <div class="stat-box">
-          <strong>10+</strong>
-          <span>Years Exp.</span>
-        </div>
-        <div class="stat-box">
-          <strong>500+</strong>
-          <span>Tours Done</span>
-        </div>
-        <div class="stat-box">
-          <strong>100%</strong>
-          <span>Safe Travel</span>
+        <div class="tour-card-body">
+          <h3>Pilgrimage Special</h3>
+          <p class="tour-meta">Spiritual • VIP Darshan</p>
+
+          <ul>
+            <li>✔ South India Temples</li>
+            <li>✔ VIP Darshan options</li>
+            <li>✔ Comfortable travel support</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-place="Pilgrimage Special"
+            data-days="3D/2N"
+            data-price="₹ 12,999"
+            type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Pilgrimage Special"
+            data-itinerary="Day 1: Temple 1 + 2\nDay 2: Temple 3 + 4\nDay 3: Temple 5 + Return"
+            type="button">View Details</button>
         </div>
       </div>
-      <p class="seo-note">
-        Reliable Cab Services in Chennai · T. Nagar · Adyar · Velachery · OMR · Airport Pickups · Outstation Trips
-      </p>
+
+      <!-- ✅ Honeymoon -->
+      <div class="tour-card" data-category="honeymoon">
+        <div class="tour-cover cover-honeymoon">Honeymoon</div>
+        <span class="badge price">₹ 24,999</span>
+        <span class="badge days">4D / 3N</span>
+
+        <div class="tour-card-body">
+          <h3>Honeymoon Getaway</h3>
+          <p class="tour-meta">Romantic • Premium Stay</p>
+
+          <ul>
+            <li>✔ Candlelight arrangements</li>
+            <li>✔ Premium stays</li>
+            <li>✔ Tailored itinerary</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-place="Honeymoon Getaway"
+            data-days="4D/3N"
+            data-price="₹ 24,999"
+            type="button">WhatsApp Quote</button>
+
+          <button class="tour-btn details-btn"
+            data-title="Honeymoon Getaway"
+            data-itinerary="Day 1: Arrival + Romantic dinner\nDay 2: Sightseeing\nDay 3: Leisure day\nDay 4: Return"
+            type="button">View Details</button>
+        </div>
+      </div>
+
+      <!-- ==================================================
+           ✅ CHENNAI PACKAGES (your requested list)
+      ================================================== -->
+
+      <!-- 1 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-chennai">Chennai</div>
+        <span class="badge price">Best Price</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>One Day Chennai City Tour (By Cab)</h3>
+          <p class="tour-meta">Cab Tour • City Sightseeing</p>
+          <ul>
+            <li>✔ Marina Beach</li>
+            <li>✔ Kapaleeshwarar Temple</li>
+            <li>✔ Fort St. George (optional)</li>
+            <li>✔ Shopping / Mall stop</li>
+          </ul>
+          <p class="tour-note">
+            <b>Important Note:</b> Spot coverage depends on guest cooperation to follow timings.
+            Changes may occur due to traffic, crowd/waiting time, weather, road diversions or other unavoidable reasons.
+          </p>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want to book: *One Day Chennai City Tour (By Cab)*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0APreference: AC / Non-AC%0A%0APlease share itinerary + cab price.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-chennai">Chennai</div>
+        <span class="badge price">Best Price</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>Pilgrims of Chennai in One Day</h3>
+          <p class="tour-meta">Temple Tour • Devotional</p>
+          <ul>
+            <li>✔ Kapaleeshwarar Temple</li>
+            <li>✔ Parthasarathy Temple</li>
+            <li>✔ Ashtalakshmi Temple</li>
+            <li>✔ Vadapalani Murugan Temple</li>
+          </ul>
+          <p class="tour-note">
+            <b>Important Note:</b> Spot coverage depends on guest cooperation to follow timings.
+            Changes may occur due to traffic/darshan waiting/weather/unavoidable issues.
+          </p>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 🙏%0A%0AI want to book: *Pilgrims of Chennai in One Day*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0AAny senior citizens: Yes/No%0A%0APlease share temple list + cab price.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-ecr">ECR</div>
+        <span class="badge price">Best Price</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>One Day ECR Tour (By Cab)</h3>
+          <p class="tour-meta">Beach Route • Family Trip</p>
+          <ul>
+            <li>✔ DakshinaChitra Museum</li>
+            <li>✔ Muttukadu Boat House (optional)</li>
+            <li>✔ Scenic Beach stops</li>
+          </ul>
+          <p class="tour-note">
+            <b>Important Note:</b> Spot coverage depends on timing cooperation and may vary due to traffic/crowd/weather.
+          </p>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want to book: *One Day ECR Tour (By Cab)*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0AInterested in boating: Yes/No%0A%0APlease share itinerary + cab price.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-ecr">ECR</div>
+        <span class="badge price">Best Price</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>Mahabalipuram + 3 Spots (One Day)</h3>
+          <p class="tour-meta">Heritage • ECR Highlights</p>
+          <ul>
+            <li>✔ Shore Temple</li>
+            <li>✔ Pancha Rathas</li>
+            <li>✔ Arjuna’s Penance</li>
+            <li>✔ + 3 ECR spots</li>
+          </ul>
+          <p class="tour-note">
+            <b>Important Note:</b> Spot coverage depends on guest cooperation to follow timings.
+            Changes may occur due to traffic/crowd/weather/unavoidable issues.
+          </p>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want to book: *Mahabalipuram + 3 Spots (One Day)*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0APreference: Heritage / Beach / Museum%0A%0APlease share itinerary + cab price.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-ecr">ECR</div>
+        <span class="badge price">Best Price</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>ECR Pilgrims Tour (One Day)</h3>
+          <p class="tour-meta">Devotional • Peaceful Route</p>
+          <ul>
+            <li>✔ Ashtalakshmi Temple</li>
+            <li>✔ Arupadai Veedu Murugan Temple</li>
+            <li>✔ ISKCON Chennai</li>
+            <li>✔ Matsya Narayana Temple</li>
+            <li>✔ Jain Temple</li>
+          </ul>
+          <p class="tour-note">
+            <b>Important Note:</b> Spot coverage depends on guest cooperation to follow timings.
+            Changes may occur due to traffic/darshan waiting/weather/unavoidable issues.
+          </p>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 🙏%0A%0AI want to book: *ECR Pilgrims Tour (One Day)*%0A%0ASuggested temples:%0A• Ashtalakshmi Temple%0A• Arupadai Veedu Murugan Temple%0A• ISKCON Chennai%0A• Matsya Narayana Temple%0A• Jain Temple%0A%0APickup Location:%0ADate:%0ANo. of persons:%0A%0APlease share cab price + darshan route.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-theme">Theme Park</div>
+        <span class="badge price">Cab Trip</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>ECR Theme Parks (VGP / MGM) By Cab</h3>
+          <p class="tour-meta">Family Fun • Kids Special</p>
+          <ul>
+            <li>✔ Pick & drop by cab</li>
+            <li>✔ Choose VGP / MGM</li>
+            <li>✔ Optional beach stop</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want to book: *ECR Theme Park Trip by Cab (VGP / MGM)*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0APark selection: VGP / MGM%0A%0APlease share cab price + timing.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-sports">Sports</div>
+        <span class="badge price">Cab Trip</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>ECR Sports Zone (One Day)</h3>
+          <p class="tour-meta">Friends • Group Outing</p>
+          <ul>
+            <li>✔ Go-karting / ATV rides</li>
+            <li>✔ Adventure sports</li>
+            <li>✔ Beach stop (optional)</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want to book: *ECR Sports Zone One Day Trip*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0AActivities preferred: Go-karting / ATV / Adventure%0A%0APlease share options + cab price.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-theme">Theme Park</div>
+        <span class="badge price">Cab Trip</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>Chennai Theme Parks in One Day</h3>
+          <p class="tour-meta">Family Day • Full Entertainment</p>
+          <ul>
+            <li>✔ VGP / MGM / Others</li>
+            <li>✔ Flexible plan</li>
+            <li>✔ Pick & drop included</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want to book: *Chennai Theme Parks One Day Trip*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0APreferred park: VGP / MGM / Others%0A%0APlease share itinerary + cab price.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-theme">Combo</div>
+        <span class="badge price">Cab Trip</span>
+        <span class="badge days">1 Day</span>
+        <div class="tour-card-body">
+          <h3>Queens Land + Chokhi Dhani (One Day)</h3>
+          <p class="tour-meta">Fun + Cultural Dinner</p>
+          <ul>
+            <li>✔ Queens Land amusement park</li>
+            <li>✔ Chokhi Dhani dinner & activities</li>
+            <li>✔ Best for families</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want to book: *Queens Land + Chokhi Dhani One Day Trip*%0A%0APickup Location:%0ADate:%0ANo. of persons:%0ANeed food included: Yes/No%0A%0APlease share package price + timing.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="tour-card" data-category="chennai">
+        <div class="tour-cover cover-resort">Resort</div>
+        <span class="badge price">Booking</span>
+        <span class="badge days">Day/Night</span>
+        <div class="tour-card-body">
+          <h3>ECR Resort Booking (Couples / Group)</h3>
+          <p class="tour-meta">Day Stay / Night Stay</p>
+          <ul>
+            <li>✔ Couples & family resorts</li>
+            <li>✔ Group bookings</li>
+            <li>✔ Pool villas available</li>
+          </ul>
+
+          <button class="tour-btn wa-quote"
+            data-wa="Hi Cogo Tours & Travels 😊%0A%0AI want: *ECR Resort Booking*%0A%0AType: Couple / Group%0ACheck-in date:%0ACheck-out date:%0ANo. of persons:%0ABudget range:%0A%0APlease suggest best resorts + price details.%0AThank you!"
+            type="button">WhatsApp Enquiry</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- =========================
+       SERVICES (UPGRADED + WhatsApp enquiry)
+  ========================== -->
+  <section id="ser" class="section reveal">
+    <h2 class="center-title">Services</h2>
+    <p class="section-sub">One-stop travel support with fast WhatsApp assistance.</p>
 
-  <footer class="main-footer" id="contact">
-    <h3>Cogo Tours & Travels</h3>
-    <p>📞 +91 98840 66830 &nbsp;|&nbsp; 📧 cogotrtr@gmail.com</p>
-    <p>📍 Chennai, Tamil Nadu, India</p>
-    <p class="footer-copy">© 2025 Cogo Tours & Travels. All rights reserved.</p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <h3>✈️ Flight Booking</h3>
+        <p>Domestic & international flight booking with best fare support.</p>
+        <button class="service-wa wa-quote" type="button"
+          data-wa="Hi Cogo Tours & Travels 😊%0A%0AI need *Flight Booking Enquiry*%0A%0ARoute (From → To):%0ADate:%0ANo. of passengers:%0AOne-way / Round-trip:%0A%0APlease share best fares.%0AThank you!">
+          WhatsApp Enquiry
+        </button>
+      </div>
+
+      <div class="service-card">
+        <h3>🛂 Visa Processing</h3>
+        <p>Tourist / business visa support with document guidance.</p>
+        <button class="service-wa wa-quote" type="button"
+          data-wa="Hi Cogo Tours & Travels 😊%0A%0AI need *Visa Processing Enquiry*%0A%0ACountry:%0ATravel date:%0ANo. of applicants:%0A%0APlease guide required documents & fees.%0AThank you!">
+          WhatsApp Enquiry
+        </button>
+      </div>
+
+      <div class="service-card">
+        <h3>🚖 Cab Booking</h3>
+        <p>Local, outstation, airport transfer – safe & affordable.</p>
+        <button class="service-wa wa-quote" type="button"
+          data-wa="Hi Cogo Tours & Travels 😊%0A%0AI need *Cab Booking*%0A%0APickup location:%0ADrop location:%0ADate:%0ATime:%0AType: Sedan / SUV%0A%0APlease share cab price.%0AThank you!">
+          WhatsApp Enquiry
+        </button>
+      </div>
+
+      <div class="service-card">
+        <h3>🏨 Hotel Booking</h3>
+        <p>Budget to premium stays with best deals.</p>
+        <button class="service-wa wa-quote" type="button"
+          data-wa="Hi Cogo Tours & Travels 😊%0A%0AI need *Hotel Booking*%0A%0ACity:%0ACheck-in:%0ACheck-out:%0ANo. of guests:%0AHotel type: Budget / Premium%0A%0APlease share best options.%0AThank you!">
+          WhatsApp Enquiry
+        </button>
+      </div>
+
+      <div class="service-card">
+        <h3>🧳 Tour Package Customization</h3>
+        <p>Personalized packages for family, couples & groups.</p>
+        <button class="service-wa wa-quote" type="button"
+          data-wa="Hi Cogo Tours & Travels 😊%0A%0AI need *Tour Package Enquiry*%0A%0ADestination:%0ADate:%0ADays:%0ANo. of persons:%0ABudget:%0A%0APlease share best package details.%0AThank you!">
+          WhatsApp Enquiry
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+  <section id="about" class="section reveal">
+    <h2>About Us</h2>
+    <p class="text-justify">
+      Cogo Tours & Travels is a Chennai-based travel agency committed to turning travel dreams into memorable real-world experiences.
+      We specialize in personalized, affordable, and reliable tour packages across India and around the globe. Whether you are
+      planning a family holiday, honeymoon, spiritual tour, corporate trip, or an international vacation — we design travel plans
+      based on your interests and budget. Travel with confidence. Travel with Cogo.
+    </p>
+  </section>
+
+  <!-- =========================
+       WHY US
+  ========================== -->
+  <section id="why" class="section reveal">
+    <h2>Why Choose Us</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-ico">💼</div>
+        <h3>Trusted Support</h3>
+        <p>Dedicated travel experts & transparent guidance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">💰</div>
+        <h3>Best Pricing</h3>
+        <p>Affordable packages with flexible customization.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">🕘</div>
+        <h3>24/7 Assistance</h3>
+        <p>We support you before, during and after travel.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">🧾</div>
+        <h3>Honest Service</h3>
+        <p>No hidden charges & clear itineraries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">🚌</div>
+        <h3>Safe Travel</h3>
+        <p>Comfortable transport & verified partners.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ico">⭐</div>
+        <h3>Memorable Trips</h3>
+        <p>We craft experiences, not just bookings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       CONTACT
+  ========================== -->
+  <section id="contact" class="section reveal">
+    <h2>Plan Your Journey</h2>
+
+   <form class="contact-form" id="contactForm">
+
+  <input type="text" id="contactName" placeholder="Full Name" required />
+
+  <input type="tel" id="contactPhone" placeholder="Phone Number" required />
+
+  <input type="email" id="contactEmail" placeholder="Email Address (optional)" />
+
+  <textarea id="contactPlan" placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
+
+  <button type="button" id="bottomSendEmailBtn" class="btn-primary full">
+    Send Email
+  </button>
+
+<button type="button" id="bottomSendEmailBtn" class="btn-primary full">
+  Send Email
+</button>
+
+<a id="bottomWhatsAppBtn" class="modal-whatsapp" target="_blank">
+  WhatsApp Enquiry
+</a>
+
+
+</form>
+
+    <p class="contact-line">
+      <b>CONTACT:</b> # 1817/132, 13TH Main Road, Annanagar West, Chennai - 600040.
+      Email - cogotrtr@gmail.com | Phone: 9884066830 / 9080666674
+    </p>
+  </section>
+
+  <!-- WhatsApp floating -->
+  <a href="https://wa.me/919884066830" class="whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
+
+  <!-- Back to top -->
+  <button id="topBtn" aria-label="Back to top">⬆</button>
+
+  <!-- Map -->
+  <section class="section section-light" id="map">
+    <h2>Find Us on Map</h2>
+    <div class="map-box">
+      <iframe
+        src="https://www.google.com/maps?q=13.094104548113595, 80.20093353664443&z=15&output=embed"
+        width="100%"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Cogo Tours & Travels | Chennai
   </footer>
 
-  <!-- MOBILE ACTION BAR -->
+  <!-- =========================
+       ENQUIRY POPUP MODAL
+  ========================== -->
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Plan Your Journey</h3>
+        <button class="modal-close" id="closeEnquiryModal" aria-label="Close">✕</button>
+      </div>
 
-  <div class="mobile-action-bar">
-    <a href="tel:+919884066830" class="mobile-call">📞 Call Now</a>
-    <a href="https://wa.me/919884066830" target="_blank" class="mobile-wa">💬 WhatsApp</a>
+      <p class="modal-sub">Share details and we’ll call you back with the best package.</p>
+
+      <form class="modal-form" id="modalEnquiryForm">
+        <input type="text" id="mName" placeholder="Full Name" required>
+        <input type="tel" id="mPhone" placeholder="Phone Number" required>
+        <input type="email" id="mEmail" placeholder="Email Address (optional)">
+
+        <select id="mType" required>
+          <option value="">Select Trip Type</option>
+          <option>Domestic</option>
+          <option>International</option>
+          <option>Pilgrimage</option>
+          <option>Honeymoon</option>
+          <option>Corporate</option>
+          <option>Chennai Packages</option>
+        </select>
+
+        <textarea id="mPlan" placeholder="Travel plan (Place / Date / Days / Budget)" required></textarea>
+
+        <button type="button" id="sendEmailBtn" class="modal-submit">Send Email</button>
+
+        <!-- WhatsApp with pre-filled text -->
+        <a class="modal-whatsapp" id="modalWhatsApp" href="#" target="_blank">
+          WhatsApp Enquiry
+        </a>
+      </form>
+
+    </div>
   </div>
+<!-- ✅ View Details Modal -->
+<div id="detailsModal" class="details-modal">
+  <div class="details-backdrop"></div>
+  <div class="details-box">
+    <button class="details-close">✕</button>
+    <h3 id="detailsTitle"></h3>
+    <p id="detailsDescription" class="details-description"></p>
+    <h4>Itinerary</h4>
+    <div id="detailsItinerary"></div>
+  </div>
+</div>
+        WhatsApp Enquiry
+      </a>
 
-  <!-- BACK TO TOP -->
+    </form>
 
-<button id="backToTop" class="back-to-top">↑</button>
+  </div>
+</div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
