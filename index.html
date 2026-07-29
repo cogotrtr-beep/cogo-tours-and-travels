@@ -8,38 +8,137 @@
 </head>
 <body>
 
-  <!-- Sticky Navbar -->
+  <!-- Top Navigation -->
   <nav id="mainNav">
     <div class="nav-container">
-      <a href="#" class="logo">COGO TOURS</a>
+      <div class="brand-block">
+        <a href="#" class="logo-text">COGO</a>
+        <span class="company-subname">COGO TOURS AND TRAVELS</span>
+      </div>
       <button id="hamburgerBtn">☰</button>
       <div id="navLinks">
         <a href="#services-hub">Services</a>
         <a href="tel:+919884066830" class="call-link">📞 Call Us</a>
-        <button class="plan-btn-top" id="openEnquiryModal">Plan Your Journey</button>
+        <!-- Dedicated Cogo Cab Header Button -->
+        <button class="btn-nav cab-nav-btn" onclick="openCategoryModal('cabs')">🚖 Book Cogo Cab</button>
+        <button class="btn-nav plan-nav-btn" onclick="openEnquiryForm('General Plan Journey')">Plan Your Journey</button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Banner -->
+  <!-- Classic Homepage Hero Section -->
   <header class="hero">
+    <div class="hero-overlay"></div>
     <div class="hero-content">
+      <span class="hero-tag">WELCOME TO COGO TOURS AND TRAVELS</span>
       <h1>Your Journey, Our Responsibility</h1>
-      <p>Explore Chennai, India, and World Packages with Cogo Tours & Travels</p>
+      <p>Explore Chennai City, Temple Tours, Outstation Cabs &amp; World Packages with us.</p>
+      <div class="hero-actions">
+        <button class="hero-btn primary" onclick="openEnquiryForm('Homepage Quick Quote')">Plan Your Journey</button>
+        <button class="hero-btn secondary" onclick="openCategoryModal('cabs')">🚖 Cab Rates</button>
+      </div>
     </div>
   </header>
 
   <!-- =========================
-       CATEGORY SERVICES HUB (11 BRANCHES)
+       CATEGORY SERVICES HUB (REORDERED)
   ========================== -->
-  <section id="services-hub" class="section section-light">
+  <section id="services-hub" class="section">
     <div class="hub-header text-center">
-      <h2>Our Services &amp; Tour Packages</h2>
-      <p class="section-sub">Select a service category below to view detailed rates, packages, and itineraries.</p>
+      <h2>Our Services &amp; Packages</h2>
+      <p class="section-sub">Select a service category to view details or request a custom quote.</p>
     </div>
 
     <div class="hub-grid">
-      <!-- 1. Cogo Cabs -->
+      <!-- 1. Tour Chennai -->
+      <div class="hub-card">
+        <div class="hub-card-bg chennai-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏛️</span>
+          <h3>Tour Chennai</h3>
+          <p>City sightseeing, ECR beach runs, heritage walks &amp; theme park trips.</p>
+          <button class="hub-btn" onclick="openCategoryModal('chennai')">Explore Chennai</button>
+        </div>
+      </div>
+
+      <!-- 2. Tour Domestic -->
+      <div class="hub-card">
+        <div class="hub-card-bg domestic-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏔️</span>
+          <h3>Tour Domestic</h3>
+          <p>Custom holiday packages across Kerala, Goa, Himachal, Kashmir &amp; Ooty.</p>
+          <button class="hub-btn" onclick="openCategoryModal('domestic')">Explore India</button>
+        </div>
+      </div>
+
+      <!-- 3. Tour International -->
+      <div class="hub-card">
+        <div class="hub-card-bg intl-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🌍</span>
+          <h3>Tour International</h3>
+          <p>Unforgettable foreign trips to Dubai, Thailand, Singapore &amp; Europe.</p>
+          <button class="hub-btn" onclick="openCategoryModal('international')">View World Tours</button>
+        </div>
+      </div>
+
+      <!-- 4. Corporate Tour -->
+      <div class="hub-card">
+        <div class="hub-card-bg corporate-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">💼</span>
+          <h3>Corporate Tour</h3>
+          <p>Team outings, corporate offsites, MICE events &amp; executive transport.</p>
+          <button class="hub-btn" onclick="openCategoryModal('corporate')">Corporate Quote</button>
+        </div>
+      </div>
+
+      <!-- 5. School/College Tour -->
+      <div class="hub-card">
+        <div class="hub-card-bg school-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🎓</span>
+          <h3>School/College Tour</h3>
+          <p>Educational trips, industrial visits, and safe student group packages.</p>
+          <button class="hub-btn" onclick="openCategoryModal('students')">Student Packages</button>
+        </div>
+      </div>
+
+      <!-- 6. Pilgrim Tour -->
+      <div class="hub-card">
+        <div class="hub-card-bg pilgrim-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🛕</span>
+          <h3>Pilgrim Tour</h3>
+          <p>Dedicated temple packages for Tirupati, Kanchipuram, Rameswaram &amp; Chidambaram.</p>
+          <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Temple Tours</button>
+        </div>
+      </div>
+
+      <!-- 7. Adventure Tour -->
+      <div class="hub-card">
+        <div class="hub-card-bg adventure-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏕️</span>
+          <h3>Adventure Tour</h3>
+          <p>Trekking, water sports, jungle camping &amp; thrill expeditions.</p>
+          <button class="hub-btn" onclick="openCategoryModal('adventure')">Explore Adventure</button>
+        </div>
+      </div>
+
+      <!-- 8. Honeymoon -->
+      <div class="hub-card">
+        <div class="hub-card-bg honeymoon-bg"></div>
+        <div class="hub-card-content">
+          <span class="hub-icon">👩‍❤️‍👨</span>
+          <h3>Honeymoon</h3>
+          <p>Romantic beach escapes, hill station retreats &amp; luxury couple trips.</p>
+          <button class="hub-btn" onclick="openCategoryModal('honeymoon')">View Honeymoon Trips</button>
+        </div>
+      </div>
+
+      <!-- 9. Cogo Cabs -->
       <div class="hub-card">
         <div class="hub-card-bg cab-bg"></div>
         <div class="hub-card-content">
@@ -50,129 +149,74 @@
         </div>
       </div>
 
-      <!-- 2. Tickets -->
-      <div class="hub-card">
-        <div class="hub-card-bg ticket-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">✈️</span>
-          <h3>Ticket Booking</h3>
-          <p>Hassle-free booking for Flight, Train, and Intercity Bus tickets.</p>
-          <button class="hub-btn" onclick="openCategoryModal('tickets')">Enquire Tickets</button>
-        </div>
-      </div>
-
-      <!-- 3. Visa -->
+      <!-- 10. Visa Assistance -->
       <div class="hub-card">
         <div class="hub-card-bg visa-bg"></div>
         <div class="hub-card-content">
           <span class="hub-icon">🛂</span>
           <h3>Visa Assistance</h3>
-          <p>Fast-track tourist &amp; business visa processing for worldwide destinations.</p>
+          <p>Fast-track tourist &amp; business visa processing worldwide.</p>
           <button class="hub-btn" onclick="openCategoryModal('visa')">Get Visa Info</button>
         </div>
       </div>
 
-      <!-- 4. Tour Chennai -->
+      <!-- 11. Ticket Booking Air/Rail -->
       <div class="hub-card">
-        <div class="hub-card-bg chennai-bg"></div>
+        <div class="hub-card-bg ticket-bg"></div>
         <div class="hub-card-content">
-          <span class="hub-icon">🏛️</span>
-          <h3>Tour Chennai</h3>
-          <p>City sightseeing, ECR beach runs, heritage walks &amp; local theme parks.</p>
-          <button class="hub-btn" onclick="openCategoryModal('chennai')">Explore Chennai</button>
+          <span class="hub-icon">✈️</span>
+          <h3>Ticket Booking Air/Rail</h3>
+          <p>Hassle-free booking for Flight, Train, and Bus tickets.</p>
+          <button class="hub-btn" onclick="openCategoryModal('tickets')">Book Tickets</button>
         </div>
       </div>
 
-      <!-- 5. Tour Domestic -->
+      <!-- 12. Cab Services -->
       <div class="hub-card">
-        <div class="hub-card-bg domestic-bg"></div>
+        <div class="hub-card-bg outstation-bg"></div>
         <div class="hub-card-content">
-          <span class="hub-icon">🏔️</span>
-          <h3>Tour Domestic</h3>
-          <p>Custom holiday packages across Kerala, Goa, Himachal, Kashmir &amp; more.</p>
-          <button class="hub-btn" onclick="openCategoryModal('domestic')">Explore India</button>
-        </div>
-      </div>
-
-      <!-- 6. Tour International -->
-      <div class="hub-card">
-        <div class="hub-card-bg intl-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🌍</span>
-          <h3>Tour International</h3>
-          <p>Unforgettable trips to Dubai, Thailand, Singapore, Malaysia &amp; Europe.</p>
-          <button class="hub-btn" onclick="openCategoryModal('international')">View World Packages</button>
-        </div>
-      </div>
-
-      <!-- 7. Pilgrim Tour -->
-      <div class="hub-card">
-        <div class="hub-card-bg pilgrim-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🛕</span>
-          <h3>Pilgrim Tours</h3>
-          <p>Dedicated temple packages for Tirupati, Kanchipuram, Rameswaram &amp; North India.</p>
-          <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Temple Tours</button>
-        </div>
-      </div>
-
-      <!-- 8. School/College Tour -->
-      <div class="hub-card">
-        <div class="hub-card-bg school-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🎓</span>
-          <h3>School &amp; College Tours</h3>
-          <p>Educational trips, industrial visits, and fun student group tours with safety.</p>
-          <button class="hub-btn" onclick="openCategoryModal('students')">Student Packages</button>
-        </div>
-      </div>
-
-      <!-- 9. Corporate Tour Packs -->
-      <div class="hub-card">
-        <div class="hub-card-bg corporate-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">💼</span>
-          <h3>Corporate Tours</h3>
-          <p>Team outings, corporate offsites, MICE events &amp; executive travel.</p>
-          <button class="hub-btn" onclick="openCategoryModal('corporate')">Corporate Quote</button>
-        </div>
-      </div>
-
-      <!-- 10. Honeymoon -->
-      <div class="hub-card">
-        <div class="hub-card-bg honeymoon-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">👩‍❤️‍👨</span>
-          <h3>Honeymoon Packages</h3>
-          <p>Romantic beach escapes, hill station retreats &amp; luxury couple packages.</p>
-          <button class="hub-btn" onclick="openCategoryModal('honeymoon')">View Couple Trips</button>
-        </div>
-      </div>
-
-      <!-- 11. Adventure Tour -->
-      <div class="hub-card">
-        <div class="hub-card-bg adventure-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🏕️</span>
-          <h3>Adventure Tours</h3>
-          <p>Trekking, water sports, camping &amp; thrill-seeking expeditions.</p>
-          <button class="hub-btn" onclick="openCategoryModal('adventure')">Explore Adventure</button>
+          <span class="hub-icon">🚘</span>
+          <h3>Cab Services</h3>
+          <p>Outstation round-trips, corporate rentals, and luxury fleet options.</p>
+          <button class="hub-btn" onclick="openCategoryModal('cabservices')">Cab Service Details</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Dynamic Service Details Modal -->
-  <div id="serviceModal" class="modal-overlay">
+  <!-- Interactive Plan / Enquiry Modal -->
+  <div id="enquiryModal" class="modal-overlay">
     <div class="modal-box">
-      <button class="modal-close" onclick="closeServiceModal()">✕</button>
-      <h2 id="modalTitle">Service Details</h2>
-      <p id="modalDescription" class="modal-desc"></p>
-      <div id="modalDynamicContent" class="modal-body-content"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 id="modalTitle">Plan Your Journey</h2>
+      <p id="modalDescription" class="modal-desc">Send us your requirements and we will get back to you instantly!</p>
       
-      <div class="modal-actions">
-        <button class="modal-wa-btn" onclick="sendModalWhatsApp()">Contact via WhatsApp</button>
-      </div>
+      <div id="modalDynamicContent"></div>
+
+      <!-- Lead Capture Query Form -->
+      <form id="queryForm" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="userName" placeholder="Enter full name" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number / WhatsApp</label>
+          <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
+        </div>
+        <div class="form-group">
+          <label>Your Travel Requirement / Query</label>
+          <textarea id="userQuery" rows="3" placeholder="Specify travel dates, vehicle preference, or destination..."></textarea>
+        </div>
+
+        <div class="modal-actions-grid">
+          <button type="button" class="action-btn btn-wa" onclick="submitEnquiry('whatsapp')">
+            📱 Send via WhatsApp
+          </button>
+          <button type="button" class="action-btn btn-email" onclick="submitEnquiry('email')">
+            ✉️ Send via Email
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
