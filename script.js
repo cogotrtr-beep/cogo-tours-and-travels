@@ -1,262 +1,98 @@
 /* =========================================================
-   1. STICKY NAVBAR & TOP CTA SCROLL EFFECT
+   CATEGORY HUB MODAL HANDLER (11 CATEGORIES)
 ========================================================= */
-const nav = document.getElementById("mainNav");
-const callBtn = document.querySelector(".call-link");
-const planBtn = document.querySelector(".plan-btn-top");
 
-window.addEventListener("scroll", () => {
-  if (!nav) return;
-
-  if (window.scrollY > 120) {
-    nav.classList.add("sticky");
-    if (callBtn) callBtn.style.opacity = "0";
-    if (planBtn) planBtn.style.opacity = "0";
-  } else {
-    nav.classList.remove("sticky");
-    if (callBtn) callBtn.style.opacity = "1";
-    if (planBtn) planBtn.style.opacity = "1";
+// Content data for each category modal view
+const categoryData = {
+  cabs: {
+    title: "🚖 Cogo Cabs Rates & Packages",
+    desc: "Comfortable air-conditioned vehicles with experienced drivers.",
+    body: `
+      <div class="modal-rate-card">
+        <h4>Chennai City Sightseeing Rates</h4>
+        <ul>
+          <li><strong>Sedan:</strong> ₹1,400 (50 km) | Day Pack (250 km): ₹4,500</li>
+          <li><strong>Innova:</strong> ₹2,000 (50 km) | Day Pack (250 km): ₹6,000</li>
+          <li><strong>Innova Crysta:</strong> ₹4,600 (10H / 100 km) | Day Pack (250 km): ₹6,750</li>
+        </ul>
+        <p><em>*Luxury cars, Urbania, Tempo Traveller, and Buses are also available at competitive rates!</em></p>
+      </div>`
+  },
+  tickets: {
+    title: "✈️ Flight, Train & Bus Ticket Booking",
+    desc: "Get fast booking assistance for all domestic and international travel.",
+    body: "<p>Tell us your travel dates, departure city, and destination. We will find the best routes and fares for you!</p>"
+  },
+  visa: {
+    title: "🛂 Visa Assistance Services",
+    desc: "Hassle-free tourist and business visa application support.",
+    body: "<p>We assist with documentation, appointment scheduling, and verification for Dubai, Singapore, Thailand, Schengen, UK, USA, and more.</p>"
+  },
+  chennai: {
+    title: "🏛️ Tour Chennai Packages",
+    desc: "Explore top attractions around Chennai and coastal Tamil Nadu.",
+    body: `
+      <ul>
+        <li>Mahabalipuram & Thirukazhukundram</li>
+        <li>Kanchipuram Temple Tour</li>
+        <li>Periyapalayam & Thiruthani</li>
+        <li>ECR Coastal Tour (DakshinaChitra, Muttukadu Boating, Kovalam, Crocodile Park, Tiger Cave)</li>
+        <li>Theme Parks (MGM Dizzee World, VGP Universal Kingdom)</li>
+      </ul>`
+  },
+  domestic: {
+    title: "🏔️ Domestic Tour Packages",
+    desc: "Tailor-made itineraries across India's top tourist destinations.",
+    body: "<p>Popular destinations: Kerala Backwaters, Goa Beaches, Himachal Pradesh, Kashmir, Ooty, Kodaikanal, and Coorg.</p>"
+  },
+  international: {
+    title: "🌍 International Packages",
+    desc: "Complete foreign tour packages including flights, stays, and sightseeings.",
+    body: "<p>Popular getaways: Thailand, Malaysia, Singapore, Dubai, Bali, Sri Lanka, and Vietnam.</p>"
+  },
+  pilgrim: {
+    title: "🛕 Pilgrim Tours",
+    desc: "Spiritual, hassle-free temple tours with comfortable transport.",
+    body: "<p>Special packages for Tirupati Balaji Darshan, Kanchipuram, Rameswaram, Madurai, Thiruvannamalai, and Chidambaram.</p>"
+  },
+  students: {
+    title: "🎓 School & College Tours",
+    desc: "Safe, educational, and fun group trips for students.",
+    body: "<p>Customized itineraries for Industrial Visits (IVs), educational tours, and leisure trips with dedicated group coordinators.</p>"
+  },
+  corporate: {
+    title: "💼 Corporate Tour Packages",
+    desc: "Professional offsites, team bonding outings, and MICE events.",
+    body: "<p>Includes resort bookings, team-building activities, conference arrangements, and luxury bus rentals.</p>"
+  },
+  honeymoon: {
+    title: "👩‍❤️‍👨 Honeymoon Packages",
+    desc: "Romantic, private, and memorable couple escapes.",
+    body: "<p>Features candlelight dinners, flower bed decorations, private cabs, and scenic luxury resorts in Munnar, Wayanad, Manali, and Bali.</p>"
+  },
+  adventure: {
+    title: "🏕️ Adventure Tours",
+    desc: "Thrilling trips for trekkers, campers, and outdoor enthusiasts.",
+    body: "<p>Includes jungle camping, river rafting, trekking expeditions, scuba diving, and water sports packages.</p>"
   }
-});
+};
 
-/* =========================================================
-   2. HAMBURGER MENU
-========================================================= */
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.getElementById("navLinks");
+// Function called when clicking "View Rates" / "Explore" on any card
+function openCategoryModal(catKey) {
+  const data = categoryData[catKey];
+  if (!data) return;
 
-if (hamburgerBtn && navLinks) {
-  hamburgerBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("open");
-    document.body.classList.toggle("menu-open");
-    hamburgerBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
-  });
+  const modal = document.getElementById("enquiryModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDescription");
+  const modalBody = document.getElementById("modalDynamicContent");
 
-  navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("open");
-      document.body.classList.remove("menu-open");
-      hamburgerBtn.textContent = "☰";
-    });
-  });
-}
+  if (modalTitle) modalTitle.textContent = data.title;
+  if (modalDesc) modalDesc.textContent = data.desc;
+  if (modalBody) modalBody.innerHTML = data.body;
 
-/* =========================================================
-   3. TOUR CATEGORY FILTERS
-========================================================= */
-const filterButtons = document.querySelectorAll(".filter-btn");
-const tourCards = document.querySelectorAll(".tour-card");
-
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const filter = btn.dataset.filter;
-
-    tourCards.forEach(card => {
-      const category = card.dataset.category;
-      if (filter === "all" || category === filter) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
-
-    document.getElementById("tours")?.scrollIntoView({ behavior: "smooth" });
-  });
-});
-
-/* =========================================================
-   4. VIEW DETAILS MODAL
-========================================================= */
-const detailsModal = document.getElementById("detailsModal");
-const detailsTitle = document.getElementById("detailsTitle");
-const detailsDescription = document.getElementById("detailsDescription");
-const detailsItinerary = document.getElementById("detailsItinerary");
-const detailsClose = document.getElementById("detailsClose");
-
-document.querySelectorAll(".details-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    if (!detailsModal) return;
-
-    if (detailsTitle) detailsTitle.textContent = btn.dataset.title || "Package Details";
-    if (detailsDescription) detailsDescription.textContent = btn.dataset.description || "";
-    if (detailsItinerary) detailsItinerary.innerHTML = (btn.dataset.itinerary || "").replace(/\n/g, "<br>");
-
-    detailsModal.classList.add("show");
+  if (modal) {
+    modal.classList.add("show");
     document.body.style.overflow = "hidden";
-  });
-});
-
-detailsClose?.addEventListener("click", closeDetailsModal);
-detailsModal?.addEventListener("click", e => {
-  if (e.target === detailsModal) closeDetailsModal();
-});
-
-function closeDetailsModal() {
-  if (!detailsModal) return;
-  detailsModal.classList.remove("show");
-  document.body.style.overflow = "";
-}
-
-/* =========================================================
-   5. PLAN YOUR JOURNEY (ENQUIRY) MODAL CONTROLS
-========================================================= */
-const enquiryModal = document.getElementById("enquiryModal");
-const openEnquiryBtn = document.getElementById("openEnquiryModal");
-const closeEnquiryBtn = document.getElementById("closeEnquiryModal");
-const modalForm = document.getElementById("modalEnquiryForm");
-
-openEnquiryBtn?.addEventListener("click", () => {
-  if (!enquiryModal) return;
-  enquiryModal.classList.add("show");
-  document.body.style.overflow = "hidden";
-});
-
-closeEnquiryBtn?.addEventListener("click", closeEnquiryModal);
-enquiryModal?.addEventListener("click", e => {
-  if (e.target === enquiryModal) closeEnquiryModal();
-});
-
-function closeEnquiryModal() {
-  if (!enquiryModal) return;
-  enquiryModal.classList.remove("show");
-  document.body.style.overflow = "";
-}
-
-modalForm?.addEventListener("submit", e => {
-  e.preventDefault();
-  alert("✅ Thank you! We will contact you shortly.");
-  modalForm.reset();
-  closeEnquiryModal();
-});
-
-/* =========================================================
-   6. MODAL ENQUIRY ACTIONS (EMAIL & WHATSAPP)
-========================================================= */
-const sendEmailBtn = document.getElementById("sendEmailBtn");
-const modalWhatsAppBtn = document.getElementById("modalWhatsAppBtn");
-
-sendEmailBtn?.addEventListener("click", () => {
-  const name = document.getElementById("mName")?.value.trim() || "Not specified";
-  const phone = document.getElementById("mPhone")?.value.trim() || "Not specified";
-  const email = document.getElementById("mEmail")?.value.trim() || "Not specified";
-  const type = document.getElementById("mType")?.value.trim() || "General";
-  const plan = document.getElementById("mPlan")?.value.trim() || "No specific details provided";
-
-  const subject = "New Travel Enquiry – Cogo Tours";
-  const body = 
-`Hello Cogo Tours,
-
-New enquiry received:
-
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Trip Type: ${type}
-
-Travel Plan:
-${plan}
-
-Please contact the customer soon.`;
-
-  window.location.href = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-});
-
-modalWhatsAppBtn?.addEventListener("click", () => {
-  const name = document.getElementById("mName")?.value.trim() || "Guest";
-  const phone = document.getElementById("mPhone")?.value.trim() || "N/A";
-  const email = document.getElementById("mEmail")?.value.trim() || "";
-  const type = document.getElementById("mType")?.value.trim() || "";
-  const plan = document.getElementById("mPlan")?.value.trim() || "Enquiry regarding travel package.";
-
-  let msg = `Hi Cogo Tours & Travels 👋\n\nI would like to enquire about a trip.\n\nName: ${name}\nPhone: ${phone}\n`;
-  if (email) msg += `Email: ${email}\n`;
-  if (type) msg += `Trip Type: ${type}\n`;
-  msg += `\nTravel Plan:\n${plan}\n\nPlease share package details.`;
-
-  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
-});
-
-/* =========================================================
-   7. BOTTOM CONTACT FORM ACTIONS (EMAIL & WHATSAPP)
-========================================================= */
-const bottomEmailBtn = document.getElementById("bottomSendEmailBtn");
-const bottomWhatsAppBtn = document.getElementById("bottomWhatsAppBtn");
-
-bottomEmailBtn?.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("contactName")?.value.trim() || "Not specified";
-  const phone = document.getElementById("contactPhone")?.value.trim() || "Not specified";
-  const email = document.getElementById("contactEmail")?.value.trim() || "Not specified";
-  const plan = document.getElementById("contactPlan")?.value.trim() || "No plan details provided";
-
-  const subject = "New Travel Enquiry - Cogo Tours";
-  const body = 
-`Hi Cogo Tours & Travels,
-
-I would like to enquire about a trip.
-
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-
-Travel Plan:
-${plan}
-
-Please share package details.`;
-
-  window.location.href = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-});
-
-bottomWhatsAppBtn?.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("contactName")?.value.trim() || "Guest";
-  const phone = document.getElementById("contactPhone")?.value.trim() || "N/A";
-  const email = document.getElementById("contactEmail")?.value.trim() || "N/A";
-  const plan = document.getElementById("contactPlan")?.value.trim() || "Enquiry regarding travel package.";
-
-  const msg = 
-`Hi Cogo Tours & Travels 😊
-
-I would like to enquire about a trip.
-
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-
-Travel Plan:
-${plan}
-
-Please share package details.`;
-
-  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
-});
-/* =========================================================
-   NEW: QUICK SUB-CATEGORY FILTER & WHATSAPP ENQUIRY HELPER
-========================================================= */
-
-// Quick filter for Chennai chips (Half Day, Full Day, ECR, etc.)
-function filterBySub(type) {
-  const tourCards = document.querySelectorAll('.tour-card');
-  
-  tourCards.forEach(card => {
-    // Keep Chennai packages visible
-    if (card.dataset.category === 'chennai' || card.classList.contains('chennai-banner')) {
-      card.style.display = 'block';
-    }
-  });
-
-  // Smooth scroll down to the tour cards section
-  const tourGrid = document.querySelector('.tour-grid');
-  tourGrid?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Quick WhatsApp message trigger for rate card button
-function openWhatsAppEnquiry(packageName) {
-  const msg = `Hi Cogo Tours & Travels 👋\n\nI would like to get a quote for: *${packageName}*.\n\nPlease share availability and package details.`;
-  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+  }
 }
