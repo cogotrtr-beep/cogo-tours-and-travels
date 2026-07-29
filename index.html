@@ -48,21 +48,77 @@
   </header>
 
   <!-- =========================
-       TOURS
-  ========================== -->
-  <section id="tours" class="section section-light reveal">
-    <h2 class="center-title">Popular Tour Packages</h2>
-    <p class="section-sub">Browse packages by category and get a custom quote instantly.</p>
+     CHENNAI POPULAR CAB TOUR PACKAGES
+========================== -->
+<section id="tours" class="section section-light reveal">
+  <h2 class="center-title">Chennai Popular Cab Tour Packages</h2>
+  <p class="section-sub">Browse packages by category and get a custom quote instantly.</p>
 
-    <!-- Filter Buttons -->
-    <div class="tour-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="domestic">Domestic</button>
-      <button class="filter-btn" data-filter="international">International</button>
-      <button class="filter-btn" data-filter="pilgrimage">Pilgrimage</button>
-      <button class="filter-btn" data-filter="honeymoon">Honeymoon</button>
-      <button class="filter-btn" data-filter="chennai">Chennai Packages</button>
+  <!-- Reordered Category Filter Buttons -->
+  <div class="tour-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="chennai">Chennai Packages</button>
+    <button class="filter-btn" data-filter="domestic">Domestic</button>
+    <button class="filter-btn" data-filter="international">International</button>
+    <button class="filter-btn" data-filter="pilgrimage">Pilgrimage</button>
+    <button class="filter-btn" data-filter="honeymoon">Honeymoon</button>
+  </div>
+
+  <!-- Chennai Featured Banner & Rate Table -->
+  <div class="chennai-banner" data-category="chennai">
+    <span class="banner-tag">COGO TOURS CHENNAI</span>
+    <h2>🚖 Chennai City Sightseeing & One Day Cab Packages</h2>
+    <p class="banner-desc">
+      Explore Chennai with our comfortable air-conditioned vehicles and experienced drivers. 
+      We offer Chennai City Tours, ECR Sightseeing, Temple Tours, Theme Park Trips, Airport Transfers, and Corporate Travel Packages.
+    </p>
+
+    <!-- Clickable Quick Filter Chips -->
+    <div class="banner-highlights">
+      <button class="chip-btn" onclick="filterBySub('halfday')">Half Day Packages</button>
+      <button class="chip-btn" onclick="filterBySub('fullday')">Full Day Packages</button>
+      <button class="chip-btn" onclick="filterBySub('ecr')">ECR Tours</button>
+      <button class="chip-btn" onclick="filterBySub('temple')">Temple Tours</button>
+      <button class="chip-btn" onclick="filterBySub('theme')">Theme Parks</button>
+      <button class="chip-btn" onclick="filterBySub('corporate')">Corporate Trips</button>
     </div>
+
+    <!-- Pricing Table -->
+    <div class="pricing-container">
+      <h3>Chennai City Cab Rate Card</h3>
+      <div class="price-grid">
+        <div class="price-card">
+          <h4>Sedan</h4>
+          <p class="price">₹1,400 <span>(50 km)</span></p>
+          <p class="sub-price">Day Pack (250 km): <strong>₹4,500</strong></p>
+        </div>
+        <div class="price-card popular">
+          <span class="pop-badge">Popular</span>
+          <h4>Innova</h4>
+          <p class="price">₹2,000 <span>(50 km)</span></p>
+          <p class="sub-price">Day Pack (250 km): <strong>₹6,000</strong></p>
+        </div>
+        <div class="price-card">
+          <h4>Innova Crysta</h4>
+          <p class="price">₹4,600 <span>(10 Hrs / 100 km)</span></p>
+          <p class="sub-price">Day Pack (250 km): <strong>₹6,750</strong></p>
+        </div>
+      </div>
+      <p class="vehicle-note">
+        ✨ All other luxury cars, Urbania, Tempo Traveller, and Buses are available at competitive rates!
+      </p>
+    </div>
+
+    <!-- Call to Actions -->
+    <div class="banner-buttons">
+      <button class="tour-btn cta-wa" onclick="openWhatsAppEnquiry('Chennai Cab Rates')">WhatsApp Quote</button>
+      <button class="tour-btn cta-enquire" id="openEnquiryModal">Enquire Now</button>
+    </div>
+
+    <p class="banner-note">
+      *Note: Tour coverage depends on guest cooperation, traffic, weather conditions, and waiting time at attractions.
+    </p>
+  </div>
 
     <!-- Chennai Packages Mini Banner -->
     <div class="tour-card chennai-banner" data-category="chennai">
