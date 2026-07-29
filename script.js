@@ -235,3 +235,28 @@ Please share package details.`;
 
   window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, "_blank");
 });
+/* =========================================================
+   NEW: QUICK SUB-CATEGORY FILTER & WHATSAPP ENQUIRY HELPER
+========================================================= */
+
+// Quick filter for Chennai chips (Half Day, Full Day, ECR, etc.)
+function filterBySub(type) {
+  const tourCards = document.querySelectorAll('.tour-card');
+  
+  tourCards.forEach(card => {
+    // Keep Chennai packages visible
+    if (card.dataset.category === 'chennai' || card.classList.contains('chennai-banner')) {
+      card.style.display = 'block';
+    }
+  });
+
+  // Smooth scroll down to the tour cards section
+  const tourGrid = document.querySelector('.tour-grid');
+  tourGrid?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Quick WhatsApp message trigger for rate card button
+function openWhatsAppEnquiry(packageName) {
+  const msg = `Hi Cogo Tours & Travels 👋\n\nI would like to get a quote for: *${packageName}*.\n\nPlease share availability and package details.`;
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+}
