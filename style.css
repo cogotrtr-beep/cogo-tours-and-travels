@@ -867,3 +867,144 @@ body {
     align-items: center;
   }
 }
+/* =========================================================
+   NEW: CHENNAI RATE TABLE, CHIPS & DESKTOP ENHANCEMENTS
+========================================================= */
+
+/* Desktop Font & Spacing Scaling */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16.5px;
+  }
+
+  .banner-desc {
+    font-size: 18px !important;
+    line-height: 1.8;
+  }
+}
+
+/* Clickable Dark Blue Sub-Category Chips */
+.banner-highlights {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.chip-btn {
+  background: #0f3c5d; /* Darker Blue */
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(15, 60, 93, 0.2);
+}
+
+.chip-btn:hover {
+  background: var(--brand); /* Orange on Hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 152, 0, 0.3);
+}
+
+/* Chennai Rate Card Table */
+.pricing-container {
+  margin: 30px 0;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-container h3 {
+  color: #0f172a;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.price-card {
+  position: relative;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.price-card.popular {
+  border-color: #ff9800;
+  background: #fff8f0;
+}
+
+.pop-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff9800;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.price-card h4 {
+  font-size: 18px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.price-card .price {
+  font-size: 24px;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.price-card .price span {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.price-card .sub-price {
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: #334155;
+  border-top: 1px dashed #cbd5e1;
+  padding-top: 8px;
+}
+
+.vehicle-note {
+  margin-top: 18px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #0f3c5d;
+}
+
+/* Background Images for Tour Cover Cards */
+.cover-chennai {
+  background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.75)),
+              url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80') center/cover no-repeat !important;
+}
+
+.cover-ecr {
+  background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.75)),
+              url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=800&q=80') center/cover no-repeat !important;
+}
+
+.cover-pilgrimage {
+  background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.75)),
+              url('https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&w=800&q=80') center/cover no-repeat !important;
+}
