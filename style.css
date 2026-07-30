@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #f8fafc;
+  background: linear-gradient(180deg, #FFF5EE 0%, #FAF0E6 40%, #F8FAFC 100%);
   color: #0f172a;
   line-height: 1.6;
 }
