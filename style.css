@@ -37,7 +37,7 @@ body {
   width: 100%;
   /* Ensures proper aspect ratio display across screen sizes */
   min-height: 70vh; 
-  background: url('hero-banner.jpg') center center / cover no-repeat;
+  background: url('hero-banner.png') center center / cover no-repeat;
   display: flex;
   align-items: flex-end; /* Keeps action buttons at the bottom */
   justify-content: center;
