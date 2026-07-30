@@ -1,8 +1,8 @@
 /* ==========================================================================
-   CoGo Tours & Travels - Complete Stylesheet
+   CoGo Tours & Travels - Master Stylesheet
    ========================================================================== */
 
-/* 1. Global Reset & Base Variables */
+/* 1. Reset & Global Variables */
 :root {
   --primary-color: #138808;      /* Accent Green */
   --secondary-color: #ff9933;    /* Accent Orange */
@@ -29,29 +29,90 @@ body {
   line-height: 1.6;
 }
 
-/* ==========================================================================
-   2. Hero Section (Updated for Integrated Image Banner)
-   ========================================================================== */
+/* 2. Top Navigation Bar */
+.navbar {
+  background-color: var(--white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.call-btn {
+  background-color: #e2e8f0;
+  color: var(--text-dark);
+}
+
+.cab-btn {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+/* 3. Hero Banner Section */
 .hero {
   position: relative;
   width: 100%;
-  /* Ensures proper aspect ratio display across screen sizes */
-  min-height: 70vh; 
-  background: url('hero-banner.png') center center / cover no-repeat;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  align-items: flex-end; /* Keeps action buttons at the bottom */
-  justify-content: center;
-  padding: 0 20px 40px 20px;
-  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Position Action Buttons neatly over bottom area */
+.hero-banner-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Action Buttons Overlaid at the Bottom of Banner */
 .hero-actions {
+  position: absolute;
+  bottom: 20px;
   display: flex;
   justify-content: center;
   gap: 16px;
   z-index: 10;
-  width: 100%;
+  width: 90%;
   max-width: 500px;
 }
 
@@ -84,9 +145,7 @@ body {
   border-color: #cbd5e1;
 }
 
-/* ==========================================================================
-   3. Content Sections & Layout Containers
-   ========================================================================== */
+/* 4. Main Layout Containers */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -97,11 +156,17 @@ body {
   text-align: center;
   font-size: 28px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
   color: var(--text-dark);
 }
 
-/* Card Grids */
+.section-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 32px;
+}
+
+/* 5. Cards & Grids */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -111,8 +176,9 @@ body {
 .card {
   background: var(--white);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  padding: 24px;
   box-shadow: var(--shadow-sm);
+  border: 1px solid #e2e8f0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -121,21 +187,41 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-/* ==========================================================================
-   4. Responsive Adjustments (Mobile & Tablet)
-   ========================================================================== */
-@media (max-width: 768px) {
-  .hero {
-    min-height: 48vh;
-    padding-bottom: 24px;
-  }
+.card h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
 
+.card p {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.card-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 6. Mobile Responsiveness */
+@media (max-width: 768px) {
   .hero-actions {
-    gap: 10px;
+    position: relative;
+    bottom: 0;
+    margin-top: 16px;
+    width: 100%;
+    padding: 0 16px;
   }
 
   .hero-btn {
-    padding: 10px 16px;
-    font-size: 13.5px;
+    padding: 10px 14px;
+    font-size: 14px;
   }
 }
