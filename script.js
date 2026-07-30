@@ -9,19 +9,58 @@ const categoryData = {
     tabs: [
       {
         name: "City Sightseeing",
-        content: "<strong>Chennai City Day Tour:</strong> Marina Beach, Kapaleeshwarar Temple, San Thome Basilica, Fort St. George, and Government Museum."
+        content: `
+          <div class="tariff-box">
+            <h4>📍 Chennai City Day Tour (5 Hours Package)</h4>
+            <p><strong>Covered Attractions:</strong> Marina Beach, Kapaleeshwarar Temple, San Thome Basilica, Fort St. George, &amp; Government Museum.</p>
+            <ul class="tariff-list">
+              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹1,400 (50 KM / 5 Hrs)</span></li>
+              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹2,000 (50 KM / 5 Hrs)</span></li>
+            </ul>
+          </div>
+        `
       },
       {
         name: "ECR & Coastal",
-        content: "<strong>ECR Beach Route:</strong> Muttukadu Boat House, Kovalam Beach, DakshinaChitra Heritage Village, and Tiger Cave."
+        content: `
+          <div class="tariff-box">
+            <h4>🌊 ECR Beach & Coastal Run (10 Hours Package)</h4>
+            <p><strong>Covered Attractions:</strong> Muttukadu Boat House, Kovalam Beach, DakshinaChitra Heritage Village, &amp; Tiger Cave.</p>
+            <ul class="tariff-list">
+              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹2,800 (100 KM / 10 Hrs)</span></li>
+              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹4,000 (100 KM / 10 Hrs)</span></li>
+              <li><span> Innova Crysta:</span> <span class="tariff-badge">₹4,600 (100 KM / 10 Hrs)</span></li>
+            </ul>
+          </div>
+        `
       },
       {
         name: "Heritage & Temples",
-        content: "<strong>Heritage Tour:</strong> Mahabalipuram Shore Temple, Pancha Rathas, and Kanchipuram Silk & Temple circuit."
+        content: `
+          <div class="tariff-box">
+            <h4>🛕 Heritage & Silk City Tour (10 Hours Package)</h4>
+            <p><strong>Covered Attractions:</strong> Mahabalipuram Shore Temple, Pancha Rathas, &amp; Kanchipuram Temple Circuits.</p>
+            <ul class="tariff-list">
+              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹2,800 (100 KM / 10 Hrs)</span></li>
+              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹4,000 (100 KM / 10 Hrs)</span></li>
+              <li><span> Innova Crysta:</span> <span class="tariff-badge">₹4,600 (100 KM / 10 Hrs)</span></li>
+            </ul>
+          </div>
+        `
       },
       {
         name: "Theme Parks",
-        content: "<strong>Fun Outings:</strong> VGP Universal Kingdom, MGM Dizzee World, and Queens Land day trip transfers."
+        content: `
+          <div class="tariff-box">
+            <h4>🎢 Amusement & Theme Park Express (10 Hours Package)</h4>
+            <p><strong>Covered Attractions:</strong> VGP Universal Kingdom, MGM Dizzee World, &amp; Queens Land full-day transfers.</p>
+            <ul class="tariff-list">
+              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹2,800 (100 KM / 10 Hrs)</span></li>
+              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹4,000 (100 KM / 10 Hrs)</span></li>
+              <li><span> Innova Crysta:</span> <span class="tariff-badge">₹4,600 (100 KM / 10 Hrs)</span></li>
+            </ul>
+          </div>
+        `
       }
     ]
   },
@@ -29,17 +68,17 @@ const categoryData = {
     title: "🏔️ Tour Domestic Packages",
     desc: "Handcrafted Indian holiday itineraries.",
     tabs: [
-      { name: "Kerala", content: "<strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, Wayanad & Thekkady." },
+      { name: "Kerala", content: "<strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, Wayanad &amp; Thekkady." },
       { name: "Hill Stations", content: "<strong>Cool Getaways:</strong> Ooty Botanical Gardens, Kodaikanal Lake, and Coonoor Toy Train." },
       { name: "Goa & North", content: "<strong>Beach & Mountains:</strong> Goa holiday packages, Kashmir Valley, and Manali trips." }
     ]
   },
   international: {
     title: "🌍 Tour International Packages",
-    desc: "Complete foreign tour packages including flight & visa support.",
+    desc: "Complete foreign tour packages including flight &amp; visa support.",
     tabs: [
-      { name: "Dubai", content: "<strong>Dubai Highlights:</strong> Burj Khalifa, Desert Safari, Marina Cruise & Dubai Mall." },
-      { name: "Thailand", content: "<strong>Thailand Trips:</strong> Bangkok City, Pattaya Coral Island & Phuket Beach Resorts." },
+      { name: "Dubai", content: "<strong>Dubai Highlights:</strong> Burj Khalifa, Desert Safari, Marina Cruise &amp; Dubai Mall." },
+      { name: "Thailand", content: "<strong>Thailand Trips:</strong> Bangkok City, Pattaya Coral Island &amp; Phuket Beach Resorts." },
       { name: "Singapore & Bali", content: "<strong>Island Escapes:</strong> Sentosa Island, Universal Studios, and Bali Luxury Villas." }
     ]
   },
@@ -49,11 +88,29 @@ const categoryData = {
     tabs: [
       {
         name: "Local Hourly",
-        content: "<ul><li><strong>Sedan:</strong> ₹1,400 (50 km / 5 Hrs)</li><li><strong>Innova:</strong> ₹2,000 (50 km / 5 Hrs)</li><li><strong>Innova Crysta:</strong> ₹4,600 (100 km / 10 Hrs)</li></ul>"
+        content: `
+          <div class="tariff-box">
+            <h4>⏱️ Local City Hourly Package</h4>
+            <ul class="tariff-list">
+              <li><span> Sedan (50 KM / 5 Hrs):</span> <span class="tariff-badge">₹1,400</span></li>
+              <li><span> Innova (50 KM / 5 Hrs):</span> <span class="tariff-badge">₹2,000</span></li>
+              <li><span> Innova Crysta (100 KM / 10 Hrs):</span> <span class="tariff-badge">₹4,600</span></li>
+            </ul>
+          </div>
+        `
       },
       {
         name: "Outstation Packs",
-        content: "<ul><li><strong>Sedan:</strong> ₹4,500 (250 km Day Pack)</li><li><strong>Innova:</strong> ₹6,000 (250 km Day Pack)</li><li><strong>Innova Crysta:</strong> ₹6,750 (250 km Day Pack)</li></ul>"
+        content: `
+          <div class="tariff-box">
+            <h4>🛣️ Outstation Day Packages</h4>
+            <ul class="tariff-list">
+              <li><span> Sedan (250 KM Day Pack):</span> <span class="tariff-badge">₹4,500</span></li>
+              <li><span> Innova (250 KM Day Pack):</span> <span class="tariff-badge">₹6,000</span></li>
+              <li><span> Innova Crysta (250 KM Day Pack):</span> <span class="tariff-badge">₹6,750</span></li>
+            </ul>
+          </div>
+        `
       }
     ]
   }
@@ -86,7 +143,9 @@ function openCategoryModal(catKey) {
 
     data.tabs.forEach((tab, index) => {
       const btn = document.createElement("button");
-      btn.className = `sub-tab-btn ${index === 0 ? 'active' : ''}`;
+      // Cycle through 4 distinct button colors
+      const colorClass = `tab-color-${index % 4}`;
+      btn.className = `sub-tab-btn ${colorClass} ${index === 0 ? 'active' : ''}`;
       btn.textContent = tab.name;
       btn.onclick = () => {
         document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
@@ -103,7 +162,7 @@ function openCategoryModal(catKey) {
     activeServiceTitle = fallback.title;
     document.getElementById("modalTitle").textContent = fallback.title;
     document.getElementById("modalDescription").textContent = fallback.desc;
-    contentBody.innerHTML = fallback.content;
+    contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>`;
   }
 
   document.getElementById("enquiryModal").classList.add("show");
