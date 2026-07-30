@@ -117,8 +117,10 @@ body {
 .hero-btn.secondary { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
 
 /* =========================================================
-   CATEGORY HUB GRID
+   CATEGORY HUB GRID (SAFE RESPONSIVE UPDATE)
 ========================================================= */
+
+/* Section & Header Styles */
 .section {
   max-width: 1280px;
   margin: 0 auto;
@@ -161,6 +163,7 @@ body {
 .social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
 .social-btn.twitter { background-color: #000000; }
 
+/* 1. Base Grid & Card Styles (Default / Mobile View) */
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -225,6 +228,45 @@ body {
   background: linear-gradient(90deg, #FF9933, #ff5a00);
   color: #ffffff;
   cursor: pointer;
+}
+
+/* 2. Desktop-Only Scaling (Triggers ONLY on screen widths > 768px) */
+@media (min-width: 769px) {
+  .hub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+  }
+
+  .hub-card {
+    min-height: 380px;
+    border-radius: 22px;
+  }
+
+  .hub-card-content {
+    padding: 30px;
+  }
+
+  .hub-icon { 
+    font-size: 42px; 
+    margin-bottom: 10px; 
+  }
+
+  .hub-card-content h3 { 
+    font-size: 28px; 
+    margin-bottom: 6px; 
+  }
+
+  .hub-card-content p { 
+    font-size: 16.5px; 
+    margin-bottom: 20px; 
+    line-height: 1.5; 
+  }
+
+  .hub-btn {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
 }
 
 /* =========================================================
