@@ -1,500 +1,141 @@
-/* =========================================================
-   GLOBAL BASE & BRAND STYLES
-========================================================= */
+/* ==========================================================================
+   CoGo Tours & Travels - Complete Stylesheet
+   ========================================================================== */
+
+/* 1. Global Reset & Base Variables */
+:root {
+  --primary-color: #138808;      /* Accent Green */
+  --secondary-color: #ff9933;    /* Accent Orange */
+  --text-dark: #0f172a;
+  --text-light: #64748b;
+  --bg-light: #f8fafc;
+  --white: #ffffff;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
   line-height: 1.6;
 }
 
-/* Header Brand Navigation */
-#mainNav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #0f172a;
-  color: #ffffff;
-  padding: 12px 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-.nav-container.nav-center-aligned {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1240px;
-  margin: 0 auto;
-}
-
-#navLinks {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
-}
-
-/* Blunt Square Indian Flag Inspired Header Buttons */
-.flag-tab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 42px;
-  padding: 0 20px;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 14px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
-  min-width: 140px;
-}
-
-.flag-tab:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-.tab-saffron { background-color: #FF9933; color: #ffffff !important; }
-.tab-white-blue { background-color: #ffffff; color: #000080 !important; border: 1px solid #cbd5e1; }
-.tab-green { background-color: #138808; color: #ffffff !important; }
-
-/* Hero Section with Clean Overhead Alignment */
+/* ==========================================================================
+   2. Hero Section (Updated for Integrated Image Banner)
+   ========================================================================== */
 .hero {
   position: relative;
-  background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.75)),
-              url('cogoindian.jpeg') center/cover no-repeat,
-              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-  color: #ffffff;
-  text-align: center;
-  padding: 100px 20px 80px 20px;
+  width: 100%;
+  /* Ensures proper aspect ratio display across screen sizes */
+  min-height: 70vh; 
+  background: url('hero-banner.jpg') center center / cover no-repeat;
+  display: flex;
+  align-items: flex-end; /* Keeps action buttons at the bottom */
+  justify-content: center;
+  padding: 0 20px 40px 20px;
+  box-sizing: border-box;
 }
 
-.brand-hero-tag {
-  display: inline-block;
-  background: rgba(255, 153, 51, 0.95);
-  color: #ffffff;
-  font-weight: 900;
-  font-size: 16px;
-  letter-spacing: 1.5px;
-  padding: 6px 18px;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-}
-
-.hero h1 {
-  font-size: 42px;
-  font-weight: 900;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-
-.hero p {
-  font-size: 18px;
-  opacity: 0.95;
-  max-width: 680px;
-  margin: 0 auto 24px auto;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-}
-
+/* Position Action Buttons neatly over bottom area */
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
+  z-index: 10;
+  width: 100%;
+  max-width: 500px;
 }
 
 .hero-btn {
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
   font-weight: 800;
-  font-size: 15px;
-  border: none;
+  font-size: 16px;
+  border: 2px solid transparent;
   cursor: pointer;
-}
-
-.hero-btn.primary { background: #138808; color: #fff; }
-.hero-btn.secondary { background: #ffffff; color: #0f172a; }
-
-/* Category Hub Grid */
-.section {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 50px 20px;
-}
-
-.text-center { text-align: center; }
-
-.hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
-.section-sub { color: #64748b; margin-bottom: 25px; font-size: 16px; }
-
-/* Social Links Bar */
-.social-links-bar {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 35px;
-  flex-wrap: wrap;
-}
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 30px;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 13.5px;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.social-btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
-.social-btn.facebook { background-color: #1877F2; }
-.social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.social-btn.twitter { background-color: #000000; }
-
-.hub-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 26px;
-}
-
-.hub-card {
-  position: relative;
-  background: #ffffff;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 280px;
-  border: 1px solid #e2e8f0;
-}
-
-.hub-card-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.4s ease;
-}
-
-.hub-card:hover .hub-card-bg { transform: scale(1.08); }
-
-/* Card Image Mappings */
-.chennai-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('chennai-banner.jpg'), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
-.intl-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('cogotours1.jpeg'), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80'); }
-.pilgrim-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
-.domestic-bg   { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80'); }
-.corporate-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80'); }
-.school-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'); }
-.adventure-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80'); }
-.honeymoon-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'); }
-.cab-bg        { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80'); }
-.visa-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'); }
-.ticket-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80'); }
-.outstation-bg { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80'); }
-
-.hub-card-content {
-  position: relative;
-  z-index: 2;
-  padding: 22px;
-  color: #ffffff;
-}
-
-.hub-icon { font-size: 30px; display: block; margin-bottom: 6px; }
-.hub-card-content h3 { font-size: 22px; font-weight: 800; color: #fff; }
-.hub-card-content p { font-size: 14px; opacity: 0.9; margin-bottom: 16px; }
-
-.hub-btn {
-  width: 100%;
-  padding: 11px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 800;
-  font-size: 14px;
-  background: linear-gradient(90deg, #FF9933, #ff5a00);
-  color: #ffffff;
-  cursor: pointer;
-}
-
-/* About Us Section */
-.about-section {
-  background: #ffffff;
-  padding: 60px 20px;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.section-container {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.about-content h2 {
-  font-size: 32px;
-  font-weight: 900;
-  margin-bottom: 12px;
-  color: #0f172a;
-}
-
-.about-lead {
-  font-size: 18px;
-  font-weight: 600;
-  color: #FF9933;
-  margin-bottom: 16px;
-}
-
-.about-body {
-  font-size: 15.5px;
-  color: #475569;
-  max-width: 850px;
-  margin: 0 auto;
-  line-height: 1.8;
-}
-
-/* Contact & Map Section */
-.contact-section {
-  padding: 60px 20px;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 20px;
-  align-items: stretch;
-}
-
-.contact-card {
-  background: #ffffff;
-  padding: 28px;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-  border: 1px solid #e2e8f0;
-}
-
-.contact-card h3 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 20px;
-  color: #0f172a;
-}
-
-.contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 16px;
-}
-
-.contact-icon { font-size: 22px; }
-
-.contact-item a {
-  color: #138808;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.map-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.map-directions-btn {
-  display: block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  flex: 1;
   text-align: center;
-  background: #0f172a;
-  color: #ffffff;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 800;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
 }
 
-.map-directions-btn:hover {
-  background: #FF9933;
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
-/* =========================================================
-   MODAL POPUP & RATE CARD ENHANCEMENTS
-========================================================= */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.85);
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+.hero-btn.primary { 
+  background: var(--primary-color); 
+  color: var(--white); 
 }
 
-.modal-overlay.show { display: flex; }
-
-.modal-box {
-  background: #ffffff;
-  width: 100%;
-  max-width: 680px;
-  border-radius: 20px;
-  padding: 28px;
-  position: relative;
-  max-height: 92vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+.hero-btn.secondary { 
+  background: var(--white); 
+  color: var(--text-dark); 
+  border-color: #cbd5e1;
 }
 
-.modal-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: #f1f5f9;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
+/* ==========================================================================
+   3. Content Sections & Layout Containers
+   ========================================================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
-/* Sub-tabs Container & Alternating Color Buttons */
-.sub-tab-container {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 12px;
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-dark);
 }
 
-.sub-tab-btn {
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  color: #ffffff;
+/* Card Grids */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
 }
 
-.sub-tab-btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
+.card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Alternating Button Colors */
-.sub-tab-btn.tab-color-0 { background-color: #FF9933; } /* Saffron */
-.sub-tab-btn.tab-color-1 { background-color: #0F172A; } /* Navy */
-.sub-tab-btn.tab-color-2 { background-color: #138808; } /* Forest Green */
-.sub-tab-btn.tab-color-3 { background-color: #D97706; } /* Amber */
-
-.sub-tab-btn.active {
-  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
-/* Warm Peach Dynamic Content Body */
-.modal-body-wrapper.peach-theme {
-  background: #FFF5EE; /* Mild Pleasant Peach */
-  border: 1.5px solid #FFE4E1;
-  padding: 22px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  font-size: 16.5px; /* Larger, readable font */
-  line-height: 1.7;
-  color: #1e293b;
-}
-
-/* Detailed Tariff List Styling */
-.tariff-box {
-  margin-top: 10px;
-}
-
-.tariff-box h4 {
-  font-size: 18px;
-  font-weight: 800;
-  color: #9a3412;
-  margin-bottom: 8px;
-  border-bottom: 1px dashed #fdba74;
-  padding-bottom: 4px;
-}
-
-.tariff-list {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
-}
-
-.tariff-list li {
-  padding: 8px 12px;
-  background: #ffffff;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  font-size: 16px;
-  border: 1px solid #fed7aa;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tariff-badge {
-  background: #138808;
-  color: #ffffff;
-  font-weight: 800;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 15px;
-}
-
-.form-group { margin-bottom: 14px; }
-.form-group label { display: block; font-size: 13.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
-.form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; }
-
-.modal-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
-.action-btn { padding: 14px; border-radius: 10px; border: none; font-weight: 800; font-size: 15px; cursor: pointer; }
-.btn-wa { background: #138808; color: #fff; }
-.btn-email { background: #0f172a; color: #fff; }
-
-/* Mobile Optimizations */
+/* ==========================================================================
+   4. Responsive Adjustments (Mobile & Tablet)
+   ========================================================================== */
 @media (max-width: 768px) {
-  #navLinks {
-    flex-direction: row;
-    gap: 6px;
+  .hero {
+    min-height: 48vh;
+    padding-bottom: 24px;
   }
 
-  .flag-tab {
-    padding: 0 4px;
-    font-size: 11px;
-    flex: 1;
-    min-width: auto;
-    height: 38px;
+  .hero-actions {
+    gap: 10px;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
+  .hero-btn {
+    padding: 10px 16px;
+    font-size: 13.5px;
   }
-
-  .hero h1 { font-size: 30px; }
-  .brand-hero-tag { font-size: 13px; }
 }
