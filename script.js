@@ -252,3 +252,60 @@ document.addEventListener("click", function(e) {
     zoomPamphlet(e.target.src);
   }
 });
+/* =========================================================
+   MOUSE WHEEL & BUTTON ZOOM ENGINE FOR LIGHTBOX
+========================================================= */
+
+let currentZoomScale = 1;
+
+function zoomPamphlet(imgSrc) {
+  const lightbox = document.getElementById("pamphletLightbox");
+  const lightboxImg = document.getElementById("lightboxImage");
+  
+  if (lightbox && lightboxImg) {
+    lightboxImg.src = imgSrc;
+    currentZoomScale = 1;
+    lightboxImg.style.transform = `scale(${currentZoomScale})`;
+    lightbox.classList.add("show");
+  }
+}
+
+function closePamphletZoom(e) {
+  const lightbox = document.getElementById("pamphletLightbox");
+  if (lightbox) {
+    lightbox.classList.remove("show");
+    resetZoom();
+  }
+}
+
+function changeZoom(amount) {
+  const lightboxImg = document.getElementById("lightboxImage");
+  if (!lightboxImg) return;
+  
+  currentZoomScale += amount;
+  if (currentZoomScale < 0.5) currentZoomScale = 0.5;
+  if (currentZoomScale > 3.5) currentZoomScale = 3.5; // Up to 350% magnification
+  
+  lightboxImg.style.transform = `scale(${currentZoomScale})`;
+}
+
+function resetZoom() {
+  currentZoomScale = 1;
+  const lightboxImg = document.getElementById("lightboxImage");
+  if (lightboxImg) {
+    lightboxImg.style.transform = `scale(1)`;
+  }
+}
+
+// Mouse Scroll Wheel Zoom Listener
+document.addEventListener("wheel", function(e) {
+  const lightbox = document.getElementById("pamphletLightbox");
+  if (lightbox && lightbox.classList.contains("show")) {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      changeZoom(0.15); // Scroll Up -> Zoom In
+    } else {
+      changeZoom(-0.15); // Scroll Down -> Zoom Out
+    }
+  }
+}, { passive: false });
