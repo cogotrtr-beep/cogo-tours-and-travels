@@ -66,20 +66,37 @@ const categoryData = {
   },
   domestic: {
     title: "🏔️ Tour Domestic Packages",
-    desc: "Handcrafted Indian holiday itineraries.",
+    desc: "Handcrafted Indian holiday itineraries. Swipe to explore our featured package flyers!",
     tabs: [
-      { name: "Kerala", content: "<strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, Wayanad &amp; Thekkady." },
-      { name: "Hill Stations", content: "<strong>Cool Getaways:</strong> Ooty Botanical Gardens, Kodaikanal Lake, and Coonoor Toy Train." },
-      { name: "Goa & North", content: "<strong>Beach & Mountains:</strong> Goa holiday packages, Kashmir Valley, and Manali trips." }
+      { 
+        name: "Featured Pamphlets", 
+        content: `
+          <div class="pamphlet-swiper">
+            <div class="pamphlet-card">
+              <img src="domestic-flyer.png" alt="Domestic Package Flyer 1">
+            </div>
+            <div class="pamphlet-card">
+              <img src="domestic-flyer2.png" alt="Domestic Package Flyer 2">
+            </div>
+            <div class="pamphlet-card">
+              <img src="domestic-flyer3.png" alt="Domestic Package Flyer 3">
+            </div>
+          </div>
+          <p style="text-align: center; margin-top: 10px; font-weight: bold; color: #475569;">👉 Swipe left/right to view all flyers</p>
+        ` 
+      },
+      { name: "Kerala", content: "<div class='tariff-box'><strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, Wayanad &amp; Thekkady.</div>" },
+      { name: "Hill Stations", content: "<div class='tariff-box'><strong>Cool Getaways:</strong> Ooty Botanical Gardens, Kodaikanal Lake, and Coonoor Toy Train.</div>" },
+      { name: "Goa & North", content: "<div class='tariff-box'><strong>Beach & Mountains:</strong> Goa holiday packages, Kashmir Valley, and Manali trips.</div>" }
     ]
   },
   international: {
     title: "🌍 Tour International Packages",
     desc: "Complete foreign tour packages including flight &amp; visa support.",
     tabs: [
-      { name: "Dubai", content: "<strong>Dubai Highlights:</strong> Burj Khalifa, Desert Safari, Marina Cruise &amp; Dubai Mall." },
-      { name: "Thailand", content: "<strong>Thailand Trips:</strong> Bangkok City, Pattaya Coral Island &amp; Phuket Beach Resorts." },
-      { name: "Singapore & Bali", content: "<strong>Island Escapes:</strong> Sentosa Island, Universal Studios, and Bali Luxury Villas." }
+      { name: "Dubai", content: "<div class='tariff-box'><strong>Dubai Highlights:</strong> Burj Khalifa, Desert Safari, Marina Cruise &amp; Dubai Mall.</div>" },
+      { name: "Thailand", content: "<div class='tariff-box'><strong>Thailand Trips:</strong> Bangkok City, Pattaya Coral Island &amp; Phuket Beach Resorts.</div>" },
+      { name: "Singapore & Bali", content: "<div class='tariff-box'><strong>Island Escapes:</strong> Sentosa Island, Universal Studios, and Bali Luxury Villas.</div>" }
     ]
   },
   cabs: {
@@ -143,7 +160,6 @@ function openCategoryModal(catKey) {
 
     data.tabs.forEach((tab, index) => {
       const btn = document.createElement("button");
-      // Cycle through 4 distinct button colors
       const colorClass = `tab-color-${index % 4}`;
       btn.className = `sub-tab-btn ${colorClass} ${index === 0 ? 'active' : ''}`;
       btn.textContent = tab.name;
