@@ -15,18 +15,17 @@
         <a href="#" class="logo-text">COGO</a>
         <span class="company-subname">COGO TOURS AND TRAVELS</span>
       </div>
-      <button id="hamburgerBtn">☰</button>
+      
       <div id="navLinks">
-        <a href="#services-hub">Services</a>
-        <a href="tel:+919884066830" class="call-link">📞 Call Us</a>
-        <!-- Dedicated Cogo Cab Header Button -->
-        <button class="btn-nav cab-nav-btn" onclick="openCategoryModal('cabs')">🚖 Book Cogo Cab</button>
-        <button class="btn-nav plan-nav-btn" onclick="openEnquiryForm('General Plan Journey')">Plan Your Journey</button>
+        <!-- Indian Flag Inspired Square Tabs -->
+        <a href="tel:+919884066830" class="flag-tab tab-green">📞 Call Us</a>
+        <button class="flag-tab tab-white" onclick="openCategoryModal('cabs')">🚖 Book Cogo Cab</button>
+        <button class="flag-tab tab-orange" onclick="openEnquiryForm('General Plan Journey')">Plan Your Journey</button>
       </div>
     </div>
   </nav>
 
-  <!-- Classic Homepage Hero Section -->
+  <!-- Classic Homepage Hero Section (Couple Image Background) -->
   <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -41,12 +40,12 @@
   </header>
 
   <!-- =========================
-       CATEGORY SERVICES HUB (REORDERED)
+       CATEGORY SERVICES HUB
   ========================== -->
   <section id="services-hub" class="section">
     <div class="hub-header text-center">
       <h2>Our Services &amp; Packages</h2>
-      <p class="section-sub">Select a service category to view details or request a custom quote.</p>
+      <p class="section-sub">Select a service category below to explore specific destinations, itineraries, and rates.</p>
     </div>
 
     <div class="hub-grid">
@@ -56,7 +55,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🏛️</span>
           <h3>Tour Chennai</h3>
-          <p>City sightseeing, ECR beach runs, heritage walks &amp; theme park trips.</p>
+          <p>City sightseeing, ECR beach runs, heritage walks &amp; theme parks.</p>
           <button class="hub-btn" onclick="openCategoryModal('chennai')">Explore Chennai</button>
         </div>
       </div>
@@ -111,7 +110,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🛕</span>
           <h3>Pilgrim Tour</h3>
-          <p>Dedicated temple packages for Tirupati, Kanchipuram, Rameswaram &amp; Chidambaram.</p>
+          <p>Dedicated temple packages for Tirupati, Kanchipuram &amp; Rameswaram.</p>
           <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Temple Tours</button>
         </div>
       </div>
@@ -184,16 +183,20 @@
     </div>
   </section>
 
-  <!-- Interactive Plan / Enquiry Modal -->
+  <!-- Interactive Multi-Tab Service Modal -->
   <div id="enquiryModal" class="modal-overlay">
     <div class="modal-box">
       <button class="modal-close" onclick="closeModal()">✕</button>
       <h2 id="modalTitle">Plan Your Journey</h2>
-      <p id="modalDescription" class="modal-desc">Send us your requirements and we will get back to you instantly!</p>
+      <p id="modalDescription" class="modal-desc"></p>
       
-      <div id="modalDynamicContent"></div>
+      <!-- Sub-tabs Container -->
+      <div id="modalSubTabs" class="sub-tab-container"></div>
 
-      <!-- Lead Capture Query Form -->
+      <!-- Dynamic Content Body -->
+      <div id="modalDynamicContent" class="modal-body-wrapper"></div>
+
+      <!-- Quick Lead Form -->
       <form id="queryForm" onsubmit="event.preventDefault();">
         <div class="form-group">
           <label>Your Name</label>
@@ -204,8 +207,8 @@
           <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
         </div>
         <div class="form-group">
-          <label>Your Travel Requirement / Query</label>
-          <textarea id="userQuery" rows="3" placeholder="Specify travel dates, vehicle preference, or destination..."></textarea>
+          <label>Travel Query / Preferred Dates</label>
+          <textarea id="userQuery" rows="2" placeholder="Tell us more about your travel plan..."></textarea>
         </div>
 
         <div class="modal-actions-grid">
