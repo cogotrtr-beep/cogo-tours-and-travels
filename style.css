@@ -68,21 +68,36 @@ body {
 .tab-white-blue { background-color: #ffffff; color: #000080 !important; border: 1px solid #cbd5e1; }
 .tab-green { background-color: #138808; color: #ffffff !important; }
 
-/* Hero Section with Couple Graphic Background */
+/* Hero Section with Clean Overhead Alignment */
 .hero {
   position: relative;
-  background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.65)),
+  background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.75)),
               url('cogoindian.jpeg') center/cover no-repeat,
               url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
   color: #ffffff;
   text-align: center;
-  padding: 120px 20px;
+  padding: 100px 20px 80px 20px;
+}
+
+.brand-hero-tag {
+  display: inline-block;
+  background: rgba(255, 153, 51, 0.95);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  padding: 6px 18px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
 }
 
 .hero h1 {
-  font-size: 44px;
+  font-size: 42px;
   font-weight: 900;
   margin-bottom: 12px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .hero p {
@@ -90,6 +105,7 @@ body {
   opacity: 0.95;
   max-width: 680px;
   margin: 0 auto 24px auto;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .hero-actions {
@@ -186,7 +202,6 @@ body {
 .chennai-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('chennai-banner.jpg'), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
 .intl-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('cogotours1.jpeg'), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80'); }
 .pilgrim-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
-
 .domestic-bg   { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80'); }
 .corporate-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80'); }
 .school-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'); }
@@ -321,45 +336,14 @@ body {
   background: #FF9933;
 }
 
-/* Modal Box & Sub-tabs */
-.sub-tab-container {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 10px;
-}
-
-.sub-tab-btn {
-  background: #f1f5f9;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #475569;
-  cursor: pointer;
-}
-
-.sub-tab-btn.active {
-  background: #0f172a;
-  color: #ffffff;
-}
-
-.modal-body-wrapper {
-  background: #f8fafc;
-  padding: 16px;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  font-size: 14.5px;
-}
-
+/* =========================================================
+   MODAL POPUP & RATE CARD ENHANCEMENTS
+========================================================= */
 .modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(15, 23, 42, 0.85);
   z-index: 2000;
   align-items: center;
   justify-content: center;
@@ -371,33 +355,124 @@ body {
 .modal-box {
   background: #ffffff;
   width: 100%;
-  max-width: 580px;
-  border-radius: 18px;
-  padding: 24px;
+  max-width: 680px;
+  border-radius: 20px;
+  padding: 28px;
   position: relative;
   max-height: 92vh;
   overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 18px;
+  right: 18px;
   background: #f1f5f9;
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
 }
 
-.form-group { margin-bottom: 12px; }
-.form-group label { display: block; font-size: 12.5px; font-weight: 700; color: #334155; margin-bottom: 4px; }
-.form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; }
+/* Sub-tabs Container & Alternating Color Buttons */
+.sub-tab-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+}
 
-.modal-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
-.action-btn { padding: 12px; border-radius: 8px; border: none; font-weight: 800; font-size: 13.5px; cursor: pointer; }
+.sub-tab-btn {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  color: #ffffff;
+}
+
+.sub-tab-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* Alternating Button Colors */
+.sub-tab-btn.tab-color-0 { background-color: #FF9933; } /* Saffron */
+.sub-tab-btn.tab-color-1 { background-color: #0F172A; } /* Navy */
+.sub-tab-btn.tab-color-2 { background-color: #138808; } /* Forest Green */
+.sub-tab-btn.tab-color-3 { background-color: #D97706; } /* Amber */
+
+.sub-tab-btn.active {
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a;
+}
+
+/* Warm Peach Dynamic Content Body */
+.modal-body-wrapper.peach-theme {
+  background: #FFF5EE; /* Mild Pleasant Peach */
+  border: 1.5px solid #FFE4E1;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  font-size: 16.5px; /* Larger, readable font */
+  line-height: 1.7;
+  color: #1e293b;
+}
+
+/* Detailed Tariff List Styling */
+.tariff-box {
+  margin-top: 10px;
+}
+
+.tariff-box h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #9a3412;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed #fdba74;
+  padding-bottom: 4px;
+}
+
+.tariff-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.tariff-list li {
+  padding: 8px 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  border: 1px solid #fed7aa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tariff-badge {
+  background: #138808;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 13.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
+.form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; }
+
+.modal-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+.action-btn { padding: 14px; border-radius: 10px; border: none; font-weight: 800; font-size: 15px; cursor: pointer; }
 .btn-wa { background: #138808; color: #fff; }
 .btn-email { background: #0f172a; color: #fff; }
 
@@ -405,11 +480,11 @@ body {
 @media (max-width: 768px) {
   #navLinks {
     flex-direction: row;
-    gap: 8px;
+    gap: 6px;
   }
 
   .flag-tab {
-    padding: 0 6px;
+    padding: 0 4px;
     font-size: 11px;
     flex: 1;
     min-width: auto;
@@ -420,5 +495,6 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .hero h1 { font-size: 32px; }
+  .hero h1 { font-size: 30px; }
+  .brand-hero-tag { font-size: 13px; }
 }
