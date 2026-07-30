@@ -302,11 +302,24 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
-  <!-- Fullscreen Pamphlet Zoom Lightbox -->
-<div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom()">
-  <span class="pamphlet-lightbox-close">&times;</span>
-  <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
-</div>
+<script src="script.js"></script>
+
+  <!-- Interactive Lightbox Modal (With Zoom Controls) -->
+  <div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
+    <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
+    
+    <!-- Zoom Control Buttons for Desktop -->
+    <div class="zoom-controls" onclick="event.stopPropagation()">
+      <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
+      <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
+      <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
+    </div>
+
+    <div class="lightbox-img-container" onclick="event.stopPropagation()">
+      <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
+    </div>
+  </div>
+</body>
+</html>
 </body>
 </html>
