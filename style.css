@@ -41,7 +41,7 @@ body {
 .logo-text {
   font-weight: 900;
   font-size: 24px;
-  color: #ff9800;
+  color: #FF9933;
   text-decoration: none;
   letter-spacing: 1px;
 }
@@ -57,62 +57,65 @@ body {
 #navLinks {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* Square Indian Flag Inspired Header Tabs */
+/* Blunt Square Indian Flag Inspired Header Buttons */
 .flag-tab {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 14px;
-  border-radius: 8px; /* Squarish design */
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 8px; /* Same size, blunt square shape */
   font-weight: 800;
-  font-size: 13px;
+  font-size: 13.5px;
   text-decoration: none;
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
+  min-width: 130px;
 }
 
 .flag-tab:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* Indian Flag Colors: Green, White, Orange */
-.tab-green {
-  background-color: #138808; /* Indian Flag Green */
+/* Button 1: Saffron Orange */
+.tab-saffron {
+  background-color: #FF9933;
   color: #ffffff !important;
 }
 
-.tab-white {
+/* Button 2: White with Chakra Wheel Blue Font */
+.tab-white-blue {
   background-color: #ffffff;
-  color: #000080 !important; /* Navy Blue Accent */
+  color: #000080 !important; /* Ashoka Chakra Blue */
   border: 1px solid #cbd5e1;
 }
 
-.tab-orange {
-  background-color: #FF9933; /* Indian Flag Saffron */
+/* Button 3: Indian Flag Green */
+.tab-green {
+  background-color: #138808;
   color: #ffffff !important;
 }
 
-/* Hero Section with Couple Graphic Background */
+/* Hero Section with Couple Graphic Background (cogoindian.jpeg) */
 .hero {
   position: relative;
-  /* Replace hero-couple.jpg with your exact image path/filename when uploading to GitHub */
-  background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.75)),
-              url('hero-couple.jpg') center/cover no-repeat,
+  background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.7)),
+              url('cogoindian.jpeg') center/cover no-repeat,
               url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
   color: #ffffff;
   text-align: center;
-  padding: 100px 20px;
+  padding: 110px 20px;
 }
 
 .hero-tag {
   background: rgba(255, 153, 51, 0.25);
-  color: #ff9800;
+  color: #FF9933;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 12px;
@@ -123,7 +126,7 @@ body {
 }
 
 .hero h1 {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 900;
   margin-bottom: 12px;
 }
@@ -150,10 +153,10 @@ body {
   cursor: pointer;
 }
 
-.hero-btn.primary { background: #FF9933; color: #fff; }
+.hero-btn.primary { background: #138808; color: #fff; }
 .hero-btn.secondary { background: #ffffff; color: #0f172a; }
 
-/* Category Hub Grid & Slightly Larger Cards */
+/* Category Hub Grid */
 .section {
   max-width: 1280px;
   margin: 0 auto;
@@ -167,7 +170,7 @@ body {
 
 .hub-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); /* Slightly larger cards */
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 26px;
 }
 
@@ -180,7 +183,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 280px; /* Increased card height */
+  min-height: 280px;
   border: 1px solid #e2e8f0;
 }
 
@@ -194,21 +197,21 @@ body {
 
 .hub-card:hover .hub-card-bg { transform: scale(1.08); }
 
-/* Custom Background Placeholders (Replace filenames with your uploaded JPEG files) */
-.chennai-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('chennai-banner.jpg'), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
-.intl-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('cogo-international.jpg'), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80'); }
+/* Card Image Mappings */
+.chennai-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('chennai-banner.jpg'), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
+.intl-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('cogotours1.jpeg'), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80'); }
+.pilgrim-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
 
 /* Default Stock Backups for Other Cards */
-.domestic-bg   { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80'); }
-.corporate-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80'); }
-.school-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'); }
-.pilgrim-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&w=600&q=80'); }
-.adventure-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80'); }
-.honeymoon-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'); }
-.cab-bg        { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80'); }
-.visa-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'); }
-.ticket-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80'); }
-.outstation-bg { background-image: linear-gradient(to top, rgba(15,23,42,0.92), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80'); }
+.domestic-bg   { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80'); }
+.corporate-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80'); }
+.school-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'); }
+.adventure-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80'); }
+.honeymoon-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'); }
+.cab-bg        { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80'); }
+.visa-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'); }
+.ticket-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80'); }
+.outstation-bg { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80'); }
 
 .hub-card-content {
   position: relative;
@@ -231,6 +234,86 @@ body {
   background: linear-gradient(90deg, #FF9933, #ff5a00);
   color: #ffffff;
   cursor: pointer;
+}
+
+/* About Us Section */
+.about-section {
+  background: #ffffff;
+  padding: 60px 20px;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.section-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-content h2 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.about-lead {
+  font-size: 18px;
+  font-weight: 600;
+  color: #FF9933;
+  margin-bottom: 16px;
+}
+
+.about-body {
+  font-size: 15.5px;
+  color: #475569;
+  max-width: 850px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Contact & Map Section */
+.contact-section {
+  padding: 60px 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.contact-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.contact-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.contact-icon {
+  font-size: 22px;
+}
+
+.contact-item a {
+  color: #138808;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 /* Interactive Sub-Tabs inside Modal */
@@ -314,7 +397,7 @@ body {
 .btn-wa { background: #138808; color: #fff; }
 .btn-email { background: #0f172a; color: #fff; }
 
-/* Mobile Optimizations (Bolder/Bigger Fonts for Mobile) */
+/* Mobile Optimizations */
 @media (max-width: 768px) {
   .nav-container {
     flex-direction: column;
@@ -327,24 +410,18 @@ body {
   }
 
   .flag-tab {
-    padding: 8px 10px;
-    font-size: 12px;
+    padding: 0 8px;
+    font-size: 11.5px;
     flex: 1;
+    min-width: auto;
+    height: 38px;
   }
 
-  /* Bolder, Bigger Mobile Typography */
-  .hub-card-content h3 {
-    font-size: 24px;
-    font-weight: 900;
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 
-  .hub-card-content p {
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  .hub-btn {
-    font-size: 15px;
-    padding: 12px;
-  }
+  .hub-card-content h3 { font-size: 24px; font-weight: 900; }
+  .hub-card-content p { font-size: 15px; font-weight: 600; }
+  .hub-btn { font-size: 15px; padding: 12px; }
 }
