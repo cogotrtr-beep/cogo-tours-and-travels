@@ -1,99 +1,124 @@
 /* =========================================================
-   COGO TOURS - CATEGORY MODAL & ENQUIRY ENGINE
+   COGO TOURS - INTERACTIVE MULTI-TAB SERVICE ENGINE
 ========================================================= */
 
 const categoryData = {
   chennai: {
     title: "🏛️ Tour Chennai Packages",
-    desc: "City sightseeing, temple runs, ECR beach drives & theme park trips.",
-    body: `<p><strong>Popular Routes:</strong> Mahabalipuram, Kanchipuram, ECR Coastline, VGP / MGM Theme Parks, and Temple Circuits.</p>`
+    desc: "Explore top tourist spots around Chennai and coastal Tamil Nadu.",
+    tabs: [
+      {
+        name: "City Sightseeing",
+        content: "<strong>Chennai City Day Tour:</strong> Marina Beach, Kapaleeshwarar Temple, San Thome Basilica, Fort St. George, and Government Museum."
+      },
+      {
+        name: "ECR & Coastal",
+        content: "<strong>ECR Beach Route:</strong> Muttukadu Boat House, Kovalam Beach, DakshinaChitra Heritage Village, and Tiger Cave."
+      },
+      {
+        name: "Heritage & Temples",
+        content: "<strong>Heritage Tour:</strong> Mahabalipuram Shore Temple, Pancha Rathas, and Kanchipuram Silk & Temple circuit."
+      },
+      {
+        name: "Theme Parks",
+        content: "<strong>Fun Outings:</strong> VGP Universal Kingdom, MGM Dizzee World, and Queens Land day trip transfers."
+      }
+    ]
   },
   domestic: {
     title: "🏔️ Tour Domestic Packages",
-    desc: "Tailor-made itineraries across India's top tourist destinations.",
-    body: `<p><strong>Destinations:</strong> Kerala Backwaters, Goa, Himachal Pradesh, Kashmir, Ooty, and Kodaikanal.</p>`
+    desc: "Handcrafted Indian holiday itineraries.",
+    tabs: [
+      { name: "Kerala", content: "<strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, Wayanad & Thekkady." },
+      { name: "Hill Stations", content: "<strong>Cool Getaways:</strong> Ooty Botanical Gardens, Kodaikanal Lake, and Coonoor Toy Train." },
+      { name: "Goa & North", content: "<strong>Beach & Mountains:</strong> Goa holiday packages, Kashmir Valley, and Manali trips." }
+    ]
   },
   international: {
     title: "🌍 Tour International Packages",
-    desc: "Complete foreign tour packages including flights and stays.",
-    body: `<p><strong>Destinations:</strong> Dubai, Thailand, Singapore, Malaysia, Bali, Europe, and Sri Lanka.</p>`
-  },
-  corporate: {
-    title: "💼 Corporate Tour Packages",
-    desc: "Professional offsites, team outings, and MICE events.",
-    body: `<p>Resort bookings, team-building activities, executive cabs, and luxury bus rentals.</p>`
-  },
-  students: {
-    title: "🎓 School / College Tours",
-    desc: "Safe, educational, and fun group trips for students.",
-    body: `<p>Industrial Visits (IVs), educational field trips, and leisure tours with dedicated coordinators.</p>`
-  },
-  pilgrim: {
-    title: "🛕 Pilgrim Tours",
-    desc: "Spiritual, hassle-free temple tours with comfortable transport.",
-    body: `<p>Special packages for Tirupati Balaji Darshan, Kanchipuram, Rameswaram, Madurai, and Thiruvannamalai.</p>`
-  },
-  adventure: {
-    title: "🏕️ Adventure Tours",
-    desc: "Thrilling trips for trekkers, campers, and outdoor enthusiasts.",
-    body: `<p>Jungle camping, river rafting, trekking expeditions, and water sports packages.</p>`
-  },
-  honeymoon: {
-    title: "👩‍❤️‍👨 Honeymoon Packages",
-    desc: "Romantic, private, and memorable couple escapes.",
-    body: `<p>Includes candlelight dinners, luxury stays, and private cabs in Munnar, Wayanad, Manali, and Bali.</p>`
+    desc: "Complete foreign tour packages including flight & visa support.",
+    tabs: [
+      { name: "Dubai", content: "<strong>Dubai Highlights:</strong> Burj Khalifa, Desert Safari, Marina Cruise & Dubai Mall." },
+      { name: "Thailand", content: "<strong>Thailand Trips:</strong> Bangkok City, Pattaya Coral Island & Phuket Beach Resorts." },
+      { name: "Singapore & Bali", content: "<strong>Island Escapes:</strong> Sentosa Island, Universal Studios, and Bali Luxury Villas." }
+    ]
   },
   cabs: {
     title: "🚖 Cogo Cabs Rates & Rental",
-    desc: "AC vehicles with experienced drivers for local and outstation trips.",
-    body: `
-      <p><strong>Chennai Sightseeing Rates:</strong></p>
-      <ul>
-        <li>Sedan: ₹1,400 (50 km) | Day Pack (250 km): ₹4,500</li>
-        <li>Innova: ₹2,000 (50 km) | Day Pack (250 km): ₹6,000</li>
-        <li>Innova Crysta: ₹4,600 (10H/100 km) | Day Pack (250 km): ₹6,750</li>
-      </ul>
-      <p><small>*Urbania, Tempo Traveller & Buses available on request.</small></p>`
-  },
-  visa: {
-    title: "🛂 Visa Assistance Services",
-    desc: "Tourist and business visa application support.",
-    body: `<p>Documentation and appointment support for Dubai, Singapore, Thailand, Schengen, UK, and USA.</p>`
-  },
-  tickets: {
-    title: "✈️ Ticket Booking (Air / Rail / Bus)",
-    desc: "Fast booking assistance for domestic and foreign travel.",
-    body: `<p>Get the best available fares for Flight, Train, and Intercity Volvo Bus tickets.</p>`
-  },
-  cabservices: {
-    title: "🚘 Outstation & Premium Cab Services",
-    desc: "Long-distance outstation travel and luxury fleet rentals.",
-    body: `<p>Round-trip outstation cabs, one-way drops, corporate monthly rentals, and luxury vehicle hires.</p>`
+    desc: "Affordable local and outstation taxi hires.",
+    tabs: [
+      {
+        name: "Local Hourly",
+        content: "<ul><li><strong>Sedan:</strong> ₹1,400 (50 km / 5 Hrs)</li><li><strong>Innova:</strong> ₹2,000 (50 km / 5 Hrs)</li><li><strong>Innova Crysta:</strong> ₹4,600 (100 km / 10 Hrs)</li></ul>"
+      },
+      {
+        name: "Outstation Packs",
+        content: "<ul><li><strong>Sedan:</strong> ₹4,500 (250 km Day Pack)</li><li><strong>Innova:</strong> ₹6,000 (250 km Day Pack)</li><li><strong>Innova Crysta:</strong> ₹6,750 (250 km Day Pack)</li></ul>"
+      }
+    ]
   }
+};
+
+// Generic Fallback for categories without deep sub-tabs yet
+const defaultCategoryInfo = {
+  corporate: { title: "💼 Corporate Tour", desc: "Team outings, MICE events & resort bookings.", content: "Custom resort packages, executive transport, and team-building retreats." },
+  students: { title: "🎓 School / College Tour", desc: "Safe student group travel.", content: "Industrial Visits (IVs), educational field trips, and leisure student tours." },
+  pilgrim: { title: "🛕 Pilgrim Tours", desc: "Spiritual temple circuits.", content: "Tirupati Balaji Darshan, Rameswaram, Kanchipuram, and Chidambaram packages." },
+  adventure: { title: "🏕️ Adventure Tours", desc: "Outdoor thrill expeditions.", content: "Jungle camping, river rafting, trekking, and water sports packages." },
+  honeymoon: { title: "👩‍❤️‍👨 Honeymoon Packages", desc: "Romantic couple getaways.", content: "Candlelight dinners, luxury resort stays, and private cabs in Munnar, Wayanad & Bali." },
+  visa: { title: "🛂 Visa Assistance", desc: "Worldwide tourist visa processing.", content: "Fast documentation & appointment assistance for Dubai, UK, USA, Europe & Asia." },
+  tickets: { title: "✈️ Ticket Booking Air/Rail", desc: "Instant travel ticketing.", content: "Best rates for Flight, Train, and Intercity Volvo Bus tickets." },
+  cabservices: { title: "🚘 Cab Services", desc: "Long distance and corporate fleet.", content: "Round-trip outstation cabs, one-way drops, and monthly corporate vehicle rentals." }
 };
 
 let activeServiceTitle = "General Journey Enquiry";
 
-// Open Modal with Specific Category Info
 function openCategoryModal(catKey) {
   const data = categoryData[catKey];
-  if (!data) return;
+  const subTabContainer = document.getElementById("modalSubTabs");
+  const contentBody = document.getElementById("modalDynamicContent");
 
-  activeServiceTitle = data.title;
-  
-  document.getElementById("modalTitle").textContent = data.title;
-  document.getElementById("modalDescription").textContent = data.desc;
-  document.getElementById("modalDynamicContent").innerHTML = `<div class="modal-body-content">${data.body}</div>`;
+  subTabContainer.innerHTML = ""; // Clear existing tabs
+
+  if (data && data.tabs) {
+    activeServiceTitle = data.title;
+    document.getElementById("modalTitle").textContent = data.title;
+    document.getElementById("modalDescription").textContent = data.desc;
+
+    // Build Sub-Tabs
+    data.tabs.forEach((tab, index) => {
+      const btn = document.createElement("button");
+      btn.className = `sub-tab-btn ${index === 0 ? 'active' : ''}`;
+      btn.textContent = tab.name;
+      btn.onclick = () => {
+        document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        contentBody.innerHTML = tab.content;
+      };
+      subTabContainer.appendChild(btn);
+    });
+
+    // Set initial tab content
+    contentBody.innerHTML = data.tabs[0].content;
+
+  } else {
+    // Standard single-view layout for other categories
+    const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "", content: "Please contact us for more information." };
+    activeServiceTitle = fallback.title;
+    document.getElementById("modalTitle").textContent = fallback.title;
+    document.getElementById("modalDescription").textContent = fallback.desc;
+    contentBody.innerHTML = fallback.content;
+  }
 
   document.getElementById("enquiryModal").classList.add("show");
   document.body.style.overflow = "hidden";
 }
 
-// Open Blank Form (For "Plan Your Journey" buttons)
 function openEnquiryForm(title) {
   activeServiceTitle = title;
   document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modalDescription").textContent = "Fill in your details below and choose WhatsApp or Email to submit.";
+  document.getElementById("modalDescription").textContent = "Fill in your details below to request a personalized itinerary or quote.";
+  document.getElementById("modalSubTabs").innerHTML = "";
   document.getElementById("modalDynamicContent").innerHTML = "";
 
   document.getElementById("enquiryModal").classList.add("show");
@@ -105,7 +130,6 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-// Submit via WhatsApp or Email
 function submitEnquiry(type) {
   const name = document.getElementById("userName").value.trim();
   const phone = document.getElementById("userPhone").value.trim();
