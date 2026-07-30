@@ -578,14 +578,30 @@ body {
   margin-bottom: 12px;
 }
 
-/* 3. Horizontal Swiping Pamphlet Carousel (For Image Flyer Packages) */
+/* 3. Horizontal Swiping Pamphlet Carousel (Clean - No Scrollbar) */
 .pamphlet-swiper {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 10px 4px 18px 4px;
+  padding: 15px 5px 15px 5px;
   -webkit-overflow-scrolling: touch;
+  cursor: grab; /* Shows open hand cursor */
+  
+  /* Hide scrollbar across all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari, Opera */
+.pamphlet-swiper::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.pamphlet-swiper:active {
+  cursor: grabbing; /* Shows closed hand cursor while dragging */
 }
 
 .pamphlet-swiper::-webkit-scrollbar {
