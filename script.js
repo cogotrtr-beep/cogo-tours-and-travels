@@ -143,7 +143,7 @@ function submitEnquiry(type) {
   } else if (type === 'email') {
     const subject = encodeURIComponent(`Enquiry: ${activeServiceTitle} - ${name}`);
     const body = encodeURIComponent(messageText);
-    window.location.href = `mailto:cogotours@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
   }
 
   closeModal();
