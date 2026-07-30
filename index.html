@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoGo Tours & Travels</title>
+  <title>CoGo Tours & Travels - Your Journey, Our Responsibility</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Navigation / Header Bar -->
+  <!-- Top Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#" class="brand-logo">CoGo Tours</a>
+      <a href="index.html" class="brand-logo">CoGo Tours</a>
       <div class="nav-links">
         <a href="tel:+919876543210" class="nav-btn call-btn">📞 Call Us</a>
         <button class="nav-btn cab-btn" onclick="openCategoryModal('cabs')">🚖 Book CoGo Cab</button>
@@ -19,27 +19,25 @@
     </div>
   </nav>
 
-  <!-- Hero Section with Direct Image Display -->
+  <!-- Hero Banner Section -->
   <header class="hero">
     <div class="hero-banner-wrapper">
-      <!-- Direct image tag prevents background-image CSS file path bugs -->
       <img src="hero-banner.png" alt="CoGo Tours & Travels Banner" class="hero-image" onerror="this.src='hero-banner.jpg'">
     </div>
     
-    <!-- Action Buttons Overlaid at the Bottom -->
     <div class="hero-actions">
-      <button class="hero-btn primary" onclick="openEnquiryForm('Homepage Quick Quote')">Plan Your Journey</button>
+      <button class="hero-btn primary" onclick="openEnquiryForm('General Trip Plan')">Plan Your Journey</button>
       <button class="hero-btn secondary" onclick="openCategoryModal('cabs')">🚖 Cab Rates</button>
     </div>
   </header>
 
-  <!-- Services & Packages Section -->
+  <!-- Services & Tour Packages Section -->
   <main class="container">
     <h2 class="section-title">Our Services & Packages</h2>
     <p class="section-subtitle">Select a service category below to explore specific destinations, itineraries, and rates.</p>
 
     <div class="grid">
-      <!-- Chennai Package Card -->
+      <!-- 1. Tour Chennai Card -->
       <div class="card">
         <div class="card-content">
           <h3>🏛️ Tour Chennai</h3>
@@ -48,7 +46,7 @@
         </div>
       </div>
 
-      <!-- Domestic Packages Card -->
+      <!-- 2. Tour Domestic Card -->
       <div class="card">
         <div class="card-content">
           <h3>🏞️ Tour Domestic</h3>
@@ -57,7 +55,7 @@
         </div>
       </div>
 
-      <!-- International Packages Card -->
+      <!-- 3. Tour International Card -->
       <div class="card">
         <div class="card-content">
           <h3>✈️ Tour International</h3>
@@ -65,8 +63,28 @@
           <button class="card-btn" onclick="openCategoryModal('international')">Explore World</button>
         </div>
       </div>
+
+      <!-- 4. Outstation & Airport Cabs -->
+      <div class="card">
+        <div class="card-content">
+          <h3>🚖 CoGo Cabs</h3>
+          <p>Airport pickups, local hourly rentals & outstation round trips.</p>
+          <button class="card-btn" onclick="openCategoryModal('cabs')">View Tariff</button>
+        </div>
+      </div>
     </div>
   </main>
+
+  <!-- Quick Enquiry Floating Button / Footer Section -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2026 CoGo Tours & Travels. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="javascript:void(0)" onclick="openEnquiryForm('Footer Contact')">Contact Us</a> | 
+        <a href="javascript:void(0)" onclick="openCategoryModal('cabs')">Cab Booking</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
