@@ -69,22 +69,21 @@ body {
 .tab-green { background-color: #138808; color: #ffffff !important; }
 
 /* =========================================================
-   HERO BANNER SECTION (UPDATED FOR HERO-BANNER.PNG)
+   HERO BANNER SECTION (FULL SCREEN WIDTH)
 ========================================================= */
 .hero {
   position: relative;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  min-height: 65vh;
+  width: 100vw;               /* Force full viewport width */
+  margin-left: calc(-50vw + 50%); /* Center-bleed trick to edge-to-edge */
+  margin-right: calc(-50vw + 50%);
+  min-height: 60vh;
   background: url('hero-banner.png') center center / cover no-repeat;
   display: flex;
-  align-items: flex-end; /* Places call-to-action buttons nicely at the bottom */
+  align-items: flex-end;
   justify-content: center;
-  padding: 0 20px 35px 20px;
-  border-radius: 0 0 18px 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 0 20px 40px 20px;
   box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .hero-actions {
