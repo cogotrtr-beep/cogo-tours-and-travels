@@ -549,3 +549,71 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* =========================================================
+   MODAL POPUP ENHANCEMENT (30% WIDER + BOLD DESCRIPTIONS)
+========================================================= */
+
+/* 1. Scale Modal Width by ~30% on Desktop */
+@media (min-width: 769px) {
+  .modal-box {
+    max-width: 880px !important; /* Increased width */
+    padding: 36px !important;
+  }
+}
+
+/* 2. Enhanced Peach Modal Body Description Text */
+.modal-body-wrapper.peach-theme {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1.8 !important;
+  color: #0f172a !important;
+  letter-spacing: 0.2px;
+}
+
+.modal-body-wrapper.peach-theme p, 
+.modal-body-wrapper.peach-theme div,
+.modal-body-wrapper.peach-theme li {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px;
+}
+
+/* 3. Horizontal Swiping Pamphlet Carousel (For Image Flyer Packages) */
+.pamphlet-swiper {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 4px 18px 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pamphlet-swiper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.pamphlet-swiper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.pamphlet-card {
+  flex: 0 0 82%; /* Shows a peek of the next card so guests know to swipe */
+  scroll-snap-align: center;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  background: #ffffff;
+}
+
+.pamphlet-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .pamphlet-card {
+    flex: 0 0 45%; /* Shows ~2 flyers side-by-side on desktop */
+  }
+}
