@@ -223,3 +223,32 @@ function submitEnquiry(type) {
 
   closeModal();
 }
+/* =========================================================
+   PAMPHLET FULLSCREEN ZOOM & LIGHTBOX ENGINE
+========================================================= */
+
+// Open Fullscreen Image Zoom on Click or Tap
+function zoomPamphlet(imgSrc) {
+  const lightbox = document.getElementById("pamphletLightbox");
+  const lightboxImg = document.getElementById("lightboxImage");
+  
+  if (lightbox && lightboxImg) {
+    lightboxImg.src = imgSrc;
+    lightbox.classList.add("show");
+  }
+}
+
+// Close Zoom Modal
+function closePamphletZoom() {
+  const lightbox = document.getElementById("pamphletLightbox");
+  if (lightbox) {
+    lightbox.classList.remove("show");
+  }
+}
+
+// Update Domestic Pamphlet markup dynamically with zoom triggers
+document.addEventListener("click", function(e) {
+  if (e.target && e.target.matches(".pamphlet-card img")) {
+    zoomPamphlet(e.target.src);
+  }
+});
