@@ -25,39 +25,20 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
-.nav-container {
+.nav-container.nav-center-aligned {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 1240px;
   margin: 0 auto;
 }
 
-.brand-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.logo-text {
-  font-weight: 900;
-  font-size: 24px;
-  color: #FF9933;
-  text-decoration: none;
-  letter-spacing: 1px;
-}
-
-.company-subname {
-  font-size: 10px;
-  font-weight: 700;
-  color: #cbd5e1;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-}
-
 #navLinks {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
 }
 
 /* Blunt Square Indian Flag Inspired Header Buttons */
@@ -66,16 +47,16 @@ body {
   align-items: center;
   justify-content: center;
   height: 42px;
-  padding: 0 16px;
-  border-radius: 8px; /* Same size, blunt square shape */
+  padding: 0 20px;
+  border-radius: 8px;
   font-weight: 800;
-  font-size: 13.5px;
+  font-size: 14px;
   text-decoration: none;
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
-  min-width: 130px;
+  min-width: 140px;
 }
 
 .flag-tab:hover {
@@ -83,50 +64,23 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* Button 1: Saffron Orange */
-.tab-saffron {
-  background-color: #FF9933;
-  color: #ffffff !important;
-}
+.tab-saffron { background-color: #FF9933; color: #ffffff !important; }
+.tab-white-blue { background-color: #ffffff; color: #000080 !important; border: 1px solid #cbd5e1; }
+.tab-green { background-color: #138808; color: #ffffff !important; }
 
-/* Button 2: White with Chakra Wheel Blue Font */
-.tab-white-blue {
-  background-color: #ffffff;
-  color: #000080 !important; /* Ashoka Chakra Blue */
-  border: 1px solid #cbd5e1;
-}
-
-/* Button 3: Indian Flag Green */
-.tab-green {
-  background-color: #138808;
-  color: #ffffff !important;
-}
-
-/* Hero Section with Couple Graphic Background (cogoindian.jpeg) */
+/* Hero Section with Couple Graphic Background */
 .hero {
   position: relative;
-  background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.7)),
+  background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.65)),
               url('cogoindian.jpeg') center/cover no-repeat,
               url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
   color: #ffffff;
   text-align: center;
-  padding: 110px 20px;
-}
-
-.hero-tag {
-  background: rgba(255, 153, 51, 0.25);
-  color: #FF9933;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  display: inline-block;
-  margin-bottom: 14px;
+  padding: 120px 20px;
 }
 
 .hero h1 {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 900;
   margin-bottom: 12px;
 }
@@ -166,7 +120,38 @@ body {
 .text-center { text-align: center; }
 
 .hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
-.section-sub { color: #64748b; margin-bottom: 35px; font-size: 16px; }
+.section-sub { color: #64748b; margin-bottom: 25px; font-size: 16px; }
+
+/* Social Links Bar */
+.social-links-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.social-btn.facebook { background-color: #1877F2; }
+.social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-btn.twitter { background-color: #000000; }
 
 .hub-grid {
   display: grid;
@@ -202,7 +187,6 @@ body {
 .intl-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('cogotours1.jpeg'), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80'); }
 .pilgrim-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
 
-/* Default Stock Backups for Other Cards */
 .domestic-bg   { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80'); }
 .corporate-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80'); }
 .school-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'); }
@@ -280,8 +264,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  margin-top: 30px;
-  align-items: center;
+  margin-top: 20px;
+  align-items: stretch;
 }
 
 .contact-card {
@@ -306,9 +290,7 @@ body {
   margin-bottom: 16px;
 }
 
-.contact-icon {
-  font-size: 22px;
-}
+.contact-icon { font-size: 22px; }
 
 .contact-item a {
   color: #138808;
@@ -316,7 +298,30 @@ body {
   text-decoration: none;
 }
 
-/* Interactive Sub-Tabs inside Modal */
+.map-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-directions-btn {
+  display: block;
+  text-align: center;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.map-directions-btn:hover {
+  background: #FF9933;
+}
+
+/* Modal Box & Sub-tabs */
 .sub-tab-container {
   display: flex;
   gap: 8px;
@@ -350,7 +355,6 @@ body {
   font-size: 14.5px;
 }
 
-/* Modal Box & Form */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -399,19 +403,14 @@ body {
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
   #navLinks {
-    width: 100%;
-    justify-content: space-between;
+    flex-direction: row;
+    gap: 8px;
   }
 
   .flag-tab {
-    padding: 0 8px;
-    font-size: 11.5px;
+    padding: 0 6px;
+    font-size: 11px;
     flex: 1;
     min-width: auto;
     height: 38px;
@@ -421,7 +420,5 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .hub-card-content h3 { font-size: 24px; font-weight: 900; }
-  .hub-card-content p { font-size: 15px; font-weight: 600; }
-  .hub-btn { font-size: 15px; padding: 12px; }
+  .hero h1 { font-size: 32px; }
 }
