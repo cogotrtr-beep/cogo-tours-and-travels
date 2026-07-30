@@ -54,7 +54,7 @@ body {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;               
   text-align: center;
   min-width: 140px;
 }
@@ -616,4 +616,106 @@ body {
   .pamphlet-card {
     flex: 0 0 45%; /* Shows ~2 flyers side-by-side on desktop */
   }
+}
+/* =========================================================
+   ENHANCED PAMPHLET SWIPER & ZOOM ENGINE
+========================================================= */
+
+/* 1. Make Pamphlet Container Roomier & Desktop Mouse-Friendly */
+.pamphlet-swiper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 15px 5px 25px 5px;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab; /* Shows hand cursor on desktop */
+}
+
+.pamphlet-swiper:active {
+  cursor: grabbing; /* Grabbing effect while clicking & dragging */
+}
+
+/* Custom Scrollbar for Desktop Mouse Users */
+.pamphlet-swiper::-webkit-scrollbar {
+  height: 8px;
+}
+.pamphlet-swiper::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+.pamphlet-swiper::-webkit-scrollbar-thumb {
+  background: #ff5a00;
+  border-radius: 10px;
+}
+
+/* 2. Increased Pamphlet Size */
+.pamphlet-card {
+  flex: 0 0 88%; /* Mobile: Covers most of screen */
+  scroll-snap-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  background: #ffffff;
+  transition: transform 0.3s ease;
+  cursor: zoom-in; /* Cursor hint for clicking to enlarge */
+}
+
+.pamphlet-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  touch-action: manipulation; /* Enable pinch-zoom & tap support */
+}
+
+@media (min-width: 769px) {
+  .pamphlet-card {
+    flex: 0 0 55%; /* Desktop: Show larger focus card */
+  }
+}
+
+/* 3. Fullscreen Lightbox Modal for Zooming / Double Click */
+.pamphlet-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 15px;
+}
+
+.pamphlet-lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pamphlet-lightbox img {
+  max-width: 95%;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  object-fit: contain;
+  touch-action: pinch-zoom; /* Allows native two-finger pinch-zoom on mobile */
+}
+
+.pamphlet-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
