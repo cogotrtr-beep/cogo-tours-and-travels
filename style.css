@@ -579,20 +579,19 @@ body {
 }
 
 /* =========================================================
-   PAMPHLET SWIPER - HAND TOOL DRAG & ZOOM CURSORS
+   PAMPHLET SWIPER & PANNING LIGHTBOX
 ========================================================= */
 
 .pamphlet-swiper {
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 15px 5px 15px 5px;
+  padding: 15px 10px;
   -webkit-overflow-scrolling: touch;
-  cursor: grab; /* Open hand cursor */
-  user-select: none; /* Prevents image highlighting while dragging */
+  cursor: grab;
+  user-select: none;
   
-  /* Hide scrollbars across all browsers */
+  /* Hide scrollbars */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -604,25 +603,45 @@ body {
 }
 
 .pamphlet-swiper.active {
-  cursor: grabbing !important; /* Closed hand cursor while dragging */
-  scroll-snap-type: none; /* Smooth drag movement without snapping back */
+  cursor: grabbing !important;
 }
 
 .pamphlet-card {
-  flex: 0 0 88%;
-  scroll-snap-align: center;
+  flex: 0 0 85%; /* Shows enough room to grab next/previous cards */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
   background: #ffffff;
-  pointer-events: auto;
+  flex-shrink: 0;
 }
 
 .pamphlet-card img {
   width: 100%;
   height: auto;
   display: block;
-  pointer-events: none; /* Allows hand drag across image without sticking */
+  pointer-events: none;
+}
+
+@media (min-width: 769px) {
+  .pamphlet-card {
+    flex: 0 0 50%; /* Shows main flyer + preview of next flyer on desktop */
+  }
+}
+
+/* Lightbox Panning Container for Zoomed View */
+.lightbox-img-container {
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: auto; /* Allows panning left, right, top, bottom when zoomed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: grab;
+}
+
+.lightbox-img-container:active {
+  cursor: grabbing;
 }
 
 @media (min-width: 769px) {
