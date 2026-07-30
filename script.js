@@ -224,36 +224,7 @@ function submitEnquiry(type) {
   closeModal();
 }
 /* =========================================================
-   PAMPHLET FULLSCREEN ZOOM & LIGHTBOX ENGINE
-========================================================= */
-
-// Open Fullscreen Image Zoom on Click or Tap
-function zoomPamphlet(imgSrc) {
-  const lightbox = document.getElementById("pamphletLightbox");
-  const lightboxImg = document.getElementById("lightboxImage");
-  
-  if (lightbox && lightboxImg) {
-    lightboxImg.src = imgSrc;
-    lightbox.classList.add("show");
-  }
-}
-
-// Close Zoom Modal
-function closePamphletZoom() {
-  const lightbox = document.getElementById("pamphletLightbox");
-  if (lightbox) {
-    lightbox.classList.remove("show");
-  }
-}
-
-// Update Domestic Pamphlet markup dynamically with zoom triggers
-document.addEventListener("click", function(e) {
-  if (e.target && e.target.matches(".pamphlet-card img")) {
-    zoomPamphlet(e.target.src);
-  }
-});
-/* =========================================================
-   MOUSE WHEEL & BUTTON ZOOM ENGINE FOR LIGHTBOX
+   LIGHTBOX ZOOM ENGINE (BUTTONS & MOUSE WHEEL)
 ========================================================= */
 
 let currentZoomScale = 1;
@@ -297,7 +268,7 @@ function resetZoom() {
   }
 }
 
-// Mouse Scroll Wheel Zoom Listener
+// Mouse Scroll Wheel Zoom Listener inside Lightbox
 document.addEventListener("wheel", function(e) {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox && lightbox.classList.contains("show")) {
@@ -309,37 +280,52 @@ document.addEventListener("wheel", function(e) {
     }
   }
 }, { passive: false });
+
+
 /* =========================================================
-   DESKTOP MOUSE DRAG SCROLL FOR PAMPHLETS
+   SMART HAND TOOL DRAG & CLICK-TO-ZOOM HANDLER
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function() {
-  const slider = document.querySelector(".pamphlet-swiper");
+document.addEventListener("mousedown", function(e) {
+  const slider = e.target.closest(".pamphlet-swiper");
   if (!slider) return;
 
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  let isDown = true;
+  let isDragging = false;
+  slider.classList.add("active");
+  
+  let startX = e.pageX - slider.offsetLeft;
+  let scrollLeft = slider.scrollLeft;
 
-  slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-  });
-
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-  });
-
-  slider.addEventListener("mousemove", (e) => {
+  function onMouseMove(ev) {
     if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5; // Controls dragging speed
-    slider.scrollLeft = scrollLeft - walk;
-  });
+    const x = ev.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.8;
+    
+    if (Math.abs(x - startX) > 5) {
+      isDragging = true;
+      ev.preventDefault();
+      slider.scrollLeft = scrollLeft - walk;
+    }
+  }
+
+  function onMouseUp(ev) {
+    isDown = false;
+    slider.classList.remove("active");
+    
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
+
+    // If user clicked without dragging, open Zoom Lightbox!
+    if (!isDragging) {
+      const card = ev.target.closest(".pamphlet-card");
+      if (card) {
+        const img = card.querySelector("img");
+        if (img) zoomPamphlet(img.src);
+      }
+    }
+  }
+
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp);
 });
