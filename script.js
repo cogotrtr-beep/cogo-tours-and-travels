@@ -59,7 +59,6 @@ const categoryData = {
   }
 };
 
-// Generic Fallback for categories without deep sub-tabs yet
 const defaultCategoryInfo = {
   corporate: { title: "💼 Corporate Tour", desc: "Team outings, MICE events & resort bookings.", content: "Custom resort packages, executive transport, and team-building retreats." },
   students: { title: "🎓 School / College Tour", desc: "Safe student group travel.", content: "Industrial Visits (IVs), educational field trips, and leisure student tours." },
@@ -78,14 +77,13 @@ function openCategoryModal(catKey) {
   const subTabContainer = document.getElementById("modalSubTabs");
   const contentBody = document.getElementById("modalDynamicContent");
 
-  subTabContainer.innerHTML = ""; // Clear existing tabs
+  subTabContainer.innerHTML = "";
 
   if (data && data.tabs) {
     activeServiceTitle = data.title;
     document.getElementById("modalTitle").textContent = data.title;
     document.getElementById("modalDescription").textContent = data.desc;
 
-    // Build Sub-Tabs
     data.tabs.forEach((tab, index) => {
       const btn = document.createElement("button");
       btn.className = `sub-tab-btn ${index === 0 ? 'active' : ''}`;
@@ -98,11 +96,9 @@ function openCategoryModal(catKey) {
       subTabContainer.appendChild(btn);
     });
 
-    // Set initial tab content
     contentBody.innerHTML = data.tabs[0].content;
 
   } else {
-    // Standard single-view layout for other categories
     const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "", content: "Please contact us for more information." };
     activeServiceTitle = fallback.title;
     document.getElementById("modalTitle").textContent = fallback.title;
