@@ -223,56 +223,25 @@ function submitEnquiry(type) {
 
   closeModal();
 }
-
 /* =========================================================
-   LIGHTBOX ZOOM & GALLERY NAVIGATION ENGINE
+   LIGHTBOX ZOOM ENGINE (BUTTONS & MOUSE WHEEL)
 ========================================================= */
 
 let currentZoomScale = 1;
-let currentFlyerList = [];
-let currentFlyerIndex = 0;
 
 function zoomPamphlet(imgSrc) {
   const lightbox = document.getElementById("pamphletLightbox");
   const lightboxImg = document.getElementById("lightboxImage");
   
-  const activeSwiper = document.querySelector(".pamphlet-swiper");
-  if (activeSwiper) {
-    const images = activeSwiper.querySelectorAll(".pamphlet-card img");
-    currentFlyerList = Array.from(images).map(img => img.src);
-    currentFlyerIndex = currentFlyerList.indexOf(imgSrc);
-    if (currentFlyerIndex === -1) currentFlyerIndex = 0;
-  } else {
-    currentFlyerList = [imgSrc];
-    currentFlyerIndex = 0;
-  }
-
   if (lightbox && lightboxImg) {
     lightboxImg.src = imgSrc;
-    resetZoom();
+    currentZoomScale = 1;
+    lightboxImg.style.transform = `scale(${currentZoomScale})`;
     lightbox.classList.add("show");
   }
 }
 
-function navigatePamphlet(direction) {
-  if (!currentFlyerList || currentFlyerList.length === 0) return;
-
-  currentFlyerIndex += direction;
-
-  if (currentFlyerIndex < 0) {
-    currentFlyerIndex = currentFlyerList.length - 1;
-  } else if (currentFlyerIndex >= currentFlyerList.length) {
-    currentFlyerIndex = 0;
-  }
-
-  const lightboxImg = document.getElementById("lightboxImage");
-  if (lightboxImg) {
-    lightboxImg.src = currentFlyerList[currentFlyerIndex];
-    resetZoom();
-  }
-}
-
-function closePamphletZoom() {
+function closePamphletZoom(e) {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox) {
     lightbox.classList.remove("show");
@@ -286,7 +255,7 @@ function changeZoom(amount) {
   
   currentZoomScale += amount;
   if (currentZoomScale < 0.5) currentZoomScale = 0.5;
-  if (currentZoomScale > 3.5) currentZoomScale = 3.5;
+  if (currentZoomScale > 3.5) currentZoomScale = 3.5; // Up to 350% magnification
   
   lightboxImg.style.transform = `scale(${currentZoomScale})`;
 }
@@ -299,39 +268,25 @@ function resetZoom() {
   }
 }
 
-// Mouse Scroll Wheel Zoom Listener
+// Mouse Scroll Wheel Zoom Listener inside Lightbox
 document.addEventListener("wheel", function(e) {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox && lightbox.classList.contains("show")) {
     e.preventDefault();
     if (e.deltaY < 0) {
-      changeZoom(0.15);
+      changeZoom(0.15); // Scroll Up -> Zoom In
     } else {
-      changeZoom(-0.15);
+      changeZoom(-0.15); // Scroll Down -> Zoom Out
     }
   }
 }, { passive: false });
-
-// Keyboard Navigation
-document.addEventListener("keydown", function(e) {
-  const lightbox = document.getElementById("pamphletLightbox");
-  if (lightbox && lightbox.classList.contains("show")) {
-    if (e.key === "ArrowLeft") {
-      navigatePamphlet(-1);
-    } else if (e.key === "ArrowRight") {
-      navigatePamphlet(1);
-    } else if (e.key === "Escape") {
-      closePamphletZoom();
-    }
-  }
-});
 
 /* =========================================================
    SMART DRAG SCROLL FOR FLYERS & ZOOM PANNING
 ========================================================= */
 
 document.addEventListener("mousedown", function(e) {
-  // Swiping through flyer cards
+  // 1. Swiping through flyer cards on the website
   const slider = e.target.closest(".pamphlet-swiper");
   if (slider) {
     let isDown = true;
@@ -344,7 +299,7 @@ document.addEventListener("mousedown", function(e) {
     function onMouseMove(ev) {
       if (!isDown) return;
       const x = ev.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2;
+      const walk = (x - startX) * 2; // Smooth drag responsiveness
       
       if (Math.abs(x - startX) > 4) {
         isDragging = true;
@@ -359,6 +314,7 @@ document.addEventListener("mousedown", function(e) {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
 
+      // If clicked without dragging, open Zoom Lightbox!
       if (!isDragging) {
         const card = ev.target.closest(".pamphlet-card");
         if (card) {
@@ -373,7 +329,7 @@ document.addEventListener("mousedown", function(e) {
     return;
   }
 
-  // Drag to Pan inside Lightbox
+  // 2. Drag to Pan inside the zoomed Lightbox Modal
   const lightboxContainer = e.target.closest(".lightbox-img-container");
   if (lightboxContainer) {
     let isDown = true;
@@ -402,3 +358,4 @@ document.addEventListener("mousedown", function(e) {
     document.addEventListener("mouseup", onPanUp);
   }
 });
+
