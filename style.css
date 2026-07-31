@@ -1,138 +1,738 @@
-/* =========================================================
-   CORE RESETS & FULL PAGE DISPLAY
-========================================================= */
-* {
+/* ==========================================================================
+   1. GLOBAL STYLES & RESET
+   ========================================================================== */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --primary-color: #ff6b35;
+  --primary-hover: #e85a24;
+  --secondary-color: #004e89;
+  --saffron: #ff9933;
+  --white: #ffffff;
+  --green: #138808;
+  --navy: #000080;
+  --bg-light: #f8f9fa;
+  --text-dark: #2b2d42;
+  --text-muted: #6c757d;
+  --peach-bg: #fff5f0;
+  --peach-border: #ffd8cc;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 body {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  color: #1e293b;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
 }
 
-/* NAVBAR HEADER */
-.site-header {
-  width: 100%;
-  padding: 20px 40px;
-  background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.brand-logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #2563eb;
-  letter-spacing: -0.5px;
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
 }
 
-.brand-contact {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #475569;
+.section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* HERO CONTAINER & CARD */
-.hero-wrapper {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-}
-
-.hero-card {
-  background: #ffffff;
-  width: 100%;
-  max-width: 1100px;
-  padding: 50px 40px;
-  border-radius: 20px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-  border: 1px solid #f1f5f9;
+.text-center {
   text-align: center;
 }
 
-.hero-header h1 {
-  font-size: 2.5rem;
-  color: #0f172a;
-  margin-bottom: 12px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+/* ==========================================================================
+   2. TOP NAVIGATION (Indian Flag Inspired)
+   ========================================================================== */
+#mainNav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
 }
 
-.hero-header p {
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-center-aligned {
+  display: flex;
+  justify-content: center;
+}
+
+#navLinks {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Flag-inspired square/rectangular tabs */
+.flag-tab {
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-saffron {
+  background-color: var(--saffron);
+  color: var(--white);
+}
+
+.tab-saffron:hover {
+  background-color: #e6851f;
+}
+
+.tab-white-blue {
+  background-color: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+
+.tab-white-blue:hover {
+  background-color: #f0f4f8;
+}
+
+.tab-green {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.tab-green:hover {
+  background-color: #0f6b06;
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.hero {
+  height: 60vh;
+  min-height: 400px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-btn {
+  padding: 16px 32px;
   font-size: 1.1rem;
-  color: #64748b;
+  font-weight: 700;
+  border-radius: 30px;
+  transition: var(--transition);
+}
+
+.hero-btn.primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.hero-btn.primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.hero-btn.secondary {
+  background-color: var(--white);
+  color: var(--text-dark);
+}
+
+.hero-btn.secondary:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   4. SERVICES HUB
+   ========================================================================== */
+.hub-header {
   margin-bottom: 40px;
 }
 
-/* =========================================================
-   LARGE, BOLD SERVICE GRID
-========================================================= */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  width: 100%;
+.hub-header h2 {
+  font-size: 2.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 8px;
 }
 
-.service-card {
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 14px;
-  padding: 24px 16px;
+.section-sub {
+  color: var(--text-muted);
   font-size: 1.05rem;
-  font-weight: 700;
-  color: #1e293b;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.hub-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid #eef0f2;
+}
+
+.hub-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hub-card-bg {
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  background-color: #ddd;
+}
+
+/* Fallback gradient styling for background divs */
+.chennai-bg { background-image: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+.domestic-bg { background-image: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+.intl-bg { background-image: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
+.corporate-bg { background-image: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); }
+.school-bg { background-image: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+.pilgrim-bg { background-image: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
+.adventure-bg { background-image: linear-gradient(135deg, #fdcbf1 0%, #e6dee9 100%); }
+.honeymoon-bg { background-image: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+.cab-bg { background-image: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+.visa-bg { background-image: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+.ticket-bg { background-image: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%); }
+.outstation-bg { background-image: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); }
+
+.hub-card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.hub-icon {
+  font-size: 2rem;
+  margin-top: -35px;
+  margin-bottom: 10px;
+  background: var(--white);
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.hub-card-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.hub-card-content p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.hub-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border-radius: 6px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.hub-btn:hover {
+  background-color: #00335e;
+}
+
+/* ==========================================================================
+   5. ABOUT & CONTACT SECTIONS
+   ========================================================================== */
+.about-section, .contact-section {
+  padding: 60px 20px;
+  background-color: var(--white);
+}
+
+.contact-section {
+  background-color: var(--bg-light);
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-content h2, .contact-section h2 {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  margin-bottom: 12px;
+}
+
+.about-lead {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.about-body {
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text-muted);
+}
+
+/* Social Bar */
+.social-links-bar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 24px 0 40px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
   gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
 }
 
-.service-card:hover {
-  transform: translateY(-6px);
-  background-color: #ffffff;
-  border-color: #2563eb;
-  color: #2563eb;
-  box-shadow: 0 12px 24px -6px rgba(37, 99, 235, 0.18);
+.social-btn.facebook { background-color: #1877f2; }
+.social-btn.instagram { background-color: #e4405f; }
+.social-btn.twitter { background-color: #000000; }
+
+.social-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
-/* FOOTER */
-.site-footer {
+/* Contact Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.contact-card {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-card h3 {
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+.contact-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  font-size: 1.4rem;
+}
+
+.contact-item a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.map-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.map-directions-btn {
+  display: block;
   text-align: center;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.map-directions-btn:hover {
+  background-color: #0f6b06;
+}
+
+/* ==========================================================================
+   6. INTERACTIVE MODAL & PEACH THEME
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none; /* Controlled by JS */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
   padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-box {
+  background: var(--white);
+  width: 100%;
+  max-width: 650px;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+}
+
+.modal-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+/* Sub tabs inside modal */
+.sub-tab-container {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eef0f2;
+}
+
+.sub-tab-btn {
+  padding: 6px 14px;
+  background: #f0f0f0;
+  border-radius: 20px;
   font-size: 0.85rem;
-  color: #94a3b8;
+  white-space: nowrap;
+  transition: var(--transition);
 }
 
-/* RESPONSIVE LAYOUT */
-@media (max-width: 900px) {
-  .service-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.sub-tab-btn.active {
+  background: var(--primary-color);
+  color: var(--white);
 }
 
-@media (max-width: 500px) {
-  .hero-card {
-    padding: 30px 20px;
-  }
-  .hero-header h1 {
-    font-size: 1.8rem;
-  }
-  .service-grid {
+/* Peach Dynamic Content Box */
+.modal-body-wrapper.peach-theme {
+  background-color: var(--peach-bg);
+  border: 1px solid var(--peach-border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.modal-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.action-btn {
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--white);
+  transition: var(--transition);
+}
+
+.btn-wa { background-color: #25d366; }
+.btn-wa:hover { background-color: #1ebd59; }
+
+.btn-email { background-color: var(--secondary-color); }
+.btn-email:hover { background-color: #00335e; }
+
+/* ==========================================================================
+   7. LIGHTBOX & ZOOM CONTROLS
+   ========================================================================== */
+.pamphlet-lightbox {
+  display: none; /* Controlled by JS */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 3000;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pamphlet-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: var(--white);
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.zoom-controls {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+}
+
+.zoom-controls button {
+  background: var(--white);
+  color: var(--text-dark);
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.lightbox-img-container {
+  max-width: 90%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.lightbox-img-container img {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+/* ==========================================================================
+   8. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 768px) {
+  .contact-grid {
     grid-template-columns: 1fr;
   }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .modal-actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ==========================================================================
+   9. DYNAMIC JS ENGINE STYLES (Tariffs, Pamphlets & Lightbox)
+   ========================================================================== */
+
+/* --- Tariff Box Layout & Badges --- */
+.tariff-box {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.tariff-box h4 {
+  color: var(--secondary-color);
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.tariff-box p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.tariff-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tariff-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.tariff-list li:last-child {
+  border-bottom: none;
+}
+
+.tariff-badge {
+  background-color: #fff3ed;
+  color: var(--primary-color);
+  border: 1px solid var(--peach-border);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* --- Sub-Tab Color Variations --- */
+.sub-tab-btn.tab-color-0.active { background-color: var(--primary-color); }
+.sub-tab-btn.tab-color-1.active { background-color: var(--secondary-color); }
+.sub-tab-btn.tab-color-2.active { background-color: var(--green); }
+.sub-tab-btn.tab-color-3.active { background-color: var(--saffron); }
+
+/* --- Pamphlet / Flyer Swiper Gallery --- */
+.pamphlet-swiper {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 4px 16px;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pamphlet-swiper.active {
+  cursor: grabbing;
+}
+
+.pamphlet-card {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eef0f2;
+}
+
+.pamphlet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pamphlet-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  pointer-events: none; /* Prevents native browser image dragging */
+}
+
+/* --- Modal Active State Display --- */
+.modal-overlay.show {
+  display: flex;
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pamphlet-lightbox.show {
+  display: flex;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Lightbox Drag-to-Pan Styling --- */
+.lightbox-img-container {
+  cursor: grab;
+}
+
+.lightbox-img-container:active {
+  cursor: grabbing;
 }
