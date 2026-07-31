@@ -223,25 +223,57 @@ function submitEnquiry(type) {
 
   closeModal();
 }
+
 /* =========================================================
-   LIGHTBOX ZOOM ENGINE (BUTTONS & MOUSE WHEEL)
+   LIGHTBOX ZOOM & GALLERY NAVIGATION ENGINE
 ========================================================= */
 
 let currentZoomScale = 1;
+let currentFlyerList = [];
+let currentFlyerIndex = 0;
 
 function zoomPamphlet(imgSrc) {
   const lightbox = document.getElementById("pamphletLightbox");
   const lightboxImg = document.getElementById("lightboxImage");
   
+  // Update list of flyers inside active container
+  const activeSwiper = document.querySelector(".pamphlet-swiper");
+  if (activeSwiper) {
+    const images = activeSwiper.querySelectorAll(".pamphlet-card img");
+    currentFlyerList = Array.from(images).map(img => img.src);
+    currentFlyerIndex = currentFlyerList.indexOf(imgSrc);
+    if (currentFlyerIndex === -1) currentFlyerIndex = 0;
+  } else {
+    currentFlyerList = [imgSrc];
+    currentFlyerIndex = 0;
+  }
+
   if (lightbox && lightboxImg) {
     lightboxImg.src = imgSrc;
-    currentZoomScale = 1;
-    lightboxImg.style.transform = `scale(${currentZoomScale})`;
+    resetZoom();
     lightbox.classList.add("show");
   }
 }
 
-function closePamphletZoom(e) {
+function navigatePamphlet(direction) {
+  if (!currentFlyerList || currentFlyerList.length === 0) return;
+
+  currentFlyerIndex += direction;
+
+  if (currentFlyerIndex < 0) {
+    currentFlyerIndex = currentFlyerList.length - 1; // Loop back to end
+  } else if (currentFlyerIndex >= currentFlyerList.length) {
+    currentFlyerIndex = 0; // Loop back to start
+  }
+
+  const lightboxImg = document.getElementById("lightboxImage");
+  if (lightboxImg) {
+    lightboxImg.src = currentFlyerList[currentFlyerIndex];
+    resetZoom();
+  }
+}
+
+function closePamphletZoom() {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox) {
     lightbox.classList.remove("show");
@@ -255,7 +287,7 @@ function changeZoom(amount) {
   
   currentZoomScale += amount;
   if (currentZoomScale < 0.5) currentZoomScale = 0.5;
-  if (currentZoomScale > 3.5) currentZoomScale = 3.5; // Up to 350% magnification
+  if (currentZoomScale > 3.5) currentZoomScale = 3.5;
   
   lightboxImg.style.transform = `scale(${currentZoomScale})`;
 }
@@ -281,6 +313,20 @@ document.addEventListener("wheel", function(e) {
   }
 }, { passive: false });
 
+// Keyboard Arrow & Escape Navigation
+document.addEventListener("keydown", function(e) {
+  const lightbox = document.getElementById("pamphletLightbox");
+  if (lightbox && lightbox.classList.contains("show")) {
+    if (e.key === "ArrowLeft") {
+      navigatePamphlet(-1);
+    } else if (e.key === "ArrowRight") {
+      navigatePamphlet(1);
+    } else if (e.key === "Escape") {
+      closePamphletZoom();
+    }
+  }
+});
+
 /* =========================================================
    SMART DRAG SCROLL FOR FLYERS & ZOOM PANNING
 ========================================================= */
@@ -299,7 +345,7 @@ document.addEventListener("mousedown", function(e) {
     function onMouseMove(ev) {
       if (!isDown) return;
       const x = ev.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2; // Smooth drag responsiveness
+      const walk = (x - startX) * 2;
       
       if (Math.abs(x - startX) > 4) {
         isDragging = true;
@@ -314,7 +360,6 @@ document.addEventListener("mousedown", function(e) {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
 
-      // If clicked without dragging, open Zoom Lightbox!
       if (!isDragging) {
         const card = ev.target.closest(".pamphlet-card");
         if (card) {
