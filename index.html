@@ -3,90 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cogo Tours & Travels - Service Engine</title>
+  <title>Cogo Tours & Travels</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- =========================================================
-       HERO CONTAINER & SERVICE GRID
-  ========================================================= -->
-  <main class="hero-container">
-    <div class="hero-header">
-      <h1>Explore Our Tour Packages & Taxi Rentals</h1>
-      <p>Choose a category below to view detailed itineraries, tariffs, and instant quotes.</p>
-    </div>
+  <!-- TOP BRANDING BAR -->
+  <header class="site-header">
+    <div class="brand-logo">COGO TOURS</div>
+    <div class="brand-contact">📞 +91 98840 66830</div>
+  </header>
 
-    <div class="service-grid">
-      <button onclick="openCategoryModal('chennai')" class="service-card">🏛️ Chennai Packages</button>
-      <button onclick="openCategoryModal('domestic')" class="service-card">🏔️ Domestic Packages</button>
-      <button onclick="openCategoryModal('international')" class="service-card">🌍 International Packages</button>
-      <button onclick="openCategoryModal('cabs')" class="service-card">🚖 Cogo Cabs</button>
-      <button onclick="openCategoryModal('corporate')" class="service-card">💼 Corporate Tours</button>
-      <button onclick="openCategoryModal('students')" class="service-card">🎓 Student / IV Tours</button>
-      <button onclick="openCategoryModal('pilgrim')" class="service-card">🛕 Pilgrim Tours</button>
-      <button onclick="openCategoryModal('honeymoon')" class="service-card">👩‍❤️‍👨 Honeymoon Packages</button>
+  <!-- MAIN HERO SECTION -->
+  <main class="hero-wrapper">
+    <div class="hero-card">
+      <div class="hero-header">
+        <h1>Explore Our Tour Packages & Taxi Rentals</h1>
+        <p>Choose a category below to view detailed itineraries, tariffs, and instant quotes.</p>
+      </div>
+
+      <div class="service-grid">
+        <button onclick="openCategoryModal('chennai')" class="service-card">🏛️ Chennai Packages</button>
+        <button onclick="openCategoryModal('domestic')" class="service-card">🏔️ Domestic Packages</button>
+        <button onclick="openCategoryModal('international')" class="service-card">🌍 International Packages</button>
+        <button onclick="openCategoryModal('cabs')" class="service-card">🚖 Cogo Cabs</button>
+        <button onclick="openCategoryModal('corporate')" class="service-card">💼 Corporate Tours</button>
+        <button onclick="openCategoryModal('students')" class="service-card">🎓 Student / IV Tours</button>
+        <button onclick="openCategoryModal('pilgrim')" class="service-card">🛕 Pilgrim Tours</button>
+        <button onclick="openCategoryModal('honeymoon')" class="service-card">👩‍❤️‍👨 Honeymoon Packages</button>
+      </div>
     </div>
   </main>
 
-  <!-- =========================================================
-       DYNAMIC ENQUIRY / SERVICE MODAL
-  ========================================================= -->
-  <div id="enquiryModal" class="modal-overlay">
-    <div class="modal-card">
-      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-      
-      <h2 id="modalTitle">Service Enquiry</h2>
-      <p id="modalDescription">Select a category or submit your details below for a custom quote.</p>
-      
-      <!-- SUB-TABS CONTAINER -->
-      <div id="modalSubTabs" class="sub-tabs-wrapper"></div>
-      
-      <!-- DYNAMIC CONTENT BODY -->
-      <div id="modalDynamicContent" class="modal-content-body"></div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    © 2026 Cogo Tours & Travels. All rights reserved.
+  </footer>
 
-      <!-- QUICK ENQUIRY FORM -->
-      <div class="enquiry-form-section">
-        <h3>📩 Request Quick Quote</h3>
-        <input type="text" id="userName" placeholder="Your Full Name" required>
-        <input type="tel" id="userPhone" placeholder="Mobile / WhatsApp Number" required>
-        <textarea id="userQuery" rows="3" placeholder="Tell us your travel dates, passenger count, or specific requirements..."></textarea>
-        
-        <div class="form-action-btns">
-          <button onclick="submitEnquiry('whatsapp')" class="btn-whatsapp">
-            💬 Enquire via WhatsApp
-          </button>
-          <button onclick="submitEnquiry('email')" class="btn-email">
-            ✉️ Send Email
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       PAMPHLET LIGHTBOX (ZOOM + GALLERY NAVIGATION)
-  ========================================================= -->
-  <div id="pamphletLightbox" class="lightbox-overlay">
-    <!-- LIGHTBOX HEADER TOOLBAR -->
-    <div class="lightbox-toolbar">
-      <div class="zoom-controls">
-        <button onclick="changeZoom(0.25)">➕ Zoom In</button>
-        <button onclick="changeZoom(-0.25)">➖ Zoom Out</button>
-        <button onclick="resetZoom()">🔄 Reset</button>
-      </div>
-      <button class="lightbox-close-btn" onclick="closePamphletZoom()">&times;</button>
-    </div>
-
-    <!-- PREVIOUS / NEXT ARROW BUTTONS -->
-    <button class="nav-btn prev-btn" onclick="navigatePamphlet(-1)">❮</button>
-    <button class="nav-btn next-btn" onclick="navigatePamphlet(1)">❯</button>
-
-    <!-- IMAGE CONTAINER (DRAGGABLE/PANNING) -->
-    <div class="lightbox-img-container">
-      <img id="lightboxImage" src="" alt="Zoomed Flyer">
-    </div>
-  </div>
+  <!-- Include your Modals & Lightbox HTML here (unchanged) -->
 
   <script src="script.js"></script>
 </body>
