@@ -236,7 +236,6 @@ function zoomPamphlet(imgSrc) {
   const lightbox = document.getElementById("pamphletLightbox");
   const lightboxImg = document.getElementById("lightboxImage");
   
-  // Update list of flyers inside active container
   const activeSwiper = document.querySelector(".pamphlet-swiper");
   if (activeSwiper) {
     const images = activeSwiper.querySelectorAll(".pamphlet-card img");
@@ -261,9 +260,9 @@ function navigatePamphlet(direction) {
   currentFlyerIndex += direction;
 
   if (currentFlyerIndex < 0) {
-    currentFlyerIndex = currentFlyerList.length - 1; // Loop back to end
+    currentFlyerIndex = currentFlyerList.length - 1;
   } else if (currentFlyerIndex >= currentFlyerList.length) {
-    currentFlyerIndex = 0; // Loop back to start
+    currentFlyerIndex = 0;
   }
 
   const lightboxImg = document.getElementById("lightboxImage");
@@ -300,20 +299,20 @@ function resetZoom() {
   }
 }
 
-// Mouse Scroll Wheel Zoom Listener inside Lightbox
+// Mouse Scroll Wheel Zoom Listener
 document.addEventListener("wheel", function(e) {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox && lightbox.classList.contains("show")) {
     e.preventDefault();
     if (e.deltaY < 0) {
-      changeZoom(0.15); // Scroll Up -> Zoom In
+      changeZoom(0.15);
     } else {
-      changeZoom(-0.15); // Scroll Down -> Zoom Out
+      changeZoom(-0.15);
     }
   }
 }, { passive: false });
 
-// Keyboard Arrow & Escape Navigation
+// Keyboard Navigation
 document.addEventListener("keydown", function(e) {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox && lightbox.classList.contains("show")) {
@@ -332,7 +331,7 @@ document.addEventListener("keydown", function(e) {
 ========================================================= */
 
 document.addEventListener("mousedown", function(e) {
-  // 1. Swiping through flyer cards on the website
+  // Swiping through flyer cards
   const slider = e.target.closest(".pamphlet-swiper");
   if (slider) {
     let isDown = true;
@@ -374,7 +373,7 @@ document.addEventListener("mousedown", function(e) {
     return;
   }
 
-  // 2. Drag to Pan inside the zoomed Lightbox Modal
+  // Drag to Pan inside Lightbox
   const lightboxContainer = e.target.closest(".lightbox-img-container");
   if (lightboxContainer) {
     let isDown = true;
