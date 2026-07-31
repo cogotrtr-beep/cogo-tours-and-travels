@@ -3,320 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cogo Tours & Travels - Cabs, Sightseeing & Tour Packages</title>
+  <title>Cogo Tours & Travels - Service Engine</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <nav id="mainNav">
-    <div class="nav-container nav-center-aligned">
-      <div id="navLinks">
-        <!-- Indian Flag Inspired Square Tabs -->
-        <a href="tel:+919884066830" class="flag-tab tab-saffron">📞 Call Us</a>
-        <button class="flag-tab tab-white-blue" onclick="openCategoryModal('cabs')">🚖 Book Cogo Cab</button>
-        <button class="flag-tab tab-green" onclick="openEnquiryForm('General Plan Journey')">Plan Your Journey</button>
-      </div>
-    </div>
-  </nav>
+  <!-- =========================================================
+       CATEGORY BUTTONS
+  ========================================================= -->
+  <div class="service-grid">
+    <button onclick="openCategoryModal('chennai')" class="service-card">🏛️ Chennai Packages</button>
+    <button onclick="openCategoryModal('domestic')" class="service-card">🏔️ Domestic Packages</button>
+    <button onclick="openCategoryModal('international')" class="service-card">🌍 International Packages</button>
+    <button onclick="openCategoryModal('cabs')" class="service-card">🚖 Cogo Cabs</button>
+    <button onclick="openCategoryModal('corporate')" class="service-card">💼 Corporate Tours</button>
+    <button onclick="openCategoryModal('students')" class="service-card">🎓 Student / IV Tours</button>
+    <button onclick="openCategoryModal('pilgrim')" class="service-card">🛕 Pilgrim Tours</button>
+    <button onclick="openCategoryModal('honeymoon')" class="service-card">👩‍❤️‍👨 Honeymoon Packages</button>
+  </div>
 
- <!-- Homepage Hero Section -->
-  <header class="hero">
-    <div class="hero-actions">
-      <button class="hero-btn primary" onclick="openEnquiryForm('Homepage Quick Quote')">Plan Your Journey</button>
-      <button class="hero-btn secondary" onclick="openCategoryModal('cabs')">🚖 Cab Rates</button>
-    </div>
-  </header>
-  <!-- CATEGORY SERVICES HUB -->
-  <section id="services-hub" class="section">
-    <div class="hub-header text-center">
-      <h2>Our Services &amp; Packages</h2>
-      <p class="section-sub">Select a service category below to explore specific destinations, itineraries, and rates.</p>
-    </div>
-
-    <div class="hub-grid">
-      <!-- 1. Tour Chennai -->
-      <div class="hub-card">
-        <div class="hub-card-bg chennai-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🏛️</span>
-          <h3>Tour Chennai</h3>
-          <p>City sightseeing, ECR beach runs, heritage walks &amp; theme parks.</p>
-          <button class="hub-btn" onclick="openCategoryModal('chennai')">Explore Chennai</button>
-        </div>
-      </div>
-
-      <!-- 2. Tour Domestic -->
-      <div class="hub-card">
-        <div class="hub-card-bg domestic-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🏔️</span>
-          <h3>Tour Domestic</h3>
-          <p>Custom holiday packages across Kerala, Goa, Himachal, Kashmir &amp; Ooty.</p>
-          <button class="hub-btn" onclick="openCategoryModal('domestic')">Explore India</button>
-        </div>
-      </div>
-
-      <!-- 3. Tour International -->
-      <div class="hub-card">
-        <div class="hub-card-bg intl-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🌍</span>
-          <h3>Tour International</h3>
-          <p>Unforgettable foreign trips to Dubai, Thailand, Singapore &amp; Europe.</p>
-          <button class="hub-btn" onclick="openCategoryModal('international')">View World Tours</button>
-        </div>
-      </div>
-
-      <!-- 4. Corporate Tour -->
-      <div class="hub-card">
-        <div class="hub-card-bg corporate-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">💼</span>
-          <h3>Corporate Tour</h3>
-          <p>Team outings, corporate offsites, MICE events &amp; executive transport.</p>
-          <button class="hub-btn" onclick="openCategoryModal('corporate')">Corporate Quote</button>
-        </div>
-      </div>
-
-      <!-- 5. School/College Tour -->
-      <div class="hub-card">
-        <div class="hub-card-bg school-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🎓</span>
-          <h3>School/College Tour</h3>
-          <p>Educational trips, industrial visits, and safe student group packages.</p>
-          <button class="hub-btn" onclick="openCategoryModal('students')">Student Packages</button>
-        </div>
-      </div>
-
-      <!-- 6. Pilgrim Tour -->
-      <div class="hub-card">
-        <div class="hub-card-bg pilgrim-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🛕</span>
-          <h3>Pilgrim Tour</h3>
-          <p>Dedicated temple packages for Tirupati, Kanchipuram &amp; Rameswaram.</p>
-          <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Temple Tours</button>
-        </div>
-      </div>
-
-      <!-- 7. Adventure Tour -->
-      <div class="hub-card">
-        <div class="hub-card-bg adventure-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🏕️</span>
-          <h3>Adventure Tour</h3>
-          <p>Trekking, water sports, jungle camping &amp; thrill expeditions.</p>
-          <button class="hub-btn" onclick="openCategoryModal('adventure')">Explore Adventure</button>
-        </div>
-      </div>
-
-      <!-- 8. Honeymoon -->
-      <div class="hub-card">
-        <div class="hub-card-bg honeymoon-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">👩‍❤️‍👨</span>
-          <h3>Honeymoon</h3>
-          <p>Romantic beach escapes, hill station retreats &amp; luxury couple trips.</p>
-          <button class="hub-btn" onclick="openCategoryModal('honeymoon')">View Honeymoon Trips</button>
-        </div>
-      </div>
-
-      <!-- 9. Cogo Cabs -->
-      <div class="hub-card">
-        <div class="hub-card-bg cab-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🚖</span>
-          <h3>Cogo Cabs</h3>
-          <p>Local city rides, airport transfers, day packs &amp; outstation cabs.</p>
-          <button class="hub-btn" onclick="openCategoryModal('cabs')">View Rates &amp; Cabs</button>
-        </div>
-      </div>
-
-      <!-- 10. Visa Assistance -->
-      <div class="hub-card">
-        <div class="hub-card-bg visa-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🛂</span>
-          <h3>Visa Assistance</h3>
-          <p>Fast-track tourist &amp; business visa processing worldwide.</p>
-          <button class="hub-btn" onclick="openCategoryModal('visa')">Get Visa Info</button>
-        </div>
-      </div>
-
-      <!-- 11. Ticket Booking Air/Rail -->
-      <div class="hub-card">
-        <div class="hub-card-bg ticket-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">✈️</span>
-          <h3>Ticket Booking Air/Rail</h3>
-          <p>Hassle-free booking for Flight, Train, and Bus tickets.</p>
-          <button class="hub-btn" onclick="openCategoryModal('tickets')">Book Tickets</button>
-        </div>
-      </div>
-
-      <!-- 12. Cab Services -->
-      <div class="hub-card">
-        <div class="hub-card-bg outstation-bg"></div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🚘</span>
-          <h3>Cab Services</h3>
-          <p>Outstation round-trips, corporate rentals, and luxury fleet options.</p>
-          <button class="hub-btn" onclick="openCategoryModal('cabservices')">Cab Service Details</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT US SECTION -->
-  <section id="about" class="about-section">
-    <div class="section-container">
-      <div class="about-content text-center">
-        <h2>About Cogo Tours &amp; Travels</h2>
-        <p class="about-lead">Your trusted partner for memorable, hassle-free travel experiences across Chennai, South India, and around the globe.</p>
-        <p class="about-body">
-          At <strong>Cogo Tours and Travels</strong>, we specialize in delivering high-quality, customized travel solutions tailored to your unique needs. From swift local cab rentals and coastal Chennai sightseeing to spiritual temple circuits, honeymoon packages, and seamless international vacations, our dedicated team ensures safety, comfort, and unmatched hospitality at every step of your journey.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT & LOCATION SECTION -->
-  <section id="contact" class="contact-section">
-    <div class="section-container">
-      <div class="text-center">
-        <h2>Get in Touch with Us</h2>
-        <p class="section-sub">Visit our office or reach out via call or WhatsApp for quick quotes.</p>
-        
-        <!-- Social Media Icons Bar -->
-        <div class="social-links-bar">
-          <a href="#" class="social-btn facebook" target="_blank" title="Facebook">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            <span>Facebook</span>
-          </a>
-          <a href="#" class="social-btn instagram" target="_blank" title="Instagram">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>Instagram</span>
-          </a>
-          <a href="#" class="social-btn twitter" target="_blank" title="Twitter / X">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            <span>Twitter</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Contact Details Card -->
-        <div class="contact-card">
-          <h3>Contact Details</h3>
-          <div class="contact-item">
-            <span class="contact-icon">📍</span>
-            <div>
-              <strong>Cogo Tours &amp; Travels</strong>
-              <p>1817/132, 13th Main Road, Anna Nagar West, Chennai - 600040, India.</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">📞</span>
-            <div>
-              <strong>Phone / WhatsApp:</strong>
-              <p>
-                <a href="tel:+919884066830">+91 98840 66830</a> / 
-                <a href="tel:+919080666674">+91 90806 66674</a>
-              </p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">✉️</span>
-            <div>
-              <strong>Email Us:</strong>
-              <p><a href="mailto:cogotrtr@gmail.com">cogotrtr@gmail.com</a></p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <span class="contact-icon">⏰</span>
-            <div>
-              <strong>Working Hours:</strong>
-              <p>Monday – Saturday: 9:00 AM – 8:00 PM</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Embedded Google Map + Automatic Directions Button -->
-        <div class="map-wrapper">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA4MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-            width="100%" 
-            height="300" 
-            style="border:0; border-radius:14px;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=13.093779,80.200738" target="_blank" class="map-directions-btn">
-            📍 Get Directions on Google Maps
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Multi-Tab Service Modal -->
+  <!-- =========================================================
+       DYNAMIC ENQUIRY / SERVICE MODAL
+  ========================================================= -->
   <div id="enquiryModal" class="modal-overlay">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h2 id="modalTitle">Plan Your Journey</h2>
-      <p id="modalDescription" class="modal-desc"></p>
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
       
-      <!-- Sub-tabs Container -->
-      <div id="modalSubTabs" class="sub-tab-container"></div>
+      <h2 id="modalTitle">Service Enquiry</h2>
+      <p id="modalDescription">Select a category or submit your details below for a custom quote.</p>
+      
+      <!-- SUB-TABS CONTAINER -->
+      <div id="modalSubTabs" class="sub-tabs-wrapper"></div>
+      
+      <!-- DYNAMIC CONTENT BODY -->
+      <div id="modalDynamicContent" class="modal-content-body"></div>
 
-      <!-- Dynamic Content Body with Mild Peach Styling -->
-      <div id="modalDynamicContent" class="modal-body-wrapper peach-theme"></div>
-
-      <!-- Quick Lead Form -->
-      <form id="queryForm" onsubmit="event.preventDefault();">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="userName" placeholder="Enter full name" required>
-        </div>
-        <div class="form-group">
-          <label>Phone Number / WhatsApp</label>
-          <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
-        </div>
-        <div class="form-group">
-          <label>Travel Query / Preferred Dates</label>
-          <textarea id="userQuery" rows="2" placeholder="Tell us more about your travel plan..."></textarea>
-        </div>
-
-        <div class="modal-actions-grid">
-          <button type="button" class="action-btn btn-wa" onclick="submitEnquiry('whatsapp')">
-            📱 Send via WhatsApp
+      <!-- QUICK ENQUIRY FORM -->
+      <div class="enquiry-form-section">
+        <h3>📩 Request Quick Quote</h3>
+        <input type="text" id="userName" placeholder="Your Full Name" required>
+        <input type="tel" id="userPhone" placeholder="Mobile / WhatsApp Number" required>
+        <textarea id="userQuery" rows="3" placeholder="Tell us your travel dates, passenger count, or specific requirements..."></textarea>
+        
+        <div class="form-action-btns">
+          <button onclick="submitEnquiry('whatsapp')" class="btn-whatsapp">
+            💬 Enquire via WhatsApp
           </button>
-          <button type="button" class="action-btn btn-email" onclick="submitEnquiry('email')">
-            ✉️ Send via Email
+          <button onclick="submitEnquiry('email')" class="btn-email">
+            ✉️ Send Email
           </button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
-<script src="script.js"></script>
 
-  <!-- Interactive Lightbox Modal (With Zoom Controls) -->
-  <div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
-    <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
-    
-    <!-- Zoom Control Buttons for Desktop -->
-    <div class="zoom-controls" onclick="event.stopPropagation()">
-      <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
-      <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
-      <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
+  <!-- =========================================================
+       PAMPHLET LIGHTBOX (ZOOM + GALLERY NAVIGATION)
+  ========================================================= -->
+  <div id="pamphletLightbox" class="lightbox-overlay">
+    <!-- LIGHTBOX HEADER TOOLBAR -->
+    <div class="lightbox-toolbar">
+      <div class="zoom-controls">
+        <button onclick="changeZoom(0.25)">➕ Zoom In</button>
+        <button onclick="changeZoom(-0.25)">➖ Zoom Out</button>
+        <button onclick="resetZoom()">🔄 Reset</button>
+      </div>
+      <button class="lightbox-close-btn" onclick="closePamphletZoom()">&times;</button>
     </div>
 
-    <div class="lightbox-img-container" onclick="event.stopPropagation()">
-      <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
+    <!-- PREVIOUS / NEXT ARROW BUTTONS -->
+    <button class="nav-btn prev-btn" onclick="navigatePamphlet(-1)">❮</button>
+    <button class="nav-btn next-btn" onclick="navigatePamphlet(1)">❯</button>
+
+    <!-- IMAGE CONTAINER (DRAGGABLE/PANNING) -->
+    <div class="lightbox-img-container">
+      <img id="lightboxImage" src="" alt="Zoomed Flyer">
     </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
