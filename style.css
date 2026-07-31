@@ -1,738 +1,788 @@
-/* ==========================================================================
-   1. GLOBAL STYLES & RESET
-   ========================================================================== */
-*, *::before, *::after {
-  box-sizing: border-box;
+/* =========================================================
+   GLOBAL BASE & BRAND STYLES
+========================================================= */
+* {
   margin: 0;
   padding: 0;
-}
-
-:root {
-  --primary-color: #ff6b35;
-  --primary-hover: #e85a24;
-  --secondary-color: #004e89;
-  --saffron: #ff9933;
-  --white: #ffffff;
-  --green: #138808;
-  --navy: #000080;
-  --bg-light: #f8f9fa;
-  --text-dark: #2b2d42;
-  --text-muted: #6c757d;
-  --peach-bg: #fff5f0;
-  --peach-border: #ffd8cc;
-  --border-radius: 12px;
-  --transition: all 0.3s ease;
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background: linear-gradient(180deg, #FFF5EE 0%, #FAF0E6 40%, #F8FAFC 100%);
+  color: #0f172a;
   line-height: 1.6;
-  color: var(--text-dark);
-  background-color: var(--bg-light);
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-}
-
-.section {
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* ==========================================================================
-   2. TOP NAVIGATION (Indian Flag Inspired)
-   ========================================================================== */
+/* Header Brand Navigation */
 #mainNav {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.nav-center-aligned {
+.nav-container.nav-center-aligned {
   display: flex;
   justify-content: center;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 #navLinks {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  gap: 16px;
+  width: 100%;
 }
 
-/* Flag-inspired square/rectangular tabs */
+/* Blunt Square Indian Flag Inspired Header Buttons */
 .flag-tab {
-  padding: 12px 20px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  border-radius: 6px;
-  transition: var(--transition);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
+  height: 42px;
+  padding: 0 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;               
+  text-align: center;
+  min-width: 140px;
 }
 
-.tab-saffron {
-  background-color: var(--saffron);
-  color: var(--white);
+.flag-tab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-.tab-saffron:hover {
-  background-color: #e6851f;
-}
+.tab-saffron { background-color: #FF9933; color: #ffffff !important; }
+.tab-white-blue { background-color: #ffffff; color: #000080 !important; border: 1px solid #cbd5e1; }
+.tab-green { background-color: #138808; color: #ffffff !important; }
 
-.tab-white-blue {
-  background-color: var(--white);
-  color: var(--navy);
-  border: 2px solid var(--navy);
-}
-
-.tab-white-blue:hover {
-  background-color: #f0f4f8;
-}
-
-.tab-green {
-  background-color: var(--green);
-  color: var(--white);
-}
-
-.tab-green:hover {
-  background-color: #0f6b06;
-}
-
-/* ==========================================================================
-   3. HERO SECTION
-   ========================================================================== */
+/* =========================================================
+   HERO BANNER SECTION (FULL SCREEN WIDTH)
+========================================================= */
 .hero {
-  height: 60vh;
-  min-height: 400px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
-              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
+  width: 100vw;               /* Force full viewport width */
+  margin-left: calc(-50vw + 50%); /* Center-bleed trick to edge-to-edge */
+  margin-right: calc(-50vw + 50%);
+  min-height: 60vh;
+  background: url('hero-banner.png') center center / cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 20px 40px 20px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .hero-actions {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 14px;
+  z-index: 10;
+  width: 100%;
+  max-width: 480px;
 }
 
 .hero-btn {
-  padding: 16px 32px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border-radius: 30px;
-  transition: var(--transition);
+  padding: 13px 26px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 15px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  flex: 1;
+  text-align: center;
 }
 
-.hero-btn.primary {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.hero-btn.primary:hover {
-  background-color: var(--primary-hover);
+.hero-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
 }
 
-.hero-btn.secondary {
-  background-color: var(--white);
-  color: var(--text-dark);
-}
+.hero-btn.primary { background: #138808; color: #ffffff; }
+.hero-btn.secondary { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
 
-.hero-btn.secondary:hover {
-  background-color: #f0f0f0;
-  transform: translateY(-2px);
-}
+/* =========================================================
+   CATEGORY HUB GRID (SAFE RESPONSIVE UPDATE)
+========================================================= */
 
-/* ==========================================================================
-   4. SERVICES HUB
-   ========================================================================== */
-.hub-header {
-  margin-bottom: 40px;
-}
-
-.hub-header h2 {
-  font-size: 2.2rem;
-  color: var(--secondary-color);
-  margin-bottom: 8px;
-}
-
-.section-sub {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-}
-
-.hub-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 24px;
-}
-
-.hub-card {
-  background-color: var(--white);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border: 1px solid #eef0f2;
-}
-
-.hub-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.hub-card-bg {
-  height: 120px;
-  background-size: cover;
-  background-position: center;
-  background-color: #ddd;
-}
-
-/* Fallback gradient styling for background divs */
-.chennai-bg { background-image: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
-.domestic-bg { background-image: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
-.intl-bg { background-image: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
-.corporate-bg { background-image: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); }
-.school-bg { background-image: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
-.pilgrim-bg { background-image: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
-.adventure-bg { background-image: linear-gradient(135deg, #fdcbf1 0%, #e6dee9 100%); }
-.honeymoon-bg { background-image: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
-.cab-bg { background-image: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
-.visa-bg { background-image: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
-.ticket-bg { background-image: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%); }
-.outstation-bg { background-image: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); }
-
-.hub-card-content {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.hub-icon {
-  font-size: 2rem;
-  margin-top: -35px;
-  margin-bottom: 10px;
-  background: var(--white);
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: var(--shadow-sm);
-}
-
-.hub-card-content h3 {
-  font-size: 1.25rem;
-  margin-bottom: 8px;
-  color: var(--text-dark);
-}
-
-.hub-card-content p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  flex-grow: 1;
-}
-
-.hub-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--secondary-color);
-  color: var(--white);
-  border-radius: 6px;
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-.hub-btn:hover {
-  background-color: #00335e;
-}
-
-/* ==========================================================================
-   5. ABOUT & CONTACT SECTIONS
-   ========================================================================== */
-.about-section, .contact-section {
-  padding: 60px 20px;
-  background-color: var(--white);
-}
-
-.contact-section {
-  background-color: var(--bg-light);
-}
-
-.section-container {
-  max-width: 1200px;
+/* Section & Header Styles */
+.section {
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 50px 20px;
 }
 
-.about-content h2, .contact-section h2 {
-  font-size: 2rem;
-  color: var(--secondary-color);
-  margin-bottom: 12px;
-}
+.text-center { text-align: center; }
 
-.about-lead {
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--primary-color);
-  margin-bottom: 16px;
-}
+.hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
+.section-sub { color: #64748b; margin-bottom: 25px; font-size: 16px; }
 
-.about-body {
-  max-width: 800px;
-  margin: 0 auto;
-  color: var(--text-muted);
-}
-
-/* Social Bar */
+/* Social Links Bar */
 .social-links-bar {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin: 24px 0 40px;
+  gap: 12px;
+  margin-bottom: 35px;
   flex-wrap: wrap;
 }
 
 .social-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  border-radius: 20px;
-  color: var(--white);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: var(--transition);
+  border-radius: 30px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
-
-.social-btn.facebook { background-color: #1877f2; }
-.social-btn.instagram { background-color: #e4405f; }
-.social-btn.twitter { background-color: #000000; }
 
 .social-btn:hover {
-  opacity: 0.9;
   transform: translateY(-2px);
+  opacity: 0.9;
 }
 
-/* Contact Grid */
+.social-btn.facebook { background-color: #1877F2; }
+.social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-btn.twitter { background-color: #000000; }
+
+/* 1. Base Grid & Card Styles (Default / Mobile View) */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 26px;
+}
+
+.hub-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 280px;
+  border: 1px solid #e2e8f0;
+}
+
+.hub-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease;
+}
+
+.hub-card:hover .hub-card-bg { transform: scale(1.08); }
+
+/* Card Image Mappings */
+.chennai-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('chennai-banner.jpg'), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
+.intl-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('cogotours1.jpeg'), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80'); }
+.pilgrim-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
+.domestic-bg   { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80'); }
+.corporate-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80'); }
+.school-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'); }
+.adventure-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80'); }
+.honeymoon-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'); }
+.cab-bg        { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80'); }
+.visa-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'); }
+.ticket-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80'); }
+.outstation-bg { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80'); }
+
+.hub-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 22px;
+  color: #ffffff;
+}
+
+.hub-icon { font-size: 30px; display: block; margin-bottom: 6px; }
+.hub-card-content h3 { font-size: 22px; font-weight: 800; color: #fff; }
+.hub-card-content p { font-size: 14px; opacity: 0.9; margin-bottom: 16px; }
+
+.hub-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 800;
+  font-size: 14px;
+  background: linear-gradient(90deg, #FF9933, #ff5a00);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* 2. Desktop-Only Scaling (Triggers ONLY on screen widths > 768px) */
+@media (min-width: 769px) {
+  .hub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+  }
+
+  .hub-card {
+    min-height: 380px;
+    border-radius: 22px;
+  }
+
+  .hub-card-content {
+    padding: 30px;
+  }
+
+  .hub-icon { 
+    font-size: 42px; 
+    margin-bottom: 10px; 
+  }
+
+  .hub-card-content h3 { 
+    font-size: 28px; 
+    margin-bottom: 6px; 
+  }
+
+  .hub-card-content p { 
+    font-size: 16.5px; 
+    margin-bottom: 20px; 
+    line-height: 1.5; 
+  }
+
+  .hub-btn {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+}
+
+/* =========================================================
+   ABOUT US SECTION
+========================================================= */
+.about-section {
+  background: #ffffff;
+  padding: 60px 20px;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.section-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-content h2 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.about-lead {
+  font-size: 18px;
+  font-weight: 600;
+  color: #FF9933;
+  margin-bottom: 16px;
+}
+
+.about-body {
+  font-size: 15.5px;
+  color: #475569;
+  max-width: 850px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   CONTACT & MAP SECTION
+========================================================= */
+.contact-section {
+  padding: 60px 20px;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-top: 20px;
+  align-items: stretch;
 }
 
 .contact-card {
-  background: var(--white);
-  padding: 30px;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-sm);
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
 }
 
 .contact-card h3 {
+  font-size: 22px;
+  font-weight: 800;
   margin-bottom: 20px;
-  color: var(--secondary-color);
+  color: #0f172a;
 }
 
 .contact-item {
   display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
   align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
-.contact-icon {
-  font-size: 1.4rem;
-}
+.contact-icon { font-size: 22px; }
 
 .contact-item a {
-  color: var(--primary-color);
-  font-weight: 600;
+  color: #138808;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .map-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .map-directions-btn {
   display: block;
   text-align: center;
-  background-color: var(--green);
-  color: var(--white);
+  background: #0f172a;
+  color: #ffffff;
   padding: 12px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: var(--transition);
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
 }
 
 .map-directions-btn:hover {
-  background-color: #0f6b06;
+  background: #FF9933;
 }
 
-/* ==========================================================================
-   6. INTERACTIVE MODAL & PEACH THEME
-   ========================================================================== */
+/* =========================================================
+   MODAL POPUP & RATE CARD ENHANCEMENTS
+========================================================= */
 .modal-overlay {
+  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: none; /* Controlled by JS */
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  z-index: 2000;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
-  padding: 20px;
-  overflow-y: auto;
+  padding: 16px;
 }
 
+.modal-overlay.show { display: flex; }
+
 .modal-box {
-  background: var(--white);
+  background: #ffffff;
   width: 100%;
-  max-width: 650px;
-  border-radius: var(--border-radius);
-  padding: 30px;
+  max-width: 680px;
+  border-radius: 20px;
+  padding: 28px;
   position: relative;
-  box-shadow: var(--shadow-lg);
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
 .modal-close {
   position: absolute;
-  top: 15px;
-  right: 20px;
-  background: transparent;
-  font-size: 1.5rem;
-  color: var(--text-muted);
-}
-
-.modal-desc {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-top: 4px;
-  margin-bottom: 16px;
-}
-
-/* Sub tabs inside modal */
-.sub-tab-container {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #eef0f2;
-}
-
-.sub-tab-btn {
-  padding: 6px 14px;
-  background: #f0f0f0;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  transition: var(--transition);
-}
-
-.sub-tab-btn.active {
-  background: var(--primary-color);
-  color: var(--white);
-}
-
-/* Peach Dynamic Content Box */
-.modal-body-wrapper.peach-theme {
-  background-color: var(--peach-bg);
-  border: 1px solid var(--peach-border);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 20px;
-  font-size: 0.95rem;
-}
-
-/* Form Styles */
-.form-group {
-  margin-bottom: 14px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-family: inherit;
-}
-
-.modal-actions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.action-btn {
-  padding: 12px;
-  border-radius: 6px;
-  font-weight: 700;
-  color: var(--white);
-  transition: var(--transition);
-}
-
-.btn-wa { background-color: #25d366; }
-.btn-wa:hover { background-color: #1ebd59; }
-
-.btn-email { background-color: var(--secondary-color); }
-.btn-email:hover { background-color: #00335e; }
-
-/* ==========================================================================
-   7. LIGHTBOX & ZOOM CONTROLS
-   ========================================================================== */
-.pamphlet-lightbox {
-  display: none; /* Controlled by JS */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 3000;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.pamphlet-lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: var(--white);
-  font-size: 2.5rem;
+  top: 18px;
+  right: 18px;
+  background: #f1f5f9;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
 }
 
-.zoom-controls {
-  position: absolute;
-  bottom: 30px;
+/* Sub-tabs Container & Alternating Color Buttons */
+.sub-tab-container {
   display: flex;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 8px 16px;
-  border-radius: 30px;
-  backdrop-filter: blur(5px);
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
 }
 
-.zoom-controls button {
-  background: var(--white);
-  color: var(--text-dark);
-  padding: 6px 12px;
-  border-radius: 15px;
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-
-.lightbox-img-container {
-  max-width: 90%;
-  max-height: 80%;
-  overflow: auto;
-}
-
-.lightbox-img-container img {
-  max-width: 100%;
-  height: auto;
-  transition: transform 0.2s ease;
-}
-
-/* ==========================================================================
-   8. RESPONSIVE BREAKPOINTS
-   ========================================================================== */
-@media (max-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    width: 80%;
-  }
-
-  .hero-btn {
-    width: 100%;
-  }
-
-  .modal-actions-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* ==========================================================================
-   9. DYNAMIC JS ENGINE STYLES (Tariffs, Pamphlets & Lightbox)
-   ========================================================================== */
-
-/* --- Tariff Box Layout & Badges --- */
-.tariff-box {
-  background: var(--white);
+.sub-tab-btn {
+  border: none;
+  padding: 10px 18px;
   border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  color: #ffffff;
+}
+
+.sub-tab-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* Alternating Button Colors */
+.sub-tab-btn.tab-color-0 { background-color: #FF9933; } /* Saffron */
+.sub-tab-btn.tab-color-1 { background-color: #0F172A; } /* Navy */
+.sub-tab-btn.tab-color-2 { background-color: #138808; } /* Forest Green */
+.sub-tab-btn.tab-color-3 { background-color: #D97706; } /* Amber */
+
+.sub-tab-btn.active {
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a;
+}
+
+/* Warm Peach Dynamic Content Body */
+.modal-body-wrapper.peach-theme {
+  background: #FFF5EE; /* Mild Pleasant Peach */
+  border: 1.5px solid #FFE4E1;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: #1e293b;
+}
+
+/* Detailed Tariff List Styling */
+.tariff-box {
+  margin-top: 10px;
 }
 
 .tariff-box h4 {
-  color: var(--secondary-color);
-  font-size: 1.05rem;
+  font-size: 18px;
+  font-weight: 800;
+  color: #9a3412;
   margin-bottom: 8px;
-}
-
-.tariff-box p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 12px;
+  border-bottom: 1px dashed #fdba74;
+  padding-bottom: 4px;
 }
 
 .tariff-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0;
 }
 
 .tariff-list li {
+  padding: 8px 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  border: 1px solid #fed7aa;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px dashed #e2e8f0;
-  font-size: 0.9rem;
-}
-
-.tariff-list li:last-child {
-  border-bottom: none;
 }
 
 .tariff-badge {
-  background-color: #fff3ed;
-  color: var(--primary-color);
-  border: 1px solid var(--peach-border);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 0.85rem;
+  background: #138808;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
-/* --- Sub-Tab Color Variations --- */
-.sub-tab-btn.tab-color-0.active { background-color: var(--primary-color); }
-.sub-tab-btn.tab-color-1.active { background-color: var(--secondary-color); }
-.sub-tab-btn.tab-color-2.active { background-color: var(--green); }
-.sub-tab-btn.tab-color-3.active { background-color: var(--saffron); }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 13.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
+.form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; }
 
-/* --- Pamphlet / Flyer Swiper Gallery --- */
+.modal-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+.action-btn { padding: 14px; border-radius: 10px; border: none; font-weight: 800; font-size: 15px; cursor: pointer; }
+.btn-wa { background: #138808; color: #fff; }
+.btn-email { background: #0f172a; color: #fff; }
+
+/* =========================================================
+   MOBILE & RESPONSIVE OPTIMIZATIONS
+========================================================= */
+@media (max-width: 768px) {
+  #navLinks {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .flag-tab {
+    padding: 0 4px;
+    font-size: 11px;
+    flex: 1;
+    min-width: auto;
+    height: 38px;
+  }
+
+  .hero {
+    min-height: 42vh;
+    padding-bottom: 20px;
+  }
+
+  .hero-actions {
+    gap: 8px;
+  }
+
+  .hero-btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================================
+   MODAL POPUP ENHANCEMENT (30% WIDER + BOLD DESCRIPTIONS)
+========================================================= */
+
+/* 1. Scale Modal Width by ~30% on Desktop */
+@media (min-width: 769px) {
+  .modal-box {
+    max-width: 880px !important; /* Increased width */
+    padding: 36px !important;
+  }
+}
+
+/* 2. Enhanced Peach Modal Body Description Text */
+.modal-body-wrapper.peach-theme {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1.8 !important;
+  color: #0f172a !important;
+  letter-spacing: 0.2px;
+}
+
+.modal-body-wrapper.peach-theme p, 
+.modal-body-wrapper.peach-theme div,
+.modal-body-wrapper.peach-theme li {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   PAMPHLET SWIPER & PANNING LIGHTBOX
+========================================================= */
+
 .pamphlet-swiper {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   overflow-x: auto;
-  padding: 10px 4px 16px;
-  scroll-snap-type: x mandatory;
+  padding: 15px 10px;
+  -webkit-overflow-scrolling: touch;
   cursor: grab;
   user-select: none;
-  -webkit-overflow-scrolling: touch;
+  
+  /* Hide scrollbars */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pamphlet-swiper::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .pamphlet-swiper.active {
-  cursor: grabbing;
+  cursor: grabbing !important;
 }
 
 .pamphlet-card {
-  flex: 0 0 220px;
-  scroll-snap-align: start;
-  border-radius: 10px;
+  flex: 0 0 85%; /* Shows enough room to grab next/previous cards */
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  background: var(--white);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid #eef0f2;
-}
-
-.pamphlet-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  background: #ffffff;
+  flex-shrink: 0;
 }
 
 .pamphlet-card img {
   width: 100%;
-  height: 280px;
-  object-fit: cover;
+  height: auto;
   display: block;
-  pointer-events: none; /* Prevents native browser image dragging */
+  pointer-events: none;
 }
 
-/* --- Modal Active State Display --- */
-.modal-overlay.show {
-  display: flex;
-  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.pamphlet-lightbox.show {
-  display: flex;
-  animation: modalFadeIn 0.2s ease-out;
-}
-
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+@media (min-width: 769px) {
+  .pamphlet-card {
+    flex: 0 0 50%; /* Shows main flyer + preview of next flyer on desktop */
   }
 }
 
-/* --- Lightbox Drag-to-Pan Styling --- */
+/* Lightbox Panning Container for Zoomed View */
 .lightbox-img-container {
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: auto; /* Allows panning left, right, top, bottom when zoomed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   cursor: grab;
 }
 
 .lightbox-img-container:active {
   cursor: grabbing;
 }
+
+@media (min-width: 769px) {
+  .pamphlet-card {
+    flex: 0 0 55%;
+  }
+}
+
+/* 3. Fullscreen Lightbox Modal for Zooming / Double Click */
+.pamphlet-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 15px;
+}
+
+.pamphlet-lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pamphlet-lightbox img {
+  max-width: 95%;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  object-fit: contain;
+  touch-action: pinch-zoom; /* Allows native two-finger pinch-zoom on mobile */
+}
+
+.pamphlet-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* =========================================================
+   INTERACTIVE LIGHTBOX & MOUSE WHEEL ZOOM
+========================================================= */
+
+.pamphlet-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.pamphlet-lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-img-container {
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: auto; /* Allows panning when zoomed in */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lightbox-img-container img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  transition: transform 0.15s ease-out;
+  cursor: grab;
+  transform-origin: center center;
+}
+
+/* Zoom Control Toolbar */
+.zoom-controls {
+  position: absolute;
+  bottom: 25px;
+  display: flex;
+  gap: 10px;
+  z-index: 100000;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 8px 16px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.zoom-controls button {
+  background: #ff5a00;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.zoom-controls button:hover {
+  background: #ff7700;
+  transform: scale(1.05);
+}
+
+.pamphlet-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
