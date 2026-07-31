@@ -1,5 +1,5 @@
 /* =========================================================
-   CORE RESETS & FULL PAGE CENTER
+   CORE RESETS & FULL PAGE DISPLAY
 ========================================================= */
 * {
   box-sizing: border-box;
@@ -9,423 +9,130 @@
 }
 
 body {
-  background-color: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   color: #1e293b;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* HERO CONTAINER */
-.hero-container {
+/* NAVBAR HEADER */
+.site-header {
   width: 100%;
-  max-width: 1000px;
+  padding: 20px 40px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: -0.5px;
+}
+
+.brand-contact {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* HERO CONTAINER & CARD */
+.hero-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hero-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 1100px;
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  border: 1px solid #f1f5f9;
   text-align: center;
-  margin: auto;
 }
 
 .hero-header h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #0f172a;
-  margin-bottom: 8px;
-  font-weight: 700;
+  margin-bottom: 12px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .hero-header p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #64748b;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 
 /* =========================================================
-   SERVICE GRID & CARDS
+   LARGE, BOLD SERVICE GRID
 ========================================================= */
 .service-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 20px;
   width: 100%;
 }
 
 .service-card {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
-  padding: 18px 14px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 24px 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: #1e293b;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: 8px;
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 20px -5px rgba(37, 99, 235, 0.15);
+  transform: translateY(-6px);
+  background-color: #ffffff;
   border-color: #2563eb;
   color: #2563eb;
-  background-color: #ffffff;
+  box-shadow: 0 12px 24px -6px rgba(37, 99, 235, 0.18);
 }
 
-/* Responsive Grid Adjustments */
-@media (max-width: 850px) {
+/* FOOTER */
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 900px) {
   .service-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
+  .hero-card {
+    padding: 30px 20px;
+  }
+  .hero-header h1 {
+    font-size: 1.8rem;
+  }
   .service-grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* =========================================================
-   MODAL OVERLAY & CARD
-========================================================= */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
-}
-
-.modal-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-card {
-  background: #ffffff;
-  width: 90%;
-  max-width: 650px;
-  max-height: 90vh;
-  border-radius: 16px;
-  padding: 25px;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  text-align: left;
-}
-
-.modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  color: #64748b;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.modal-close-btn:hover {
-  color: #ef4444;
-}
-
-#modalTitle {
-  font-size: 1.5rem;
-  margin-bottom: 5px;
-  color: #0f172a;
-}
-
-#modalDescription {
-  font-size: 0.95rem;
-  color: #64748b;
-  margin-bottom: 20px;
-}
-
-/* =========================================================
-   SUB-TABS STYLING
-========================================================= */
-.sub-tabs-wrapper {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.sub-tab-btn {
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #475569;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.sub-tab-btn:hover {
-  background: #e2e8f0;
-}
-
-.sub-tab-btn.active {
-  background: #2563eb;
-  color: #ffffff;
-  border-color: #2563eb;
-}
-
-.tab-color-0.active { background: #2563eb; border-color: #2563eb; }
-.tab-color-1.active { background: #059669; border-color: #059669; }
-.tab-color-2.active { background: #d97706; border-color: #d97706; }
-.tab-color-3.active { background: #7c3aed; border-color: #7c3aed; }
-
-/* =========================================================
-   DYNAMIC CONTENT & TARIFF BOX
-========================================================= */
-.modal-content-body {
-  margin-bottom: 20px;
-}
-
-.tariff-box {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 15px;
-}
-
-.tariff-box h4 {
-  margin-bottom: 8px;
-  color: #1e293b;
-}
-
-.tariff-box p {
-  font-size: 0.9rem;
-  color: #475569;
-  margin-bottom: 12px;
-}
-
-.tariff-list {
-  list-style: none;
-}
-
-.tariff-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #cbd5e1;
-  font-size: 0.9rem;
-}
-
-.tariff-badge {
-  background: #e0f2fe;
-  color: #0369a1;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-/* =========================================================
-   PAMPHLET SWIPER / SLIDER
-========================================================= */
-.pamphlet-swiper {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
-  cursor: grab;
-}
-
-.pamphlet-swiper.active {
-  cursor: grabbing;
-}
-
-.pamphlet-card {
-  flex: 0 0 80%;
-  scroll-snap-align: center;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  background: #000;
-}
-
-.pamphlet-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.pamphlet-card:hover img {
-  transform: scale(1.02);
-}
-
-/* =========================================================
-   QUICK ENQUIRY FORM
-========================================================= */
-.enquiry-form-section {
-  background: #f1f5f9;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-}
-
-.enquiry-form-section h3 {
-  font-size: 1rem;
-  margin-bottom: 12px;
-  color: #0f172a;
-}
-
-.enquiry-form-section input,
-.enquiry-form-section textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  outline: none;
-}
-
-.enquiry-form-section input:focus,
-.enquiry-form-section textarea:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-}
-
-.form-action-btns {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-whatsapp,
-.btn-email {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.88rem;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.btn-whatsapp { background: #22c55e; color: #ffffff; }
-.btn-email { background: #0284c7; color: #ffffff; }
-
-.btn-whatsapp:hover,
-.btn-email:hover {
-  opacity: 0.9;
-}
-
-/* =========================================================
-   LIGHTBOX OVERLAY (ZOOM & GALLERY)
-========================================================= */
-.lightbox-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 2000;
-}
-
-.lightbox-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lightbox-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 2010;
-}
-
-.zoom-controls button {
-  background: #334155;
-  color: #ffffff;
-  border: none;
-  padding: 6px 12px;
-  margin-right: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-.zoom-controls button:hover {
-  background: #475569;
-}
-
-.lightbox-close-btn {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 2.2rem;
-  cursor: pointer;
-  line-height: 1;
-}
-
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  border: none;
-  font-size: 2rem;
-  padding: 12px 18px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  z-index: 2010;
-}
-
-.nav-btn:hover {
-  background: rgba(255, 255, 255, 0.4);
-}
-
-.prev-btn { left: 20px; }
-.next-btn { right: 20px; }
-
-.lightbox-img-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
-  padding: 20px;
-  cursor: grab;
-}
-
-.lightbox-img-container img {
-  max-width: 90%;
-  max-height: 85vh;
-  object-fit: contain;
-  transition: transform 0.15s ease-out;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
