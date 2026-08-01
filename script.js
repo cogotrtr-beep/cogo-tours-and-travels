@@ -358,4 +358,24 @@ document.addEventListener("mousedown", function(e) {
     document.addEventListener("mouseup", onPanUp);
   }
 });
+/* =========================================================
+   CARD IMAGE SLIDER CONTROL
+========================================================= */
+function moveSlide(button, direction) {
+  const slider = button.closest('.card-slider');
+  const slides = slider.querySelectorAll('.slide');
+  let activeIndex = 0;
 
+  slides.forEach((slide, index) => {
+    if (slide.classList.contains('active')) {
+      activeIndex = index;
+      slide.classList.remove('active');
+    }
+  });
+
+  let newIndex = activeIndex + direction;
+  if (newIndex >= slides.length) newIndex = 0;
+  if (newIndex < 0) newIndex = slides.length - 1;
+
+  slides[newIndex].classList.add('active');
+}
