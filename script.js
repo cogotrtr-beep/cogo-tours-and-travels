@@ -8,7 +8,7 @@ function createPamphletGallery(images) {
   
   const cardsHtml = images.map((imgUrl, idx) => `
     <div class="pamphlet-card" onclick="openPamphletZoom(${idx})">
-      <img src="${imgUrl}" alt="Package Pamphlet ${idx + 1}" loading="lazy">
+      <img src="${imgUrl}" alt="Package Pamphlet ${idx + 1}" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500?text=Cogo+Tours+Flyer';" loading="lazy">
     </div>
   `).join('');
 
@@ -22,7 +22,7 @@ function createPamphletGallery(images) {
   `;
 }
 
-// Category Data with image arrays for each tab/package
+// Category Data — Update image filenames to match what you upload to GitHub!
 const categoryData = {
   chennai: {
     title: "🏛️ Tour Chennai Packages",
@@ -31,8 +31,8 @@ const categoryData = {
       {
         name: "City Sightseeing",
         pamphlets: [
-          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-1.jpg",
-          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-2.jpg"
+          "chennai-1.jpg", 
+          "chennai-2.jpg"
         ],
         content: `
           <div class="tariff-box">
@@ -54,8 +54,8 @@ const categoryData = {
       {
         name: "Kerala & Hill Stations",
         pamphlets: [
-          "https://raw.githubusercontent.com/cogo-tours/assets/main/kerala-1.jpg",
-          "https://raw.githubusercontent.com/cogo-tours/assets/main/ooty-1.jpg"
+          "domestic-flyer.png",
+          "domestic-flyer2.png"
         ],
         content: `<div class="tariff-box"><strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, & Ooty Lake.</div>`
       }
@@ -68,7 +68,7 @@ const defaultCategoryInfo = {
     title: "🚘 Cab Services", 
     desc: "Long distance and corporate fleet.", 
     content: "Round-trip outstation cabs, one-way drops, and monthly rentals.",
-    pamphlets: ["https://raw.githubusercontent.com/cogo-tours/assets/main/cabs-1.jpg"]
+    pamphlets: ["cabs-flyer.jpg"]
   }
 };
 
@@ -76,6 +76,10 @@ let activeServiceTitle = "General Journey Enquiry";
 let currentPamphletList = [];
 let currentPamphletIndex = 0;
 let currentZoomScale = 1;
+
+/* =========================================================
+   MAIN MODAL CONTROLS (OPEN / CLOSE / SUBMIT)
+========================================================= */
 
 function openCategoryModal(catKey) {
   const data = categoryData[catKey];
@@ -116,17 +120,81 @@ function openCategoryModal(catKey) {
     contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>` + galleryHtml;
   }
 
-  document.getElementById("enquiryModal").classList.add("show");
+  const modal = document.getElementById("enquiryModal");
+  if (modal) {
+    modal.classList.add("show");
+    modal.style.display = "flex"; // Fallback inline toggle
+  }
   document.body.style.overflow = "hidden";
+}
+
+function openEnquiryForm(title) {
+  activeServiceTitle = title;
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDescription");
+  
+  if (modalTitle) modalTitle.textContent = title;
+  if (modalDesc) modalDesc.textContent = "Fill in your details below to request a personalized itinerary or quote.";
+
+  const subTabs = document.getElementById("modalSubTabs");
+  const contentBody = document.getElementById("modalDynamicContent");
+  if (subTabs) subTabs.innerHTML = "";
+  if (contentBody) contentBody.innerHTML = "";
+
+  const modal = document.getElementById("enquiryModal");
+  if (modal) {
+    modal.classList.add("show");
+    modal.style.display = "flex";
+  }
+  document.body.style.overflow = "hidden";
+}
+
+// Function triggered by the top-right X button
+function closeModal() {
+  const modal = document.getElementById("enquiryModal");
+  if (modal) {
+    modal.classList.remove("show");
+    modal.style.display = "none";
+  }
+  document.body.style.overflow = "";
 }
 
 function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
   currentPamphletList = tab.pamphlets || [];
   const galleryHtml = createPamphletGallery(currentPamphletList);
-  
-  // Placement: Description / Tariff box -> Pamphlets -> Forms below
   contentBody.innerHTML = tab.content + galleryHtml;
+}
+
+function submitEnquiry(type) {
+  const nameInput = document.getElementById("userName");
+  const phoneInput = document.getElementById("userPhone");
+  const queryInput = document.getElementById("userQuery");
+
+  const name = nameInput ? nameInput.value.trim() : "";
+  const phone = phoneInput ? phoneInput.value.trim() : "";
+  const query = queryInput ? queryInput.value.trim() : "";
+
+  if (!name || !phone) {
+    alert("Please enter your Name and Phone Number.");
+    return;
+  }
+
+  const messageText = `Hi Cogo Tours & Travels 👋\n\nI want to enquire about: *${activeServiceTitle}*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n💬 *Query:* ${query || "Please share details and package quotes."}`;
+
+  if (type === 'whatsapp') {
+    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(messageText)}`, '_blank');
+  } else if (type === 'email') {
+    const subject = encodeURIComponent(`Enquiry: ${activeServiceTitle} - ${name}`);
+    const body = encodeURIComponent(messageText);
+    window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
+  }
+
+  if (nameInput) nameInput.value = "";
+  if (phoneInput) phoneInput.value = "";
+  if (queryInput) queryInput.value = "";
+
+  closeModal();
 }
 
 /* =========================================================
@@ -144,6 +212,7 @@ function openPamphletZoom(index) {
     lightboxImg.src = currentPamphletList[currentPamphletIndex];
     resetZoom();
     lightbox.classList.add("show");
+    lightbox.style.display = "flex";
   }
 }
 
@@ -152,6 +221,7 @@ function closePamphletZoom(e) {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox) {
     lightbox.classList.remove("show");
+    lightbox.style.display = "none";
     resetZoom();
   }
 }
@@ -192,21 +262,21 @@ function resetZoom() {
    KEYBOARD ESC & TOUCH/SWIPE HANDLERS
 ========================================================= */
 
-// Sequential ESC key behavior (Zoom Lightbox -> Main Package Modal)
+// Pressing ESC step-by-step closes Zoom Lightbox first, then Modal
 document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") {
     const lightbox = document.getElementById("pamphletLightbox");
     const enquiryModal = document.getElementById("enquiryModal");
 
-    if (lightbox && lightbox.classList.contains("show")) {
+    if (lightbox && (lightbox.classList.contains("show") || lightbox.style.display === "flex")) {
       closePamphletZoom();
-    } else if (enquiryModal && enquiryModal.classList.contains("show")) {
+    } else if (enquiryModal && (enquiryModal.classList.contains("show") || enquiryModal.style.display === "flex")) {
       closeModal();
     }
   }
 });
 
-// Mobile Swipe gesture handling (Left/Right to slide flyer, Up to dismiss)
+// Mobile Swipe gesture handling
 let touchStartX = 0;
 let touchStartY = 0;
 
@@ -228,7 +298,7 @@ document.addEventListener("touchend", function(e) {
   const diffX = touchEndX - touchStartX;
   const diffY = touchEndY - touchStartY;
 
-  // Swipe Up to Close (if vertical move is dominant)
+  // Swipe Up to Close
   if (diffY < -80 && Math.abs(diffY) > Math.abs(diffX)) {
     closePamphletZoom();
     return;
@@ -237,9 +307,9 @@ document.addEventListener("touchend", function(e) {
   // Swipe Left / Right to cycle flyers
   if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
     if (diffX < 0) {
-      navigateLightbox(1); // Swipe Left -> Next
+      navigateLightbox(1);
     } else {
-      navigateLightbox(-1); // Swipe Right -> Prev
+      navigateLightbox(-1);
     }
   }
 }, { passive: true });
