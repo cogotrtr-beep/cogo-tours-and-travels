@@ -22,9 +22,34 @@ function createPamphletGallery(images) {
   `;
 }
 
+// Data for Cogo Cabs & Cab Services
+const cogoCabsData = {
+  title: "🚕 Cogo Cabs Tariff",
+  desc: "Fixed tariffs for Sedan, Innova, Crysta and Tempo Travellers.",
+  tabs: [
+    {
+      name: "Standard Tariff",
+      images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
+      content: `
+        <div class="tariff-box">
+          <h4>⚡ Standard Rental Charges</h4>
+          <ul class="bulletin-list">
+            <li class="bulletin-item"><span class="bullet-label">Sedan (50km)</span> <span class="bullet-price">₹1,400</span></li>
+            <li class="bulletin-item"><span class="bullet-label">Innova (50km)</span> <span class="bullet-price">₹2,000</span></li>
+            <li class="bulletin-item"><span class="bullet-label">Innova Crysta (10H 100km)</span> <span class="bullet-price">₹4,600</span></li>
+            <li class="bulletin-item"><span class="bullet-label">Sedan 250km Pack</span> <span class="bullet-price">₹4,500</span></li>
+            <li class="bulletin-item"><span class="bullet-label">Innova 250km Pack</span> <span class="bullet-price">₹6,000</span></li>
+            <li class="bulletin-item"><span class="bullet-label">Crysta 250km Pack</span> <span class="bullet-price">₹6,750</span></li>
+          </ul>
+        </div>
+      `
+    }
+  ]
+};
+
 // Category Data Engine
 const categoryData = {
-  // 1 & 2: Cab Booking & Cogo Cabs
+  // 1. General Cab Booking
   cabs: {
     title: "🚖 Cab Booking & Cogo Cabs",
     desc: "Transparent tariffs for local hourly rides, full-day packages & outstation trips.",
@@ -68,32 +93,11 @@ const categoryData = {
     ]
   },
 
-  // Direct mapping for Cogo Cabs button
-  "cogo-cabs": {
-    title: "🚕 Cogo Cabs Tariff",
-    desc: "Fixed tariffs for Sedan, Innova, Crysta and Tempo Travellers.",
-    tabs: [
-      {
-        name: "Standard Tariff",
-        images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
-        content: `
-          <div class="tariff-box">
-            <h4>⚡ Standard Rental Charges</h4>
-            <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (50km)</span> <span class="bullet-price">₹1,400</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (50km)</span> <span class="bullet-price">₹2,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (10H 100km)</span> <span class="bullet-price">₹4,600</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Sedan 250km Pack</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova 250km Pack</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Crysta 250km Pack</span> <span class="bullet-price">₹6,750</span></li>
-            </ul>
-          </div>
-        `
-      }
-    ]
-  },
+  // 2. Cogo Cabs & Cab Services share the exact same data
+  "cogo-cabs": cogoCabsData,
+  cabservices: cogoCabsData,
 
-  // 3: Tour Chennai
+  // 3. Tour Chennai
   chennai: {
     title: "🏛️ Tour Chennai Packages",
     desc: "Explore heritage, coastal ECR, and theme parks in around Chennai.",
@@ -142,7 +146,7 @@ const categoryData = {
     ]
   },
 
-  // 4: Tour Pilgrim
+  // 4. Tour Pilgrim
   pilgrim: {
     title: "🛕 Tour Pilgrim Circuits",
     desc: "Sacred temple tours, heritage shrines, and spiritual one-day packages.",
@@ -192,7 +196,7 @@ const categoryData = {
     ]
   },
 
-  // 5: Tour South India
+  // 5. Tour South India
   "south-india": {
     title: "🌴 Tour South India",
     desc: "Scenic hill stations, pristine backwaters, and long-distance heritage tours.",
@@ -217,23 +221,6 @@ const categoryData = {
             <p style="margin-top: 10px; font-size: 13px; color: #475569;">
               🚌 Urbania, Tempo Traveller, and Buses available for large group tours!
             </p>
-          </div>
-        `
-      }
-    ]
-  },
-
-  cabservices: {
-    title: "🚘 Cab Services",
-    desc: "Corporate transfers, outstation drops, and custom fleet rentals.",
-    tabs: [
-      {
-        name: "Rental Fleet",
-        images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
-        content: `
-          <div class="tariff-box">
-            <h4>🚘 Customized Fleet Services</h4>
-            <p>We provide Sedans, Innovas, Crystas, Tempo Travellers, and Urbania vehicles for corporate transfers, weddings, and custom sightseeing.</p>
           </div>
         `
       }
