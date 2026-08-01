@@ -341,20 +341,28 @@ body {
 }
 
 /* =========================================================
-   6. MODAL POPUP & INTERACTIVE TOP TABS
+   6. MODAL POPUP & INTERACTIVE TOP TABS (MERGED)
 ========================================================= */
 .modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
   z-index: 2000;
   align-items: center;
   justify-content: center;
   padding: 16px;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
 }
 
-.modal-overlay.show { display: flex; }
+/* Force Flex Display on Show */
+.modal-overlay.show { 
+  display: flex !important; 
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
 
 .modal-box {
   background: #ffffff;
@@ -378,15 +386,39 @@ body {
   height: 36px;
   border-radius: 50%;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  color: #475569;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Modal Title & Description Header */
+#modalTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.modal-desc {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 16px;
 }
 
 /* Sub-tabs Container */
 .sub-tab-container {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  overflow-x: auto;
   margin-bottom: 18px;
   border-bottom: 2px solid #e2e8f0;
   padding-bottom: 12px;
@@ -411,7 +443,7 @@ body {
   opacity: 0.95;
 }
 
-/* Color Accents for Sub-tabs */
+/* Custom Color Accents for Sub-tabs */
 .sub-tab-btn.tab-color-0 { background-color: #FF9933; border-color: #e68a2e; } 
 .sub-tab-btn.tab-color-1 { background-color: #0F172A; border-color: #050b14; } 
 .sub-tab-btn.tab-color-2 { background-color: #138808; border-color: #0f6e06; } 
@@ -422,25 +454,199 @@ body {
 }
 
 /* Warm Peach Dynamic Content Body */
-.modal-body-wrapper.peach-theme {
+.modal-body-wrapper.peach-theme,
+.modal-body-wrapper {
   background: #FFF5EE;
   border: 1.5px solid #FFE4E1;
   padding: 22px;
   border-radius: 14px;
   margin-bottom: 20px;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.8;
+  font-size: 16px;
   color: #0f172a;
-  letter-spacing: 0.2px;
 }
 
-.modal-body-wrapper.peach-theme p, 
-.modal-body-wrapper.peach-theme div,
-.modal-body-wrapper.peach-theme li {
+.tariff-box h4 {
+  color: #c2410c;
   font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.tariff-box p,
+.tariff-box li {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Bulletin Price List Styling */
+.bulletin-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+}
+
+.bulletin-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #fed7aa;
   font-weight: 700;
+}
+
+.bulletin-item:last-child {
+  border-bottom: none;
+}
+
+.bullet-label {
+  color: #1e293b;
+}
+
+.bullet-price {
+  font-weight: 800;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Pamphlet / Image Gallery Grid & Swiper */
+.pamphlet-swiper {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 0 6px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.pamphlet-card {
+  flex: 0 0 160px;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #cbd5e1;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pamphlet-card:hover {
+  transform: scale(1.03);
+  border-color: #FF9933;
+}
+
+.pamphlet-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Form Layout & Action Buttons */
+.form-group {
   margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #FF9933;
+}
+
+.modal-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+  .modal-actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.action-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.action-btn:active {
+  transform: scale(0.98);
+}
+
+.btn-wa {
+  background-color: #25d366;
+  color: #ffffff;
+}
+
+.btn-email {
+  background-color: #0F172A;
+  color: #ffffff;
+}
+
+/* Lightbox Image Zoom Overlay */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.92);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox-overlay.show {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.lightbox-content img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* =========================================================
