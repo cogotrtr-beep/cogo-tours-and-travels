@@ -350,22 +350,26 @@
     </div>
   </div>
 
-  <!-- Interactive Lightbox Modal (With Zoom Controls) -->
-  <div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
-    <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
-    
-    <!-- Image Container -->
-    <div class="lightbox-img-container" onclick="event.stopPropagation()">
-      <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
-    </div>
+  <!-- Interactive Lightbox Modal (With Full Controls) -->
+<div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
+  <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
+  
+  <!-- Lightbox Navigation Arrows -->
+  <button class="lightbox-nav prev-btn" onclick="navigateLightbox(-1, event)">&#10094;</button>
+  <button class="lightbox-nav next-btn" onclick="navigateLightbox(1, event)">&#10095;</button>
 
-    <!-- Zoom Control Buttons -->
-    <div class="zoom-controls" onclick="event.stopPropagation()">
-      <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
-      <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
-      <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
-    </div>
+  <!-- Image Container -->
+  <div class="lightbox-img-container" id="lightboxContainer" onclick="event.stopPropagation()">
+    <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
   </div>
+
+  <!-- Zoom Control Buttons -->
+  <div class="zoom-controls" onclick="event.stopPropagation()">
+    <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
+    <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
+    <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
+  </div>
+</div>
 
   <!-- JavaScript Execution at End of Body -->
   <script src="script.js"></script>
