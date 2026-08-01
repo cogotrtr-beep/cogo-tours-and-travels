@@ -1,5 +1,5 @@
 /* =========================================================
-   GLOBAL BASE & BRAND STYLES
+   1. GLOBAL BASE & BRAND STYLES
 ========================================================= */
 * {
   margin: 0;
@@ -14,6 +14,10 @@ body {
   line-height: 1.6;
 }
 
+.text-center { 
+  text-align: center; 
+}
+
 /* Header Brand Navigation */
 #mainNav {
   position: sticky;
@@ -22,7 +26,7 @@ body {
   background: #0f172a;
   color: #ffffff;
   padding: 12px 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container.nav-center-aligned {
@@ -41,7 +45,7 @@ body {
   width: 100%;
 }
 
-/* Blunt Square Indian Flag Inspired Header Buttons */
+/* Header Navigation Buttons */
 .flag-tab {
   display: inline-flex;
   align-items: center;
@@ -54,14 +58,14 @@ body {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;               
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
   min-width: 140px;
 }
 
 .flag-tab:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .tab-saffron { background-color: #FF9933; color: #ffffff !important; }
@@ -69,12 +73,12 @@ body {
 .tab-green { background-color: #138808; color: #ffffff !important; }
 
 /* =========================================================
-   HERO BANNER SECTION (FULL SCREEN WIDTH)
+   2. HERO BANNER SECTION
 ========================================================= */
 .hero {
   position: relative;
-  width: 100vw;               /* Force full viewport width */
-  margin-left: calc(-50vw + 50%); /* Center-bleed trick to edge-to-edge */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   min-height: 60vh;
   background: url('hero-banner.png') center center / cover no-repeat;
@@ -110,24 +114,20 @@ body {
 
 .hero-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
 }
 
 .hero-btn.primary { background: #138808; color: #ffffff; }
 .hero-btn.secondary { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
 
 /* =========================================================
-   CATEGORY HUB GRID (SAFE RESPONSIVE UPDATE)
+   3. CATEGORY HUB GRID & CARDS
 ========================================================= */
-
-/* Section & Header Styles */
 .section {
   max-width: 1280px;
   margin: 0 auto;
   padding: 50px 20px;
 }
-
-.text-center { text-align: center; }
 
 .hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
 .section-sub { color: #64748b; margin-bottom: 25px; font-size: 16px; }
@@ -163,7 +163,7 @@ body {
 .social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
 .social-btn.twitter { background-color: #000000; }
 
-/* 1. Base Grid & Card Styles (Default / Mobile View) */
+/* Grid Layout */
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -230,47 +230,8 @@ body {
   cursor: pointer;
 }
 
-/* 2. Desktop-Only Scaling (Triggers ONLY on screen widths > 768px) */
-@media (min-width: 769px) {
-  .hub-grid {
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 32px;
-  }
-
-  .hub-card {
-    min-height: 380px;
-    border-radius: 22px;
-  }
-
-  .hub-card-content {
-    padding: 30px;
-  }
-
-  .hub-icon { 
-    font-size: 42px; 
-    margin-bottom: 10px; 
-  }
-
-  .hub-card-content h3 { 
-    font-size: 28px; 
-    margin-bottom: 6px; 
-  }
-
-  .hub-card-content p { 
-    font-size: 16.5px; 
-    margin-bottom: 20px; 
-    line-height: 1.5; 
-  }
-
-  .hub-btn {
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 10px;
-  }
-}
-
 /* =========================================================
-   ABOUT US SECTION
+   4. ABOUT US SECTION
 ========================================================= */
 .about-section {
   background: #ffffff;
@@ -307,7 +268,7 @@ body {
 }
 
 /* =========================================================
-   CONTACT & MAP SECTION
+   5. CONTACT & MAP SECTION
 ========================================================= */
 .contact-section {
   padding: 60px 20px;
@@ -325,7 +286,7 @@ body {
   background: #ffffff;
   padding: 28px;
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
   border: 1px solid #e2e8f0;
 }
 
@@ -375,7 +336,7 @@ body {
 }
 
 /* =========================================================
-   MODAL POPUP & RATE CARD ENHANCEMENTS
+   6. MODAL POPUP & INTERACTIVE TOP TABS
 ========================================================= */
 .modal-overlay {
   display: none;
@@ -399,7 +360,7 @@ body {
   position: relative;
   max-height: 92vh;
   overflow-y: auto;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 .modal-close {
@@ -416,7 +377,7 @@ body {
   cursor: pointer;
 }
 
-/* Sub-tabs Container & Alternating Color Buttons */
+/* Sub-tabs Container */
 .sub-tab-container {
   display: flex;
   gap: 10px;
@@ -426,27 +387,30 @@ body {
   padding-bottom: 12px;
 }
 
+/* Outlined Interactive Tab Buttons */
 .sub-tab-btn {
-  border: none;
   padding: 10px 18px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 800;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   color: #ffffff;
+  border: 2px solid transparent;
 }
 
 .sub-tab-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   opacity: 0.95;
 }
 
-/* Alternating Button Colors */
-.sub-tab-btn.tab-color-0 { background-color: #FF9933; } /* Saffron */
-.sub-tab-btn.tab-color-1 { background-color: #0F172A; } /* Navy */
-.sub-tab-btn.tab-color-2 { background-color: #138808; } /* Forest Green */
-.sub-tab-btn.tab-color-3 { background-color: #D97706; } /* Amber */
+/* Color Accents for Sub-tabs */
+.sub-tab-btn.tab-color-0 { background-color: #FF9933; border-color: #e68a2e; } 
+.sub-tab-btn.tab-color-1 { background-color: #0F172A; border-color: #050b14; } 
+.sub-tab-btn.tab-color-2 { background-color: #138808; border-color: #0f6e06; } 
+.sub-tab-btn.tab-color-3 { background-color: #D97706; border-color: #b46204; } 
 
 .sub-tab-btn.active {
   box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a;
@@ -454,17 +418,29 @@ body {
 
 /* Warm Peach Dynamic Content Body */
 .modal-body-wrapper.peach-theme {
-  background: #FFF5EE; /* Mild Pleasant Peach */
+  background: #FFF5EE;
   border: 1.5px solid #FFE4E1;
   padding: 22px;
   border-radius: 14px;
   margin-bottom: 20px;
-  font-size: 16.5px;
-  line-height: 1.7;
-  color: #1e293b;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.8;
+  color: #0f172a;
+  letter-spacing: 0.2px;
 }
 
-/* Detailed Tariff List Styling */
+.modal-body-wrapper.peach-theme p, 
+.modal-body-wrapper.peach-theme div,
+.modal-body-wrapper.peach-theme li {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   7. BULLETIN-STYLE PACKAGE & TARIFF DETAILS
+========================================================= */
 .tariff-box {
   margin-top: 10px;
 }
@@ -478,33 +454,54 @@ body {
   padding-bottom: 4px;
 }
 
-.tariff-list {
+.tariff-box p {
+  font-size: 15px;
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+/* Bulletin Style List (Non-Clickable Informational Design) */
+.bulletin-list {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 0;
   margin: 10px 0;
 }
 
-.tariff-list li {
-  padding: 8px 12px;
-  background: #ffffff;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  font-size: 16px;
-  border: 1px solid #fed7aa;
+.bulletin-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 12px 16px;
+  background-color: #f1f5f9; /* Soft Accent Background */
+  border-left: 4px solid #2563eb; /* Blue Accent Bar */
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
-.tariff-badge {
-  background: #138808;
-  color: #ffffff;
+.bulletin-item .bullet-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bulletin-item .bullet-label::before {
+  content: "•";
+  color: #2563eb;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.bulletin-item .bullet-price {
   font-weight: 800;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 15px;
+  color: #138808;
 }
 
+/* Modal Booking Form Elements */
 .form-group { margin-bottom: 14px; }
 .form-group label { display: block; font-size: 13.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
 .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; }
@@ -515,8 +512,194 @@ body {
 .btn-email { background: #0f172a; color: #fff; }
 
 /* =========================================================
-   MOBILE & RESPONSIVE OPTIMIZATIONS
+   8. PAMPHLET SWIPER & INTERACTIVE LIGHTBOX
 ========================================================= */
+.pamphlet-swiper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 15px 10px;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  user-select: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pamphlet-swiper::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.pamphlet-swiper.active {
+  cursor: grabbing !important;
+}
+
+.pamphlet-card {
+  flex: 0 0 85%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.pamphlet-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+/* Lightbox Base */
+.pamphlet-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+  padding: 15px;
+}
+
+.pamphlet-lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-img-container {
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: grab;
+}
+
+.lightbox-img-container:active {
+  cursor: grabbing;
+}
+
+.lightbox-img-container img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  transition: transform 0.15s ease-out;
+  transform-origin: center center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  touch-action: pinch-zoom;
+}
+
+.pamphlet-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+/* Zoom Toolbar Controls */
+.zoom-controls {
+  position: absolute;
+  bottom: 25px;
+  display: flex;
+  gap: 10px;
+  z-index: 100000;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 8px 16px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.zoom-controls button {
+  background: #ff5a00;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.zoom-controls button:hover {
+  background: #ff7700;
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   9. RESPONSIVE BREAKPOINTS (DESKTOP & MOBILE)
+========================================================= */
+
+/* Desktop Scaling (Screens wider than 768px) */
+@media (min-width: 769px) {
+  .hub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+  }
+
+  .hub-card {
+    min-height: 380px;
+    border-radius: 22px;
+  }
+
+  .hub-card-content {
+    padding: 30px;
+  }
+
+  .hub-icon { 
+    font-size: 42px; 
+    margin-bottom: 10px; 
+  }
+
+  .hub-card-content h3 { 
+    font-size: 28px; 
+    margin-bottom: 6px; 
+  }
+
+  .hub-card-content p { 
+    font-size: 16.5px; 
+    margin-bottom: 20px; 
+    line-height: 1.5; 
+  }
+
+  .hub-btn {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .modal-box {
+    max-width: 880px;
+    padding: 36px;
+  }
+
+  .pamphlet-card {
+    flex: 0 0 55%;
+  }
+}
+
+/* Mobile Optimizations (Screens 768px or narrower) */
 @media (max-width: 768px) {
   #navLinks {
     flex-direction: row;
@@ -549,240 +732,3 @@ body {
     grid-template-columns: 1fr;
   }
 }
-/* =========================================================
-   MODAL POPUP ENHANCEMENT (30% WIDER + BOLD DESCRIPTIONS)
-========================================================= */
-
-/* 1. Scale Modal Width by ~30% on Desktop */
-@media (min-width: 769px) {
-  .modal-box {
-    max-width: 880px !important; /* Increased width */
-    padding: 36px !important;
-  }
-}
-
-/* 2. Enhanced Peach Modal Body Description Text */
-.modal-body-wrapper.peach-theme {
-  font-size: 18px !important;
-  font-weight: 700 !important;
-  line-height: 1.8 !important;
-  color: #0f172a !important;
-  letter-spacing: 0.2px;
-}
-
-.modal-body-wrapper.peach-theme p, 
-.modal-body-wrapper.peach-theme div,
-.modal-body-wrapper.peach-theme li {
-  font-size: 18px !important;
-  font-weight: 700 !important;
-  margin-bottom: 12px;
-}
-
-/* =========================================================
-   PAMPHLET SWIPER & PANNING LIGHTBOX
-========================================================= */
-
-.pamphlet-swiper {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 15px 10px;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
-  user-select: none;
-  
-  /* Hide scrollbars */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.pamphlet-swiper::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
-.pamphlet-swiper.active {
-  cursor: grabbing !important;
-}
-
-.pamphlet-card {
-  flex: 0 0 85%; /* Shows enough room to grab next/previous cards */
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-  background: #ffffff;
-  flex-shrink: 0;
-}
-
-.pamphlet-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  pointer-events: none;
-}
-
-@media (min-width: 769px) {
-  .pamphlet-card {
-    flex: 0 0 50%; /* Shows main flyer + preview of next flyer on desktop */
-  }
-}
-
-/* Lightbox Panning Container for Zoomed View */
-.lightbox-img-container {
-  max-width: 90vw;
-  max-height: 85vh;
-  overflow: auto; /* Allows panning left, right, top, bottom when zoomed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  cursor: grab;
-}
-
-.lightbox-img-container:active {
-  cursor: grabbing;
-}
-
-@media (min-width: 769px) {
-  .pamphlet-card {
-    flex: 0 0 55%;
-  }
-}
-
-/* 3. Fullscreen Lightbox Modal for Zooming / Double Click */
-.pamphlet-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: rgba(0, 0, 0, 0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  padding: 15px;
-}
-
-.pamphlet-lightbox.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.pamphlet-lightbox img {
-  max-width: 95%;
-  max-height: 90vh;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-  object-fit: contain;
-  touch-action: pinch-zoom; /* Allows native two-finger pinch-zoom on mobile */
-}
-
-.pamphlet-lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: #ffffff;
-  font-size: 32px;
-  font-weight: bold;
-  cursor: pointer;
-  background: rgba(255,255,255,0.2);
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* =========================================================
-   INTERACTIVE LIGHTBOX & MOUSE WHEEL ZOOM
-========================================================= */
-
-.pamphlet-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: rgba(0, 0, 0, 0.92);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  overflow: hidden;
-}
-
-.pamphlet-lightbox.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lightbox-img-container {
-  max-width: 90vw;
-  max-height: 85vh;
-  overflow: auto; /* Allows panning when zoomed in */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.lightbox-img-container img {
-  max-width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
-  transition: transform 0.15s ease-out;
-  cursor: grab;
-  transform-origin: center center;
-}
-
-/* Zoom Control Toolbar */
-.zoom-controls {
-  position: absolute;
-  bottom: 25px;
-  display: flex;
-  gap: 10px;
-  z-index: 100000;
-  background: rgba(15, 23, 42, 0.85);
-  padding: 8px 16px;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-}
-
-.zoom-controls button {
-  background: #ff5a00;
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: transform 0.1s ease, background 0.2s ease;
-}
-
-.zoom-controls button:hover {
-  background: #ff7700;
-  transform: scale(1.05);
-}
-
-.pamphlet-lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: #ffffff;
-  font-size: 32px;
-  font-weight: bold;
-  cursor: pointer;
-  background: rgba(255,255,255,0.2);
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100000;
-}
-
