@@ -1,5 +1,5 @@
 /* =========================================================
-   COGO TOURS - INTERACTIVE MULTI-TAB SERVICE ENGINE & PAMPHLETS
+   COGO TOURS - INTERACTIVE ENGINE & PAMPHLETS
 ========================================================= */
 
 // Helper function to build slidable pamphlet gallery HTML
@@ -22,7 +22,7 @@ function createPamphletGallery(images) {
   `;
 }
 
-// Category Data — Update image filenames to match what you upload to GitHub!
+// Category Data
 const categoryData = {
   chennai: {
     title: "🏛️ Tour Chennai Packages",
@@ -31,8 +31,8 @@ const categoryData = {
       {
         name: "City Sightseeing",
         pamphlets: [
-          "chennai-1.jpg", 
-          "chennai-2.jpg"
+          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-1.jpg", 
+          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-2.jpg"
         ],
         content: `
           <div class="tariff-box">
@@ -47,17 +47,25 @@ const categoryData = {
       }
     ]
   },
-  domestic: {
-    title: "🏔️ Tour Domestic Packages",
-    desc: "Handcrafted Indian holiday itineraries.",
+  "south-india": {
+    title: "🌴 Tour South India",
+    desc: "Hill stations, backwaters, and heritage trails.",
     tabs: [
       {
-        name: "Kerala & Hill Stations",
-        pamphlets: [
-          "domestic-flyer.png",
-          "domestic-flyer2.png"
-        ],
-        content: `<div class="tariff-box"><strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, & Ooty Lake.</div>`
+        name: "Kerala & Ooty",
+        pamphlets: [],
+        content: `<div class="tariff-box"><p>Munnar tea gardens, Alleppey houseboats, Kodaikanal misty hills & Ooty escapes.</p></div>`
+      }
+    ]
+  },
+  cabs: {
+    title: "🚖 Cab Booking & Tariff",
+    desc: "Reliable outstation drops and local rentals.",
+    tabs: [
+      {
+        name: "Standard Tariff",
+        pamphlets: [],
+        content: `<div class="tariff-box"><p>Local 8Hrs/80Kms sedan starting at ₹1,800. Outstation cabs available at competitive per-km rates.</p></div>`
       }
     ]
   }
@@ -67,8 +75,17 @@ const defaultCategoryInfo = {
   cabservices: { 
     title: "🚘 Cab Services", 
     desc: "Long distance and corporate fleet.", 
-    content: "Round-trip outstation cabs, one-way drops, and monthly rentals.",
-    pamphlets: ["cabs-flyer.jpg"]
+    content: "Round-trip outstation cabs, one-way drops, and monthly rentals."
+  },
+  tickets: {
+    title: "🎟️ Ticket Booking",
+    desc: "Flight, Train & Bus Reservations.",
+    content: "Instant ticketing assistance for all domestic and international transit."
+  },
+  visa: {
+    title: "🛂 Visa Assistance",
+    desc: "Documentation & Guidance.",
+    content: "Comprehensive assistance for tourist, business, and transit visas globally."
   }
 };
 
@@ -78,7 +95,7 @@ let currentPamphletIndex = 0;
 let currentZoomScale = 1;
 
 /* =========================================================
-   MAIN MODAL CONTROLS (OPEN / CLOSE / SUBMIT)
+   MAIN MODAL FUNCTIONS (OPEN / CLOSE)
 ========================================================= */
 
 function openCategoryModal(catKey) {
@@ -86,8 +103,7 @@ function openCategoryModal(catKey) {
   const subTabContainer = document.getElementById("modalSubTabs");
   const contentBody = document.getElementById("modalDynamicContent");
 
-  if (!subTabContainer || !contentBody) return;
-  subTabContainer.innerHTML = "";
+  if (subTabContainer) subTabContainer.innerHTML = "";
 
   if (data && data.tabs) {
     activeServiceTitle = data.title;
@@ -96,75 +112,90 @@ function openCategoryModal(catKey) {
 
     data.tabs.forEach((tab, index) => {
       const btn = document.createElement("button");
-      const colorClass = `tab-color-${index % 4}`;
-      btn.className = `sub-tab-btn ${colorClass} ${index === 0 ? 'active' : ''}`;
+      btn.className = `sub-tab-btn tab-color-${index % 4} ${index === 0 ? 'active' : ''}`;
       btn.textContent = tab.name;
       btn.onclick = () => {
         document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderTabContent(tab);
       };
-      subTabContainer.appendChild(btn);
+      if (subTabContainer) subTabContainer.appendChild(btn);
     });
 
     renderTabContent(data.tabs[0]);
 
   } else {
-    const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "", content: "Please contact us for more information." };
+    const fallback = defaultCategoryInfo[catKey] || { 
+      title: categoryData[catKey]?.title || "Enquiry", 
+      desc: categoryData[catKey]?.desc || "Custom Travel Package", 
+      content: "Contact us directly for custom pricing, route maps, and tailored itineraries." 
+    };
+    
     activeServiceTitle = fallback.title;
     document.getElementById("modalTitle").textContent = fallback.title;
     document.getElementById("modalDescription").textContent = fallback.desc;
     
     currentPamphletList = fallback.pamphlets || [];
     const galleryHtml = createPamphletGallery(currentPamphletList);
-    contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>` + galleryHtml;
+    if (contentBody) contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>` + galleryHtml;
   }
 
-  const modal = document.getElementById("enquiryModal");
-  if (modal) {
-    modal.classList.add("show");
-    modal.style.display = "flex"; // Fallback inline toggle
-  }
-  document.body.style.overflow = "hidden";
+  showModalElement("enquiryModal");
 }
 
 function openEnquiryForm(title) {
   activeServiceTitle = title;
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDesc = document.getElementById("modalDescription");
-  
-  if (modalTitle) modalTitle.textContent = title;
-  if (modalDesc) modalDesc.textContent = "Fill in your details below to request a personalized itinerary or quote.";
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalDescription").textContent = "Fill in your details below to request a personalized quote.";
 
   const subTabs = document.getElementById("modalSubTabs");
   const contentBody = document.getElementById("modalDynamicContent");
   if (subTabs) subTabs.innerHTML = "";
   if (contentBody) contentBody.innerHTML = "";
 
-  const modal = document.getElementById("enquiryModal");
+  showModalElement("enquiryModal");
+}
+
+function showModalElement(modalId) {
+  const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.add("show");
     modal.style.display = "flex";
+    modal.style.opacity = "1";
+    modal.style.pointerEvents = "auto";
   }
   document.body.style.overflow = "hidden";
 }
 
-// Function triggered by the top-right X button
+// Primary Close Function
 function closeModal() {
   const modal = document.getElementById("enquiryModal");
   if (modal) {
     modal.classList.remove("show");
     modal.style.display = "none";
+    modal.style.opacity = "0";
+    modal.style.pointerEvents = "none";
   }
   document.body.style.overflow = "";
+}
+
+// Overlay Click Dismissal
+function closeModalOnOverlay(e) {
+  if (e.target.id === "enquiryModal") {
+    closeModal();
+  }
 }
 
 function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
   currentPamphletList = tab.pamphlets || [];
   const galleryHtml = createPamphletGallery(currentPamphletList);
-  contentBody.innerHTML = tab.content + galleryHtml;
+  if (contentBody) contentBody.innerHTML = tab.content + galleryHtml;
 }
+
+/* =========================================================
+   FORM SUBMISSION (WHATSAPP / EMAIL)
+========================================================= */
 
 function submitEnquiry(type) {
   const nameInput = document.getElementById("userName");
@@ -213,6 +244,8 @@ function openPamphletZoom(index) {
     resetZoom();
     lightbox.classList.add("show");
     lightbox.style.display = "flex";
+    lightbox.style.opacity = "1";
+    lightbox.style.pointerEvents = "auto";
   }
 }
 
@@ -222,6 +255,8 @@ function closePamphletZoom(e) {
   if (lightbox) {
     lightbox.classList.remove("show");
     lightbox.style.display = "none";
+    lightbox.style.opacity = "0";
+    lightbox.style.pointerEvents = "none";
     resetZoom();
   }
 }
@@ -259,57 +294,18 @@ function resetZoom() {
 }
 
 /* =========================================================
-   KEYBOARD ESC & TOUCH/SWIPE HANDLERS
+   KEYBOARD ESC & TOUCH HANDLERS
 ========================================================= */
 
-// Pressing ESC step-by-step closes Zoom Lightbox first, then Modal
 document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") {
     const lightbox = document.getElementById("pamphletLightbox");
     const enquiryModal = document.getElementById("enquiryModal");
 
-    if (lightbox && (lightbox.classList.contains("show") || lightbox.style.display === "flex")) {
+    if (lightbox && lightbox.style.display === "flex") {
       closePamphletZoom();
-    } else if (enquiryModal && (enquiryModal.classList.contains("show") || enquiryModal.style.display === "flex")) {
+    } else if (enquiryModal && enquiryModal.style.display === "flex") {
       closeModal();
     }
   }
 });
-
-// Mobile Swipe gesture handling
-let touchStartX = 0;
-let touchStartY = 0;
-
-document.addEventListener("touchstart", function(e) {
-  const lightbox = document.getElementById("pamphletLightbox");
-  if (lightbox && lightbox.classList.contains("show")) {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }
-}, { passive: true });
-
-document.addEventListener("touchend", function(e) {
-  const lightbox = document.getElementById("pamphletLightbox");
-  if (!lightbox || !lightbox.classList.contains("show")) return;
-
-  const touchEndX = e.changedTouches[0].screenX;
-  const touchEndY = e.changedTouches[0].screenY;
-
-  const diffX = touchEndX - touchStartX;
-  const diffY = touchEndY - touchStartY;
-
-  // Swipe Up to Close
-  if (diffY < -80 && Math.abs(diffY) > Math.abs(diffX)) {
-    closePamphletZoom();
-    return;
-  }
-
-  // Swipe Left / Right to cycle flyers
-  if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
-    if (diffX < 0) {
-      navigateLightbox(1);
-    } else {
-      navigateLightbox(-1);
-    }
-  }
-}, { passive: true });
