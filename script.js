@@ -13,9 +13,9 @@ const categoryData = {
           <div class="tariff-box">
             <h4>📍 Chennai City Day Tour (5 Hours Package)</h4>
             <p><strong>Covered Attractions:</strong> Marina Beach, Kapaleeshwarar Temple, San Thome Basilica, Fort St. George, &amp; Government Museum.</p>
-            <ul class="tariff-list">
-              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹1,400 (50 KM / 5 Hrs)</span></li>
-              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹2,000 (50 KM / 5 Hrs)</span></li>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹1,400 (50 KM / 5 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹2,000 (50 KM / 5 Hrs)</span></li>
             </ul>
           </div>
         `
@@ -26,10 +26,10 @@ const categoryData = {
           <div class="tariff-box">
             <h4>🌊 ECR Beach & Coastal Run (10 Hours Package)</h4>
             <p><strong>Covered Attractions:</strong> Muttukadu Boat House, Kovalam Beach, DakshinaChitra Heritage Village, &amp; Tiger Cave.</p>
-            <ul class="tariff-list">
-              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹2,800 (100 KM / 10 Hrs)</span></li>
-              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹4,000 (100 KM / 10 Hrs)</span></li>
-              <li><span> Innova Crysta:</span> <span class="tariff-badge">₹4,600 (100 KM / 10 Hrs)</span></li>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹2,800 (100 KM / 10 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹4,000 (100 KM / 10 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹4,600 (100 KM / 10 Hrs)</span></li>
             </ul>
           </div>
         `
@@ -40,10 +40,10 @@ const categoryData = {
           <div class="tariff-box">
             <h4>🛕 Heritage & Silk City Tour (10 Hours Package)</h4>
             <p><strong>Covered Attractions:</strong> Mahabalipuram Shore Temple, Pancha Rathas, &amp; Kanchipuram Temple Circuits.</p>
-            <ul class="tariff-list">
-              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹2,800 (100 KM / 10 Hrs)</span></li>
-              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹4,000 (100 KM / 10 Hrs)</span></li>
-              <li><span> Innova Crysta:</span> <span class="tariff-badge">₹4,600 (100 KM / 10 Hrs)</span></li>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹2,800 (100 KM / 10 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹4,000 (100 KM / 10 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹4,600 (100 KM / 10 Hrs)</span></li>
             </ul>
           </div>
         `
@@ -54,10 +54,10 @@ const categoryData = {
           <div class="tariff-box">
             <h4>🎢 Amusement & Theme Park Express (10 Hours Package)</h4>
             <p><strong>Covered Attractions:</strong> VGP Universal Kingdom, MGM Dizzee World, &amp; Queens Land full-day transfers.</p>
-            <ul class="tariff-list">
-              <li><span> Sedan (4 Seater):</span> <span class="tariff-badge">₹2,800 (100 KM / 10 Hrs)</span></li>
-              <li><span> Innova (7 Seater):</span> <span class="tariff-badge">₹4,000 (100 KM / 10 Hrs)</span></li>
-              <li><span> Innova Crysta:</span> <span class="tariff-badge">₹4,600 (100 KM / 10 Hrs)</span></li>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹2,800 (100 KM / 10 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹4,000 (100 KM / 10 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹4,600 (100 KM / 10 Hrs)</span></li>
             </ul>
           </div>
         `
@@ -82,7 +82,7 @@ const categoryData = {
               <img src="domestic-flyer3.png" alt="Domestic Package Flyer 3">
             </div>
           </div>
-          <p style="text-align: center; margin-top: 10px; font-weight: bold; color: #475569;">👉 Swipe left/right to view all flyers</p>
+          <p style="text-align: center; margin-top: 10px; font-weight: bold; color: #475569;">👉 Tap image to zoom or swipe left/right</p>
         ` 
       },
       { name: "Kerala", content: "<div class='tariff-box'><strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, Wayanad &amp; Thekkady.</div>" },
@@ -108,10 +108,10 @@ const categoryData = {
         content: `
           <div class="tariff-box">
             <h4>⏱️ Local City Hourly Package</h4>
-            <ul class="tariff-list">
-              <li><span> Sedan (50 KM / 5 Hrs):</span> <span class="tariff-badge">₹1,400</span></li>
-              <li><span> Innova (50 KM / 5 Hrs):</span> <span class="tariff-badge">₹2,000</span></li>
-              <li><span> Innova Crysta (100 KM / 10 Hrs):</span> <span class="tariff-badge">₹4,600</span></li>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (50 KM / 5 Hrs)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (50 KM / 5 Hrs)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (100 KM / 10 Hrs)</span> <span class="bullet-price">₹4,600</span></li>
             </ul>
           </div>
         `
@@ -121,10 +121,10 @@ const categoryData = {
         content: `
           <div class="tariff-box">
             <h4>🛣️ Outstation Day Packages</h4>
-            <ul class="tariff-list">
-              <li><span> Sedan (250 KM Day Pack):</span> <span class="tariff-badge">₹4,500</span></li>
-              <li><span> Innova (250 KM Day Pack):</span> <span class="tariff-badge">₹6,000</span></li>
-              <li><span> Innova Crysta (250 KM Day Pack):</span> <span class="tariff-badge">₹6,750</span></li>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (250 KM Day Pack)</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (250 KM Day Pack)</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (250 KM Day Pack)</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
           </div>
         `
@@ -151,6 +151,7 @@ function openCategoryModal(catKey) {
   const subTabContainer = document.getElementById("modalSubTabs");
   const contentBody = document.getElementById("modalDynamicContent");
 
+  if (!subTabContainer || !contentBody) return;
   subTabContainer.innerHTML = "";
 
   if (data && data.tabs) {
@@ -189,22 +190,30 @@ function openEnquiryForm(title) {
   activeServiceTitle = title;
   document.getElementById("modalTitle").textContent = title;
   document.getElementById("modalDescription").textContent = "Fill in your details below to request a personalized itinerary or quote.";
-  document.getElementById("modalSubTabs").innerHTML = "";
-  document.getElementById("modalDynamicContent").innerHTML = "";
+  
+  const subTabs = document.getElementById("modalSubTabs");
+  const contentBody = document.getElementById("modalDynamicContent");
+  if (subTabs) subTabs.innerHTML = "";
+  if (contentBody) contentBody.innerHTML = "";
 
   document.getElementById("enquiryModal").classList.add("show");
   document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
-  document.getElementById("enquiryModal").classList.remove("show");
+  const modal = document.getElementById("enquiryModal");
+  if (modal) modal.classList.remove("show");
   document.body.style.overflow = "";
 }
 
 function submitEnquiry(type) {
-  const name = document.getElementById("userName").value.trim();
-  const phone = document.getElementById("userPhone").value.trim();
-  const query = document.getElementById("userQuery").value.trim();
+  const nameInput = document.getElementById("userName");
+  const phoneInput = document.getElementById("userPhone");
+  const queryInput = document.getElementById("userQuery");
+
+  const name = nameInput ? nameInput.value.trim() : "";
+  const phone = phoneInput ? phoneInput.value.trim() : "";
+  const query = queryInput ? queryInput.value.trim() : "";
 
   if (!name || !phone) {
     alert("Please enter your Name and Phone Number.");
@@ -221,8 +230,13 @@ function submitEnquiry(type) {
     window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
   }
 
+  if (nameInput) nameInput.value = "";
+  if (phoneInput) phoneInput.value = "";
+  if (queryInput) queryInput.value = "";
+
   closeModal();
 }
+
 /* =========================================================
    LIGHTBOX ZOOM ENGINE (BUTTONS & MOUSE WHEEL)
 ========================================================= */
@@ -242,7 +256,7 @@ function zoomPamphlet(imgSrc) {
   }
 }
 
-function closePamphletZoom(e) {
+function closePamphletZoom() {
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox) {
     lightbox.classList.remove("show");
@@ -257,7 +271,7 @@ function changeZoom(amount) {
   
   currentZoomScale += amount;
   if (currentZoomScale < 0.5) currentZoomScale = 0.5;
-  if (currentZoomScale > 3.5) currentZoomScale = 3.5; // Up to 350% magnification
+  if (currentZoomScale > 3.5) currentZoomScale = 3.5;
   
   lightboxImg.style.transform = `scale(${currentZoomScale})`;
 }
@@ -301,7 +315,7 @@ document.addEventListener("mousedown", function(e) {
     function onMouseMove(ev) {
       if (!isDown) return;
       const x = ev.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2; // Smooth drag responsiveness
+      const walk = (x - startX) * 2;
       
       if (Math.abs(x - startX) > 4) {
         isDragging = true;
@@ -316,7 +330,6 @@ document.addEventListener("mousedown", function(e) {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
 
-      // If clicked without dragging, open Zoom Lightbox!
       if (!isDragging) {
         const card = ev.target.closest(".pamphlet-card");
         if (card) {
