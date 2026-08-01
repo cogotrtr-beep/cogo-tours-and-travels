@@ -28,63 +28,27 @@
     </div>
   </header>
  <!-- =========================================================
-   1. OUR SERVICES SECTION
-========================================================= -->
-<section class="section" id="services-section">
-  <div class="hub-header text-center">
-    <h2>Our Services</h2>
-    <p class="section-sub">Reliable travel support and hassle-free booking solutions</p>
-  </div>
-
-  <div class="hub-grid">
-    <!-- 1. Cab Services -->
-    <article class="hub-card">
-      <div class="hub-card-bg cab-bg"></div>
-      <div class="hub-card-content">
-        <span class="hub-icon">🚕</span>
-        <h3>Cab Services</h3>
-        <p>Local & outstation rentals with professional drivers.</p>
-        <button class="hub-btn" onclick="openCategoryModal('cabservices')">View Cab Tariff</button>
-      </div>
-    </article>
-
-    <!-- 2. Ticket Booking -->
-    <article class="hub-card">
-      <div class="hub-card-bg ticket-bg"></div>
-      <div class="hub-card-content">
-        <span class="hub-icon">🎟️</span>
-        <h3>Ticket Booking</h3>
-        <p>Hassle-free flight, train, and bus reservations.</p>
-        <button class="hub-btn" onclick="openCategoryModal('tickets')">Book Tickets</button>
-      </div>
-    </article>
-
-    <!-- 3. Visa Assistance -->
-    <article class="hub-card">
-      <div class="hub-card-bg visa-bg"></div>
-      <div class="hub-card-content">
-        <span class="hub-icon">🛂</span>
-        <h3>Visa Assistance</h3>
-        <p>Expert guidance and end-to-end documentation support.</p>
-        <button class="hub-btn" onclick="openCategoryModal('visa')">Get Assistance</button>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- =========================================================
-   2. TOUR PACKAGES SECTION
+   2. TOUR PACKAGES SECTION (WITH 3-IMAGE SLIDERS & ARROWS)
 ========================================================= -->
 <section class="section" id="packages-section">
   <div class="hub-header text-center">
     <h2>Tour Packages</h2>
-    <p class="section-sub">Handcrafted holiday experiences tailored for you</p>
+    <p class="section-sub">Handcrafted holiday experiences tailored for you (Slide left/right to view images)</p>
   </div>
 
   <div class="hub-grid">
+
     <!-- 1. Tour Chennai -->
     <article class="hub-card">
-      <div class="hub-card-bg chennai-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" alt="Chennai Heritage" class="slide active">
+          <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=600&q=80" alt="Marina Beach" class="slide">
+          <img src="https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80" alt="Mahabalipuram" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🏛️</span>
         <h3>Tour Chennai</h3>
@@ -93,75 +57,131 @@
       </div>
     </article>
 
-    <!-- 2. Tour Pilgrim -->
+    <!-- 2. Tour Pilgrim (Includes Shirdi Special) -->
     <article class="hub-card">
-      <div class="hub-card-bg pilgrim-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Shirdi Darshan" class="slide active">
+          <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" alt="Tirupati Temple" class="slide">
+          <img src="https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80" alt="Rameswaram" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🛕</span>
         <h3>Tour Pilgrim</h3>
-        <p>Sacred temple circuits and spiritual journeys.</p>
+        <p>Shirdi Sai Darshan, Tirupati, Kanchipuram & spiritual circuits.</p>
         <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Packages</button>
       </div>
     </article>
 
-    <!-- 3. Tour South India -->
+    <!-- 3. Tour South India (Includes Kodaikanal & Kerala) -->
     <article class="hub-card">
-      <div class="hub-card-bg domestic-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Kodaikanal Lake & Hills" class="slide active">
+          <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80" alt="Kerala Backwaters" class="slide">
+          <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" alt="Ooty Tea Gardens" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🌴</span>
         <h3>Tour South India</h3>
-        <p>Discover hills, backwaters, and cultural heritage.</p>
+        <p>Kodaikanal misty hills, Kerala backwaters & Coorg escapes.</p>
         <button class="hub-btn" onclick="openCategoryModal('south-india')">View Packages</button>
       </div>
     </article>
 
     <!-- 4. Tour North India -->
     <article class="hub-card">
-      <div class="hub-card-bg domestic-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" alt="Taj Mahal Agra" class="slide active">
+          <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=600&q=80" alt="Jaipur Palace" class="slide">
+          <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" alt="Kashmir Snow" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🏔️</span>
         <h3>Tour North India</h3>
-        <p>Royal palaces, snow peaks, and golden triangle tours.</p>
+        <p>Royal palaces, Golden Triangle tours & snow peaks.</p>
         <button class="hub-btn" onclick="openCategoryModal('north-india')">View Packages</button>
       </div>
     </article>
 
     <!-- 5. Tour North East -->
     <article class="hub-card">
-      <div class="hub-card-bg adventure-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Sikkim Mountains" class="slide active">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Tea Gardens Assam" class="slide">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Meghalaya Waterfalls" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🏞️</span>
         <h3>Tour North East</h3>
-        <p>Scenic valleys, tea gardens, and pristine landscapes.</p>
+        <p>Gangtok, Darjeeling, Meghalaya & pristine valleys.</p>
         <button class="hub-btn" onclick="openCategoryModal('north-east')">View Packages</button>
       </div>
     </article>
 
     <!-- 6. Tour Rest of India -->
     <article class="hub-card">
-      <div class="hub-card-bg domestic-bg"></div>
+      <div class="hub-slider card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80" alt="Goa Beaches" class="slide active">
+          <img src="https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80" alt="Gujarat Rann" class="slide">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="Central India Safari" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🧭</span>
         <h3>Tour Rest of India</h3>
-        <p>Explore unique destinations across all states.</p>
+        <p>Explore unique destinations across all states & territories.</p>
         <button class="hub-btn" onclick="openCategoryModal('rest-of-india')">View Packages</button>
       </div>
     </article>
 
     <!-- 7. Tour International -->
     <article class="hub-card">
-      <div class="hub-card-bg intl-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="Dubai City" class="slide active">
+          <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=600&q=80" alt="Sydney Harbor" class="slide">
+          <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80" alt="Paris Eiffel" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">✈️</span>
         <h3>Tour International</h3>
-        <p>Unforgettable worldwide holiday packages.</p>
+        <p>Unforgettable foreign trips to Dubai, Singapore & Europe.</p>
         <button class="hub-btn" onclick="openCategoryModal('international')">View Packages</button>
       </div>
     </article>
 
     <!-- 8. Corporate Tour -->
     <article class="hub-card">
-      <div class="hub-card-bg corporate-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80" alt="Corporate Retreat" class="slide active">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Team Building" class="slide">
+          <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=600&q=80" alt="Conference Hall" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🏢</span>
         <h3>Corporate Tour</h3>
@@ -172,7 +192,15 @@
 
     <!-- 9. School College Tour -->
     <article class="hub-card">
-      <div class="hub-card-bg school-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Student Group" class="slide active">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Industrial Visit" class="slide">
+          <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80" alt="Campus Excursion" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🎓</span>
         <h3>School College Tour</h3>
@@ -183,7 +211,15 @@
 
     <!-- 10. Adventure Tour -->
     <article class="hub-card">
-      <div class="hub-card-bg adventure-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Mountain Trek" class="slide active">
+          <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=600&q=80" alt="Camping" class="slide">
+          <img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=600&q=80" alt="Rafting" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🏕️</span>
         <h3>Adventure Tour</h3>
@@ -194,7 +230,15 @@
 
     <!-- 11. Honeymoon Tour -->
     <article class="hub-card">
-      <div class="hub-card-bg honeymoon-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Beach Resort" class="slide active">
+          <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=600&q=80" alt="Sunset Couple" class="slide">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Luxury Villa" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">💖</span>
         <h3>Honeymoon Tour</h3>
@@ -205,7 +249,15 @@
 
     <!-- 12. Cogo Cabs -->
     <article class="hub-card">
-      <div class="hub-card-bg outstation-bg"></div>
+      <div class="card-slider">
+        <button class="slider-btn prev-btn" onclick="moveSlide(this, -1)">❮</button>
+        <div class="slider-track">
+          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" alt="Outstation Cab" class="slide active">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="Luxury Sedan" class="slide">
+          <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="Tempo Traveller" class="slide">
+        </div>
+        <button class="slider-btn next-btn" onclick="moveSlide(this, 1)">❯</button>
+      </div>
       <div class="hub-card-content">
         <span class="hub-icon">🚘</span>
         <h3>Cogo Cabs</h3>
@@ -213,6 +265,7 @@
         <button class="hub-btn" onclick="openCategoryModal('cabs')">View Rates</button>
       </div>
     </article>
+
   </div>
 </section>
   
