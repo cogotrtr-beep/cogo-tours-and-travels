@@ -1,14 +1,14 @@
 /* =========================================================
-   COGO TOURS - INTERACTIVE ENGINE & PAMPHLETS
+   COGO TOURS & CABS - DYNAMIC ENGINE & SIGHTSEEING TABS
 ========================================================= */
 
-// Helper function to build slidable pamphlet gallery HTML
+// Helper function to build slidable pamphlet / destination gallery
 function createPamphletGallery(images) {
   if (!images || images.length === 0) return '';
   
   const cardsHtml = images.map((imgUrl, idx) => `
     <div class="pamphlet-card" onclick="openPamphletZoom(${idx})">
-      <img src="${imgUrl}" alt="Package Pamphlet ${idx + 1}" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x500?text=Cogo+Tours+Flyer';" loading="lazy">
+      <img src="${imgUrl}" alt="Destination Preview ${idx + 1}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop';" loading="lazy">
     </div>
   `).join('');
 
@@ -16,71 +16,236 @@ function createPamphletGallery(images) {
     <div class="pamphlet-swiper">
       ${cardsHtml}
     </div>
-    <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: -5px; margin-bottom: 15px;">
-      👉 Tap flyer to expand | Swipe left/right for more
+    <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: 4px; margin-bottom: 12px;">
+      👉 Tap image to zoom | Swipe for more previews
     </p>
   `;
 }
 
-// Category Data
+// Category Data Engine
 const categoryData = {
-  chennai: {
-    title: "🏛️ Tour Chennai Packages",
-    desc: "Explore top tourist spots around Chennai and coastal Tamil Nadu.",
+  // 1 & 2: Cab Booking & Cogo Cabs
+  cabs: {
+    title: "🚖 Cab Booking & Cogo Cabs",
+    desc: "Transparent tariffs for local hourly rides, full-day packages & outstation trips.",
     tabs: [
       {
-        name: "City Sightseeing",
-        pamphlets: [
-          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-1.jpg", 
-          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-2.jpg"
+        name: "Local Hourly Rates",
+        images: [
+          "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&auto=format&fit=crop"
         ],
         content: `
           <div class="tariff-box">
-            <h4>📍 Chennai City Day Tour (5 Hours Package)</h4>
-            <p><strong>Covered Attractions:</strong> Marina Beach, Kapaleeshwarar Temple, San Thome Basilica, Fort St. George.</p>
+            <h4>📍 City Local Packages</h4>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹1,400</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        name: "One Day Pack (250 km)",
+        images: [
+          "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4>🛣️ One Day Outstation / Long Pack (250 km included)</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+            <p style="margin-top: 10px; font-size: 13px; color: #475569;">
+              🚌 <strong>Large Group or Luxury Ride?</strong> Urbania, Tempo Traveller, Buses & Premium Luxury Cars available at ultra-competitive rates!
+            </p>
+          </div>
+        `
+      }
+    ]
+  },
+
+  // Direct mapping for Cogo Cabs button
+  "cogo-cabs": {
+    title: "🚕 Cogo Cabs Tariff",
+    desc: "Fixed tariffs for Sedan, Innova, Crysta and Tempo Travellers.",
+    tabs: [
+      {
+        name: "Standard Tariff",
+        images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
+        content: `
+          <div class="tariff-box">
+            <h4>⚡ Standard Rental Charges</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (50km)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (50km)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (10H 100km)</span> <span class="bullet-price">₹4,600</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Sedan 250km Pack</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova 250km Pack</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Crysta 250km Pack</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
           </div>
         `
       }
     ]
   },
-  "south-india": {
-    title: "🌴 Tour South India",
-    desc: "Hill stations, backwaters, and heritage trails.",
+
+  // 3: Tour Chennai
+  chennai: {
+    title: "🏛️ Tour Chennai Packages",
+    desc: "Explore heritage, coastal ECR, and theme parks in around Chennai.",
     tabs: [
       {
-        name: "Kerala & Ooty",
-        pamphlets: [],
-        content: `<div class="tariff-box"><p>Munnar tea gardens, Alleppey houseboats, Kodaikanal misty hills & Ooty escapes.</p></div>`
+        name: "ECR & Coastal Heritage",
+        images: [
+          "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1609946782200-d3a39e763137?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4>🌊 ECR Coastal & Heritage Day Circuit</h4>
+            <p><strong>Places Covered:</strong> DakshinaChitra Heritage Museum → Muttukadu Boating → Kovalam Beach → Crocodile Park → Tiger Cave → Mahabalipuram.</p>
+            <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
+            <p><strong>Package Tariff (250km Pack):</strong></p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        name: "Theme Parks & Fun",
+        images: [
+          "https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4>🎡 Theme Park Day Circuits</h4>
+            <p><strong>Option A:</strong> VGP Universal Kingdom + DakshinaChitra + Muttukadu Boating & Kovalam Beach.</p>
+            <p style="margin-top: 6px;"><strong>Option B:</strong> MGM Dizzee World + DakshinaChitra + Muttukadu Boating or Kovalam Beach.</p>
+            <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
+            <p><strong>Vehicle Fare (250km Limit):</strong></p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+          </div>
+        `
       }
     ]
   },
-  cabs: {
-    title: "🚖 Cab Booking & Tariff",
-    desc: "Reliable outstation drops and local rentals.",
+
+  // 4: Tour Pilgrim
+  pilgrim: {
+    title: "🛕 Tour Pilgrim Circuits",
+    desc: "Sacred temple tours, heritage shrines, and spiritual one-day packages.",
     tabs: [
       {
-        name: "Standard Tariff",
-        pamphlets: [],
-        content: `<div class="tariff-box"><p>Local 8Hrs/80Kms sedan starting at ₹1,800. Outstation cabs available at competitive per-km rates.</p></div>`
+        name: "Heritage & Sakthi Circuits",
+        images: [
+          "https://images.unsplash.com/photo-1621831815065-9ec3a70868a5?w=600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1609946782200-d3a39e763137?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4>🛕 Popular One-Day Divine Packages</h4>
+            <p>• <strong>Mahabalipuram & Thirukazhukundram</strong></p>
+            <p>• <strong>Kanchipuram & Thirukazhukundram</strong></p>
+            <p>• <strong>Periyapalayam & Thiruthani</strong></p>
+            <p>• <strong>Kanchipuram & Thiruthani</strong></p>
+            <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
+            <p><strong>Fixed Tariff (250km Pack):</strong></p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        name: "West Chennai Temple Belt",
+        images: [
+          "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4>🚩 West Chennai Temple Circuit</h4>
+            <p><strong>Route:</strong> Putlur → Tiruvallur → Sriperumbudur → Thirumazhisai → Thiruverkadu.</p>
+            <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
+            <p><strong>Fixed Tariff (250km Pack):</strong></p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+          </div>
+        `
+      }
+    ]
+  },
+
+  // 5: Tour South India
+  "south-india": {
+    title: "🌴 Tour South India",
+    desc: "Scenic hill stations, pristine backwaters, and long-distance heritage tours.",
+    tabs: [
+      {
+        name: "Hill Stations & Kerala",
+        images: [
+          "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4>⛰️ South India Outstation Tours</h4>
+            <p>Explore Ooty, Kodaikanal, Yercaud, Munnar tea gardens & Alleppey houseboats with our reliable outstation drivers.</p>
+            <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
+            <p><strong>Standard Outstation Rates:</strong></p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Sedan (250km / day)</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (250km / day)</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (250km / day)</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+            <p style="margin-top: 10px; font-size: 13px; color: #475569;">
+              🚌 Urbania, Tempo Traveller, and Buses available for large group tours!
+            </p>
+          </div>
+        `
+      }
+    ]
+  },
+
+  cabservices: {
+    title: "🚘 Cab Services",
+    desc: "Corporate transfers, outstation drops, and custom fleet rentals.",
+    tabs: [
+      {
+        name: "Rental Fleet",
+        images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
+        content: `
+          <div class="tariff-box">
+            <h4>🚘 Customized Fleet Services</h4>
+            <p>We provide Sedans, Innovas, Crystas, Tempo Travellers, and Urbania vehicles for corporate transfers, weddings, and custom sightseeing.</p>
+          </div>
+        `
       }
     ]
   }
 };
 
 const defaultCategoryInfo = {
-  cabservices: { 
-    title: "🚘 Cab Services", 
-    desc: "Long distance and corporate fleet.", 
-    content: "Round-trip outstation cabs, one-way drops, and monthly rentals."
-  },
   tickets: {
     title: "🎟️ Ticket Booking",
     desc: "Flight, Train & Bus Reservations.",
-    content: "Instant ticketing assistance for all domestic and international transit."
+    content: "Instant ticketing assistance for domestic and international transit."
   },
   visa: {
     title: "🛂 Visa Assistance",
@@ -95,7 +260,7 @@ let currentPamphletIndex = 0;
 let currentZoomScale = 1;
 
 /* =========================================================
-   MAIN MODAL FUNCTIONS (OPEN / CLOSE)
+   MODAL OPEN / CLOSE HANDLERS
 ========================================================= */
 
 function openCategoryModal(catKey) {
@@ -112,6 +277,7 @@ function openCategoryModal(catKey) {
 
     data.tabs.forEach((tab, index) => {
       const btn = document.createElement("button");
+      btn.type = "button";
       btn.className = `sub-tab-btn tab-color-${index % 4} ${index === 0 ? 'active' : ''}`;
       btn.textContent = tab.name;
       btn.onclick = () => {
@@ -126,8 +292,8 @@ function openCategoryModal(catKey) {
 
   } else {
     const fallback = defaultCategoryInfo[catKey] || { 
-      title: categoryData[catKey]?.title || "Enquiry", 
-      desc: categoryData[catKey]?.desc || "Custom Travel Package", 
+      title: "Enquiry", 
+      desc: "Custom Travel Package", 
       content: "Contact us directly for custom pricing, route maps, and tailored itineraries." 
     };
     
@@ -135,7 +301,7 @@ function openCategoryModal(catKey) {
     document.getElementById("modalTitle").textContent = fallback.title;
     document.getElementById("modalDescription").textContent = fallback.desc;
     
-    currentPamphletList = fallback.pamphlets || [];
+    currentPamphletList = fallback.images || [];
     const galleryHtml = createPamphletGallery(currentPamphletList);
     if (contentBody) contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>` + galleryHtml;
   }
@@ -143,17 +309,11 @@ function openCategoryModal(catKey) {
   showModalElement("enquiryModal");
 }
 
-function openEnquiryForm(title) {
-  activeServiceTitle = title;
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modalDescription").textContent = "Fill in your details below to request a personalized quote.";
-
-  const subTabs = document.getElementById("modalSubTabs");
+function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
-  if (subTabs) subTabs.innerHTML = "";
-  if (contentBody) contentBody.innerHTML = "";
-
-  showModalElement("enquiryModal");
+  currentPamphletList = tab.images || [];
+  const galleryHtml = createPamphletGallery(currentPamphletList);
+  if (contentBody) contentBody.innerHTML = tab.content + galleryHtml;
 }
 
 function showModalElement(modalId) {
@@ -167,7 +327,6 @@ function showModalElement(modalId) {
   document.body.style.overflow = "hidden";
 }
 
-// Primary Close Function
 function closeModal() {
   const modal = document.getElementById("enquiryModal");
   if (modal) {
@@ -179,18 +338,10 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-// Overlay Click Dismissal
 function closeModalOnOverlay(e) {
   if (e.target.id === "enquiryModal") {
     closeModal();
   }
-}
-
-function renderTabContent(tab) {
-  const contentBody = document.getElementById("modalDynamicContent");
-  currentPamphletList = tab.pamphlets || [];
-  const galleryHtml = createPamphletGallery(currentPamphletList);
-  if (contentBody) contentBody.innerHTML = tab.content + galleryHtml;
 }
 
 /* =========================================================
@@ -229,7 +380,7 @@ function submitEnquiry(type) {
 }
 
 /* =========================================================
-   LIGHTBOX ZOOM ENGINE & NAVIGATION
+   LIGHTBOX ZOOM ENGINE
 ========================================================= */
 
 function openPamphletZoom(index) {
@@ -261,42 +412,13 @@ function closePamphletZoom(e) {
   }
 }
 
-function navigateLightbox(direction, e) {
-  if (e) e.stopPropagation();
-  if (currentPamphletList.length === 0) return;
-
-  currentPamphletIndex += direction;
-  if (currentPamphletIndex < 0) currentPamphletIndex = currentPamphletList.length - 1;
-  if (currentPamphletIndex >= currentPamphletList.length) currentPamphletIndex = 0;
-
-  const lightboxImg = document.getElementById("lightboxImage");
-  if (lightboxImg) {
-    lightboxImg.src = currentPamphletList[currentPamphletIndex];
-    resetZoom();
-  }
-}
-
-function changeZoom(amount) {
-  const lightboxImg = document.getElementById("lightboxImage");
-  if (!lightboxImg) return;
-
-  currentZoomScale += amount;
-  if (currentZoomScale < 0.6) currentZoomScale = 0.6;
-  if (currentZoomScale > 3.5) currentZoomScale = 3.5;
-
-  lightboxImg.style.transform = `scale(${currentZoomScale})`;
-}
-
 function resetZoom() {
   currentZoomScale = 1;
   const lightboxImg = document.getElementById("lightboxImage");
   if (lightboxImg) lightboxImg.style.transform = `scale(1)`;
 }
 
-/* =========================================================
-   KEYBOARD ESC & TOUCH HANDLERS
-========================================================= */
-
+/* ESC KEY HANDLER */
 document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") {
     const lightbox = document.getElementById("pamphletLightbox");
