@@ -1,7 +1,28 @@
 /* =========================================================
-   COGO TOURS - INTERACTIVE MULTI-TAB SERVICE ENGINE
+   COGO TOURS - INTERACTIVE MULTI-TAB SERVICE ENGINE & PAMPHLETS
 ========================================================= */
 
+// Helper function to build slidable pamphlet gallery HTML
+function createPamphletGallery(images) {
+  if (!images || images.length === 0) return '';
+  
+  const cardsHtml = images.map((imgUrl, idx) => `
+    <div class="pamphlet-card" onclick="openPamphletZoom(${idx})">
+      <img src="${imgUrl}" alt="Package Pamphlet ${idx + 1}" loading="lazy">
+    </div>
+  `).join('');
+
+  return `
+    <div class="pamphlet-swiper">
+      ${cardsHtml}
+    </div>
+    <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: -5px; margin-bottom: 15px;">
+      👉 Tap flyer to expand | Swipe left/right for more
+    </p>
+  `;
+}
+
+// Category Data with image arrays for each tab/package
 const categoryData = {
   chennai: {
     title: "🏛️ Tour Chennai Packages",
@@ -9,55 +30,17 @@ const categoryData = {
     tabs: [
       {
         name: "City Sightseeing",
+        pamphlets: [
+          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-1.jpg",
+          "https://raw.githubusercontent.com/cogo-tours/assets/main/chennai-2.jpg"
+        ],
         content: `
           <div class="tariff-box">
             <h4>📍 Chennai City Day Tour (5 Hours Package)</h4>
-            <p><strong>Covered Attractions:</strong> Marina Beach, Kapaleeshwarar Temple, San Thome Basilica, Fort St. George, &amp; Government Museum.</p>
+            <p><strong>Covered Attractions:</strong> Marina Beach, Kapaleeshwarar Temple, San Thome Basilica, Fort St. George.</p>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹1,400 (50 KM / 5 Hrs)</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹2,000 (50 KM / 5 Hrs)</span></li>
-            </ul>
-          </div>
-        `
-      },
-      {
-        name: "ECR & Coastal",
-        content: `
-          <div class="tariff-box">
-            <h4>🌊 ECR Beach & Coastal Run (10 Hours Package)</h4>
-            <p><strong>Covered Attractions:</strong> Muttukadu Boat House, Kovalam Beach, DakshinaChitra Heritage Village, &amp; Tiger Cave.</p>
-            <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹2,800 (100 KM / 10 Hrs)</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹4,000 (100 KM / 10 Hrs)</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹4,600 (100 KM / 10 Hrs)</span></li>
-            </ul>
-          </div>
-        `
-      },
-      {
-        name: "Heritage & Temples",
-        content: `
-          <div class="tariff-box">
-            <h4>🛕 Heritage & Silk City Tour (10 Hours Package)</h4>
-            <p><strong>Covered Attractions:</strong> Mahabalipuram Shore Temple, Pancha Rathas, &amp; Kanchipuram Temple Circuits.</p>
-            <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹2,800 (100 KM / 10 Hrs)</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹4,000 (100 KM / 10 Hrs)</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹4,600 (100 KM / 10 Hrs)</span></li>
-            </ul>
-          </div>
-        `
-      },
-      {
-        name: "Theme Parks",
-        content: `
-          <div class="tariff-box">
-            <h4>🎢 Amusement & Theme Park Express (10 Hours Package)</h4>
-            <p><strong>Covered Attractions:</strong> VGP Universal Kingdom, MGM Dizzee World, &amp; Queens Land full-day transfers.</p>
-            <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹2,800 (100 KM / 10 Hrs)</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹4,000 (100 KM / 10 Hrs)</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹4,600 (100 KM / 10 Hrs)</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Sedan (4 Seater)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Innova (7 Seater)</span> <span class="bullet-price">₹2,000</span></li>
             </ul>
           </div>
         `
@@ -66,85 +49,33 @@ const categoryData = {
   },
   domestic: {
     title: "🏔️ Tour Domestic Packages",
-    desc: "Handcrafted Indian holiday itineraries. Swipe to explore our featured package flyers!",
-    tabs: [
-      { 
-        name: "Featured Pamphlets", 
-        content: `
-          <div class="pamphlet-swiper">
-            <div class="pamphlet-card">
-              <img src="domestic-flyer.png" alt="Domestic Package Flyer 1">
-            </div>
-            <div class="pamphlet-card">
-              <img src="domestic-flyer2.png" alt="Domestic Package Flyer 2">
-            </div>
-            <div class="pamphlet-card">
-              <img src="domestic-flyer3.png" alt="Domestic Package Flyer 3">
-            </div>
-          </div>
-          <p style="text-align: center; margin-top: 10px; font-weight: bold; color: #475569;">👉 Tap image to zoom or swipe left/right</p>
-        ` 
-      },
-      { name: "Kerala", content: "<div class='tariff-box'><strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, Wayanad &amp; Thekkady.</div>" },
-      { name: "Hill Stations", content: "<div class='tariff-box'><strong>Cool Getaways:</strong> Ooty Botanical Gardens, Kodaikanal Lake, and Coonoor Toy Train.</div>" },
-      { name: "Goa & North", content: "<div class='tariff-box'><strong>Beach & Mountains:</strong> Goa holiday packages, Kashmir Valley, and Manali trips.</div>" }
-    ]
-  },
-  international: {
-    title: "🌍 Tour International Packages",
-    desc: "Complete foreign tour packages including flight &amp; visa support.",
-    tabs: [
-      { name: "Dubai", content: "<div class='tariff-box'><strong>Dubai Highlights:</strong> Burj Khalifa, Desert Safari, Marina Cruise &amp; Dubai Mall.</div>" },
-      { name: "Thailand", content: "<div class='tariff-box'><strong>Thailand Trips:</strong> Bangkok City, Pattaya Coral Island &amp; Phuket Beach Resorts.</div>" },
-      { name: "Singapore & Bali", content: "<div class='tariff-box'><strong>Island Escapes:</strong> Sentosa Island, Universal Studios, and Bali Luxury Villas.</div>" }
-    ]
-  },
-  cabs: {
-    title: "🚖 Cogo Cabs Rates & Rental",
-    desc: "Affordable local and outstation taxi hires.",
+    desc: "Handcrafted Indian holiday itineraries.",
     tabs: [
       {
-        name: "Local Hourly",
-        content: `
-          <div class="tariff-box">
-            <h4>⏱️ Local City Hourly Package</h4>
-            <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (50 KM / 5 Hrs)</span> <span class="bullet-price">₹1,400</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (50 KM / 5 Hrs)</span> <span class="bullet-price">₹2,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (100 KM / 10 Hrs)</span> <span class="bullet-price">₹4,600</span></li>
-            </ul>
-          </div>
-        `
-      },
-      {
-        name: "Outstation Packs",
-        content: `
-          <div class="tariff-box">
-            <h4>🛣️ Outstation Day Packages</h4>
-            <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (250 KM Day Pack)</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (250 KM Day Pack)</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (250 KM Day Pack)</span> <span class="bullet-price">₹6,750</span></li>
-            </ul>
-          </div>
-        `
+        name: "Kerala & Hill Stations",
+        pamphlets: [
+          "https://raw.githubusercontent.com/cogo-tours/assets/main/kerala-1.jpg",
+          "https://raw.githubusercontent.com/cogo-tours/assets/main/ooty-1.jpg"
+        ],
+        content: `<div class="tariff-box"><strong>God's Own Country:</strong> Munnar Tea Gardens, Alleppey Houseboat, & Ooty Lake.</div>`
       }
     ]
   }
 };
 
 const defaultCategoryInfo = {
-  corporate: { title: "💼 Corporate Tour", desc: "Team outings, MICE events & resort bookings.", content: "Custom resort packages, executive transport, and team-building retreats." },
-  students: { title: "🎓 School / College Tour", desc: "Safe student group travel.", content: "Industrial Visits (IVs), educational field trips, and leisure student tours." },
-  pilgrim: { title: "🛕 Pilgrim Tours", desc: "Spiritual temple circuits.", content: "Tirupati Balaji Darshan, Rameswaram, Kanchipuram, and Chidambaram packages." },
-  adventure: { title: "🏕️ Adventure Tours", desc: "Outdoor thrill expeditions.", content: "Jungle camping, river rafting, trekking, and water sports packages." },
-  honeymoon: { title: "👩‍❤️‍👨 Honeymoon Packages", desc: "Romantic couple getaways.", content: "Candlelight dinners, luxury resort stays, and private cabs in Munnar, Wayanad & Bali." },
-  visa: { title: "🛂 Visa Assistance", desc: "Worldwide tourist visa processing.", content: "Fast documentation & appointment assistance for Dubai, UK, USA, Europe & Asia." },
-  tickets: { title: "✈️ Ticket Booking Air/Rail", desc: "Instant travel ticketing.", content: "Best rates for Flight, Train, and Intercity Volvo Bus tickets." },
-  cabservices: { title: "🚘 Cab Services", desc: "Long distance and corporate fleet.", content: "Round-trip outstation cabs, one-way drops, and monthly corporate vehicle rentals." }
+  cabservices: { 
+    title: "🚘 Cab Services", 
+    desc: "Long distance and corporate fleet.", 
+    content: "Round-trip outstation cabs, one-way drops, and monthly rentals.",
+    pamphlets: ["https://raw.githubusercontent.com/cogo-tours/assets/main/cabs-1.jpg"]
+  }
 };
 
 let activeServiceTitle = "General Journey Enquiry";
+let currentPamphletList = [];
+let currentPamphletIndex = 0;
+let currentZoomScale = 1;
 
 function openCategoryModal(catKey) {
   const data = categoryData[catKey];
@@ -167,209 +98,148 @@ function openCategoryModal(catKey) {
       btn.onclick = () => {
         document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        contentBody.innerHTML = tab.content;
+        renderTabContent(tab);
       };
       subTabContainer.appendChild(btn);
     });
 
-    contentBody.innerHTML = data.tabs[0].content;
+    renderTabContent(data.tabs[0]);
 
   } else {
     const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "", content: "Please contact us for more information." };
     activeServiceTitle = fallback.title;
     document.getElementById("modalTitle").textContent = fallback.title;
     document.getElementById("modalDescription").textContent = fallback.desc;
-    contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>`;
+    
+    currentPamphletList = fallback.pamphlets || [];
+    const galleryHtml = createPamphletGallery(currentPamphletList);
+    contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>` + galleryHtml;
   }
 
   document.getElementById("enquiryModal").classList.add("show");
   document.body.style.overflow = "hidden";
 }
 
-function openEnquiryForm(title) {
-  activeServiceTitle = title;
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modalDescription").textContent = "Fill in your details below to request a personalized itinerary or quote.";
-  
-  const subTabs = document.getElementById("modalSubTabs");
+function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
-  if (subTabs) subTabs.innerHTML = "";
-  if (contentBody) contentBody.innerHTML = "";
-
-  document.getElementById("enquiryModal").classList.add("show");
-  document.body.style.overflow = "hidden";
-}
-
-function closeModal() {
-  const modal = document.getElementById("enquiryModal");
-  if (modal) modal.classList.remove("show");
-  document.body.style.overflow = "";
-}
-
-function submitEnquiry(type) {
-  const nameInput = document.getElementById("userName");
-  const phoneInput = document.getElementById("userPhone");
-  const queryInput = document.getElementById("userQuery");
-
-  const name = nameInput ? nameInput.value.trim() : "";
-  const phone = phoneInput ? phoneInput.value.trim() : "";
-  const query = queryInput ? queryInput.value.trim() : "";
-
-  if (!name || !phone) {
-    alert("Please enter your Name and Phone Number.");
-    return;
-  }
-
-  const messageText = `Hi Cogo Tours & Travels 👋\n\nI want to enquire about: *${activeServiceTitle}*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n💬 *Query:* ${query || "Please share details and package quotes."}`;
-
-  if (type === 'whatsapp') {
-    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(messageText)}`, '_blank');
-  } else if (type === 'email') {
-    const subject = encodeURIComponent(`Enquiry: ${activeServiceTitle} - ${name}`);
-    const body = encodeURIComponent(messageText);
-    window.location.href = `mailto:cogotrtr@gmail.com?subject=${subject}&body=${body}`;
-  }
-
-  if (nameInput) nameInput.value = "";
-  if (phoneInput) phoneInput.value = "";
-  if (queryInput) queryInput.value = "";
-
-  closeModal();
+  currentPamphletList = tab.pamphlets || [];
+  const galleryHtml = createPamphletGallery(currentPamphletList);
+  
+  // Placement: Description / Tariff box -> Pamphlets -> Forms below
+  contentBody.innerHTML = tab.content + galleryHtml;
 }
 
 /* =========================================================
-   LIGHTBOX ZOOM ENGINE (BUTTONS & MOUSE WHEEL)
+   LIGHTBOX ZOOM ENGINE & NAVIGATION
 ========================================================= */
 
-let currentZoomScale = 1;
-
-function zoomPamphlet(imgSrc) {
+function openPamphletZoom(index) {
+  if (!currentPamphletList || currentPamphletList.length === 0) return;
+  
+  currentPamphletIndex = index;
   const lightbox = document.getElementById("pamphletLightbox");
   const lightboxImg = document.getElementById("lightboxImage");
-  
+
   if (lightbox && lightboxImg) {
-    lightboxImg.src = imgSrc;
-    currentZoomScale = 1;
-    lightboxImg.style.transform = `scale(${currentZoomScale})`;
+    lightboxImg.src = currentPamphletList[currentPamphletIndex];
+    resetZoom();
     lightbox.classList.add("show");
-    document.body.style.overflow = "hidden";
   }
 }
 
-function closePamphletZoom() {
+function closePamphletZoom(e) {
+  if (e) e.stopPropagation();
   const lightbox = document.getElementById("pamphletLightbox");
   if (lightbox) {
     lightbox.classList.remove("show");
     resetZoom();
-    document.body.style.overflow = "auto";
+  }
+}
+
+function navigateLightbox(direction, e) {
+  if (e) e.stopPropagation();
+  if (currentPamphletList.length === 0) return;
+
+  currentPamphletIndex += direction;
+  if (currentPamphletIndex < 0) currentPamphletIndex = currentPamphletList.length - 1;
+  if (currentPamphletIndex >= currentPamphletList.length) currentPamphletIndex = 0;
+
+  const lightboxImg = document.getElementById("lightboxImage");
+  if (lightboxImg) {
+    lightboxImg.src = currentPamphletList[currentPamphletIndex];
+    resetZoom();
   }
 }
 
 function changeZoom(amount) {
   const lightboxImg = document.getElementById("lightboxImage");
   if (!lightboxImg) return;
-  
+
   currentZoomScale += amount;
-  if (currentZoomScale < 0.5) currentZoomScale = 0.5;
+  if (currentZoomScale < 0.6) currentZoomScale = 0.6;
   if (currentZoomScale > 3.5) currentZoomScale = 3.5;
-  
+
   lightboxImg.style.transform = `scale(${currentZoomScale})`;
 }
 
 function resetZoom() {
   currentZoomScale = 1;
   const lightboxImg = document.getElementById("lightboxImage");
-  if (lightboxImg) {
-    lightboxImg.style.transform = `scale(1)`;
-  }
+  if (lightboxImg) lightboxImg.style.transform = `scale(1)`;
 }
 
-// Mouse Scroll Wheel Zoom Listener inside Lightbox
-document.addEventListener("wheel", function(e) {
-  const lightbox = document.getElementById("pamphletLightbox");
-  if (lightbox && lightbox.classList.contains("show")) {
-    e.preventDefault();
-    if (e.deltaY < 0) {
-      changeZoom(0.15); // Scroll Up -> Zoom In
-    } else {
-      changeZoom(-0.15); // Scroll Down -> Zoom Out
-    }
-  }
-}, { passive: false });
-
 /* =========================================================
-   SMART DRAG SCROLL FOR FLYERS & ZOOM PANNING
+   KEYBOARD ESC & TOUCH/SWIPE HANDLERS
 ========================================================= */
 
-document.addEventListener("mousedown", function(e) {
-  // 1. Swiping through flyer cards on the website
-  const slider = e.target.closest(".pamphlet-swiper");
-  if (slider) {
-    let isDown = true;
-    let isDragging = false;
-    slider.classList.add("active");
-    
-    let startX = e.pageX - slider.offsetLeft;
-    let scrollLeft = slider.scrollLeft;
+// Sequential ESC key behavior (Zoom Lightbox -> Main Package Modal)
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    const lightbox = document.getElementById("pamphletLightbox");
+    const enquiryModal = document.getElementById("enquiryModal");
 
-    function onMouseMove(ev) {
-      if (!isDown) return;
-      const x = ev.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2;
-      
-      if (Math.abs(x - startX) > 4) {
-        isDragging = true;
-        ev.preventDefault();
-        slider.scrollLeft = scrollLeft - walk;
-      }
+    if (lightbox && lightbox.classList.contains("show")) {
+      closePamphletZoom();
+    } else if (enquiryModal && enquiryModal.classList.contains("show")) {
+      closeModal();
     }
+  }
+});
 
-    function onMouseUp(ev) {
-      isDown = false;
-      slider.classList.remove("active");
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
+// Mobile Swipe gesture handling (Left/Right to slide flyer, Up to dismiss)
+let touchStartX = 0;
+let touchStartY = 0;
 
-      if (!isDragging) {
-        const card = ev.target.closest(".pamphlet-card");
-        if (card) {
-          const img = card.querySelector("img");
-          if (img) zoomPamphlet(img.src);
-        }
-      }
-    }
+document.addEventListener("touchstart", function(e) {
+  const lightbox = document.getElementById("pamphletLightbox");
+  if (lightbox && lightbox.classList.contains("show")) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }
+}, { passive: true });
 
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
+document.addEventListener("touchend", function(e) {
+  const lightbox = document.getElementById("pamphletLightbox");
+  if (!lightbox || !lightbox.classList.contains("show")) return;
+
+  const touchEndX = e.changedTouches[0].screenX;
+  const touchEndY = e.changedTouches[0].screenY;
+
+  const diffX = touchEndX - touchStartX;
+  const diffY = touchEndY - touchStartY;
+
+  // Swipe Up to Close (if vertical move is dominant)
+  if (diffY < -80 && Math.abs(diffY) > Math.abs(diffX)) {
+    closePamphletZoom();
     return;
   }
 
-  // 2. Drag to Pan inside the zoomed Lightbox Modal
-  const lightboxContainer = e.target.closest(".lightbox-img-container");
-  if (lightboxContainer) {
-    let isDown = true;
-    let startX = e.pageX - lightboxContainer.offsetLeft;
-    let startY = e.pageY - lightboxContainer.offsetTop;
-    let scrollLeft = lightboxContainer.scrollLeft;
-    let scrollTop = lightboxContainer.scrollTop;
-
-    function onPanMove(ev) {
-      if (!isDown) return;
-      ev.preventDefault();
-      const x = ev.pageX - lightboxContainer.offsetLeft;
-      const y = ev.pageY - lightboxContainer.offsetTop;
-      
-      lightboxContainer.scrollLeft = scrollLeft - (x - startX);
-      lightboxContainer.scrollTop = scrollTop - (y - startY);
+  // Swipe Left / Right to cycle flyers
+  if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+    if (diffX < 0) {
+      navigateLightbox(1); // Swipe Left -> Next
+    } else {
+      navigateLightbox(-1); // Swipe Right -> Prev
     }
-
-    function onPanUp() {
-      isDown = false;
-      document.removeEventListener("mousemove", onPanMove);
-      document.removeEventListener("mouseup", onPanUp);
-    }
-
-    document.addEventListener("mousemove", onPanMove);
-    document.addEventListener("mouseup", onPanUp);
   }
-});
+}, { passive: true });
