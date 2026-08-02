@@ -487,20 +487,23 @@ document.addEventListener("keydown", function(e) {
 document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("imgModalSrc");
-  const closeBtn = document.getElementsByClassName("pamphlet-close")[0];
+  const closeBtn = document.querySelector(".pamphlet-close");
 
-  // Open modal on clicking any thumbnail image inside the gallery/slider
+  // Open modal on clicking ANY flyer image inside the pamphlet cards
   document.body.addEventListener("click", function (e) {
-    if (e.target && e.target.tagName === "IMG" && e.target.closest(".gallery-container, .card, .tab-content")) {
-      modal.style.display = "block";
-      modalImg.src = e.target.src;
-      modalImg.classList.remove("zoomed"); // Reset zoom on open
+    if (e.target && e.target.tagName === "IMG" && (e.target.closest(".pamphlet-card") || e.target.closest(".pamphlet-swiper"))) {
+      if (modal && modalImg) {
+        modal.style.display = "block";
+        modalImg.src = e.target.src;
+        modalImg.classList.remove("zoomed"); // Reset zoom state on open
+      }
     }
   });
 
   // Toggle 2x Zoom on modal image click
   if (modalImg) {
-    modalImg.addEventListener("click", function () {
+    modalImg.addEventListener("click", function (e) {
+      e.stopPropagation();
       modalImg.classList.toggle("zoomed");
     });
   }
