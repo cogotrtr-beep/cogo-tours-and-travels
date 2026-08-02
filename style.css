@@ -950,18 +950,20 @@ body {
     grid-template-columns: 1fr;
   }
 }
-/* Pamphlet Lightbox Modal */
+/* =========================================================
+   10. PAMPHLET LIGHTBOX MODAL (DESKTOP & MOBILE ZOOM)
+========================================================= */
 .pamphlet-modal {
   display: none;
   position: fixed;
-  z-index: 9999;
+  z-index: 999999 !important; /* Raised z-index to sit on top of all modals */
   padding-top: 40px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.92);
 }
 
 .pamphlet-modal-container {
@@ -995,7 +997,7 @@ body {
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 1000000;
 }
 
 .pamphlet-modal-hint {
