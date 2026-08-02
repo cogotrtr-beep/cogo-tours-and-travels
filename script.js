@@ -483,3 +483,41 @@ document.addEventListener("keydown", function(e) {
     }
   }
 });
+// Pamphlet Image Lightbox Zoom Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("imgModalSrc");
+  const closeBtn = document.getElementsByClassName("pamphlet-close")[0];
+
+  // Open modal on clicking any thumbnail image inside the gallery/slider
+  document.body.addEventListener("click", function (e) {
+    if (e.target && e.target.tagName === "IMG" && e.target.closest(".gallery-container, .card, .tab-content")) {
+      modal.style.display = "block";
+      modalImg.src = e.target.src;
+      modalImg.classList.remove("zoomed"); // Reset zoom on open
+    }
+  });
+
+  // Toggle 2x Zoom on modal image click
+  if (modalImg) {
+    modalImg.addEventListener("click", function () {
+      modalImg.classList.toggle("zoomed");
+    });
+  }
+
+  // Close modal when clicking 'X'
+  if (closeBtn) {
+    closeBtn.onclick = function () {
+      modal.style.display = "none";
+    };
+  }
+
+  // Close modal when clicking outside the image
+  if (modal) {
+    modal.onclick = function (e) {
+      if (e.target === modal || e.target.classList.contains("pamphlet-modal-container")) {
+        modal.style.display = "none";
+      }
+    };
+  }
+});
