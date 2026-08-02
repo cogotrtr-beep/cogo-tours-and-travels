@@ -483,19 +483,28 @@ document.addEventListener("keydown", function(e) {
     }
   }
 });
+
+  }
+});
 // Pamphlet Image Lightbox Zoom Functionality
 document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("imgModalSrc");
   const closeBtn = document.querySelector(".pamphlet-close");
 
-  // Open modal on clicking ANY flyer image inside the pamphlet cards or swiper
+  // Open lightbox whenever ANY image inside a modal overlay is clicked
   document.body.addEventListener("click", function (e) {
-    if (e.target && e.target.tagName === "IMG" && (e.target.closest(".pamphlet-card") || e.target.closest(".pamphlet-swiper"))) {
-      if (modal && modalImg) {
-        modal.style.display = "block";
-        modalImg.src = e.target.src;
-        modalImg.classList.remove("zoomed"); // Reset zoom state on open
+    if (e.target && e.target.tagName === "IMG") {
+      // Exclude clicks on the lightbox image itself
+      if (e.target.id === "imgModalSrc") return;
+
+      // Check if clicked image is inside any open modal or flyer container
+      if (e.target.closest(".modal-overlay") || e.target.closest(".modal-box") || e.target.closest(".pamphlet-card")) {
+        if (modal && modalImg) {
+          modal.style.display = "block";
+          modalImg.src = e.target.src;
+          modalImg.classList.remove("zoomed"); // Reset zoom on open
+        }
       }
     }
   });
@@ -515,7 +524,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Close modal when clicking outside the image
+  // Close modal when clicking background overlay
   if (modal) {
     modal.onclick = function (e) {
       if (e.target === modal || e.target.classList.contains("pamphlet-modal-container")) {
