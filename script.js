@@ -155,8 +155,8 @@ const categoryData = {
         name: "Heritage & Sakthi Circuits",
         // REPLACE OR ADD YOUR PAMPHLET LINKS BELOW IN THE ARRAY:
         images: [
-          "images/domestic-flyer.png", 
-          "images/domestic-flyer2.png"
+          "Images/domestic-flyer.png", 
+          "Images/domestic-flyer2.png"
         ],
         content: `
           <div class="tariff-box">
