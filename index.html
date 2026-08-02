@@ -375,25 +375,24 @@
   <div class="lightbox-img-container" id="lightboxContainer" onclick="event.stopPropagation()">
     <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
   </div>
+<!-- Zoom Control Buttons -->
+      <div class="zoom-controls" onclick="event.stopPropagation()">
+        <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
+        <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
+        <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
+      </div>
+    </div>
 
-  <!-- Zoom Control Buttons -->
-  <div class="zoom-controls" onclick="event.stopPropagation()">
-    <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
-    <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
-    <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
-  </div>
-</div>
-  <!-- Pamphlet Zoom Modal -->
-<div id="imageModal" class="pamphlet-modal">
-  <span class="pamphlet-close">&times;</span>
-  <div class="pamphlet-modal-container">
-    <img class="pamphlet-modal-content" id="imgModalSrc" alt="Pamphlet Zoom View">
-  </div>
-  <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
-</div>
+    <!-- Pamphlet Zoom Modal (MOVED INSIDE BODY) -->
+    <div id="imageModal" class="pamphlet-modal">
+      <span class="pamphlet-close">&times;</span>
+      <div class="pamphlet-modal-container">
+        <img class="pamphlet-modal-content" id="imgModalSrc" alt="Pamphlet Zoom View">
+      </div>
+      <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
+    </div>
 
-  <!-- JavaScript Execution at End of Body -->
-  <script src="script.js"></script>
-</body>
+    <!-- JavaScript Execution at End of Body -->
+    <script src="script.js"></script>
+  </body>
 </html>
-
