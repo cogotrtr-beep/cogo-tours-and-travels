@@ -16,7 +16,7 @@ function createPamphletGallery(images) {
     <div class="pamphlet-swiper">
       ${cardsHtml}
     </div>
-    <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: 4px; margin-bottom: 12px;">
+    <p style="text-align: center; font-size: 14px; color: #94a3b8; margin-top: 6px; margin-bottom: 12px;">
       👉 Tap image to zoom | Swipe for more previews
     </p>
   `;
@@ -32,14 +32,14 @@ const cogoCabsData = {
       images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
       content: `
         <div class="tariff-box">
-          <h4>⚡ Standard Rental Charges</h4>
+          <h4 style="font-size: 19px;">⚡ Standard Rental Charges</h4>
           <ul class="bulletin-list">
-            <li class="bulletin-item"><span class="bullet-label">Sedan (50km)</span> <span class="bullet-price">₹1,400</span></li>
-            <li class="bulletin-item"><span class="bullet-label">Innova (50km)</span> <span class="bullet-price">₹2,000</span></li>
-            <li class="bulletin-item"><span class="bullet-label">Innova Crysta (10H 100km)</span> <span class="bullet-price">₹4,600</span></li>
-            <li class="bulletin-item"><span class="bullet-label">Sedan 250km Pack</span> <span class="bullet-price">₹4,500</span></li>
-            <li class="bulletin-item"><span class="bullet-label">Innova 250km Pack</span> <span class="bullet-price">₹6,000</span></li>
-            <li class="bulletin-item"><span class="bullet-label">Crysta 250km Pack</span> <span class="bullet-price">₹6,750</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50km)</span> <span class="bullet-price">₹1,400</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50km)</span> <span class="bullet-price">₹2,000</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10H 100km)</span> <span class="bullet-price">₹4,600</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan 250km Pack</span> <span class="bullet-price">₹4,500</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova 250km Pack</span> <span class="bullet-price">₹6,000</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Crysta 250km Pack</span> <span class="bullet-price">₹6,750</span></li>
           </ul>
         </div>
       `
@@ -62,11 +62,11 @@ const categoryData = {
         ],
         content: `
           <div class="tariff-box">
-            <h4>📍 City Local Packages</h4>
+            <h4 style="font-size: 19px;">📍 City Local Packages</h4>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
             </ul>
           </div>
         `
@@ -78,13 +78,13 @@ const categoryData = {
         ],
         content: `
           <div class="tariff-box">
-            <h4>🛣️ One Day Outstation / Long Pack (250 km included)</h4>
+            <h4 style="font-size: 19px;">🛣️ One Day Outstation / Long Pack (250 km included)</h4>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
-            <p style="margin-top: 10px; font-size: 13px; color: #475569;">
+            <p style="margin-top: 10px; font-size: 16px; color: #475569;">
               🚌 <strong>Large Group or Luxury Ride?</strong> Urbania, Tempo Traveller, Buses & Premium Luxury Cars available at ultra-competitive rates!
             </p>
           </div>
@@ -93,7 +93,7 @@ const categoryData = {
     ]
   },
 
-  // 2. Cogo Cabs & Cab Services share the exact same data
+  // 2. Cogo Cabs & Cab Services
   "cogo-cabs": cogoCabsData,
   cabservices: cogoCabsData,
 
@@ -110,14 +110,14 @@ const categoryData = {
         ],
         content: `
           <div class="tariff-box">
-            <h4>🌊 ECR Coastal & Heritage Day Circuit</h4>
-            <p><strong>Places Covered:</strong> DakshinaChitra Heritage Museum → Muttukadu Boating → Kovalam Beach → Crocodile Park → Tiger Cave → Mahabalipuram.</p>
+            <h4 style="font-size: 19px;">🌊 ECR Coastal & Heritage Day Circuit</h4>
+            <p style="font-size: 16px;"><strong>Places Covered:</strong> DakshinaChitra Heritage Museum → Muttukadu Boating → Kovalam Beach → Crocodile Park → Tiger Cave → Mahabalipuram.</p>
             <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
-            <p><strong>Package Tariff (250km Pack):</strong></p>
+            <p style="font-size: 16px;"><strong>Package Tariff (250km Pack):</strong></p>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
           </div>
         `
@@ -130,15 +130,15 @@ const categoryData = {
         ],
         content: `
           <div class="tariff-box">
-            <h4>🎡 Theme Park Day Circuits</h4>
-            <p><strong>Option A:</strong> VGP Universal Kingdom + DakshinaChitra + Muttukadu Boating & Kovalam Beach.</p>
-            <p style="margin-top: 6px;"><strong>Option B:</strong> MGM Dizzee World + DakshinaChitra + Muttukadu Boating or Kovalam Beach.</p>
+            <h4 style="font-size: 19px;">🎡 Theme Park Day Circuits</h4>
+            <p style="font-size: 16px;"><strong>Option A:</strong> VGP Universal Kingdom + DakshinaChitra + Muttukadu Boating & Kovalam Beach.</p>
+            <p style="margin-top: 6px; font-size: 16px;"><strong>Option B:</strong> MGM Dizzee World + DakshinaChitra + Muttukadu Boating or Kovalam Beach.</p>
             <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
-            <p><strong>Vehicle Fare (250km Limit):</strong></p>
+            <p style="font-size: 16px;"><strong>Vehicle Fare (250km Limit):</strong></p>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
           </div>
         `
@@ -146,30 +146,31 @@ const categoryData = {
     ]
   },
 
-  // 4. Tour Pilgrim
+  // 4. Tour Pilgrim (INSERT YOUR 2 PAMPHLET IMAGE LINKS HERE)
   pilgrim: {
     title: "🛕 Tour Pilgrim Circuits",
     desc: "Sacred temple tours, heritage shrines, and spiritual one-day packages.",
     tabs: [
       {
         name: "Heritage & Sakthi Circuits",
+        // REPLACE OR ADD YOUR PAMPHLET LINKS BELOW IN THE ARRAY:
         images: [
-          "https://images.unsplash.com/photo-1621831815065-9ec3a70868a5?w=600&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1609946782200-d3a39e763137?w=600&auto=format&fit=crop"
+          "images/pilgrim-pamphlet-1.jpg", 
+          "images/pilgrim-pamphlet-2.jpg"
         ],
         content: `
           <div class="tariff-box">
-            <h4>🛕 Popular One-Day Divine Packages</h4>
-            <p>• <strong>Mahabalipuram & Thirukazhukundram</strong></p>
-            <p>• <strong>Kanchipuram & Thirukazhukundram</strong></p>
-            <p>• <strong>Periyapalayam & Thiruthani</strong></p>
-            <p>• <strong>Kanchipuram & Thiruthani</strong></p>
+            <h4 style="font-size: 19px;">🛕 Popular One-Day Divine Packages</h4>
+            <p style="font-size: 16px;">• <strong>Mahabalipuram & Thirukazhukundram</strong></p>
+            <p style="font-size: 16px;">• <strong>Kanchipuram & Thirukazhukundram</strong></p>
+            <p style="font-size: 16px;">• <strong>Periyapalayam & Thiruthani</strong></p>
+            <p style="font-size: 16px;">• <strong>Kanchipuram & Thiruthani</strong></p>
             <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
-            <p><strong>Fixed Tariff (250km Pack):</strong></p>
+            <p style="font-size: 16px;"><strong>Fixed Tariff (250km Pack):</strong></p>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
           </div>
         `
@@ -181,14 +182,14 @@ const categoryData = {
         ],
         content: `
           <div class="tariff-box">
-            <h4>🚩 West Chennai Temple Circuit</h4>
-            <p><strong>Route:</strong> Putlur → Tiruvallur → Sriperumbudur → Thirumazhisai → Thiruverkadu.</p>
+            <h4 style="font-size: 19px;">🚩 West Chennai Temple Circuit</h4>
+            <p style="font-size: 16px;"><strong>Route:</strong> Putlur → Tiruvallur → Sriperumbudur → Thirumazhisai → Thiruverkadu.</p>
             <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
-            <p><strong>Fixed Tariff (250km Pack):</strong></p>
+            <p style="font-size: 16px;"><strong>Fixed Tariff (250km Pack):</strong></p>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
           </div>
         `
@@ -196,31 +197,70 @@ const categoryData = {
     ]
   },
 
-  // 5. Tour South India
+  // 5. Tour South India (INSERT YOUR PAMPHLET IMAGE LINKS HERE)
   "south-india": {
     title: "🌴 Tour South India",
     desc: "Scenic hill stations, pristine backwaters, and long-distance heritage tours.",
     tabs: [
       {
         name: "Hill Stations & Kerala",
+        // REPLACE OR ADD YOUR PAMPHLET LINKS BELOW IN THE ARRAY:
         images: [
-          "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=600&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop"
+          "images/south-india-pamphlet-1.jpg",
+          "images/south-india-pamphlet-2.jpg"
         ],
         content: `
           <div class="tariff-box">
-            <h4>⛰️ South India Outstation Tours</h4>
-            <p>Explore Ooty, Kodaikanal, Yercaud, Munnar tea gardens & Alleppey houseboats with our reliable outstation drivers.</p>
+            <h4 style="font-size: 19px;">⛰️ South India Outstation Tours</h4>
+            <p style="font-size: 16px;">Explore Ooty, Kodaikanal, Yercaud, Munnar tea gardens & Alleppey houseboats with our reliable outstation drivers.</p>
             <hr style="border:0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
-            <p><strong>Standard Outstation Rates:</strong></p>
+            <p style="font-size: 16px;"><strong>Standard Outstation Rates:</strong></p>
             <ul class="bulletin-list">
-              <li class="bulletin-item"><span class="bullet-label">Sedan (250km / day)</span> <span class="bullet-price">₹4,500</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova (250km / day)</span> <span class="bullet-price">₹6,000</span></li>
-              <li class="bulletin-item"><span class="bullet-label">Innova Crysta (250km / day)</span> <span class="bullet-price">₹6,750</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (250km / day)</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (250km / day)</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (250km / day)</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
-            <p style="margin-top: 10px; font-size: 13px; color: #475569;">
+            <p style="margin-top: 10px; font-size: 16px; color: #475569;">
               🚌 Urbania, Tempo Traveller, and Buses available for large group tours!
             </p>
+          </div>
+        `
+      }
+    ]
+  },
+
+  // 6. Plan Your Journey Engine (Fixes non-working Journey Tab!)
+  journey: {
+    title: "🗺️ Plan Your Journey",
+    desc: "Custom booking for Flight, Train, Bus, and Outstation Cabs.",
+    tabs: [
+      {
+        name: "✈️ Flight Reservations",
+        images: ["https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&auto=format&fit=crop"],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">✈️ Domestic & International Flights</h4>
+            <p style="font-size: 16px;">Get fast ticket bookings, best fare comparisons, seat selection, and hassle-free flight rescheduling assistance.</p>
+          </div>
+        `
+      },
+      {
+        name: "🚆 Train Bookings",
+        images: ["https://images.unsplash.com/photo-1532105956626-9569c03602f6?w=600&auto=format&fit=crop"],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🚆 Express & Tatkal Reservations</h4>
+            <p style="font-size: 16px;">Assistance with IRCTC reservations, tourist quota bookings, and confirmed seat options across South India.</p>
+          </div>
+        `
+      },
+      {
+        name: "🚌 Bus & Outstation Cabs",
+        images: ["https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&auto=format&fit=crop"],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🚌 AC Sleeper Buses & Private Fleet</h4>
+            <p style="font-size: 16px;">Book luxury sleeper buses, Tempo Travellers, or private long-distance Cogo Cabs for group travel.</p>
           </div>
         `
       }
@@ -251,6 +291,11 @@ let currentZoomScale = 1;
 ========================================================= */
 
 function openCategoryModal(catKey) {
+  // Alias keys for journey / plan-your-journey if passed differently in HTML
+  if (catKey === 'plan-your-journey' || catKey === 'journey-planning') {
+    catKey = 'journey';
+  }
+
   const data = categoryData[catKey];
   const subTabContainer = document.getElementById("modalSubTabs");
   const contentBody = document.getElementById("modalDynamicContent");
@@ -259,8 +304,21 @@ function openCategoryModal(catKey) {
 
   if (data && data.tabs) {
     activeServiceTitle = data.title;
-    document.getElementById("modalTitle").textContent = data.title;
-    document.getElementById("modalDescription").textContent = data.desc;
+    
+    // Update Modal Title & Description (Bigger, Brighter font style)
+    const titleElem = document.getElementById("modalTitle");
+    const descElem = document.getElementById("modalDescription");
+    
+    if (titleElem) {
+      titleElem.textContent = data.title;
+      titleElem.style.fontSize = "24px";
+    }
+    if (descElem) {
+      descElem.textContent = data.desc;
+      descElem.style.fontSize = "17px";
+      descElem.style.color = "#ffffff"; // Brighter text color
+      descElem.style.opacity = "0.95";
+    }
 
     data.tabs.forEach((tab, index) => {
       const btn = document.createElement("button");
@@ -285,12 +343,19 @@ function openCategoryModal(catKey) {
     };
     
     activeServiceTitle = fallback.title;
-    document.getElementById("modalTitle").textContent = fallback.title;
-    document.getElementById("modalDescription").textContent = fallback.desc;
+    
+    const titleElem = document.getElementById("modalTitle");
+    const descElem = document.getElementById("modalDescription");
+    if (titleElem) titleElem.textContent = fallback.title;
+    if (descElem) {
+      descElem.textContent = fallback.desc;
+      descElem.style.fontSize = "17px";
+      descElem.style.color = "#ffffff";
+    }
     
     currentPamphletList = fallback.images || [];
     const galleryHtml = createPamphletGallery(currentPamphletList);
-    if (contentBody) contentBody.innerHTML = `<div class="tariff-box"><p>${fallback.content}</p></div>` + galleryHtml;
+    if (contentBody) contentBody.innerHTML = `<div class="tariff-box"><p style="font-size: 16px;">${fallback.content}</p></div>` + galleryHtml;
   }
 
   showModalElement("enquiryModal");
