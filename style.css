@@ -950,3 +950,57 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* Pamphlet Lightbox Modal */
+.pamphlet-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.pamphlet-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.pamphlet-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 8px;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+/* Enlarged 2x Zoom Class */
+.pamphlet-modal-content.zoomed {
+  transform: scale(1.8);
+  cursor: zoom-out;
+}
+
+.pamphlet-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.pamphlet-modal-hint {
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
+  margin-top: 10px;
+}
