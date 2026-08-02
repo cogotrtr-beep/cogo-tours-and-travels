@@ -489,7 +489,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const modalImg = document.getElementById("imgModalSrc");
   const closeBtn = document.querySelector(".pamphlet-close");
 
-  // Open modal on clicking ANY flyer image inside the pamphlet cards
+  // Open modal on clicking ANY flyer image inside the pamphlet cards or swiper
   document.body.addEventListener("click", function (e) {
     if (e.target && e.target.tagName === "IMG" && (e.target.closest(".pamphlet-card") || e.target.closest(".pamphlet-swiper"))) {
       if (modal && modalImg) {
