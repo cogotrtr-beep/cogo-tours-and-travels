@@ -15,7 +15,7 @@
         <!-- Indian Flag Inspired Square Tabs -->
         <a href="tel:+919884066830" class="flag-tab tab-saffron">📞 Call Us</a>
         <button class="flag-tab tab-white-blue" onclick="openCategoryModal('cabs')">🚖 Cab Booking </button>
-        <button class="flag-tab tab-green" onclick="openEnquiryForm('General Plan Journey')">Plan Your Journey</button>
+        <button class="flag-tab tab-green" onclick="openCategoryModal('journey')">Plan Your Journey</button>
       </div>
     </div>
   </nav>
@@ -24,12 +24,12 @@
   <header class="hero">
     <div class="hero-actions">
       <button class="hero-btn primary" onclick="openCategoryModal('journey')">Plan Your Journey</button>
-      <button class="hero-btn secondary" onclick="openCategoryModal('cabs')">🚖 Cab Rates</button>
+      <button class="hero-btn secondary" onclick="openCategoryModal('ticket')">🎟️ Book Tickets</button>
     </div>
   </header>
 
   <!-- =========================================================
-     1. OUR SERVICES SECTION
+       1. OUR SERVICES SECTION
   ========================================================= -->
   <section class="section" id="services-section">
     <div class="hub-header text-center">
@@ -45,7 +45,7 @@
           <span class="hub-icon">🚕</span>
           <h3>Cab Services</h3>
           <p>Local & outstation rentals with professional drivers.</p>
-          <button class="hub-btn" onclick="openCategoryModal('cabservices')">View Cab Tariff</button>
+          <button class="hub-btn" onclick="openCategoryModal('cabs')">View Cab Tariff</button>
         </div>
       </article>
 
@@ -56,7 +56,7 @@
           <span class="hub-icon">🎟️</span>
           <h3>Ticket Booking</h3>
           <p>Hassle-free flight, train, and bus reservations.</p>
-          <button class="hub-btn" onclick="openCategoryModal('tickets')">Book Tickets</button>
+          <button class="hub-btn" onclick="openCategoryModal('ticket')">Book Tickets</button>
         </div>
       </article>
 
@@ -74,7 +74,7 @@
   </section>
 
   <!-- =========================================================
-     2. TOUR PACKAGES SECTION
+       2. TOUR PACKAGES SECTION
   ========================================================= -->
   <section class="section" id="packages-section">
     <div class="hub-header text-center">
@@ -310,89 +310,82 @@
     </div>
   </section>
 
-<!-- Dynamic Interactive Enquiry Modal -->
-<div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <button class="modal-close" type="button" onclick="closeModal()">&times;</button>
+  <!-- Dynamic Interactive Enquiry Modal -->
+  <div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" type="button" onclick="closeModal()">&times;</button>
+      
+      <div class="modal-header">
+        <h2 id="modalTitle">Plan Your Journey</h2>
+        <p id="modalDescription" class="modal-desc"></p>
+      </div>
+
+      <!-- Dynamic Filter Tabs (ECR, Pilgrim, City, etc.) -->
+      <div id="modalSubTabs" class="sub-tab-container"></div>
+
+      <!-- Tariff Cards & Destination Image Gallery -->
+      <div id="modalDynamicContent" class="modal-body-wrapper"></div>
+
+      <!-- Quick Lead Generation Form -->
+      <form id="queryForm" onsubmit="event.preventDefault();">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="userName" placeholder="Enter full name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Travel Notes / Preferred Vehicle</label>
+          <textarea id="userQuery" rows="2" placeholder="Mention travel dates, group size, or custom preferences..."></textarea>
+        </div>
+
+        <div class="modal-actions-grid">
+          <button type="button" class="action-btn btn-wa" onclick="submitEnquiry('whatsapp')">
+            📱 Booking via WhatsApp
+          </button>
+          <button type="button" class="action-btn btn-email" onclick="submitEnquiry('email')">
+            ✉️ Send Email Query
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Modal (With Controls) -->
+  <div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
+    <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
     
-    <div class="modal-header">
-      <h2 id="modalTitle">Plan Your Journey</h2>
-      <p id="modalDescription" class="modal-desc"></p>
+    <!-- Lightbox Navigation Arrows -->
+    <button class="lightbox-nav prev-btn" onclick="navigateLightbox(-1, event)">&#10094;</button>
+    <button class="lightbox-nav next-btn" onclick="navigateLightbox(1, event)">&#10095;</button>
+
+    <!-- Image Container -->
+    <div class="lightbox-img-container" id="lightboxContainer" onclick="event.stopPropagation()">
+      <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
     </div>
 
-    <!-- Dynamic Filter Tabs (ECR, Pilgrim, City, etc.) -->
-    <div id="modalSubTabs" class="sub-tab-container"></div>
-
-    <!-- Tariff Cards & Destination Image Gallery -->
-    <div id="modalDynamicContent" class="modal-body-wrapper"></div>
-
-    <!-- Quick Lead Generation Form -->
-    <form id="queryForm" onsubmit="event.preventDefault();">
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="userName" placeholder="Enter full name" required>
-        </div>
-        <div class="form-group">
-          <label>Phone / WhatsApp</label>
-          <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Travel Notes / Preferred Vehicle</label>
-        <textarea id="userQuery" rows="2" placeholder="Mention travel dates, group size, or custom preferences..."></textarea>
-      </div>
-
-      <div class="modal-actions-grid">
-        <button type="button" class="action-btn btn-wa" onclick="submitEnquiry('whatsapp')">
-          📱 Booking via WhatsApp
-        </button>
-        <button type="button" class="action-btn btn-email" onclick="submitEnquiry('email')">
-          ✉️ Send Email Query
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- Image Lightbox Modal for Zooming -->
-<div id="pamphletLightbox" class="lightbox-overlay" onclick="closePamphletZoom(event)">
-  <span class="lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
-  <div class="lightbox-content" onclick="event.stopPropagation()">
-    <img id="lightboxImage" src="" alt="Destination Preview Large">
-  </div>
-</div>
-
-  <!-- Interactive Lightbox Modal (With Full Controls) -->
-<div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
-  <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
-  
-  <!-- Lightbox Navigation Arrows -->
-  <button class="lightbox-nav prev-btn" onclick="navigateLightbox(-1, event)">&#10094;</button>
-  <button class="lightbox-nav next-btn" onclick="navigateLightbox(1, event)">&#10095;</button>
-
-  <!-- Image Container -->
-  <div class="lightbox-img-container" id="lightboxContainer" onclick="event.stopPropagation()">
-    <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
-  </div>
-<!-- Zoom Control Buttons -->
-      <div class="zoom-controls" onclick="event.stopPropagation()">
-        <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
-        <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
-        <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
-      </div>
+    <!-- Zoom Control Buttons -->
+    <div class="zoom-controls" onclick="event.stopPropagation()">
+      <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
+      <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
+      <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
     </div>
+  </div>
 
-    <!-- Pamphlet Zoom Modal (MOVED INSIDE BODY) -->
-    <div id="imageModal" class="pamphlet-modal">
-      <span class="pamphlet-close">&times;</span>
-      <div class="pamphlet-modal-container">
-        <img class="pamphlet-modal-content" id="imgModalSrc" alt="Pamphlet Zoom View">
-      </div>
-      <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
+  <!-- Pamphlet Zoom Modal View -->
+  <div id="imageModal" class="pamphlet-modal">
+    <span class="pamphlet-close">&times;</span>
+    <div class="pamphlet-modal-container">
+      <img class="pamphlet-modal-content" id="imgModalSrc" alt="Pamphlet Zoom View">
     </div>
+    <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
+  </div>
 
-    <!-- JavaScript Execution at End of Body -->
-    <script src="script.js"></script>
-  </body>
+  <!-- JavaScript Execution at End of Body -->
+  <script src="script.js"></script>
+</body>
 </html>
