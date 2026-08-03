@@ -229,13 +229,13 @@ const categoryData = {
     ]
   },
 
-  // 6. Plan Your Journey Engine (Fixes non-working Journey Tab!)
-  journey: {
-    title: "🗺️ Plan Your Journey",
-    desc: "Custom booking for Flight, Train, Bus, and Outstation Cabs.",
+ // Ticket Booking Engine (Flights, Trains, Buses)
+  ticket: {
+    title: "🎟️ Ticket Bookings & Reservations",
+    desc: "Fast flight, train, bus, and outstation transport booking services.",
     tabs: [
       {
-        name: "✈️ Flight Reservations",
+        name: "✈️ Flight Booking",
         images: ["https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&auto=format&fit=crop"],
         content: `
           <div class="tariff-box">
@@ -261,6 +261,34 @@ const categoryData = {
           <div class="tariff-box">
             <h4 style="font-size: 19px;">🚌 AC Sleeper Buses & Private Fleet</h4>
             <p style="font-size: 16px;">Book luxury sleeper buses, Tempo Travellers, or private long-distance Cogo Cabs for group travel.</p>
+          </div>
+        `
+      }
+    ]
+  },
+
+  // Plan Your Journey Engine (General Travel Queries & Custom Trip Planning)
+  journey: {
+    title: "🗺️ Plan Your Journey",
+    desc: "Have a travel question or need a custom itinerary? Tell us your plans and our team will guide you!",
+    tabs: [
+      {
+        name: "🧳 Custom Trip Query",
+        images: ["https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&auto=format&fit=crop"],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🗺️ Tailor-Made Itineraries & Advice</h4>
+            <p style="font-size: 16px;">Tell us your dream destination, dates, budget, or general queries. We will handle complete routing, hotel suggestions, and travel guidance for your group!</p>
+          </div>
+        `
+      },
+      {
+        name: "💬 General Travel Assistance",
+        images: ["https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?w=600&auto=format&fit=crop"],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">💬 Free Consultation & Support</h4>
+            <p style="font-size: 16px;">Need advice on weather, best places to visit, group rates, or documentation? Drop your details below and we will contact you directly!</p>
           </div>
         `
       }
