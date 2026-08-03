@@ -341,7 +341,7 @@ body {
 }
 
 /* =========================================================
-   6. MODAL POPUP & INTERACTIVE TOP TABS (MERGED)
+   6. MODAL POPUP & INTERACTIVE TOP TABS
 ========================================================= */
 .modal-overlay {
   display: none;
@@ -357,7 +357,6 @@ body {
   transition: opacity 0.25s ease-in-out;
 }
 
-/* Force Flex Display on Show */
 .modal-overlay.show { 
   display: flex !important; 
   opacity: 1 !important;
@@ -400,7 +399,6 @@ body {
   color: #0f172a;
 }
 
-/* Modal Title & Description Header */
 #modalTitle {
   font-size: 22px;
   font-weight: 800;
@@ -414,7 +412,6 @@ body {
   margin-bottom: 16px;
 }
 
-/* Sub-tabs Container */
 .sub-tab-container {
   display: flex;
   gap: 10px;
@@ -424,7 +421,6 @@ body {
   padding-bottom: 12px;
 }
 
-/* Outlined Interactive Tab Buttons */
 .sub-tab-btn {
   padding: 10px 18px;
   border-radius: 8px;
@@ -443,7 +439,6 @@ body {
   opacity: 0.95;
 }
 
-/* Custom Color Accents for Sub-tabs */
 .sub-tab-btn.tab-color-0 { background-color: #FF9933; border-color: #e68a2e; } 
 .sub-tab-btn.tab-color-1 { background-color: #0F172A; border-color: #050b14; } 
 .sub-tab-btn.tab-color-2 { background-color: #138808; border-color: #0f6e06; } 
@@ -453,7 +448,6 @@ body {
   box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a;
 }
 
-/* Warm Peach Dynamic Content Body */
 .modal-body-wrapper.peach-theme,
 .modal-body-wrapper {
   background: #FFF5EE;
@@ -465,103 +459,26 @@ body {
   color: #0f172a;
 }
 
-.tariff-box h4 {
-  color: #c2410c;
-  font-size: 18px;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.tariff-box p,
-.tariff-box li {
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-/* Bulletin Price List Styling */
-.bulletin-list {
-  list-style: none;
-  padding: 0;
-  margin: 12px 0 0 0;
-}
-
-.bulletin-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px dashed #fed7aa;
-  font-weight: 700;
-}
-
-.bulletin-item:last-child {
-  border-bottom: none;
-}
-
-.bullet-label {
-  color: #1e293b;
-}
-
-.bullet-price {
-  font-weight: 800;
-  color: #15803d;
-  background: #dcfce7;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-/* Pamphlet / Image Gallery Grid & Swiper */
-.pamphlet-swiper {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding: 10px 0 6px 0;
-  scroll-snap-type: x mandatory;
-}
-
-.pamphlet-card {
-  flex: 0 0 160px;
-  height: 110px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 2px solid #cbd5e1;
-  cursor: pointer;
-  scroll-snap-align: start;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.pamphlet-card:hover {
-  transform: scale(1.03);
-  border-color: #FF9933;
-}
-
-.pamphlet-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Form Layout & Action Buttons */
+/* Form Layout & Actions */
 .form-group {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .form-group label {
   display: block;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 700;
-  color: #475569;
-  margin-bottom: 4px;
+  color: #334155;
+  margin-bottom: 5px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px;
   border: 1.5px solid #cbd5e1;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   outline: none;
   transition: border-color 0.2s;
 }
@@ -575,7 +492,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 @media (max-width: 480px) {
@@ -585,11 +502,11 @@ body {
 }
 
 .action-btn {
-  padding: 12px;
-  border: none;
+  padding: 14px;
   border-radius: 10px;
-  font-size: 14px;
+  border: none;
   font-weight: 800;
+  font-size: 15px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -602,52 +519,8 @@ body {
   transform: scale(0.98);
 }
 
-.btn-wa {
-  background-color: #25d366;
-  color: #ffffff;
-}
-
-.btn-email {
-  background-color: #0F172A;
-  color: #ffffff;
-}
-
-/* Lightbox Image Zoom Overlay */
-.lightbox-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.92);
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.lightbox-overlay.show {
-  display: flex !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-
-.lightbox-content img {
-  max-width: 90vw;
-  max-height: 85vh;
-  border-radius: 10px;
-  object-fit: contain;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: #ffffff;
-  font-size: 36px;
-  font-weight: bold;
-  cursor: pointer;
-}
+.btn-wa { background-color: #138808; color: #ffffff; }
+.btn-email { background-color: #0F172A; color: #ffffff; }
 
 /* =========================================================
    7. BULLETIN-STYLE PACKAGE & TARIFF DETAILS
@@ -671,7 +544,6 @@ body {
   margin-bottom: 14px;
 }
 
-/* Bulletin Style List */
 .bulletin-list {
   list-style: none;
   display: flex;
@@ -710,20 +582,14 @@ body {
 .bulletin-item .bullet-price {
   font-weight: 800;
   color: #138808;
+  background: #dcfce7;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-/* Modal Booking Form Elements */
-.form-group { margin-bottom: 14px; }
-.form-group label { display: block; font-size: 13.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
-.form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; }
-
-.modal-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
-.action-btn { padding: 14px; border-radius: 10px; border: none; font-weight: 800; font-size: 15px; cursor: pointer; }
-.btn-wa { background: #138808; color: #fff; }
-.btn-email { background: #0f172a; color: #fff; }
-
 /* =========================================================
-   8. PAMPHLET SWIPER & INTERACTIVE LIGHTBOX
+   8. PAMPHLET SWIPER PREVIEW CARDS
 ========================================================= */
 .pamphlet-swiper {
   display: flex;
@@ -735,6 +601,7 @@ body {
   user-select: none;
   scrollbar-width: none;
   margin: 15px 0;
+  scroll-snap-type: x mandatory;
 }
 
 .pamphlet-swiper::-webkit-scrollbar {
@@ -742,134 +609,33 @@ body {
 }
 
 .pamphlet-card {
-  flex: 0 0 80%;
-  max-width: 280px;
-  border-radius: 14px;
+  flex: 0 0 160px;
+  height: 110px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  background: #ffffff;
+  border: 2px solid #cbd5e1;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  scroll-snap-align: start;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .pamphlet-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+  border-color: #FF9933;
 }
 
 .pamphlet-card img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
-}
-
-/* Lightbox Base */
-.pamphlet-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: rgba(0, 0, 0, 0.94);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  touch-action: none;
-}
-
-.pamphlet-lightbox.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lightbox-img-container {
-  max-width: 90vw;
-  max-height: 80vh;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: grab;
-}
-
-.lightbox-img-container img {
-  max-width: 100%;
-  max-height: 75vh;
-  object-fit: contain;
-  transition: transform 0.15s ease-out;
-  transform-origin: center center;
-  border-radius: 8px;
-}
-
-.pamphlet-lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #ffffff;
-  font-size: 32px;
-  cursor: pointer;
-  background: rgba(255,255,255,0.2);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100001;
-}
-
-/* Lightbox Navigation Side Arrows */
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-  border: none;
-  font-size: 24px;
-  padding: 12px 16px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 100001;
-  transition: background 0.2s ease;
-}
-
-.lightbox-nav:hover {
-  background: #ff5a00;
-}
-
-.prev-btn { left: 15px; }
-.next-btn { right: 15px; }
-
-/* Zoom Toolbar Controls */
-.zoom-controls {
-  position: absolute;
-  bottom: 25px;
-  display: flex;
-  gap: 10px;
-  z-index: 100001;
-  background: rgba(15, 23, 42, 0.85);
-  padding: 8px 16px;
-  border-radius: 30px;
-}
-
-.zoom-controls button {
-  background: #ff5a00;
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
 }
 
 /* =========================================================
    9. RESPONSIVE BREAKPOINTS (DESKTOP & MOBILE)
 ========================================================= */
-
-/* Desktop Scaling (Screens wider than 768px) */
 @media (min-width: 769px) {
   .hub-grid {
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -911,13 +677,8 @@ body {
     max-width: 880px;
     padding: 36px;
   }
-
-  .pamphlet-card {
-    flex: 0 0 55%;
-  }
 }
 
-/* Mobile Optimizations (Screens 768px or narrower) */
 @media (max-width: 768px) {
   #navLinks {
     flex-direction: row;
@@ -950,59 +711,163 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
 /* =========================================================
-   10. PAMPHLET LIGHTBOX MODAL (DESKTOP & MOBILE ZOOM)
+   10. PAMPHLET LIGHTBOX MODAL & INTERACTIVE ZOOM ENGINE
 ========================================================= */
+#pamphletLightbox,
+#imageModal,
+.pamphlet-lightbox,
 .pamphlet-modal {
   display: none;
   position: fixed;
-  z-index: 999999 !important; /* Raised z-index to sit on top of all modals */
-  padding-top: 40px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.92);
-}
-
-.pamphlet-modal-container {
-  display: flex;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.94);
+  z-index: 999999 !important;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+  touch-action: none;
 }
 
+#pamphletLightbox.show,
+#imageModal.show,
+.pamphlet-lightbox.show,
+.pamphlet-modal.show {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.lightbox-img-container,
+.pamphlet-modal-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#lightboxImage,
+#imgModalSrc,
 .pamphlet-modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
+  max-width: 90vw;
   max-height: 85vh;
-  border-radius: 8px;
+  object-fit: contain;
+  transition: transform 0.2s ease-in-out;
   cursor: zoom-in;
-  transition: transform 0.3s ease;
+  transform-origin: center center;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-/* Enlarged 2x Zoom Class */
-.pamphlet-modal-content.zoomed {
-  transform: scale(1.8);
-  cursor: zoom-out;
-}
-
-.pamphlet-close {
+.pamphlet-close,
+.pamphlet-lightbox-close,
+.lightbox-close {
   position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
+  top: 20px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 36px;
   font-weight: bold;
   cursor: pointer;
-  z-index: 1000000;
+  background: rgba(255, 255, 255, 0.2);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000001;
+  transition: background 0.2s ease;
+}
+
+.pamphlet-close:hover,
+.pamphlet-lightbox-close:hover,
+.lightbox-close:hover {
+  background: #ff5a00;
+}
+
+.lightbox-nav,
+.pamphlet-prev,
+.pamphlet-next,
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border: none;
+  font-size: 28px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.lightbox-nav:hover,
+.pamphlet-prev:hover,
+.pamphlet-next:hover,
+.prev-btn:hover,
+.next-btn:hover {
+  background: #ff5a00;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn, .pamphlet-prev, #prevBtn { left: 20px; }
+.next-btn, .pamphlet-next, #nextBtn { right: 20px; }
+
+.zoom-controls {
+  position: absolute;
+  bottom: 25px;
+  display: flex;
+  gap: 12px;
+  z-index: 1000001;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 8px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.zoom-controls button {
+  background: #ff5a00;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.zoom-controls button:hover {
+  background: #e65100;
+  transform: scale(1.05);
 }
 
 .pamphlet-modal-hint {
-  text-align: center;
-  color: #ccc;
-  font-size: 14px;
-  margin-top: 10px;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #cbd5e1;
+  font-size: 13px;
+  z-index: 1000001;
+  pointer-events: none;
 }
