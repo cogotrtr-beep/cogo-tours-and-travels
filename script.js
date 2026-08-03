@@ -8,11 +8,6 @@ let currentPamphletList = [];
 let currentPamphletIndex = 0;
 let currentZoomScale = 1;
 
-// Drag / Pan State for Mobile & Hand Dragging
-let isDragging = false;
-let startX = 0, startY = 0;
-let translateX = 0, translateY = 0;
-
 // Helper function to build slidable pamphlet / destination gallery
 function createPamphletGallery(images) {
   if (!images || images.length === 0) return '';
@@ -220,12 +215,12 @@ function closeModalOnOverlay(e) {
 }
 
 /* =========================================================
-   LIGHTBOX ZOOM & DRAG ENGINE (MOBILE & DESKTOP)
+   LIGHTBOX ZOOM & NAVIGATION ENGINE
 ========================================================= */
 
 function getLightboxElements() {
-  const lightbox = document.getElementById("pamphletLightbox") || document.getElementById("imageModal") || document.querySelector(".pamphlet-lightbox") || document.querySelector(".pamphlet-modal");
-  const img = document.getElementById("lightboxImage") || document.getElementById("imgModalSrc") || document.querySelector(".pamphlet-modal-content");
+  const lightbox = document.getElementById("pamphletLightbox") || document.getElementById("imageModal");
+  const img = document.getElementById("lightboxImage") || document.getElementById("imgModalSrc");
   return { lightbox, img };
 }
 
@@ -260,15 +255,13 @@ function closePamphletZoom(e) {
 function applyZoomTransform() {
   const { img } = getLightboxElements();
   if (img) {
-    img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoomScale})`;
-    img.style.transition = isDragging ? "none" : "transform 0.2s ease-in-out";
+    img.style.transform = `scale(${currentZoomScale})`;
+    img.style.transition = "transform 0.2s ease-in-out";
   }
 }
 
 function resetZoom() {
   currentZoomScale = 1;
-  translateX = 0;
-  translateY = 0;
   applyZoomTransform();
 }
 
@@ -279,10 +272,6 @@ function zoomIn() {
 
 function zoomOut() {
   currentZoomScale = Math.max(currentZoomScale - 0.4, 0.8);
-  if (currentZoomScale <= 1) {
-    translateX = 0;
-    translateY = 0;
-  }
   applyZoomTransform();
 }
 
@@ -301,13 +290,13 @@ function nextPamphlet(e) {
 }
 
 /* =========================================================
-   EVENT LISTENERS (RED TABS, DRAG/TOUCH PANNING & MOUSE WHEEL)
+   EVENT LISTENERS (MOUSE WHEEL, ARROWS & RED TABS)
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
   const { lightbox, img } = getLightboxElements();
 
-  // 1. Mouse Wheel Zoom
+  // 1. Mouse Wheel Zoom inside Full-Page Lightbox
   if (lightbox) {
     lightbox.addEventListener("wheel", function (e) {
       if (lightbox.style.display === "flex" || lightbox.classList.contains("show")) {
@@ -321,79 +310,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { passive: false });
   }
 
-  // 2. Click / Tap Image to Toggle Zoom (1x <-> 2x)
+  // 2. Click Image to Toggle Zoom (1x <-> 2x)
   if (img) {
     img.addEventListener("click", function (e) {
-      if (isDragging) return;
       e.stopPropagation();
       if (currentZoomScale === 1) {
         currentZoomScale = 2;
       } else {
         currentZoomScale = 1;
-        translateX = 0;
-        translateY = 0;
       }
       applyZoomTransform();
     });
-
-    // 3. Touch / Drag Panning Engine (Hand tool dragging across full pamphlet)
-    const startDrag = (e) => {
-      if (currentZoomScale <= 1) return;
-      isDragging = true;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      startX = clientX - translateX;
-      startY = clientY - translateY;
-    };
-
-    const doDrag = (e) => {
-      if (!isDragging || currentZoomScale <= 1) return;
-      e.preventDefault();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      translateX = clientX - startX;
-      translateY = clientY - startY;
-      applyZoomTransform();
-    };
-
-    const stopDrag = () => {
-      isDragging = false;
-    };
-
-    img.addEventListener("mousedown", startDrag);
-    window.addEventListener("mousemove", doDrag);
-    window.addEventListener("mouseup", stopDrag);
-
-    img.addEventListener("touchstart", startDrag, { passive: false });
-    window.addEventListener("touchmove", doDrag, { passive: false });
-    window.addEventListener("touchend", stopDrag);
   }
 
-  // 4. Delegated Click Handler for Red Buttons & Navigation Controls
-  document.addEventListener("click", function(e) {
-    const target = e.target.closest("button, .pamphlet-close, .lightbox-close");
-    if (!target) return;
-
-    if (target.matches(".zoom-in, #zoomInBtn, [onclick*='zoomIn']")) {
-      e.stopPropagation();
-      zoomIn();
-    } else if (target.matches(".zoom-out, #zoomOutBtn, [onclick*='zoomOut']")) {
-      e.stopPropagation();
-      zoomOut();
-    } else if (target.matches(".pamphlet-prev, .prev-btn, #prevBtn, [onclick*='prevPamphlet']")) {
-      e.stopPropagation();
-      prevPamphlet(e);
-    } else if (target.matches(".pamphlet-next, .next-btn, #nextBtn, [onclick*='nextPamphlet']")) {
-      e.stopPropagation();
-      nextPamphlet(e);
-    } else if (target.matches(".pamphlet-close, .close-btn, #closeBtn, .lightbox-close, [onclick*='closePamphletZoom']")) {
-      e.stopPropagation();
-      closePamphletZoom(e);
-    }
+  // 3. Attach Arrow & Zoom Button Handlers (Supporting .pamphlet-prev, .pamphlet-next, etc.)
+  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => {
+    btn.onclick = prevPamphlet;
+  });
+  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => {
+    btn.onclick = nextPamphlet;
+  });
+  document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => {
+    btn.onclick = zoomIn;
+  });
+  document.querySelectorAll(".zoom-out, #zoomOutBtn").forEach(btn => {
+    btn.onclick = zoomOut;
+  });
+  document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => {
+    btn.onclick = closePamphletZoom;
   });
 });
 
-/* Keyboard Navigation */
+/* Keyboard Navigation (Left/Right Arrows & Esc) */
 document.addEventListener("keydown", function(e) {
   const { lightbox } = getLightboxElements();
   const isLightboxActive = lightbox && (lightbox.style.display === "flex" || lightbox.classList.contains("show"));
