@@ -469,47 +469,42 @@ function resetZoom() {
   const lightboxImg = document.getElementById("lightboxImage");
   if (lightboxImg) lightboxImg.style.transform = `scale(1)`;
 }
-
 /* ESC KEY HANDLER */
 document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") {
-    const lightbox = document.getElementById("pamphletLightbox");
+    const modal = document.getElementById("imageModal");
     const enquiryModal = document.getElementById("enquiryModal");
 
-    if (lightbox && lightbox.style.display === "flex") {
-      closePamphletZoom();
-    } else if (enquiryModal && enquiryModal.style.display === "flex") {
+    if (modal && modal.style.display === "block") {
+      modal.style.display = "none";
+    } else if (enquiryModal && (enquiryModal.style.display === "flex" || enquiryModal.classList.contains("show"))) {
       closeModal();
     }
   }
 });
 
-  }
-});
-// Pamphlet Image Lightbox Zoom Functionality
+/* PAMPHLET IMAGE LIGHTBOX ZOOM */
 document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("imgModalSrc");
   const closeBtn = document.querySelector(".pamphlet-close");
 
-  // Open lightbox whenever ANY image inside a modal overlay is clicked
+  // Open zoom popup when clicking any pamphlet/flyer image
   document.body.addEventListener("click", function (e) {
     if (e.target && e.target.tagName === "IMG") {
-      // Exclude clicks on the lightbox image itself
       if (e.target.id === "imgModalSrc") return;
 
-      // Check if clicked image is inside any open modal or flyer container
-      if (e.target.closest(".modal-overlay") || e.target.closest(".modal-box") || e.target.closest(".pamphlet-card")) {
+      if (e.target.closest(".pamphlet-card") || e.target.closest(".pamphlet-swiper") || e.target.closest(".modal-body-wrapper") || e.target.closest(".modal-overlay")) {
         if (modal && modalImg) {
           modal.style.display = "block";
           modalImg.src = e.target.src;
-          modalImg.classList.remove("zoomed"); // Reset zoom on open
+          modalImg.classList.remove("zoomed");
         }
       }
     }
   });
 
-  // Toggle 2x Zoom on modal image click
+  // Toggle 2x Zoom on image click inside modal
   if (modalImg) {
     modalImg.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -524,7 +519,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Close modal when clicking background overlay
+  // Close modal when clicking dark background
   if (modal) {
     modal.onclick = function (e) {
       if (e.target === modal || e.target.classList.contains("pamphlet-modal-container")) {
