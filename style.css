@@ -710,6 +710,19 @@ body {
   .contact-grid {
     grid-template-columns: 1fr;
   }
+
+  .prev-btn, .pamphlet-prev, #prevBtn { left: 8px; }
+  .next-btn, .pamphlet-next, #nextBtn { right: 8px; }
+  
+  .zoom-controls {
+    bottom: 15px;
+    padding: 6px 12px;
+  }
+  
+  .zoom-controls button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
 
 /* =========================================================
