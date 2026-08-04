@@ -589,7 +589,7 @@ body {
 }
 
 /* =========================================================
-   8. PAMPHLET SWIPER PREVIEW CARDS
+   8. PAMPHLET SWIPER PREVIEW CARDS (FULL PAMPHLET PREVIEW)
 ========================================================= */
 .pamphlet-swiper {
   display: flex;
@@ -608,29 +608,36 @@ body {
   display: none;
 }
 
+/* Updated to Portrait dimensions so the entire pamphlet fits nicely */
 .pamphlet-card {
-  flex: 0 0 160px;
-  height: 110px;
+  flex: 0 0 130px;
+  height: 180px;
   border-radius: 10px;
   overflow: hidden;
   border: 2px solid #cbd5e1;
   cursor: pointer;
   scroll-snap-align: start;
   transition: transform 0.2s ease, border-color 0.2s ease;
-  background: #ffffff;
+  background: #f8fafc;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
 }
 
 .pamphlet-card:hover {
-  transform: scale(1.03);
+  transform: scale(1.04);
   border-color: #FF9933;
 }
 
+/* Set object-fit to contain so the top, middle, and bottom are 100% visible */
 .pamphlet-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  border-radius: 6px;
 }
 
 /* =========================================================
