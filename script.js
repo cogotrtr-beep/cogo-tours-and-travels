@@ -285,7 +285,7 @@ function openCategoryModal(catKey) {
 function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
   currentPamphletList = tab.images || [];
-  const galleryHtml = createPamphletGallery(currentPamphletList);
+  const galleryHtml = createPamphletGallery(currentPamphletList);            
   if (contentBody) contentBody.innerHTML = tab.content + galleryHtml;
 }
 
@@ -342,15 +342,68 @@ function submitEnquiry(type) {
     window.location.href = mailtoUrl;
   }
 }
-
 /* =========================================================
-   LIGHTBOX ZOOM & NAVIGATION ENGINE
+   LIGHTBOX ZOOM & DRAG-TO-PAN NAVIGATION ENGINE
 ========================================================= */
+let currentZoomScale = 1;
+let isDragging = false;
+let startX = 0, startY = 0;
+let translateX = 0, translateY = 0;
 
 function getLightboxElements() {
   const lightbox = document.getElementById("pamphletLightbox") || document.getElementById("imageModal");
   const img = document.getElementById("lightboxImage") || document.getElementById("imgModalSrc");
   return { lightbox, img };
+}
+
+function applyZoomTransform() {
+  const { img } = getLightboxElements();
+  if (!img) return;
+
+  if (currentZoomScale <= 1) {
+    translateX = 0;
+    translateY = 0;
+    img.style.cursor = "zoom-in";
+  } else {
+    img.style.cursor = isDragging ? "grabbing" : "grab";
+  }
+
+  // Uses both translate (for dragging) and scale (for zooming)
+  img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoomScale})`;
+  img.style.transition = isDragging ? "none" : "transform 0.15s ease-out";
+}
+
+function resetZoom() {
+  currentZoomScale = 1;
+  translateX = 0;
+  translateY = 0;
+  applyZoomTransform();
+}
+
+function zoomIn() {
+  if (currentZoomScale < 3.5) {
+    currentZoomScale = Math.min(currentZoomScale + 0.5, 3.5);
+    applyZoomTransform();
+  }
+}
+
+function zoomOut() {
+  if (currentZoomScale > 1) {
+    currentZoomScale = Math.max(currentZoomScale - 0.5, 1);
+    if (currentZoomScale === 1) {
+      translateX = 0;
+      translateY = 0;
+    }
+    applyZoomTransform();
+  }
+}
+
+function changeZoom(delta) {
+  if (delta > 0) {
+    zoomIn();
+  } else {
+    zoomOut();
+  }
 }
 
 function openPamphletZoom(index) {
@@ -381,37 +434,6 @@ function closePamphletZoom(e) {
   }
 }
 
-function applyZoomTransform() {
-  const { img } = getLightboxElements();
-  if (img) {
-    img.style.transform = `scale(${currentZoomScale})`;
-    img.style.transition = "transform 0.2s ease-in-out";
-  }
-}
-
-function resetZoom() {
-  currentZoomScale = 1;
-  applyZoomTransform();
-}
-
-function zoomIn() {
-  currentZoomScale = Math.min(currentZoomScale + 0.4, 3.5);
-  applyZoomTransform();
-}
-
-function zoomOut() {
-  currentZoomScale = Math.max(currentZoomScale - 0.4, 0.8);
-  applyZoomTransform();
-}
-
-function changeZoom(delta) {
-  if (delta > 0) {
-    zoomIn();
-  } else {
-    zoomOut();
-  }
-}
-
 function prevPamphlet(e) {
   if (e && e.stopPropagation) e.stopPropagation();
   if (!currentPamphletList || currentPamphletList.length <= 1) return;
@@ -433,6 +455,59 @@ function navigateLightbox(direction, e) {
     nextPamphlet(e);
   }
 }
+
+/* =========================================================
+   MOUSE & TOUCH DRAG LISTENERS FOR PANNING
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const { img } = getLightboxElements();
+  if (!img) return;
+
+  // Mouse Dragging
+  img.addEventListener("mousedown", (e) => {
+    if (currentZoomScale > 1) {
+      isDragging = true;
+      startX = e.clientX - translateX;
+      startY = e.clientY - translateY;
+      img.style.cursor = "grabbing";
+      e.preventDefault();
+    }
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    translateX = e.clientX - startX;
+    translateY = e.clientY - startY;
+    applyZoomTransform();
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (isDragging) {
+      isDragging = false;
+      applyZoomTransform();
+    }
+  });
+
+  // Touch Dragging for Mobile
+  img.addEventListener("touchstart", (e) => {
+    if (currentZoomScale > 1 && e.touches.length === 1) {
+      isDragging = true;
+      startX = e.touches[0].clientX - translateX;
+      startY = e.touches[0].clientY - translateY;
+    }
+  });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    translateX = e.touches[0].clientX - startX;
+    translateY = e.touches[0].clientY - startY;
+    applyZoomTransform();
+  });
+
+  window.addEventListener("touchend", () => {
+    isDragging = false;
+  });
+});
 
 /* =========================================================
    EVENT LISTENERS (MOUSE WHEEL, ARROWS & RED TABS)
