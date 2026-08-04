@@ -281,6 +281,9 @@ function openPamphletZoom(index) {
     lightbox.style.display = "flex";
     lightbox.style.opacity = "1";
     lightbox.style.pointerEvents = "auto";
+
+    // Bind drag handlers dynamically when image opens
+    bindDragEvents(img);
   }
 }
 
@@ -316,13 +319,15 @@ function navigateLightbox(direction, e) {
 }
 
 /* =========================================================
-   4. EVENT LISTENERS SETUP
+   4. DRAG LISTENERS & EVENT SETUP
 ========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const { img } = getLightboxElements();
-  if (!img) return;
+let dragEventsBound = false;
 
-  // Mouse Dragging for Lightbox
+function bindDragEvents(img) {
+  if (dragEventsBound || !img) return;
+  dragEventsBound = true;
+
+  // Mouse Dragging
   img.addEventListener("mousedown", (e) => {
     if (currentZoomScale > 1) {
       isDragging = true;
@@ -366,4 +371,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("touchend", () => {
     isDragging = false;
   });
-});
+}
