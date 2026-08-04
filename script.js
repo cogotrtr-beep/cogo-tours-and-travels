@@ -31,22 +31,25 @@ function createPamphletGallery(images) {
 // Data for Cogo Cabs & Cab Services
 const cogoCabsData = {
   title: "🚕 Cogo Cabs Tariff",
-  desc: "Fixed tariffs for Sedan, Innova, Crysta and Tempo Travellers.",
+  desc: "Fixed tariffs for Sedan, Innova, Crysta, Urbania & Luxury Vehicles.",
   tabs: [
     {
-      name: "Standard Tariff",
+      name: "Standard & Luxury Rates",
       images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
       content: `
         <div class="tariff-box">
-          <h4 style="font-size: 19px;">⚡ Standard Rental Charges</h4>
+          <h4 style="font-size: 19px;">⚡ Standard Local & Day Rental Rates</h4>
           <ul class="bulletin-list">
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50km)</span> <span class="bullet-price">₹1,400</span></li>
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50km)</span> <span class="bullet-price">₹2,000</span></li>
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10H 100km)</span> <span class="bullet-price">₹4,600</span></li>
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan 250km Pack</span> <span class="bullet-price">₹4,500</span></li>
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova 250km Pack</span> <span class="bullet-price">₹6,000</span></li>
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Crysta 250km Pack</span> <span class="bullet-price">₹6,750</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack (250 km)</span> <span class="bullet-price">₹4,500</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack (250 km)</span> <span class="bullet-price">₹6,000</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack (250 km)</span> <span class="bullet-price">₹6,750</span></li>
           </ul>
+          <p style="margin-top: 15px; font-weight: 700; color: #0f172a;">
+            🚐 <em>All other luxury cars, Urbania, Tempo Traveller & Buses are available at highly competitive rates.</em>
+          </p>
         </div>
       `
     }
@@ -89,6 +92,9 @@ const categoryData = {
               <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
               <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
+            <p style="margin-top: 12px; font-weight: 700; color: #0f172a;">
+              🚍 All other luxury cars, Urbania, Tempo Traveller & Buses are also available with competitive rates.
+            </p>
           </div>
         `
       }
@@ -98,18 +104,50 @@ const categoryData = {
   cabservices: cogoCabsData,
   chennai: {
     title: "🏛️ Tour Chennai Packages",
-    desc: "Explore heritage, coastal ECR, and theme parks in around Chennai.",
+    desc: "Explore heritage, temple circuits, coastal ECR, and entertainment hubs.",
     tabs: [
       {
-        name: "ECR & Coastal Heritage",
+        name: "Vehicle Tariffs",
+        images: [
+          "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🚗 Chennai Tour Vehicle Tariffs</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan 1-Day Pack (250 km)</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova 1-Day Pack (250 km)</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta 1-Day Pack (250 km)</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+            <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
+              ✨ All other luxury cars, Urbania, Tempo Travellers & Buses are available at competitive rates!
+            </p>
+          </div>
+        `
+      },
+      {
+        name: "Custom One Day Circuits",
         images: [
           "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1609946782200-d3a39e763137?w=600&auto=format&fit=crop"
         ],
         content: `
           <div class="tariff-box">
-            <h4 style="font-size: 19px;">🌊 ECR Coastal & Heritage Day Circuit</h4>
-            <p style="font-size: 16px;"><strong>Places Covered:</strong> DakshinaChitra Heritage Museum → Muttukadu Boating → Kovalam Beach → Crocodile Park → Tiger Cave → Mahabalipuram.</p>
+            <h4 style="font-size: 19px;">📍 Custom-Made / Recommended One-Day Tours</h4>
+            <p style="font-size: 15px; color: #64748b; margin-bottom: 10px;">Choose any circuit below with vehicle charges based on the reference tariff:</p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Mahabalipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Periyapalayam & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Putlur, Thiruvallur, Sriperumbudur, Thirumazhisai & Thiruverkadu</span></li>
+              <li class="bulletin-item"><span class="bullet-label">ECR Heritage Circuit: DakshinaChitra, Muttukadu Boating, Kovalam Beach, Crocodile Park, Tiger Cave & Mahabalipuram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Theme Park & Fun: VGP, DakshinaChitra, Muttukadu Boating / Kovalam Beach</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Theme Park & Fun: MGM Dizzee World, DakshinaChitra, Muttukadu Boating / Kovalam Beach</span></li>
+            </ul>
           </div>
         `
       }
@@ -128,7 +166,51 @@ const categoryData = {
         content: `
           <div class="tariff-box">
             <h4 style="font-size: 19px;">🛕 Popular One-Day Divine Packages</h4>
-            <p style="font-size: 16px;">• Mahabalipuram & Thirukazhukundram</p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Mahabalipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Periyapalayam & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Putlur, Thiruvallur, Sriperumbudur, Thirumazhisai & Thiruverkadu</span></li>
+            </ul>
+          </div>
+        `
+      }
+    ]
+  },
+  "south-india": {
+    title: "🌴 Tour South India",
+    desc: "Misty hill stations, pristine beaches, spiritual temples & scenic escapes across South India.",
+    tabs: [
+      {
+        name: "Hill Stations & Nature",
+        images: [
+          "https://images.unsplash.com/photo-1600100397608-f010e423b971?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🏔️ South India Popular Getaways</h4>
+            <p style="font-size: 16px;">• Kodaikanal, Ooty, Coonoor, Munnar, Wayanad & Coorg Escapes.</p>
+            <p style="font-size: 16px; margin-top: 6px;">• Kerala Backwaters, Alleppey Houseboats & Thekkady Wildlife tours.</p>
+          </div>
+        `
+      },
+      {
+        name: "Outstation Cab Tariffs",
+        images: [
+          "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🚗 Outstation Vehicle Rates (250 km / Day Base)</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+            <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
+              🚍 Luxury Cabs, Urbania, Tempo Travellers & Buses are available for long-distance South India tours.
+            </p>
           </div>
         `
       }
@@ -137,7 +219,18 @@ const categoryData = {
 };
 
 const defaultCategoryInfo = {
-  tickets: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." }
+  tickets: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
+  journey: { title: "✈️ Plan Your Journey", desc: "Tailor-made itineraries for your next dream vacation.", content: "Share your travel dates and requirements for custom quotes." },
+  ticket: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
+  visa: { title: "🛂 Visa Assistance", desc: "Documentation & Processing Support.", content: "End-to-end visa guidance for all international destinations." },
+  "north-india": { title: "🏔️ Tour North India", desc: "Golden Triangle, Kashmir, Himachal & Rajasthan.", content: "Customized holiday packages across North India." },
+  "north-east": { title: "🏞️ Tour North East", desc: "Gangtok, Darjeeling, Assam & Meghalaya.", content: "Scenic tour packages across the North Eastern states." },
+  "rest-of-india": { title: "🧭 Tour Rest of India", desc: "Goa, Gujarat, Odisha & Pan-India Destinations.", content: "Unique tour plans for all Indian states and union territories." },
+  international: { title: "✈️ Tour International", desc: "Dubai, Singapore, Thailand, Bali & Europe.", content: "Comprehensive international vacation packages with flight and visa support." },
+  corporate: { title: "🏢 Corporate Tour", desc: "MICE, Team Outings & Business Conferences.", content: "Custom corporate packages and transport arrangements." },
+  students: { title: "🎓 School & College Tour", desc: "Educational Trips & Student Excursions.", content: "Safe and budget-friendly tours for educational institutions." },
+  adventure: { title: "🏕️ Adventure Tour", desc: "Trekking, Camping & Thrill Activities.", content: "Action-packed itineraries for outdoor enthusiasts." },
+  honeymoon: { title: "💖 Honeymoon Tour", desc: "Romantic Getaways & Couples' Retreats.", content: "Special honeymoon arrangements with luxury stays and private cabs." }
 };
 
 /* =========================================================
@@ -176,6 +269,12 @@ function openCategoryModal(catKey) {
   } else {
     const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "Custom Travel Package", content: "Contact us directly for custom pricing." };
     activeServiceTitle = fallback.title;
+    const titleElem = document.getElementById("modalTitle");
+    const descElem = document.getElementById("modalDescription");
+    
+    if (titleElem) titleElem.textContent = fallback.title;
+    if (descElem) descElem.textContent = fallback.desc;
+
     currentPamphletList = fallback.images || [];
     renderTabContent({ content: `<div class="tariff-box"><p>${fallback.content}</p></div>`, images: currentPamphletList });
   }
@@ -212,6 +311,36 @@ function closeModal() {
 
 function closeModalOnOverlay(e) {
   if (e.target.id === "enquiryModal") closeModal();
+}
+
+/* =========================================================
+   FORM SUBMISSION ENGINE (WHATSAPP & EMAIL)
+========================================================= */
+
+function submitEnquiry(type) {
+  const name = document.getElementById("userName") ? document.getElementById("userName").value.trim() : "";
+  const phone = document.getElementById("userPhone") ? document.getElementById("userPhone").value.trim() : "";
+  const query = document.getElementById("userQuery") ? document.getElementById("userQuery").value.trim() : "";
+
+  if (!name || !phone) {
+    alert("Please enter your name and contact phone number to continue.");
+    return;
+  }
+
+  const messageText = `*New Travel Enquiry - Cogo Tours*\n` +
+                      `-------------------------------\n` +
+                      `*Service/Package:* ${activeServiceTitle}\n` +
+                      `*Customer Name:* ${name}\n` +
+                      `*Contact Number:* ${phone}\n` +
+                      `*Notes/Preferences:* ${query || 'N/A'}`;
+
+  if (type === 'whatsapp') {
+    const waUrl = `https://wa.me/919884066830?text=${encodeURIComponent(messageText)}`;
+    window.open(waUrl, '_blank');
+  } else if (type === 'email') {
+    const mailtoUrl = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent("Enquiry: " + activeServiceTitle)}&body=${encodeURIComponent(messageText)}`;
+    window.location.href = mailtoUrl;
+  }
 }
 
 /* =========================================================
@@ -275,6 +404,14 @@ function zoomOut() {
   applyZoomTransform();
 }
 
+function changeZoom(delta) {
+  if (delta > 0) {
+    zoomIn();
+  } else {
+    zoomOut();
+  }
+}
+
 function prevPamphlet(e) {
   if (e && e.stopPropagation) e.stopPropagation();
   if (!currentPamphletList || currentPamphletList.length <= 1) return;
@@ -287,6 +424,14 @@ function nextPamphlet(e) {
   if (!currentPamphletList || currentPamphletList.length <= 1) return;
   currentPamphletIndex = (currentPamphletIndex + 1) % currentPamphletList.length;
   openPamphletZoom(currentPamphletIndex);
+}
+
+function navigateLightbox(direction, e) {
+  if (direction === -1) {
+    prevPamphlet(e);
+  } else if (direction === 1) {
+    nextPamphlet(e);
+  }
 }
 
 /* =========================================================
@@ -323,7 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 3. Attach Arrow & Zoom Button Handlers (Supporting .pamphlet-prev, .pamphlet-next, etc.)
+  // 3. Attach Arrow & Zoom Button Handlers
   document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => {
     btn.onclick = prevPamphlet;
   });
