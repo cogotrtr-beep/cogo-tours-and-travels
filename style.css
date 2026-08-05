@@ -172,7 +172,7 @@ body {
 
 .hub-card {
   position: relative;
-  background: #ffffff;
+  background: #0f172a; /* Dark base so text stands out */
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -186,9 +186,26 @@ body {
 .hub-card-bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
   transition: transform 0.4s ease;
+  background-color: #0f172a;
+}
+
+/* Image scaling fix */
+.hub-card-bg .card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Shrinks full picture to fit inside the 280px card height */
+  object-position: center;
+  display: block;
+}
+
+/* Dark overlay so text stays readable over the background image */
+.hub-card-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
 }
 
 .hub-card:hover .hub-card-bg { transform: scale(1.08); }
