@@ -194,7 +194,7 @@ body {
 .hub-card-bg .card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Shrinks full picture to fit inside the 280px card height */
+  object-fit: cover; /* Fills the entire card background seamlessly */
   object-position: center;
   display: block;
 }
