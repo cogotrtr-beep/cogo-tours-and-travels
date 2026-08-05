@@ -197,7 +197,7 @@ body {
   object-fit: cover; /* Fills the entire card background seamlessly */
   object-position: center;
   display: block;
-}
+} /* 👈 Make sure this closing bracket is here! */
 
 /* Dark overlay so text stays readable over the background image */
 .hub-card-bg::after {
