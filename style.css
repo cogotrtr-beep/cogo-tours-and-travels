@@ -903,3 +903,52 @@ body {
   z-index: 1000001;
   pointer-events: none;
 }
+/* =========================================================
+   DESKTOP ALIGNMENT FIX FOR ABOUT & CONTACT SECTIONS
+========================================================= */
+
+/* 1. Ensure full-width section containers on desktop */
+.about-section, 
+.contact-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 50px 20px !important;
+  box-sizing: border-box !important;
+}
+
+.section-container {
+  max-width: 1200px !important; /* Expands section across desktop screens */
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* 2. Prevent About text from narrowing into a column */
+.about-content {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+.about-content p {
+  line-height: 1.7 !important;
+}
+
+/* 3. Arrange Contact Details & Map side-by-side on desktop */
+@media (min-width: 768px) {
+  .contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Splits 50% left, 50% right */
+    gap: 30px !important;
+    align-items: start !important;
+  }
+
+  .contact-card, 
+  .map-wrapper {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .map-wrapper iframe {
+    height: 320px !important; /* Gives the map adequate breathing room */
+  }
+}
