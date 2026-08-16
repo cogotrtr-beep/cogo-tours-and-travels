@@ -168,26 +168,30 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 26px;
+  align-items: stretch; /* Ensures all grid cards stay uniform in height */
 }
 
 .hub-card {
   position: relative;
   background: #0f172a; /* Dark base so text stands out */
   border-radius: 18px;
-  overflow: hidden;
+  overflow: hidden; /* CRITICAL: Keeps image overflow inside rounded borders */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 280px;
+  height: 320px; /* Locks card height so content stays perfectly aligned */
   border: 1px solid #e2e8f0;
 }
 
 .hub-card-bg {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   transition: transform 0.4s ease;
   background-color: #0f172a;
+  z-index: 1;
 }
 
 /* Image scaling fix */
@@ -197,43 +201,35 @@ body {
   object-fit: cover; /* Fills the entire card background seamlessly */
   object-position: center;
   display: block;
-} /* 👈 Make sure this closing bracket is here! */
+}
 
 /* Dark overlay so text stays readable over the background image */
 .hub-card-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 10%, rgba(15, 23, 42, 0.3) 100%);
   pointer-events: none;
+  z-index: 2;
 }
 
-.hub-card:hover .hub-card-bg { transform: scale(1.08); }
-
-/* Card Image Mappings */
-.chennai-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('chennai-banner.jpg'), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
-.intl-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('cogotours1.jpeg'), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80'); }
-.pilgrim-bg    { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80'); }
-.domestic-bg   { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1600100397608-f010e423b971?auto=format&fit=crop&w=600&q=80'); }
-.corporate-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80'); }
-.school-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'); }
-.adventure-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80'); }
-.honeymoon-bg  { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'); }
-.cab-bg        { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80'); }
-.visa-bg       { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'); }
-.ticket-bg     { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80'); }
-.outstation-bg { background-image: linear-gradient(to top, rgba(15,23,42,0.9), rgba(15,23,42,0.25)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80'); }
+.hub-card:hover .hub-card-bg { 
+  transform: scale(1.08); 
+}
 
 .hub-card-content {
   position: relative;
-  z-index: 2;
+  z-index: 3; /* Keeps text above the dark overlay */
   padding: 22px;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .hub-icon { font-size: 30px; display: block; margin-bottom: 6px; }
-.hub-card-content h3 { font-size: 22px; font-weight: 800; color: #fff; }
-.hub-card-content p { font-size: 14px; opacity: 0.9; margin-bottom: 16px; }
+.hub-card-content h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.hub-card-content p { font-size: 14px; opacity: 0.9; margin-bottom: 16px; line-height: 1.4; }
 
 .hub-btn {
   width: 100%;
@@ -251,7 +247,6 @@ body {
 .hub-btn:hover {
   transform: translateY(-1px);
 }
-
 /* =========================================================
    4. ABOUT US SECTION
 ========================================================= */
