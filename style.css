@@ -696,6 +696,24 @@ body {
     max-width: 880px;
     padding: 36px;
   }
+
+  /* FORCES ABOUT & CONTACT TO SPREAD OUT FULLY ON DESKTOP */
+  .section-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+  }
+
+  .about-content {
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+  }
+
+  .contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+    align-items: stretch !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -727,7 +745,7 @@ body {
   }
 
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .prev-btn, .pamphlet-prev, #prevBtn { left: 8px; }
