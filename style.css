@@ -903,3 +903,61 @@ body {
   z-index: 1000001;
   pointer-events: none;
 }
+/* =========================================================
+   FOOTER / ABOUT & CONTACT SECTION ALIGNMENT FIX
+========================================================= */
+
+/* Ensure the main container spreads out across desktop screens */
+.about-contact-section, 
+.footer-container, 
+section:has(.contact-details) {
+  max-width: 1280px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 40px 20px !important;
+}
+
+/* Arrange About and Get in Touch side-by-side on desktop */
+@media (min-width: 768px) {
+  /* Parent wrapper holding About section & Contact section */
+  .about-contact-wrapper,
+  .footer-grid,
+  .footer-content {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Splits equal width */
+    gap: 40px !important;
+    align-items: start !alignment;
+  }
+
+  /* Keep About block full width within its grid side */
+  .about-box, 
+  .about-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Arrange Contact Details card and Google Map side-by-side */
+  .contact-map-container,
+  .get-in-touch-box {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+
+  /* Make Contact Card take proportional space */
+  .contact-card, 
+  .contact-details {
+    flex: 1 1 50% !important;
+    width: 100% !important;
+  }
+
+  /* Make Google Map take proportional space and fix squishing */
+  .map-card, 
+  .map-container, 
+  iframe {
+    flex: 1 1 50% !important;
+    width: 100% !important;
+    min-height: 250px !important;
+  }
+}
