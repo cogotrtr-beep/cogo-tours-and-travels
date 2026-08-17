@@ -13,27 +13,14 @@ let isDragging = false;
 let startX = 0, startY = 0;
 let translateX = 0, translateY = 0;
 
-// Helper function to build slidable pamphlet / destination gallery
-function createPamphletGallery(images) {
-  if (!images || images.length === 0) return '';
-  
-  const cardsHtml = images.map((imgUrl, idx) => `
-    <div class="pamphlet-card" onclick="openPamphletZoom(${idx})">
-      <img src="${imgUrl}" alt="Destination Preview ${idx + 1}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop';" loading="lazy">
-    </div>
-  `).join('');
+// Carousel Timers
+let domesticTimer = null;
+let intlTimer = null;
 
-  return `
-    <div class="pamphlet-swiper">
-      ${cardsHtml}
-    </div>
-    <p style="text-align: center; font-size: 14px; color: #94a3b8; margin-top: 6px; margin-bottom: 12px;">
-      👉 Tap image to zoom | Swipe for more previews
-    </p>
-  `;
-}
+/* =========================================================
+   1. DATA ENGINES & CONSTANTS
+========================================================= */
 
-// Data for Cogo Cabs & Cab Services
 const cogoCabsData = {
   title: "🚕 Cogo Cabs Tariff",
   desc: "Fixed tariffs for Sedan, Innova, Crysta, Urbania & Luxury Vehicles.",
@@ -61,7 +48,6 @@ const cogoCabsData = {
   ]
 };
 
-// Category Data Engine
 const categoryData = {
   cabs: {
     title: "🚖 Cab Booking & Cogo Cabs",
@@ -239,8 +225,27 @@ const defaultCategoryInfo = {
 };
 
 /* =========================================================
-   MODAL OPEN / CLOSE HANDLERS
+   2. DOM HELPER FUNCTIONS & GALLERIES
 ========================================================= */
+
+function createPamphletGallery(images) {
+  if (!images || images.length === 0) return '';
+  
+  const cardsHtml = images.map((imgUrl, idx) => `
+    <div class="pamphlet-card" onclick="openPamphletZoom(${idx})">
+      <img src="${imgUrl}" alt="Destination Preview ${idx + 1}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop';" loading="lazy">
+    </div>
+  `).join('');
+
+  return `
+    <div class="pamphlet-swiper">
+      ${cardsHtml}
+    </div>
+    <p style="text-align: center; font-size: 14px; color: #94a3b8; margin-top: 6px; margin-bottom: 12px;">
+      👉 Tap image to zoom | Swipe for more previews
+    </p>
+  `;
+}
 
 function openCategoryModal(catKey) {
   if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
@@ -319,7 +324,7 @@ function closeModalOnOverlay(e) {
 }
 
 /* =========================================================
-   FORM SUBMISSION ENGINE (WHATSAPP & EMAIL)
+   3. FORM SUBMISSION ENGINE (WHATSAPP & EMAIL)
 ========================================================= */
 
 function submitEnquiry(type) {
@@ -349,7 +354,7 @@ function submitEnquiry(type) {
 }
 
 /* =========================================================
-   LIGHTBOX ZOOM & DRAG ENGINE
+   4. LIGHTBOX ZOOM & DRAG ENGINE
 ========================================================= */
 
 function getLightboxElements() {
@@ -395,11 +400,6 @@ function zoomOut() {
   applyZoomTransform();
 }
 
-function changeZoom(delta) {
-  if (delta > 0) zoomIn();
-  else zoomOut();
-}
-
 function openPamphletZoom(index) {
   if (!currentPamphletList || currentPamphletList.length === 0) return;
   
@@ -442,36 +442,75 @@ function nextPamphlet(e) {
   openPamphletZoom(currentPamphletIndex);
 }
 
-function navigateLightbox(direction, e) {
-  if (direction === -1) prevPamphlet(e);
-  else if (direction === 1) nextPamphlet(e);
-}
-// =========================================================
-// BRIDGE FUNCTION FOR ONGOING SLIDER LIGHTBOX
-// =========================================================
-let currentPamphletList = [];
-let currentPamphletIndex = 0;
-
 function openPamphletList(imageList, index) {
   currentPamphletList = imageList;
-  openPamphletZoom(index); // Triggers your full zoom/drag engine!
+  openPamphletZoom(index);
 }
 
-// Ensure ESC key closes your existing lightbox engine
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closePamphletZoom(e);
+/* =========================================================
+   5. ONGOING TOURS CAROUSEL & SLIDERS
+========================================================= */
+
+function startDualSliders() {
+  const domTrack = document.getElementById('domesticTrack');
+  const intlTrack = document.getElementById('intlTrack');
+
+  if (domTrack && !domesticTimer) {
+    domesticTimer = setInterval(() => autoScroll(domTrack), 3000);
   }
-});
+  if (intlTrack && !intlTimer) {
+    intlTimer = setInterval(() => autoScroll(intlTrack), 3000);
+  }
+}
+
+function stopDualSliders() {
+  clearInterval(domesticTimer);
+  clearInterval(intlTimer);
+  domesticTimer = null;
+  intlTimer = null;
+}
+
+function autoScroll(trackElement) {
+  const card = trackElement.querySelector('.slide-card');
+  if (!card) return;
+  
+  const cardWidth = card.offsetWidth + 12;
+  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
+    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    trackElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
+}
+
+function moveSlide(trackId, direction) {
+  const track = document.getElementById(trackId);
+  if (track) {
+    const card = track.querySelector('.slide-card');
+    const cardWidth = card.offsetWidth + 12;
+    track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+}
 
 /* =========================================================
-   EVENT LISTENERS & DRAG-TO-PAN CONTROLS
+   6. GLOBAL INITIALIZATION & EVENT LISTENERS
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
   const { lightbox, img } = getLightboxElements();
 
-  // 1. Mouse Wheel Zoom inside Lightbox
+  // Initialize Sliders
+  startDualSliders();
+
+  // Pause Sliders on Hover
+  ['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.addEventListener('mouseenter', stopDualSliders);
+      elem.addEventListener('mouseleave', startDualSliders);
+    }
+  });
+
+  // Lightbox Mouse Wheel Zoom
   if (lightbox) {
     lightbox.addEventListener("wheel", function (e) {
       if (lightbox.style.display === "flex" || lightbox.classList.contains("show")) {
@@ -482,20 +521,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { passive: false });
   }
 
-  // 2. Click Image to Toggle Zoom (1x <-> 2x)
+  // Lightbox Click & Drag Controls
   if (img) {
     img.addEventListener("click", function (e) {
-      if (isDragging) return; // ignore click if dragging finished
+      if (isDragging) return;
       e.stopPropagation();
-      if (currentZoomScale === 1) {
-        currentZoomScale = 2;
-      } else {
-        currentZoomScale = 1;
-      }
+      currentZoomScale = (currentZoomScale === 1) ? 2 : 1;
       applyZoomTransform();
     });
 
-    // 3. Mouse Dragging
     img.addEventListener("mousedown", (e) => {
       if (currentZoomScale > 1) {
         isDragging = true;
@@ -515,12 +549,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("mouseup", () => {
       if (isDragging) {
-        setTimeout(() => { isDragging = false; }, 50); // slight delay to prevent click trigger
+        setTimeout(() => { isDragging = false; }, 50);
         applyZoomTransform();
       }
     });
 
-    // 4. Touch Dragging for Mobile
     img.addEventListener("touchstart", (e) => {
       if (currentZoomScale > 1 && e.touches.length === 1) {
         isDragging = true;
@@ -541,25 +574,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 5. Attach Arrow & Zoom Button Handlers
-  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => {
-    btn.onclick = prevPamphlet;
-  });
-  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => {
-    btn.onclick = nextPamphlet;
-  });
-  document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => {
-    btn.onclick = zoomIn;
-  });
-  document.querySelectorAll(".zoom-out, #zoomOutBtn").forEach(btn => {
-    btn.onclick = zoomOut;
-  });
-  document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => {
-    btn.onclick = closePamphletZoom;
-  });
+  // Control Buttons Mapping
+  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => btn.onclick = prevPamphlet);
+  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => btn.onclick = nextPamphlet);
+  document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => btn.onclick = zoomIn);
+  document.querySelectorAll(".zoom-out, #zoomOutBtn").forEach(btn => btn.onclick = zoomOut);
+  document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => btn.onclick = closePamphletZoom);
 });
 
-/* Keyboard Navigation (Left/Right Arrows & Esc) */
+// Unified Keyboard Shortcut Handler
 document.addEventListener("keydown", function(e) {
   const { lightbox } = getLightboxElements();
   const isLightboxActive = lightbox && (lightbox.style.display === "flex" || lightbox.classList.contains("show"));
@@ -575,153 +598,5 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "ArrowRight") nextPamphlet(e);
     if (e.key === "+" || e.key === "=") zoomIn();
     if (e.key === "-") zoomOut();
-  }
-});
-// =========================================================
-// ONGOING TOURS CAROUSEL & LIGHTBOX MODAL
-// =========================================================
-let domesticTimer, intlTimer;
-
-function startDualSliders() {
-  const domTrack = document.getElementById('domesticTrack');
-  const intlTrack = document.getElementById('intlTrack');
-
-  if (domTrack) {
-    domesticTimer = setInterval(() => autoScroll(domTrack), 3000);
-  }
-  if (intlTrack) {
-    intlTimer = setInterval(() => autoScroll(intlTrack), 3000);
-  }
-}
-
-function autoScroll(trackElement) {
-  const card = trackElement.querySelector('.slide-card');
-  if (!card) return;
-  
-  const cardWidth = card.offsetWidth + 12;
-  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
-    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
-  } else {
-    trackElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
-  }
-}
-
-function moveSlide(trackId, direction) {
-  const track = document.getElementById(trackId);
-  if (track) {
-    const card = track.querySelector('.slide-card');
-    const cardWidth = card.offsetWidth + 12;
-    track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-  }
-}
-
-// Hover pause
-['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
-  const elem = document.getElementById(id);
-  if (elem) {
-    elem.addEventListener('mouseenter', () => {
-      clearInterval(domesticTimer);
-      clearInterval(intlTimer);
-    });
-    elem.addEventListener('mouseleave', startDualSliders);
-  }
-});
-
-// Lightbox Trigger & Keyboard Listener
-function openPamphletLightbox(imgSrc) {
-  const lightbox = document.getElementById('pamphletLightbox');
-  const lightboxImg = document.getElementById('lightboxImage');
-  if (lightbox && lightboxImg) {
-    lightboxImg.src = imgSrc;
-    lightbox.style.display = 'flex';
-  }
-}
-
-function closePamphletLightbox() {
-  const lightbox = document.getElementById('pamphletLightbox');
-  if (lightbox) {
-    lightbox.style.display = 'none';
-  }
-}
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closePamphletLightbox();
-  }
-});
-
-document.addEventListener('DOMContentLoaded', startDualSliders);
-// =========================================================
-// ONGOING TOURS AUTO-SLIDER (3-SECOND INTERVAL)
-// =========================================================
-let domesticTimer, intlTimer;
-
-function startDualSliders() {
-  const domTrack = document.getElementById('domesticTrack');
-  const intlTrack = document.getElementById('intlTrack');
-
-  if (domTrack) {
-    domesticTimer = setInterval(() => autoScroll(domTrack), 3000); // 3 Seconds
-  }
-  if (intlTrack) {
-    intlTimer = setInterval(() => autoScroll(intlTrack), 3000); // 3 Seconds
-  }
-}
-
-function autoScroll(trackElement) {
-  const card = trackElement.querySelector('.slide-card');
-  if (!card) return;
-  
-  const cardWidth = card.offsetWidth + 12;
-  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
-    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
-  } else {
-    trackElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
-  }
-}
-
-function moveSlide(trackId, direction) {
-  const track = document.getElementById(trackId);
-  if (track) {
-    const card = track.querySelector('.slide-card');
-    const cardWidth = card.offsetWidth + 12;
-    track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-  }
-}
-
-// Pause sliders when hovering over them
-['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
-  const elem = document.getElementById(id);
-  if (elem) {
-    elem.addEventListener('mouseenter', () => {
-      clearInterval(domesticTimer);
-      clearInterval(intlTimer);
-    });
-    elem.addEventListener('mouseleave', startDualSliders);
-  }
-});
-
-// =========================================================
-// BRIDGE FUNCTION TO LINK SLIDER CARDS TO YOUR ZOOM ENGINE
-// =========================================================
-let currentPamphletList = [];
-let currentPamphletIndex = 0;
-
-function openPamphletList(imageList, index) {
-  currentPamphletList = imageList;
-  if (typeof openPamphletZoom === 'function') {
-    openPamphletZoom(index); // Triggers your full Zoom & Drag Engine!
-  }
-}
-
-// Global DOM initialization
-document.addEventListener('DOMContentLoaded', () => {
-  startDualSliders();
-});
-
-// ESC Key Listener to Close Lightbox
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && typeof closePamphletZoom === 'function') {
-    closePamphletZoom(e);
   }
 });
