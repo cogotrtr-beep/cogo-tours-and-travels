@@ -27,7 +27,57 @@
       <button class="hero-btn secondary" onclick="openCategoryModal('ticket')">🎟️ Book Tickets</button>
     </div>
   </header>
+<!-- =========================================================
+     ONGOING & UPCOMING TOURS (HORIZONTAL AUTO-SLIDER)
+========================================================= -->
+<section class="section live-tours-section" id="live-tours">
+  <div class="hub-header text-center">
+    <span class="live-badge">🔴 LIVE DEPARTURES</span>
+    <h2>Ongoing &amp; Upcoming Tours</h2>
+    <p class="section-sub">Real-time group departures, fixed departures, and active itineraries</p>
+  </div>
 
+  <div class="slider-wrapper" id="liveTourSliderWrapper">
+    <button class="slider-nav slider-prev" onclick="moveSlide(-1)">&#10094;</button>
+    
+    <div class="slider-track" id="liveTourTrack">
+      <!-- Pamphlet Slide 1 -->
+      <div class="slide-card" onclick="openPamphletLightbox('Images/images/chennai-main.png')">
+        <img src="Images/images/chennai-main.png" alt="Chennai Heritage Tour" loading="lazy">
+        <div class="slide-overlay">
+          <span class="status-tag ongoing">Ongoing</span>
+          <h4>Chennai Cultural Trail</h4>
+          <p>3 Days • March 2026</p>
+        </div>
+      </div>
+
+      <!-- Pamphlet Slide 2 -->
+      <div class="slide-card" onclick="openPamphletLightbox('Images/images/pilgrim-main.png')">
+        <img src="Images/images/pilgrim-main.png" alt="Pilgrim Special" loading="lazy">
+        <div class="slide-overlay">
+          <span class="status-tag upcoming">Filling Fast</span>
+          <h4>Tirupati &amp; Kanchi Circuit</h4>
+          <p>2 Days • Weekend Special</p>
+        </div>
+      </div>
+
+      <!-- Pamphlet Slide 3 -->
+      <div class="slide-card" onclick="openPamphletLightbox('Images/images/south-main.png')">
+        <img src="Images/images/south-main.png" alt="Kerala Backwaters" loading="lazy">
+        <div class="slide-overlay">
+          <span class="status-tag upcoming">Upcoming</span>
+          <h4>Misty Munnar &amp; Alleppey</h4>
+          <p>5 Days • Booking Open</p>
+        </div>
+      </div>
+
+      <!-- Add more slides as needed -->
+    </div>
+
+    <button class="slider-nav slider-next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+</section>
+  
   <!-- =========================================================
        1. OUR SERVICES SECTION
   ========================================================= -->
