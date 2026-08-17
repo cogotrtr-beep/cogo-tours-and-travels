@@ -227,11 +227,7 @@ const defaultCategoryInfo = {
 /* =========================================================
    2. DOM HELPER FUNCTIONS & GALLERIES
 ========================================================= */
-/* =========================================================
-   2. DOM HELPER FUNCTIONS & GALLERIES
-========================================================= */
 
-// --- ADD THE NEW CODE HERE ---
 function closeModal() {
   const enquiryModal = document.getElementById("enquiryModal");
   if (enquiryModal) {
@@ -258,11 +254,7 @@ function initModalCloseButtons() {
     });
   });
 }
-// -----------------------------
 
-function createPamphletGallery(images) {
-  // ... existing code ...
-}
 function createPamphletGallery(images) {
   if (!images || images.length === 0) return '';
   
