@@ -227,7 +227,42 @@ const defaultCategoryInfo = {
 /* =========================================================
    2. DOM HELPER FUNCTIONS & GALLERIES
 ========================================================= */
+/* =========================================================
+   2. DOM HELPER FUNCTIONS & GALLERIES
+========================================================= */
 
+// --- ADD THE NEW CODE HERE ---
+function closeModal() {
+  const enquiryModal = document.getElementById("enquiryModal");
+  if (enquiryModal) {
+    enquiryModal.classList.remove("show");
+    enquiryModal.style.display = "none";
+    enquiryModal.style.opacity = "0";
+    enquiryModal.style.pointerEvents = "none";
+  }
+
+  // Restore background scrolling
+  document.body.style.overflow = "";
+}
+
+function initModalCloseButtons() {
+  const closeButtons = document.querySelectorAll(
+    "#enquiryModal .close, #enquiryModal .modal-close, #enquiryModal .close-btn, .modal .close"
+  );
+
+  closeButtons.forEach(btn => {
+    btn.removeEventListener("click", closeModal);
+    btn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      closeModal();
+    });
+  });
+}
+// -----------------------------
+
+function createPamphletGallery(images) {
+  // ... existing code ...
+}
 function createPamphletGallery(images) {
   if (!images || images.length === 0) return '';
   
