@@ -560,3 +560,64 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "-") zoomOut();
   }
 });
+// =========================================================
+// ONGOING TOURS AUTO-SLIDER & KEYBOARD LOGIC
+// =========================================================
+const track = document.getElementById('liveTourTrack');
+const wrapper = document.getElementById('liveTourSliderWrapper');
+let autoSlideInterval;
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(() => {
+    if (track) {
+      const cardWidth = track.querySelector('.slide-card').offsetWidth + 20;
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }
+  }, 2000); // Scrolls every 2 seconds
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+}
+
+function moveSlide(direction) {
+  if (track) {
+    const cardWidth = track.querySelector('.slide-card').offsetWidth + 20;
+    track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+}
+
+// Pause scrolling on mouse hover / touch start
+if (wrapper) {
+  wrapper.addEventListener('mouseenter', stopAutoSlide);
+  wrapper.addEventListener('mouseleave', startAutoSlide);
+  wrapper.addEventListener('touchstart', stopAutoSlide, { passive: true });
+  wrapper.addEventListener('touchend', startAutoSlide, { passive: true });
+}
+
+// Open Image in Lightbox Modal
+function openPamphletLightbox(imgSrc) {
+  const lightbox = document.getElementById('pamphletLightbox');
+  const lightboxImg = document.getElementById('lightboxImage');
+  if (lightbox && lightboxImg) {
+    lightboxImg.src = imgSrc;
+    lightbox.style.display = 'flex';
+  }
+}
+
+// Global Keyboard Listener (Esc key to close lightbox)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const lightbox = document.getElementById('pamphletLightbox');
+    const modal = document.getElementById('enquiryModal');
+    if (lightbox) lightbox.style.display = 'none';
+    if (modal) modal.style.display = 'none';
+  }
+});
+
+// Start slider on load
+document.addEventListener('DOMContentLoaded', startAutoSlide);
