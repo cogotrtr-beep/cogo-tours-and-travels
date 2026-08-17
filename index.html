@@ -28,145 +28,124 @@
     </div>
   </header>
 
-<!-- =========================================================
-     ONGOING TOURS (SIDE-BY-SIDE DUAL CAROUSEL & TALL CARDS)
-========================================================= -->
-<section class="section live-tours-wrapper" id="ongoing-tours">
-  
-  <div class="ongoing-dual-grid">
+  <!-- =========================================================
+       ONGOING TOURS (SIDE-BY-SIDE DUAL CAROUSEL & TALL CARDS)
+  ========================================================= -->
+  <section class="section live-tours-wrapper" id="ongoing-tours">
     
-    <!-- LEFT COLUMN: DOMESTIC TOURS -->
-    <div class="ongoing-column">
-      <div class="hub-header compact-header">
-        <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
-        <h2 class="compact-title">Ongoing Domestic Tours</h2>
-        <p class="compact-sub">Fixed departures &amp; group trails</p>
-      </div>
-
-      <div class="slider-wrapper" id="domesticSliderWrapper">
-        <button class="slider-nav slider-prev" onclick="moveSlide('domesticTrack', -1)">&#10094;</button>
-        
-        <div class="slider-track" id="domesticTrack">
-          <!-- Slide 1 (Index 0) -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
-            <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag ongoing">Ongoing</span>
-              <h4>Chennai Heritage Trail</h4>
-              <p>3 Days • March 2026</p>
-            </div>
-          </div>
-
-          <!-- Slide 2 (Index 1) -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
-            <img src="Images/images/pilgrim-main.png" alt="Pilgrim Special" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Filling Fast</span>
-              <h4>Tirupati &amp; Kanchi</h4>
-              <p>2 Days • Weekend</p>
-            </div>
-          </div>
-
-          <!-- Slide 3 (Index 2) -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
-            <img src="Images/images/south-main.png" alt="Munnar Special" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Upcoming</span>
-              <h4>Misty Munnar</h4>
-              <p>5 Days • Booking Open</p>
-            </div>
-          </div>
+    <div class="ongoing-dual-grid">
+      
+      <!-- LEFT COLUMN: DOMESTIC TOURS -->
+      <div class="ongoing-column">
+        <div class="hub-header compact-header">
+          <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
+          <h2 class="compact-title">Ongoing Domestic Tours</h2>
+          <p class="compact-sub">Fixed departures &amp; group trails</p>
         </div>
 
-        <button class="slider-nav slider-next" onclick="moveSlide('domesticTrack', 1)">&#10095;</button>
+        <div class="slider-wrapper" id="domesticSliderWrapper">
+          <button class="slider-nav slider-prev" onclick="moveSlide('domesticTrack', -1)">&#10094;</button>
+          
+          <div class="slider-track" id="domesticTrack">
+            <!-- Slide 1 (Index 0) -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
+              <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag ongoing">Ongoing</span>
+                <h4>Chennai Heritage Trail</h4>
+                <p>3 Days • March 2026</p>
+              </div>
+            </div>
+
+            <!-- Slide 2 (Index 1) -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
+              <img src="Images/images/pilgrim-main.png" alt="Pilgrim Special" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Filling Fast</span>
+                <h4>Tirupati &amp; Kanchi</h4>
+                <p>2 Days • Weekend</p>
+              </div>
+            </div>
+
+            <!-- Slide 3 (Index 2) -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
+              <img src="Images/images/south-main.png" alt="Munnar Special" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Upcoming</span>
+                <h4>Misty Munnar</h4>
+                <p>5 Days • Booking Open</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="slider-nav slider-next" onclick="moveSlide('domesticTrack', 1)">&#10095;</button>
+        </div>
       </div>
-    </div>
 
-    <!-- RIGHT COLUMN: INTERNATIONAL TOURS -->
-    <div class="ongoing-column">
-      <div class="hub-header compact-header">
-        <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
-        <h2 class="compact-title">Ongoing International Tours</h2>
-        <p class="compact-sub">Popular worldwide getaways</p>
-      </div>
-
-      <div class="slider-wrapper" id="intlSliderWrapper">
-        <button class="slider-nav slider-prev" onclick="moveSlide('intlTrack', -1)">&#10094;</button>
-        
-        <div class="slider-track" id="intlTrack">
-          <!-- Slide 1 (Index 0) -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
-            <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag ongoing">Ongoing</span>
-              <h4>Dubai Extravaganza</h4>
-              <p>5 Days • Special Deal</p>
-            </div>
-          </div>
-
-          <!-- Slide 2 (Index 1) -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
-            <img src="Images/images/tourinternational.png" alt="Singapore" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Upcoming</span>
-              <h4>Singapore Escape</h4>
-              <p>6 Days • Booking Open</p>
-            </div>
-          </div>
-
-          <!-- Slide 3 (Index 2) -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
-            <img src="Images/images/tourinternational.png" alt="Europe Tour" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Upcoming</span>
-              <h4>European Highlights</h4>
-              <p>10 Days • Group Tour</p>
-            </div>
-          </div>
+      <!-- RIGHT COLUMN: INTERNATIONAL TOURS -->
+      <div class="ongoing-column">
+        <div class="hub-header compact-header">
+          <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
+          <h2 class="compact-title">Ongoing International Tours</h2>
+          <p class="compact-sub">Popular worldwide getaways</p>
         </div>
 
-        <button class="slider-nav slider-next" onclick="moveSlide('intlTrack', 1)">&#10095;</button>
+        <div class="slider-wrapper" id="intlSliderWrapper">
+          <button class="slider-nav slider-prev" onclick="moveSlide('intlTrack', -1)">&#10094;</button>
+          
+          <div class="slider-track" id="intlTrack">
+            <!-- Slide 1 (Index 0) -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
+              <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag ongoing">Ongoing</span>
+                <h4>Dubai Extravaganza</h4>
+                <p>5 Days • Special Deal</p>
+              </div>
+            </div>
+
+            <!-- Slide 2 (Index 1) -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
+              <img src="Images/images/tourinternational.png" alt="Singapore" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Upcoming</span>
+                <h4>Singapore Escape</h4>
+                <p>6 Days • Booking Open</p>
+              </div>
+            </div>
+
+            <!-- Slide 3 (Index 2) -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
+              <img src="Images/images/tourinternational.png" alt="Europe Tour" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Upcoming</span>
+                <h4>European Highlights</h4>
+                <p>10 Days • Group Tour</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="slider-nav slider-next" onclick="moveSlide('intlTrack', 1)">&#10095;</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SINGLE CUSTOMER JOURNEY FORM ACTION BAR -->
+    <div class="ongoing-action-bar">
+      <div class="action-info">
+        <h3>Interested in an ongoing departure or custom dates?</h3>
+        <p>Connect with our team directly for instant seat availability and tailored plans.</p>
+      </div>
+      <div class="action-buttons">
+        <button onclick="openCategoryModal('journey')" class="quick-btn btn-primary-single">
+          📋 Customer Journey Form
+        </button>
       </div>
     </div>
 
-  </div>
+  </section>
 
-  <!-- SINGLE CUSTOMER JOURNEY FORM ACTION BAR -->
-  <div class="ongoing-action-bar">
-    <div class="action-info">
-      <h3>Interested in an ongoing departure or custom dates?</h3>
-      <p>Connect with our team directly for instant seat availability and tailored plans.</p>
-    </div>
-    <div class="action-buttons">
-      <button onclick="openCategoryModal('journey')" class="quick-btn btn-primary-single">
-        📋 Customer Journey Form
-      </button>
-    </div>
-  </div>
-
-</section>
-
-<!-- FULL-FEATURED LIGHTBOX MODAL (SUPPORTS ZOOM, DRAG & NAVIGATION) -->
-<div id="pamphletLightbox" class="pamphlet-modal" onclick="closePamphletZoom(event)">
-  <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
-  
-  <!-- Navigation Arrows -->
-  <button class="pamphlet-nav pamphlet-prev" onclick="prevPamphlet(event)">&#10094;</button>
-  <button class="pamphlet-nav pamphlet-next" onclick="nextPamphlet(event)">&#10095;</button>
-
-  <!-- Image Container -->
-  <div class="pamphlet-image-container">
-    <img class="pamphlet-modal-content" id="lightboxImage" alt="Pamphlet Zoom View">
-  </div>
-
-  <!-- Zoom Control Buttons -->
-  <div class="pamphlet-zoom-controls" onclick="event.stopPropagation()">
-    <button onclick="zoomIn()">🔍+</button>
-    <button onclick="resetZoom()">100%</button>
-    <button onclick="zoomOut()">🔍-</button>
-  </div>
-</div>
-  
   <!-- =========================================================
        1. OUR SERVICES SECTION
   ========================================================= -->
@@ -186,7 +165,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🚕</span>
           <h3>Cab Services</h3>
-          <p>Local & outstation rentals with professional drivers.</p>
+          <p>Local &amp; outstation rentals with professional drivers.</p>
           <button class="hub-btn" onclick="openCategoryModal('cabs')">View Cab Tariff</button>
         </div>
       </article>
@@ -252,7 +231,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🛕</span>
           <h3>Tour Pilgrim</h3>
-          <p>Shirdi Sai Darshan, Tirupati, Kanchipuram & spiritual circuits.</p>
+          <p>Shirdi Sai Darshan, Tirupati, Kanchipuram &amp; spiritual circuits.</p>
           <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Packages</button>
         </div>
       </article>
@@ -265,7 +244,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🌴</span>
           <h3>Tour South India</h3>
-          <p>Kodaikanal misty hills, Kerala backwaters & Coorg escapes.</p>
+          <p>Kodaikanal misty hills, Kerala backwaters &amp; Coorg escapes.</p>
           <button class="hub-btn" onclick="openCategoryModal('south-india')">View Packages</button>
         </div>
       </article>
@@ -278,7 +257,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🏔️</span>
           <h3>Tour North India</h3>
-          <p>Royal palaces, Golden Triangle tours & snow peaks.</p>
+          <p>Royal palaces, Golden Triangle tours &amp; snow peaks.</p>
           <button class="hub-btn" onclick="openCategoryModal('north-india')">View Packages</button>
         </div>
       </article>
@@ -291,7 +270,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🏞️</span>
           <h3>Tour North East</h3>
-          <p>Gangtok, Darjeeling, Meghalaya & pristine valleys.</p>
+          <p>Gangtok, Darjeeling, Meghalaya &amp; pristine valleys.</p>
           <button class="hub-btn" onclick="openCategoryModal('north-east')">View Packages</button>
         </div>
       </article>
@@ -304,7 +283,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">🧭</span>
           <h3>Tour Rest of India</h3>
-          <p>Explore unique destinations across all states & territories.</p>
+          <p>Explore unique destinations across all states &amp; territories.</p>
           <button class="hub-btn" onclick="openCategoryModal('rest-of-india')">View Packages</button>
         </div>
       </article>
@@ -317,7 +296,7 @@
         <div class="hub-card-content">
           <span class="hub-icon">✈️</span>
           <h3>Tour International</h3>
-          <p>Unforgettable foreign trips to Dubai, Singapore & Europe.</p>
+          <p>Unforgettable foreign trips to Dubai, Singapore &amp; Europe.</p>
           <button class="hub-btn" onclick="openCategoryModal('international')">View Packages</button>
         </div>
       </article> 
@@ -382,12 +361,12 @@
         <div class="hub-card-content">
           <span class="hub-icon">🚘</span>
           <h3>Cogo Cabs</h3>
-          <p>Dedicated outstation & intercity cab packages.</p>
+          <p>Dedicated outstation &amp; intercity cab packages.</p>
           <button class="hub-btn" onclick="openCategoryModal('cabs')">View Rates</button>
         </div>
       </article>     
     
-    </div> <!-- Cleanly closes .hub-grid for packages -->
+    </div>
   </section>
 
   <!-- ABOUT US SECTION -->
@@ -425,7 +404,7 @@
             <span>Twitter</span>
           </a>
         </div>
-      </div> <!-- Closes .text-center correctly here so it doesn't wrap .contact-grid -->
+      </div>
 
       <div class="contact-grid">
         <!-- Contact Details Card -->
@@ -464,7 +443,7 @@
           </div>
         </div>
 
-        <!-- Embedded Google Map + Automatic Directions Button -->
+        <!-- Embedded Google Map -->
         <div class="map-wrapper">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA4MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
@@ -483,23 +462,25 @@
     </div>
   </section>
 
-  <!-- Dynamic Interactive Enquiry Modal -->
-  <div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <!-- =========================================================
+       DYNAMIC ENQUIRY & TARIFF MODAL (FOR ALL TABS/BUTTONS)
+  ========================================================= -->
+  <div id="enquiryModal" class="modal-overlay" onclick="closeCategoryModalOnOverlay(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
-      <button class="modal-close" type="button" onclick="closeModal()">&times;</button>
+      <button class="modal-close" type="button" onclick="closeCategoryModal()">&times;</button>
       
       <div class="modal-header">
         <h2 id="modalTitle">Plan Your Journey</h2>
         <p id="modalDescription" class="modal-desc"></p>
       </div>
 
-      <!-- Dynamic Filter Tabs (ECR, Pilgrim, City, etc.) -->
+      <!-- Dynamic Filter Tabs -->
       <div id="modalSubTabs" class="sub-tab-container"></div>
 
-      <!-- Tariff Cards & Destination Image Gallery -->
+      <!-- Tariff Cards & Gallery -->
       <div id="modalDynamicContent" class="modal-body-wrapper"></div>
 
-      <!-- Quick Lead Generation Form -->
+      <!-- Quick Lead Form -->
       <form id="queryForm" onsubmit="event.preventDefault();">
         <div class="form-grid">
           <div class="form-group">
@@ -528,37 +509,30 @@
     </div>
   </div>
 
-  <!-- Interactive Lightbox Modal (With Controls) -->
-  <div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
-    <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
+  <!-- =========================================================
+       FULL-FEATURED LIGHTBOX MODAL (FOR IMAGE ZOOM & DRAG)
+  ========================================================= -->
+  <div id="pamphletLightbox" class="pamphlet-modal" onclick="closePamphletZoom(event)">
+    <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
     
     <!-- Lightbox Navigation Arrows -->
-    <button class="lightbox-nav prev-btn" onclick="navigateLightbox(-1, event)">&#10094;</button>
-    <button class="lightbox-nav next-btn" onclick="navigateLightbox(1, event)">&#10095;</button>
+    <button class="pamphlet-nav pamphlet-prev" onclick="navigateLightbox(-1, event)">&#10094;</button>
+    <button class="pamphlet-nav pamphlet-next" onclick="navigateLightbox(1, event)">&#10095;</button>
 
     <!-- Image Container -->
-    <div class="lightbox-img-container" id="lightboxContainer" onclick="event.stopPropagation()">
-      <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
+    <div class="pamphlet-modal-container" onclick="event.stopPropagation()">
+      <img class="pamphlet-modal-content" id="lightboxImage" alt="Pamphlet Zoom View">
     </div>
 
     <!-- Zoom Control Buttons -->
-    <div class="zoom-controls" onclick="event.stopPropagation()">
-      <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
-      <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
-      <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
+    <div class="pamphlet-zoom-controls" onclick="event.stopPropagation()">
+      <button onclick="zoomIn()">🔍 +</button>
+      <button onclick="zoomOut()">🔍 -</button>
+      <button onclick="resetZoom()">🔄 Reset</button>
     </div>
   </div>
 
-  <!-- Pamphlet Zoom Modal View -->
-  <div id="imageModal" class="pamphlet-modal">
-    <span class="pamphlet-close">&times;</span>
-    <div class="pamphlet-modal-container">
-      <img class="pamphlet-modal-content" id="imgModalSrc" alt="Pamphlet Zoom View">
-    </div>
-    <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
-  </div>
-
-  <!-- JavaScript Execution at End of Body -->
+  <!-- JavaScript Execution -->
   <script src="script.js"></script>
 </body>
 </html>
