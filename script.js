@@ -446,6 +446,23 @@ function navigateLightbox(direction, e) {
   if (direction === -1) prevPamphlet(e);
   else if (direction === 1) nextPamphlet(e);
 }
+// =========================================================
+// BRIDGE FUNCTION FOR ONGOING SLIDER LIGHTBOX
+// =========================================================
+let currentPamphletList = [];
+let currentPamphletIndex = 0;
+
+function openPamphletList(imageList, index) {
+  currentPamphletList = imageList;
+  openPamphletZoom(index); // Triggers your full zoom/drag engine!
+}
+
+// Ensure ESC key closes your existing lightbox engine
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closePamphletZoom(e);
+  }
+});
 
 /* =========================================================
    EVENT LISTENERS & DRAG-TO-PAN CONTROLS
