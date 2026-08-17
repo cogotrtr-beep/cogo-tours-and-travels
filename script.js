@@ -651,3 +651,77 @@ document.addEventListener('keydown', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', startDualSliders);
+// =========================================================
+// ONGOING TOURS AUTO-SLIDER (3-SECOND INTERVAL)
+// =========================================================
+let domesticTimer, intlTimer;
+
+function startDualSliders() {
+  const domTrack = document.getElementById('domesticTrack');
+  const intlTrack = document.getElementById('intlTrack');
+
+  if (domTrack) {
+    domesticTimer = setInterval(() => autoScroll(domTrack), 3000); // 3 Seconds
+  }
+  if (intlTrack) {
+    intlTimer = setInterval(() => autoScroll(intlTrack), 3000); // 3 Seconds
+  }
+}
+
+function autoScroll(trackElement) {
+  const card = trackElement.querySelector('.slide-card');
+  if (!card) return;
+  
+  const cardWidth = card.offsetWidth + 12;
+  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
+    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    trackElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
+}
+
+function moveSlide(trackId, direction) {
+  const track = document.getElementById(trackId);
+  if (track) {
+    const card = track.querySelector('.slide-card');
+    const cardWidth = card.offsetWidth + 12;
+    track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
+}
+
+// Pause sliders when hovering over them
+['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
+  const elem = document.getElementById(id);
+  if (elem) {
+    elem.addEventListener('mouseenter', () => {
+      clearInterval(domesticTimer);
+      clearInterval(intlTimer);
+    });
+    elem.addEventListener('mouseleave', startDualSliders);
+  }
+});
+
+// =========================================================
+// BRIDGE FUNCTION TO LINK SLIDER CARDS TO YOUR ZOOM ENGINE
+// =========================================================
+let currentPamphletList = [];
+let currentPamphletIndex = 0;
+
+function openPamphletList(imageList, index) {
+  currentPamphletList = imageList;
+  if (typeof openPamphletZoom === 'function') {
+    openPamphletZoom(index); // Triggers your full Zoom & Drag Engine!
+  }
+}
+
+// Global DOM initialization
+document.addEventListener('DOMContentLoaded', () => {
+  startDualSliders();
+});
+
+// ESC Key Listener to Close Lightbox
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && typeof closePamphletZoom === 'function') {
+    closePamphletZoom(e);
+  }
+});
