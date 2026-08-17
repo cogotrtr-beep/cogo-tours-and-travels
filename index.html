@@ -28,26 +28,26 @@
     </div>
   </header>
 
-  <!-- =========================================================
-     ONGOING TOURS (SIDE-BY-SIDE DUAL CAROUSEL)
+ <!-- =========================================================
+     ONGOING TOURS (COMPACT HEADINGS & VERTICAL CARDS)
 ========================================================= -->
 <section class="section live-tours-wrapper" id="ongoing-tours">
   
   <div class="ongoing-dual-grid">
     
-    <!-- LEFT COLUMN: DOMESTIC TOURS -->
+    <!-- LEFT COLUMN: DOMESTIC -->
     <div class="ongoing-column">
-      <div class="hub-header text-center">
+      <div class="hub-header compact-header">
         <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
-        <h2>Ongoing Domestic Tours</h2>
-        <p class="section-sub">Fixed departures &amp; group trails</p>
+        <h2 class="compact-title">Ongoing Domestic Tours</h2>
+        <p class="compact-sub">Fixed departures &amp; group trails</p>
       </div>
 
       <div class="slider-wrapper" id="domesticSliderWrapper">
         <button class="slider-nav slider-prev" onclick="moveSlide('domesticTrack', -1)">&#10094;</button>
         
         <div class="slider-track" id="domesticTrack">
-          <div class="slide-card" data-img="Images/images/chennai-main.png">
+          <div class="slide-card" onclick="openPamphletLightbox('Images/images/chennai-main.png')">
             <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag ongoing">Ongoing</span>
@@ -56,7 +56,7 @@
             </div>
           </div>
 
-          <div class="slide-card" data-img="Images/images/pilgrim-main.png">
+          <div class="slide-card" onclick="openPamphletLightbox('Images/images/pilgrim-main.png')">
             <img src="Images/images/pilgrim-main.png" alt="Pilgrim Special" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Filling Fast</span>
@@ -65,7 +65,7 @@
             </div>
           </div>
 
-          <div class="slide-card" data-img="Images/images/south-main.png">
+          <div class="slide-card" onclick="openPamphletLightbox('Images/images/south-main.png')">
             <img src="Images/images/south-main.png" alt="Munnar Special" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
@@ -79,19 +79,19 @@
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: INTERNATIONAL TOURS -->
+    <!-- RIGHT COLUMN: INTERNATIONAL -->
     <div class="ongoing-column">
-      <div class="hub-header text-center">
+      <div class="hub-header compact-header">
         <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
-        <h2>Ongoing International Tours</h2>
-        <p class="section-sub">Popular worldwide getaways</p>
+        <h2 class="compact-title">Ongoing International Tours</h2>
+        <p class="compact-sub">Popular worldwide getaways</p>
       </div>
 
       <div class="slider-wrapper" id="intlSliderWrapper">
         <button class="slider-nav slider-prev" onclick="moveSlide('intlTrack', -1)">&#10094;</button>
         
         <div class="slider-track" id="intlTrack">
-          <div class="slide-card" data-img="Images/images/tourinternational.png">
+          <div class="slide-card" onclick="openPamphletLightbox('Images/images/tourinternational.png')">
             <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag ongoing">Ongoing</span>
@@ -100,7 +100,7 @@
             </div>
           </div>
 
-          <div class="slide-card" data-img="Images/images/tourinternational.png">
+          <div class="slide-card" onclick="openPamphletLightbox('Images/images/tourinternational.png')">
             <img src="Images/images/tourinternational.png" alt="Singapore" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
@@ -109,7 +109,7 @@
             </div>
           </div>
 
-          <div class="slide-card" data-img="Images/images/tourinternational.png">
+          <div class="slide-card" onclick="openPamphletLightbox('Images/images/tourinternational.png')">
             <img src="Images/images/tourinternational.png" alt="Europe Tour" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
@@ -125,23 +125,26 @@
 
   </div>
 
-  <!-- UNIFIED QUICK ACTION BAR BELOW BOTH -->
+  <!-- SINGLE CUSTOMER JOURNEY FORM ACTION BAR -->
   <div class="ongoing-action-bar">
     <div class="action-info">
       <h3>Interested in an ongoing departure or custom dates?</h3>
-      <p>Connect with our team directly for instant pricing, seat availability, and customized itineraries.</p>
+      <p>Connect with our team directly for instant seat availability and tailored plans.</p>
     </div>
     <div class="action-buttons">
-      <a href="https://wa.me/919884066830?text=Hi%20Cogo%20Tours,%20I%20want%20to%20enquire%20about%20Ongoing%20Tours!" target="_blank" class="quick-btn btn-whatsapp">
-        💬 WhatsApp Query
-      </a>
-      <button onclick="openCategoryModal('journey')" class="quick-btn btn-mail">
-        ✉️ Custom Journey Form
+      <button onclick="openCategoryModal('journey')" class="quick-btn btn-primary-single">
+        📋 Customer Journey Form
       </button>
     </div>
   </div>
 
 </section>
+
+<!-- BUILT-IN LIGHTBOX MODAL (Ensures images pop up properly) -->
+<div id="pamphletLightbox" class="pamphlet-modal" onclick="closePamphletLightbox()">
+  <span class="pamphlet-close">&times;</span>
+  <img class="pamphlet-modal-content" id="lightboxImage" alt="Pamphlet Full View">
+</div>
   
   <!-- =========================================================
        1. OUR SERVICES SECTION
