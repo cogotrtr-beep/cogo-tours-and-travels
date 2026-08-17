@@ -517,7 +517,6 @@ function moveSlide(trackId, direction) {
     track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
 }
-
 /* =========================================================
    6. GLOBAL INITIALIZATION & EVENT LISTENERS
 ========================================================= */
@@ -525,8 +524,19 @@ function moveSlide(trackId, direction) {
 document.addEventListener("DOMContentLoaded", function () {
   const { lightbox, img } = getLightboxElements();
 
-  // Initialize Sliders
+  // Initialize Sliders & Close Buttons
   startDualSliders();
+  initModalCloseButtons(); // <--- Added Step 2 initialization here
+
+  // Close modal when clicking outside on the background overlay
+  const enquiryModal = document.getElementById("enquiryModal");
+  if (enquiryModal) {
+    enquiryModal.addEventListener("click", function(e) {
+      if (e.target === enquiryModal) {
+        closeModal();
+      }
+    });
+  }
 
   // Pause Sliders on Hover
   ['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
