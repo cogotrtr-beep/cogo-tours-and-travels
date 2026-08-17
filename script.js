@@ -561,46 +561,85 @@ document.addEventListener("keydown", function(e) {
   }
 });
 // =========================================================
-// ONGOING TOURS AUTO-SLIDER & KEYBOARD LOGIC
+// DUAL SLIDER, TOUCH TAP & LIGHTBOX CONTROL
 // =========================================================
-const track = document.getElementById('liveTourTrack');
-const wrapper = document.getElementById('liveTourSliderWrapper');
-let autoSlideInterval;
+let domesticTimer, intlTimer;
 
-function startAutoSlide() {
-  autoSlideInterval = setInterval(() => {
-    if (track) {
-      const cardWidth = track.querySelector('.slide-card').offsetWidth + 20;
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
-        track.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
-      }
-    }
-  }, 2000); // Scrolls every 2 seconds
+function startDualSliders() {
+  const domTrack = document.getElementById('domesticTrack');
+  const intlTrack = document.getElementById('intlTrack');
+
+  if (domTrack) {
+    domesticTimer = setInterval(() => autoScroll(domTrack), 2000);
+  }
+  if (intlTrack) {
+    intlTimer = setInterval(() => autoScroll(intlTrack), 2000);
+  }
 }
 
-function stopAutoSlide() {
-  clearInterval(autoSlideInterval);
+function autoScroll(trackElement) {
+  const cardWidth = trackElement.querySelector('.slide-card').offsetWidth + 20;
+  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
+    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    trackElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
 }
 
-function moveSlide(direction) {
+function moveSlide(trackId, direction) {
+  const track = document.getElementById(trackId);
   if (track) {
     const cardWidth = track.querySelector('.slide-card').offsetWidth + 20;
     track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
 }
 
-// Pause scrolling on mouse hover / touch start
-if (wrapper) {
-  wrapper.addEventListener('mouseenter', stopAutoSlide);
-  wrapper.addEventListener('mouseleave', startAutoSlide);
-  wrapper.addEventListener('touchstart', stopAutoSlide, { passive: true });
-  wrapper.addEventListener('touchend', startAutoSlide, { passive: true });
-}
+// Pause/Resume on Hover
+['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
+  const elem = document.getElementById(id);
+  if (elem) {
+    elem.addEventListener('mouseenter', () => {
+      clearInterval(domesticTimer);
+      clearInterval(intlTimer);
+    });
+    elem.addEventListener('mouseleave', startDualSliders);
+  }
+});
 
-// Open Image in Lightbox Modal
-function openPamphletLightbox(imgSrc) {
+// Single Click (Desktop) & Double Tap (Mobile) Handler
+document.addEventListener('DOMContentLoaded', () => {
+  startDualSliders();
+
+  const cards = document.querySelectorAll('.slide-card');
+  cards.forEach(card => {
+    let lastTap = 0;
+
+    // Desktop Click
+    card.addEventListener('click', (e) => {
+      if (window.innerWidth > 768) {
+        const imgSrc = card.getAttribute('data-img');
+        triggerPosterLightbox(imgSrc);
+      }
+    });
+
+    // Mobile Double Tap
+    card.addEventListener('touchend', (e) => {
+      if (window.innerWidth <= 768) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        if (tapLength < 300 && tapLength > 0) {
+          const imgSrc = card.getAttribute('data-img');
+          triggerPosterLightbox(imgSrc);
+          e.preventDefault();
+        }
+        lastTap = currentTime;
+      }
+    });
+  });
+});
+
+// Trigger Lightbox Function
+function triggerPosterLightbox(imgSrc) {
   const lightbox = document.getElementById('pamphletLightbox');
   const lightboxImg = document.getElementById('lightboxImage');
   if (lightbox && lightboxImg) {
@@ -609,7 +648,7 @@ function openPamphletLightbox(imgSrc) {
   }
 }
 
-// Global Keyboard Listener (Esc key to close lightbox)
+// Global Keyboard Escape Key Listener
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     const lightbox = document.getElementById('pamphletLightbox');
@@ -618,6 +657,3 @@ document.addEventListener('keydown', (e) => {
     if (modal) modal.style.display = 'none';
   }
 });
-
-// Start slider on load
-document.addEventListener('DOMContentLoaded', startAutoSlide);
