@@ -140,10 +140,25 @@
 
 </section>
 
-<!-- BUILT-IN LIGHTBOX MODAL (Ensures images pop up properly) -->
-<div id="pamphletLightbox" class="pamphlet-modal" onclick="closePamphletLightbox()">
-  <span class="pamphlet-close">&times;</span>
-  <img class="pamphlet-modal-content" id="lightboxImage" alt="Pamphlet Full View">
+<!-- FULL-FEATURED LIGHTBOX MODAL (SUPPORTS ZOOM & NAVIGATION) -->
+<div id="pamphletLightbox" class="pamphlet-modal" onclick="closePamphletZoom(event)">
+  <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
+  
+  <!-- Navigation Arrows -->
+  <button class="pamphlet-nav pamphlet-prev" onclick="prevPamphlet(event)">&#10094;</button>
+  <button class="pamphlet-nav pamphlet-next" onclick="nextPamphlet(event)">&#10095;</button>
+
+  <!-- Image Container -->
+  <div class="pamphlet-image-container">
+    <img class="pamphlet-modal-content" id="lightboxImage" alt="Pamphlet Zoom View">
+  </div>
+
+  <!-- Zoom Control Buttons -->
+  <div class="pamphlet-zoom-controls" onclick="event.stopPropagation()">
+    <button onclick="zoomIn()">🔍+</button>
+    <button onclick="resetZoom()">100%</button>
+    <button onclick="zoomOut()">🔍-</button>
+  </div>
 </div>
   
   <!-- =========================================================
