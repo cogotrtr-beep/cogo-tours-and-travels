@@ -461,13 +461,13 @@
       </div>
     </div>
   </section>
-
-  <!-- =========================================================
-       DYNAMIC ENQUIRY & TARIFF MODAL (FOR ALL TABS/BUTTONS)
+<!-- =========================================================
+        DYNAMIC ENQUIRY & TARIFF MODAL (FOR ALL TABS/BUTTONS)
   ========================================================= -->
-  <div id="enquiryModal" class="modal-overlay" onclick="closeCategoryModalOnOverlay(event)">
+  <div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
-      <button class="modal-close" type="button" onclick="closeCategoryModal()">&times;</button>
+      <!-- Changed function name to closeModal() below -->
+      <button class="modal-close" type="button" onclick="closeModal()">&times;</button>
       
       <div class="modal-header">
         <h2 id="modalTitle">Plan Your Journey</h2>
@@ -508,7 +508,7 @@
       </form>
     </div>
   </div>
-
+  
   <!-- =========================================================
        FULL-FEATURED LIGHTBOX MODAL (FOR IMAGE ZOOM & DRAG)
   ========================================================= -->
