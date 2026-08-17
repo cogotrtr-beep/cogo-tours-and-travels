@@ -27,96 +27,105 @@
       <button class="hero-btn secondary" onclick="openCategoryModal('ticket')">🎟️ Book Tickets</button>
     </div>
   </header>
-<!-- =========================================================
-     ONGOING TOURS (DOMESTIC & INTERNATIONAL SECTIONS)
+
+  <!-- =========================================================
+     ONGOING TOURS (SIDE-BY-SIDE DUAL CAROUSEL)
 ========================================================= -->
 <section class="section live-tours-wrapper" id="ongoing-tours">
   
-  <!-- 1. DOMESTIC SECTION -->
-  <div class="ongoing-group">
-    <div class="hub-header text-center">
-      <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
-      <h2>Ongoing Domestic Tours</h2>
-      <p class="section-sub">Active fixed departures across South, North &amp; East India</p>
-    </div>
-
-    <div class="slider-wrapper" id="domesticSliderWrapper">
-      <button class="slider-nav slider-prev" onclick="moveSlide('domesticTrack', -1)">&#10094;</button>
-      
-      <div class="slider-track" id="domesticTrack">
-        <!-- Poster 1 -->
-        <div class="slide-card" data-img="Images/images/chennai-main.png">
-          <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
-          <div class="slide-overlay">
-            <span class="status-tag ongoing">Ongoing</span>
-            <h4>Chennai Heritage Trail</h4>
-            <p>3 Days • March 2026</p>
-          </div>
-        </div>
-
-        <!-- Poster 2 -->
-        <div class="slide-card" data-img="Images/images/pilgrim-main.png">
-          <img src="Images/images/pilgrim-main.png" alt="Pilgrim Circuit" loading="lazy">
-          <div class="slide-overlay">
-            <span class="status-tag upcoming">Filling Fast</span>
-            <h4>Tirupati &amp; Kanchi Circuit</h4>
-            <p>2 Days • Weekend Special</p>
-          </div>
-        </div>
-
-        <!-- Poster 3 -->
-        <div class="slide-card" data-img="Images/images/south-main.png">
-          <img src="Images/images/south-main.png" alt="South India Special" loading="lazy">
-          <div class="slide-overlay">
-            <span class="status-tag upcoming">Upcoming</span>
-            <h4>Misty Munnar &amp; Alleppey</h4>
-            <p>5 Days • Booking Open</p>
-          </div>
-        </div>
+  <div class="ongoing-dual-grid">
+    
+    <!-- LEFT COLUMN: DOMESTIC TOURS -->
+    <div class="ongoing-column">
+      <div class="hub-header text-center">
+        <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
+        <h2>Ongoing Domestic Tours</h2>
+        <p class="section-sub">Fixed departures &amp; group trails</p>
       </div>
 
-      <button class="slider-nav slider-next" onclick="moveSlide('domesticTrack', 1)">&#10095;</button>
-    </div>
-  </div>
+      <div class="slider-wrapper" id="domesticSliderWrapper">
+        <button class="slider-nav slider-prev" onclick="moveSlide('domesticTrack', -1)">&#10094;</button>
+        
+        <div class="slider-track" id="domesticTrack">
+          <div class="slide-card" data-img="Images/images/chennai-main.png">
+            <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
+            <div class="slide-overlay">
+              <span class="status-tag ongoing">Ongoing</span>
+              <h4>Chennai Heritage Trail</h4>
+              <p>3 Days • March 2026</p>
+            </div>
+          </div>
 
-  <!-- 2. INTERNATIONAL SECTION -->
-  <div class="ongoing-group" style="margin-top: 40px;">
-    <div class="hub-header text-center">
-      <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
-      <h2>Ongoing International Tours</h2>
-      <p class="section-sub">Popular worldwide group departures and holiday escapes</p>
-    </div>
+          <div class="slide-card" data-img="Images/images/pilgrim-main.png">
+            <img src="Images/images/pilgrim-main.png" alt="Pilgrim Special" loading="lazy">
+            <div class="slide-overlay">
+              <span class="status-tag upcoming">Filling Fast</span>
+              <h4>Tirupati &amp; Kanchi</h4>
+              <p>2 Days • Weekend</p>
+            </div>
+          </div>
 
-    <div class="slider-wrapper" id="intlSliderWrapper">
-      <button class="slider-nav slider-prev" onclick="moveSlide('intlTrack', -1)">&#10094;</button>
-      
-      <div class="slider-track" id="intlTrack">
-        <!-- Poster 1 -->
-        <div class="slide-card" data-img="Images/images/tourinternational.png">
-          <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
-          <div class="slide-overlay">
-            <span class="status-tag ongoing">Ongoing</span>
-            <h4>Dubai Extravaganza</h4>
-            <p>5 Days • Special Deal</p>
+          <div class="slide-card" data-img="Images/images/south-main.png">
+            <img src="Images/images/south-main.png" alt="Munnar Special" loading="lazy">
+            <div class="slide-overlay">
+              <span class="status-tag upcoming">Upcoming</span>
+              <h4>Misty Munnar</h4>
+              <p>5 Days • Booking Open</p>
+            </div>
           </div>
         </div>
 
-        <!-- Poster 2 -->
-        <div class="slide-card" data-img="Images/images/tourinternational.png">
-          <img src="Images/images/tourinternational.png" alt="Singapore Escape" loading="lazy">
-          <div class="slide-overlay">
-            <span class="status-tag upcoming">Upcoming</span>
-            <h4>Singapore &amp; Malaysia</h4>
-            <p>6 Days • Booking Open</p>
-          </div>
-        </div>
+        <button class="slider-nav slider-next" onclick="moveSlide('domesticTrack', 1)">&#10095;</button>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: INTERNATIONAL TOURS -->
+    <div class="ongoing-column">
+      <div class="hub-header text-center">
+        <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
+        <h2>Ongoing International Tours</h2>
+        <p class="section-sub">Popular worldwide getaways</p>
       </div>
 
-      <button class="slider-nav slider-next" onclick="moveSlide('intlTrack', 1)">&#10095;</button>
+      <div class="slider-wrapper" id="intlSliderWrapper">
+        <button class="slider-nav slider-prev" onclick="moveSlide('intlTrack', -1)">&#10094;</button>
+        
+        <div class="slider-track" id="intlTrack">
+          <div class="slide-card" data-img="Images/images/tourinternational.png">
+            <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
+            <div class="slide-overlay">
+              <span class="status-tag ongoing">Ongoing</span>
+              <h4>Dubai Extravaganza</h4>
+              <p>5 Days • Special Deal</p>
+            </div>
+          </div>
+
+          <div class="slide-card" data-img="Images/images/tourinternational.png">
+            <img src="Images/images/tourinternational.png" alt="Singapore" loading="lazy">
+            <div class="slide-overlay">
+              <span class="status-tag upcoming">Upcoming</span>
+              <h4>Singapore Escape</h4>
+              <p>6 Days • Booking Open</p>
+            </div>
+          </div>
+
+          <div class="slide-card" data-img="Images/images/tourinternational.png">
+            <img src="Images/images/tourinternational.png" alt="Europe Tour" loading="lazy">
+            <div class="slide-overlay">
+              <span class="status-tag upcoming">Upcoming</span>
+              <h4>European Highlights</h4>
+              <p>10 Days • Group Tour</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="slider-nav slider-next" onclick="moveSlide('intlTrack', 1)">&#10095;</button>
+      </div>
     </div>
+
   </div>
 
-  <!-- UNIFIED QUICK ACTION TAB BELOW BOTH SECTIONS -->
+  <!-- UNIFIED QUICK ACTION BAR BELOW BOTH -->
   <div class="ongoing-action-bar">
     <div class="action-info">
       <h3>Interested in an ongoing departure or custom dates?</h3>
