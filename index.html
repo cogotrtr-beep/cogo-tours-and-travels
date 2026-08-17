@@ -28,14 +28,14 @@
     </div>
   </header>
 
- <!-- =========================================================
-     ONGOING TOURS (COMPACT HEADINGS & VERTICAL CARDS)
+<!-- =========================================================
+     ONGOING TOURS (SIDE-BY-SIDE DUAL CAROUSEL & TALL CARDS)
 ========================================================= -->
 <section class="section live-tours-wrapper" id="ongoing-tours">
   
   <div class="ongoing-dual-grid">
     
-    <!-- LEFT COLUMN: DOMESTIC -->
+    <!-- LEFT COLUMN: DOMESTIC TOURS -->
     <div class="ongoing-column">
       <div class="hub-header compact-header">
         <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
@@ -46,17 +46,19 @@
       <div class="slider-wrapper" id="domesticSliderWrapper">
         <button class="slider-nav slider-prev" onclick="moveSlide('domesticTrack', -1)">&#10094;</button>
         
-        <!-- Example Domestic Slide -->
-<div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
-  <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
-  <div class="slide-overlay">
-    <span class="status-tag ongoing">Ongoing</span>
-    <h4>Chennai Heritage Trail</h4>
-    <p>3 Days • March 2026</p>
-  </div>
-</div>
+        <div class="slider-track" id="domesticTrack">
+          <!-- Slide 1 (Index 0) -->
+          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
+            <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
+            <div class="slide-overlay">
+              <span class="status-tag ongoing">Ongoing</span>
+              <h4>Chennai Heritage Trail</h4>
+              <p>3 Days • March 2026</p>
+            </div>
+          </div>
 
-          <div class="slide-card" onclick="openPamphletLightbox('Images/images/pilgrim-main.png')">
+          <!-- Slide 2 (Index 1) -->
+          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
             <img src="Images/images/pilgrim-main.png" alt="Pilgrim Special" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Filling Fast</span>
@@ -65,7 +67,8 @@
             </div>
           </div>
 
-          <div class="slide-card" onclick="openPamphletLightbox('Images/images/south-main.png')">
+          <!-- Slide 3 (Index 2) -->
+          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
             <img src="Images/images/south-main.png" alt="Munnar Special" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
@@ -79,7 +82,7 @@
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: INTERNATIONAL -->
+    <!-- RIGHT COLUMN: INTERNATIONAL TOURS -->
     <div class="ongoing-column">
       <div class="hub-header compact-header">
         <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
@@ -91,7 +94,8 @@
         <button class="slider-nav slider-prev" onclick="moveSlide('intlTrack', -1)">&#10094;</button>
         
         <div class="slider-track" id="intlTrack">
-          <div class="slide-card" onclick="openPamphletLightbox('Images/images/tourinternational.png')">
+          <!-- Slide 1 (Index 0) -->
+          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
             <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag ongoing">Ongoing</span>
@@ -100,7 +104,8 @@
             </div>
           </div>
 
-          <div class="slide-card" onclick="openPamphletLightbox('Images/images/tourinternational.png')">
+          <!-- Slide 2 (Index 1) -->
+          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
             <img src="Images/images/tourinternational.png" alt="Singapore" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
@@ -109,7 +114,8 @@
             </div>
           </div>
 
-          <div class="slide-card" onclick="openPamphletLightbox('Images/images/tourinternational.png')">
+          <!-- Slide 3 (Index 2) -->
+          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
             <img src="Images/images/tourinternational.png" alt="Europe Tour" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
@@ -140,7 +146,7 @@
 
 </section>
 
-<!-- FULL-FEATURED LIGHTBOX MODAL (SUPPORTS ZOOM & NAVIGATION) -->
+<!-- FULL-FEATURED LIGHTBOX MODAL (SUPPORTS ZOOM, DRAG & NAVIGATION) -->
 <div id="pamphletLightbox" class="pamphlet-modal" onclick="closePamphletZoom(event)">
   <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
   
