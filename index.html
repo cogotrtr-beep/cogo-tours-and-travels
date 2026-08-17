@@ -46,15 +46,15 @@
       <div class="slider-wrapper" id="domesticSliderWrapper">
         <button class="slider-nav slider-prev" onclick="moveSlide('domesticTrack', -1)">&#10094;</button>
         
-        <div class="slider-track" id="domesticTrack">
-          <div class="slide-card" onclick="openPamphletLightbox('Images/images/chennai-main.png')">
-            <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag ongoing">Ongoing</span>
-              <h4>Chennai Heritage Trail</h4>
-              <p>3 Days • March 2026</p>
-            </div>
-          </div>
+        <!-- Example Domestic Slide -->
+<div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
+  <img src="Images/images/chennai-main.png" alt="Chennai Tour" loading="lazy">
+  <div class="slide-overlay">
+    <span class="status-tag ongoing">Ongoing</span>
+    <h4>Chennai Heritage Trail</h4>
+    <p>3 Days • March 2026</p>
+  </div>
+</div>
 
           <div class="slide-card" onclick="openPamphletLightbox('Images/images/pilgrim-main.png')">
             <img src="Images/images/pilgrim-main.png" alt="Pilgrim Special" loading="lazy">
