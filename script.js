@@ -561,7 +561,7 @@ document.addEventListener("keydown", function(e) {
   }
 });
 // =========================================================
-// SIDE-BY-SIDE AUTO SLIDER (3-SECOND TIMING & LIGHTBOX)
+// ONGOING TOURS CAROUSEL & LIGHTBOX MODAL
 // =========================================================
 let domesticTimer, intlTimer;
 
@@ -570,10 +570,10 @@ function startDualSliders() {
   const intlTrack = document.getElementById('intlTrack');
 
   if (domTrack) {
-    domesticTimer = setInterval(() => autoScroll(domTrack), 3000); // 3 seconds
+    domesticTimer = setInterval(() => autoScroll(domTrack), 3000);
   }
   if (intlTrack) {
-    intlTimer = setInterval(() => autoScroll(intlTrack), 3000); // 3 seconds
+    intlTimer = setInterval(() => autoScroll(intlTrack), 3000);
   }
 }
 
@@ -581,7 +581,7 @@ function autoScroll(trackElement) {
   const card = trackElement.querySelector('.slide-card');
   if (!card) return;
   
-  const cardWidth = card.offsetWidth + 15; // Width + Gap
+  const cardWidth = card.offsetWidth + 12;
   if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
     trackElement.scrollTo({ left: 0, behavior: 'smooth' });
   } else {
@@ -593,12 +593,12 @@ function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
   if (track) {
     const card = track.querySelector('.slide-card');
-    const cardWidth = card.offsetWidth + 15;
+    const cardWidth = card.offsetWidth + 12;
     track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
 }
 
-// Pause sliders on hover
+// Hover pause
 ['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
   const elem = document.getElementById(id);
   if (elem) {
@@ -610,37 +610,8 @@ function moveSlide(trackId, direction) {
   }
 });
 
-// Single-click (Desktop) & Double-tap (Mobile) poster zoom trigger
-document.addEventListener('DOMContentLoaded', () => {
-  startDualSliders();
-
-  const cards = document.querySelectorAll('.slide-card');
-  cards.forEach(card => {
-    let lastTap = 0;
-
-    card.addEventListener('click', (e) => {
-      if (window.innerWidth > 768) {
-        const imgSrc = card.getAttribute('data-img');
-        triggerPosterLightbox(imgSrc);
-      }
-    });
-
-    card.addEventListener('touchend', (e) => {
-      if (window.innerWidth <= 768) {
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTap;
-        if (tapLength < 300 && tapLength > 0) {
-          const imgSrc = card.getAttribute('data-img');
-          triggerPosterLightbox(imgSrc);
-          e.preventDefault();
-        }
-        lastTap = currentTime;
-      }
-    });
-  });
-});
-
-function triggerPosterLightbox(imgSrc) {
+// Lightbox Trigger & Keyboard Listener
+function openPamphletLightbox(imgSrc) {
   const lightbox = document.getElementById('pamphletLightbox');
   const lightboxImg = document.getElementById('lightboxImage');
   if (lightbox && lightboxImg) {
@@ -648,3 +619,18 @@ function triggerPosterLightbox(imgSrc) {
     lightbox.style.display = 'flex';
   }
 }
+
+function closePamphletLightbox() {
+  const lightbox = document.getElementById('pamphletLightbox');
+  if (lightbox) {
+    lightbox.style.display = 'none';
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closePamphletLightbox();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', startDualSliders);
