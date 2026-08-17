@@ -337,7 +337,29 @@ function openCategoryModal(catKey) {
 
   showModalElement("enquiryModal");
 }
+// --- MODAL CLOSE HANDLERS & ALIASES ---
+function closeModal() {
+  const enquiryModal = document.getElementById("enquiryModal");
+  if (enquiryModal) {
+    enquiryModal.classList.remove("show");
+    enquiryModal.style.display = "none";
+    enquiryModal.style.opacity = "0";
+    enquiryModal.style.pointerEvents = "none";
+  }
+  document.body.style.overflow = "";
+}
 
+function closeCategoryModal() {
+  closeModal();
+}
+
+function closeCategoryModalOnOverlay(e) {
+  if (e.target.id === "enquiryModal") closeModal();
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target.id === "enquiryModal") closeModal();
+}
 function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
   currentPamphletList = tab.images || [];
