@@ -228,6 +228,7 @@ const defaultCategoryInfo = {
    2. DOM HELPER FUNCTIONS & GALLERIES
 ========================================================= */
 
+// --- MODAL & OVERLAY CLOSE HANDLERS ---
 function closeModal() {
   const enquiryModal = document.getElementById("enquiryModal");
   if (enquiryModal) {
@@ -239,6 +240,23 @@ function closeModal() {
 
   // Restore background scrolling
   document.body.style.overflow = "";
+}
+
+// Aliases to seamlessly support your HTML's inline function calls
+function closeCategoryModal() {
+  closeModal();
+}
+
+function closeCategoryModalOnOverlay(e) {
+  if (e.target.id === "enquiryModal") {
+    closeModal();
+  }
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target.id === "enquiryModal") {
+    closeModal();
+  }
 }
 
 function initModalCloseButtons() {
@@ -255,6 +273,7 @@ function initModalCloseButtons() {
   });
 }
 
+// --- GALLERY & MODAL DISPLAY LOGIC ---
 function createPamphletGallery(images) {
   if (!images || images.length === 0) return '';
   
@@ -335,19 +354,6 @@ function showModalElement(modalId) {
     modal.style.pointerEvents = "auto";
   }
   document.body.style.overflow = "hidden";
-}
-
-function closeModal() {
-  const modal = document.getElementById("enquiryModal");
-  if (modal) {
-    modal.classList.remove("show");
-    modal.style.display = "none";
-  }
-  document.body.style.overflow = "";
-}
-
-function closeModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") closeModal();
 }
 
 /* =========================================================
