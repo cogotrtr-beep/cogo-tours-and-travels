@@ -561,7 +561,7 @@ document.addEventListener("keydown", function(e) {
   }
 });
 // =========================================================
-// DUAL SLIDER, TOUCH TAP & LIGHTBOX CONTROL
+// SIDE-BY-SIDE AUTO SLIDER (3-SECOND TIMING & LIGHTBOX)
 // =========================================================
 let domesticTimer, intlTimer;
 
@@ -570,15 +570,18 @@ function startDualSliders() {
   const intlTrack = document.getElementById('intlTrack');
 
   if (domTrack) {
-    domesticTimer = setInterval(() => autoScroll(domTrack), 2000);
+    domesticTimer = setInterval(() => autoScroll(domTrack), 3000); // 3 seconds
   }
   if (intlTrack) {
-    intlTimer = setInterval(() => autoScroll(intlTrack), 2000);
+    intlTimer = setInterval(() => autoScroll(intlTrack), 3000); // 3 seconds
   }
 }
 
 function autoScroll(trackElement) {
-  const cardWidth = trackElement.querySelector('.slide-card').offsetWidth + 20;
+  const card = trackElement.querySelector('.slide-card');
+  if (!card) return;
+  
+  const cardWidth = card.offsetWidth + 15; // Width + Gap
   if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
     trackElement.scrollTo({ left: 0, behavior: 'smooth' });
   } else {
@@ -589,12 +592,13 @@ function autoScroll(trackElement) {
 function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
   if (track) {
-    const cardWidth = track.querySelector('.slide-card').offsetWidth + 20;
+    const card = track.querySelector('.slide-card');
+    const cardWidth = card.offsetWidth + 15;
     track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
 }
 
-// Pause/Resume on Hover
+// Pause sliders on hover
 ['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
   const elem = document.getElementById(id);
   if (elem) {
@@ -606,7 +610,7 @@ function moveSlide(trackId, direction) {
   }
 });
 
-// Single Click (Desktop) & Double Tap (Mobile) Handler
+// Single-click (Desktop) & Double-tap (Mobile) poster zoom trigger
 document.addEventListener('DOMContentLoaded', () => {
   startDualSliders();
 
@@ -614,7 +618,6 @@ document.addEventListener('DOMContentLoaded', () => {
   cards.forEach(card => {
     let lastTap = 0;
 
-    // Desktop Click
     card.addEventListener('click', (e) => {
       if (window.innerWidth > 768) {
         const imgSrc = card.getAttribute('data-img');
@@ -622,7 +625,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Mobile Double Tap
     card.addEventListener('touchend', (e) => {
       if (window.innerWidth <= 768) {
         const currentTime = new Date().getTime();
@@ -638,7 +640,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Trigger Lightbox Function
 function triggerPosterLightbox(imgSrc) {
   const lightbox = document.getElementById('pamphletLightbox');
   const lightboxImg = document.getElementById('lightboxImage');
@@ -647,13 +648,3 @@ function triggerPosterLightbox(imgSrc) {
     lightbox.style.display = 'flex';
   }
 }
-
-// Global Keyboard Escape Key Listener
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    const lightbox = document.getElementById('pamphletLightbox');
-    const modal = document.getElementById('enquiryModal');
-    if (lightbox) lightbox.style.display = 'none';
-    if (modal) modal.style.display = 'none';
-  }
-});
