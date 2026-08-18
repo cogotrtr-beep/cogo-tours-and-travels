@@ -478,42 +478,64 @@ function openPamphletList(imageList, index) {
 }
 
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL & SLIDERS (ONE-WAY SMOOTH)
+   5. ONGOING TOURS CAROUSEL & SLIDERS (AUTO & MANUAL)
 ========================================================= */
 
+function autoScrollTrack(trackElement) {
+  if (!trackElement) return;
+
+  const card = trackElement.querySelector('.slide-card, .ongoing-card, .tour-card, .swiper-slide');
+  const scrollAmount = card ? card.offsetWidth + 16 : 280;
+
+  // Smooth loop: scroll right, or wrap back to start if at the end
+  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
+    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    trackElement.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+
 function startDualSliders() {
-  // Empty stub: Swiper / CSS Marquee handles auto-scroll without JS timers resetting position
+  const domTrack = document.getElementById('domesticTrack');
+  const intlTrack = document.getElementById('intlTrack');
+
+  // Auto-advance sliders every 3 seconds
+  if (domTrack && !window.domesticTimer) {
+    window.domesticTimer = setInterval(() => autoScrollTrack(domTrack), 3000);
+  }
+  if (intlTrack && !window.intlTimer) {
+    window.intlTimer = setInterval(() => autoScrollTrack(intlTrack), 3000);
+  }
 }
 
 function stopDualSliders() {
-  // Empty stub: Prevents timer conflicts
+  clearInterval(window.domesticTimer);
+  clearInterval(window.intlTimer);
+  window.domesticTimer = null;
+  window.intlTimer = null;
 }
 
 function autoScroll(trackElement) {
-  // Unused: Kept for safe fallback
+  autoScrollTrack(trackElement);
 }
 
 function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  const card = track.querySelector('.slide-card, .ongoing-card, .swiper-slide');
-  const scrollAmount = card ? card.offsetWidth + 16 : 300;
-
-  // Pause CSS animation if active during manual click
-  track.style.animationPlayState = 'paused';
+  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card, .swiper-slide');
+  const scrollAmount = card ? card.offsetWidth + 16 : 280;
 
   track.scrollBy({
     left: direction * scrollAmount,
     behavior: 'smooth'
   });
-
-  // Resume auto-scroll after interaction
-  clearTimeout(track.resumeTimer);
-  track.resumeTimer = setTimeout(() => {
-    track.style.animationPlayState = 'running';
-  }, 4000);
 }
+
+// Automatically initiate slider on page load
+document.addEventListener('DOMContentLoaded', () => {
+  startDualSliders();
+});
 
 /* =========================================================
    6. GLOBAL INITIALIZATION & EVENT LISTENERS
