@@ -14,8 +14,8 @@ let startX = 0, startY = 0;
 let translateX = 0, translateY = 0;
 
 // Carousel Timers
-let domesticTimer = null;
-let intlTimer = null;
+let domesticInterval = null;
+let intlInterval = null;
 
 /* =========================================================
    1. DATA ENGINES & CONSTANTS
@@ -239,17 +239,9 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-function closeCategoryModal() {
-  closeModal();
-}
-
-function closeCategoryModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") closeModal();
-}
-
-function closeModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") closeModal();
-}
+function closeCategoryModal() { closeModal(); }
+function closeCategoryModalOnOverlay(e) { if (e.target.id === "enquiryModal") closeModal(); }
+function closeModalOnOverlay(e) { if (e.target.id === "enquiryModal") closeModal(); }
 
 function initModalCloseButtons() {
   const closeButtons = document.querySelectorAll(
@@ -466,7 +458,6 @@ function nextPamphlet(e) {
   openPamphletZoom(currentPamphletIndex);
 }
 
-// Bridge function to match HTML onclick="navigateLightbox(-1, event)"
 function navigateLightbox(direction, event) {
   if (direction === -1) prevPamphlet(event);
   if (direction === 1) nextPamphlet(event);
@@ -476,20 +467,16 @@ function openPamphletList(imageList, index) {
   currentPamphletList = imageList;
   openPamphletZoom(index);
 }
+
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL (NATIVE RELIABLE AUTO-SCROLL)
+   5. ONGOING TOURS CAROUSEL (NATIVE AUTO-SCROLL)
 ========================================================= */
 
-let domesticInterval = null;
-let intlInterval = null;
-
 function performSmoothScroll(track) {
-  if (!track) return;
-  
+  if (!track) return;  
   const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
   const scrollAmount = card ? card.offsetWidth + 16 : 276;
 
-  // Loop back seamlessly when reaching the end
   if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 15) {
     track.scrollTo({ left: 0, behavior: 'smooth' });
   } else {
@@ -501,7 +488,6 @@ function startDualSliders() {
   const domTrack = document.getElementById('domesticTrack');
   const intlTrack = document.getElementById('intlTrack');
 
-  // Auto-scroll every 3.5 seconds
   if (domTrack && !domesticInterval) {
     domesticInterval = setInterval(() => performSmoothScroll(domTrack), 3500);
   }
@@ -517,7 +503,6 @@ function stopDualSliders() {
   intlInterval = null;
 }
 
-// Arrow Button Click Handler for PC & Mobile
 function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
   if (!track) return;
@@ -531,7 +516,6 @@ function moveSlide(trackId, direction) {
   });
 }
 
-// Auto-start on DOM Ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', startDualSliders);
 } else {
@@ -545,21 +529,16 @@ if (document.readyState === 'loading') {
 document.addEventListener("DOMContentLoaded", function () {
   const { lightbox, img } = getLightboxElements();
 
-  // Initialize Sliders & Close Buttons
   startDualSliders();
   initModalCloseButtons();
 
-  // Close modal when clicking outside on the background overlay
   const enquiryModal = document.getElementById("enquiryModal");
   if (enquiryModal) {
     enquiryModal.addEventListener("click", function(e) {
-      if (e.target === enquiryModal) {
-        closeModal();
-      }
+      if (e.target === enquiryModal) closeModal();
     });
   }
 
-  // Pause Sliders on Hover
   ['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
     const elem = document.getElementById(id);
     if (elem) {
@@ -568,7 +547,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Lightbox Mouse Wheel Zoom
   if (lightbox) {
     lightbox.addEventListener("wheel", function (e) {
       if (lightbox.style.display === "flex" || lightbox.classList.contains("show")) {
@@ -579,7 +557,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { passive: false });
   }
 
-  // Lightbox Click & Drag Controls
   if (img) {
     img.addEventListener("click", function (e) {
       if (isDragging) return;
@@ -607,7 +584,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("mouseup", () => {
       if (isDragging) {
-        setTimeout(() => { isDragging = false; }, 50);
+        isDragging = false;
         applyZoomTransform();
       }
     });
@@ -632,7 +609,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Control Buttons Mapping
   document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => btn.onclick = prevPamphlet);
   document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => btn.onclick = nextPamphlet);
   document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => btn.onclick = zoomIn);
@@ -640,7 +616,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => btn.onclick = closePamphletZoom);
 });
 
-// Unified Keyboard Shortcut Handler
 document.addEventListener("keydown", function(e) {
   const { lightbox } = getLightboxElements();
   const isLightboxActive = lightbox && (lightbox.style.display === "flex" || lightbox.classList.contains("show"));
