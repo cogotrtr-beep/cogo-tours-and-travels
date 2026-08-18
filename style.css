@@ -1116,12 +1116,11 @@ body {
   .btn-primary-single { width: 100%; }
   .modal-actions-grid { grid-template-columns: 1fr; }
 }
-
 /* =========================================================
-   TOUR SLIDER & SECTION HARMONY FIXES
+    TOUR SLIDER & SECTION HARMONY FIXES
 ========================================================= */
 
-/* 1. Preach/Peach Background Consistency & Eliminating Painful White Space */
+/* 1. Peach Background Consistency & Eliminating White Space */
 .ongoing-tours-section,
 .ongoing-section,
 .enquiry-form-section,
