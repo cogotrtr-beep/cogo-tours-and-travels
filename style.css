@@ -1116,3 +1116,65 @@ body {
   .btn-primary-single { width: 100%; }
   .modal-actions-grid { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   TOUR SLIDER & SECTION HARMONY FIXES
+========================================================= */
+
+/* 1. Preach/Peach Background Consistency & Eliminating Painful White Space */
+.ongoing-tours-section,
+.ongoing-section,
+.enquiry-form-section,
+.cta-banner-container {
+  background-color: #fff8f0 !important; /* Unified warm peach tone */
+  padding: 30px 15px !important;
+}
+
+/* Remove awkward white wrapper boxes around the ongoing section */
+.ongoing-tours-container,
+.interest-card-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  max-width: 1200px;
+}
+
+/* 2. Bold Typography Matching "Our Services" */
+.ongoing-tours-section h2,
+.ongoing-section h2,
+.interest-card-wrapper h3,
+.cta-banner-container h3 {
+  font-size: 28px !important;
+  font-weight: 800 !important; /* Matches Our Services bold weight */
+  color: #0f172a !important;
+  text-transform: capitalize;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px !important;
+  text-align: center;
+}
+
+.ongoing-tours-section p,
+.interest-card-wrapper p {
+  color: #64748b;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 3. Even & Compact Square Card Aspect Ratios */
+.swiper-slide .tour-card,
+.ongoing-card {
+  width: 100% !important;
+  aspect-ratio: 4 / 5 !important; /* Clean, compact proportion like Cab Services */
+  border-radius: 16px !important;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+}
+
+/* Smooth continuous marquee transition override */
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
