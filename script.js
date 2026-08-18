@@ -228,7 +228,6 @@ const defaultCategoryInfo = {
    2. DOM HELPER FUNCTIONS & GALLERIES
 ========================================================= */
 
-// --- MODAL & OVERLAY CLOSE HANDLERS ---
 function closeModal() {
   const enquiryModal = document.getElementById("enquiryModal");
   if (enquiryModal) {
@@ -237,26 +236,19 @@ function closeModal() {
     enquiryModal.style.opacity = "0";
     enquiryModal.style.pointerEvents = "none";
   }
-
-  // Restore background scrolling
   document.body.style.overflow = "";
 }
 
-// Aliases to seamlessly support your HTML's inline function calls
 function closeCategoryModal() {
   closeModal();
 }
 
 function closeCategoryModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") {
-    closeModal();
-  }
+  if (e.target.id === "enquiryModal") closeModal();
 }
 
 function closeModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") {
-    closeModal();
-  }
+  if (e.target.id === "enquiryModal") closeModal();
 }
 
 function initModalCloseButtons() {
@@ -273,7 +265,6 @@ function initModalCloseButtons() {
   });
 }
 
-// --- GALLERY & MODAL DISPLAY LOGIC ---
 function createPamphletGallery(images) {
   if (!images || images.length === 0) return '';
   
@@ -337,29 +328,7 @@ function openCategoryModal(catKey) {
 
   showModalElement("enquiryModal");
 }
-// --- MODAL CLOSE HANDLERS & ALIASES ---
-function closeModal() {
-  const enquiryModal = document.getElementById("enquiryModal");
-  if (enquiryModal) {
-    enquiryModal.classList.remove("show");
-    enquiryModal.style.display = "none";
-    enquiryModal.style.opacity = "0";
-    enquiryModal.style.pointerEvents = "none";
-  }
-  document.body.style.overflow = "";
-}
 
-function closeCategoryModal() {
-  closeModal();
-}
-
-function closeCategoryModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") closeModal();
-}
-
-function closeModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") closeModal();
-}
 function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
   currentPamphletList = tab.images || [];
@@ -497,6 +466,12 @@ function nextPamphlet(e) {
   openPamphletZoom(currentPamphletIndex);
 }
 
+// Bridge function to match HTML onclick="navigateLightbox(-1, event)"
+function navigateLightbox(direction, event) {
+  if (direction === -1) prevPamphlet(event);
+  if (direction === 1) nextPamphlet(event);
+}
+
 function openPamphletList(imageList, index) {
   currentPamphletList = imageList;
   openPamphletZoom(index);
@@ -545,6 +520,7 @@ function moveSlide(trackId, direction) {
     track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
   }
 }
+
 /* =========================================================
    6. GLOBAL INITIALIZATION & EVENT LISTENERS
 ========================================================= */
@@ -554,7 +530,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize Sliders & Close Buttons
   startDualSliders();
-  initModalCloseButtons(); // <--- Added Step 2 initialization here
+  initModalCloseButtons();
 
   // Close modal when clicking outside on the background overlay
   const enquiryModal = document.getElementById("enquiryModal");
@@ -664,33 +640,4 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "+" || e.key === "=") zoomIn();
     if (e.key === "-") zoomOut();
   }
-});
-// --- ONGOING TOURS SMOOTH SLIDER & ZOOM LOGIC ---
-function initOngoingSwiper() {
-  const swiperElem = document.querySelector('.ongoing-swiper');
-  if (!swiperElem) return;
-
-  const tourSwiper = new Swiper('.ongoing-swiper', {
-    loop: true,
-    speed: 5000,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    slidesPerView: 'auto',
-    spaceBetween: 16,
-    freeMode: true,
-    freeModeMomentum: false,
-  });
-
-  document.querySelectorAll('.ongoing-swiper .pamphlet-card, .ongoing-card').forEach((card, idx) => {
-    card.addEventListener('click', () => {
-      openPamphletZoom(idx);
-    });
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initOngoingSwiper();
 });
