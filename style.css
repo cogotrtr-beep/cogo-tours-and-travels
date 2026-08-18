@@ -1120,75 +1120,53 @@ body {
    TOUR SLIDER & SECTION HARMONY FIXES
 ========================================================= */
 
-/* 1. Warm Peach Background & White Box Elimination */
+/* Force Peach Background across all wrapper boxes */
 .ongoing-tours-section,
 .ongoing-section,
-.enquiry-form-section,
-.cta-banner-container,
+.ongoing-card-box,
 .ongoing-tours-container,
 .interest-card-wrapper,
-.ongoing-card-box,
 .ongoing-slider-container,
-/* Targets Bootstrap/Tailwind white card utilities wrapping the sliders */
 .ongoing-tours-section .card,
 .ongoing-tours-section .bg-white,
 .ongoing-section .card,
-.ongoing-section .bg-white {
-  background-color: #fff8f0 !important; /* Unified warm peach tone */
+.ongoing-section .bg-white,
+div[class*="ongoing"] {
+  background-color: #fff8f0 !important;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* Section container spacing & padding */
+/* Fix mobile width overflow */
 .ongoing-tours-section,
-.ongoing-section,
-.enquiry-form-section,
-.cta-banner-container {
+.ongoing-section {
   padding: 30px 15px !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
 }
 
-.ongoing-tours-container,
-.interest-card-wrapper {
-  padding: 0 !important;
-  margin: 0 auto !important;
-  max-width: 1200px;
-}
-
-/* 2. Bold Typography Matching "Our Services" */
-.ongoing-tours-section h2,
-.ongoing-tours-section h3,
-.ongoing-section h2,
-.ongoing-section h3,
-.interest-card-wrapper h3,
-.cta-banner-container h3 {
-  font-size: 28px !important;
-  font-weight: 800 !important; /* Matches Our Services bold weight */
-  color: #0f172a !important;
-  text-transform: capitalize;
-  letter-spacing: -0.5px;
-  margin-bottom: 8px !important;
-  text-align: center;
-}
-
-.ongoing-tours-section p,
-.ongoing-section p,
-.interest-card-wrapper p {
-  color: #64748b !important;
-  font-size: 15px !important;
-  text-align: center;
-  margin-bottom: 20px !important;
-}
-
-/* 3. Card Proportions & Track Alignment */
+/* Card Sizing and Proportions */
 .swiper-slide .tour-card,
 .ongoing-card,
 .slide-card {
   width: 100% !important;
-  aspect-ratio: 4 / 5 !important; /* Compact proportion matching Cab Services */
+  max-width: 280px !important;
+  height: 350px !important;
   border-radius: 16px !important;
   overflow: hidden;
   position: relative;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+}
+
+/* Section Headings */
+.ongoing-tours-section h2,
+.ongoing-section h2,
+.ongoing-card-box h3 {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  text-align: center;
+  margin-bottom: 8px !important;
 }
 
 /* Smooth continuous marquee transition override */
