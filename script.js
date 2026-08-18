@@ -665,3 +665,32 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "-") zoomOut();
   }
 });
+// --- ONGOING TOURS SMOOTH SLIDER & ZOOM LOGIC ---
+function initOngoingSwiper() {
+  const swiperElem = document.querySelector('.ongoing-swiper');
+  if (!swiperElem) return;
+
+  const tourSwiper = new Swiper('.ongoing-swiper', {
+    loop: true,
+    speed: 5000,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 16,
+    freeMode: true,
+    freeModeMomentum: false,
+  });
+
+  document.querySelectorAll('.ongoing-swiper .pamphlet-card, .ongoing-card').forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      openPamphletZoom(idx);
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initOngoingSwiper();
+});
