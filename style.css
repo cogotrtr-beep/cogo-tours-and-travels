@@ -1117,59 +1117,73 @@ body {
   .modal-actions-grid { grid-template-columns: 1fr; }
 }
 /* =========================================================
-   TOUR SLIDER & SECTION HARMONY FIXES
+   ONGOING TOURS - ULTIMATE PEACH & SCROLL FIX
 ========================================================= */
 
-/* Force Peach Background across all wrapper boxes */
+/* Force Peach Background on section AND all child wrappers */
 .ongoing-tours-section,
 .ongoing-section,
 .ongoing-card-box,
 .ongoing-tours-container,
 .interest-card-wrapper,
 .ongoing-slider-container,
-.ongoing-tours-section .card,
-.ongoing-tours-section .bg-white,
-.ongoing-section .card,
-.ongoing-section .bg-white,
-div[class*="ongoing"] {
+.ongoing-tours-section *,
+.ongoing-section * {
   background-color: #fff8f0 !important;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* Fix mobile width overflow */
-.ongoing-tours-section,
-.ongoing-section {
-  padding: 30px 15px !important;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-}
-
-/* Card Sizing and Proportions */
-.swiper-slide .tour-card,
-.ongoing-card,
-.slide-card {
-  width: 100% !important;
-  max-width: 280px !important;
-  height: 350px !important;
-  border-radius: 16px !important;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
-}
-
-/* Section Headings */
+/* Match Heading Font & Weight with "Our Services" */
 .ongoing-tours-section h2,
+.ongoing-tours-section h3,
+.ongoing-tours-section h4,
 .ongoing-section h2,
-.ongoing-card-box h3 {
-  font-size: 26px !important;
+.ongoing-section h3,
+.ongoing-section h4 {
+  font-size: 32px !important;
   font-weight: 800 !important;
   color: #0f172a !important;
-  text-align: center;
-  margin-bottom: 8px !important;
+  text-transform: capitalize !important;
+  text-align: center !important;
+  margin-bottom: 6px !important;
 }
 
-/* Smooth continuous marquee transition override */
-.swiper-wrapper {
-  transition-timing-function: linear !important;
+.ongoing-tours-section p,
+.ongoing-section p {
+  font-size: 15px !important;
+  color: #64748b !important;
+  text-align: center !important;
+  margin-bottom: 18px !important;
+}
+
+/* Scroll Tracks Layout */
+#domesticTrack,
+#intlTrack,
+.slider-track {
+  display: flex !important;
+  gap: 16px !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important; /* Hide Firefox scrollbar */
+  padding: 10px 0 !important;
+}
+
+#domesticTrack::-webkit-scrollbar,
+#intlTrack::-webkit-scrollbar,
+.slider-track::-webkit-scrollbar {
+  display: none !important; /* Hide Chrome/Safari scrollbar */
+}
+
+/* Uniform Card Proportions */
+.slide-card,
+.ongoing-card,
+.tour-card {
+  flex: 0 0 auto !important;
+  width: 260px !important;
+  height: 350px !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
 }
