@@ -478,63 +478,63 @@ function openPamphletList(imageList, index) {
 }
 
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL & SLIDERS (AUTO & MANUAL)
+   5. ONGOING TOURS CAROUSEL & SLIDERS (SWIPER ENGINE)
 ========================================================= */
 
-function autoScrollTrack(trackElement) {
-  if (!trackElement) return;
+let domesticSwiper, intlSwiper;
 
-  const card = trackElement.querySelector('.slide-card, .ongoing-card, .tour-card, .swiper-slide');
-  const scrollAmount = card ? card.offsetWidth + 16 : 280;
+function initTourSwipers() {
+  // Initialize Domestic Tour Swiper
+  if (document.querySelector('.domestic-swiper, #domesticTrack')) {
+    domesticSwiper = new Swiper('.domestic-swiper, #domesticTrack', {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      loop: true,
+      speed: 4000,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      allowTouchMove: true,
+    });
+  }
 
-  // Smooth loop: scroll right, or wrap back to start if at the end
-  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
-    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
-  } else {
-    trackElement.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  // Initialize International Tour Swiper
+  if (document.querySelector('.intl-swiper, #intlTrack')) {
+    intlSwiper = new Swiper('.intl-swiper, #intlTrack', {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      loop: true,
+      speed: 4000,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      allowTouchMove: true,
+    });
   }
 }
 
 function startDualSliders() {
-  const domTrack = document.getElementById('domesticTrack');
-  const intlTrack = document.getElementById('intlTrack');
-
-  // Auto-advance sliders every 3 seconds
-  if (domTrack && !window.domesticTimer) {
-    window.domesticTimer = setInterval(() => autoScrollTrack(domTrack), 3000);
-  }
-  if (intlTrack && !window.intlTimer) {
-    window.intlTimer = setInterval(() => autoScrollTrack(intlTrack), 3000);
-  }
+  initTourSwipers();
 }
 
 function stopDualSliders() {
-  clearInterval(window.domesticTimer);
-  clearInterval(window.intlTimer);
-  window.domesticTimer = null;
-  window.intlTimer = null;
-}
-
-function autoScroll(trackElement) {
-  autoScrollTrack(trackElement);
+  if (domesticSwiper && domesticSwiper.autoplay) domesticSwiper.autoplay.stop();
+  if (intlSwiper && intlSwiper.autoplay) intlSwiper.autoplay.stop();
 }
 
 function moveSlide(trackId, direction) {
-  const track = document.getElementById(trackId);
-  if (!track) return;
-
-  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card, .swiper-slide');
-  const scrollAmount = card ? card.offsetWidth + 16 : 280;
-
-  track.scrollBy({
-    left: direction * scrollAmount,
-    behavior: 'smooth'
-  });
+  if (trackId.includes('domestic') && domesticSwiper) {
+    direction > 0 ? domesticSwiper.slideNext() : domesticSwiper.slidePrev();
+  } else if (trackId.includes('intl') && intlSwiper) {
+    direction > 0 ? intlSwiper.slideNext() : intlSwiper.slidePrev();
+  }
 }
 
-// Automatically initiate slider on page load
+// Auto init on document load
 document.addEventListener('DOMContentLoaded', () => {
-  startDualSliders();
+  initTourSwipers();
 });
 
 /* =========================================================
