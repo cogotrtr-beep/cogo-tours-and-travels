@@ -478,47 +478,41 @@ function openPamphletList(imageList, index) {
 }
 
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL & SLIDERS
+   5. ONGOING TOURS CAROUSEL & SLIDERS (ONE-WAY SMOOTH)
 ========================================================= */
 
 function startDualSliders() {
-  const domTrack = document.getElementById('domesticTrack');
-  const intlTrack = document.getElementById('intlTrack');
-
-  if (domTrack && !domesticTimer) {
-    domesticTimer = setInterval(() => autoScroll(domTrack), 3000);
-  }
-  if (intlTrack && !intlTimer) {
-    intlTimer = setInterval(() => autoScroll(intlTrack), 3000);
-  }
+  // Empty stub: Swiper / CSS Marquee handles auto-scroll without JS timers resetting position
 }
 
 function stopDualSliders() {
-  clearInterval(domesticTimer);
-  clearInterval(intlTimer);
-  domesticTimer = null;
-  intlTimer = null;
+  // Empty stub: Prevents timer conflicts
 }
 
 function autoScroll(trackElement) {
-  const card = trackElement.querySelector('.slide-card');
-  if (!card) return;
-  
-  const cardWidth = card.offsetWidth + 12;
-  if (trackElement.scrollLeft + trackElement.clientWidth >= trackElement.scrollWidth - 10) {
-    trackElement.scrollTo({ left: 0, behavior: 'smooth' });
-  } else {
-    trackElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
-  }
+  // Unused: Kept for safe fallback
 }
 
 function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
-  if (track) {
-    const card = track.querySelector('.slide-card');
-    const cardWidth = card.offsetWidth + 12;
-    track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-  }
+  if (!track) return;
+
+  const card = track.querySelector('.slide-card, .ongoing-card, .swiper-slide');
+  const scrollAmount = card ? card.offsetWidth + 16 : 300;
+
+  // Pause CSS animation if active during manual click
+  track.style.animationPlayState = 'paused';
+
+  track.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+
+  // Resume auto-scroll after interaction
+  clearTimeout(track.resumeTimer);
+  track.resumeTimer = setTimeout(() => {
+    track.style.animationPlayState = 'running';
+  }, 4000);
 }
 
 /* =========================================================
