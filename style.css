@@ -1117,24 +1117,38 @@ body {
   .modal-actions-grid { grid-template-columns: 1fr; }
 }
 /* =========================================================
-    TOUR SLIDER & SECTION HARMONY FIXES
+   TOUR SLIDER & SECTION HARMONY FIXES
 ========================================================= */
 
-/* 1. Peach Background Consistency & Eliminating White Space */
+/* 1. Warm Peach Background & White Box Elimination */
+.ongoing-tours-section,
+.ongoing-section,
+.enquiry-form-section,
+.cta-banner-container,
+.ongoing-tours-container,
+.interest-card-wrapper,
+.ongoing-card-box,
+.ongoing-slider-container,
+/* Targets Bootstrap/Tailwind white card utilities wrapping the sliders */
+.ongoing-tours-section .card,
+.ongoing-tours-section .bg-white,
+.ongoing-section .card,
+.ongoing-section .bg-white {
+  background-color: #fff8f0 !important; /* Unified warm peach tone */
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Section container spacing & padding */
 .ongoing-tours-section,
 .ongoing-section,
 .enquiry-form-section,
 .cta-banner-container {
-  background-color: #fff8f0 !important; /* Unified warm peach tone */
   padding: 30px 15px !important;
 }
 
-/* Remove awkward white wrapper boxes around the ongoing section */
 .ongoing-tours-container,
 .interest-card-wrapper {
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
   padding: 0 !important;
   margin: 0 auto !important;
   max-width: 1200px;
@@ -1142,7 +1156,9 @@ body {
 
 /* 2. Bold Typography Matching "Our Services" */
 .ongoing-tours-section h2,
+.ongoing-tours-section h3,
 .ongoing-section h2,
+.ongoing-section h3,
 .interest-card-wrapper h3,
 .cta-banner-container h3 {
   font-size: 28px !important;
@@ -1155,18 +1171,20 @@ body {
 }
 
 .ongoing-tours-section p,
+.ongoing-section p,
 .interest-card-wrapper p {
-  color: #64748b;
-  font-size: 15px;
+  color: #64748b !important;
+  font-size: 15px !important;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 
-/* 3. Even & Compact Square Card Aspect Ratios */
+/* 3. Card Proportions & Track Alignment */
 .swiper-slide .tour-card,
-.ongoing-card {
+.ongoing-card,
+.slide-card {
   width: 100% !important;
-  aspect-ratio: 4 / 5 !important; /* Clean, compact proportion like Cab Services */
+  aspect-ratio: 4 / 5 !important; /* Compact proportion matching Cab Services */
   border-radius: 16px !important;
   overflow: hidden;
   position: relative;
