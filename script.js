@@ -476,66 +476,67 @@ function openPamphletList(imageList, index) {
   currentPamphletList = imageList;
   openPamphletZoom(index);
 }
-
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL & SLIDERS (SWIPER ENGINE)
+   5. ONGOING TOURS CAROUSEL (NATIVE RELIABLE AUTO-SCROLL)
 ========================================================= */
 
-let domesticSwiper, intlSwiper;
+let domesticInterval = null;
+let intlInterval = null;
 
-function initTourSwipers() {
-  // Initialize Domestic Tour Swiper
-  if (document.querySelector('.domestic-swiper, #domesticTrack')) {
-    domesticSwiper = new Swiper('.domestic-swiper, #domesticTrack', {
-      slidesPerView: 'auto',
-      spaceBetween: 16,
-      loop: true,
-      speed: 4000,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-      },
-      allowTouchMove: true,
-    });
-  }
+function performSmoothScroll(track) {
+  if (!track) return;
+  
+  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
+  const scrollAmount = card ? card.offsetWidth + 16 : 276;
 
-  // Initialize International Tour Swiper
-  if (document.querySelector('.intl-swiper, #intlTrack')) {
-    intlSwiper = new Swiper('.intl-swiper, #intlTrack', {
-      slidesPerView: 'auto',
-      spaceBetween: 16,
-      loop: true,
-      speed: 4000,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-      },
-      allowTouchMove: true,
-    });
+  // Loop back seamlessly when reaching the end
+  if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 15) {
+    track.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   }
 }
 
 function startDualSliders() {
-  initTourSwipers();
-}
+  const domTrack = document.getElementById('domesticTrack');
+  const intlTrack = document.getElementById('intlTrack');
 
-function stopDualSliders() {
-  if (domesticSwiper && domesticSwiper.autoplay) domesticSwiper.autoplay.stop();
-  if (intlSwiper && intlSwiper.autoplay) intlSwiper.autoplay.stop();
-}
-
-function moveSlide(trackId, direction) {
-  if (trackId.includes('domestic') && domesticSwiper) {
-    direction > 0 ? domesticSwiper.slideNext() : domesticSwiper.slidePrev();
-  } else if (trackId.includes('intl') && intlSwiper) {
-    direction > 0 ? intlSwiper.slideNext() : intlSwiper.slidePrev();
+  // Auto-scroll every 3.5 seconds
+  if (domTrack && !domesticInterval) {
+    domesticInterval = setInterval(() => performSmoothScroll(domTrack), 3500);
+  }
+  if (intlTrack && !intlInterval) {
+    intlInterval = setInterval(() => performSmoothScroll(intlTrack), 3500);
   }
 }
 
-// Auto init on document load
-document.addEventListener('DOMContentLoaded', () => {
-  initTourSwipers();
-});
+function stopDualSliders() {
+  clearInterval(domesticInterval);
+  clearInterval(intlInterval);
+  domesticInterval = null;
+  intlInterval = null;
+}
+
+// Arrow Button Click Handler for PC & Mobile
+function moveSlide(trackId, direction) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
+  const scrollAmount = card ? card.offsetWidth + 16 : 276;
+
+  track.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+
+// Auto-start on DOM Ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startDualSliders);
+} else {
+  startDualSliders();
+}
 
 /* =========================================================
    6. GLOBAL INITIALIZATION & EVENT LISTENERS
