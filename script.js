@@ -237,11 +237,17 @@ function closeModal() {
     enquiryModal.style.pointerEvents = "none";
   }
   document.body.style.overflow = "";
+  activeServiceTitle = "General Journey Enquiry";
 }
 
 function closeCategoryModal() { closeModal(); }
 function closeCategoryModalOnOverlay(e) { if (e.target.id === "enquiryModal") closeModal(); }
 function closeModalOnOverlay(e) { if (e.target.id === "enquiryModal") closeModal(); }
+
+function handleModalCloseClick(e) {
+  e.stopPropagation();
+  closeModal();
+}
 
 function initModalCloseButtons() {
   const closeButtons = document.querySelectorAll(
@@ -249,11 +255,8 @@ function initModalCloseButtons() {
   );
 
   closeButtons.forEach(btn => {
-    btn.removeEventListener("click", closeModal);
-    btn.addEventListener("click", function(e) {
-      e.stopPropagation();
-      closeModal();
-    });
+    btn.removeEventListener("click", handleModalCloseClick);
+    btn.addEventListener("click", handleModalCloseClick);
   });
 }
 
@@ -365,7 +368,7 @@ function submitEnquiry(type) {
     window.open(waUrl, '_blank');
   } else if (type === 'email') {
     const mailtoUrl = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent("Enquiry: " + activeServiceTitle)}&body=${encodeURIComponent(messageText)}`;
-    window.location.href = mailtoUrl;
+    window.open(mailtoUrl, '_blank');
   }
 }
 
@@ -516,12 +519,6 @@ function moveSlide(trackId, direction) {
   });
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', startDualSliders);
-} else {
-  startDualSliders();
-}
-
 /* =========================================================
    6. GLOBAL INITIALIZATION & EVENT LISTENERS
 ========================================================= */
@@ -609,8 +606,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => btn.onclick = prevPamphlet);
-  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => btn.onclick = nextPamphlet);
+  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => btn.onclick = (e) => navigateLightbox(-1, e));
+  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => btn.onclick = (e) => navigateLightbox(1, e));
   document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => btn.onclick = zoomIn);
   document.querySelectorAll(".zoom-out, #zoomOutBtn").forEach(btn => btn.onclick = zoomOut);
   document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => btn.onclick = closePamphletZoom);
@@ -627,8 +624,8 @@ document.addEventListener("keydown", function(e) {
       closeModal();
     }
   } else if (isLightboxActive) {
-    if (e.key === "ArrowLeft") prevPamphlet(e);
-    if (e.key === "ArrowRight") nextPamphlet(e);
+    if (e.key === "ArrowLeft") navigateLightbox(-1, e);
+    if (e.key === "ArrowRight") navigateLightbox(1, e);
     if (e.key === "+" || e.key === "=") zoomIn();
     if (e.key === "-") zoomOut();
   }
