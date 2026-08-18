@@ -1,11 +1,17 @@
 /* =========================================================
    1. GLOBAL BASE & BRAND STYLES
 ========================================================= */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html, body {
+  overflow-x: hidden; /* Fix 100vw horizontal scrollbar issue */
 }
 
 body {
@@ -77,16 +83,13 @@ body {
 ========================================================= */
 .hero {
   position: relative;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
+  width: 100%;
   min-height: 60vh;
   background: url('hero-banner.png') center center / cover no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding: 0 20px 40px 20px;
-  box-sizing: border-box;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -355,7 +358,7 @@ body {
    6. MODAL POPUP & INTERACTIVE TOP TABS
 ========================================================= */
 .modal-overlay {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.85);
@@ -365,13 +368,13 @@ body {
   justify-content: center;
   padding: 16px;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.25s ease-in-out;
 }
 
 .modal-overlay.show { 
-  display: flex !important; 
-  opacity: 1 !important;
-  pointer-events: auto !important;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .modal-box {
@@ -645,9 +648,28 @@ body {
 /* =========================================================
    9. ONGOING TOURS & LIVE SLIDERS
 ========================================================= */
-.live-tours-wrapper {
-  background: #f8fafc;
-  padding: 25px 15px;
+.ongoing-tours-section,
+.ongoing-section {
+  background-color: #fff8f0;
+  padding: 40px 20px;
+}
+
+.ongoing-tours-section h2,
+.ongoing-section h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: capitalize;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.ongoing-tours-section p.section-sub,
+.ongoing-section p.section-sub {
+  font-size: 15px;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .ongoing-dual-grid {
@@ -660,28 +682,28 @@ body {
 
 .ongoing-column {
   background: #ffffff;
-  padding: 16px 14px;
+  padding: 18px 16px;
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #fed7aa;
   box-shadow: 0 4px 14px rgba(0,0,0,0.04);
 }
 
 .compact-header {
   text-align: center;
-  margin-bottom: 10px !important;
+  margin-bottom: 12px;
 }
 
 .compact-title {
-  font-size: 20px !important;
-  font-weight: 800 !important;
-  margin: 6px 0 2px 0 !important;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 6px 0 2px 0;
   color: #0f172a;
   white-space: nowrap;
 }
 
 .compact-sub {
-  font-size: 12px !important;
-  margin: 0 0 8px 0 !important;
+  font-size: 12px;
+  margin: 0 0 8px 0;
   color: #64748b;
 }
 
@@ -703,33 +725,42 @@ body {
   align-items: center;
 }
 
+#domesticTrack,
+#intlTrack,
 .slider-track {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none;
-  padding: 5px 0;
-  width: 100%;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 10px 0;
+  width: 100%;
 }
 
-.slider-track::-webkit-scrollbar { display: none; }
+#domesticTrack::-webkit-scrollbar,
+#intlTrack::-webkit-scrollbar,
+.slider-track::-webkit-scrollbar { 
+  display: none; 
+}
 
-.slide-card {
-  flex: 0 0 calc(50% - 6px);
-  height: 440px;
+.slide-card,
+.ongoing-card,
+.tour-card {
+  flex: 0 0 calc(50% - 8px);
+  height: 380px;
   position: relative;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease;
   user-select: none;
+  background-color: #0f172a;
 }
 
 .slide-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
 .slide-card img {
@@ -741,20 +772,22 @@ body {
 
 .slide-overlay {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 12px 10px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  padding: 16px 12px 12px;
+  background: linear-gradient(to top, rgba(15,23,42,0.92) 20%, rgba(15,23,42,0) 100%);
   color: #fff;
   pointer-events: none;
 }
 
-.slide-overlay h4 { margin: 4px 0 2px; font-size: 14px; font-weight: 700; }
-.slide-overlay p { font-size: 11px; opacity: 0.9; margin: 0; }
+.slide-overlay h4 { margin: 4px 0 2px; font-size: 15px; font-weight: 700; color: #ffffff; }
+.slide-overlay p { font-size: 12px; opacity: 0.9; margin: 0; color: #cbd5e1; }
 
 .status-tag {
   font-size: 9px;
   font-weight: 700;
-  padding: 2px 5px;
+  padding: 2px 6px;
   border-radius: 4px;
   text-transform: uppercase;
 }
@@ -765,8 +798,8 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid #cbd5e1;
@@ -774,10 +807,13 @@ body {
   cursor: pointer;
   z-index: 10;
   box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.slider-prev { left: -8px; }
-.slider-next { right: -8px; }
+.slider-prev { left: -10px; }
+.slider-next { right: -10px; }
 
 .ongoing-action-bar {
   max-width: 1350px;
@@ -788,7 +824,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #fed7aa;
 }
 
 .action-info h3 { margin: 0 0 2px; font-size: 16px; color: #1e293b; }
@@ -813,13 +849,13 @@ body {
 #imageModal,
 .pamphlet-lightbox,
 .pamphlet-modal {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.94);
-  z-index: 999999 !important;
+  z-index: 999999;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -834,9 +870,8 @@ body {
 #imageModal.show,
 .pamphlet-lightbox.show,
 .pamphlet-modal.show {
-  display: flex !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .lightbox-img-container,
@@ -1022,7 +1057,6 @@ body {
     width: 100%;
     max-width: 100%;
     padding: 50px 20px;
-    box-sizing: border-box;
   }
 
   .section-container {
@@ -1037,21 +1071,11 @@ body {
     width: 100%;
   }
 
-  .about-content p {
-    line-height: 1.7;
-  }
-
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 32px;
     align-items: start;
-  }
-
-  .contact-card, 
-  .map-wrapper {
-    width: 100%;
-    box-sizing: border-box;
   }
 
   .map-wrapper iframe {
@@ -1061,7 +1085,7 @@ body {
 
 @media (max-width: 992px) {
   .ongoing-dual-grid { grid-template-columns: 1fr; }
-  .compact-title { white-space: normal; font-size: 18px !important; }
+  .compact-title { white-space: normal; font-size: 18px; }
 }
 
 @media (max-width: 768px) {
@@ -1093,7 +1117,7 @@ body {
   }
 
   .contact-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 
   .prev-btn, .pamphlet-prev, #prevBtn { left: 8px; }
@@ -1111,79 +1135,13 @@ body {
 }
 
 @media (max-width: 576px) {
-  .slide-card { flex: 0 0 calc(80% - 6px); height: 400px; }
+  .slide-card,
+  .ongoing-card,
+  .tour-card { 
+    flex: 0 0 82%; 
+    height: 360px; 
+  }
   .ongoing-action-bar { flex-direction: column; text-align: center; gap: 12px; }
   .btn-primary-single { width: 100%; }
   .modal-actions-grid { grid-template-columns: 1fr; }
-}
-/* =========================================================
-   ONGOING TOURS - ULTIMATE PEACH & SCROLL FIX
-========================================================= */
-
-/* Force Peach Background on section AND all child wrappers */
-.ongoing-tours-section,
-.ongoing-section,
-.ongoing-card-box,
-.ongoing-tours-container,
-.interest-card-wrapper,
-.ongoing-slider-container,
-.ongoing-tours-section *,
-.ongoing-section * {
-  background-color: #fff8f0 !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* Match Heading Font & Weight with "Our Services" */
-.ongoing-tours-section h2,
-.ongoing-tours-section h3,
-.ongoing-tours-section h4,
-.ongoing-section h2,
-.ongoing-section h3,
-.ongoing-section h4 {
-  font-size: 32px !important;
-  font-weight: 800 !important;
-  color: #0f172a !important;
-  text-transform: capitalize !important;
-  text-align: center !important;
-  margin-bottom: 6px !important;
-}
-
-.ongoing-tours-section p,
-.ongoing-section p {
-  font-size: 15px !important;
-  color: #64748b !important;
-  text-align: center !important;
-  margin-bottom: 18px !important;
-}
-
-/* Scroll Tracks Layout */
-#domesticTrack,
-#intlTrack,
-.slider-track {
-  display: flex !important;
-  gap: 16px !important;
-  overflow-x: auto !important;
-  scroll-behavior: smooth !important;
-  -webkit-overflow-scrolling: touch !important;
-  scrollbar-width: none !important; /* Hide Firefox scrollbar */
-  padding: 10px 0 !important;
-}
-
-#domesticTrack::-webkit-scrollbar,
-#intlTrack::-webkit-scrollbar,
-.slider-track::-webkit-scrollbar {
-  display: none !important; /* Hide Chrome/Safari scrollbar */
-}
-
-/* Uniform Card Proportions */
-.slide-card,
-.ongoing-card,
-.tour-card {
-  flex: 0 0 auto !important;
-  width: 260px !important;
-  height: 350px !important;
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
 }
