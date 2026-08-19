@@ -472,18 +472,30 @@ function openPamphletList(imageList, index) {
 }
 
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL (NATIVE AUTO-SCROLL)
+   5. ONGOING TOURS CAROUSEL (SMOOTH CONTINUOUS ROLLING)
 ========================================================= */
 
 function performSmoothScroll(track) {
-  if (!track) return;  
+  if (!track) return;
+
   const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
   const scrollAmount = card ? card.offsetWidth + 16 : 276;
 
-  if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 15) {
-    track.scrollTo({ left: 0, behavior: 'smooth' });
+  // Check if we reached the right edge
+  const maxScroll = track.scrollWidth - track.clientWidth;
+  
+  if (track.scrollLeft >= maxScroll - 10) {
+    // Smoothly roll back to the beginning instead of snapping instantly
+    track.scrollTo({
+      left: 0,
+      behavior: 'smooth'
+    });
   } else {
-    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    // Smoothly step to the next card
+    track.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
   }
 }
 
