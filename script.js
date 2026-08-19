@@ -472,20 +472,24 @@ function openPamphletList(imageList, index) {
 }
 
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL (SEAMLESS INFINITE LOOP)
+   5. ONGOING TOURS CAROUSEL (SEAMLESS CONTINUOUS ROLLING)
 ========================================================= */
 
-let domesticInterval, intlInterval;
-let isPaused = false; // Flag to stop sliding when user hovers or touches
+var domesticInterval = null;
+var intlInterval = null;
+var isPausedDom = false;
+var isPausedIntl = false;
 
-function moveNextSeamless(track) {
-  // Do not auto-scroll if the user is hovering or touching
-  if (!track || isPaused) return;
+function moveNextSeamless(track, pauseFlagKey) {
+  // Check if paused via hover/touch
+  if (!track) return;
+  if (pauseFlagKey === 'dom' && isPausedDom) return;
+  if (pauseFlagKey === 'intl' && isPausedIntl) return;
 
-  const firstCard = track.children[0];
+  var firstCard = track.children[0];
   if (!firstCard) return;
-  
-  const scrollAmount = firstCard.offsetWidth + 16; // Includes the 16px gap
+
+  var scrollAmount = firstCard.offsetWidth + 16; // Card width + gap
 
   // 1. Smoothly slide to the next card
   track.scrollBy({
@@ -493,75 +497,74 @@ function moveNextSeamless(track) {
     behavior: 'smooth'
   });
 
-  // 2. Wait for the slide to finish, then silently move the first card to the back
-  setTimeout(() => {
-    // Double check we aren't interrupting a user's manual swipe
-    if (isPaused) return; 
-    
-    // Move the card to the end of the track
+  // 2. Reposition the first card to the back after slide completes
+  setTimeout(function() {
+    if ((pauseFlagKey === 'dom' && isPausedDom) || (pauseFlagKey === 'intl' && isPausedIntl)) return;
+
     track.appendChild(firstCard);
-    
-    // Temporarily turn off smooth scrolling so we can reset the scroll bar instantly
     track.style.scrollBehavior = 'auto';
     track.scrollLeft -= scrollAmount;
-    
-    // Turn smooth scrolling back on for the next automatic slide
-    requestAnimationFrame(() => {
+
+    requestAnimationFrame(function() {
       track.style.scrollBehavior = 'smooth';
     });
-  }, 600); // 600ms gives the CSS smooth scroll enough time to finish visually
+  }, 600);
 }
 
 function startDualSliders() {
-  const domTrack = document.getElementById('domesticTrack');
-  const intlTrack = document.getElementById('intlTrack');
+  var domTrack = document.getElementById('domesticTrack');
+  var intlTrack = document.getElementById('intlTrack');
 
-  // Helper function to pause animations on mouse hover or finger touch
-  function addPauseEvents(element) {
-    if(!element) return;
-    element.addEventListener('mouseenter', () => isPaused = true);
-    element.addEventListener('mouseleave', () => isPaused = false);
-    element.addEventListener('touchstart', () => isPaused = true, { passive: true });
-    element.addEventListener('touchend', () => {
-      // Small delay before resuming auto-scroll after letting go
-      setTimeout(() => isPaused = false, 1000); 
-    }, { passive: true });
-  }
-
+  // Domestic Track Events & Interval
   if (domTrack) {
-    addPauseEvents(domTrack);
-    if (!domesticInterval) {
-      domesticInterval = setInterval(() => moveNextSeamless(domTrack), 3000);
-    }
+    domTrack.addEventListener('mouseenter', function() { isPausedDom = true; });
+    domTrack.addEventListener('mouseleave', function() { isPausedDom = false; });
+    domTrack.addEventListener('touchstart', function() { isPausedDom = true; }, { passive: true });
+    domTrack.addEventListener('touchend', function() {
+      setTimeout(function() { isPausedDom = false; }, 1200);
+    }, { passive: true });
+
+    if (domesticInterval) clearInterval(domesticInterval);
+    domesticInterval = setInterval(function() {
+      moveNextSeamless(domTrack, 'dom');
+    }, 3000);
   }
-  
+
+  // International Track Events & Interval
   if (intlTrack) {
-    addPauseEvents(intlTrack);
-    if (!intlInterval) {
-      intlInterval = setInterval(() => moveNextSeamless(intlTrack), 3000);
-    }
+    intlTrack.addEventListener('mouseenter', function() { isPausedIntl = true; });
+    intlTrack.addEventListener('mouseleave', function() { isPausedIntl = false; });
+    intlTrack.addEventListener('touchstart', function() { isPausedIntl = true; }, { passive: true });
+    intlTrack.addEventListener('touchend', function() {
+      setTimeout(function() { isPausedIntl = false; }, 1200);
+    }, { passive: true });
+
+    if (intlInterval) clearInterval(intlInterval);
+    intlInterval = setInterval(function() {
+      moveNextSeamless(intlTrack, 'intl');
+    }, 3000);
   }
 }
 
-function stopDualSliders() {
-  clearInterval(domesticInterval);
-  clearInterval(intlInterval);
-  domesticInterval = null;
-  intlInterval = null;
-}
-
-// For manual left/right arrow clicks (if used)
+// Manual arrow clicks
 function moveSlide(trackId, direction) {
-  const track = document.getElementById(trackId);
+  var track = document.getElementById(trackId);
   if (!track) return;
 
-  const card = track.children[0];
-  const scrollAmount = card ? card.offsetWidth + 16 : 276;
+  var card = track.children[0];
+  var scrollAmount = card ? card.offsetWidth + 16 : 276;
 
   track.scrollBy({
     left: direction * scrollAmount,
     behavior: 'smooth'
   });
+}
+
+// AUTO-START ON PAGE LOAD
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startDualSliders);
+} else {
+  startDualSliders();
 }
 
 /* =========================================================
