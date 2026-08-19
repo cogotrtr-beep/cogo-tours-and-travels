@@ -472,42 +472,74 @@ function openPamphletList(imageList, index) {
 }
 
 /* =========================================================
-   5. ONGOING TOURS CAROUSEL (SMOOTH CONTINUOUS ROLLING)
+   5. ONGOING TOURS CAROUSEL (SEAMLESS INFINITE LOOP)
 ========================================================= */
 
-function performSmoothScroll(track) {
-  if (!track) return;
+let domesticInterval, intlInterval;
+let isPaused = false; // Flag to stop sliding when user hovers or touches
 
-  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
-  const scrollAmount = card ? card.offsetWidth + 16 : 276;
+function moveNextSeamless(track) {
+  // Do not auto-scroll if the user is hovering or touching
+  if (!track || isPaused) return;
 
-  // Check if we reached the right edge
-  const maxScroll = track.scrollWidth - track.clientWidth;
+  const firstCard = track.children[0];
+  if (!firstCard) return;
   
-  if (track.scrollLeft >= maxScroll - 10) {
-    // Smoothly roll back to the beginning instead of snapping instantly
-    track.scrollTo({
-      left: 0,
-      behavior: 'smooth'
+  const scrollAmount = firstCard.offsetWidth + 16; // Includes the 16px gap
+
+  // 1. Smoothly slide to the next card
+  track.scrollBy({
+    left: scrollAmount,
+    behavior: 'smooth'
+  });
+
+  // 2. Wait for the slide to finish, then silently move the first card to the back
+  setTimeout(() => {
+    // Double check we aren't interrupting a user's manual swipe
+    if (isPaused) return; 
+    
+    // Move the card to the end of the track
+    track.appendChild(firstCard);
+    
+    // Temporarily turn off smooth scrolling so we can reset the scroll bar instantly
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft -= scrollAmount;
+    
+    // Turn smooth scrolling back on for the next automatic slide
+    requestAnimationFrame(() => {
+      track.style.scrollBehavior = 'smooth';
     });
-  } else {
-    // Smoothly step to the next card
-    track.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    });
-  }
+  }, 600); // 600ms gives the CSS smooth scroll enough time to finish visually
 }
 
 function startDualSliders() {
   const domTrack = document.getElementById('domesticTrack');
   const intlTrack = document.getElementById('intlTrack');
 
-  if (domTrack && !domesticInterval) {
-    domesticInterval = setInterval(() => performSmoothScroll(domTrack), 3500);
+  // Helper function to pause animations on mouse hover or finger touch
+  function addPauseEvents(element) {
+    if(!element) return;
+    element.addEventListener('mouseenter', () => isPaused = true);
+    element.addEventListener('mouseleave', () => isPaused = false);
+    element.addEventListener('touchstart', () => isPaused = true, { passive: true });
+    element.addEventListener('touchend', () => {
+      // Small delay before resuming auto-scroll after letting go
+      setTimeout(() => isPaused = false, 1000); 
+    }, { passive: true });
   }
-  if (intlTrack && !intlInterval) {
-    intlInterval = setInterval(() => performSmoothScroll(intlTrack), 3500);
+
+  if (domTrack) {
+    addPauseEvents(domTrack);
+    if (!domesticInterval) {
+      domesticInterval = setInterval(() => moveNextSeamless(domTrack), 3000);
+    }
+  }
+  
+  if (intlTrack) {
+    addPauseEvents(intlTrack);
+    if (!intlInterval) {
+      intlInterval = setInterval(() => moveNextSeamless(intlTrack), 3000);
+    }
   }
 }
 
@@ -518,11 +550,12 @@ function stopDualSliders() {
   intlInterval = null;
 }
 
+// For manual left/right arrow clicks (if used)
 function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
+  const card = track.children[0];
   const scrollAmount = card ? card.offsetWidth + 16 : 276;
 
   track.scrollBy({
