@@ -680,12 +680,13 @@ body {
   margin: 0 auto;
 }
 
+/* REMOVED WHITE CARDS AROUND SLIDERS */
 .ongoing-column {
-  background: #ffffff;
-  padding: 18px 16px;
-  border-radius: 16px;
-  border: 1px solid #fed7aa;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  background: transparent !important;
+  padding: 0;
+  border-radius: 0;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .compact-header {
@@ -725,6 +726,7 @@ body {
   align-items: center;
 }
 
+/* CONTINUOUS SMOOTH ROLLING TRACK */
 #domesticTrack,
 #intlTrack,
 .slider-track {
