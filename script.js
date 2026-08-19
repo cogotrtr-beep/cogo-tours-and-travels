@@ -13,9 +13,11 @@ let isDragging = false;
 let startX = 0, startY = 0;
 let translateX = 0, translateY = 0;
 
-// Carousel Timers
-let domesticInterval = null;
-let intlInterval = null;
+// Carousel Timers & Flags
+var domesticInterval = null;
+var intlInterval = null;
+var isPausedDom = false;
+var isPausedIntl = false;
 
 /* =========================================================
    1. DATA ENGINES & CONSTANTS
@@ -475,13 +477,7 @@ function openPamphletList(imageList, index) {
    5. ONGOING TOURS CAROUSEL (SEAMLESS CONTINUOUS ROLLING)
 ========================================================= */
 
-var domesticInterval = null;
-var intlInterval = null;
-var isPausedDom = false;
-var isPausedIntl = false;
-
 function moveNextSeamless(track, pauseFlagKey) {
-  // Check if paused via hover/touch
   if (!track) return;
   if (pauseFlagKey === 'dom' && isPausedDom) return;
   if (pauseFlagKey === 'intl' && isPausedIntl) return;
@@ -491,13 +487,13 @@ function moveNextSeamless(track, pauseFlagKey) {
 
   var scrollAmount = firstCard.offsetWidth + 16; // Card width + gap
 
-  // 1. Smoothly slide to the next card
+  // Smoothly slide to the next card
   track.scrollBy({
     left: scrollAmount,
     behavior: 'smooth'
   });
 
-  // 2. Reposition the first card to the back after slide completes
+  // Reposition the first card to the back after slide completes
   setTimeout(function() {
     if ((pauseFlagKey === 'dom' && isPausedDom) || (pauseFlagKey === 'intl' && isPausedIntl)) return;
 
@@ -584,13 +580,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  ['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
-    const elem = document.getElementById(id);
-    if (elem) {
-      elem.addEventListener('mouseenter', stopDualSliders);
-      elem.addEventListener('mouseleave', startDualSliders);
-    }
-  });
+  // Soft pause/resume on slider wrapper hover (sets flags without clearing timers)
+  const domWrapper = document.getElementById('domesticSliderWrapper');
+  if (domWrapper) {
+    domWrapper.addEventListener('mouseenter', function() { isPausedDom = true; });
+    domWrapper.addEventListener('mouseleave', function() { isPausedDom = false; });
+  }
+
+  const intlWrapper = document.getElementById('intlSliderWrapper');
+  if (intlWrapper) {
+    intlWrapper.addEventListener('mouseenter', function() { isPausedIntl = true; });
+    intlWrapper.addEventListener('mouseleave', function() { isPausedIntl = false; });
+  }
 
   if (lightbox) {
     lightbox.addEventListener("wheel", function (e) {
