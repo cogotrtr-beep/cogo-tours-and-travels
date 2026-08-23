@@ -165,7 +165,7 @@
         <button class="hub-btn" onclick="openCategoryModal('ticket')">Book Tickets</button>
       </div>
     </article>
-    
+
     <!-- 3. Visa Assistance -->
     <article class="hub-card">
       <div class="hub-card-bg">
@@ -189,7 +189,7 @@
     <h2>Tour Packages</h2>
     <p class="section-sub">Handcrafted holiday experiences tailored for you</p>
   </div>
-  
+
   <div class="hub-grid">
 
     <!-- 1. Tour Chennai -->
@@ -204,7 +204,7 @@
         <button class="hub-btn" onclick="openCategoryModal('chennai')">View Packages</button>
       </div>
     </article>
-  
+
     <!-- 2. Tour Pilgrim -->
     <article class="hub-card">
       <div class="hub-card-bg">
@@ -230,7 +230,7 @@
         <button class="hub-btn" onclick="openCategoryModal('south-india')">View Packages</button>
       </div>
     </article>
-    
+
     <!-- 4. Tour North India -->
     <article class="hub-card">
       <div class="hub-card-bg">
@@ -243,7 +243,7 @@
         <button class="hub-btn" onclick="openCategoryModal('north-india')">View Packages</button>
       </div>
     </article>
-    
+
     <!-- 5. Tour North East -->
     <article class="hub-card">
       <div class="hub-card-bg">
@@ -256,7 +256,7 @@
         <button class="hub-btn" onclick="openCategoryModal('north-east')">View Packages</button>
       </div>
     </article>
-    
+
     <!-- 6. Tour Rest of India -->
     <article class="hub-card">
       <div class="hub-card-bg">
@@ -281,7 +281,7 @@
         <p>Unforgettable foreign trips to Dubai, Singapore & Europe.</p>
         <button class="hub-btn" onclick="openCategoryModal('international')">View Packages</button>
       </div>
-    </article> 
+    </article>
 
     <!-- 8. Corporate Tour -->
     <article class="hub-card">
@@ -333,7 +333,7 @@
         <p>Romantic getaways and relaxing couples' retreats.</p>
         <button class="hub-btn" onclick="openCategoryModal('honeymoon')">View Packages</button>
       </div>
-    </article>     
+    </article>
 
     <!-- 12. Cogo Cabs -->
     <article class="hub-card">
@@ -346,8 +346,8 @@
         <p>Dedicated outstation & intercity cab packages.</p>
         <button class="hub-btn" onclick="openCategoryModal('cabs')">View Rates</button>
       </div>
-    </article>     
-  
+    </article>
+
   </div>
 </section>
 
@@ -370,7 +370,7 @@
       <div class="text-center">
         <h2>Get in Touch with Us</h2>
         <p class="section-sub">Visit our office or reach out via call or WhatsApp for quick quotes.</p>
-        
+
         <div class="social-links-bar">
           <a href="#" class="social-btn facebook" target="_blank" rel="noopener noreferrer" title="Facebook">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -402,7 +402,7 @@
             <div>
               <strong>Phone / WhatsApp:</strong>
               <p>
-                <a href="tel:+919884066830">+91 98840 66830</a> / 
+                <a href="tel:+919884066830">+91 98840 66830</a> /
                 <a href="tel:+919080666674">+91 90806 66674</a>
               </p>
             </div>
@@ -424,13 +424,13 @@
         </div>
 
         <div class="map-wrapper">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA8MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-            width="100%" 
-            height="300" 
-            style="border:0; border-radius:14px;" 
-            allowfullscreen="" 
-            loading="lazy" 
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA8MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            width="100%"
+            height="300"
+            style="border:0; border-radius:14px;"
+            allowfullscreen=""
+            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
           <a href="https://www.google.com/maps/dir/?api=1&destination=13.093779,80.200738" target="_blank" rel="noopener noreferrer" class="map-directions-btn">
@@ -441,18 +441,18 @@
     </div>
   </section>
 
-  <!-- DYNAMIC ENQUIRY & TARIFF MODAL -->
-  <div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <!-- CATEGORY & ENQUIRY MODAL (single instance) -->
+  <div id="categoryModal" class="modal-overlay" onclick="closeCategoryModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
-      <button class="modal-close" type="button" aria-label="Close modal" onclick="closeModal()">&times;</button>
-      
+      <button type="button" class="modal-close" aria-label="Close modal" onclick="closeCategoryModal(event)">&times;</button>
+
       <div class="modal-header">
-        <h2 id="modalTitle">Plan Your Journey</h2>
-        <p id="modalDescription" class="modal-desc"></p>
+        <h2 id="modalTitle">Category Title</h2>
+        <p id="modalDesc" class="modal-desc">Category description goes here.</p>
       </div>
 
       <div id="modalSubTabs" class="sub-tab-container"></div>
-      <div id="modalDynamicContent" class="modal-body-wrapper"></div>
+      <div id="modalContent" class="modal-body-wrapper"></div>
 
       <form id="queryForm" onsubmit="event.preventDefault();">
         <div class="form-grid">
@@ -481,69 +481,11 @@
       </form>
     </div>
   </div>
-  
-  <!-- LIGHTBOX MODAL -->
+
+  <!-- LIGHTBOX MODAL (single instance) -->
   <div id="pamphletLightbox" class="pamphlet-modal" onclick="closePamphletZoom(event)">
     <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
-    
-    <button type="button" class="pamphlet-nav pamphlet-prev" aria-label="Previous Image" onclick="navigateLightbox(-1, event)">&#10094;</button>
-    <button type="button" class="pamphlet-nav pamphlet-next" aria-label="Next Image" onclick="navigateLightbox(1, event)">&#10095;</button>
 
-    <div class="pamphlet-modal-container" onclick="event.stopPropagation()">
-      <img class="pamphlet-modal-content" id="lightboxImage" alt="Pamphlet Zoom View">
-    </div>
-
-    <div class="pamphlet-zoom-controls" onclick="event.stopPropagation()">
-      <button type="button" onclick="zoomIn()">🔍 +</button>
-      <button type="button" onclick="zoomOut()">🔍 -</button>
-      <button type="button" onclick="resetZoom()">🔄 Reset</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-  <!-- CATEGORY & ENQUIRY MODAL -->
-  <div id="categoryModal" class="modal-overlay" style="display:none;" onclick="closeCategoryModal(event)">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button type="button" class="modal-close-btn" onclick="closeCategoryModal(event)">&times;</button>
-      <h3 id="modalTitle">Category Title</h3>
-      <p id="modalDesc" class="modal-subtitle">Category description goes here.</p>
-      
-      <div id="modalSubTabs" class="sub-tab-container"></div>
-      <div id="modalContent" class="modal-body-wrapper"></div>
-      <div id="modalDynamicContent"></div>
-
-      <form id="queryForm" onsubmit="event.preventDefault();">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="userName">Your Name</label>
-            <input type="text" id="userName" placeholder="Enter full name" required>
-          </div>
-          <div class="form-group">
-            <label for="userPhone">Phone / WhatsApp</label>
-            <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="userQuery">Travel Notes / Preferred Vehicle</label>
-          <textarea id="userQuery" rows="2" placeholder="Mention travel dates, group size, or custom preferences..."></textarea>
-        </div>
-
-        <div class="modal-actions-grid">
-          <button type="button" class="action-btn btn-wa" onclick="submitEnquiry('whatsapp')">
-            📱 Booking via WhatsApp
-          </button>
-          <button type="button" class="action-btn btn-email" onclick="submitEnquiry('email')">
-            ✉️ Send Email Query
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
-  <!-- LIGHTBOX MODAL -->
-  <div id="pamphletLightbox" class="pamphlet-modal" style="display:none;" onclick="closePamphletZoom(event)">
-    <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
-    
     <button type="button" class="pamphlet-nav pamphlet-prev" aria-label="Previous Image" onclick="navigateLightbox(-1, event)">&#10094;</button>
     <button type="button" class="pamphlet-nav pamphlet-next" aria-label="Next Image" onclick="navigateLightbox(1, event)">&#10095;</button>
 
@@ -561,6 +503,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-</body>
-</html>
-
