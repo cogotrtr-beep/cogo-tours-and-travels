@@ -1,3 +1,28 @@
+// PASTE THIS AT THE top OR BOTTOM OF script.js
+function setupConveyorBelt(trackId) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  // Prevent double-cloning if function runs twice
+  if (track.classList.contains('conveyor-track')) return;
+
+  // 1. Duplicate all original cards for the infinite loop
+  const originalCards = Array.from(track.children);
+  originalCards.forEach((card) => {
+    const clone = card.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  // 2. Attach the animation class
+  track.classList.add('conveyor-track');
+}
+
+// Ensure it runs as soon as the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  setupConveyorBelt('domesticTrack');
+  setupConveyorBelt('intlTrack');
+});
+
 /* =========================================================
 
    COGO TOURS & CABS - DYNAMIC ENGINE & SIGHTSEEING TABS
