@@ -646,7 +646,7 @@ body {
 }
 
 /* =========================================================
-   9. ONGOING TOURS & LIVE SLIDERS
+   9. ONGOING TOURS & LIVE SLIDERS (INFINITE CONVEYOR)
 ========================================================= */
 .ongoing-tours-section,
 .ongoing-section {
@@ -680,7 +680,6 @@ body {
   margin: 0 auto;
 }
 
-/* REMOVED WHITE CARDS AROUND SLIDERS */
 .ongoing-column {
   background: transparent !important;
   padding: 0;
@@ -719,14 +718,16 @@ body {
 .live-badge.domestic { background: #ff9500; }
 .live-badge.intl { background: #007aff; }
 
+/* Conveyor Outer Wrapper */
 .slider-wrapper {
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
+  overflow: hidden; /* Clips elements offscreen */
 }
 
-/* CONTINUOUS SMOOTH ROLLING TRACK */
+/* Base Slider Track */
 #domesticTrack,
 #intlTrack,
 .slider-track {
@@ -746,10 +747,34 @@ body {
   display: none; 
 }
 
+/* Continuous Infinite Rolling Engine */
+.conveyor-track {
+  display: flex !important;
+  gap: 16px;
+  width: max-content;
+  overflow-x: visible !important;
+  animation: scrollConveyor 25s linear infinite;
+  will-change: transform;
+}
+
+.conveyor-track:hover {
+  animation-play-state: paused; /* Pause on hover */
+}
+
+@keyframes scrollConveyor {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Seamless 50% shift */
+  }
+}
+
+/* Card Styling Inside Conveyor */
 .slide-card,
 .ongoing-card,
 .tour-card {
-  flex: 0 0 calc(50% - 8px);
+  flex: 0 0 280px; /* Fixed width for uniform conveyor movement */
   height: 380px;
   position: relative;
   border-radius: 14px;
@@ -843,38 +868,7 @@ body {
   cursor: pointer;
   white-space: nowrap;
 }
-/* Find this in your CSS (around Section 9) */
-.slider-wrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  overflow: hidden; /* <--- ADD THIS LINE to clip anything sliding out of view */
-}
 
-/* ==========================================
-   PASTE THE NEW CONVEYOR BELT CSS RIGHT HERE
-   ========================================== */
-.conveyor-track {
-  display: flex !important;
-  gap: 16px;
-  width: max-content;
-  animation: scrollConveyor 25s linear infinite; /* Adjust 25s to make it faster or slower */
-  will-change: transform;
-}
-
-.conveyor-track:hover {
-  animation-play-state: paused; /* Pauses on mouse hover */
-}
-
-@keyframes scrollConveyor {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%); /* Moves left seamlessly by half the cloned width */
-  }
-}
 /* =========================================================
    10. LIGHTBOX & INTERACTIVE ZOOM MODALS
 ========================================================= */
@@ -1171,8 +1165,8 @@ body {
   .slide-card,
   .ongoing-card,
   .tour-card { 
-    flex: 0 0 82%; 
-    height: 360px; 
+    flex: 0 0 240px; /* Adapted for mobile screen scaling */
+    height: 340px; 
   }
   .ongoing-action-bar { flex-direction: column; text-align: center; gap: 12px; }
   .btn-primary-single { width: 100%; }
