@@ -154,7 +154,6 @@ const categoryData = {
 
 let currentCategoryTitle = "";
 
-// Helper function to reset form input fields
 function clearFormFields() {
   const fields = ['userName', 'userPhone', 'userQuery'];
   fields.forEach(id => {
@@ -168,10 +167,7 @@ function openCategoryModal(categoryKey) {
   const modal = document.getElementById('categoryModal');
   const data = categoryData[categoryKey];
 
-  if (!data || !modal) {
-    console.warn('No category data found for key:', categoryKey);
-    return;
-  }
+  if (!data || !modal) return;
 
   currentCategoryTitle = data.title;
 
@@ -224,13 +220,14 @@ function submitEnquiry(type) {
   closeCategoryModal();
 }
 
-// 4. LIGHTBOX / PAMPHLET ZOOM & TOUCH HANDLERS
+// 4. PAMPHLET FULLSCREEN, ZOOM & SWIPE CONTROLS
 let zoomLevel = 1;
 let currentGallery = [];
 let currentGalleryIndex = 0;
 let touchStartX = 0;
+let touchStartY = 0;
 let touchEndX = 0;
-let initialPinchDistance = 0;
+let touchEndY = 0;
 let lastTapTime = 0;
 
 function openPamphletList(images, startIndex) {
@@ -291,42 +288,17 @@ function resetZoom() {
 function applyZoom() {
   const img = document.getElementById('lightboxImage');
   if (img) {
-    img.style.transition = 'transform 0.2s ease-out';
+    img.style.transition = 'transform 0.15s ease-out';
     img.style.transform = `scale(${zoomLevel})`;
     img.style.webkitTransform = `scale(${zoomLevel})`;
   }
 }
 
-// 5. CONTINUOUS CONVEYOR BELT AUTO-DUPLICATOR
-function initConveyorBelts() {
-  // Finds slider tracks (domestic, international, ongoing, or generic tracks)
-  const tracks = document.querySelectorAll('.domestic-track, .international-track, .tour-slider-track, .ongoing-track');
-
-  tracks.forEach(track => {
-    if (track.getAttribute('data-duplicated') === 'true') return;
-
-    const originalCards = Array.from(track.children);
-    if (originalCards.length === 0) return;
-
-    // Clone cards to form an infinite loop
-    originalCards.forEach(card => {
-      const clone = card.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      track.appendChild(clone);
-    });
-
-    track.setAttribute('data-duplicated', 'true');
-  });
-}
-
-// 6. EVENT LISTENERS & INITIALIZATION
+// 5. EVENT LISTENERS & INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
   const lightbox = document.getElementById('pamphletLightbox');
   const categoryModal = document.getElementById('categoryModal');
   const img = document.getElementById('lightboxImage');
-
-  // Initialize Conveyor Belts
-  initConveyorBelts();
 
   // Close modals on clicking backdrop
   if (categoryModal) {
@@ -340,74 +312,70 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === lightbox) closePamphletZoom();
     });
 
-    // Touch swipe support for navigation
+    // Mouse Wheel Scroll Zoom for PC
+    lightbox.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (e.deltaY < 0) {
+        zoomIn();
+      } else {
+        zoomOut();
+      }
+    }, { passive: false });
+
+    // Touch gesture setup for Mobile
     lightbox.addEventListener('touchstart', (e) => {
       if (e.touches.length === 1) {
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
       }
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
       if (e.touches.length === 0) {
         touchEndX = e.changedTouches[0].screenX;
-        // Swipe only when not zoomed in
-        if (zoomLevel <= 1) {
-          handleSwipe();
-        }
+        touchEndY = e.changedTouches[0].screenY;
+        handleGestures();
       }
     }, { passive: true });
   }
 
-  // Touch Gesture Controls for Mobile Zoom (Double-Tap & Pinch)
+  // Double tap to Zoom & Fullscreen view
   if (img) {
     img.addEventListener('touchend', (e) => {
       const currentTime = new Date().getTime();
       const tapLength = currentTime - lastTapTime;
       if (tapLength < 300 && tapLength > 0) {
         e.preventDefault();
-        zoomLevel = zoomLevel > 1 ? 1 : 2; // Toggle zoom on double tap
+        zoomLevel = zoomLevel > 1 ? 1 : 2;
         applyZoom();
       }
       lastTapTime = currentTime;
     });
-
-    img.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 2) {
-        initialPinchDistance = Math.hypot(
-          e.touches[0].pageX - e.touches[1].pageX,
-          e.touches[0].pageY - e.touches[1].pageY
-        );
-      }
-    }, { passive: true });
-
-    img.addEventListener('touchmove', (e) => {
-      if (e.touches.length === 2) {
-        const currentDistance = Math.hypot(
-          e.touches[0].pageX - e.touches[1].pageX,
-          e.touches[0].pageY - e.touches[1].pageY
-        );
-        if (initialPinchDistance > 0) {
-          const factor = currentDistance / initialPinchDistance;
-          zoomLevel = Math.min(Math.max(zoomLevel * factor, 0.8), 3);
-          applyZoom();
-          initialPinchDistance = currentDistance;
-        }
-      }
-    }, { passive: true });
   }
 
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    if (touchEndX < touchStartX - swipeThreshold) {
-      navigateLightbox(1); // Swipe left -> next image
+  function handleGestures() {
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const threshold = 50;
+
+    // Swipe Up to close / go back to original position
+    if (deltaY < -threshold && Math.abs(deltaX) < threshold) {
+      closePamphletZoom();
+      return;
     }
-    if (touchEndX > touchStartX + swipeThreshold) {
-      navigateLightbox(-1); // Swipe right -> previous image
+
+    // Swipe Left / Right to change slides (Only when not zoomed)
+    if (zoomLevel <= 1) {
+      if (deltaX < -threshold) {
+        navigateLightbox(1);
+      } else if (deltaX > threshold) {
+        navigateLightbox(-1);
+      }
     }
   }
 });
 
-// Global Keyboard Listeners
+// Keyboard Accessibility
 window.addEventListener('keydown', (e) => {
   const lightbox = document.getElementById('pamphletLightbox');
   const isLightboxActive = lightbox && lightbox.classList.contains('show');
