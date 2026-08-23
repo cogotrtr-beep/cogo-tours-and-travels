@@ -224,12 +224,14 @@ function submitEnquiry(type) {
   closeCategoryModal();
 }
 
-// 4. LIGHTBOX / PAMPHLET ZOOM FUNCTIONALITY
+// 4. LIGHTBOX / PAMPHLET ZOOM & TOUCH HANDLERS
 let zoomLevel = 1;
 let currentGallery = [];
 let currentGalleryIndex = 0;
 let touchStartX = 0;
 let touchEndX = 0;
+let initialPinchDistance = 0;
+let lastTapTime = 0;
 
 function openPamphletList(images, startIndex) {
   if (!Array.isArray(images) || images.length === 0) return;
@@ -270,13 +272,13 @@ function navigateLightbox(direction, event) {
 }
 
 function zoomIn() {
-  zoomLevel += 0.2;
+  zoomLevel = Math.min(zoomLevel + 0.3, 3);
   applyZoom();
 }
 
 function zoomOut() {
-  if (zoomLevel > 0.4) {
-    zoomLevel -= 0.2;
+  if (zoomLevel > 0.5) {
+    zoomLevel = Math.max(zoomLevel - 0.3, 0.5);
     applyZoom();
   }
 }
@@ -289,14 +291,42 @@ function resetZoom() {
 function applyZoom() {
   const img = document.getElementById('lightboxImage');
   if (img) {
+    img.style.transition = 'transform 0.2s ease-out';
     img.style.transform = `scale(${zoomLevel})`;
+    img.style.webkitTransform = `scale(${zoomLevel})`;
   }
 }
 
-// 5. EVENT LISTENERS & INITIALIZATION
+// 5. CONTINUOUS CONVEYOR BELT AUTO-DUPLICATOR
+function initConveyorBelts() {
+  // Finds slider tracks (domestic, international, ongoing, or generic tracks)
+  const tracks = document.querySelectorAll('.domestic-track, .international-track, .tour-slider-track, .ongoing-track');
+
+  tracks.forEach(track => {
+    if (track.getAttribute('data-duplicated') === 'true') return;
+
+    const originalCards = Array.from(track.children);
+    if (originalCards.length === 0) return;
+
+    // Clone cards to form an infinite loop
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
+    track.setAttribute('data-duplicated', 'true');
+  });
+}
+
+// 6. EVENT LISTENERS & INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
   const lightbox = document.getElementById('pamphletLightbox');
   const categoryModal = document.getElementById('categoryModal');
+  const img = document.getElementById('lightboxImage');
+
+  // Initialize Conveyor Belts
+  initConveyorBelts();
 
   // Close modals on clicking backdrop
   if (categoryModal) {
@@ -310,14 +340,59 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === lightbox) closePamphletZoom();
     });
 
-    // Touch swipe support for mobile lightbox navigation
+    // Touch swipe support for navigation
     lightbox.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+      if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+      }
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
+      if (e.touches.length === 0) {
+        touchEndX = e.changedTouches[0].screenX;
+        // Swipe only when not zoomed in
+        if (zoomLevel <= 1) {
+          handleSwipe();
+        }
+      }
+    }, { passive: true });
+  }
+
+  // Touch Gesture Controls for Mobile Zoom (Double-Tap & Pinch)
+  if (img) {
+    img.addEventListener('touchend', (e) => {
+      const currentTime = new Date().getTime();
+      const tapLength = currentTime - lastTapTime;
+      if (tapLength < 300 && tapLength > 0) {
+        e.preventDefault();
+        zoomLevel = zoomLevel > 1 ? 1 : 2; // Toggle zoom on double tap
+        applyZoom();
+      }
+      lastTapTime = currentTime;
+    });
+
+    img.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        initialPinchDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+      }
+    }, { passive: true });
+
+    img.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2) {
+        const currentDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+        if (initialPinchDistance > 0) {
+          const factor = currentDistance / initialPinchDistance;
+          zoomLevel = Math.min(Math.max(zoomLevel * factor, 0.8), 3);
+          applyZoom();
+          initialPinchDistance = currentDistance;
+        }
+      }
     }, { passive: true });
   }
 
