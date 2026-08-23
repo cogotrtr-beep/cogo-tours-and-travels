@@ -148,9 +148,6 @@
        1. OUR SERVICES SECTION
   ========================================================= -->
   
-  <!-- =========================================================
-       1. OUR SERVICES SECTION
-  ========================================================= -->
   <section class="section" id="services-section">
     <div class="hub-header text-center">
       <h2>Our Services</h2>
@@ -159,18 +156,79 @@
 
     <div class="hub-grid">
       
-      <!-- 1. Cab Services -->
+            <!-- 1. Cab Services -->
       <article class="hub-card">
         <div class="hub-card-bg">
-          <img src="Images/images/cab-services.png" alt="Cab Services" class="card-img" loading="lazy">
+          <img src="Images/images/cab-main.png" alt="Cab Services" class="card-img" loading="lazy">
         </div>
         <div class="hub-card-content">
-          <span class="hub-icon">🚕</span>
+          <span class="hub-icon">🚖</span>
           <h3>Cab Services</h3>
-          <p>Local & outstation rentals with professional drivers.</p>
-          <button class="hub-btn" onclick="openCategoryModal('cabs')">View Cab Tariff</button>
+          <p>Local, outstation, and airport transfers with premium comfort.</p>
+          
+          <!-- Cab Routing & Options -->
+          <div class="cab-route-selector">
+            <!-- Pickup Input -->
+            <div class="custom-select-wrapper">
+              <input 
+                type="text" 
+                id="cabPickupInput" 
+                placeholder="📍 Pickup Location..." 
+                onfocus="showCabPickupDropdown()" 
+                oninput="filterCabPickup()"
+                autocomplete="off"
+              />
+              <div id="cabPickupList" class="visa-dropdown-list"></div>
+            </div>
+
+            <!-- Drop Input -->
+            <div class="custom-select-wrapper">
+              <input 
+                type="text" 
+                id="cabDropInput" 
+                placeholder="🎯 Destination / Drop..." 
+                onfocus="showCabDropDropdown()" 
+                oninput="filterCabDrop()"
+                autocomplete="off"
+              />
+              <div id="cabDropList" class="visa-dropdown-list"></div>
+            </div>
+
+            <!-- Date & Time Row -->
+            <div class="cab-datetime-row">
+              <input type="date" id="cabDateInput" class="cab-input-field" title="Select Travel Date" />
+              <input type="time" id="cabTimeInput" class="cab-input-field" title="Select Pickup Time" />
+            </div>
+
+            <!-- Vehicle Type Select -->
+            <div class="cab-select-row">
+              <select id="cabVehicleSelect" class="cab-dropdown-select">
+                <option value="" disabled selected>🚗 Select Vehicle</option>
+                <option value="Sedan (Dzire / Etios)">Sedan (Dzire / Etios)</option>
+                <option value="SUV (Ertiga / Xylo)">SUV (Ertiga / Xylo)</option>
+                <option value="Premium SUV (Innova Crysta)">Innova Crysta</option>
+                <option value="Tempo Traveller (12/15 Seater)">Tempo Traveller</option>
+              </select>
+            </div>
+
+            <!-- Trip Pack Select -->
+            <div class="cab-select-row">
+              <select id="cabPackSelect" class="cab-dropdown-select">
+                <option value="" disabled selected>⏱️ Select Trip Pack</option>
+                <option value="Local Sightseeing (8 Hrs / 80 Kms)">Local Day Pack (8h/80km)</option>
+                <option value="Local Airport / Station Transfer">Airport / Station Transfer</option>
+                <option value="Outstation One-Way Drop">Outstation One-Way</option>
+                <option value="Outstation Round Trip">Outstation Round Trip</option>
+              </select>
+            </div>
+            
+            <button type="button" class="btn-whatsapp-visa" onclick="sendCabWhatsApp()">
+              <span class="wa-icon">💬</span> Book / Enquire Cab
+            </button>
+          </div>
         </div>
       </article>
+
 
       <!-- 2. Ticket Booking -->
       <article class="hub-card">
