@@ -1,16 +1,13 @@
 /* ==========================================================================
-   COGO TOURS & TRAVELS - MAIN JAVASCRIPT SYSTEM
+   COGO TOURS & TRAVELS - MASTER JAVASCRIPT SYSTEM
    ========================================================================== */
 
-// --- GLOBAL STATE ---
+// Global State
 let currentLightboxList = [];
 let currentLightboxIndex = 0;
 let currentZoomScale = 1;
 
-// ==========================================
-// 1. DYNAMIC CONVEYOR CLONER
-// ==========================================
-
+// 1. CONVEYOR TRACK DUPLICATOR
 function setupCSSConveyor(trackId) {
   const track = document.getElementById(trackId);
   if (!track || track.dataset.cloned === "true") return;
@@ -27,12 +24,21 @@ function setupCSSConveyor(trackId) {
   track.dataset.cloned = "true";
 }
 
-// Global click delegator so cloned cards and action buttons trigger reliably
+// Global Click Delegation to fix all unclickable buttons, tabs & cloned cards
 document.addEventListener('click', (e) => {
-  const triggerBtn = e.target.closest('[onclick]');
-  if (!triggerBtn) return;
+  const trigger = e.target.closest('[onclick]');
+  if (!trigger) return;
 
-  // Let standard clicks process normally without event cancellation
+  // Handles inline onclick calls reliably across original and cloned elements
+  const onClickFunc = trigger.getAttribute('onclick');
+  if (onClickFunc && !onClickFunc.includes('submitEnquiry')) {
+    try {
+      const exec = new Function(onClickFunc);
+      exec();
+    } catch (err) {
+      console.log('Event executed directly via inline handle');
+    }
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,42 +47,42 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ==========================================
-// 2. CATEGORY DATA & DYNAMIC MODALS
-// ==========================================
-
+// 2. MODAL SYSTEM & DATA
 const categoryData = {
   cabs: {
     title: "Cab Services & Tariff",
     desc: "Clean, well-maintained vehicles with professional local drivers.",
-    subTabs: ["Local Tariff", "Outstation Tariff"],
     content: `
-      <table class="tariff-table">
+      <table class="tariff-table" style="width:100%; border-collapse:collapse; margin-top:10px;">
         <thead>
-          <tr><th>Vehicle Type</th><th>Local (8 Hrs/80 km)</th><th>Extra/km</th></tr>
+          <tr style="background:#f1f5f9; text-align:left;">
+            <th style="padding:8px;">Vehicle Type</th>
+            <th style="padding:8px;">Local (8 Hrs/80 km)</th>
+            <th style="padding:8px;">Extra/km</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>Sedan (Dzire/Etios)</td><td>₹2,200</td><td>₹14</td></tr>
-          <tr><td>SUV (Ertiga)</td><td>₹3,200</td><td>₹18</td></tr>
-          <tr><td>Premium SUV (Innova Crysta)</td><td>₹4,500</td><td>₹22</td></tr>
-          <tr><td>Tempo Traveller (12-16 Seater)</td><td>₹5,500</td><td>₹26</td></tr>
+          <tr><td style="padding:8px;">Sedan (Dzire/Etios)</td><td style="padding:8px;">₹2,200</td><td style="padding:8px;">₹14</td></tr>
+          <tr><td style="padding:8px;">SUV (Ertiga)</td><td style="padding:8px;">₹3,200</td><td style="padding:8px;">₹18</td></tr>
+          <tr><td style="padding:8px;">Premium SUV (Innova Crysta)</td><td style="padding:8px;">₹4,500</td><td style="padding:8px;">₹22</td></tr>
+          <tr><td style="padding:8px;">Tempo Traveller (12-16 Seater)</td><td style="padding:8px;">₹5,500</td><td style="padding:8px;">₹26</td></tr>
         </tbody>
       </table>`
   },
   journey: {
     title: "Plan Your Custom Journey",
-    desc: "Tell us your preferences and we'll craft the perfect itinerary for you.",
-    content: `<p class="modal-info-text">Please fill out your requirements in the form below. Our travel experts will get back to you with custom options within 30 minutes.</p>`
+    desc: "Tell us your preferences and we will craft the perfect itinerary for you.",
+    content: `<p style="font-size:13px; color:#64748b;">Fill out your preferences below and our travel desk will reach out with customized options.</p>`
   },
   ticket: {
     title: "Flight, Train & Bus Ticket Booking",
     desc: "Instant reservation support for all major transport networks.",
-    content: `<p class="modal-info-text">Mention your travel route, preferred date, and passenger details below for quick availability checks and lowest fare options.</p>`
+    content: `<p style="font-size:13px; color:#64748b;">Mention your route, preferred date, and passengers below for fast booking assistance.</p>`
   },
   visa: {
     title: "Visa Assistance & Processing",
     desc: "End-to-end documentation, appointment scheduling, and verification.",
-    content: `<p class="modal-info-text">We process tourist, business, and family visas for Dubai, Singapore, Malaysia, Schengen area, USA, UK, and more.</p>`
+    content: `<p style="font-size:13px; color:#64748b;">We handle tourist and business visas for Dubai, Singapore, Europe, USA, UK & more.</p>`
   }
 };
 
@@ -116,11 +122,7 @@ function closeModalOnOverlay(event) {
   }
 }
 
-
-// ==========================================
-// 3. FORM SUBMISSION (WHATSAPP & EMAIL)
-// ==========================================
-
+// 3. FORM SUBMISSION
 function submitEnquiry(type) {
   const nameEl = document.getElementById('userName');
   const phoneEl = document.getElementById('userPhone');
@@ -132,7 +134,7 @@ function submitEnquiry(type) {
   const modalTitle = document.getElementById('modalTitle')?.innerText || "Enquiry";
 
   if (!name || !phone) {
-    alert("Please fill in your Name and Phone/WhatsApp number before proceeding.");
+    alert("Please enter your Name and Phone/WhatsApp number.");
     return;
   }
 
@@ -140,11 +142,7 @@ function submitEnquiry(type) {
   const primaryEmail = "cogotrtr@gmail.com";
 
   if (type === 'whatsapp') {
-    const text = `*New Enquiry - Cogo Tours*\n\n` +
-                 `*Category:* ${modalTitle}\n` +
-                 `*Name:* ${name}\n` +
-                 `*Phone:* ${phone}\n` +
-                 `*Details:* ${query || 'N/A'}`;
+    const text = `*New Enquiry - Cogo Tours*\n\n*Category:* ${modalTitle}\n*Name:* ${name}\n*Phone:* ${phone}\n*Details:* ${query || 'N/A'}`;
     window.open(`https://wa.me/${primaryPhone}?text=${encodeURIComponent(text)}`, '_blank');
   } else if (type === 'email') {
     const subject = encodeURIComponent(`Enquiry for ${modalTitle} - ${name}`);
@@ -155,11 +153,7 @@ function submitEnquiry(type) {
   closeModal();
 }
 
-
-// ==========================================
-// 4. LIGHTBOX & PAMPHLET FULL-PAGE ZOOM
-// ==========================================
-
+// 4. PAMPHLET LIGHTBOX & ZOOM
 function openPamphletList(imagesArray, initialIndex = 0) {
   if (!imagesArray || imagesArray.length === 0) return;
 
