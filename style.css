@@ -1183,3 +1183,17 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(191, 149, 63, 0.35);
 }
+/* =========================================================
+   DISABLE CONTINUOUS SCROLL / CONVEYOR BELT ANIMATION
+   ========================================================= */
+.domestic-track,
+.international-track,
+.tour-slider-track,
+.ongoing-track {
+  animation: none !important;
+  transform: none !important;
+  overflow-x: auto !important; /* Allows manual swipe/scroll on mobile */
+  scroll-behavior: smooth;
+  display: flex !important;
+  gap: 16px;
+}
