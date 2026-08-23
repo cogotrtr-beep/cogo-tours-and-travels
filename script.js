@@ -8,68 +8,29 @@ let currentLightboxList = [];
 let currentLightboxIndex = 0;
 let currentZoomScale = 1;
 
-// Stores slider intervals to prevent memory leaks and track auto-scroll
-const activeSliderIntervals = {};
-
 // ==========================================
-// 1. INFINITE DYNAMIC CLONING CONVEYOR BELT
+// 1. DYNAMIC DUPLICATOR FOR CSS CONVEYOR BELT
 // ==========================================
 
 /**
- * Initializes continuous marquee-style auto-scroll using clone duplication.
- * Works seamlessly across both desktop and touch devices.
- * @param {string} trackId - Element ID of the .slider-track container
+ * Clones slider cards dynamically to feed the CSS infinite loop keyframe.
+ * @param {string} trackId - Element ID of the slider track container
  */
-function initConveyorSlider(trackId) {
+function setupCSSConveyor(trackId) {
   const track = document.getElementById(trackId);
-  if (!track || track.dataset.initialized === "true") return;
+  if (!track || track.dataset.cloned === "true") return;
 
-  // Cache original slides before cloning
-  const originalCards = Array.from(track.querySelectorAll('.slide-card'));
+  const originalCards = Array.from(track.querySelectorAll('.slide-card, .ongoing-card, .tour-card'));
   if (originalCards.length === 0) return;
 
-  // Duplicate cards for seamless loop transition
+  // Clone original cards so the belt seamlessly loops endlessly
   originalCards.forEach((card) => {
     const clone = card.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true'); // Accessibility compliance for duplicate cards
+    clone.setAttribute('aria-hidden', 'true');
     track.appendChild(clone);
   });
 
-  // Flag track as initialized
-  track.dataset.initialized = "true";
-
-  // Automatic scrolling execution
-  const scrollStep = 1; // Pixels per interval tick
-  const stepInterval = 20; // Speed tick rate in milliseconds
-
-  function startAutoScroll() {
-    stopAutoScroll();
-    activeSliderIntervals[trackId] = setInterval(() => {
-      track.scrollLeft += scrollStep;
-
-      // When the scroll reaches halfway (the boundary between originals and clones), reset to start seamlessly
-      const maxScroll = track.scrollWidth / 2;
-      if (track.scrollLeft >= maxScroll) {
-        track.scrollLeft -= maxScroll;
-      }
-    }, stepInterval);
-  }
-
-  function stopAutoScroll() {
-    if (activeSliderIntervals[trackId]) {
-      clearInterval(activeSliderIntervals[trackId]);
-      delete activeSliderIntervals[trackId];
-    }
-  }
-
-  // Event Listeners for Pause/Resume interactions
-  track.addEventListener('mouseenter', stopAutoScroll);
-  track.addEventListener('mouseleave', startAutoScroll);
-  track.addEventListener('touchstart', stopAutoScroll, { passive: true });
-  track.addEventListener('touchend', startAutoScroll, { passive: true });
-
-  // Start the continuous motion
-  startAutoScroll();
+  track.dataset.cloned = "true";
 }
 
 /**
@@ -81,8 +42,8 @@ function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  const cardWidth = track.querySelector('.slide-card')?.offsetWidth || 300;
-  const gap = 16; // Standard layout gap
+  const cardWidth = track.querySelector('.slide-card, .ongoing-card, .tour-card')?.offsetWidth || 280;
+  const gap = 16;
   const scrollAmount = (cardWidth + gap) * direction;
 
   track.scrollBy({
@@ -91,16 +52,11 @@ function moveSlide(trackId, direction) {
   });
 }
 
-// Automatically mount conveyor belts on page load
+// Initialize conveyor cloning as soon as DOM loads
 document.addEventListener('DOMContentLoaded', () => {
-  initConveyorSlider('domesticTrack');
-  initConveyorSlider('intlTrack');
+  setupCSSConveyor('domesticTrack');
+  setupCSSConveyor('intlTrack');
 });
-
-
-// ==========================================
-// 2. CATEGORY DATA & DYNAMIC MODALS
-// ==========================================
 
 const categoryData = {
   cabs: {
