@@ -1,3 +1,18 @@
+// Force page to scroll to top on mobile load/refresh
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', function() {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 10);
+});
+
 /* =========================================================
    COGO TOURS & CABS - DYNAMIC ENGINE & SIGHTSEEING TABS
 ========================================================= */
