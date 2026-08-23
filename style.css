@@ -1334,3 +1334,28 @@ body {
 .cab-datetime-row .cab-input-field:focus {
   border-color: #0f172a;
 }
+/* Flight Radio Toggles */
+.flight-route-selector {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flight-toggle-group {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f1f5f9;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.flight-toggle-group label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
