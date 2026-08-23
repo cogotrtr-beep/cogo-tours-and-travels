@@ -1,30 +1,8 @@
-/* ==========================================================================
-   COGO TOURS & TRAVELS - MASTER JS SYSTEM
-   ========================================================================== */
+/* =========================================================
+   COGOTOURS - MAIN JAVASCRIPT HANDLER
+   ========================================================= */
 
-// 1. CONVEYOR DUPLICATOR
-function setupCSSConveyor(trackId) {
-  const track = document.getElementById(trackId);
-  if (!track || track.dataset.cloned === "true") return;
-
-  const originalCards = Array.from(track.querySelectorAll('.slide-card'));
-  if (originalCards.length === 0) return;
-
-  originalCards.forEach((card) => {
-    const clone = card.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    track.appendChild(clone);
-  });
-
-  track.dataset.cloned = "true";
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  setupCSSConveyor('domesticTrack');
-  setupCSSConveyor('intlTrack');
-});
-
-// 2. MODAL & CATEGORY DATA
+// 1. ALL CATEGORY & SERVICE DATA
 const categoryData = {
   cabs: {
     title: "Cab Services & Tariff",
@@ -49,155 +27,192 @@ const categoryData = {
   journey: {
     title: "Plan Your Custom Journey",
     desc: "Tell us your preferences and we will craft the perfect itinerary for you.",
-    content: "<p style='color:#475569;'>Share your travel plan details in the form below and our travel desk will reach back to you shortly.</p>"
+    content: "<p style='color:#475569;'>Share your travel plan details in the form below and our travel desk will reach back to you shortly with a personalized quote.</p>"
   },
   ticket: {
     title: "Flight, Train & Bus Tickets",
     desc: "Instant reservation support for all major transport networks.",
-    content: "<p style='color:#475569;'>Enter your departure date, source, destination, and preferred travel class below.</p>"
+    content: "<p style='color:#475569;'>Enter your departure date, source, destination, and preferred travel class in the form below for fast ticket bookings.</p>"
   },
   visa: {
     title: "Visa Assistance & Processing",
     desc: "End-to-end documentation & appointment scheduling.",
-    content: "<p style='color:#475569;'>Mention destination country and expected date of departure to get started.</p>"
+    content: "<p style='color:#475569;'>Mention your destination country and expected date of departure to receive complete visa checklist and assistance.</p>"
   },
   chennai: {
     title: "Tour Chennai Packages",
     desc: "Explore Mahabalipuram, heritage temples, beaches, and local sights.",
-    content: "<p style='color:#475569;'>Customized 1-Day, 2-Day, and 3-Day city tour packages available on demand.</p>"
+    content: `
+      <div style="font-size:13px; color:#334155;">
+        <p><b>Popular Itineraries:</b></p>
+        <ul style="padding-left:18px; margin:4px 0 8px 0;">
+          <li><b>1-Day Local Tour:</b> Kapaleeshwarar Temple, Marina Beach, Fort St. George, Santhome Church.</li>
+          <li><b>2-Day Coastal Circuit:</b> Chennai sightseeing + Mahabalipuram shore temples & Covelong beach.</li>
+          <li><b>3-Day Heritage Trail:</b> Chennai + Kanchipuram silk town & Mahabalipuram.</li>
+        </ul>
+      </div>`
   },
   pilgrim: {
     title: "Pilgrim Tour Circuits",
     desc: "Shirdi, Tirupati, Kanchipuram, and South India temple circuits.",
-    content: "<p style='color:#475569;'>Special VIP Darshan arrangements and comfortable transport packages.</p>"
+    content: `
+      <div style="font-size:13px; color:#334155;">
+        <p><b>Spiritual Destinations Covered:</b></p>
+        <ul style="padding-left:18px; margin:4px 0 8px 0;">
+          <li><b>Tirupati Balaji:</b> Daily packages with confirmed Seeghra Darshan tickets & cab pickup.</li>
+          <li><b>Navagraha Temple Circuit:</b> Kumbakonam 9-temple tour packages.</li>
+          <li><b>Shirdi & Western Circuits:</b> Flight/Train packages with star hotel stays.</li>
+        </ul>
+      </div>`
+  },
+  "south-india": {
+    title: "Tour South India",
+    desc: "Kodaikanal misty hills, Kerala backwaters & Coorg escapes.",
+    content: `
+      <div style="font-size:13px; color:#334155;">
+        <p><b>Top Packages Available:</b></p>
+        <ul style="padding-left:18px; margin:4px 0 8px 0;">
+          <li><b>Munnar & Alleppey (4D/3N):</b> Tea gardens, waterfalls & luxury houseboat stays.</li>
+          <li><b>Ooty & Kodaikanal (5D/4N):</b> Hill station retreats, botanical gardens & lake boating.</li>
+          <li><b>Coorg & Mysore (4D/3N):</b> Coffee plantations, palaces & waterfalls.</li>
+        </ul>
+      </div>`
+  },
+  "north-india": {
+    title: "Tour North India",
+    desc: "Royal palaces, Golden Triangle tours & snow peaks.",
+    content: `
+      <div style="font-size:13px; color:#334155;">
+        <p><b>Featured Circuits:</b></p>
+        <ul style="padding-left:18px; margin:4px 0 8px 0;">
+          <li><b>Golden Triangle (5D/4N):</b> Delhi, Agra (Taj Mahal) & Jaipur.</li>
+          <li><b>Kashmir Valley (6D/5N):</b> Srinagar, Gulmarg, Pahalgam & Sonmarg.</li>
+          <li><b>Himachal Express (6D/5N):</b> Shimla, Manali & Solang Valley.</li>
+        </ul>
+      </div>`
+  },
+  "north-east": {
+    title: "Tour North East",
+    desc: "Gangtok, Darjeeling, Meghalaya & pristine valleys.",
+    content: `
+      <div style="font-size:13px; color:#334155;">
+        <p><b>Pristine Destinations:</b></p>
+        <ul style="padding-left:18px; margin:4px 0 8px 0;">
+          <li><b>Sikkim & Darjeeling (6D/5N):</b> Tsomgo Lake, Nathula Pass & Tiger Hill sunrise.</li>
+          <li><b>Meghalaya Explorer (5D/4N):</b> Shillong, Cherrapunji caves & Dawki crystal river.</li>
+        </ul>
+      </div>`
+  },
+  "rest-of-india": {
+    title: "Tour Rest of India",
+    desc: "Explore unique destinations across all states & territories.",
+    content: `
+      <div style="font-size:13px; color:#334155;">
+        <p><b>Special Regional Experience Tours:</b></p>
+        <ul style="padding-left:18px; margin:4px 0 8px 0;">
+          <li><b>Goa Beach Getaway:</b> North & South Goa beach resorts with watersports.</li>
+          <li><b>Andaman Islands:</b> Port Blair, Havelock Island & Radhanagar Beach.</li>
+          <li><b>Gujarat Heritage:</b> Rann of Kutch, Statue of Unity & Gir Forest safari.</li>
+        </ul>
+      </div>`
+  },
+  international: {
+    title: "Tour International",
+    desc: "Unforgettable foreign trips to Dubai, Singapore & Europe.",
+    content: `
+      <div style="font-size:13px; color:#334155;">
+        <p><b>Best Selling International Packages:</b></p>
+        <ul style="padding-left:18px; margin:4px 0 8px 0;">
+          <li><b>Dubai & Abu Dhabi (5D/4N):</b> Desert safari, Burj Khalifa & museum tours.</li>
+          <li><b>Singapore & Malaysia (6D/5N):</b> Universal Studios, Sentosa & Genting Highlands.</li>
+          <li><b>Thailand Delight (5D/4N):</b> Bangkok & Pattaya coral islands with meals.</li>
+          <li><b>Bali Paradise (5D/4N):</b> Ubud cultural tour & private beach villas.</li>
+        </ul>
+      </div>`
+  },
+  corporate: {
+    title: "Corporate Tour",
+    desc: "Tailored MICE, team retreats, and business outings.",
+    content: "<p style='color:#475569;'>Custom offsite plans including conference facilities, team-building activities, resort bookings, and bus/cab transport options.</p>"
+  },
+  students: {
+    title: "School & College Tours",
+    desc: "Educational field trips and safe student excursions.",
+    content: "<p style='color:#475569;'>Budget-friendly, verified student packages with dedicated coordinators, safe group transport, and educational venue visits.</p>"
+  },
+  adventure: {
+    title: "Adventure Tour",
+    desc: "Trekking, camping, wildlife, and thrill-seeking trips.",
+    content: "<p style='color:#475569;'>Rishikesh rafting, Western Ghats trekking, Wayanad camping, and forest jeep safaris customized for adventure seekers.</p>"
+  },
+  honeymoon: {
+    title: "Honeymoon Tour",
+    desc: "Romantic getaways and relaxing couples' retreats.",
+    content: "<p style='color:#475569;'>Special couples' packages featuring romantic candlelit dinners, flower bed decorations, private cab transfers, and premium resort stays.</p>"
   }
 };
 
+// 2. MODAL CONTROLS
 function openCategoryModal(categoryKey) {
-  const data = categoryData[categoryKey] || {
-    title: "Plan Your Journey",
-    desc: "Get in touch with us for quotes and customized itineraries.",
-    content: "<p style='color:#475569;'>Fill out the query form below for custom itineraries.</p>"
-  };
+  const modal = document.getElementById('categoryModal');
+  const data = categoryData[categoryKey];
 
-  const titleEl = document.getElementById('modalTitle');
-  const descEl = document.getElementById('modalDescription');
-  const contentEl = document.getElementById('modalDynamicContent');
+  if (data && modal) {
+    const titleEl = document.getElementById('modalTitle');
+    const descEl = document.getElementById('modalDesc');
+    const contentEl = document.getElementById('modalContent');
 
-  if (titleEl) titleEl.innerText = data.title;
-  if (descEl) descEl.innerText = data.desc;
-  if (contentEl) contentEl.innerHTML = data.content || "";
+    if (titleEl) titleEl.innerText = data.title;
+    if (descEl) descEl.innerText = data.desc;
+    if (contentEl) contentEl.innerHTML = data.content;
+    
+    // Auto-scroll modal to top when opened
+    const modalCard = modal.querySelector('.modal-card');
+    if (modalCard) modalCard.scrollTop = 0;
 
-  const modal = document.getElementById('enquiryModal');
+    modal.style.display = 'flex';
+  }
+}
+
+function closeCategoryModal() {
+  const modal = document.getElementById('categoryModal');
   if (modal) {
-    modal.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    modal.style.display = 'none';
   }
 }
 
-function closeModal() {
-  const modal = document.getElementById('enquiryModal');
-  if (modal) {
-    modal.classList.remove('show');
-    document.body.style.overflow = 'auto';
+// Close modal when clicking outer backdrop
+window.addEventListener('click', (e) => {
+  const modal = document.getElementById('categoryModal');
+  if (e && e.target === modal) {
+    closeCategoryModal();
   }
-}
+});
 
-function closeModalOnOverlay(event) {
-  if (event.target.id === 'enquiryModal') {
-    closeModal();
+// Close modal when Escape key is pressed
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeCategoryModal();
   }
-}
+});
 
-// 3. FORM SUBMISSION (WhatsApp & Email)
-function submitEnquiry(type) {
-  const name = document.getElementById('userName')?.value.trim();
-  const phone = document.getElementById('userPhone')?.value.trim();
-  const query = document.getElementById('userQuery')?.value.trim();
-  const modalTitle = document.getElementById('modalTitle')?.innerText || "Enquiry";
+// 3. INITIALIZATION ON DOM LOAD
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // Set minimum date for date inputs to Today
+  const dateInputs = document.querySelectorAll('input[type="date"]');
+  const today = new Date().toISOString().split('T')[0];
+  dateInputs.forEach(input => {
+    input.setAttribute('min', today);
+  });
 
-  if (!name || !phone) {
-    alert("Please enter your Name and Phone/WhatsApp number.");
-    return;
-  }
-
-  const primaryPhone = "919884066830";
-  const primaryEmail = "cogotrtr@gmail.com";
-
-  if (type === 'whatsapp') {
-    const text = `*New Enquiry - Cogo Tours*\n\n*Category:* ${modalTitle}\n*Name:* ${name}\n*Phone:* ${phone}\n*Details:* ${query || 'N/A'}`;
-    window.open(`https://wa.me/primaryPhone?text={encodeURIComponent(text)}`, '_blank');
-  } else if (type === 'email') {
-    const subject = encodeURIComponent(`Enquiry for ${modalTitle} - ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\n\nNotes:\n${query}`);
-    window.location.href = `mailto:primaryEmail?subject={subject}&body=${body}`;
+  // Mobile Navigation Toggle (if present)
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
   }
 
-  closeModal();
-}
-
-// 4. LIGHTBOX & ZOOM CONTROLS
-let currentLightboxImages = [];
-let currentLightboxIndex = 0;
-let currentZoomScale = 1;
-
-function openPamphletList(imagesArray, initialIndex = 0) {
-  if (!imagesArray || imagesArray.length === 0) return;
-  currentLightboxImages = imagesArray;
-  currentLightboxIndex = initialIndex;
-  currentZoomScale = 1;
-
-  updateLightboxImage();
-
-  const lightbox = document.getElementById('pamphletLightbox');
-  if (lightbox) {
-    lightbox.classList.add('show');
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function updateLightboxImage() {
-  const imgElement = document.getElementById('lightboxImage');
-  if (imgElement && currentLightboxImages[currentLightboxIndex]) {
-    imgElement.src = currentLightboxImages[currentLightboxIndex];
-    imgElement.style.transform = `scale(${currentZoomScale})`;
-  }
-}
-
-function navigateLightbox(direction, event) {
-  if (event) event.stopPropagation();
-  if (currentLightboxImages.length === 0) return;
-
-  currentLightboxIndex += direction;
-  if (currentLightboxIndex < 0) currentLightboxIndex = currentLightboxImages.length - 1;
-  if (currentLightboxIndex >= currentLightboxImages.length) currentLightboxIndex = 0;
-
-  currentZoomScale = 1;
-  updateLightboxImage();
-}
-
-function zoomIn() {
-  currentZoomScale = Math.min(currentZoomScale + 0.25, 3);
-  updateLightboxImage();
-}
-
-function zoomOut() {
-  currentZoomScale = Math.max(currentZoomScale - 0.25, 0.75);
-  updateLightboxImage();
-}
-
-function resetZoom() {
-  currentZoomScale = 1;
-  updateLightboxImage();
-}
-
-function closePamphletZoom(event) {
-  if (!event || event.target.id === 'pamphletLightbox' || event.target.classList.contains('pamphlet-close')) {
-    const lightbox = document.getElementById('pamphletLightbox');
-    if (lightbox) {
-      lightbox.classList.remove('show');
-      document.body.style.overflow = 'auto';
-    }
-  }
-}
-
+});
