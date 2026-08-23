@@ -501,6 +501,66 @@
   </div>
 
   <script src="script.js"></script>
+  <!-- CATEGORY & ENQUIRY MODAL -->
+  <div id="categoryModal" class="modal-overlay" style="display:none;" onclick="closeCategoryModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button type="button" class="modal-close-btn" onclick="closeCategoryModal(event)">&times;</button>
+      <h3 id="modalTitle">Category Title</h3>
+      <p id="modalDesc" class="modal-subtitle">Category description goes here.</p>
+      
+      <div id="modalSubTabs" class="sub-tab-container"></div>
+      <div id="modalContent" class="modal-body-wrapper"></div>
+      <div id="modalDynamicContent"></div>
+
+      <form id="queryForm" onsubmit="event.preventDefault();">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="userName">Your Name</label>
+            <input type="text" id="userName" placeholder="Enter full name" required>
+          </div>
+          <div class="form-group">
+            <label for="userPhone">Phone / WhatsApp</label>
+            <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="userQuery">Travel Notes / Preferred Vehicle</label>
+          <textarea id="userQuery" rows="2" placeholder="Mention travel dates, group size, or custom preferences..."></textarea>
+        </div>
+
+        <div class="modal-actions-grid">
+          <button type="button" class="action-btn btn-wa" onclick="submitEnquiry('whatsapp')">
+            📱 Booking via WhatsApp
+          </button>
+          <button type="button" class="action-btn btn-email" onclick="submitEnquiry('email')">
+            ✉️ Send Email Query
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- LIGHTBOX MODAL -->
+  <div id="pamphletLightbox" class="pamphlet-modal" style="display:none;" onclick="closePamphletZoom(event)">
+    <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
+    
+    <button type="button" class="pamphlet-nav pamphlet-prev" aria-label="Previous Image" onclick="navigateLightbox(-1, event)">&#10094;</button>
+    <button type="button" class="pamphlet-nav pamphlet-next" aria-label="Next Image" onclick="navigateLightbox(1, event)">&#10095;</button>
+
+    <div class="pamphlet-modal-container" onclick="event.stopPropagation()">
+      <img class="pamphlet-modal-content" id="lightboxImage" alt="Pamphlet Zoom View">
+    </div>
+
+    <div class="pamphlet-zoom-controls" onclick="event.stopPropagation()">
+      <button type="button" onclick="zoomIn()">🔍 +</button>
+      <button type="button" onclick="zoomOut()">🔍 -</button>
+      <button type="button" onclick="resetZoom()">🔄 Reset</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
 </body>
 </html>
 
