@@ -1359,3 +1359,34 @@ body {
   align-items: center;
   gap: 4px;
 }
+/* Fix Flight Header Visibility */
+.flight-header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 10px;
+}
+
+.flight-title {
+  color: #ffffff !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
+}
+
+.flight-subtext {
+  color: #f1f5f9 !important;
+  font-size: 13px !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8) !important;
+}
+
+/* Fix Input Field Widths */
+.flight-full-input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 10px 12px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
