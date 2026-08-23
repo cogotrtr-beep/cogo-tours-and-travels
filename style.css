@@ -1161,3 +1161,25 @@ body {
   .btn-primary-single { width: 100%; }
   .modal-actions-grid { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   SHIMMERING GOLD GRADIENT BORDER FOR TOUR CARDS
+   ========================================================= */
+.ongoing-card,
+.slide-card,
+.tour-card {
+  border: 2px solid transparent !important;
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c) !important;
+  background-origin: border-box !important;
+  background-clip: padding-box, border-box !important;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ongoing-card:hover,
+.slide-card:hover,
+.tour-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(191, 149, 63, 0.35);
+}
