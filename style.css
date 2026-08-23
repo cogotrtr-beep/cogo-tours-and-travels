@@ -646,67 +646,61 @@ body {
 }
 
 /* =========================================================
-   9. ONGOING TOURS & LIVE SLIDERS (STRICT GRID & CONVEYOR)
+   9. ONGOING TOURS & LIVE SLIDERS (SEPARATE BOXES)
 ========================================================= */
-.ongoing-tours-section,
-.ongoing-section {
+.ongoing-tours-section {
   background-color: #fff8f0;
-  padding: 40px 20px;
-  overflow: hidden; /* Prevents side-scrolling the whole website */
+  padding: 50px 20px;
+  overflow: hidden;
 }
 
-.ongoing-tours-section h2,
-.ongoing-section h2 {
+.ongoing-tours-section h2 {
   font-size: 32px;
   font-weight: 800;
   color: #0f172a;
-  text-transform: capitalize;
   text-align: center;
   margin-bottom: 6px;
 }
 
-.ongoing-tours-section p.section-sub,
-.ongoing-section p.section-sub {
+.ongoing-tours-section p.section-sub {
   font-size: 15px;
   color: #64748b;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
-/* Two-Column Grid Setup */
-.ongoing-dual-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* Prevents columns from expanding off-screen */
-  gap: 24px;
-  max-width: 1350px;
+/* Stacked Layout Container */
+.ongoing-stacked-container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  max-width: 1250px;
   margin: 0 auto;
-  width: 100%;
 }
 
-.ongoing-column {
-  background: transparent !important;
-  padding: 0;
-  border-radius: 0;
-  border: none !important;
-  box-shadow: none !important;
-  min-width: 0; /* Critical fix to prevent track overflow */
+/* Individual Large Box for Domestic / International */
+.ongoing-section-card {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
 
 .compact-header {
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .compact-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   margin: 6px 0 2px 0;
   color: #0f172a;
-  white-space: nowrap;
 }
 
 .compact-sub {
-  font-size: 12px;
+  font-size: 13px;
   margin: 0 0 8px 0;
   color: #64748b;
 }
@@ -714,57 +708,53 @@ body {
 .live-badge {
   font-size: 10px;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 12px;
   color: #fff;
   display: inline-block;
+  text-transform: uppercase;
 }
 .live-badge.domestic { background: #ff9500; }
 .live-badge.intl { background: #007aff; }
 
-/* Outer Track Wrapper - Clips sliding images inside column */
+/* Outer Wrapper for Slider Track */
 .slider-wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
   padding: 10px 0;
-  border-radius: 14px;
 }
 
-/* Moving Belt */
+/* Moving Conveyor Track */
 #domesticTrack,
 #intlTrack,
 .slider-track {
   display: flex !important;
-  gap: 16px;
+  gap: 20px;
   width: max-content;
   overflow: visible !important;
-  animation: scrollConveyor 22s linear infinite;
+  animation: scrollConveyor 25s linear infinite;
   will-change: transform;
 }
 
-/* Pause on mouse hover or touch press */
+/* Pause belt when user holds touch or hovers mouse */
 .slider-wrapper:hover .slider-track,
 .slider-track:active {
   animation-play-state: paused;
 }
 
 @keyframes scrollConveyor {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* Card Sizing (Shows ~2 cards per column neatly) */
+/* Slide Cards Sizing */
 .slide-card,
 .ongoing-card,
 .tour-card {
-  flex: 0 0 220px !important; /* Adjusted slightly smaller to fit 2 full cards smoothly */
-  width: 220px;
-  height: 320px;
+  flex: 0 0 260px !important;
+  width: 260px;
+  height: 360px;
   position: relative;
   border-radius: 14px;
   overflow: hidden;
@@ -788,17 +778,15 @@ body {
 
 .slide-overlay {
   position: absolute;
-  bottom: 0; 
-  left: 0; 
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   padding: 16px 12px 12px;
   background: linear-gradient(to top, rgba(15,23,42,0.95) 20%, rgba(15,23,42,0) 100%);
   color: #fff;
   pointer-events: none;
 }
 
-.slide-overlay h4 { margin: 4px 0 2px; font-size: 14px; font-weight: 700; color: #ffffff; }
-.slide-overlay p { font-size: 11px; opacity: 0.9; margin: 0; color: #cbd5e1; }
+.slide-overlay h4 { margin: 4px 0 2px; font-size: 15px; font-weight: 700; color: #ffffff; }
+.slide-overlay p { font-size: 12px; opacity: 0.9; margin: 0; color: #cbd5e1; }
 
 .status-tag {
   font-size: 9px;
@@ -810,20 +798,19 @@ body {
 .status-tag.ongoing { background: #28a745; color: #fff; }
 .status-tag.upcoming { background: #ff9500; color: #fff; }
 
-/* Lower Action Bar */
+/* Separate Action Box beneath each slider */
 .ongoing-action-bar {
-  max-width: 1350px;
-  margin: 20px auto 0;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 16px 20px;
+  margin-top: 16px;
+  background: #fff8f0;
+  border-radius: 12px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #fed7aa;
 }
 
-.action-info h3 { margin: 0 0 2px; font-size: 16px; color: #1e293b; }
+.action-info h3 { margin: 0 0 2px; font-size: 15px; color: #1e293b; }
 .action-info p { margin: 0; color: #64748b; font-size: 12px; }
 
 .btn-primary-single {
