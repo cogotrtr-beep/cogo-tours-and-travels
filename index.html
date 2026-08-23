@@ -230,18 +230,59 @@
       </article>
 
 
-      <!-- 2. Ticket Booking -->
+            <!-- 2. Ticket Booking (Flight Focus) -->
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/ticket-main.png" alt="Ticket Booking" class="card-img" loading="lazy">
         </div>
         <div class="hub-card-content">
-          <span class="hub-icon">🎟️</span>
-          <h3>Ticket Booking</h3>
-          <p>Hassle-free flight, train, and bus reservations.</p>
-          <button class="hub-btn" onclick="openCategoryModal('ticket')">Book Tickets</button>
+          <span class="hub-icon">✈️</span>
+          <h3>Flight Booking</h3>
+          <p>Hassle-free domestic and international flight reservations at best fares.</p>
+          
+          <div class="flight-route-selector">
+            <!-- Scope & Type Selection -->
+            <div class="flight-toggle-group">
+              <label><input type="radio" name="flightScope" value="Domestic" checked> Domestic</label>
+              <label><input type="radio" name="flightScope" value="International"> International</label>
+            </div>
+
+            <div class="flight-toggle-group">
+              <label><input type="radio" name="flightType" value="One-Way" checked onclick="toggleReturnDate(false)"> One-Way</label>
+              <label><input type="radio" name="flightType" value="Round Trip" onclick="toggleReturnDate(true)"> Round Trip</label>
+            </div>
+
+            <!-- Departure & Destination Cities -->
+            <div class="custom-select-wrapper">
+              <input type="text" id="flightFromInput" placeholder="🛫 Departure City / Airport..." autocomplete="off" />
+            </div>
+
+            <div class="custom-select-wrapper">
+              <input type="text" id="flightToInput" placeholder="🛬 Destination City / Country..." autocomplete="off" />
+            </div>
+
+            <!-- Dates -->
+            <div class="cab-datetime-row">
+              <input type="date" id="flightDepartDate" class="cab-input-field" title="Departure Date" />
+              <input type="date" id="flightReturnDate" class="cab-input-field" title="Return Date" style="display: none;" />
+            </div>
+
+            <!-- Preferred Time Slot -->
+            <select id="flightTimeSelect" class="cab-dropdown-select">
+              <option value="" disabled selected>⏰ Preferred Time Band</option>
+              <option value="Early Morning (12 AM - 6 AM)">Early Morning (12 AM - 6 AM)</option>
+              <option value="Morning (6 AM - 12 PM)">Morning (6 AM - 12 PM)</option>
+              <option value="Afternoon (12 PM - 6 PM)">Afternoon (12 PM - 6 PM)</option>
+              <option value="Night (6 PM - 12 AM)">Night (6 PM - 12 AM)</option>
+            </select>
+            
+            <button type="button" class="btn-whatsapp-visa" onclick="sendFlightWhatsApp()">
+              <span class="wa-icon">💬</span> Enquire Flight Fares
+            </button>
+          </div>
         </div>
       </article>
+
       
             <!-- 3. Visa Assistance -->
       <article class="hub-card">
