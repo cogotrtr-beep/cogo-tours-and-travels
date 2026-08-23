@@ -583,3 +583,81 @@ function scrollTrack(trackId, direction) {
     behavior: 'smooth'
   });
 }
+/* Country list with flags and codes */
+const visaCountries = [
+  { name: "United States (USA)", flag: "🇺🇸" },
+  { name: "United Kingdom (UK)", flag: "🇬🇧" },
+  { name: "Schengen / Europe", flag: "🇪🇺" },
+  { name: "United Arab Emirates (Dubai)", flag: "🇦🇪" },
+  { name: "Singapore", flag: "🇸🇬" },
+  { name: "Malaysia", flag: "🇲🇾" },
+  { name: "Thailand", flag: "🇹🇭" },
+  { name: "Australia", flag: "🇦🇺" },
+  { name: "Canada", flag: "🇨🇦" },
+  { name: "Japan", flag: "🇯🇵" },
+  { name: "Vietnam", flag: "🇻🇳" },
+  { name: "Saudi Arabia", flag: "🇸🇦" }
+];
+
+let selectedVisaCountry = null;
+
+function populateVisaCountries(list = visaCountries) {
+  const container = document.getElementById("visaDropdownList");
+  if (!container) return;
+  
+  container.innerHTML = "";
+  if (list.length === 0) {
+    container.innerHTML = '<div class="visa-option">No country found</div>';
+    return;
+  }
+
+  list.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "visa-option";
+    div.innerHTML = `<span class="flag">${item.flag}</span> <span>${item.name}</span>`;
+    div.onclick = () => selectVisaCountry(item);
+    container.appendChild(div);
+  });
+}
+
+function showVisaDropdown() {
+  populateVisaCountries();
+  document.getElementById("visaDropdownList")?.classList.add("show");
+}
+
+function filterVisaCountries() {
+  const query = document.getElementById("visaCountryInput").value.toLowerCase();
+  const filtered = visaCountries.filter(c => c.name.toLowerCase().includes(query));
+  populateVisaCountries(filtered);
+  document.getElementById("visaDropdownList")?.classList.add("show");
+}
+
+function selectVisaCountry(countryObj) {
+  selectedVisaCountry = countryObj;
+  const input = document.getElementById("visaCountryInput");
+  if (input) input.value = `${countryObj.flag} ${countryObj.name}`;
+  document.getElementById("visaDropdownList")?.classList.remove("show");
+}
+
+/* Close dropdown if user clicks outside */
+document.addEventListener("click", function(e) {
+  const wrapper = document.querySelector(".custom-select-wrapper");
+  if (wrapper && !wrapper.contains(e.target)) {
+    document.getElementById("visaDropdownList")?.classList.remove("show");
+  }
+});
+
+/* Trigger WhatsApp with dynamic country context */
+function sendVisaWhatsApp() {
+  const phoneNumber = "919840000000"; // Replace with your actual WhatsApp business phone number
+  let countryName = selectedVisaCountry ? selectedVisaCountry.name : document.getElementById("visaCountryInput").value;
+  
+  if (!countryName.trim()) {
+    alert("Please select or type a country for Visa Assistance.");
+    return;
+  }
+
+  const message = `Hello Cogo Tours, I am interested in Visa Assistance for ${countryName}. Please share the document checklist and process.`;
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
