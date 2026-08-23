@@ -42,38 +42,44 @@
           <p class="compact-sub">Fixed departures &amp; group trails</p>
         </div>
 
-        <div class="slider-wrapper">
-          <div id="domesticTrack" class="slider-track">
-            <!-- Slide 1 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
-              <img src="Images/images/chennai-main.png" alt="Chennai Heritage Trail" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag ongoing">Ongoing</span>
-                <h4>Chennai Heritage Trail</h4>
-                <p>3 Days • March 2026</p>
+        <div class="slider-container">
+          <button type="button" class="nav-arrow left-arrow" onclick="scrollTrack('domesticTrack', -1)" aria-label="Scroll Left">❮</button>
+          
+          <div class="slider-wrapper">
+            <div id="domesticTrack" class="slider-track">
+              <!-- Slide 1 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
+                <img src="Images/images/chennai-main.png" alt="Chennai Heritage Trail" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag ongoing">Ongoing</span>
+                  <h4>Chennai Heritage Trail</h4>
+                  <p>3 Days • March 2026</p>
+                </div>
               </div>
-            </div>
 
-            <!-- Slide 2 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
-              <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag upcoming">Filling Fast</span>
-                <h4>Tirupati &amp; Kanchi</h4>
-                <p>2 Days • Weekend</p>
+              <!-- Slide 2 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
+                <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Filling Fast</span>
+                  <h4>Tirupati &amp; Kanchi</h4>
+                  <p>2 Days • Weekend</p>
+                </div>
               </div>
-            </div>
 
-            <!-- Slide 3 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
-              <img src="Images/images/south-main.png" alt="Misty Munnar Tour" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag upcoming">Upcoming</span>
-                <h4>Misty Munnar</h4>
-                <p>5 Days • Booking Open</p>
+              <!-- Slide 3 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
+                <img src="Images/images/south-main.png" alt="Misty Munnar Tour" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Upcoming</span>
+                  <h4>Misty Munnar</h4>
+                  <p>5 Days • Booking Open</p>
+                </div>
               </div>
             </div>
           </div>
+
+          <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('domesticTrack', 1)" aria-label="Scroll Right">❯</button>
         </div>
 
         <div class="column-action-bar">
@@ -90,38 +96,44 @@
           <p class="compact-sub">Popular worldwide getaways</p>
         </div>
 
-        <div class="slider-wrapper">
-          <div id="intlTrack" class="slider-track">
-            <!-- Slide 1 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
-              <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag ongoing">Ongoing</span>
-                <h4>Dubai Extravaganza</h4>
-                <p>5 Days • Special Deal</p>
-              </div>
-            </div>
+        <div class="slider-container">
+          <button type="button" class="nav-arrow left-arrow" onclick="scrollTrack('intlTrack', -1)" aria-label="Scroll Left">❮</button>
 
-            <!-- Slide 2 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
-              <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag upcoming">Upcoming</span>
-                <h4>Singapore Escape</h4>
-                <p>6 Days • Booking Open</p>
+          <div class="slider-wrapper">
+            <div id="intlTrack" class="slider-track">
+              <!-- Slide 1 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
+                <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag ongoing">Ongoing</span>
+                  <h4>Dubai Extravaganza</h4>
+                  <p>5 Days • Special Deal</p>
+                </div>
               </div>
-            </div>
 
-            <!-- Slide 3 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
-              <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag upcoming">Upcoming</span>
-                <h4>European Highlights</h4>
-                <p>10 Days • Group Tour</p>
+              <!-- Slide 2 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
+                <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Upcoming</span>
+                  <h4>Singapore Escape</h4>
+                  <p>6 Days • Booking Open</p>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
+                <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Upcoming</span>
+                  <h4>European Highlights</h4>
+                  <p>10 Days • Group Tour</p>
+                </div>
               </div>
             </div>
           </div>
+
+          <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('intlTrack', 1)" aria-label="Scroll Right">❯</button>
         </div>
 
         <div class="column-action-bar">
@@ -132,7 +144,6 @@
 
     </div>
   </section>
-
   <!-- =========================================================
        1. OUR SERVICES SECTION
   ========================================================= -->
