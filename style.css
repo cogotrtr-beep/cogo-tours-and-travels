@@ -646,11 +646,12 @@ body {
 }
 
 /* =========================================================
-   9. ONGOING TOURS & LIVE SLIDERS (SEPARATE BOXES)
+   9. ONGOING TOURS & LIVE SLIDERS (SIDE-BY-SIDE 2 CARDS)
 ========================================================= */
-.ongoing-tours-section {
+.ongoing-tours-section,
+.ongoing-section {
   background-color: #fff8f0;
-  padding: 50px 20px;
+  padding: 40px 20px;
   overflow: hidden;
 }
 
@@ -659,48 +660,48 @@ body {
   font-weight: 800;
   color: #0f172a;
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .ongoing-tours-section p.section-sub {
-  font-size: 15px;
+  font-size: 14px;
   color: #64748b;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
-/* Stacked Layout Container */
-.ongoing-stacked-container {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
+/* Strict 2-Column Grid for PC view */
+.ongoing-dual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
   max-width: 1250px;
   margin: 0 auto;
+  width: 100%;
 }
 
-/* Individual Large Box for Domestic / International */
-.ongoing-section-card {
-  background: #ffffff;
-  border: 1px solid #fed7aa;
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+.ongoing-column {
+  background: transparent !important;
+  padding: 0;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: hidden;
 }
 
 .compact-header {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .compact-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  margin: 6px 0 2px 0;
+  margin: 4px 0 2px 0;
   color: #0f172a;
 }
 
 .compact-sub {
-  font-size: 13px;
+  font-size: 12px;
   margin: 0 0 8px 0;
   color: #64748b;
 }
@@ -708,36 +709,34 @@ body {
 .live-badge {
   font-size: 10px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 12px;
   color: #fff;
   display: inline-block;
-  text-transform: uppercase;
 }
 .live-badge.domestic { background: #ff9500; }
 .live-badge.intl { background: #007aff; }
 
-/* Outer Wrapper for Slider Track */
+/* Slider Wrapper - Exactly fits 2 cards visible */
 .slider-wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
-/* Moving Conveyor Track */
+/* Belt animation */
 #domesticTrack,
 #intlTrack,
 .slider-track {
   display: flex !important;
-  gap: 20px;
+  gap: 14px;
   width: max-content;
   overflow: visible !important;
   animation: scrollConveyor 25s linear infinite;
   will-change: transform;
 }
 
-/* Pause belt when user holds touch or hovers mouse */
 .slider-wrapper:hover .slider-track,
 .slider-track:active {
   animation-play-state: paused;
@@ -748,13 +747,13 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Slide Cards Sizing */
+/* Card dimensions tuned to fit exactly 2 cards visible on screen */
 .slide-card,
 .ongoing-card,
 .tour-card {
-  flex: 0 0 260px !important;
-  width: 260px;
-  height: 360px;
+  flex: 0 0 calc(50% - 10px) !important;
+  width: 240px;
+  height: 340px;
   position: relative;
   border-radius: 14px;
   overflow: hidden;
@@ -779,14 +778,14 @@ body {
 .slide-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 16px 12px 12px;
+  padding: 14px 10px 10px;
   background: linear-gradient(to top, rgba(15,23,42,0.95) 20%, rgba(15,23,42,0) 100%);
   color: #fff;
   pointer-events: none;
 }
 
-.slide-overlay h4 { margin: 4px 0 2px; font-size: 15px; font-weight: 700; color: #ffffff; }
-.slide-overlay p { font-size: 12px; opacity: 0.9; margin: 0; color: #cbd5e1; }
+.slide-overlay h4 { margin: 4px 0 2px; font-size: 14px; font-weight: 700; color: #ffffff; }
+.slide-overlay p { font-size: 11px; opacity: 0.9; margin: 0; color: #cbd5e1; }
 
 .status-tag {
   font-size: 9px;
@@ -798,10 +797,11 @@ body {
 .status-tag.ongoing { background: #28a745; color: #fff; }
 .status-tag.upcoming { background: #ff9500; color: #fff; }
 
-/* Separate Action Box beneath each slider */
+/* Action Bar below columns */
 .ongoing-action-bar {
-  margin-top: 16px;
-  background: #fff8f0;
+  max-width: 1250px;
+  margin: 20px auto 0;
+  background: #ffffff;
   border-radius: 12px;
   padding: 14px 20px;
   display: flex;
@@ -823,6 +823,13 @@ body {
   border: none;
   cursor: pointer;
   white-space: nowrap;
+}
+
+/* Mobile responsive fallback */
+@media (max-width: 768px) {
+  .ongoing-dual-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =========================================================
