@@ -9,13 +9,9 @@ let currentLightboxIndex = 0;
 let currentZoomScale = 1;
 
 // ==========================================
-// 1. DYNAMIC DUPLICATOR FOR CSS CONVEYOR BELT
+// 1. DYNAMIC DUPLICATOR & CLICK HANDLER
 // ==========================================
 
-/**
- * Clones slider cards dynamically to feed the CSS infinite loop keyframe.
- * @param {string} trackId - Element ID of the slider track container
- */
 function setupCSSConveyor(trackId) {
   const track = document.getElementById(trackId);
   if (!track || track.dataset.cloned === "true") return;
@@ -23,7 +19,7 @@ function setupCSSConveyor(trackId) {
   const originalCards = Array.from(track.querySelectorAll('.slide-card, .ongoing-card, .tour-card'));
   if (originalCards.length === 0) return;
 
-  // Clone original cards so the belt seamlessly loops endlessly
+  // Duplicate cards for infinite loop
   originalCards.forEach((card) => {
     const clone = card.cloneNode(true);
     clone.setAttribute('aria-hidden', 'true');
@@ -35,14 +31,12 @@ function setupCSSConveyor(trackId) {
 
 /**
  * Manual Navigation Arrows for the Slider Tracks
- * @param {string} trackId - Target slider track ID
- * @param {number} direction - Direction modifier (-1 for Left, 1 for Right)
  */
 function moveSlide(trackId, direction) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  const cardWidth = track.querySelector('.slide-card, .ongoing-card, .tour-card')?.offsetWidth || 280;
+  const cardWidth = track.querySelector('.slide-card, .ongoing-card, .tour-card')?.offsetWidth || 220;
   const gap = 16;
   const scrollAmount = (cardWidth + gap) * direction;
 
@@ -52,7 +46,19 @@ function moveSlide(trackId, direction) {
   });
 }
 
-// Initialize conveyor cloning as soon as DOM loads
+// Global click handler to ensure popups and modals trigger on original & cloned cards
+document.addEventListener('click', (e) => {
+  const targetCard = e.target.closest('[onclick*="openCategoryModal"], [onclick*="openPamphletList"]');
+  if (!targetCard) return;
+
+  const onclickAttr = targetCard.getAttribute('onclick');
+  if (onclickAttr) {
+    const fn = new Function(onclickAttr);
+    fn();
+  }
+});
+
+// Initialize tracks on load
 document.addEventListener('DOMContentLoaded', () => {
   setupCSSConveyor('domesticTrack');
   setupCSSConveyor('intlTrack');
