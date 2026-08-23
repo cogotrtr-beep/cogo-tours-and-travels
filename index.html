@@ -295,18 +295,18 @@
       </article>
 
       
-            <!-- 3. Visa Assistance -->
+                <!-- 3. Visa Assistance -->
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/visa-main.png" alt="Visa Assistance" class="card-img" loading="lazy">
         </div>
         <div class="hub-card-content">
           <span class="hub-icon">🛂</span>
-          <h3>Visa Assistance</h3>
-          <p>Expert guidance and end-to-end documentation support.</p>
+          <h3 style="color: #ffffff; font-weight: 800;">Visa Assistance</h3>
+          <p style="color: #f1f5f9;">Expert guidance and end-to-end documentation support.</p>
           
-          <!-- Integrated Country Selector & Direct WhatsApp Button -->
           <div class="visa-country-selector">
+            <!-- Searchable Country Input -->
             <div class="custom-select-wrapper">
               <input 
                 type="text" 
@@ -318,6 +318,29 @@
               />
               <div id="visaDropdownList" class="visa-dropdown-list"></div>
             </div>
+
+            <!-- Visa Period: From & To Dates -->
+            <div class="cab-datetime-row">
+              <input type="date" id="visaFromDate" class="cab-input-field" title="Travel Date From" />
+              <input type="date" id="visaToDate" class="cab-input-field" title="Travel Date To" />
+            </div>
+
+            <!-- Number of Pax Selection -->
+            <select id="visaPaxSelect" class="cab-dropdown-select">
+              <option value="1 Person" selected>👥 1 Pax / Applicant</option>
+              <option value="2 Persons">👥 2 Pax / Applicants</option>
+              <option value="3 Persons">👥 3 Pax / Applicants</option>
+              <option value="4 Persons">👥 4 Pax / Applicants</option>
+              <option value="5+ Family / Group">👥 5+ Family / Group</option>
+            </select>
+
+            <!-- Custom Remarks Area -->
+            <textarea 
+              id="visaRemarksInput" 
+              class="visa-remarks-textarea" 
+              placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express Processing, Family Trip)..."
+              rows="2"
+            ></textarea>
             
             <button type="button" class="btn-whatsapp-visa" onclick="sendVisaWhatsApp()">
               <span class="wa-icon">💬</span> Enquire via WhatsApp
@@ -325,6 +348,7 @@
           </div>
         </div>
       </article>
+
 
 
   <!-- =========================================================
