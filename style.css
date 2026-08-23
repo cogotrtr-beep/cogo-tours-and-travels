@@ -646,12 +646,14 @@ body {
 }
 
 /* =========================================================
-   9. ONGOING TOURS & LIVE SLIDERS (TALL A4 PORTRAIT RATIO)
+   9. ONGOING TOURS & LIVE SLIDERS (PERFECT MOBILE + PC)
 ========================================================= */
 .ongoing-tours-section {
-  background-color: #fff8f0;
-  padding: 30px 20px 40px;
+  background-color: #fff8f0 !important;
+  padding: 30px 16px 40px;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .ongoing-dual-grid {
@@ -669,20 +671,24 @@ body {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  width: 100%;
+  overflow: hidden;
 }
 
+/* Fixed Header Alignment */
 .compact-header {
   text-align: center;
   margin-bottom: 12px;
+  width: 100%;
 }
 
-/* Bold prominent titles for Domestic & International */
 .bold-column-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   margin: 6px 0 2px 0;
   color: #0f172a;
   letter-spacing: -0.3px;
+  text-align: center;
 }
 
 .compact-sub {
@@ -690,6 +696,7 @@ body {
   margin: 0;
   color: #64748b;
   font-weight: 500;
+  text-align: center;
 }
 
 .live-badge {
@@ -704,7 +711,7 @@ body {
 .live-badge.domestic { background: #ff9500; }
 .live-badge.intl { background: #007aff; }
 
-/* Slider Track */
+/* Slider Conveyor Track */
 .slider-wrapper {
   position: relative;
   width: 100%;
@@ -729,10 +736,10 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Tall Vertical (A4 Portrait Style) Card Aspect Ratio */
+/* Card Proportions - Desktop PC */
 .slide-card {
   width: 270px;
-  height: 390px; /* Increased vertical height for clear flyer view */
+  height: 390px;
   position: relative;
   border-radius: 14px;
   overflow: hidden;
@@ -741,11 +748,6 @@ body {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   background-color: #0f172a;
   flex-shrink: 0;
-}
-
-.slide-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 }
 
 .slide-card img {
@@ -765,13 +767,13 @@ body {
 
 .slide-overlay h4 {
   margin: 4px 0 2px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #ffffff;
 }
 
 .slide-overlay p {
-  font-size: 12px;
+  font-size: 11px;
   margin: 0;
   color: #cbd5e1;
 }
@@ -786,20 +788,21 @@ body {
 .status-tag.ongoing { background: #28a745; color: #fff; }
 .status-tag.upcoming { background: #ff9500; color: #fff; }
 
-/* Individual Action Bars directly under each slider */
+/* Column Action Bar */
 .column-action-bar {
   margin-top: 12px;
   background: #ffffff;
   border-radius: 10px;
-  padding: 10px 16px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #fed7aa;
+  gap: 8px;
 }
 
 .column-action-bar span {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: #334155;
 }
@@ -807,7 +810,7 @@ body {
 .btn-primary-single {
   background: #ff9500;
   color: #fff;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 6px;
   font-weight: 700;
   font-size: 12px;
@@ -820,15 +823,35 @@ body {
   background: #007aff;
 }
 
-/* Mobile responsive alignment */
+/* Dedicated Mobile Breakpoint Adjustments */
 @media (max-width: 768px) {
   .ongoing-dual-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: 1fr !important;
+    gap: 36px;
   }
+
   .slide-card {
-    width: 220px;
-    height: 320px;
+    width: 200px;
+    height: 310px;
+  }
+
+  .bold-column-title {
+    font-size: 20px;
+  }
+
+  .column-action-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .column-action-bar span {
+    font-size: 13px;
+  }
+
+  .btn-primary-single {
+    width: 100%;
+    padding: 10px 0;
   }
 }
 
