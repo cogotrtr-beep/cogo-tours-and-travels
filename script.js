@@ -152,12 +152,16 @@ const categoryData = {
   }
 };
 
-// 2. MODAL CONTROLS
+let currentCategoryTitle = "";
+
+// 2. CATEGORY MODAL HANDLERS
 function openCategoryModal(categoryKey) {
   const modal = document.getElementById('categoryModal');
   const data = categoryData[categoryKey];
 
   if (data && modal) {
+    currentCategoryTitle = data.title;
+    
     const titleEl = document.getElementById('modalTitle');
     const descEl = document.getElementById('modalDesc');
     const contentEl = document.getElementById('modalContent');
@@ -166,53 +170,92 @@ function openCategoryModal(categoryKey) {
     if (descEl) descEl.innerText = data.desc;
     if (contentEl) contentEl.innerHTML = data.content;
     
-    // Auto-scroll modal to top when opened
-    const modalCard = modal.querySelector('.modal-card');
-    if (modalCard) modalCard.scrollTop = 0;
-
     modal.style.display = 'flex';
   }
 }
 
-function closeCategoryModal() {
+function closeCategoryModal(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
   const modal = document.getElementById('categoryModal');
   if (modal) {
     modal.style.display = 'none';
   }
 }
 
-// Close modal when clicking outer backdrop
-window.addEventListener('click', (e) => {
-  const modal = document.getElementById('categoryModal');
-  if (e && e.target === modal) {
-    closeCategoryModal();
-  }
-});
+// 3. WHATSAPP & EMAIL ENQUIRY SUBMISSION
+function submitEnquiry(type) {
+  const name = document.getElementById('userName')?.value.trim();
+  const phone = document.getElementById('userPhone')?.value.trim();
+  const query = document.getElementById('userQuery')?.value.trim();
 
-// Close modal when Escape key is pressed
+  if (!name || !phone) {
+    alert('Please fill in your Name and Phone/WhatsApp number.');
+    return;
+  }
+
+  const category = currentCategoryTitle || "General Travel Inquiry";
+  const message = `*New Travel Enquiry - Cogo Tours*\n\n*Service/Package:* ${category}\n*Name:* ${name}\n*Phone:* ${phone}\n*Notes/Requirements:* ${query || 'N/A'}`;
+
+  if (type === 'whatsapp') {
+    // Replace with your company WhatsApp number
+    const waNumber = "919840000000"; 
+    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank');
+  } else if (type === 'email') {
+    // Replace with your company email address
+    const emailTo = "info@cogotours.in"; 
+    const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent("Enquiry for " + category)}&body=${encodeURIComponent(message)}`;
+    window.location.href = mailtoUrl;
+  }
+
+  closeCategoryModal();
+}
+
+// 4. LIGHTBOX ZOOM FUNCTIONALITY
+let zoomLevel = 1;
+
+function closePamphletZoom(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  const lightbox = document.getElementById('pamphletLightbox');
+  if (lightbox) {
+    lightbox.style.display = 'none';
+    resetZoom();
+  }
+}
+
+function zoomIn() {
+  zoomLevel += 0.2;
+  applyZoom();
+}
+
+function zoomOut() {
+  if (zoomLevel > 0.4) {
+    zoomLevel -= 0.2;
+    applyZoom();
+  }
+}
+
+function resetZoom() {
+  zoomLevel = 1;
+  applyZoom();
+}
+
+function applyZoom() {
+  const img = document.getElementById('lightboxImage');
+  if (img) {
+    img.style.transform = `scale(${zoomLevel})`;
+  }
+}
+
+function navigateLightbox(direction, event) {
+  if (event && event.stopPropagation) event.stopPropagation();
+  // Navigational hook for multiple pamphlet images
+}
+
+// 5. GLOBAL KEYBOARD LISTENERS
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeCategoryModal();
+    closePamphletZoom();
   }
-});
-
-// 3. INITIALIZATION ON DOM LOAD
-document.addEventListener('DOMContentLoaded', () => {
-  
-  // Set minimum date for date inputs to Today
-  const dateInputs = document.querySelectorAll('input[type="date"]');
-  const today = new Date().toISOString().split('T')[0];
-  dateInputs.forEach(input => {
-    input.setAttribute('min', today);
-  });
-
-  // Mobile Navigation Toggle (if present)
-  const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-  }
-
 });
