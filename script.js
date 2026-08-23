@@ -49,17 +49,27 @@ const categoryData = {
   journey: {
     title: "Plan Your Custom Journey",
     desc: "Tell us your preferences and we will craft the perfect itinerary for you.",
-    content: ""
+    content: "<p style='color:#475569;'>Share your travel plan details in the form below and our travel desk will reach back to you shortly.</p>"
   },
   ticket: {
     title: "Flight, Train & Bus Tickets",
     desc: "Instant reservation support for all major transport networks.",
-    content: ""
+    content: "<p style='color:#475569;'>Enter your departure date, source, destination, and preferred travel class below.</p>"
   },
   visa: {
     title: "Visa Assistance & Processing",
     desc: "End-to-end documentation & appointment scheduling.",
-    content: ""
+    content: "<p style='color:#475569;'>Mention destination country and expected date of departure to get started.</p>"
+  },
+  chennai: {
+    title: "Tour Chennai Packages",
+    desc: "Explore Mahabalipuram, heritage temples, beaches, and local sights.",
+    content: "<p style='color:#475569;'>Customized 1-Day, 2-Day, and 3-Day city tour packages available on demand.</p>"
+  },
+  pilgrim: {
+    title: "Pilgrim Tour Circuits",
+    desc: "Shirdi, Tirupati, Kanchipuram, and South India temple circuits.",
+    content: "<p style='color:#475569;'>Special VIP Darshan arrangements and comfortable transport packages.</p>"
   }
 };
 
@@ -67,7 +77,7 @@ function openCategoryModal(categoryKey) {
   const data = categoryData[categoryKey] || {
     title: "Plan Your Journey",
     desc: "Get in touch with us for quotes and customized itineraries.",
-    content: ""
+    content: "<p style='color:#475569;'>Fill out the query form below for custom itineraries.</p>"
   };
 
   const titleEl = document.getElementById('modalTitle');
@@ -80,7 +90,7 @@ function openCategoryModal(categoryKey) {
 
   const modal = document.getElementById('enquiryModal');
   if (modal) {
-    modal.style.display = 'flex';
+    modal.classList.add('show');
     document.body.style.overflow = 'hidden';
   }
 }
@@ -88,7 +98,7 @@ function openCategoryModal(categoryKey) {
 function closeModal() {
   const modal = document.getElementById('enquiryModal');
   if (modal) {
-    modal.style.display = 'none';
+    modal.classList.remove('show');
     document.body.style.overflow = 'auto';
   }
 }
@@ -141,7 +151,7 @@ function openPamphletList(imagesArray, initialIndex = 0) {
 
   const lightbox = document.getElementById('pamphletLightbox');
   if (lightbox) {
-    lightbox.style.display = 'flex';
+    lightbox.classList.add('show');
     document.body.style.overflow = 'hidden';
   }
 }
@@ -185,7 +195,7 @@ function closePamphletZoom(event) {
   if (!event || event.target.id === 'pamphletLightbox' || event.target.classList.contains('pamphlet-close')) {
     const lightbox = document.getElementById('pamphletLightbox');
     if (lightbox) {
-      lightbox.style.display = 'none';
+      lightbox.classList.remove('show');
       document.body.style.overflow = 'auto';
     }
   }
