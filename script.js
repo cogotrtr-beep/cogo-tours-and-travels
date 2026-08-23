@@ -795,7 +795,7 @@ function toggleReturnDate(isRoundTrip) {
 
 /* Send Flight Enquiry to WhatsApp */
 function sendFlightWhatsApp() {
-  const phoneNumber = "919840330088"; // Cogo Tours WhatsApp Number
+  const phoneNumber = "919884066830"; // Cogo Tours WhatsApp Number
   
   const scope = document.querySelector('input[name="flightScope"]:checked')?.value || "Domestic";
   const type = document.querySelector('input[name="flightType"]:checked')?.value || "One-Way";
