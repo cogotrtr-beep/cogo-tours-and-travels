@@ -647,20 +647,37 @@ document.addEventListener("click", function(e) {
   }
 });
 
-/* Trigger WhatsApp with dynamic country context */
+/* Trigger WhatsApp with dynamic Visa context */
 function sendVisaWhatsApp() {
-  const phoneNumber = "919884066830"; // Replace with your actual WhatsApp business phone number
-  let countryName = selectedVisaCountry ? selectedVisaCountry.name : document.getElementById("visaCountryInput").value;
+  const phoneNumber = "919840330088"; // Cogo Tours WhatsApp Number
   
-  if (!countryName.trim()) {
-    alert("Please select or type a country for Visa Assistance.");
+  let countryName = selectedVisaCountry ? selectedVisaCountry.name : document.getElementById("visaCountryInput")?.value;
+  const fromDate = document.getElementById("visaFromDate")?.value;
+  const toDate = document.getElementById("visaToDate")?.value;
+  const pax = document.getElementById("visaPaxSelect")?.value || "1 Person";
+  const remarks = document.getElementById("visaRemarksInput")?.value.trim();
+
+  if (!countryName || !countryName.trim()) {
+    alert("Please select or type a destination country for Visa Assistance.");
     return;
   }
 
-  const message = `Hello Cogo Tours, I am interested in Visa Assistance for ${countryName}. Please share the document checklist and process.`;
+  let message = `Hello Cogo Tours, I am interested in Visa Assistance.\n\n🌐 *Destination Country:* ${countryName}`;
+  if (fromDate && toDate) {
+    message += `\n📅 *Travel Period:* ${fromDate} to ${toDate}`;
+  } else if (fromDate) {
+    message += `\n📅 *Travel Date:* ${fromDate}`;
+  }
+  message += `\n👥 *Applicants (Pax):* ${pax}`;
+  if (remarks) {
+    message += `\n📝 *Remarks:* ${remarks}`;
+  }
+  message += `\n\nPlease share the required document checklist and visa process.`;
+
   const encodedMessage = encodeURIComponent(message);
   window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 }
+
 /* =========================================================
    CAB SERVICES - DROPDOWNS & WHATSAPP ENQUIRY
 ========================================================= */
