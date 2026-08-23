@@ -12,7 +12,6 @@
   <nav id="mainNav">
     <div class="nav-container nav-center-aligned">
       <div id="navLinks">
-        <!-- Indian Flag Inspired Square Tabs -->
         <a href="tel:+919884066830" class="flag-tab tab-saffron">📞 Call Us</a>
         <button type="button" class="flag-tab tab-white-blue" onclick="openCategoryModal('cabs')">🚖 Cab Booking</button>
         <button type="button" class="flag-tab tab-green" onclick="openCategoryModal('journey')">Plan Your Journey</button>
@@ -28,112 +27,106 @@
     </div>
   </header>
 
-<!-- ONGOING TOURS SECTION -->
-<section class="ongoing-tours-section" id="ongoing-tours">
+  <!-- ONGOING TOURS SECTION -->
+  <section class="ongoing-tours-section" id="ongoing-tours">
+    <div class="ongoing-dual-grid">
 
-  <div class="ongoing-dual-grid">
+      <!-- DOMESTIC COLUMN -->
+      <div class="ongoing-column">
+        <div class="compact-header">
+          <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
+          <h2 class="bold-column-title">Ongoing Domestic Tours</h2>
+          <p class="compact-sub">Fixed departures &amp; group trails</p>
+        </div>
 
-    <!-- DOMESTIC COLUMN -->
-    <div class="ongoing-column">
-      <div class="compact-header">
-        <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
-        <h2 class="bold-column-title">Ongoing Domestic Tours</h2>
-        <p class="compact-sub">Fixed departures &amp; group trails</p>
-      </div>
-
-      <div class="slider-wrapper">
-        <div id="domesticTrack" class="slider-track">
-          <!-- Slide 1 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
-            <img src="Images/images/chennai-main.png" alt="Chennai Heritage Trail" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag ongoing">Ongoing</span>
-              <h4>Chennai Heritage Trail</h4>
-              <p>3 Days • March 2026</p>
+        <div class="slider-wrapper">
+          <div id="domesticTrack" class="slider-track">
+            <!-- Slide 1 -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
+              <img src="Images/images/chennai-main.png" alt="Chennai Heritage Trail" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag ongoing">Ongoing</span>
+                <h4>Chennai Heritage Trail</h4>
+                <p>3 Days • March 2026</p>
+              </div>
             </div>
-          </div>
 
-          <!-- Slide 2 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
-            <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Filling Fast</span>
-              <h4>Tirupati &amp; Kanchi</h4>
-              <p>2 Days • Weekend</p>
+            <!-- Slide 2 -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
+              <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Filling Fast</span>
+                <h4>Tirupati &amp; Kanchi</h4>
+                <p>2 Days • Weekend</p>
+              </div>
             </div>
-          </div>
 
-          <!-- Slide 3 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
-            <img src="Images/images/south-main.png" alt="Misty Munnar Tour" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Upcoming</span>
-              <h4>Misty Munnar</h4>
-              <p>5 Days • Booking Open</p>
+            <!-- Slide 3 -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
+              <img src="Images/images/south-main.png" alt="Misty Munnar Tour" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Upcoming</span>
+                <h4>Misty Munnar</h4>
+                <p>5 Days • Booking Open</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="column-action-bar">
-        <span>Interested in a domestic departure?</span>
-        <button type="button" class="btn-primary-single" onclick="openCategoryModal('journey')">Enquire Domestic</button>
-      </div>
-    </div>
-
-    <!-- INTERNATIONAL COLUMN -->
-    <div class="ongoing-column">
-      <div class="compact-header">
-        <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
-        <h2 class="bold-column-title">Ongoing International Tours</h2>
-        <p class="compact-sub">Popular worldwide getaways</p>
-      </div>
-
-      <div class="slider-wrapper">
-        <div id="intlTrack" class="slider-track">
-          <!-- Slide 1 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
-            <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag ongoing">Ongoing</span>
-              <h4>Dubai Extravaganza</h4>
-              <p>5 Days • Special Deal</p>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
-            <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Upcoming</span>
-              <h4>Singapore Escape</h4>
-              <p>6 Days • Booking Open</p>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
-            <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
-            <div class="slide-overlay">
-              <span class="status-tag upcoming">Upcoming</span>
-              <h4>European Highlights</h4>
-              <p>10 Days • Group Tour</p>
-            </div>
-          </div>
+        <div class="column-action-bar">
+          <span>Interested in a domestic departure?</span>
+          <button type="button" class="btn-primary-single" onclick="openCategoryModal('journey')">Enquire Domestic</button>
         </div>
       </div>
 
-      <div class="column-action-bar">
-        <span>Planning a trip abroad?</span>
-        <button type="button" class="btn-primary-single btn-intl" onclick="openCategoryModal('journey')">Enquire International</button>
-      </div>
-    </div>
+      <!-- INTERNATIONAL COLUMN -->
+      <div class="ongoing-column">
+        <div class="compact-header">
+          <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
+          <h2 class="bold-column-title">Ongoing International Tours</h2>
+          <p class="compact-sub">Popular worldwide getaways</p>
+        </div>
 
-  </div>
-</section>
-  
-        </button>
+        <div class="slider-wrapper">
+          <div id="intlTrack" class="slider-track">
+            <!-- Slide 1 -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
+              <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag ongoing">Ongoing</span>
+                <h4>Dubai Extravaganza</h4>
+                <p>5 Days • Special Deal</p>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
+              <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Upcoming</span>
+                <h4>Singapore Escape</h4>
+                <p>6 Days • Booking Open</p>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
+              <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
+              <div class="slide-overlay">
+                <span class="status-tag upcoming">Upcoming</span>
+                <h4>European Highlights</h4>
+                <p>10 Days • Group Tour</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column-action-bar">
+          <span>Planning a trip abroad?</span>
+          <button type="button" class="btn-primary-single btn-intl" onclick="openCategoryModal('journey')">Enquire International</button>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -168,7 +161,7 @@
           <button type="button" class="hub-btn" onclick="openCategoryModal('ticket')">Book Tickets</button>
         </div>
       </article>
-      
+
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/visa-main.png" alt="Visa Assistance" class="card-img" loading="lazy">
@@ -189,7 +182,7 @@
       <h2>Tour Packages</h2>
       <p class="section-sub">Handcrafted holiday experiences tailored for you</p>
     </div>
-    
+
     <div class="hub-grid">
       <article class="hub-card">
         <div class="hub-card-bg">
@@ -202,7 +195,7 @@
           <button type="button" class="hub-btn" onclick="openCategoryModal('chennai')">View Packages</button>
         </div>
       </article>
-    
+
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/pilgrim-main.png" alt="Tour Pilgrim" class="card-img" loading="lazy">
@@ -226,7 +219,7 @@
           <button type="button" class="hub-btn" onclick="openCategoryModal('south-india')">View Packages</button>
         </div>
       </article>
-      
+
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/tour-north-india.png" alt="Tour North India" class="card-img" loading="lazy">
@@ -238,7 +231,7 @@
           <button type="button" class="hub-btn" onclick="openCategoryModal('north-india')">View Packages</button>
         </div>
       </article>
-      
+
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/tournortheast.png" alt="Tour North East" class="card-img" loading="lazy">
@@ -250,7 +243,7 @@
           <button type="button" class="hub-btn" onclick="openCategoryModal('north-east')">View Packages</button>
         </div>
       </article>
-      
+
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/tourrestofindia.png" alt="Tour Rest of India" class="card-img" loading="lazy">
@@ -321,7 +314,7 @@
           <p>Romantic getaways and relaxing couples' retreats.</p>
           <button type="button" class="hub-btn" onclick="openCategoryModal('honeymoon')">View Packages</button>
         </div>
-      </article>     
+      </article>      
 
       <article class="hub-card">
         <div class="hub-card-bg">
@@ -333,7 +326,7 @@
           <p>Dedicated outstation &amp; intercity cab packages.</p>
           <button type="button" class="hub-btn" onclick="openCategoryModal('cabs')">View Rates</button>
         </div>
-      </article>     
+      </article>      
     </div>
   </section>
 
