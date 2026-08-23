@@ -185,7 +185,7 @@
         </div>
       </article>
       
-      <!-- 3. Visa Assistance -->
+            <!-- 3. Visa Assistance -->
       <article class="hub-card">
         <div class="hub-card-bg">
           <img src="Images/images/visa-main.png" alt="Visa Assistance" class="card-img" loading="lazy">
@@ -194,12 +194,28 @@
           <span class="hub-icon">🛂</span>
           <h3>Visa Assistance</h3>
           <p>Expert guidance and end-to-end documentation support.</p>
-          <button class="hub-btn" onclick="openCategoryModal('visa')">Get Assistance</button>
+          
+          <!-- Integrated Country Selector & Direct WhatsApp Button -->
+          <div class="visa-country-selector">
+            <div class="custom-select-wrapper">
+              <input 
+                type="text" 
+                id="visaCountryInput" 
+                placeholder="Type or choose country (e.g. USA)..." 
+                onfocus="showVisaDropdown()" 
+                oninput="filterVisaCountries()"
+                autocomplete="off"
+              />
+              <div id="visaDropdownList" class="visa-dropdown-list"></div>
+            </div>
+            
+            <button type="button" class="btn-whatsapp-visa" onclick="sendVisaWhatsApp()">
+              <span class="wa-icon">💬</span> Enquire via WhatsApp
+            </button>
+          </div>
         </div>
       </article>
-      
-    </div>
-  </section>
+
 
   <!-- =========================================================
        2. TOUR PACKAGES SECTION
