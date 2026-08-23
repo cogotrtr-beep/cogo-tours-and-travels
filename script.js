@@ -1,6 +1,5 @@
 /* ==========================================================================
    COGO TOURS & TRAVELS - MAIN JAVASCRIPT SYSTEM
-   Includes Infinite Conveyor Belt Sliders, Dynamic Modals, Lightbox & Forms
    ========================================================================== */
 
 // --- GLOBAL STATE ---
@@ -9,7 +8,7 @@ let currentLightboxIndex = 0;
 let currentZoomScale = 1;
 
 // ==========================================
-// 1. DYNAMIC DUPLICATOR & CLICK HANDLER
+// 1. DYNAMIC CONVEYOR CLONER
 // ==========================================
 
 function setupCSSConveyor(trackId) {
@@ -19,7 +18,6 @@ function setupCSSConveyor(trackId) {
   const originalCards = Array.from(track.querySelectorAll('.slide-card, .ongoing-card, .tour-card'));
   if (originalCards.length === 0) return;
 
-  // Duplicate cards for infinite loop
   originalCards.forEach((card) => {
     const clone = card.cloneNode(true);
     clone.setAttribute('aria-hidden', 'true');
@@ -29,40 +27,23 @@ function setupCSSConveyor(trackId) {
   track.dataset.cloned = "true";
 }
 
-/**
- * Manual Navigation Arrows for the Slider Tracks
- */
-function moveSlide(trackId, direction) {
-  const track = document.getElementById(trackId);
-  if (!track) return;
-
-  const cardWidth = track.querySelector('.slide-card, .ongoing-card, .tour-card')?.offsetWidth || 220;
-  const gap = 16;
-  const scrollAmount = (cardWidth + gap) * direction;
-
-  track.scrollBy({
-    left: scrollAmount,
-    behavior: 'smooth'
-  });
-}
-
-// Global click handler to ensure popups and modals trigger on original & cloned cards
+// Global click delegator so cloned cards and action buttons trigger reliably
 document.addEventListener('click', (e) => {
-  const targetCard = e.target.closest('[onclick*="openCategoryModal"], [onclick*="openPamphletList"]');
-  if (!targetCard) return;
+  const triggerBtn = e.target.closest('[onclick]');
+  if (!triggerBtn) return;
 
-  const onclickAttr = targetCard.getAttribute('onclick');
-  if (onclickAttr) {
-    const fn = new Function(onclickAttr);
-    fn();
-  }
+  // Let standard clicks process normally without event cancellation
 });
 
-// Initialize tracks on load
 document.addEventListener('DOMContentLoaded', () => {
   setupCSSConveyor('domesticTrack');
   setupCSSConveyor('intlTrack');
 });
+
+
+// ==========================================
+// 2. CATEGORY DATA & DYNAMIC MODALS
+// ==========================================
 
 const categoryData = {
   cabs: {
@@ -96,68 +77,9 @@ const categoryData = {
     title: "Visa Assistance & Processing",
     desc: "End-to-end documentation, appointment scheduling, and verification.",
     content: `<p class="modal-info-text">We process tourist, business, and family visas for Dubai, Singapore, Malaysia, Schengen area, USA, UK, and more.</p>`
-  },
-  chennai: {
-    title: "Tour Chennai Packages",
-    desc: "Explore coastal heritage, ancient temples, beaches, and city sights.",
-    content: `<p class="modal-info-text">Full-day and half-day guided sightseeing tours including Kapaleeshwarar Temple, Marina Beach, San Thome Basilica, and Mahabalipuram.</p>`
-  },
-  pilgrim: {
-    title: "Spiritual & Pilgrim Circuits",
-    desc: "Divine journeys planned with care and comfort for your family.",
-    content: `<p class="modal-info-text">Special packages for Tirupati Balaji Darshan, Shirdi Sai Baba, Kanchipuram Temple Circuit, Navagraha Temples, and Rameshwaram.</p>`
-  },
-  "south-india": {
-    title: "South India Holiday Packages",
-    desc: "Misty hill stations, tranquil backwaters, and lush plantations.",
-    content: `<p class="modal-info-text">Discover Ooty, Kodaikanal, Munnar, Alleppey Houseboats, Wayanad, Coorg, and Mysore with personalized transport and stay.</p>`
-  },
-  "north-india": {
-    title: "North India & Royal Circuits",
-    desc: "Golden Triangle, Himalayan retreats, and historic fortresses.",
-    content: `<p class="modal-info-text">Packages for Delhi, Agra, Jaipur, Shimla, Manali, Kashmir Valley, Leh-Ladakh, and Varanasi.</p>`
-  },
-  "north-east": {
-    title: "North East Excursions",
-    desc: "Pristine natural valleys, tea estates, and unique culture.",
-    content: `<p class="modal-info-text">Explore Gangtok, Darjeeling, Meghalaya waterfalls, Shillong, and Kaziranga National Park.</p>`
-  },
-  "rest-of-india": {
-    title: "Rest of India Destinations",
-    desc: "Beach escapes, desert safaris, and island getaways.",
-    content: `<p class="modal-info-text">Packages covering Goa beaches, Gujarat Rann of Kutch, Madhya Pradesh wildlife, and Andaman Islands.</p>`
-  },
-  international: {
-    title: "International Holiday Packages",
-    desc: "Worldwide getaways designed for seamless global exploration.",
-    content: `<p class="modal-info-text">All-inclusive international tours to Dubai, Singapore, Thailand, Malaysia, Bali, Sri Lanka, Europe, and Vietnam.</p>`
-  },
-  corporate: {
-    title: "Corporate MICE & Business Trips",
-    desc: "Professional corporate retreats, team building, and event logistics.",
-    content: `<p class="modal-info-text">Tailored group travel solutions including flight arrangements, conference hall bookings, hotel stays, and local transportation.</p>`
-  },
-  students: {
-    title: "School & College Educational Tours",
-    desc: "Safe, informative, and engaging group excursions for students.",
-    content: `<p class="modal-info-text">Industrial visits, historical tours, botanical studies, and adventure camps designed with strict safety protocols.</p>`
-  },
-  adventure: {
-    title: "Adventure & Wildlife Expeditions",
-    desc: "Thrill-seeking treks, camping trails, and jungle safaris.",
-    content: `<p class="modal-info-text">Experience trekking in Western Ghats, white water rafting, jeep safaris, and outdoor camping with certified guides.</p>`
-  },
-  honeymoon: {
-    title: "Honeymoon & Romantic Getaways",
-    desc: "Unforgettable, relaxing trips crafted for newlyweds.",
-    content: `<p class="modal-info-text">Romantic candlelight dinners, luxury resort stays, and private transfers in Munnar, Andaman, Bali, Maldives, and Europe.</p>`
   }
 };
 
-/**
- * Opens and injects data into the dynamic Enquiry Modal
- * @param {string} categoryKey - Key corresponding to categoryData object
- */
 function openCategoryModal(categoryKey) {
   const data = categoryData[categoryKey] || {
     title: "Plan Your Journey",
@@ -165,31 +87,27 @@ function openCategoryModal(categoryKey) {
     content: ""
   };
 
-  document.getElementById('modalTitle').innerText = data.title;
-  document.getElementById('modalDescription').innerText = data.desc;
-  document.getElementById('modalDynamicContent').innerHTML = data.content || "";
+  const titleEl = document.getElementById('modalTitle');
+  const descEl = document.getElementById('modalDescription');
+  const contentEl = document.getElementById('modalDynamicContent');
 
-  // Render Sub Tabs if available
-  const subTabsContainer = document.getElementById('modalSubTabs');
-  if (data.subTabs && data.subTabs.length > 0) {
-    subTabsContainer.style.display = "flex";
-    subTabsContainer.innerHTML = data.subTabs.map((tab, idx) => 
-      `<button type="button" class="sub-tab-btn ${idx === 0 ? 'active' : ''}">${tab}</button>`
-    ).join('');
-  } else {
-    subTabsContainer.style.display = "none";
-    subTabsContainer.innerHTML = "";
-  }
+  if (titleEl) titleEl.innerText = data.title;
+  if (descEl) descEl.innerText = data.desc;
+  if (contentEl) contentEl.innerHTML = data.content || "";
 
   const modal = document.getElementById('enquiryModal');
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden'; // Lock background scrolling
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function closeModal() {
   const modal = document.getElementById('enquiryModal');
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto'; // Restore scrolling
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
 }
 
 function closeModalOnOverlay(event) {
@@ -204,10 +122,14 @@ function closeModalOnOverlay(event) {
 // ==========================================
 
 function submitEnquiry(type) {
-  const name = document.getElementById('userName').value.trim();
-  const phone = document.getElementById('userPhone').value.trim();
-  const query = document.getElementById('userQuery').value.trim();
-  const modalTitle = document.getElementById('modalTitle').innerText;
+  const nameEl = document.getElementById('userName');
+  const phoneEl = document.getElementById('userPhone');
+  const queryEl = document.getElementById('userQuery');
+
+  const name = nameEl ? nameEl.value.trim() : "";
+  const phone = phoneEl ? phoneEl.value.trim() : "";
+  const query = queryEl ? queryEl.value.trim() : "";
+  const modalTitle = document.getElementById('modalTitle')?.innerText || "Enquiry";
 
   if (!name || !phone) {
     alert("Please fill in your Name and Phone/WhatsApp number before proceeding.");
@@ -223,8 +145,7 @@ function submitEnquiry(type) {
                  `*Name:* ${name}\n` +
                  `*Phone:* ${phone}\n` +
                  `*Details:* ${query || 'N/A'}`;
-    const encodedText = encodeURIComponent(text);
-    window.open(`https://wa.me/${primaryPhone}?text=${encodedText}`, '_blank');
+    window.open(`https://wa.me/${primaryPhone}?text=${encodeURIComponent(text)}`, '_blank');
   } else if (type === 'email') {
     const subject = encodeURIComponent(`Enquiry for ${modalTitle} - ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\n\nTravel Notes / Query:\n${query}`);
@@ -236,7 +157,7 @@ function submitEnquiry(type) {
 
 
 // ==========================================
-// 4. LIGHTBOX & PAMPHLET ZOOM GALLERY
+// 4. LIGHTBOX & PAMPHLET FULL-PAGE ZOOM
 // ==========================================
 
 function openPamphletList(imagesArray, initialIndex = 0) {
@@ -249,35 +170,27 @@ function openPamphletList(imagesArray, initialIndex = 0) {
   updateLightboxImage();
 
   const lightbox = document.getElementById('pamphletLightbox');
-  lightbox.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  if (lightbox) {
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function updateLightboxImage() {
   const imgElement = document.getElementById('lightboxImage');
-  imgElement.src = currentLightboxList[currentLightboxIndex];
-  resetZoom();
-}
-
-function navigateLightbox(direction, event) {
-  if (event) event.stopPropagation();
-
-  currentLightboxIndex += direction;
-  if (currentLightboxIndex < 0) {
-    currentLightboxIndex = currentLightboxList.length - 1;
-  } else if (currentLightboxIndex >= currentLightboxList.length) {
-    currentLightboxIndex = 0;
+  if (imgElement && currentLightboxList[currentLightboxIndex]) {
+    imgElement.src = currentLightboxList[currentLightboxIndex];
+    resetZoom();
   }
-
-  updateLightboxImage();
 }
 
 function closePamphletZoom(event) {
-  // Close if close button, lightbox overlay, or background container is clicked
   if (!event || event.target.id === 'pamphletLightbox' || event.target.classList.contains('pamphlet-close')) {
     const lightbox = document.getElementById('pamphletLightbox');
-    lightbox.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    if (lightbox) {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
   }
 }
 
@@ -303,13 +216,3 @@ function applyZoom() {
     imgElement.style.transition = 'transform 0.2s ease-in-out';
   }
 }
-
-// Keyboard shortcuts for Lightbox (Esc, Left Arrow, Right Arrow)
-document.addEventListener('keydown', (e) => {
-  const lightbox = document.getElementById('pamphletLightbox');
-  if (lightbox && lightbox.style.display === 'flex') {
-    if (e.key === 'Escape') closePamphletZoom({ target: { id: 'pamphletLightbox' } });
-    if (e.key === 'ArrowLeft') navigateLightbox(-1);
-    if (e.key === 'ArrowRight') navigateLightbox(1);
-  }
-});
