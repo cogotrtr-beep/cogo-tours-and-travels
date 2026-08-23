@@ -566,3 +566,20 @@ function openPamphletList(imageList, index) {
   currentPamphletList = imageList;
   openPamphletZoom(index);
 }
+/* Helper to open lightbox from tour section slide cards */
+function openPamphletList(imageList, index) {
+  if (!imageList || imageList.length === 0) return;
+  currentPamphletList = imageList;
+  openPamphletZoom(index);
+}
+
+/* Helper for horizontal arrow scrolling in Ongoing Tours */
+function scrollTrack(trackId, direction) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+  const scrollAmount = track.clientWidth * 0.5;
+  track.parentElement.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
