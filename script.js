@@ -1,1294 +1,353 @@
-// PASTE THIS AT THE top OR BOTTOM OF script.js
-function setupConveyorBelt(trackId) {
+/* ==========================================================================
+   COGO TOURS & TRAVELS - MAIN JAVASCRIPT SYSTEM
+   Includes Infinite Conveyor Belt Sliders, Dynamic Modals, Lightbox & Forms
+   ========================================================================== */
+
+// --- GLOBAL STATE ---
+let currentLightboxList = [];
+let currentLightboxIndex = 0;
+let currentZoomScale = 1;
+
+// Stores slider intervals to prevent memory leaks and track auto-scroll
+const activeSliderIntervals = {};
+
+// ==========================================
+// 1. INFINITE DYNAMIC CLONING CONVEYOR BELT
+// ==========================================
+
+/**
+ * Initializes continuous marquee-style auto-scroll using clone duplication.
+ * Works seamlessly across both desktop and touch devices.
+ * @param {string} trackId - Element ID of the .slider-track container
+ */
+function initConveyorSlider(trackId) {
   const track = document.getElementById(trackId);
-  if (!track) return;
+  if (!track || track.dataset.initialized === "true") return;
 
-  // Prevent double-cloning if function runs twice
-  if (track.classList.contains('conveyor-track')) return;
+  // Cache original slides before cloning
+  const originalCards = Array.from(track.querySelectorAll('.slide-card'));
+  if (originalCards.length === 0) return;
 
-  // 1. Duplicate all original cards for the infinite loop
-  const originalCards = Array.from(track.children);
+  // Duplicate cards for seamless loop transition
   originalCards.forEach((card) => {
     const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true'); // Accessibility compliance for duplicate cards
     track.appendChild(clone);
   });
 
-  // 2. Attach the animation class
-  track.classList.add('conveyor-track');
-}
+  // Flag track as initialized
+  track.dataset.initialized = "true";
 
-// Ensure it runs as soon as the page loads
-document.addEventListener('DOMContentLoaded', () => {
-  setupConveyorBelt('domesticTrack');
-  setupConveyorBelt('intlTrack');
-});
+  // Automatic scrolling execution
+  const scrollStep = 1; // Pixels per interval tick
+  const stepInterval = 20; // Speed tick rate in milliseconds
 
-/* =========================================================
+  function startAutoScroll() {
+    stopAutoScroll();
+    activeSliderIntervals[trackId] = setInterval(() => {
+      track.scrollLeft += scrollStep;
 
-   COGO TOURS & CABS - DYNAMIC ENGINE & SIGHTSEEING TABS
+      // When the scroll reaches halfway (the boundary between originals and clones), reset to start seamlessly
+      const maxScroll = track.scrollWidth / 2;
+      if (track.scrollLeft >= maxScroll) {
+        track.scrollLeft -= maxScroll;
+      }
+    }, stepInterval);
+  }
 
-========================================================= */
-
-
-
-// Global State
-
-let activeServiceTitle = "General Journey Enquiry";
-
-let currentPamphletList = [];
-
-let currentPamphletIndex = 0;
-
-
-
-// Drag-to-Pan & Zoom State
-
-let currentZoomScale = 1;
-
-let isDragging = false;
-
-let startX = 0, startY = 0;
-
-let translateX = 0, translateY = 0;
-
-
-
-// Carousel Timers
-
-let domesticInterval = null;
-
-let intlInterval = null;
-
-
-
-/* =========================================================
-
-   1. DATA ENGINES & CONSTANTS
-
-========================================================= */
-
-
-
-const cogoCabsData = {
-
-  title: "🚕 Cogo Cabs Tariff",
-
-  desc: "Fixed tariffs for Sedan, Innova, Crysta, Urbania & Luxury Vehicles.",
-
-  tabs: [
-
-    {
-
-      name: "Standard & Luxury Rates",
-
-      images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
-
-      content: `
-
-        <div class="tariff-box">
-
-          <h4 style="font-size: 19px;">⚡ Standard Local & Day Rental Rates</h4>
-
-          <ul class="bulletin-list">
-
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
-
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
-
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
-
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack (250 km)</span> <span class="bullet-price">₹4,500</span></li>
-
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack (250 km)</span> <span class="bullet-price">₹6,000</span></li>
-
-            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack (250 km)</span> <span class="bullet-price">₹6,750</span></li>
-
-          </ul>
-
-          <p style="margin-top: 15px; font-weight: 700; color: #0f172a;">
-
-            🚐 <em>All other luxury cars, Urbania, Tempo Traveller & Buses are available at highly competitive rates.</em>
-
-          </p>
-
-        </div>
-
-      `
-
+  function stopAutoScroll() {
+    if (activeSliderIntervals[trackId]) {
+      clearInterval(activeSliderIntervals[trackId]);
+      delete activeSliderIntervals[trackId];
     }
-
-  ]
-
-};
-
-
-
-const categoryData = {
-
-  cabs: {
-
-    title: "🚖 Cab Booking & Cogo Cabs",
-
-    desc: "Transparent tariffs for local hourly rides, full-day packages & outstation trips.",
-
-    tabs: [
-
-      {
-
-        name: "Local Hourly Rates",
-
-        images: [
-
-          "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop",
-
-          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&auto=format&fit=crop"
-
-        ],
-
-        content: `
-
-          <div class="tariff-box">
-
-            <h4 style="font-size: 19px;">📍 City Local Packages</h4>
-
-            <ul class="bulletin-list">
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
-
-            </ul>
-
-          </div>
-
-        `
-
-      },
-
-      {
-
-        name: "One Day Pack (250 km)",
-
-        images: [
-
-          "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop"
-
-        ],
-
-        content: `
-
-          <div class="tariff-box">
-
-            <h4 style="font-size: 19px;">🛣️ One Day Outstation / Long Pack (250 km included)</h4>
-
-            <ul class="bulletin-list">
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
-
-            </ul>
-
-            <p style="margin-top: 12px; font-weight: 700; color: #0f172a;">
-
-              🚍 All other luxury cars, Urbania, Tempo Traveller & Buses are also available with competitive rates.
-
-            </p>
-
-          </div>
-
-        `
-
-      }
-
-    ]
-
-  },
-
-  "cogo-cabs": cogoCabsData,
-
-  cabservices: cogoCabsData,
-
-  chennai: {
-
-    title: "🏛️ Tour Chennai Packages",
-
-    desc: "Explore heritage, temple circuits, coastal ECR, and entertainment hubs.",
-
-    tabs: [
-
-      {
-
-        name: "Vehicle Tariffs",
-
-        images: [
-
-          "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"
-
-        ],
-
-        content: `
-
-          <div class="tariff-box">
-
-            <h4 style="font-size: 19px;">🚗 Chennai Tour Vehicle Tariffs</h4>
-
-            <ul class="bulletin-list">
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan 1-Day Pack (250 km)</span> <span class="bullet-price">₹4,500</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova 1-Day Pack (250 km)</span> <span class="bullet-price">₹6,000</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta 1-Day Pack (250 km)</span> <span class="bullet-price">₹6,750</span></li>
-
-            </ul>
-
-            <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
-
-              ✨ All other luxury cars, Urbania, Tempo Travellers & Buses are available at competitive rates!
-
-            </p>
-
-          </div>
-
-        `
-
-      },
-
-      {
-
-        name: "Custom One Day Circuits",
-
-        images: [
-
-          "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop",
-
-          "https://images.unsplash.com/photo-1609946782200-d3a39e763137?w=600&auto=format&fit=crop"
-
-        ],
-
-        content: `
-
-          <div class="tariff-box">
-
-            <h4 style="font-size: 19px;">📍 Custom-Made / Recommended One-Day Tours</h4>
-
-            <p style="font-size: 15px; color: #64748b; margin-bottom: 10px;">Choose any circuit below with vehicle charges based on the reference tariff:</p>
-
-            <ul class="bulletin-list">
-
-              <li class="bulletin-item"><span class="bullet-label">Mahabalipuram & Thirukazhukundram</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thirukazhukundram</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Periyapalayam & Thiruthani</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thiruthani</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Putlur, Thiruvallur, Sriperumbudur, Thirumazhisai & Thiruverkadu</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">ECR Heritage Circuit: DakshinaChitra, Muttukadu Boating, Kovalam Beach, Crocodile Park, Tiger Cave & Mahabalipuram</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Theme Park & Fun: VGP, DakshinaChitra, Muttukadu Boating / Kovalam Beach</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Theme Park & Fun: MGM Dizzee World, DakshinaChitra, Muttukadu Boating / Kovalam Beach</span></li>
-
-            </ul>
-
-          </div>
-
-        `
-
-      }
-
-    ]
-
-  },
-
-  pilgrim: {
-
-    title: "🛕 Tour Pilgrim Circuits",
-
-    desc: "Sacred temple tours, heritage shrines, and spiritual one-day packages.",
-
-    tabs: [
-
-      {
-
-        name: "Heritage & Sakthi Circuits",
-
-        images: [
-
-          "Images/images/domestic-flyer.png", 
-
-          "Images/images/domestic-flyer2.png"
-
-        ],
-
-        content: `
-
-          <div class="tariff-box">
-
-            <h4 style="font-size: 19px;">🛕 Popular One-Day Divine Packages</h4>
-
-            <ul class="bulletin-list">
-
-              <li class="bulletin-item"><span class="bullet-label">Mahabalipuram & Thirukazhukundram</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thirukazhukundram</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Periyapalayam & Thiruthani</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thiruthani</span></li>
-
-              <li class="bulletin-item"><span class="bullet-label">Putlur, Thiruvallur, Sriperumbudur, Thirumazhisai & Thiruverkadu</span></li>
-
-            </ul>
-
-          </div>
-
-        `
-
-      }
-
-    ]
-
-  },
-
-  "south-india": {
-
-    title: "🌴 Tour South India",
-
-    desc: "Misty hill stations, pristine beaches, spiritual temples & scenic escapes across South India.",
-
-    tabs: [
-
-      {
-
-        name: "Hill Stations & Nature",
-
-        images: [
-
-          "https://images.unsplash.com/photo-1600100397608-f010e423b971?w=600&auto=format&fit=crop"
-
-        ],
-
-        content: `
-
-          <div class="tariff-box">
-
-            <h4 style="font-size: 19px;">🏔️ South India Popular Getaways</h4>
-
-            <p style="font-size: 16px;">• Kodaikanal, Ooty, Coonoor, Munnar, Wayanad & Coorg Escapes.</p>
-
-            <p style="font-size: 16px; margin-top: 6px;">• Kerala Backwaters, Alleppey Houseboats & Thekkady Wildlife tours.</p>
-
-          </div>
-
-        `
-
-      },
-
-      {
-
-        name: "Outstation Cab Tariffs",
-
-        images: [
-
-          "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop"
-
-        ],
-
-        content: `
-
-          <div class="tariff-box">
-
-            <h4 style="font-size: 19px;">🚗 Outstation Vehicle Rates (250 km / Day Base)</h4>
-
-            <ul class="bulletin-list">
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
-
-              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
-
-            </ul>
-
-            <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
-
-              🚍 Luxury Cabs, Urbania, Tempo Travellers & Buses are available for long-distance South India tours.
-
-            </p>
-
-          </div>
-
-        `
-
-      }
-
-    ]
-
   }
 
-};
+  // Event Listeners for Pause/Resume interactions
+  track.addEventListener('mouseenter', stopAutoScroll);
+  track.addEventListener('mouseleave', startAutoScroll);
+  track.addEventListener('touchstart', stopAutoScroll, { passive: true });
+  track.addEventListener('touchend', startAutoScroll, { passive: true });
 
-
-
-const defaultCategoryInfo = {
-
-  tickets: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
-
-  journey: { title: "✈️ Plan Your Journey", desc: "Tailor-made itineraries for your next dream vacation.", content: "Share your travel dates and requirements for custom quotes." },
-
-  ticket: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
-
-  visa: { title: "🛂 Visa Assistance", desc: "Documentation & Processing Support.", content: "End-to-end visa guidance for all international destinations." },
-
-  "north-india": { title: "🏔️ Tour North India", desc: "Golden Triangle, Kashmir, Himachal & Rajasthan.", content: "Customized holiday packages across North India." },
-
-  "north-east": { title: "🏞️ Tour North East", desc: "Gangtok, Darjeeling, Assam & Meghalaya.", content: "Scenic tour packages across the North Eastern states." },
-
-  "rest-of-india": { title: "🧭 Tour Rest of India", desc: "Goa, Gujarat, Odisha & Pan-India Destinations.", content: "Unique tour plans for all Indian states and union territories." },
-
-  international: { title: "✈️ Tour International", desc: "Dubai, Singapore, Thailand, Bali & Europe.", content: "Comprehensive international vacation packages with flight and visa support." },
-
-  corporate: { title: "🏢 Corporate Tour", desc: "MICE, Team Outings & Business Conferences.", content: "Custom corporate packages and transport arrangements." },
-
-  students: { title: "🎓 School & College Tour", desc: "Educational Trips & Student Excursions.", content: "Safe and budget-friendly tours for educational institutions." },
-
-  adventure: { title: "🏕️ Adventure Tour", desc: "Trekking, Camping & Thrill Activities.", content: "Action-packed itineraries for outdoor enthusiasts." },
-
-  honeymoon: { title: "💖 Honeymoon Tour", desc: "Romantic Getaways & Couples' Retreats.", content: "Special honeymoon arrangements with luxury stays and private cabs." }
-
-};
-
-
-
-/* =========================================================
-
-   2. DOM HELPER FUNCTIONS & GALLERIES
-
-========================================================= */
-
-
-
-function closeModal() {
-
-  const enquiryModal = document.getElementById("enquiryModal");
-
-  if (enquiryModal) {
-
-    enquiryModal.classList.remove("show");
-
-    enquiryModal.style.display = "none";
-
-    enquiryModal.style.opacity = "0";
-
-    enquiryModal.style.pointerEvents = "none";
-
-  }
-
-  document.body.style.overflow = "";
-
+  // Start the continuous motion
+  startAutoScroll();
 }
 
-
-
-function closeCategoryModal() { closeModal(); }
-
-function closeCategoryModalOnOverlay(e) { if (e.target.id === "enquiryModal") closeModal(); }
-
-function closeModalOnOverlay(e) { if (e.target.id === "enquiryModal") closeModal(); }
-
-
-
-function initModalCloseButtons() {
-
-  const closeButtons = document.querySelectorAll(
-
-    "#enquiryModal .close, #enquiryModal .modal-close, #enquiryModal .close-btn, .modal .close"
-
-  );
-
-
-
-  closeButtons.forEach(btn => {
-
-    btn.removeEventListener("click", closeModal);
-
-    btn.addEventListener("click", function(e) {
-
-      e.stopPropagation();
-
-      closeModal();
-
-    });
-
-  });
-
-}
-
-
-
-function createPamphletGallery(images) {
-
-  if (!images || images.length === 0) return '';
-
-  
-
-  const cardsHtml = images.map((imgUrl, idx) => `
-
-    <div class="pamphlet-card" onclick="openPamphletZoom(${idx})">
-
-      <img src="${imgUrl}" alt="Destination Preview ${idx + 1}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop';" loading="lazy">
-
-    </div>
-
-  `).join('');
-
-
-
-  return `
-
-    <div class="pamphlet-swiper">
-
-      ${cardsHtml}
-
-    </div>
-
-    <p style="text-align: center; font-size: 14px; color: #94a3b8; margin-top: 6px; margin-bottom: 12px;">
-
-      👉 Tap image to zoom | Swipe for more previews
-
-    </p>
-
-  `;
-
-}
-
-
-
-function openCategoryModal(catKey) {
-
-  if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
-
-
-
-  const data = categoryData[catKey];
-
-  const subTabContainer = document.getElementById("modalSubTabs");
-
-  if (subTabContainer) subTabContainer.innerHTML = "";
-
-
-
-  if (data && data.tabs) {
-
-    activeServiceTitle = data.title;
-
-    const titleElem = document.getElementById("modalTitle");
-
-    const descElem = document.getElementById("modalDescription");
-
-    
-
-    if (titleElem) titleElem.textContent = data.title;
-
-    if (descElem) descElem.textContent = data.desc;
-
-
-
-    data.tabs.forEach((tab, index) => {
-
-      const btn = document.createElement("button");
-
-      btn.type = "button";
-
-      btn.className = `sub-tab-btn tab-color-${index % 4} ${index === 0 ? 'active' : ''}`;
-
-      btn.textContent = tab.name;
-
-      btn.onclick = () => {
-
-        document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
-
-        btn.classList.add('active');
-
-        renderTabContent(tab);
-
-      };
-
-      if (subTabContainer) subTabContainer.appendChild(btn);
-
-    });
-
-
-
-    renderTabContent(data.tabs[0]);
-
-  } else {
-
-    const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "Custom Travel Package", content: "Contact us directly for custom pricing." };
-
-    activeServiceTitle = fallback.title;
-
-    const titleElem = document.getElementById("modalTitle");
-
-    const descElem = document.getElementById("modalDescription");
-
-    
-
-    if (titleElem) titleElem.textContent = fallback.title;
-
-    if (descElem) descElem.textContent = fallback.desc;
-
-
-
-    currentPamphletList = fallback.images || [];
-
-    renderTabContent({ content: `<div class="tariff-box"><p>${fallback.content}</p></div>`, images: currentPamphletList });
-
-  }
-
-
-
-  showModalElement("enquiryModal");
-
-}
-
-
-
-function renderTabContent(tab) {
-
-  const contentBody = document.getElementById("modalDynamicContent");
-
-  currentPamphletList = tab.images || [];
-
-  const galleryHtml = createPamphletGallery(currentPamphletList);
-
-  if (contentBody) contentBody.innerHTML = tab.content + galleryHtml;
-
-}
-
-
-
-function showModalElement(modalId) {
-
-  const modal = document.getElementById(modalId);
-
-  if (modal) {
-
-    modal.classList.add("show");
-
-    modal.style.display = "flex";
-
-    modal.style.opacity = "1";
-
-    modal.style.pointerEvents = "auto";
-
-  }
-
-  document.body.style.overflow = "hidden";
-
-}
-
-
-
-/* =========================================================
-
-   3. FORM SUBMISSION ENGINE (WHATSAPP & EMAIL)
-
-========================================================= */
-
-
-
-function submitEnquiry(type) {
-
-  const name = document.getElementById("userName") ? document.getElementById("userName").value.trim() : "";
-
-  const phone = document.getElementById("userPhone") ? document.getElementById("userPhone").value.trim() : "";
-
-  const query = document.getElementById("userQuery") ? document.getElementById("userQuery").value.trim() : "";
-
-
-
-  if (!name || !phone) {
-
-    alert("Please enter your name and contact phone number to continue.");
-
-    return;
-
-  }
-
-
-
-  const messageText = `*New Travel Enquiry - Cogo Tours*\n` +
-
-                      `-------------------------------\n` +
-
-                      `*Service/Package:* ${activeServiceTitle}\n` +
-
-                      `*Customer Name:* ${name}\n` +
-
-                      `*Contact Number:* ${phone}\n` +
-
-                      `*Notes/Preferences:* ${query || 'N/A'}`;
-
-
-
-  if (type === 'whatsapp') {
-
-    const waUrl = `https://wa.me/919884066830?text=${encodeURIComponent(messageText)}`;
-
-    window.open(waUrl, '_blank');
-
-  } else if (type === 'email') {
-
-    const mailtoUrl = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent("Enquiry: " + activeServiceTitle)}&body=${encodeURIComponent(messageText)}`;
-
-    window.location.href = mailtoUrl;
-
-  }
-
-}
-
-
-
-/* =========================================================
-
-   4. LIGHTBOX ZOOM & DRAG ENGINE
-
-========================================================= */
-
-
-
-function getLightboxElements() {
-
-  const lightbox = document.getElementById("pamphletLightbox") || document.getElementById("imageModal");
-
-  const img = document.getElementById("lightboxImage") || document.getElementById("imgModalSrc");
-
-  return { lightbox, img };
-
-}
-
-
-
-function applyZoomTransform() {
-
-  const { img } = getLightboxElements();
-
-  if (!img) return;
-
-
-
-  if (currentZoomScale <= 1) {
-
-    translateX = 0;
-
-    translateY = 0;
-
-    img.style.cursor = "zoom-in";
-
-  } else {
-
-    img.style.cursor = isDragging ? "grabbing" : "grab";
-
-  }
-
-
-
-  img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoomScale})`;
-
-  img.style.transition = isDragging ? "none" : "transform 0.15s ease-out";
-
-}
-
-
-
-function resetZoom() {
-
-  currentZoomScale = 1;
-
-  translateX = 0;
-
-  translateY = 0;
-
-  applyZoomTransform();
-
-}
-
-
-
-function zoomIn() {
-
-  currentZoomScale = Math.min(currentZoomScale + 0.5, 3.5);
-
-  applyZoomTransform();
-
-}
-
-
-
-function zoomOut() {
-
-  currentZoomScale = Math.max(currentZoomScale - 0.5, 1);
-
-  if (currentZoomScale === 1) {
-
-    translateX = 0;
-
-    translateY = 0;
-
-  }
-
-  applyZoomTransform();
-
-}
-
-
-
-function openPamphletZoom(index) {
-
-  if (!currentPamphletList || currentPamphletList.length === 0) return;
-
-  
-
-  currentPamphletIndex = index;
-
-  const { lightbox, img } = getLightboxElements();
-
-
-
-  if (lightbox && img) {
-
-    img.src = currentPamphletList[currentPamphletIndex];
-
-    resetZoom();
-
-    lightbox.classList.add("show");
-
-    lightbox.style.display = "flex";
-
-    lightbox.style.opacity = "1";
-
-    lightbox.style.pointerEvents = "auto";
-
-  }
-
-}
-
-
-
-function closePamphletZoom(e) {
-
-  if (e && e.stopPropagation) e.stopPropagation();
-
-  const { lightbox } = getLightboxElements();
-
-  if (lightbox) {
-
-    lightbox.classList.remove("show");
-
-    lightbox.style.display = "none";
-
-    lightbox.style.opacity = "0";
-
-    lightbox.style.pointerEvents = "none";
-
-    resetZoom();
-
-  }
-
-}
-
-
-
-function prevPamphlet(e) {
-
-  if (e && e.stopPropagation) e.stopPropagation();
-
-  if (!currentPamphletList || currentPamphletList.length <= 1) return;
-
-  currentPamphletIndex = (currentPamphletIndex - 1 + currentPamphletList.length) % currentPamphletList.length;
-
-  openPamphletZoom(currentPamphletIndex);
-
-}
-
-
-
-function nextPamphlet(e) {
-
-  if (e && e.stopPropagation) e.stopPropagation();
-
-  if (!currentPamphletList || currentPamphletList.length <= 1) return;
-
-  currentPamphletIndex = (currentPamphletIndex + 1) % currentPamphletList.length;
-
-  openPamphletZoom(currentPamphletIndex);
-
-}
-
-
-
-function navigateLightbox(direction, event) {
-
-  if (direction === -1) prevPamphlet(event);
-
-  if (direction === 1) nextPamphlet(event);
-
-}
-
-
-
-function openPamphletList(imageList, index) {
-
-  currentPamphletList = imageList;
-
-  openPamphletZoom(index);
-
-}
-
-
-
-/* =========================================================
-
-   5. ONGOING TOURS CAROUSEL (NATIVE AUTO-SCROLL)
-
-========================================================= */
-
-
-
-function performSmoothScroll(track) {
-
-  if (!track) return;  
-
-  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
-
-  const scrollAmount = card ? card.offsetWidth + 16 : 276;
-
-
-
-  if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 15) {
-
-    track.scrollTo({ left: 0, behavior: 'smooth' });
-
-  } else {
-
-    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-
-  }
-
-}
-
-
-
-function startDualSliders() {
-
-  const domTrack = document.getElementById('domesticTrack');
-
-  const intlTrack = document.getElementById('intlTrack');
-
-
-
-  if (domTrack && !domesticInterval) {
-
-    domesticInterval = setInterval(() => performSmoothScroll(domTrack), 3500);
-
-  }
-
-  if (intlTrack && !intlInterval) {
-
-    intlInterval = setInterval(() => performSmoothScroll(intlTrack), 3500);
-
-  }
-
-}
-
-
-
-function stopDualSliders() {
-
-  clearInterval(domesticInterval);
-
-  clearInterval(intlInterval);
-
-  domesticInterval = null;
-
-  intlInterval = null;
-
-}
-
-
-
+/**
+ * Manual Navigation Arrows for the Slider Tracks
+ * @param {string} trackId - Target slider track ID
+ * @param {number} direction - Direction modifier (-1 for Left, 1 for Right)
+ */
 function moveSlide(trackId, direction) {
-
   const track = document.getElementById(trackId);
-
   if (!track) return;
 
-
-
-  const card = track.querySelector('.slide-card, .ongoing-card, .tour-card');
-
-  const scrollAmount = card ? card.offsetWidth + 16 : 276;
-
-
+  const cardWidth = track.querySelector('.slide-card')?.offsetWidth || 300;
+  const gap = 16; // Standard layout gap
+  const scrollAmount = (cardWidth + gap) * direction;
 
   track.scrollBy({
-
-    left: direction * scrollAmount,
-
+    left: scrollAmount,
     behavior: 'smooth'
-
   });
-
 }
 
-
-
-if (document.readyState === 'loading') {
-
-  document.addEventListener('DOMContentLoaded', startDualSliders);
-
-} else {
-
-  startDualSliders();
-
-}
-
-
-
-/* =========================================================
-
-   6. GLOBAL INITIALIZATION & EVENT LISTENERS
-
-========================================================= */
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const { lightbox, img } = getLightboxElements();
-
-
-
-  startDualSliders();
-
-  initModalCloseButtons();
-
-
-
-  const enquiryModal = document.getElementById("enquiryModal");
-
-  if (enquiryModal) {
-
-    enquiryModal.addEventListener("click", function(e) {
-
-      if (e.target === enquiryModal) closeModal();
-
-    });
-
-  }
-
-
-
-  ['domesticSliderWrapper', 'intlSliderWrapper'].forEach(id => {
-
-    const elem = document.getElementById(id);
-
-    if (elem) {
-
-      elem.addEventListener('mouseenter', stopDualSliders);
-
-      elem.addEventListener('mouseleave', startDualSliders);
-
-    }
-
-  });
-
-
-
-  if (lightbox) {
-
-    lightbox.addEventListener("wheel", function (e) {
-
-      if (lightbox.style.display === "flex" || lightbox.classList.contains("show")) {
-
-        e.preventDefault();
-
-        if (e.deltaY < 0) zoomIn();
-
-        else zoomOut();
-
-      }
-
-    }, { passive: false });
-
-  }
-
-
-
-  if (img) {
-
-    img.addEventListener("click", function (e) {
-
-      if (isDragging) return;
-
-      e.stopPropagation();
-
-      currentZoomScale = (currentZoomScale === 1) ? 2 : 1;
-
-      applyZoomTransform();
-
-    });
-
-
-
-    img.addEventListener("mousedown", (e) => {
-
-      if (currentZoomScale > 1) {
-
-        isDragging = true;
-
-        startX = e.clientX - translateX;
-
-        startY = e.clientY - translateY;
-
-        img.style.cursor = "grabbing";
-
-        e.preventDefault();
-
-      }
-
-    });
-
-
-
-    window.addEventListener("mousemove", (e) => {
-
-      if (!isDragging) return;
-
-      translateX = e.clientX - startX;
-
-      translateY = e.clientY - startY;
-
-      applyZoomTransform();
-
-    });
-
-
-
-    window.addEventListener("mouseup", () => {
-
-      if (isDragging) {
-
-        isDragging = false;
-
-        applyZoomTransform();
-
-      }
-
-    });
-
-
-
-    img.addEventListener("touchstart", (e) => {
-
-      if (currentZoomScale > 1 && e.touches.length === 1) {
-
-        isDragging = true;
-
-        startX = e.touches[0].clientX - translateX;
-
-        startY = e.touches[0].clientY - translateY;
-
-      }
-
-    });
-
-
-
-    window.addEventListener("touchmove", (e) => {
-
-      if (!isDragging || e.touches.length !== 1) return;
-
-      translateX = e.touches[0].clientX - startX;
-
-      translateY = e.touches[0].clientY - startY;
-
-      applyZoomTransform();
-
-    });
-
-
-
-    window.addEventListener("touchend", () => {
-
-      isDragging = false;
-
-    });
-
-  }
-
-
-
-  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => btn.onclick = prevPamphlet);
-
-  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => btn.onclick = nextPamphlet);
-
-  document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => btn.onclick = zoomIn);
-
-  document.querySelectorAll(".zoom-out, #zoomOutBtn").forEach(btn => btn.onclick = zoomOut);
-
-  document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => btn.onclick = closePamphletZoom);
-
+// Automatically mount conveyor belts on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initConveyorSlider('domesticTrack');
+  initConveyorSlider('intlTrack');
 });
 
 
+// ==========================================
+// 2. CATEGORY DATA & DYNAMIC MODALS
+// ==========================================
 
-document.addEventListener("keydown", function(e) {
+const categoryData = {
+  cabs: {
+    title: "Cab Services & Tariff",
+    desc: "Clean, well-maintained vehicles with professional local drivers.",
+    subTabs: ["Local Tariff", "Outstation Tariff"],
+    content: `
+      <table class="tariff-table">
+        <thead>
+          <tr><th>Vehicle Type</th><th>Local (8 Hrs/80 km)</th><th>Extra/km</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sedan (Dzire/Etios)</td><td>₹2,200</td><td>₹14</td></tr>
+          <tr><td>SUV (Ertiga)</td><td>₹3,200</td><td>₹18</td></tr>
+          <tr><td>Premium SUV (Innova Crysta)</td><td>₹4,500</td><td>₹22</td></tr>
+          <tr><td>Tempo Traveller (12-16 Seater)</td><td>₹5,500</td><td>₹26</td></tr>
+        </tbody>
+      </table>`
+  },
+  journey: {
+    title: "Plan Your Custom Journey",
+    desc: "Tell us your preferences and we'll craft the perfect itinerary for you.",
+    content: `<p class="modal-info-text">Please fill out your requirements in the form below. Our travel experts will get back to you with custom options within 30 minutes.</p>`
+  },
+  ticket: {
+    title: "Flight, Train & Bus Ticket Booking",
+    desc: "Instant reservation support for all major transport networks.",
+    content: `<p class="modal-info-text">Mention your travel route, preferred date, and passenger details below for quick availability checks and lowest fare options.</p>`
+  },
+  visa: {
+    title: "Visa Assistance & Processing",
+    desc: "End-to-end documentation, appointment scheduling, and verification.",
+    content: `<p class="modal-info-text">We process tourist, business, and family visas for Dubai, Singapore, Malaysia, Schengen area, USA, UK, and more.</p>`
+  },
+  chennai: {
+    title: "Tour Chennai Packages",
+    desc: "Explore coastal heritage, ancient temples, beaches, and city sights.",
+    content: `<p class="modal-info-text">Full-day and half-day guided sightseeing tours including Kapaleeshwarar Temple, Marina Beach, San Thome Basilica, and Mahabalipuram.</p>`
+  },
+  pilgrim: {
+    title: "Spiritual & Pilgrim Circuits",
+    desc: "Divine journeys planned with care and comfort for your family.",
+    content: `<p class="modal-info-text">Special packages for Tirupati Balaji Darshan, Shirdi Sai Baba, Kanchipuram Temple Circuit, Navagraha Temples, and Rameshwaram.</p>`
+  },
+  "south-india": {
+    title: "South India Holiday Packages",
+    desc: "Misty hill stations, tranquil backwaters, and lush plantations.",
+    content: `<p class="modal-info-text">Discover Ooty, Kodaikanal, Munnar, Alleppey Houseboats, Wayanad, Coorg, and Mysore with personalized transport and stay.</p>`
+  },
+  "north-india": {
+    title: "North India & Royal Circuits",
+    desc: "Golden Triangle, Himalayan retreats, and historic fortresses.",
+    content: `<p class="modal-info-text">Packages for Delhi, Agra, Jaipur, Shimla, Manali, Kashmir Valley, Leh-Ladakh, and Varanasi.</p>`
+  },
+  "north-east": {
+    title: "North East Excursions",
+    desc: "Pristine natural valleys, tea estates, and unique culture.",
+    content: `<p class="modal-info-text">Explore Gangtok, Darjeeling, Meghalaya waterfalls, Shillong, and Kaziranga National Park.</p>`
+  },
+  "rest-of-india": {
+    title: "Rest of India Destinations",
+    desc: "Beach escapes, desert safaris, and island getaways.",
+    content: `<p class="modal-info-text">Packages covering Goa beaches, Gujarat Rann of Kutch, Madhya Pradesh wildlife, and Andaman Islands.</p>`
+  },
+  international: {
+    title: "International Holiday Packages",
+    desc: "Worldwide getaways designed for seamless global exploration.",
+    content: `<p class="modal-info-text">All-inclusive international tours to Dubai, Singapore, Thailand, Malaysia, Bali, Sri Lanka, Europe, and Vietnam.</p>`
+  },
+  corporate: {
+    title: "Corporate MICE & Business Trips",
+    desc: "Professional corporate retreats, team building, and event logistics.",
+    content: `<p class="modal-info-text">Tailored group travel solutions including flight arrangements, conference hall bookings, hotel stays, and local transportation.</p>`
+  },
+  students: {
+    title: "School & College Educational Tours",
+    desc: "Safe, informative, and engaging group excursions for students.",
+    content: `<p class="modal-info-text">Industrial visits, historical tours, botanical studies, and adventure camps designed with strict safety protocols.</p>`
+  },
+  adventure: {
+    title: "Adventure & Wildlife Expeditions",
+    desc: "Thrill-seeking treks, camping trails, and jungle safaris.",
+    content: `<p class="modal-info-text">Experience trekking in Western Ghats, white water rafting, jeep safaris, and outdoor camping with certified guides.</p>`
+  },
+  honeymoon: {
+    title: "Honeymoon & Romantic Getaways",
+    desc: "Unforgettable, relaxing trips crafted for newlyweds.",
+    content: `<p class="modal-info-text">Romantic candlelight dinners, luxury resort stays, and private transfers in Munnar, Andaman, Bali, Maldives, and Europe.</p>`
+  }
+};
 
-  const { lightbox } = getLightboxElements();
+/**
+ * Opens and injects data into the dynamic Enquiry Modal
+ * @param {string} categoryKey - Key corresponding to categoryData object
+ */
+function openCategoryModal(categoryKey) {
+  const data = categoryData[categoryKey] || {
+    title: "Plan Your Journey",
+    desc: "Get in touch with us for quotes and customized itineraries.",
+    content: ""
+  };
 
-  const isLightboxActive = lightbox && (lightbox.style.display === "flex" || lightbox.classList.contains("show"));
+  document.getElementById('modalTitle').innerText = data.title;
+  document.getElementById('modalDescription').innerText = data.desc;
+  document.getElementById('modalDynamicContent').innerHTML = data.content || "";
 
-
-
-  if (e.key === "Escape") {
-
-    if (isLightboxActive) {
-
-      closePamphletZoom(e);
-
-    } else {
-
-      closeModal();
-
-    }
-
-  } else if (isLightboxActive) {
-
-    if (e.key === "ArrowLeft") prevPamphlet(e);
-
-    if (e.key === "ArrowRight") nextPamphlet(e);
-
-    if (e.key === "+" || e.key === "=") zoomIn();
-
-    if (e.key === "-") zoomOut();
-
+  // Render Sub Tabs if available
+  const subTabsContainer = document.getElementById('modalSubTabs');
+  if (data.subTabs && data.subTabs.length > 0) {
+    subTabsContainer.style.display = "flex";
+    subTabsContainer.innerHTML = data.subTabs.map((tab, idx) => 
+      `<button type="button" class="sub-tab-btn ${idx === 0 ? 'active' : ''}">${tab}</button>`
+    ).join('');
+  } else {
+    subTabsContainer.style.display = "none";
+    subTabsContainer.innerHTML = "";
   }
 
-}); 
+  const modal = document.getElementById('enquiryModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // Lock background scrolling
+}
+
+function closeModal() {
+  const modal = document.getElementById('enquiryModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+function closeModalOnOverlay(event) {
+  if (event.target.id === 'enquiryModal') {
+    closeModal();
+  }
+}
+
+
+// ==========================================
+// 3. FORM SUBMISSION (WHATSAPP & EMAIL)
+// ==========================================
+
+function submitEnquiry(type) {
+  const name = document.getElementById('userName').value.trim();
+  const phone = document.getElementById('userPhone').value.trim();
+  const query = document.getElementById('userQuery').value.trim();
+  const modalTitle = document.getElementById('modalTitle').innerText;
+
+  if (!name || !phone) {
+    alert("Please fill in your Name and Phone/WhatsApp number before proceeding.");
+    return;
+  }
+
+  const primaryPhone = "919884066830";
+  const primaryEmail = "cogotrtr@gmail.com";
+
+  if (type === 'whatsapp') {
+    const text = `*New Enquiry - Cogo Tours*\n\n` +
+                 `*Category:* ${modalTitle}\n` +
+                 `*Name:* ${name}\n` +
+                 `*Phone:* ${phone}\n` +
+                 `*Details:* ${query || 'N/A'}`;
+    const encodedText = encodeURIComponent(text);
+    window.open(`https://wa.me/${primaryPhone}?text=${encodedText}`, '_blank');
+  } else if (type === 'email') {
+    const subject = encodeURIComponent(`Enquiry for ${modalTitle} - ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\n\nTravel Notes / Query:\n${query}`);
+    window.location.href = `mailto:${primaryEmail}?subject=${subject}&body=${body}`;
+  }
+
+  closeModal();
+}
+
+
+// ==========================================
+// 4. LIGHTBOX & PAMPHLET ZOOM GALLERY
+// ==========================================
+
+function openPamphletList(imagesArray, initialIndex = 0) {
+  if (!imagesArray || imagesArray.length === 0) return;
+
+  currentLightboxList = imagesArray;
+  currentLightboxIndex = initialIndex;
+  currentZoomScale = 1;
+
+  updateLightboxImage();
+
+  const lightbox = document.getElementById('pamphletLightbox');
+  lightbox.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightboxImage() {
+  const imgElement = document.getElementById('lightboxImage');
+  imgElement.src = currentLightboxList[currentLightboxIndex];
+  resetZoom();
+}
+
+function navigateLightbox(direction, event) {
+  if (event) event.stopPropagation();
+
+  currentLightboxIndex += direction;
+  if (currentLightboxIndex < 0) {
+    currentLightboxIndex = currentLightboxList.length - 1;
+  } else if (currentLightboxIndex >= currentLightboxList.length) {
+    currentLightboxIndex = 0;
+  }
+
+  updateLightboxImage();
+}
+
+function closePamphletZoom(event) {
+  // Close if close button, lightbox overlay, or background container is clicked
+  if (!event || event.target.id === 'pamphletLightbox' || event.target.classList.contains('pamphlet-close')) {
+    const lightbox = document.getElementById('pamphletLightbox');
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function zoomIn() {
+  currentZoomScale = Math.min(currentZoomScale + 0.25, 3);
+  applyZoom();
+}
+
+function zoomOut() {
+  currentZoomScale = Math.max(currentZoomScale - 0.25, 0.75);
+  applyZoom();
+}
+
+function resetZoom() {
+  currentZoomScale = 1;
+  applyZoom();
+}
+
+function applyZoom() {
+  const imgElement = document.getElementById('lightboxImage');
+  if (imgElement) {
+    imgElement.style.transform = `scale(${currentZoomScale})`;
+    imgElement.style.transition = 'transform 0.2s ease-in-out';
+  }
+}
+
+// Keyboard shortcuts for Lightbox (Esc, Left Arrow, Right Arrow)
+document.addEventListener('keydown', (e) => {
+  const lightbox = document.getElementById('pamphletLightbox');
+  if (lightbox && lightbox.style.display === 'flex') {
+    if (e.key === 'Escape') closePamphletZoom({ target: { id: 'pamphletLightbox' } });
+    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+  }
+});
