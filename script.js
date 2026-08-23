@@ -661,3 +661,127 @@ function sendVisaWhatsApp() {
   const encodedMessage = encodeURIComponent(message);
   window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 }
+/* =========================================================
+   CAB SERVICES - DROPDOWNS & WHATSAPP ENQUIRY
+========================================================= */
+
+/* 1. Location Data */
+const cabPickupLocations = [
+  "Chennai Airport (MAA)",
+  "Chennai Central Railway Station",
+  "Chennai Egmore Station",
+  "T. Nagar / Kodambakkam",
+  "OMR / Sholinganallur (IT Corridor)",
+  "Velachery / Guindy",
+  "Koyambedu (CMBT)",
+  "ECR / Neelankarai"
+];
+
+const cabDropLocations = [
+  "Pondicherry / Puducherry",
+  "Tirupati / Tirumala",
+  "Mahabalipuram / ECR Beach Resorts",
+  "Kanchipuram Heritage Town",
+  "Vellore / Golden Temple",
+  "Bengaluru City",
+  "Local Chennai Full Day Sightseeing",
+  "Local Airport Drop / Transfer"
+];
+
+/* 2. Dropdown List Builder */
+function populateCabList(containerId, list, selectFunc) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = "";
+  
+  if (list.length === 0) {
+    container.innerHTML = '<div class="visa-option">Type custom location...</div>';
+    return;
+  }
+
+  list.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "visa-option";
+    div.innerHTML = `<span>📍 ${item}</span>`;
+    div.onclick = () => selectFunc(item);
+    container.appendChild(div);
+  });
+}
+
+/* 3. Pickup Dropdown Logic */
+function showCabPickupDropdown() {
+  populateCabList("cabPickupList", cabPickupLocations, selectCabPickup);
+  document.getElementById("cabPickupList")?.classList.add("show");
+}
+
+function filterCabPickup() {
+  const q = document.getElementById("cabPickupInput").value.toLowerCase();
+  const filtered = cabPickupLocations.filter(loc => loc.toLowerCase().includes(q));
+  populateCabList("cabPickupList", filtered, selectCabPickup);
+  document.getElementById("cabPickupList")?.classList.add("show");
+}
+
+function selectCabPickup(val) {
+  const input = document.getElementById("cabPickupInput");
+  if (input) input.value = val;
+  document.getElementById("cabPickupList")?.classList.remove("show");
+}
+
+/* 4. Drop/Destination Dropdown Logic */
+function showCabDropDropdown() {
+  populateCabList("cabDropList", cabDropLocations, selectCabDrop);
+  document.getElementById("cabDropList")?.classList.add("show");
+}
+
+function filterCabDrop() {
+  const q = document.getElementById("cabDropInput").value.toLowerCase();
+  const filtered = cabDropLocations.filter(loc => loc.toLowerCase().includes(q));
+  populateCabList("cabDropList", filtered, selectCabDrop);
+  document.getElementById("cabDropList")?.classList.add("show");
+}
+
+function selectCabDrop(val) {
+  const input = document.getElementById("cabDropInput");
+  if (input) input.value = val;
+  document.getElementById("cabDropList")?.classList.remove("show");
+}
+
+/* 5. Hide Dropdowns When Clicking Outside */
+document.addEventListener("click", function(e) {
+  const pickupWrap = document.getElementById("cabPickupInput")?.parentElement;
+  const dropWrap = document.getElementById("cabDropInput")?.parentElement;
+  
+  if (pickupWrap && !pickupWrap.contains(e.target)) {
+    document.getElementById("cabPickupList")?.classList.remove("show");
+  }
+  if (dropWrap && !dropWrap.contains(e.target)) {
+    document.getElementById("cabDropList")?.classList.remove("show");
+  }
+});
+
+/* 6. Send Selected Booking Data to WhatsApp */
+function sendCabWhatsApp() {
+  const phoneNumber = "919840000000"; // ⚠️ REPLACE THIS WITH YOUR ACTUAL PHONE NUMBER
+  
+  const pickup = document.getElementById("cabPickupInput")?.value.trim();
+  const drop = document.getElementById("cabDropInput")?.value.trim();
+  const travelDate = document.getElementById("cabDateInput")?.value;
+  const travelTime = document.getElementById("cabTimeInput")?.value;
+  const vehicle = document.getElementById("cabVehicleSelect")?.value;
+  const pack = document.getElementById("cabPackSelect")?.value;
+
+  if (!pickup || !drop) {
+    alert("Please enter or select both Pickup and Destination locations.");
+    return;
+  }
+
+  let message = `Hello Cogo Tours, I want to book/enquire a cab.\n\n📍 *Pickup:* ${pickup}\n🎯 *Destination:* ${drop}`;
+  if (travelDate) message += `\n📅 *Date:* ${travelDate}`;
+  if (travelTime) message += `\n⏰ *Time:* ${travelTime}`;
+  if (vehicle) message += `\n🚗 *Vehicle:* ${vehicle}`;
+  if (pack) message += `\n⏱️ *Trip Pack:* ${pack}`;
+  message += `\n\nPlease share availability and fare details.`;
+
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
