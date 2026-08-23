@@ -33,17 +33,17 @@
   <h2>Ongoing & Upcoming Departures</h2>
   <p class="section-sub">Fixed departures & group trails ready to join</p>
 
-  <div class="ongoing-stacked-container">
+  <div class="ongoing-dual-grid">
 
-    <!-- DOMESTIC BOX -->
-    <div class="ongoing-section-card">
+    <!-- DOMESTIC COLUMN -->
+    <div class="ongoing-column">
       <div class="compact-header">
         <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
         <h3 class="compact-title">Ongoing Domestic Tours</h3>
-        <p class="compact-sub">Explore South, North & Coastal circuits</p>
+        <p class="compact-sub">Fixed departures & group trails</p>
       </div>
 
-      <div class="slider-wrapper" id="domesticSliderWrapper">
+      <div class="slider-wrapper">
         <div id="domesticTrack" class="slider-track">
           <!-- Slide 1 -->
           <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
@@ -76,39 +76,31 @@
           </div>
         </div>
       </div>
-
-      <div class="ongoing-action-bar">
-        <div class="action-info">
-          <h3>Interested in an ongoing departure or custom dates?</h3>
-          <p>Connect with our team directly for instant seat availability and tailored plans.</p>
-        </div>
-        <button type="button" class="btn-primary-single" onclick="openCategoryModal('journey')">Domestic Journey Form</button>
-      </div>
     </div>
 
-    <!-- INTERNATIONAL BOX -->
-    <div class="ongoing-section-card">
+    <!-- INTERNATIONAL COLUMN -->
+    <div class="ongoing-column">
       <div class="compact-header">
-        <span class="live-badge intl">🌐 GLOBAL EXCURSIONS</span>
+        <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
         <h3 class="compact-title">Ongoing International Tours</h3>
-        <p class="compact-sub">Popular worldwide group getaways</p>
+        <p class="compact-sub">Popular worldwide getaways</p>
       </div>
 
-      <div class="slider-wrapper" id="intlSliderWrapper">
+      <div class="slider-wrapper">
         <div id="intlTrack" class="slider-track">
           <!-- Slide 1 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
-            <img src="Images/images/chennai-main.png" alt="Dubai Extravaganza" loading="lazy">
+          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
+            <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
             <div class="slide-overlay">
-              <span class="status-tag upcoming">Upcoming</span>
+              <span class="status-tag ongoing">Ongoing</span>
               <h4>Dubai Extravaganza</h4>
               <p>5 Days • Special Deal</p>
             </div>
           </div>
 
           <!-- Slide 2 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
-            <img src="Images/images/pilgrim-main.png" alt="Singapore Escape" loading="lazy">
+          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
+            <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
               <h4>Singapore Escape</h4>
@@ -117,8 +109,8 @@
           </div>
 
           <!-- Slide 3 -->
-          <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
-            <img src="Images/images/south-main.png" alt="European Highlights" loading="lazy">
+          <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
+            <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
             <div class="slide-overlay">
               <span class="status-tag upcoming">Upcoming</span>
               <h4>European Highlights</h4>
@@ -127,67 +119,19 @@
           </div>
         </div>
       </div>
-
-      <div class="ongoing-action-bar">
-        <div class="action-info">
-          <h3>Planning a group trip abroad?</h3>
-          <p>Flight, visa, and hotel stay bundles arranged hassle-free.</p>
-        </div>
-        <button type="button" class="btn-primary-single" onclick="openCategoryModal('journey')">International Journey Form</button>
-      </div>
     </div>
 
   </div>
-</section>
 
-      <!-- INTERNATIONAL TOURS -->
-      <div class="ongoing-column">
-        <div class="hub-header compact-header">
-          <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
-          <h2 class="compact-title">Ongoing International Tours</h2>
-          <p class="compact-sub">Popular worldwide getaways</p>
-        </div>
-
-        <div class="slider-wrapper" id="intlSliderWrapper">
-          <button type="button" class="slider-nav slider-prev" aria-label="Previous Slide" onclick="moveSlide('intlTrack', -1)">&#10094;</button>
-          
-          <div class="slider-track" id="intlTrack">
-            <!-- Slide 1 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
-              <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag ongoing">Ongoing</span>
-                <h4>Dubai Extravaganza</h4>
-                <p>5 Days • Special Deal</p>
-              </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
-              <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag upcoming">Upcoming</span>
-                <h4>Singapore Escape</h4>
-                <p>6 Days • Booking Open</p>
-              </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
-              <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
-              <div class="slide-overlay">
-                <span class="status-tag upcoming">Upcoming</span>
-                <h4>European Highlights</h4>
-                <p>10 Days • Group Tour</p>
-              </div>
-            </div>
-          </div>
-
-          <button type="button" class="slider-nav slider-next" aria-label="Next Slide" onclick="moveSlide('intlTrack', 1)">&#10095;</button>
-        </div>
-      </div>
-
+  <!-- SINGLE BOTTOM ACTION BAR -->
+  <div class="ongoing-action-bar">
+    <div class="action-info">
+      <h3>Interested in an ongoing departure or custom dates?</h3>
+      <p>Connect with our team directly for instant seat availability and tailored plans.</p>
     </div>
+    <button type="button" class="btn-primary-single" onclick="openCategoryModal('journey')">Plan Your Journey</button>
+  </div>
+</section>
 
     <!-- ACTION BAR -->
     <div class="ongoing-action-bar">
