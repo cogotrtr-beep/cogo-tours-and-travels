@@ -718,63 +718,48 @@ body {
 .live-badge.domestic { background: #ff9500; }
 .live-badge.intl { background: #007aff; }
 
-/* Conveyor Outer Wrapper */
+/* Outer Wrapper (Clips items sliding outside the box) */
 .slider-wrapper {
   position: relative;
   width: 100%;
-  display: flex;
-  align-items: center;
-  overflow: hidden; /* Clips elements offscreen */
+  overflow: hidden; 
+  padding: 10px 0;
 }
 
-/* Base Slider Track */
+/* Base Slider Tracks (Triggers the automatic animation) */
 #domesticTrack,
 #intlTrack,
 .slider-track {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 10px 0;
-  width: 100%;
-}
-
-#domesticTrack::-webkit-scrollbar,
-#intlTrack::-webkit-scrollbar,
-.slider-track::-webkit-scrollbar { 
-  display: none; 
-}
-
-/* Continuous Infinite Rolling Engine */
-.conveyor-track {
   display: flex !important;
   gap: 16px;
   width: max-content;
-  overflow-x: visible !important;
+  overflow: visible !important;
   animation: scrollConveyor 25s linear infinite;
   will-change: transform;
 }
 
-.conveyor-track:hover {
-  animation-play-state: paused; /* Pause on hover */
+/* Pause animation when user hovers or holds touch */
+.slider-wrapper:hover .slider-track,
+.slider-track:active {
+  animation-play-state: paused;
 }
 
+/* Continuous Animation Loop */
 @keyframes scrollConveyor {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Seamless 50% shift */
+    transform: translateX(-50%); /* Smoothly moves 50% across original + cloned cards */
   }
 }
 
-/* Card Styling Inside Conveyor */
+/* Card Sizing & Appearance */
 .slide-card,
 .ongoing-card,
 .tour-card {
-  flex: 0 0 280px; /* Fixed width for uniform conveyor movement */
+  flex: 0 0 280px !important;
+  width: 280px;
   height: 380px;
   position: relative;
   border-radius: 14px;
@@ -821,6 +806,7 @@ body {
 .status-tag.ongoing { background: #28a745; color: #fff; }
 .status-tag.upcoming { background: #ff9500; color: #fff; }
 
+/* Optional Manual Navigation Buttons */
 .slider-nav {
   position: absolute;
   top: 50%;
@@ -839,9 +825,10 @@ body {
   justify-content: center;
 }
 
-.slider-prev { left: -10px; }
-.slider-next { right: -10px; }
+.slider-prev { left: 5px; }
+.slider-next { right: 5px; }
 
+/* Lower Action Bar */
 .ongoing-action-bar {
   max-width: 1350px;
   margin: 20px auto 0;
