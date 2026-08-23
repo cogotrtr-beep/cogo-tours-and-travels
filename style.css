@@ -646,46 +646,29 @@ body {
 }
 
 /* =========================================================
-   9. ONGOING TOURS & LIVE SLIDERS (SIDE-BY-SIDE 2 CARDS)
+   9. ONGOING TOURS & LIVE SLIDERS (TALL A4 PORTRAIT RATIO)
 ========================================================= */
-.ongoing-tours-section,
-.ongoing-section {
+.ongoing-tours-section {
   background-color: #fff8f0;
-  padding: 40px 20px;
+  padding: 30px 20px 40px;
   overflow: hidden;
 }
 
-.ongoing-tours-section h2 {
-  font-size: 32px;
-  font-weight: 800;
-  color: #0f172a;
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-.ongoing-tours-section p.section-sub {
-  font-size: 14px;
-  color: #64748b;
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-/* Strict 2-Column Grid for PC view */
 .ongoing-dual-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px;
+  gap: 32px;
   max-width: 1250px;
   margin: 0 auto;
   width: 100%;
 }
 
 .ongoing-column {
+  display: flex;
+  flex-direction: column;
   background: transparent !important;
-  padding: 0;
   border: none !important;
   box-shadow: none !important;
-  overflow: hidden;
 }
 
 .compact-header {
@@ -693,52 +676,51 @@ body {
   margin-bottom: 12px;
 }
 
-.compact-title {
-  font-size: 20px;
+/* Bold prominent titles for Domestic & International */
+.bold-column-title {
+  font-size: 24px;
   font-weight: 800;
-  margin: 4px 0 2px 0;
+  margin: 6px 0 2px 0;
   color: #0f172a;
+  letter-spacing: -0.3px;
 }
 
 .compact-sub {
-  font-size: 12px;
-  margin: 0 0 8px 0;
+  font-size: 13px;
+  margin: 0;
   color: #64748b;
+  font-weight: 500;
 }
 
 .live-badge {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 12px;
   color: #fff;
   display: inline-block;
+  text-transform: uppercase;
 }
 .live-badge.domestic { background: #ff9500; }
 .live-badge.intl { background: #007aff; }
 
-/* Slider Wrapper - Exactly fits 2 cards visible */
+/* Slider Track */
 .slider-wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: 8px 0;
+  padding: 10px 0;
 }
 
-/* Belt animation */
-#domesticTrack,
-#intlTrack,
 .slider-track {
   display: flex !important;
-  gap: 14px;
+  gap: 16px;
   width: max-content;
-  overflow: visible !important;
-  animation: scrollConveyor 25s linear infinite;
+  animation: scrollConveyor 22s linear infinite;
   will-change: transform;
 }
 
-.slider-wrapper:hover .slider-track,
-.slider-track:active {
+.slider-wrapper:hover .slider-track {
   animation-play-state: paused;
 }
 
@@ -747,88 +729,106 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Card dimensions tuned to fit exactly 2 cards visible on screen */
-.slide-card,
-.ongoing-card,
-.tour-card {
-  flex: 0 0 calc(50% - 10px) !important;
-  width: 240px;
-  height: 340px;
+/* Tall Vertical (A4 Portrait Style) Card Aspect Ratio */
+.slide-card {
+  width: 270px;
+  height: 390px; /* Increased vertical height for clear flyer view */
   position: relative;
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  transition: transform 0.25s ease;
-  user-select: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   background-color: #0f172a;
+  flex-shrink: 0;
 }
 
 .slide-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 }
 
 .slide-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none;
+  display: block;
 }
 
 .slide-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 14px 10px 10px;
-  background: linear-gradient(to top, rgba(15,23,42,0.95) 20%, rgba(15,23,42,0) 100%);
+  padding: 16px 12px 12px;
+  background: linear-gradient(to top, rgba(15,23,42,0.95) 25%, rgba(15,23,42,0) 100%);
   color: #fff;
-  pointer-events: none;
 }
 
-.slide-overlay h4 { margin: 4px 0 2px; font-size: 14px; font-weight: 700; color: #ffffff; }
-.slide-overlay p { font-size: 11px; opacity: 0.9; margin: 0; color: #cbd5e1; }
+.slide-overlay h4 {
+  margin: 4px 0 2px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.slide-overlay p {
+  font-size: 12px;
+  margin: 0;
+  color: #cbd5e1;
+}
 
 .status-tag {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 4px;
   text-transform: uppercase;
 }
 .status-tag.ongoing { background: #28a745; color: #fff; }
 .status-tag.upcoming { background: #ff9500; color: #fff; }
 
-/* Action Bar below columns */
-.ongoing-action-bar {
-  max-width: 1250px;
-  margin: 20px auto 0;
+/* Individual Action Bars directly under each slider */
+.column-action-bar {
+  margin-top: 12px;
   background: #ffffff;
-  border-radius: 12px;
-  padding: 14px 20px;
+  border-radius: 10px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #fed7aa;
 }
 
-.action-info h3 { margin: 0 0 2px; font-size: 15px; color: #1e293b; }
-.action-info p { margin: 0; color: #64748b; font-size: 12px; }
+.column-action-bar span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
 
 .btn-primary-single {
-  background: #007aff;
+  background: #ff9500;
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
   white-space: nowrap;
 }
 
-/* Mobile responsive fallback */
+.btn-primary-single.btn-intl {
+  background: #007aff;
+}
+
+/* Mobile responsive alignment */
 @media (max-width: 768px) {
   .ongoing-dual-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .slide-card {
+    width: 220px;
+    height: 320px;
   }
 }
 
