@@ -1184,16 +1184,69 @@ body {
   box-shadow: 0 6px 20px rgba(191, 149, 63, 0.35);
 }
 /* =========================================================
-   DISABLE CONTINUOUS SCROLL / CONVEYOR BELT ANIMATION
+   DISABLE AUTO CONVEYOR SCROLL & APPLY SHIMMERING GOLD BORDER
    ========================================================= */
+
+/* Freeze all auto-scroll keyframe animations */
+.slider-track,
 .domestic-track,
 .international-track,
-.tour-slider-track,
-.ongoing-track {
+.ongoing-track,
+.tour-slider-track {
   animation: none !important;
   transform: none !important;
-  overflow-x: auto !important; /* Allows manual swipe/scroll on mobile */
-  scroll-behavior: smooth;
   display: flex !important;
-  gap: 16px;
+  gap: 16px !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+
+/* Hide scrollbars for clean presentation */
+.slider-track::-webkit-scrollbar,
+.slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.slider-track,
+.slider-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Shimmering Gold Gradient Border for Cards */
+.slide-card,
+.ongoing-card,
+.tour-card,
+.ongoing-tour-card,
+.domestic-tour-card,
+.international-tour-card {
+  border: 2px solid transparent !important;
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c) !important;
+  background-origin: border-box !important;
+  background-clip: padding-box, border-box !important;
+  border-radius: 12px;
+  flex: 0 0 260px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* Subtle Hover Glow */
+.slide-card:hover,
+.ongoing-card:hover,
+.tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(191, 149, 63, 0.4);
+}
+
+/* Mobile Layout Fixes */
+@media (max-width: 576px) {
+  .slide-card,
+  .ongoing-card,
+  .tour-card {
+    flex: 0 0 240px;
+    height: 340px;
+  }
 }
