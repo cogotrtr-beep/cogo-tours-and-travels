@@ -843,7 +843,38 @@ body {
   cursor: pointer;
   white-space: nowrap;
 }
+/* Find this in your CSS (around Section 9) */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* <--- ADD THIS LINE to clip anything sliding out of view */
+}
 
+/* ==========================================
+   PASTE THE NEW CONVEYOR BELT CSS RIGHT HERE
+   ========================================== */
+.conveyor-track {
+  display: flex !important;
+  gap: 16px;
+  width: max-content;
+  animation: scrollConveyor 25s linear infinite; /* Adjust 25s to make it faster or slower */
+  will-change: transform;
+}
+
+.conveyor-track:hover {
+  animation-play-state: paused; /* Pauses on mouse hover */
+}
+
+@keyframes scrollConveyor {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Moves left seamlessly by half the cloned width */
+  }
+}
 /* =========================================================
    10. LIGHTBOX & INTERACTIVE ZOOM MODALS
 ========================================================= */
