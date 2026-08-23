@@ -785,3 +785,37 @@ function sendCabWhatsApp() {
   const encodedMessage = encodeURIComponent(message);
   window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 }
+/* Show/Hide Return Date based on Round Trip selection */
+function toggleReturnDate(isRoundTrip) {
+  const returnInput = document.getElementById("flightReturnDate");
+  if (returnInput) {
+    returnInput.style.display = isRoundTrip ? "block" : "none";
+  }
+}
+
+/* Send Flight Enquiry to WhatsApp */
+function sendFlightWhatsApp() {
+  const phoneNumber = "919840330088"; // Cogo Tours WhatsApp Number
+  
+  const scope = document.querySelector('input[name="flightScope"]:checked')?.value || "Domestic";
+  const type = document.querySelector('input[name="flightType"]:checked')?.value || "One-Way";
+  const fromCity = document.getElementById("flightFromInput")?.value.trim();
+  const toCity = document.getElementById("flightToInput")?.value.trim();
+  const departDate = document.getElementById("flightDepartDate")?.value;
+  const returnDate = document.getElementById("flightReturnDate")?.value;
+  const preferredTime = document.getElementById("flightTimeSelect")?.value;
+
+  if (!fromCity || !toCity) {
+    alert("Please enter both Departure and Destination cities.");
+    return;
+  }
+
+  let message = `Hello Cogo Tours, I want to book/enquire a flight ticket.\n\n🌐 *Type:* ${scope} (${type})\n🛫 *From:* ${fromCity}\n🛬 *To:* ${toCity}`;
+  if (departDate) message += `\n📅 *Departure Date:* ${departDate}`;
+  if (type === "Round Trip" && returnDate) message += `\n📅 *Return Date:* ${returnDate}`;
+  if (preferredTime) message += `\n⏰ *Preferred Time:* ${preferredTime}`;
+  message += `\n\nPlease check for available flights and best fare deals.`;
+
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
