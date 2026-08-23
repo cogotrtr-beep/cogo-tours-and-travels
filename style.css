@@ -646,12 +646,13 @@ body {
 }
 
 /* =========================================================
-   9. ONGOING TOURS & LIVE SLIDERS (INFINITE CONVEYOR)
+   9. ONGOING TOURS & LIVE SLIDERS (STRICT GRID & CONVEYOR)
 ========================================================= */
 .ongoing-tours-section,
 .ongoing-section {
   background-color: #fff8f0;
   padding: 40px 20px;
+  overflow: hidden; /* Prevents side-scrolling the whole website */
 }
 
 .ongoing-tours-section h2,
@@ -672,12 +673,14 @@ body {
   margin-bottom: 24px;
 }
 
+/* Two-Column Grid Setup */
 .ongoing-dual-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* Prevents columns from expanding off-screen */
+  gap: 24px;
   max-width: 1350px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .ongoing-column {
@@ -686,6 +689,7 @@ body {
   border-radius: 0;
   border: none !important;
   box-shadow: none !important;
+  min-width: 0; /* Critical fix to prevent track overflow */
 }
 
 .compact-header {
@@ -718,15 +722,16 @@ body {
 .live-badge.domestic { background: #ff9500; }
 .live-badge.intl { background: #007aff; }
 
-/* Outer Wrapper (Clips items sliding outside the box) */
+/* Outer Track Wrapper - Clips sliding images inside column */
 .slider-wrapper {
   position: relative;
   width: 100%;
-  overflow: hidden; 
+  overflow: hidden;
   padding: 10px 0;
+  border-radius: 14px;
 }
 
-/* Base Slider Tracks (Triggers the automatic animation) */
+/* Moving Belt */
 #domesticTrack,
 #intlTrack,
 .slider-track {
@@ -734,33 +739,32 @@ body {
   gap: 16px;
   width: max-content;
   overflow: visible !important;
-  animation: scrollConveyor 25s linear infinite;
+  animation: scrollConveyor 22s linear infinite;
   will-change: transform;
 }
 
-/* Pause animation when user hovers or holds touch */
+/* Pause on mouse hover or touch press */
 .slider-wrapper:hover .slider-track,
 .slider-track:active {
   animation-play-state: paused;
 }
 
-/* Continuous Animation Loop */
 @keyframes scrollConveyor {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Smoothly moves 50% across original + cloned cards */
+    transform: translateX(-50%);
   }
 }
 
-/* Card Sizing & Appearance */
+/* Card Sizing (Shows ~2 cards per column neatly) */
 .slide-card,
 .ongoing-card,
 .tour-card {
-  flex: 0 0 280px !important;
-  width: 280px;
-  height: 380px;
+  flex: 0 0 220px !important; /* Adjusted slightly smaller to fit 2 full cards smoothly */
+  width: 220px;
+  height: 320px;
   position: relative;
   border-radius: 14px;
   overflow: hidden;
@@ -788,13 +792,13 @@ body {
   left: 0; 
   right: 0;
   padding: 16px 12px 12px;
-  background: linear-gradient(to top, rgba(15,23,42,0.92) 20%, rgba(15,23,42,0) 100%);
+  background: linear-gradient(to top, rgba(15,23,42,0.95) 20%, rgba(15,23,42,0) 100%);
   color: #fff;
   pointer-events: none;
 }
 
-.slide-overlay h4 { margin: 4px 0 2px; font-size: 15px; font-weight: 700; color: #ffffff; }
-.slide-overlay p { font-size: 12px; opacity: 0.9; margin: 0; color: #cbd5e1; }
+.slide-overlay h4 { margin: 4px 0 2px; font-size: 14px; font-weight: 700; color: #ffffff; }
+.slide-overlay p { font-size: 11px; opacity: 0.9; margin: 0; color: #cbd5e1; }
 
 .status-tag {
   font-size: 9px;
@@ -805,28 +809,6 @@ body {
 }
 .status-tag.ongoing { background: #28a745; color: #fff; }
 .status-tag.upcoming { background: #ff9500; color: #fff; }
-
-/* Optional Manual Navigation Buttons */
-.slider-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #cbd5e1;
-  font-size: 14px;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slider-prev { left: 5px; }
-.slider-next { right: 5px; }
 
 /* Lower Action Bar */
 .ongoing-action-bar {
