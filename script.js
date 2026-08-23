@@ -159,26 +159,32 @@ function openCategoryModal(categoryKey) {
   const modal = document.getElementById('categoryModal');
   const data = categoryData[categoryKey];
 
-  if (data && modal) {
-    currentCategoryTitle = data.title;
-    
-    const titleEl = document.getElementById('modalTitle');
-    const descEl = document.getElementById('modalDesc');
-    const contentEl = document.getElementById('modalContent');
-
-    if (titleEl) titleEl.innerText = data.title;
-    if (descEl) descEl.innerText = data.desc;
-    if (contentEl) contentEl.innerHTML = data.content;
-    
-    modal.style.display = 'flex';
+  if (!data || !modal) {
+    console.warn('No category data found for key:', categoryKey);
+    return;
   }
+
+  currentCategoryTitle = data.title;
+
+  const titleEl = document.getElementById('modalTitle');
+  const descEl = document.getElementById('modalDesc');
+  const contentEl = document.getElementById('modalContent');
+
+  if (titleEl) titleEl.innerText = data.title;
+  if (descEl) descEl.innerText = data.desc;
+  if (contentEl) contentEl.innerHTML = data.content;
+
+  // Show the modal (adds the class the CSS actually uses to reveal it)
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden'; // prevent background scroll
 }
 
 function closeCategoryModal(e) {
   if (e && e.stopPropagation) e.stopPropagation();
   const modal = document.getElementById('categoryModal');
   if (modal) {
-    modal.style.display = 'none';
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
   }
 }
 
@@ -197,13 +203,11 @@ function submitEnquiry(type) {
   const message = `*New Travel Enquiry - Cogo Tours*\n\n*Service/Package:* ${category}\n*Name:* ${name}\n*Phone:* ${phone}\n*Notes/Requirements:* ${query || 'N/A'}`;
 
   if (type === 'whatsapp') {
-    // Replace with your company WhatsApp number
-    const waNumber = "919840000000"; 
+    const waNumber = "919884066830"; // Cogo Tours official WhatsApp number
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
     window.open(waUrl, '_blank');
   } else if (type === 'email') {
-    // Replace with your company email address
-    const emailTo = "info@cogotours.in"; 
+    const emailTo = "cogotrtr@gmail.com"; // Cogo Tours official email
     const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent("Enquiry for " + category)}&body=${encodeURIComponent(message)}`;
     window.location.href = mailtoUrl;
   }
@@ -211,16 +215,47 @@ function submitEnquiry(type) {
   closeCategoryModal();
 }
 
-// 4. LIGHTBOX ZOOM FUNCTIONALITY
+// 4. LIGHTBOX / PAMPHLET ZOOM FUNCTIONALITY
 let zoomLevel = 1;
+let currentGallery = [];
+let currentGalleryIndex = 0;
+
+function openPamphletList(images, startIndex) {
+  if (!Array.isArray(images) || images.length === 0) return;
+
+  currentGallery = images;
+  currentGalleryIndex = startIndex || 0;
+
+  const lightbox = document.getElementById('pamphletLightbox');
+  const img = document.getElementById('lightboxImage');
+
+  if (img) img.src = currentGallery[currentGalleryIndex];
+  if (lightbox) {
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  resetZoom();
+}
 
 function closePamphletZoom(e) {
   if (e && e.stopPropagation) e.stopPropagation();
   const lightbox = document.getElementById('pamphletLightbox');
   if (lightbox) {
-    lightbox.style.display = 'none';
+    lightbox.classList.remove('show');
+    document.body.style.overflow = '';
     resetZoom();
   }
+}
+
+function navigateLightbox(direction, event) {
+  if (event && event.stopPropagation) event.stopPropagation();
+  if (!currentGallery.length) return;
+
+  currentGalleryIndex = (currentGalleryIndex + direction + currentGallery.length) % currentGallery.length;
+
+  const img = document.getElementById('lightboxImage');
+  if (img) img.src = currentGallery[currentGalleryIndex];
+  resetZoom();
 }
 
 function zoomIn() {
@@ -247,15 +282,12 @@ function applyZoom() {
   }
 }
 
-function navigateLightbox(direction, event) {
-  if (event && event.stopPropagation) event.stopPropagation();
-  // Navigational hook for multiple pamphlet images
-}
-
 // 5. GLOBAL KEYBOARD LISTENERS
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeCategoryModal();
     closePamphletZoom();
   }
+  if (e.key === 'ArrowRight') navigateLightbox(1);
+  if (e.key === 'ArrowLeft') navigateLightbox(-1);
 });
