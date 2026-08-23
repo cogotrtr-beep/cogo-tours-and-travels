@@ -2,7 +2,7 @@
    COGOTOURS - MAIN JAVASCRIPT HANDLER
    ========================================================= */
 
-// 1. ALL CATEGORY & SERVICE DATA
+// 1. CATEGORY & SERVICE DATA
 const categoryData = {
   cabs: {
     title: "Cab Services & Tariff",
@@ -155,14 +155,13 @@ const categoryData = {
 let currentCategoryTitle = "";
 
 function clearFormFields() {
-  const fields = ['userName', 'userPhone', 'userQuery'];
-  fields.forEach(id => {
+  ['userName', 'userPhone', 'userQuery'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
 }
 
-// 2. CATEGORY MODAL HANDLERS
+// 2. MODAL HANDLERS
 function openCategoryModal(categoryKey) {
   const modal = document.getElementById('categoryModal');
   const data = categoryData[categoryKey];
@@ -193,7 +192,7 @@ function closeCategoryModal(e) {
   clearFormFields();
 }
 
-// 3. WHATSAPP & EMAIL ENQUIRY SUBMISSION
+// 3. ENQUIRY FORM SUBMISSION
 function submitEnquiry(type) {
   const name = document.getElementById('userName')?.value.trim();
   const phone = document.getElementById('userPhone')?.value.trim();
@@ -209,18 +208,16 @@ function submitEnquiry(type) {
 
   if (type === 'whatsapp') {
     const waNumber = "919884066830";
-    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, '_blank');
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, '_blank');
   } else if (type === 'email') {
     const emailTo = "cogotrtr@gmail.com";
-    const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent("Enquiry for " + category)}&body=${encodeURIComponent(message)}`;
-    window.location.href = mailtoUrl;
+    window.location.href = `mailto:${emailTo}?subject=${encodeURIComponent("Enquiry for " + category)}&body=${encodeURIComponent(message)}`;
   }
 
   closeCategoryModal();
 }
 
-// 4. PAMPHLET FULLSCREEN, ZOOM & SWIPE CONTROLS
+// 4. PAMPHLET FULLSCREEN, ZOOM & TOUCH SWIPE ENGINE
 let zoomLevel = 1;
 let currentGallery = [];
 let currentGalleryIndex = 0;
@@ -228,6 +225,7 @@ let touchStartX = 0;
 let touchStartY = 0;
 let touchEndX = 0;
 let touchEndY = 0;
+let initialPinchDist = 0;
 let lastTapTime = 0;
 
 function openPamphletList(images, startIndex) {
@@ -269,7 +267,7 @@ function navigateLightbox(direction, event) {
 }
 
 function zoomIn() {
-  zoomLevel = Math.min(zoomLevel + 0.3, 3);
+  zoomLevel = Math.min(zoomLevel + 0.3, 3.5);
   applyZoom();
 }
 
@@ -294,13 +292,12 @@ function applyZoom() {
   }
 }
 
-// 5. EVENT LISTENERS & INITIALIZATION
+// 5. EVENT LISTENERS
 document.addEventListener('DOMContentLoaded', () => {
   const lightbox = document.getElementById('pamphletLightbox');
   const categoryModal = document.getElementById('categoryModal');
   const img = document.getElementById('lightboxImage');
 
-  // Close modals on clicking backdrop
   if (categoryModal) {
     categoryModal.addEventListener('click', (e) => {
       if (e.target === categoryModal) closeCategoryModal();
@@ -312,21 +309,36 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === lightbox) closePamphletZoom();
     });
 
-    // Mouse Wheel Scroll Zoom for PC
+    // PC: Mouse wheel scroll zoom
     lightbox.addEventListener('wheel', (e) => {
       e.preventDefault();
-      if (e.deltaY < 0) {
-        zoomIn();
-      } else {
-        zoomOut();
-      }
+      if (e.deltaY < 0) zoomIn();
+      else zoomOut();
     }, { passive: false });
 
-    // Touch gesture setup for Mobile
+    // Mobile: Touch Gestures Setup
     lightbox.addEventListener('touchstart', (e) => {
       if (e.touches.length === 1) {
         touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
+      } else if (e.touches.length === 2) {
+        initialPinchDist = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+      }
+    }, { passive: true });
+
+    lightbox.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2 && initialPinchDist > 0) {
+        const currentDist = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+        const factor = currentDist / initialPinchDist;
+        zoomLevel = Math.min(Math.max(zoomLevel * factor, 0.8), 3.5);
+        applyZoom();
+        initialPinchDist = currentDist;
       }
     }, { passive: true });
 
@@ -334,12 +346,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.touches.length === 0) {
         touchEndX = e.changedTouches[0].screenX;
         touchEndY = e.changedTouches[0].screenY;
-        handleGestures();
+        handleSwipeAndDismiss();
       }
     }, { passive: true });
   }
 
-  // Double tap to Zoom & Fullscreen view
+  // Mobile: Double-tap to toggle zoom
   if (img) {
     img.addEventListener('touchend', (e) => {
       const currentTime = new Date().getTime();
@@ -353,42 +365,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function handleGestures() {
+  function handleSwipeAndDismiss() {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
     const threshold = 50;
 
-    // Swipe Up to close / go back to original position
+    // Mobile: Swipe Up to Close / Return to original position
     if (deltaY < -threshold && Math.abs(deltaX) < threshold) {
       closePamphletZoom();
       return;
     }
 
-    // Swipe Left / Right to change slides (Only when not zoomed)
+    // Mobile: Finger slide left/right to change pamphlets (when unzoomed)
     if (zoomLevel <= 1) {
-      if (deltaX < -threshold) {
-        navigateLightbox(1);
-      } else if (deltaX > threshold) {
-        navigateLightbox(-1);
-      }
+      if (deltaX < -threshold) navigateLightbox(1);
+      else if (deltaX > threshold) navigateLightbox(-1);
     }
   }
 });
 
-// Keyboard Accessibility
+// Keyboard controls
 window.addEventListener('keydown', (e) => {
   const lightbox = document.getElementById('pamphletLightbox');
-  const isLightboxActive = lightbox && lightbox.classList.contains('show');
+  const isActive = lightbox && lightbox.classList.contains('show');
 
   if (e.key === 'Escape') {
     closeCategoryModal();
     closePamphletZoom();
   }
-  if (e.key === 'ArrowRight' && isLightboxActive) {
+  if (e.key === 'ArrowRight' && isActive) {
     e.preventDefault();
     navigateLightbox(1);
   }
-  if (e.key === 'ArrowLeft' && isLightboxActive) {
+  if (e.key === 'ArrowLeft' && isActive) {
     e.preventDefault();
     navigateLightbox(-1);
   }
