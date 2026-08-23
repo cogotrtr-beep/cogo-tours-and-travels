@@ -560,4 +560,9 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "-") zoomOut();
   }
 });
-
+/* Helper to open lightbox from tour section slide cards */
+function openPamphletList(imageList, index) {
+  if (!imageList || imageList.length === 0) return;
+  currentPamphletList = imageList;
+  openPamphletZoom(index);
+}
