@@ -373,8 +373,9 @@ body {
 }
 
 .modal-overlay.show { 
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: flex !important;
 }
 
 .modal-box {
@@ -727,7 +728,8 @@ body {
   will-change: transform;
 }
 
-.slider-wrapper:hover .slider-track {
+.slider-wrapper:hover .slider-track,
+.slider-track:hover {
   animation-play-state: paused;
 }
 
@@ -883,8 +885,9 @@ body {
 #imageModal.show,
 .pamphlet-lightbox.show,
 .pamphlet-modal.show {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: flex !important;
 }
 
 .lightbox-img-container,
