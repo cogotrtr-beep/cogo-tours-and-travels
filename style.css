@@ -1313,3 +1313,24 @@ body {
 .btn-whatsapp-visa:hover {
   background-color: #1eb855;
 }
+/* Date & Time Row Styling */
+.cab-datetime-row {
+  display: flex;
+  gap: 8px;
+}
+
+.cab-datetime-row .cab-input-field {
+  flex: 1;
+  width: 50%;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1e293b;
+  background-color: #ffffff;
+  outline: none;
+}
+
+.cab-datetime-row .cab-input-field:focus {
+  border-color: #0f172a;
+}
