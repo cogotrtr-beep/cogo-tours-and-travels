@@ -154,6 +154,15 @@ const categoryData = {
 
 let currentCategoryTitle = "";
 
+// Helper function to reset form input fields
+function clearFormFields() {
+  const fields = ['userName', 'userPhone', 'userQuery'];
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
 // 2. CATEGORY MODAL HANDLERS
 function openCategoryModal(categoryKey) {
   const modal = document.getElementById('categoryModal');
@@ -174,9 +183,8 @@ function openCategoryModal(categoryKey) {
   if (descEl) descEl.innerText = data.desc;
   if (contentEl) contentEl.innerHTML = data.content;
 
-  // Show the modal (adds the class the CSS actually uses to reveal it)
   modal.classList.add('show');
-  document.body.style.overflow = 'hidden'; // prevent background scroll
+  document.body.style.overflow = 'hidden';
 }
 
 function closeCategoryModal(e) {
@@ -186,6 +194,7 @@ function closeCategoryModal(e) {
     modal.classList.remove('show');
     document.body.style.overflow = '';
   }
+  clearFormFields();
 }
 
 // 3. WHATSAPP & EMAIL ENQUIRY SUBMISSION
@@ -203,11 +212,11 @@ function submitEnquiry(type) {
   const message = `*New Travel Enquiry - Cogo Tours*\n\n*Service/Package:* ${category}\n*Name:* ${name}\n*Phone:* ${phone}\n*Notes/Requirements:* ${query || 'N/A'}`;
 
   if (type === 'whatsapp') {
-    const waNumber = "919884066830"; // Cogo Tours official WhatsApp number
+    const waNumber = "919884066830";
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
     window.open(waUrl, '_blank');
   } else if (type === 'email') {
-    const emailTo = "cogotrtr@gmail.com"; // Cogo Tours official email
+    const emailTo = "cogotrtr@gmail.com";
     const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent("Enquiry for " + category)}&body=${encodeURIComponent(message)}`;
     window.location.href = mailtoUrl;
   }
@@ -219,6 +228,8 @@ function submitEnquiry(type) {
 let zoomLevel = 1;
 let currentGallery = [];
 let currentGalleryIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
 function openPamphletList(images, startIndex) {
   if (!Array.isArray(images) || images.length === 0) return;
@@ -282,12 +293,60 @@ function applyZoom() {
   }
 }
 
-// 5. GLOBAL KEYBOARD LISTENERS
+// 5. EVENT LISTENERS & INITIALIZATION
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('pamphletLightbox');
+  const categoryModal = document.getElementById('categoryModal');
+
+  // Close modals on clicking backdrop
+  if (categoryModal) {
+    categoryModal.addEventListener('click', (e) => {
+      if (e.target === categoryModal) closeCategoryModal();
+    });
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closePamphletZoom();
+    });
+
+    // Touch swipe support for mobile lightbox navigation
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+      navigateLightbox(1); // Swipe left -> next image
+    }
+    if (touchEndX > touchStartX + swipeThreshold) {
+      navigateLightbox(-1); // Swipe right -> previous image
+    }
+  }
+});
+
+// Global Keyboard Listeners
 window.addEventListener('keydown', (e) => {
+  const lightbox = document.getElementById('pamphletLightbox');
+  const isLightboxActive = lightbox && lightbox.classList.contains('show');
+
   if (e.key === 'Escape') {
     closeCategoryModal();
     closePamphletZoom();
   }
-  if (e.key === 'ArrowRight') navigateLightbox(1);
-  if (e.key === 'ArrowLeft') navigateLightbox(-1);
+  if (e.key === 'ArrowRight' && isLightboxActive) {
+    e.preventDefault();
+    navigateLightbox(1);
+  }
+  if (e.key === 'ArrowLeft' && isLightboxActive) {
+    e.preventDefault();
+    navigateLightbox(-1);
+  }
 });
