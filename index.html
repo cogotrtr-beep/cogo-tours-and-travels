@@ -162,20 +162,20 @@
 
       <form class="service-form" onsubmit="event.preventDefault();">
         <div class="form-group">
-          <input type="text" id="pickupLocation" name="pickupLocation" class="service-input" placeholder="📍 Pickup Location..." required>
+          <input type="text" id="pickupLocation" name="pickupLocation" class="service-input pickup-input" placeholder="📍 Pickup Location..." required>
         </div>
         <div class="form-group">
-          <input type="text" id="dropLocation" name="dropLocation" class="service-input" placeholder="📍 Destination / Drop" required>
+          <input type="text" id="dropLocation" name="dropLocation" class="service-input drop-input" placeholder="📍 Destination / Drop" required>
         </div>
         <!-- Pickup Date & Return Date -->
         <div class="form-row">
-          <input type="date" id="cabDate" name="cabDate" class="service-input" aria-label="Pickup Date" title="Pickup Date" required>
-          <input type="date" id="cabReturnDate" name="cabReturnDate" class="service-input" aria-label="Return Date" title="Return Date">
+          <input type="date" id="cabDate" name="cabDate" class="service-input cab-date" aria-label="Pickup Date" title="Pickup Date" required>
+          <input type="date" id="cabReturnDate" name="cabReturnDate" class="service-input cab-return-date" aria-label="Return Date" title="Return Date">
         </div>
         <!-- Pickup Time & Vehicle Choice -->
         <div class="form-row">
-          <input type="time" id="cabTime" name="cabTime" class="service-input" aria-label="Pickup Time" title="Pickup Time" required>
-          <select id="cabVehicle" name="cabVehicle" class="service-input" required>
+          <input type="time" id="cabTime" name="cabTime" class="service-input cab-time" aria-label="Pickup Time" title="Pickup Time" required>
+          <select id="cabVehicle" name="cabVehicle" class="service-input cab-vehicle" required>
             <option value="">🚗 Vehicle</option>
             <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
             <option value="SUV (Innova/Ertiga)">SUV (Innova/Ertiga)</option>
@@ -183,7 +183,7 @@
           </select>
         </div>
         <div class="form-group">
-          <select id="cabPackage" name="cabPackage" class="service-input" required>
+          <select id="cabPackage" name="cabPackage" class="service-input cab-package" required>
             <option value="">⏱️ Select Trip Pack</option>
             <option value="Local Hourly">Local Hourly</option>
             <option value="Outstation Roundtrip">Outstation Roundtrip</option>
@@ -191,9 +191,9 @@
           </select>
         </div>
         <div class="form-group">
-          <input type="text" id="cabRemarks" name="cabRemarks" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
+          <input type="text" id="cabRemarks" name="cabRemarks" class="service-input cab-remarks" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
         </div>
-        <button type="button" class="service-btn" onclick="sendCabWhatsApp()">Book / Enquire Cab</button>
+        <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleCabBooking(this)">Book / Enquire Cab</button>
       </form>
     </div>
 
@@ -216,19 +216,19 @@
         </div>
         <!-- Departure & Destination -->
         <div class="form-group">
-          <input type="text" id="departureCity" name="departureCity" class="service-input" placeholder="🛫 From: Departure City / Airport / Country..." required>
+          <input type="text" id="departureCity" name="departureCity" class="service-input flight-from" placeholder="🛫 From: Departure City / Airport / Country..." required>
         </div>
         <div class="form-group">
-          <input type="text" id="destinationCity" name="destinationCity" class="service-input" placeholder="🛬 To: Destination City / Airport / Country..." required>
+          <input type="text" id="destinationCity" name="destinationCity" class="service-input flight-to" placeholder="🛬 To: Destination City / Airport / Country..." required>
         </div>
         <!-- Departure Date & Return Date -->
         <div class="form-row">
-          <input type="date" id="flightDate" name="flightDate" class="service-input" aria-label="Departure Date" title="Departure Date" required>
-          <input type="date" id="flightReturnDate" name="flightReturnDate" class="service-input" aria-label="Return Date" title="Return Date">
+          <input type="date" id="flightDate" name="flightDate" class="service-input flight-date" aria-label="Departure Date" title="Departure Date" required>
+          <input type="date" id="flightReturnDate" name="flightReturnDate" class="service-input flight-return-date" aria-label="Return Date" title="Return Date">
         </div>
         <!-- Preferred Time Band -->
         <div class="form-group">
-          <select id="flightTimeBand" name="flightTimeBand" class="service-input" required>
+          <select id="flightTimeBand" name="flightTimeBand" class="service-input flight-timeband" required>
             <option value="">🕒 Preferred Time Band</option>
             <option value="Morning (06:00 AM - 12:00 PM)">🌅 Morning (06:00 AM - 12:00 PM)</option>
             <option value="Afternoon (12:00 PM - 06:00 PM)">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
@@ -237,9 +237,9 @@
           </select>
         </div>
         <div class="form-group">
-          <input type="text" id="flightRemarks" name="flightRemarks" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
+          <input type="text" id="flightRemarks" name="flightRemarks" class="service-input flight-remarks" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
         </div>
-        <button type="button" class="service-btn" onclick="sendFlightWhatsApp()">Enquire Flight Fares</button>
+        <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleFlightBooking(this)">Enquire Flight Fares</button>
       </form>
     </div>
 
@@ -254,7 +254,7 @@
       <form class="service-form" onsubmit="event.preventDefault();">
         <!-- Searchable Dropdown with Flags -->
         <div class="form-group">
-          <input type="text" id="visaCountry" name="visaCountry" list="visa-countries" class="service-input" placeholder="🌍 Type or select country..." required>
+          <input type="text" id="visaCountry" name="visaCountry" list="visa-countries" class="service-input visa-country" placeholder="🌍 Type or select country..." required>
           <datalist id="visa-countries">
             <option value="🇺🇸 USA (United States)">
             <option value="🇬🇧 UK (United Kingdom)">
@@ -278,95 +278,78 @@
         </div>
         <!-- Travel Start & Return Date -->
         <div class="form-row">
-          <input type="date" id="visaDate" name="visaDate" class="service-input" aria-label="Travel Start Date" title="Travel Start Date" required>
-          <input type="date" id="visaReturnDate" name="visaReturnDate" class="service-input" aria-label="Return Date" title="Return Date">
+          <input type="date" id="visaDate" name="visaDate" class="service-input visa-date" aria-label="Travel Start Date" title="Travel Start Date" required>
+          <input type="date" id="visaReturnDate" name="visaReturnDate" class="service-input visa-return-date" aria-label="Return Date" title="Return Date">
         </div>
         <div class="form-group">
-          <select id="visaPax" name="visaPax" class="service-input" required>
+          <select id="visaPax" name="visaPax" class="service-input visa-pax" required>
             <option value="">👤 1 Pax / Applicant</option>
             <option value="2 Pax / Applicants">👥 2 Pax / Applicants</option>
             <option value="3+ Pax / Applicants">👨‍👩‍👧 3+ Pax / Applicants</option>
           </select>
         </div>
         <div class="form-group">
-          <input type="text" id="visaRemarks" name="visaRemarks" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
+          <input type="text" id="visaRemarks" name="visaRemarks" class="service-input visa-remarks" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
         </div>
-        <button type="button" class="service-btn" onclick="sendVisaWhatsApp()">Enquire via WhatsApp</button>
+        <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleVisaBooking(this)">Enquire via WhatsApp</button>
       </form>
     </div>
 
   </div>
 </section>
 
-<!-- DIRECT SCRIPT OVERRIDES FOR VALIDATION & WHATSAPP REDIRECTS -->
+<!-- STANDALONE JS HANDLERS & DATE RESTRICTIONS -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const now = new Date();
-    const todayStr = now.toISOString().split('T')[0];
+    const todayStr = new Date().toISOString().split('T')[0];
 
-    // Disable past dates across form inputs
-    const dateFields = document.querySelectorAll('.services-section input[type="date"]');
-    dateFields.forEach(function(field) {
+    // Restrict past dates across all service date pickers
+    document.querySelectorAll('.services-section input[type="date"]').forEach(function(field) {
       field.min = todayStr;
     });
 
-    // Dynamic return date minimum based on start date
-    function linkStartAndEndDates(startId, endId) {
-      const startElem = document.getElementById(startId);
-      const endElem = document.getElementById(endId);
-
-      if (startElem && endElem) {
-        startElem.addEventListener('change', function() {
-          if (this.value) {
-            endElem.min = this.value;
-            if (endElem.value && endElem.value < this.value) {
-              endElem.value = this.value;
+    // Dynamic return date minimum constraint
+    function linkDates(startClass, endClass) {
+      document.querySelectorAll('.service-card').forEach(function(card) {
+        const start = card.querySelector(startClass);
+        const end = card.querySelector(endClass);
+        if (start && end) {
+          start.addEventListener('change', function() {
+            if (this.value) {
+              end.min = this.value;
+              if (end.value && end.value < this.value) end.value = this.value;
+            } else {
+              end.min = todayStr;
             }
-          } else {
-            endElem.min = todayStr;
-          }
-        });
-      }
-    }
-
-    linkStartAndEndDates('cabDate', 'cabReturnDate');
-    linkStartAndEndDates('flightDate', 'flightReturnDate');
-    linkStartAndEndDates('visaDate', 'visaReturnDate');
-
-    // Restrict Cab Pickup Time if travel date is today
-    const cabDateInput = document.getElementById('cabDate');
-    const cabTimeInput = document.getElementById('cabTime');
-
-    if (cabDateInput && cabTimeInput) {
-      cabDateInput.addEventListener('change', function() {
-        if (this.value === todayStr) {
-          const hours = String(now.getHours()).padStart(2, '0');
-          const mins = String(now.getMinutes()).padStart(2, '0');
-          cabTimeInput.min = `${hours}:${mins}`;
-        } else {
-          cabTimeInput.removeAttribute('min');
+          });
         }
       });
     }
+
+    linkDates('.cab-date', '.cab-return-date');
+    linkDates('.flight-date', '.flight-return-date');
+    linkDates('.visa-date', '.visa-return-date');
   });
 
-  // OVERRIDDEN WHATSAPP FUNCTIONS TO PREVENT FALSE POPUP ALERTS
-  function sendCabWhatsApp() {
-    const pickup = (document.getElementById('pickupLocation') || document.getElementById('cabPickup') || {}).value || '';
-    const drop = (document.getElementById('dropLocation') || document.getElementById('cabDrop') || {}).value || '';
-    const cabDate = (document.getElementById('cabDate') || {}).value || '';
-    const cabReturnDate = (document.getElementById('cabReturnDate') || {}).value || '';
-    const cabTime = (document.getElementById('cabTime') || {}).value || '';
-    const vehicle = (document.getElementById('cabVehicle') || {}).value || '';
-    const pack = (document.getElementById('cabPackage') || {}).value || '';
-    const remarks = (document.getElementById('cabRemarks') || {}).value || '';
+  // SCOPED WHATSAPP SUBMISSION HANDLERS
+  function handleCabBooking(btn) {
+    const form = btn.closest('form');
+    const pickup = form.querySelector('.pickup-input')?.value.trim() || '';
+    const drop = form.querySelector('.drop-input')?.value.trim() || '';
+    const cabDate = form.querySelector('.cab-date')?.value || '';
+    const cabReturnDate = form.querySelector('.cab-return-date')?.value || '';
+    const cabTime = form.querySelector('.cab-time')?.value || '';
+    const vehicle = form.querySelector('.cab-vehicle')?.value || '';
+    const pack = form.querySelector('.cab-package')?.value || '';
+    const remarks = form.querySelector('.cab-remarks')?.value.trim() || '';
 
-    if (!pickup.trim() || !drop.trim()) {
+    if (!pickup || !drop) {
       alert("Please enter both Pickup and Destination locations.");
       return;
     }
 
-    let msg = `*Cab Service Enquiry*\n📍 Pickup: ${pickup}\n📍 Drop: ${drop}\n📅 Travel Date: ${cabDate}`;
+    let msg = `*Cab Service Enquiry*\n📍 Pickup: ${pickup}\n📍 Drop: ${drop}`;
+    if (cabDate) msg += `\n📅 Travel Date: ${cabDate}`;
     if (cabReturnDate) msg += `\n🔄 Return Date: ${cabReturnDate}`;
     if (cabTime) msg += `\n⏰ Time: ${cabTime}`;
     if (vehicle) msg += `\n🚗 Vehicle: ${vehicle}`;
@@ -376,22 +359,24 @@
     window.open(`https://wa.me/919444188844?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  function sendFlightWhatsApp() {
-    const flightType = document.querySelector('input[name="flightType"]:checked')?.value || 'Domestic';
-    const tripType = document.querySelector('input[name="tripType"]:checked')?.value || 'One-Way';
-    const departure = (document.getElementById('departureCity') || document.getElementById('flightFrom') || {}).value || '';
-    const destination = (document.getElementById('destinationCity') || document.getElementById('flightTo') || {}).value || '';
-    const flightDate = (document.getElementById('flightDate') || {}).value || '';
-    const returnDate = (document.getElementById('flightReturnDate') || {}).value || '';
-    const timeBand = (document.getElementById('flightTimeBand') || {}).value || '';
-    const remarks = (document.getElementById('flightRemarks') || {}).value || '';
+  function handleFlightBooking(btn) {
+    const form = btn.closest('form');
+    const flightType = form.querySelector('input[name="flightType"]:checked')?.value || 'Domestic';
+    const tripType = form.querySelector('input[name="tripType"]:checked')?.value || 'One-Way';
+    const departure = form.querySelector('.flight-from')?.value.trim() || '';
+    const destination = form.querySelector('.flight-to')?.value.trim() || '';
+    const flightDate = form.querySelector('.flight-date')?.value || '';
+    const returnDate = form.querySelector('.flight-return-date')?.value || '';
+    const timeBand = form.querySelector('.flight-timeband')?.value || '';
+    const remarks = form.querySelector('.flight-remarks')?.value.trim() || '';
 
-    if (!departure.trim() || !destination.trim()) {
+    if (!departure || !destination) {
       alert("Please enter both Departure and Destination cities.");
       return;
     }
 
-    let msg = `*Flight Booking Enquiry*\n✈️ Type: ${flightType} (${tripType})\n🛫 From: ${departure}\n🛬 To: ${destination}\n📅 Departure: ${flightDate}`;
+    let msg = `*Flight Booking Enquiry*\n✈️ Type: ${flightType} (${tripType})\n🛫 From: ${departure}\n🛬 To: ${destination}`;
+    if (flightDate) msg += `\n📅 Departure Date: ${flightDate}`;
     if (returnDate) msg += `\n🔄 Return Date: ${returnDate}`;
     if (timeBand) msg += `\n🕒 Preferred Time: ${timeBand}`;
     if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
@@ -399,19 +384,21 @@
     window.open(`https://wa.me/919444188844?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  function sendVisaWhatsApp() {
-    const country = (document.getElementById('visaCountry') || {}).value || '';
-    const visaDate = (document.getElementById('visaDate') || {}).value || '';
-    const returnDate = (document.getElementById('visaReturnDate') || {}).value || '';
-    const pax = (document.getElementById('visaPax') || {}).value || '';
-    const remarks = (document.getElementById('visaRemarks') || {}).value || '';
+  function handleVisaBooking(btn) {
+    const form = btn.closest('form');
+    const country = form.querySelector('.visa-country')?.value.trim() || '';
+    const visaDate = form.querySelector('.visa-date')?.value || '';
+    const returnDate = form.querySelector('.visa-return-date')?.value || '';
+    const pax = form.querySelector('.visa-pax')?.value || '';
+    const remarks = form.querySelector('.visa-remarks')?.value.trim() || '';
 
-    if (!country.trim()) {
+    if (!country) {
       alert("Please select or type a destination country for Visa Assistance.");
       return;
     }
 
-    let msg = `*Visa Assistance Enquiry*\n🌍 Country: ${country}\n📅 Travel Date: ${visaDate}`;
+    let msg = `*Visa Assistance Enquiry*\n🌍 Country: ${country}`;
+    if (visaDate) msg += `\n📅 Travel Date: ${visaDate}`;
     if (returnDate) msg += `\n🔄 Return Date: ${returnDate}`;
     if (pax) msg += `\n👤 Passengers: ${pax}`;
     if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
