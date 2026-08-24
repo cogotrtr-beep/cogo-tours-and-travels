@@ -162,10 +162,10 @@
 
       <form class="service-form" onsubmit="event.preventDefault();">
         <div class="form-group">
-          <input type="text" id="cabPickup" name="cabPickup" class="service-input" placeholder="📍 Pickup Location..." required>
+          <input type="text" id="pickupLocation" name="pickupLocation" class="service-input" placeholder="📍 Pickup Location..." required>
         </div>
         <div class="form-group">
-          <input type="text" id="cabDrop" name="cabDrop" class="service-input" placeholder="📍 Destination / Drop" required>
+          <input type="text" id="dropLocation" name="dropLocation" class="service-input" placeholder="📍 Destination / Drop" required>
         </div>
         <!-- Pickup Date & Return Date -->
         <div class="form-row">
@@ -214,12 +214,12 @@
           <label><input type="radio" name="tripType" value="One-Way" checked> One-Way</label>
           <label><input type="radio" name="tripType" value="Round Trip"> Round Trip</label>
         </div>
-        <!-- From & To Locations -->
+        <!-- Departure & Destination -->
         <div class="form-group">
-          <input type="text" id="flightFrom" name="flightFrom" class="service-input" placeholder="🛫 From: Departure City / Airport..." required>
+          <input type="text" id="departureCity" name="departureCity" class="service-input" placeholder="🛫 From: Departure City / Airport / Country..." required>
         </div>
         <div class="form-group">
-          <input type="text" id="flightTo" name="flightTo" class="service-input" placeholder="🛬 To: Destination City / Country..." required>
+          <input type="text" id="destinationCity" name="destinationCity" class="service-input" placeholder="🛬 To: Destination City / Airport / Country..." required>
         </div>
         <!-- Departure Date & Return Date -->
         <div class="form-row">
@@ -297,6 +297,43 @@
 
   </div>
 </section>
+
+<!-- SCRIPT TO DISABLE PAST DATES & CONTROL RETURN DATES -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get today's date formatted as YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
+
+    // Set minimum date for all date pickers to today
+    const dateFields = document.querySelectorAll('.services-section input[type="date"]');
+    dateFields.forEach(function(field) {
+      field.min = today;
+    });
+
+    // Function to dynamically update return date minimums based on pickup/departure date
+    function setupDateLink(startId, endId) {
+      const startElem = document.getElementById(startId);
+      const endElem = document.getElementById(endId);
+
+      if (startElem && endElem) {
+        startElem.addEventListener('change', function() {
+          if (this.value) {
+            endElem.min = this.value; // Prevent picking return date before start date
+            if (endElem.value && endElem.value < this.value) {
+              endElem.value = this.value;
+            }
+          } else {
+            endElem.min = today;
+          }
+        });
+      }
+    }
+
+    setupDateLink('cabDate', 'cabReturnDate');
+    setupDateLink('flightDate', 'flightReturnDate');
+    setupDateLink('visaDate', 'visaReturnDate');
+  });
+</script>
  
   <!-- =========================================================
        2. TOUR PACKAGES SECTION
