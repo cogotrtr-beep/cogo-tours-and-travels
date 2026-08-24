@@ -1462,3 +1462,47 @@ body {
 .visa-remarks-textarea:focus {
   border-color: #0f172a !important;
 }
+/* Center Titles and Subtitles */
+.tour-box-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.tour-box-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tour-box-subtitle {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  color: #666;
+}
+
+/* Card Box Spacing and Vertical Stretch */
+.tour-card-box {
+  padding: 24px 20px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Center Buttons in Footer */
+.tour-box-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.tour-box-footer .btn-enquire {
+  text-align: center;
+  padding: 10px 22px;
+  font-weight: 600;
+  border-radius: 6px;
+}
