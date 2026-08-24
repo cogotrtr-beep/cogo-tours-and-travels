@@ -141,7 +141,7 @@
     </div>
   </section>
 
-  <!-- =========================================================
+ <!-- =========================================================
        OUR SERVICES SECTION
   ========================================================= -->
 <section class="services-section" id="services">
@@ -167,27 +167,29 @@
         <div class="form-group">
           <input type="text" class="service-input" placeholder="📍 Destination / Drop" required>
         </div>
+        <!-- Pickup Date & Return Date -->
         <div class="form-row">
-          <input type="date" class="service-input" required>
-          <input type="time" class="service-input" required>
+          <input type="date" class="service-input" aria-label="Pickup Date" title="Pickup Date" required>
+          <input type="date" class="service-input" aria-label="Return Date" title="Return Date">
         </div>
-        <div class="form-group">
-          <select class="service-input">
-            <option value="">🚗 Select Vehicle</option>
+        <!-- Pickup Time & Vehicle Choice -->
+        <div class="form-row">
+          <input type="time" class="service-input" aria-label="Pickup Time" title="Pickup Time" required>
+          <select class="service-input" required>
+            <option value="">🚗 Vehicle</option>
             <option value="sedan">Sedan (Dzire/Etios)</option>
             <option value="suv">SUV (Innova/Ertiga)</option>
             <option value="tempo">Tempo Traveller</option>
           </select>
         </div>
         <div class="form-group">
-          <select class="service-input">
+          <select class="service-input" required>
             <option value="">⏱️ Select Trip Pack</option>
             <option value="local">Local Hourly</option>
             <option value="outstation">Outstation Roundtrip</option>
             <option value="airport">Airport Transfer</option>
           </select>
         </div>
-        <!-- ADDED CUSTOM REMARKS -->
         <div class="form-group">
           <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
         </div>
@@ -218,17 +220,21 @@
         <div class="form-group">
           <input type="text" class="service-input" placeholder="📍 Destination City / Country..." required>
         </div>
+        <!-- Departure Date & Return Date -->
         <div class="form-row">
-          <input type="date" class="service-input" required>
-          <select class="service-input">
-            <option value="">🕒 Time Band</option>
-            <option value="morning">Morning</option>
-            <option value="afternoon">Afternoon</option>
-            <option value="evening">Evening</option>
-            <option value="night">Night</option>
+          <input type="date" class="service-input" aria-label="Departure Date" title="Departure Date" required>
+          <input type="date" class="service-input" aria-label="Return Date" title="Return Date">
+        </div>
+        <!-- Preferred Time Band -->
+        <div class="form-group">
+          <select class="service-input" required>
+            <option value="">🕒 Preferred Time Band</option>
+            <option value="morning">🌅 Morning (06:00 AM - 12:00 PM)</option>
+            <option value="afternoon">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
+            <option value="evening">🌆 Evening (06:00 PM - 00:00 AM)</option>
+            <option value="night">🌙 Night (00:00 AM - 06:00 AM)</option>
           </select>
         </div>
-        <!-- ADDED CUSTOM REMARKS -->
         <div class="form-group">
           <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
         </div>
@@ -245,15 +251,37 @@
       </div>
 
       <form class="service-form" onsubmit="event.preventDefault();">
+        <!-- Searchable Dropdown with Flags -->
         <div class="form-group">
-          <input type="text" class="service-input" placeholder="🌍 Type or choose country (e.g. USA, UK, Dubai)" required>
+          <input type="text" list="visa-countries" class="service-input" placeholder="🌍 Type or select country..." required>
+          <datalist id="visa-countries">
+            <option value="🇺🇸 USA (United States)">
+            <option value="🇬🇧 UK (United Kingdom)">
+            <option value="🇦🇪 Dubai / UAE">
+            <option value="🇸🇬 Singapore">
+            <option value="🇪🇺 Schengen / Europe">
+            <option value="🇨🇦 Canada">
+            <option value="🇦🇺 Australia">
+            <option value="🇹🇭 Thailand">
+            <option value="🇲🇾 Malaysia">
+            <option value="🇮🇩 Bali / Indonesia">
+            <option value="🇻🇳 Vietnam">
+            <option value="🇯🇵 Japan">
+            <option value="🇸🇦 Saudi Arabia">
+            <option value="🇶🇦 Qatar">
+            <option value="🇸🇷 Sri Lanka">
+            <option value="🇳🇵 Nepal">
+            <option value="🇳🇿 New Zealand">
+            <option value="🇿🇦 South Africa">
+          </datalist>
         </div>
+        <!-- Travel Start & Return Date -->
         <div class="form-row">
-          <input type="date" class="service-input" placeholder="dd-mm-yyyy" required>
-          <input type="date" class="service-input" placeholder="dd-mm-yyyy" required>
+          <input type="date" class="service-input" aria-label="Travel Start Date" title="Travel Start Date" required>
+          <input type="date" class="service-input" aria-label="Return Date" title="Return Date">
         </div>
         <div class="form-group">
-          <select class="service-input">
+          <select class="service-input" required>
             <option value="">👤 1 Pax / Applicant</option>
             <option value="2">👥 2 Pax / Applicants</option>
             <option value="3+">👨‍👩‍👧 3+ Pax / Applicants</option>
@@ -267,7 +295,7 @@
     </div>
 
   </div>
-</section>
+</section> 
   
   <!-- =========================================================
        2. TOUR PACKAGES SECTION
