@@ -140,217 +140,135 @@
 
     </div>
   </section>
-  <!-- =========================================================
-       1. OUR SERVICES SECTION
-  ========================================================= -->
 
-  <section class="section" id="services-section">
-    <div class="hub-header text-center">
-      <h2>Our Services</h2>
-      <p class="section-sub">Reliable travel support and hassle-free booking solutions</p>
+  <!-- =========================================================
+       OUR SERVICES SECTION
+  ========================================================= -->
+<section class="services-section" id="services">
+  <div class="services-header-container">
+    <h2 class="services-main-title">Our Services</h2>
+    <p class="services-sub-title">Reliable travel support and hassle-free booking solutions</p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- 1. CAB SERVICES CARD -->
+    <div class="service-card cab-card">
+      <div class="service-card-header">
+        <div class="service-icon">🚕</div>
+        <h3 class="service-title">Cab Services</h3>
+        <p class="service-desc">Local, outstation, and airport transfers with premium comfort.</p>
+      </div>
+
+      <form class="service-form" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="📍 Pickup Location..." required>
+        </div>
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="📍 Destination / Drop" required>
+        </div>
+        <div class="form-row">
+          <input type="date" class="service-input" required>
+          <input type="time" class="service-input" required>
+        </div>
+        <div class="form-group">
+          <select class="service-input">
+            <option value="">🚗 Select Vehicle</option>
+            <option value="sedan">Sedan (Dzire/Etios)</option>
+            <option value="suv">SUV (Innova/Ertiga)</option>
+            <option value="tempo">Tempo Traveller</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="service-input">
+            <option value="">⏱️ Select Trip Pack</option>
+            <option value="local">Local Hourly</option>
+            <option value="outstation">Outstation Roundtrip</option>
+            <option value="airport">Airport Transfer</option>
+          </select>
+        </div>
+        <!-- ADDED CUSTOM REMARKS -->
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
+        </div>
+        <button type="button" class="service-btn" onclick="sendCabWhatsApp()">Book / Enquire Cab</button>
+      </form>
     </div>
 
-    <div class="hub-grid">
+    <!-- 2. FLIGHT BOOKING CARD -->
+    <div class="service-card flight-card">
+      <div class="service-card-header">
+        <div class="service-icon">✈️</div>
+        <h3 class="service-title">Flight Booking</h3>
+        <p class="service-desc">Hassle-free domestic and international flight reservations.</p>
+      </div>
 
-            <!-- 1. Cab Services -->
-      <article class="hub-card">
-        <div class="hub-card-bg">
-          <img src="Images/images/cab-main.png" alt="Cab Services" class="card-img" loading="lazy">
+      <form class="service-form" onsubmit="event.preventDefault();">
+        <div class="toggle-row">
+          <label><input type="radio" name="flightType" checked> Domestic</label>
+          <label><input type="radio" name="flightType"> International</label>
         </div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🚖</span>
-          <h3>Cab Services</h3>
-          <p>Local, outstation, and airport transfers with premium comfort.</p>
-
-          <!-- Cab Routing & Options -->
-          <div class="cab-route-selector">
-            <!-- Pickup Input -->
-            <div class="custom-select-wrapper">
-              <input 
-                type="text" 
-                id="cabPickupInput" 
-                placeholder="📍 Pickup Location..." 
-                onfocus="showCabPickupDropdown()" 
-                oninput="filterCabPickup()"
-                autocomplete="off"
-              />
-              <div id="cabPickupList" class="visa-dropdown-list"></div>
-            </div>
-
-            <!-- Drop Input -->
-            <div class="custom-select-wrapper">
-              <input 
-                type="text" 
-                id="cabDropInput" 
-                placeholder="🎯 Destination / Drop..." 
-                onfocus="showCabDropDropdown()" 
-                oninput="filterCabDrop()"
-                autocomplete="off"
-              />
-              <div id="cabDropList" class="visa-dropdown-list"></div>
-            </div>
-
-            <!-- Date & Time Row -->
-            <div class="cab-datetime-row">
-              <input type="date" id="cabDateInput" class="cab-input-field" title="Select Travel Date" />
-              <input type="time" id="cabTimeInput" class="cab-input-field" title="Select Pickup Time" />
-            </div>
-
-            <!-- Vehicle Type Select -->
-            <div class="cab-select-row">
-              <select id="cabVehicleSelect" class="cab-dropdown-select">
-                <option value="" disabled selected>🚗 Select Vehicle</option>
-                <option value="Sedan (Dzire / Etios)">Sedan (Dzire / Etios)</option>
-                <option value="SUV (Ertiga / Xylo)">SUV (Ertiga / Xylo)</option>
-                <option value="Premium SUV (Innova Crysta)">Innova Crysta</option>
-                <option value="Tempo Traveller (12/15 Seater)">Tempo Traveller</option>
-              </select>
-            </div>
-
-            <!-- Trip Pack Select -->
-            <div class="cab-select-row">
-              <select id="cabPackSelect" class="cab-dropdown-select">
-                <option value="" disabled selected>⏱️ Select Trip Pack</option>
-                <option value="Local Sightseeing (8 Hrs / 80 Kms)">Local Day Pack (8h/80km)</option>
-                <option value="Local Airport / Station Transfer">Airport / Station Transfer</option>
-                <option value="Outstation One-Way Drop">Outstation One-Way</option>
-                <option value="Outstation Round Trip">Outstation Round Trip</option>
-              </select>
-            </div>
-
-            <button type="button" class="btn-whatsapp-visa" onclick="sendCabWhatsApp()">
-              <span class="wa-icon">💬</span> Book / Enquire Cab
-            </button>
-          </div>
+        <div class="toggle-row">
+          <label><input type="radio" name="tripType" checked> One-Way</label>
+          <label><input type="radio" name="tripType"> Round Trip</label>
         </div>
-      </article>
-
-                  <!-- 2. Flight Booking -->
-      <article class="hub-card flight-card-custom">
-        <div class="hub-card-bg">
-          <img src="Images/images/ticket-main.png" alt="Flight Booking" class="card-img" loading="lazy">
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="✈️ Departure City / Airport..." required>
         </div>
-        <div class="hub-card-content">
-          <div class="flight-header">
-            <span class="hub-icon">✈️</span>
-            <h3 class="flight-title">Flight Booking</h3>
-            <p class="flight-subtext">Hassle-free domestic and international flight reservations.</p>
-          </div>
-
-          <div class="flight-route-selector">
-            <!-- Scope & Type Selection -->
-            <div class="flight-toggle-group">
-              <label><input type="radio" name="flightScope" value="Domestic" checked> Domestic</label>
-              <label><input type="radio" name="flightScope" value="International"> International</label>
-            </div>
-
-            <div class="flight-toggle-group">
-              <label><input type="radio" name="flightType" value="One-Way" checked onclick="toggleReturnDate(false)"> One-Way</label>
-              <label><input type="radio" name="flightType" value="Round Trip" onclick="toggleReturnDate(true)"> Round Trip</label>
-            </div>
-
-            <!-- Departure & Destination Cities -->
-            <div class="custom-select-wrapper">
-              <input type="text" id="flightFromInput" class="flight-full-input" placeholder="🛫 Departure City / Airport..." autocomplete="off" />
-            </div>
-
-            <div class="custom-select-wrapper">
-              <input type="text" id="flightToInput" class="flight-full-input" placeholder="🛬 Destination City / Country..." autocomplete="off" />
-            </div>
-
-            <!-- Dates -->
-            <div class="cab-datetime-row">
-              <input type="date" id="flightDepartDate" class="cab-input-field" title="Departure Date" />
-              <input type="date" id="flightReturnDate" class="cab-input-field" title="Return Date" style="display: none;" />
-            </div>
-
-            <!-- Time & Passenger Selection Row -->
-            <div class="cab-datetime-row">
-              <select id="flightTimeSelect" class="cab-dropdown-select" style="flex: 1;">
-                <option value="" disabled selected>⏰ Time Band</option>
-                <option value="Early Morning (12 AM - 6 AM)">Early Morning</option>
-                <option value="Morning (6 AM - 12 PM)">Morning</option>
-                <option value="Afternoon (12 PM - 6 PM)">Afternoon</option>
-                <option value="Night (6 PM - 12 AM)">Night</option>
-              </select>
-
-              <select id="flightPaxSelect" class="cab-dropdown-select" style="flex: 1;">
-                <option value="1 Passenger" selected>👥 1 Pax</option>
-                <option value="2 Passengers">👥 2 Pax</option>
-                <option value="3 Passengers">👥 3 Pax</option>
-                <option value="4 Passengers">👥 4 Pax</option>
-                <option value="5+ Passengers">👥 5+ Pax</option>
-              </select>
-            </div>
-
-            <button type="button" class="btn-whatsapp-visa" onclick="sendFlightWhatsApp()">
-              <span class="wa-icon">💬</span> Enquire Flight Fares
-            </button>
-          </div>
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="📍 Destination City / Country..." required>
         </div>
-      </article>
-
-
-            <!-- 3. Visa Assistance -->
-                <!-- 3. Visa Assistance -->
-      <article class="hub-card">
-        <div class="hub-card-bg">
-          <img src="Images/images/visa-main.png" alt="Visa Assistance" class="card-img" loading="lazy">
+        <div class="form-row">
+          <input type="date" class="service-input" required>
+          <select class="service-input">
+            <option value="">🕒 Time Band</option>
+            <option value="morning">Morning</option>
+            <option value="afternoon">Afternoon</option>
+            <option value="evening">Evening</option>
+            <option value="night">Night</option>
+          </select>
         </div>
-        <div class="hub-card-content">
-          <span class="hub-icon">🛂</span>
-          <h3>Visa Assistance</h3>
-          <p>Expert guidance and end-to-end documentation support.</p>
-          <h3 style="color: #ffffff; font-weight: 800;">Visa Assistance</h3>
-          <p style="color: #f1f5f9;">Expert guidance and end-to-end documentation support.</p>
-
-          <!-- Integrated Country Selector & Direct WhatsApp Button -->
-          <div class="visa-country-selector">
-            <!-- Searchable Country Input -->
-            <div class="custom-select-wrapper">
-              <input 
-                type="text" 
-                id="visaCountryInput" 
-                placeholder="Type or choose country (e.g. USA)..." 
-                onfocus="showVisaDropdown()" 
-                oninput="filterVisaCountries()"
-                autocomplete="off"
-              />
-              <div id="visaDropdownList" class="visa-dropdown-list"></div>
-            </div>
-
-            <!-- Visa Period: From & To Dates -->
-            <div class="cab-datetime-row">
-              <input type="date" id="visaFromDate" class="cab-input-field" title="Travel Date From" />
-              <input type="date" id="visaToDate" class="cab-input-field" title="Travel Date To" />
-            </div>
-
-            <!-- Number of Pax Selection -->
-            <select id="visaPaxSelect" class="cab-dropdown-select">
-              <option value="1 Person" selected>👥 1 Pax / Applicant</option>
-              <option value="2 Persons">👥 2 Pax / Applicants</option>
-              <option value="3 Persons">👥 3 Pax / Applicants</option>
-              <option value="4 Persons">👥 4 Pax / Applicants</option>
-              <option value="5+ Family / Group">👥 5+ Family / Group</option>
-            </select>
-
-            <!-- Custom Remarks Area -->
-            <textarea 
-              id="visaRemarksInput" 
-              class="visa-remarks-textarea" 
-              placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express Processing, Family Trip)..."
-              rows="2"
-            ></textarea>
-
-            <button type="button" class="btn-whatsapp-visa" onclick="sendVisaWhatsApp()">
-              <span class="wa-icon">💬</span> Enquire via WhatsApp
-            </button>
-          </div>
+        <!-- ADDED CUSTOM REMARKS -->
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
         </div>
-      </article>
+        <button type="button" class="service-btn" onclick="sendFlightWhatsApp()">Enquire Flight Fares</button>
+      </form>
+    </div>
 
+    <!-- 3. VISA ASSISTANCE CARD -->
+    <div class="service-card visa-card">
+      <div class="service-card-header">
+        <div class="service-icon">🛂</div>
+        <h3 class="service-title">Visa Assistance</h3>
+        <p class="service-desc">Expert guidance and end-to-end documentation support.</p>
+      </div>
 
+      <form class="service-form" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="🌍 Type or choose country (e.g. USA, UK, Dubai)" required>
+        </div>
+        <div class="form-row">
+          <input type="date" class="service-input" placeholder="dd-mm-yyyy" required>
+          <input type="date" class="service-input" placeholder="dd-mm-yyyy" required>
+        </div>
+        <div class="form-group">
+          <select class="service-input">
+            <option value="">👤 1 Pax / Applicant</option>
+            <option value="2">👥 2 Pax / Applicants</option>
+            <option value="3+">👨‍👩‍👧 3+ Pax / Applicants</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
+        </div>
+        <button type="button" class="service-btn" onclick="sendVisaWhatsApp()">Enquire via WhatsApp</button>
+      </form>
+    </div>
 
+  </div>
+</section>
+  
   <!-- =========================================================
        2. TOUR PACKAGES SECTION
   ========================================================= -->
