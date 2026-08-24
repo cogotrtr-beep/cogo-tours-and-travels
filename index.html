@@ -298,40 +298,56 @@
   </div>
 </section>
 
-<!-- SCRIPT TO DISABLE PAST DATES & CONTROL RETURN DATES -->
+<!-- AUTOMATIC DATE & TIME VALIDATION CONTROL -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Get today's date formatted as YYYY-MM-DD
-    const today = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
 
-    // Set minimum date for all date pickers to today
+    // Disable all past dates across form inputs
     const dateFields = document.querySelectorAll('.services-section input[type="date"]');
     dateFields.forEach(function(field) {
-      field.min = today;
+      field.min = todayStr;
     });
 
-    // Function to dynamically update return date minimums based on pickup/departure date
-    function setupDateLink(startId, endId) {
+    // Dynamically adjust return date minimum based on departure selection
+    function linkStartAndEndDates(startId, endId) {
       const startElem = document.getElementById(startId);
       const endElem = document.getElementById(endId);
 
       if (startElem && endElem) {
         startElem.addEventListener('change', function() {
           if (this.value) {
-            endElem.min = this.value; // Prevent picking return date before start date
+            endElem.min = this.value;
             if (endElem.value && endElem.value < this.value) {
               endElem.value = this.value;
             }
           } else {
-            endElem.min = today;
+            endElem.min = todayStr;
           }
         });
       }
     }
 
-    setupDateLink('cabDate', 'cabReturnDate');
-    setupDateLink('flightDate', 'flightReturnDate');
-    setupDateLink('visaDate', 'visaReturnDate');
+    linkStartAndEndDates('cabDate', 'cabReturnDate');
+    linkStartAndEndDates('flightDate', 'flightReturnDate');
+    linkStartAndEndDates('visaDate', 'visaReturnDate');
+
+    // Restrict Cab Pickup Time if selected date is today
+    const cabDateInput = document.getElementById('cabDate');
+    const cabTimeInput = document.getElementById('cabTime');
+
+    if (cabDateInput && cabTimeInput) {
+      cabDateInput.addEventListener('change', function() {
+        if (this.value === todayStr) {
+          const currentHours = String(now.getHours()).padStart(2, '0');
+          const currentMinutes = String(now.getMinutes()).padStart(2, '0');
+          cabTimeInput.min = `${currentHours}:${currentMinutes}`;
+        } else {
+          cabTimeInput.removeAttribute('min');
+        }
+      });
+    }
   });
 </script>
  
