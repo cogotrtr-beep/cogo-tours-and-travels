@@ -1570,3 +1570,161 @@ body {
     border-radius: 8px;
   }
 }
+/* =========================================================
+   OUR SERVICES - UNIFORM STYLING & GOLD ACCENT
+   ========================================================= */
+
+/* Main Section Title Centering */
+.services-header-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.services-main-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.services-sub-title {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Service Card Container Grid */
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px; /* Equal spacing between all three cards */
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Individual Card Blunt Edges & Gold Accent Line */
+.service-card {
+  flex: 1 1 340px;
+  max-width: 380px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 18px !important; /* Blunt edges on rounded corners */
+  border-top: 4px solid #D4AF37 !important; /* Gold Top Line */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Increase Background Image Brightness by ~20% */
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Reduced dark overlay opacity so background graphics show through better */
+  background: rgba(15, 23, 42, 0.72) !important; 
+  z-index: 1;
+}
+
+.service-card-header,
+.service-form {
+  position: relative;
+  z-index: 2; /* Keeps inputs and text sharp above background */
+}
+
+/* Center Align Card Headers */
+.service-card-header {
+  text-align: center !important;
+  margin-bottom: 18px;
+}
+
+.service-title {
+  text-align: center !important;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 6px 0 4px 0;
+}
+
+.service-desc {
+  text-align: center !important;
+  font-size: 0.82rem;
+  color: #d1d5db;
+  margin: 0;
+}
+
+.service-icon {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+/* Uniform Input Fields & Increased Height */
+.service-input,
+.service-form input[type="text"],
+.service-form input[type="date"],
+.service-form input[type="time"],
+.service-form select {
+  width: 100% !important;
+  height: 42px !important; /* Taller, uniform height for easy reading */
+  padding: 8px 12px !important;
+  font-size: 0.88rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #1e293b !important;
+  box-sizing: border-box !important;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-row .service-input {
+  flex: 1;
+}
+
+/* Toggle Radio Buttons Styling */
+.toggle-row {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+/* Action Button Alignment */
+.service-btn {
+  width: 100%;
+  height: 44px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.service-btn:hover {
+  background-color: #16a34a;
+}
