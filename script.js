@@ -575,12 +575,7 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "-") zoomOut();
   }
 });
-/* Helper to open lightbox from tour section slide cards */
-function openPamphletList(imageList, index) {
-  if (!imageList || imageList.length === 0) return;
-  currentPamphletList = imageList;
-  openPamphletZoom(index);
-}
+
 /* Helper to open lightbox from tour section slide cards */
 function openPamphletList(imageList, index) {
   if (!imageList || imageList.length === 0) return;
@@ -593,11 +588,12 @@ function scrollTrack(trackId, direction) {
   const track = document.getElementById(trackId);
   if (!track) return;
   const scrollAmount = track.clientWidth * 0.5;
-  track.parentElement.scrollBy({
+  track.scrollBy({
     left: direction * scrollAmount,
     behavior: 'smooth'
   });
 }
+
 /* Country list with flags and codes */
 const visaCountries = [
   { name: "United States (USA)", flag: "🇺🇸" },
@@ -664,7 +660,7 @@ document.addEventListener("click", function(e) {
 
 /* Trigger WhatsApp with dynamic Visa context */
 function sendVisaWhatsApp() {
-  const phoneNumber = "919840330088"; // Cogo Tours WhatsApp Number
+  const phoneNumber = "919884066830"; // Cogo Tours WhatsApp Number
   
   let countryName = selectedVisaCountry ? selectedVisaCountry.name : document.getElementById("visaCountryInput")?.value;
   const fromDate = document.getElementById("visaFromDate")?.value;
@@ -793,7 +789,7 @@ document.addEventListener("click", function(e) {
 
 /* 6. Send Selected Booking Data to WhatsApp */
 function sendCabWhatsApp() {
-  const phoneNumber = "919884066830"; // ⚠️ REPLACE THIS WITH YOUR ACTUAL PHONE NUMBER
+  const phoneNumber = "919884066830";
   
   const pickup = document.getElementById("cabPickupInput")?.value.trim();
   const drop = document.getElementById("cabDropInput")?.value.trim();
@@ -817,6 +813,7 @@ function sendCabWhatsApp() {
   const encodedMessage = encodeURIComponent(message);
   window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 }
+
 /* Show/Hide Return Date based on Round Trip selection */
 function toggleReturnDate(isRoundTrip) {
   const returnInput = document.getElementById("flightReturnDate");
@@ -827,7 +824,7 @@ function toggleReturnDate(isRoundTrip) {
 
 /* Send Flight Enquiry to WhatsApp */
 function sendFlightWhatsApp() {
-  const phoneNumber = "919840330088"; // Cogo Tours WhatsApp Number
+  const phoneNumber = "919884066830"; // Cogo Tours WhatsApp Number
   
   const scope = document.querySelector('input[name="flightScope"]:checked')?.value || "Domestic";
   const type = document.querySelector('input[name="flightType"]:checked')?.value || "One-Way";
