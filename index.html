@@ -162,20 +162,20 @@
 
       <form class="service-form" onsubmit="event.preventDefault();">
         <div class="form-group">
-          <input type="text" class="service-input" placeholder="📍 Pickup Location..." required>
+          <input type="text" id="cabPickup" name="cabPickup" class="service-input" placeholder="📍 Pickup Location..." required>
         </div>
         <div class="form-group">
-          <input type="text" class="service-input" placeholder="📍 Destination / Drop" required>
+          <input type="text" id="cabDrop" name="cabDrop" class="service-input" placeholder="📍 Destination / Drop" required>
         </div>
         <!-- Pickup Date & Return Date -->
         <div class="form-row">
-          <input type="date" class="service-input" aria-label="Pickup Date" title="Pickup Date" required>
-          <input type="date" class="service-input" aria-label="Return Date" title="Return Date">
+          <input type="date" id="cabDate" name="cabDate" class="service-input" aria-label="Pickup Date" title="Pickup Date" required>
+          <input type="date" id="cabReturnDate" name="cabReturnDate" class="service-input" aria-label="Return Date" title="Return Date">
         </div>
         <!-- Pickup Time & Vehicle Choice -->
         <div class="form-row">
-          <input type="time" class="service-input" aria-label="Pickup Time" title="Pickup Time" required>
-          <select class="service-input" required>
+          <input type="time" id="cabTime" name="cabTime" class="service-input" aria-label="Pickup Time" title="Pickup Time" required>
+          <select id="cabVehicle" name="cabVehicle" class="service-input" required>
             <option value="">🚗 Vehicle</option>
             <option value="sedan">Sedan (Dzire/Etios)</option>
             <option value="suv">SUV (Innova/Ertiga)</option>
@@ -183,7 +183,7 @@
           </select>
         </div>
         <div class="form-group">
-          <select class="service-input" required>
+          <select id="cabPackage" name="cabPackage" class="service-input" required>
             <option value="">⏱️ Select Trip Pack</option>
             <option value="local">Local Hourly</option>
             <option value="outstation">Outstation Roundtrip</option>
@@ -191,7 +191,7 @@
           </select>
         </div>
         <div class="form-group">
-          <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
+          <input type="text" id="cabRemarks" name="cabRemarks" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
         </div>
         <button type="button" class="service-btn" onclick="sendCabWhatsApp()">Book / Enquire Cab</button>
       </form>
@@ -207,27 +207,28 @@
 
       <form class="service-form" onsubmit="event.preventDefault();">
         <div class="toggle-row">
-          <label><input type="radio" name="flightType" checked> Domestic</label>
-          <label><input type="radio" name="flightType"> International</label>
+          <label><input type="radio" name="flightType" value="Domestic" checked> Domestic</label>
+          <label><input type="radio" name="flightType" value="International"> International</label>
         </div>
         <div class="toggle-row">
-          <label><input type="radio" name="tripType" checked> One-Way</label>
-          <label><input type="radio" name="tripType"> Round Trip</label>
+          <label><input type="radio" name="tripType" value="One-Way" checked> One-Way</label>
+          <label><input type="radio" name="tripType" value="Round Trip"> Round Trip</label>
+        </div>
+        <!-- From & To Locations -->
+        <div class="form-group">
+          <input type="text" id="flightFrom" name="flightFrom" class="service-input" placeholder="🛫 From: Departure City / Airport..." required>
         </div>
         <div class="form-group">
-          <input type="text" class="service-input" placeholder="✈️ Departure City / Airport..." required>
-        </div>
-        <div class="form-group">
-          <input type="text" class="service-input" placeholder="📍 Destination City / Country..." required>
+          <input type="text" id="flightTo" name="flightTo" class="service-input" placeholder="🛬 To: Destination City / Country..." required>
         </div>
         <!-- Departure Date & Return Date -->
         <div class="form-row">
-          <input type="date" class="service-input" aria-label="Departure Date" title="Departure Date" required>
-          <input type="date" class="service-input" aria-label="Return Date" title="Return Date">
+          <input type="date" id="flightDate" name="flightDate" class="service-input" aria-label="Departure Date" title="Departure Date" required>
+          <input type="date" id="flightReturnDate" name="flightReturnDate" class="service-input" aria-label="Return Date" title="Return Date">
         </div>
         <!-- Preferred Time Band -->
         <div class="form-group">
-          <select class="service-input" required>
+          <select id="flightTimeBand" name="flightTimeBand" class="service-input" required>
             <option value="">🕒 Preferred Time Band</option>
             <option value="morning">🌅 Morning (06:00 AM - 12:00 PM)</option>
             <option value="afternoon">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
@@ -236,7 +237,7 @@
           </select>
         </div>
         <div class="form-group">
-          <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
+          <input type="text" id="flightRemarks" name="flightRemarks" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
         </div>
         <button type="button" class="service-btn" onclick="sendFlightWhatsApp()">Enquire Flight Fares</button>
       </form>
@@ -253,7 +254,7 @@
       <form class="service-form" onsubmit="event.preventDefault();">
         <!-- Searchable Dropdown with Flags -->
         <div class="form-group">
-          <input type="text" list="visa-countries" class="service-input" placeholder="🌍 Type or select country..." required>
+          <input type="text" id="visaCountry" name="visaCountry" list="visa-countries" class="service-input" placeholder="🌍 Type or select country..." required>
           <datalist id="visa-countries">
             <option value="🇺🇸 USA (United States)">
             <option value="🇬🇧 UK (United Kingdom)">
@@ -269,7 +270,7 @@
             <option value="🇯🇵 Japan">
             <option value="🇸🇦 Saudi Arabia">
             <option value="🇶🇦 Qatar">
-            <option value="🇸🇷 Sri Lanka">
+            <option value="🇱🇰 Sri Lanka">
             <option value="🇳🇵 Nepal">
             <option value="🇳🇿 New Zealand">
             <option value="🇿🇦 South Africa">
@@ -277,26 +278,26 @@
         </div>
         <!-- Travel Start & Return Date -->
         <div class="form-row">
-          <input type="date" class="service-input" aria-label="Travel Start Date" title="Travel Start Date" required>
-          <input type="date" class="service-input" aria-label="Return Date" title="Return Date">
+          <input type="date" id="visaDate" name="visaDate" class="service-input" aria-label="Travel Start Date" title="Travel Start Date" required>
+          <input type="date" id="visaReturnDate" name="visaReturnDate" class="service-input" aria-label="Return Date" title="Return Date">
         </div>
         <div class="form-group">
-          <select class="service-input" required>
+          <select id="visaPax" name="visaPax" class="service-input" required>
             <option value="">👤 1 Pax / Applicant</option>
             <option value="2">👥 2 Pax / Applicants</option>
             <option value="3+">👨‍👩‍👧 3+ Pax / Applicants</option>
           </select>
         </div>
         <div class="form-group">
-          <input type="text" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
+          <input type="text" id="visaRemarks" name="visaRemarks" class="service-input" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
         </div>
         <button type="button" class="service-btn" onclick="sendVisaWhatsApp()">Enquire via WhatsApp</button>
       </form>
     </div>
 
   </div>
-</section> 
-  
+</section>
+ 
   <!-- =========================================================
        2. TOUR PACKAGES SECTION
   ========================================================= -->
