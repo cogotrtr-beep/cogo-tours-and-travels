@@ -141,7 +141,7 @@
     </div>
   </section>
 
- <!-- =========================================================
+<!-- =========================================================
        OUR SERVICES SECTION
   ========================================================= -->
 <section class="services-section" id="services">
@@ -177,17 +177,17 @@
           <input type="time" id="cabTime" name="cabTime" class="service-input" aria-label="Pickup Time" title="Pickup Time" required>
           <select id="cabVehicle" name="cabVehicle" class="service-input" required>
             <option value="">🚗 Vehicle</option>
-            <option value="sedan">Sedan (Dzire/Etios)</option>
-            <option value="suv">SUV (Innova/Ertiga)</option>
-            <option value="tempo">Tempo Traveller</option>
+            <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
+            <option value="SUV (Innova/Ertiga)">SUV (Innova/Ertiga)</option>
+            <option value="Tempo Traveller">Tempo Traveller</option>
           </select>
         </div>
         <div class="form-group">
           <select id="cabPackage" name="cabPackage" class="service-input" required>
             <option value="">⏱️ Select Trip Pack</option>
-            <option value="local">Local Hourly</option>
-            <option value="outstation">Outstation Roundtrip</option>
-            <option value="airport">Airport Transfer</option>
+            <option value="Local Hourly">Local Hourly</option>
+            <option value="Outstation Roundtrip">Outstation Roundtrip</option>
+            <option value="Airport Transfer">Airport Transfer</option>
           </select>
         </div>
         <div class="form-group">
@@ -230,10 +230,10 @@
         <div class="form-group">
           <select id="flightTimeBand" name="flightTimeBand" class="service-input" required>
             <option value="">🕒 Preferred Time Band</option>
-            <option value="morning">🌅 Morning (06:00 AM - 12:00 PM)</option>
-            <option value="afternoon">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
-            <option value="evening">🌆 Evening (06:00 PM - 00:00 AM)</option>
-            <option value="night">🌙 Night (00:00 AM - 06:00 AM)</option>
+            <option value="Morning (06:00 AM - 12:00 PM)">🌅 Morning (06:00 AM - 12:00 PM)</option>
+            <option value="Afternoon (12:00 PM - 06:00 PM)">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
+            <option value="Evening (06:00 PM - 00:00 AM)">🌆 Evening (06:00 PM - 00:00 AM)</option>
+            <option value="Night (00:00 AM - 06:00 AM)">🌙 Night (00:00 AM - 06:00 AM)</option>
           </select>
         </div>
         <div class="form-group">
@@ -284,8 +284,8 @@
         <div class="form-group">
           <select id="visaPax" name="visaPax" class="service-input" required>
             <option value="">👤 1 Pax / Applicant</option>
-            <option value="2">👥 2 Pax / Applicants</option>
-            <option value="3+">👨‍👩‍👧 3+ Pax / Applicants</option>
+            <option value="2 Pax / Applicants">👥 2 Pax / Applicants</option>
+            <option value="3+ Pax / Applicants">👨‍👩‍👧 3+ Pax / Applicants</option>
           </select>
         </div>
         <div class="form-group">
@@ -298,19 +298,19 @@
   </div>
 </section>
 
-<!-- AUTOMATIC DATE & TIME VALIDATION CONTROL -->
+<!-- DIRECT SCRIPT OVERRIDES FOR VALIDATION & WHATSAPP REDIRECTS -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const now = new Date();
     const todayStr = now.toISOString().split('T')[0];
 
-    // Disable all past dates across form inputs
+    // Disable past dates across form inputs
     const dateFields = document.querySelectorAll('.services-section input[type="date"]');
     dateFields.forEach(function(field) {
       field.min = todayStr;
     });
 
-    // Dynamically adjust return date minimum based on departure selection
+    // Dynamic return date minimum based on start date
     function linkStartAndEndDates(startId, endId) {
       const startElem = document.getElementById(startId);
       const endElem = document.getElementById(endId);
@@ -333,22 +333,91 @@
     linkStartAndEndDates('flightDate', 'flightReturnDate');
     linkStartAndEndDates('visaDate', 'visaReturnDate');
 
-    // Restrict Cab Pickup Time if selected date is today
+    // Restrict Cab Pickup Time if travel date is today
     const cabDateInput = document.getElementById('cabDate');
     const cabTimeInput = document.getElementById('cabTime');
 
     if (cabDateInput && cabTimeInput) {
       cabDateInput.addEventListener('change', function() {
         if (this.value === todayStr) {
-          const currentHours = String(now.getHours()).padStart(2, '0');
-          const currentMinutes = String(now.getMinutes()).padStart(2, '0');
-          cabTimeInput.min = `${currentHours}:${currentMinutes}`;
+          const hours = String(now.getHours()).padStart(2, '0');
+          const mins = String(now.getMinutes()).padStart(2, '0');
+          cabTimeInput.min = `${hours}:${mins}`;
         } else {
           cabTimeInput.removeAttribute('min');
         }
       });
     }
   });
+
+  // OVERRIDDEN WHATSAPP FUNCTIONS TO PREVENT FALSE POPUP ALERTS
+  function sendCabWhatsApp() {
+    const pickup = (document.getElementById('pickupLocation') || document.getElementById('cabPickup') || {}).value || '';
+    const drop = (document.getElementById('dropLocation') || document.getElementById('cabDrop') || {}).value || '';
+    const cabDate = (document.getElementById('cabDate') || {}).value || '';
+    const cabReturnDate = (document.getElementById('cabReturnDate') || {}).value || '';
+    const cabTime = (document.getElementById('cabTime') || {}).value || '';
+    const vehicle = (document.getElementById('cabVehicle') || {}).value || '';
+    const pack = (document.getElementById('cabPackage') || {}).value || '';
+    const remarks = (document.getElementById('cabRemarks') || {}).value || '';
+
+    if (!pickup.trim() || !drop.trim()) {
+      alert("Please enter both Pickup and Destination locations.");
+      return;
+    }
+
+    let msg = `*Cab Service Enquiry*\n📍 Pickup: ${pickup}\n📍 Drop: ${drop}\n📅 Travel Date: ${cabDate}`;
+    if (cabReturnDate) msg += `\n🔄 Return Date: ${cabReturnDate}`;
+    if (cabTime) msg += `\n⏰ Time: ${cabTime}`;
+    if (vehicle) msg += `\n🚗 Vehicle: ${vehicle}`;
+    if (pack) msg += `\n⏱️ Package: ${pack}`;
+    if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
+
+    window.open(`https://wa.me/919444188844?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  function sendFlightWhatsApp() {
+    const flightType = document.querySelector('input[name="flightType"]:checked')?.value || 'Domestic';
+    const tripType = document.querySelector('input[name="tripType"]:checked')?.value || 'One-Way';
+    const departure = (document.getElementById('departureCity') || document.getElementById('flightFrom') || {}).value || '';
+    const destination = (document.getElementById('destinationCity') || document.getElementById('flightTo') || {}).value || '';
+    const flightDate = (document.getElementById('flightDate') || {}).value || '';
+    const returnDate = (document.getElementById('flightReturnDate') || {}).value || '';
+    const timeBand = (document.getElementById('flightTimeBand') || {}).value || '';
+    const remarks = (document.getElementById('flightRemarks') || {}).value || '';
+
+    if (!departure.trim() || !destination.trim()) {
+      alert("Please enter both Departure and Destination cities.");
+      return;
+    }
+
+    let msg = `*Flight Booking Enquiry*\n✈️ Type: ${flightType} (${tripType})\n🛫 From: ${departure}\n🛬 To: ${destination}\n📅 Departure: ${flightDate}`;
+    if (returnDate) msg += `\n🔄 Return Date: ${returnDate}`;
+    if (timeBand) msg += `\n🕒 Preferred Time: ${timeBand}`;
+    if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
+
+    window.open(`https://wa.me/919444188844?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  function sendVisaWhatsApp() {
+    const country = (document.getElementById('visaCountry') || {}).value || '';
+    const visaDate = (document.getElementById('visaDate') || {}).value || '';
+    const returnDate = (document.getElementById('visaReturnDate') || {}).value || '';
+    const pax = (document.getElementById('visaPax') || {}).value || '';
+    const remarks = (document.getElementById('visaRemarks') || {}).value || '';
+
+    if (!country.trim()) {
+      alert("Please select or type a destination country for Visa Assistance.");
+      return;
+    }
+
+    let msg = `*Visa Assistance Enquiry*\n🌍 Country: ${country}\n📅 Travel Date: ${visaDate}`;
+    if (returnDate) msg += `\n🔄 Return Date: ${returnDate}`;
+    if (pax) msg += `\n👤 Passengers: ${pax}`;
+    if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
+
+    window.open(`https://wa.me/919444188844?text=${encodeURIComponent(msg)}`, '_blank');
+  }
 </script>
  
   <!-- =========================================================
