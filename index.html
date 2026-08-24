@@ -3,258 +3,698 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cogo Tours & Cabs</title>
+  <title>Cogo Tours & Travels - Cabs, Sightseeing & Tour Packages</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#" class="brand-logo">COGO TOURS & CABS</a>
-      <div class="nav-links">
-        <a href="#tours">Ongoing Tours</a>
-        <a href="#services">Our Services</a>
-        <a href="#cabs">Cab Tariff</a>
-        <a href="#visa">Visa Assistance</a>
-        <a href="#flights">Flights</a>
+  <!-- Top Navigation -->
+  <nav id="mainNav">
+    <div class="nav-container nav-center-aligned">
+      <div id="navLinks">
+        <!-- Indian Flag Inspired Square Tabs -->
+        <a href="tel:+919884066830" class="flag-tab tab-saffron">📞 Call Us</a>
+        <button class="flag-tab tab-white-blue" onclick="openCategoryModal('cabs')">🚖 Cab Booking </button>
+        <button class="flag-tab tab-green" onclick="openCategoryModal('journey')">Plan Your Journey</button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero / Ongoing Tours Section -->
-  <section id="tours" class="tours-section">
-    <div class="compact-header">
-      <h2>Ongoing & Featured Tours</h2>
-      <p>Discover handpicked holiday packages and spiritual retreats</p>
+  <!-- Homepage Hero Section -->
+  <header class="hero">
+    <div class="hero-actions">
+      <button class="hero-btn primary" onclick="openCategoryModal('journey')">Plan Your Journey</button>
+      <button class="hero-btn secondary" onclick="openCategoryModal('ticket')">🎟️ Book Tickets</button>
     </div>
+  </header>
 
-    <div class="cards-track-wrapper">
-      <button class="track-arrow prev" onclick="scrollTrack('toursTrack', -1)">‹</button>
-      <div class="swiper-wrapper" id="toursTrack">
-        
-        <!-- Tour Card 1 -->
-        <div class="slide-card">
-          <div class="slide-card-bg" style="background-image: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&auto=format&fit=crop');"></div>
-          <div class="slide-card-content">
-            <h3>Chennai Heritage Tour</h3>
-            <p>1-Day Temple & ECR Coastal Circuit</p>
-            <div class="column-action-bar">
-              <button class="action-btn" onclick="openCategoryModal('chennai')">View Details</button>
-              <button class="action-btn gold" onclick="openPamphletList(['https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&auto=format&fit=crop'], 0)">Preview Brochure</button>
-            </div>
-          </div>
+<!-- =========================================================
+       ONGOING TOURS SECTION
+  ========================================================= -->
+  <section class="ongoing-tours-section" id="ongoing-tours">
+    <div class="ongoing-dual-grid">
+
+      <!-- DOMESTIC COLUMN -->
+      <div class="ongoing-column">
+        <div class="compact-header">
+          <span class="live-badge domestic">🇮🇳 LIVE DEPARTURES</span>
+          <h2 class="bold-column-title">Ongoing Domestic Tours</h2>
+          <p class="compact-sub">Fixed departures &amp; group trails</p>
         </div>
 
-        <!-- Tour Card 2 -->
-        <div class="slide-card">
-          <div class="slide-card-bg" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop');"></div>
-          <div class="slide-card-content">
-            <h3>Misty South India</h3>
-            <p>Ooty, Kodaikanal & Munnar Escapes</p>
-            <div class="column-action-bar">
-              <button class="action-btn" onclick="openCategoryModal('south-india')">View Details</button>
-              <button class="action-btn gold" onclick="openPamphletList(['https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop'], 0)">Preview Brochure</button>
+        <div class="slider-container">
+          <button type="button" class="nav-arrow left-arrow" onclick="scrollTrack('domesticTrack', -1)" aria-label="Scroll Left">❮</button>
+
+          <div class="slider-wrapper">
+            <div id="domesticTrack" class="slider-track">
+              <!-- Slide 1 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
+                <img src="Images/images/chennai-main.png" alt="Chennai Heritage Trail" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag ongoing">Ongoing</span>
+                  <h4>Chennai Heritage Trail</h4>
+                  <p>3 Days • March 2026</p>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
+                <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Filling Fast</span>
+                  <h4>Tirupati &amp; Kanchi</h4>
+                  <p>2 Days • Weekend</p>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
+                <img src="Images/images/south-main.png" alt="Misty Munnar Tour" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Upcoming</span>
+                  <h4>Misty Munnar</h4>
+                  <p>5 Days • Booking Open</p>
+                </div>
+              </div>
             </div>
           </div>
+
+          <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('domesticTrack', 1)" aria-label="Scroll Right">❯</button>
         </div>
 
-        <!-- Tour Card 3 -->
-        <div class="slide-card">
-          <div class="slide-card-bg" style="background-image: url('https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop');"></div>
-          <div class="slide-card-content">
-            <h3>Pilgrimage Circuits</h3>
-            <p>Sacred Shrines & Heritage Shrines</p>
-            <div class="column-action-bar">
-              <button class="action-btn" onclick="openCategoryModal('pilgrim')">View Details</button>
-              <button class="action-btn gold" onclick="openPamphletList(['https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop'], 0)">Preview Brochure</button>
-            </div>
-          </div>
+        <div class="column-action-bar">
+          <span>Interested in a domestic departure?</span>
+          <button type="button" class="btn-primary-single" onclick="openCategoryModal('journey')">Enquire Domestic</button>
         </div>
-
       </div>
-      <button class="track-arrow next" onclick="scrollTrack('toursTrack', 1)">›</button>
+
+      <!-- INTERNATIONAL COLUMN -->
+      <div class="ongoing-column">
+        <div class="compact-header">
+          <span class="live-badge intl">✈️ GLOBAL EXCURSIONS</span>
+          <h2 class="bold-column-title">Ongoing International Tours</h2>
+          <p class="compact-sub">Popular worldwide getaways</p>
+        </div>
+
+        <div class="slider-container">
+          <button type="button" class="nav-arrow left-arrow" onclick="scrollTrack('intlTrack', -1)" aria-label="Scroll Left">❮</button>
+
+          <div class="slider-wrapper">
+            <div id="intlTrack" class="slider-track">
+              <!-- Slide 1 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
+                <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag ongoing">Ongoing</span>
+                  <h4>Dubai Extravaganza</h4>
+                  <p>5 Days • Special Deal</p>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
+                <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Upcoming</span>
+                  <h4>Singapore Escape</h4>
+                  <p>6 Days • Booking Open</p>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="slide-card" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
+                <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
+                <div class="slide-overlay">
+                  <span class="status-tag upcoming">Upcoming</span>
+                  <h4>European Highlights</h4>
+                  <p>10 Days • Group Tour</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('intlTrack', 1)" aria-label="Scroll Right">❯</button>
+        </div>
+
+        <div class="column-action-bar">
+          <span>Planning a trip abroad?</span>
+          <button type="button" class="btn-primary-single btn-intl" onclick="openCategoryModal('journey')">Enquire International</button>
+        </div>
+      </div>
+
     </div>
   </section>
+  <!-- =========================================================
+       1. OUR SERVICES SECTION
+  ========================================================= -->
 
-  <!-- Our Services Grid -->
-  <section id="services" class="services-section">
-    <div class="compact-header">
-      <h2>Our Travel Services</h2>
-      <p>Complete end-to-end solutions for all your travel needs</p>
+  <section class="section" id="services-section">
+    <div class="hub-header text-center">
+      <h2>Our Services</h2>
+      <p class="section-sub">Reliable travel support and hassle-free booking solutions</p>
     </div>
 
     <div class="hub-grid">
-      <!-- Service 1: Cabs -->
-      <div class="hub-card">
-        <div class="hub-card-bg" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&auto=format&fit=crop');"></div>
+
+            <!-- 1. Cab Services -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/cab-main.png" alt="Cab Services" class="card-img" loading="lazy">
+        </div>
         <div class="hub-card-content">
-          <h3>🚖 Cogo Cabs & Tariff</h3>
-          <p>Local hourly rides, outstation packages & luxury rentals</p>
-          <button class="action-btn" onclick="openCategoryModal('cabs')">Explore Tariff</button>
-        </div>
-      </div>
+          <span class="hub-icon">🚖</span>
+          <h3>Cab Services</h3>
+          <p>Local, outstation, and airport transfers with premium comfort.</p>
 
-      <!-- Service 2: Journey Planning -->
-      <div class="hub-card">
-        <div class="hub-card-bg" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&auto=format&fit=crop');"></div>
+          <!-- Cab Routing & Options -->
+          <div class="cab-route-selector">
+            <!-- Pickup Input -->
+            <div class="custom-select-wrapper">
+              <input 
+                type="text" 
+                id="cabPickupInput" 
+                placeholder="📍 Pickup Location..." 
+                onfocus="showCabPickupDropdown()" 
+                oninput="filterCabPickup()"
+                autocomplete="off"
+              />
+              <div id="cabPickupList" class="visa-dropdown-list"></div>
+            </div>
+
+            <!-- Drop Input -->
+            <div class="custom-select-wrapper">
+              <input 
+                type="text" 
+                id="cabDropInput" 
+                placeholder="🎯 Destination / Drop..." 
+                onfocus="showCabDropDropdown()" 
+                oninput="filterCabDrop()"
+                autocomplete="off"
+              />
+              <div id="cabDropList" class="visa-dropdown-list"></div>
+            </div>
+
+            <!-- Date & Time Row -->
+            <div class="cab-datetime-row">
+              <input type="date" id="cabDateInput" class="cab-input-field" title="Select Travel Date" />
+              <input type="time" id="cabTimeInput" class="cab-input-field" title="Select Pickup Time" />
+            </div>
+
+            <!-- Vehicle Type Select -->
+            <div class="cab-select-row">
+              <select id="cabVehicleSelect" class="cab-dropdown-select">
+                <option value="" disabled selected>🚗 Select Vehicle</option>
+                <option value="Sedan (Dzire / Etios)">Sedan (Dzire / Etios)</option>
+                <option value="SUV (Ertiga / Xylo)">SUV (Ertiga / Xylo)</option>
+                <option value="Premium SUV (Innova Crysta)">Innova Crysta</option>
+                <option value="Tempo Traveller (12/15 Seater)">Tempo Traveller</option>
+              </select>
+            </div>
+
+            <!-- Trip Pack Select -->
+            <div class="cab-select-row">
+              <select id="cabPackSelect" class="cab-dropdown-select">
+                <option value="" disabled selected>⏱️ Select Trip Pack</option>
+                <option value="Local Sightseeing (8 Hrs / 80 Kms)">Local Day Pack (8h/80km)</option>
+                <option value="Local Airport / Station Transfer">Airport / Station Transfer</option>
+                <option value="Outstation One-Way Drop">Outstation One-Way</option>
+                <option value="Outstation Round Trip">Outstation Round Trip</option>
+              </select>
+            </div>
+
+            <button type="button" class="btn-whatsapp-visa" onclick="sendCabWhatsApp()">
+              <span class="wa-icon">💬</span> Book / Enquire Cab
+            </button>
+          </div>
+        </div>
+      </article>
+
+                  <!-- 2. Flight Booking -->
+      <article class="hub-card flight-card-custom">
+        <div class="hub-card-bg">
+          <img src="Images/images/ticket-main.png" alt="Flight Booking" class="card-img" loading="lazy">
+        </div>
         <div class="hub-card-content">
-          <h3>✈️ Plan Your Journey</h3>
-          <p>Customized holiday itineraries tailored to your dates</p>
-          <button class="action-btn" onclick="openCategoryModal('journey')">Plan Trip</button>
-        </div>
-      </div>
+          <div class="flight-header">
+            <span class="hub-icon">✈️</span>
+            <h3 class="flight-title">Flight Booking</h3>
+            <p class="flight-subtext">Hassle-free domestic and international flight reservations.</p>
+          </div>
 
-      <!-- Service 3: Corporate & Group -->
-      <div class="hub-card">
-        <div class="hub-card-bg" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop');"></div>
+          <div class="flight-route-selector">
+            <!-- Scope & Type Selection -->
+            <div class="flight-toggle-group">
+              <label><input type="radio" name="flightScope" value="Domestic" checked> Domestic</label>
+              <label><input type="radio" name="flightScope" value="International"> International</label>
+            </div>
+
+            <div class="flight-toggle-group">
+              <label><input type="radio" name="flightType" value="One-Way" checked onclick="toggleReturnDate(false)"> One-Way</label>
+              <label><input type="radio" name="flightType" value="Round Trip" onclick="toggleReturnDate(true)"> Round Trip</label>
+            </div>
+
+            <!-- Departure & Destination Cities -->
+            <div class="custom-select-wrapper">
+              <input type="text" id="flightFromInput" class="flight-full-input" placeholder="🛫 Departure City / Airport..." autocomplete="off" />
+            </div>
+
+            <div class="custom-select-wrapper">
+              <input type="text" id="flightToInput" class="flight-full-input" placeholder="🛬 Destination City / Country..." autocomplete="off" />
+            </div>
+
+            <!-- Dates -->
+            <div class="cab-datetime-row">
+              <input type="date" id="flightDepartDate" class="cab-input-field" title="Departure Date" />
+              <input type="date" id="flightReturnDate" class="cab-input-field" title="Return Date" style="display: none;" />
+            </div>
+
+            <!-- Time & Passenger Selection Row -->
+            <div class="cab-datetime-row">
+              <select id="flightTimeSelect" class="cab-dropdown-select" style="flex: 1;">
+                <option value="" disabled selected>⏰ Time Band</option>
+                <option value="Early Morning (12 AM - 6 AM)">Early Morning</option>
+                <option value="Morning (6 AM - 12 PM)">Morning</option>
+                <option value="Afternoon (12 PM - 6 PM)">Afternoon</option>
+                <option value="Night (6 PM - 12 AM)">Night</option>
+              </select>
+
+              <select id="flightPaxSelect" class="cab-dropdown-select" style="flex: 1;">
+                <option value="1 Passenger" selected>👥 1 Pax</option>
+                <option value="2 Passengers">👥 2 Pax</option>
+                <option value="3 Passengers">👥 3 Pax</option>
+                <option value="4 Passengers">👥 4 Pax</option>
+                <option value="5+ Passengers">👥 5+ Pax</option>
+              </select>
+            </div>
+
+            <button type="button" class="btn-whatsapp-visa" onclick="sendFlightWhatsApp()">
+              <span class="wa-icon">💬</span> Enquire Flight Fares
+            </button>
+          </div>
+        </div>
+      </article>
+
+
+            <!-- 3. Visa Assistance -->
+                <!-- 3. Visa Assistance -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/visa-main.png" alt="Visa Assistance" class="card-img" loading="lazy">
+        </div>
         <div class="hub-card-content">
-          <h3>🏢 Corporate & School Tours</h3>
-          <p>MICE, team outings, and educational excursions</p>
-          <button class="action-btn" onclick="openCategoryModal('corporate')">Inquire Now</button>
+          <span class="hub-icon">🛂</span>
+          <h3>Visa Assistance</h3>
+          <p>Expert guidance and end-to-end documentation support.</p>
+          <h3 style="color: #ffffff; font-weight: 800;">Visa Assistance</h3>
+          <p style="color: #f1f5f9;">Expert guidance and end-to-end documentation support.</p>
+
+          <!-- Integrated Country Selector & Direct WhatsApp Button -->
+          <div class="visa-country-selector">
+            <!-- Searchable Country Input -->
+            <div class="custom-select-wrapper">
+              <input 
+                type="text" 
+                id="visaCountryInput" 
+                placeholder="Type or choose country (e.g. USA)..." 
+                onfocus="showVisaDropdown()" 
+                oninput="filterVisaCountries()"
+                autocomplete="off"
+              />
+              <div id="visaDropdownList" class="visa-dropdown-list"></div>
+            </div>
+
+            <!-- Visa Period: From & To Dates -->
+            <div class="cab-datetime-row">
+              <input type="date" id="visaFromDate" class="cab-input-field" title="Travel Date From" />
+              <input type="date" id="visaToDate" class="cab-input-field" title="Travel Date To" />
+            </div>
+
+            <!-- Number of Pax Selection -->
+            <select id="visaPaxSelect" class="cab-dropdown-select">
+              <option value="1 Person" selected>👥 1 Pax / Applicant</option>
+              <option value="2 Persons">👥 2 Pax / Applicants</option>
+              <option value="3 Persons">👥 3 Pax / Applicants</option>
+              <option value="4 Persons">👥 4 Pax / Applicants</option>
+              <option value="5+ Family / Group">👥 5+ Family / Group</option>
+            </select>
+
+            <!-- Custom Remarks Area -->
+            <textarea 
+              id="visaRemarksInput" 
+              class="visa-remarks-textarea" 
+              placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express Processing, Family Trip)..."
+              rows="2"
+            ></textarea>
+
+            <button type="button" class="btn-whatsapp-visa" onclick="sendVisaWhatsApp()">
+              <span class="wa-icon">💬</span> Enquire via WhatsApp
+            </button>
+          </div>
+        </div>
+      </article>
+
+
+
+  <!-- =========================================================
+       2. TOUR PACKAGES SECTION
+  ========================================================= -->
+  <section class="section" id="packages-section">
+    <div class="hub-header text-center">
+      <h2>Tour Packages</h2>
+      <p class="section-sub">Handcrafted holiday experiences tailored for you</p>
+    </div>
+
+    <div class="hub-grid">
+
+      <!-- 1. Tour Chennai -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/chennai-main.png" alt="Tour Chennai" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏛️</span>
+          <h3>Tour Chennai</h3>
+          <p>Explore heritage, temples, beaches, and local sights.</p>
+          <button class="hub-btn" onclick="openCategoryModal('chennai')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 2. Tour Pilgrim -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/pilgrim-main.png" alt="Tour Pilgrim" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🛕</span>
+          <h3>Tour Pilgrim</h3>
+          <p>Shirdi Sai Darshan, Tirupati, Kanchipuram & spiritual circuits.</p>
+          <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 3. Tour South India -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/south-main.png" alt="Tour South India" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🌴</span>
+          <h3>Tour South India</h3>
+          <p>Kodaikanal misty hills, Kerala backwaters & Coorg escapes.</p>
+          <button class="hub-btn" onclick="openCategoryModal('south-india')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 4. Tour North India -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/tour%20north%20india.png" alt="Tour North India" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏔️</span>
+          <h3>Tour North India</h3>
+          <p>Royal palaces, Golden Triangle tours & snow peaks.</p>
+          <button class="hub-btn" onclick="openCategoryModal('north-india')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 5. Tour North East -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/tournortheast.png" alt="Tour North East" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏞️</span>
+          <h3>Tour North East</h3>
+          <p>Gangtok, Darjeeling, Meghalaya & pristine valleys.</p>
+          <button class="hub-btn" onclick="openCategoryModal('north-east')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 6. Tour Rest of India -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/tourrestofindia.png" alt="Tour Rest of India" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🧭</span>
+          <h3>Tour Rest of India</h3>
+          <p>Explore unique destinations across all states & territories.</p>
+          <button class="hub-btn" onclick="openCategoryModal('rest-of-india')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 7. Tour International -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/tourinternational.png" alt="Tour International" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">✈️</span>
+          <h3>Tour International</h3>
+          <p>Unforgettable foreign trips to Dubai, Singapore & Europe.</p>
+          <button class="hub-btn" onclick="openCategoryModal('international')">View Packages</button>
+        </div>
+      </article> 
+
+      <!-- 8. Corporate Tour -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/tourcorporate.png" alt="Corporate Tour" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏢</span>
+          <h3>Corporate Tour</h3>
+          <p>Tailored MICE, team retreats, and business outings.</p>
+          <button class="hub-btn" onclick="openCategoryModal('corporate')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 9. School College Tour -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/tourschoolcollege.png" alt="School College Tour" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🎓</span>
+          <h3>School College Tour</h3>
+          <p>Educational field trips and safe student excursions.</p>
+          <button class="hub-btn" onclick="openCategoryModal('students')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 10. Adventure Tour -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/touradventure.png" alt="Adventure Tour" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🏕️</span>
+          <h3>Adventure Tour</h3>
+          <p>Trekking, camping, wildlife, and thrill-seeking trips.</p>
+          <button class="hub-btn" onclick="openCategoryModal('adventure')">View Packages</button>
+        </div>
+      </article>
+
+      <!-- 11. Honeymoon Tour -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/tourhoneymoon.png" alt="Honeymoon Tour" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">💖</span>
+          <h3>Honeymoon Tour</h3>
+          <p>Romantic getaways and relaxing couples' retreats.</p>
+          <button class="hub-btn" onclick="openCategoryModal('honeymoon')">View Packages</button>
+        </div>
+      </article>     
+
+      <!-- 12. Cogo Cabs -->
+      <article class="hub-card">
+        <div class="hub-card-bg">
+          <img src="Images/images/cogocabs.png" alt="Cogo Cabs" class="card-img" loading="lazy">
+        </div>
+        <div class="hub-card-content">
+          <span class="hub-icon">🚘</span>
+          <h3>Cogo Cabs</h3>
+          <p>Dedicated outstation & intercity cab packages.</p>
+          <button class="hub-btn" onclick="openCategoryModal('cabs')">View Rates</button>
+        </div>
+      </article>     
+
+    </div> <!-- Cleanly closes .hub-grid for packages -->
+  </section>
+
+  <!-- ABOUT US SECTION -->
+  <section id="about" class="about-section">
+    <div class="section-container">
+      <div class="about-content text-center">
+        <h2>About Cogo Tours &amp; Travels</h2>
+        <p class="about-lead">Your trusted partner for memorable, hassle-free travel experiences across Chennai, South India, and around the globe.</p>
+        <p class="about-body">
+          At <strong>Cogo Tours and Travels</strong>, we specialize in delivering high-quality, customized travel solutions tailored to your unique needs. From swift local cab rentals and coastal Chennai sightseeing to spiritual temple circuits, honeymoon packages, and seamless international vacations, our dedicated team ensures safety, comfort, and unmatched hospitality at every step of your journey.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & LOCATION SECTION -->
+  <section id="contact" class="contact-section">
+    <div class="section-container">
+      <div class="text-center">
+        <h2>Get in Touch with Us</h2>
+        <p class="section-sub">Visit our office or reach out via call or WhatsApp for quick quotes.</p>
+
+        <!-- Social Media Icons Bar -->
+        <div class="social-links-bar">
+          <a href="#" class="social-btn facebook" target="_blank" title="Facebook">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="#" class="social-btn instagram" target="_blank" title="Instagram">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="#" class="social-btn twitter" target="_blank" title="Twitter / X">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>Twitter</span>
+          </a>
+        </div>
+      </div> <!-- Closes .text-center correctly here so it doesn't wrap .contact-grid -->
+
+      <div class="contact-grid">
+        <!-- Contact Details Card -->
+        <div class="contact-card">
+          <h3>Contact Details</h3>
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div>
+              <strong>Cogo Tours &amp; Travels</strong>
+              <p>1817/132, 13th Main Road, Anna Nagar West, Chennai - 600040, India.</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <div>
+              <strong>Phone / WhatsApp:</strong>
+              <p>
+                <a href="tel:+919884066830">+91 98840 66830</a> / 
+                <a href="tel:+919080666674">+91 90806 66674</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <div>
+              <strong>Email Us:</strong>
+              <p><a href="mailto:cogotrtr@gmail.com">cogotrtr@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">⏰</span>
+            <div>
+              <strong>Working Hours:</strong>
+              <p>Monday – Saturday: 9:00 AM – 8:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Embedded Google Map + Automatic Directions Button -->
+        <div class="map-wrapper">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA4MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="300" 
+            style="border:0; border-radius:14px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=13.093779,80.200738" target="_blank" class="map-directions-btn">
+            📍 Get Directions on Google Maps
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Quick Forms Section: Cab Booking -->
-  <section id="cabs" class="form-section">
-    <div class="compact-header">
-      <h2>Instant Cab Booking</h2>
-      <p>Select pickup & destination for quick WhatsApp confirmation</p>
-    </div>
-    <div class="form-card">
-      <div class="form-grid">
-        <div class="custom-select-wrapper">
-          <input type="text" id="cabPickupInput" class="cab-input-field" placeholder="Pickup Location" onfocus="showCabPickupDropdown()" oninput="filterCabPickup()">
-          <div id="cabPickupList" class="custom-dropdown-list"></div>
-        </div>
-        <div class="custom-select-wrapper">
-          <input type="text" id="cabDropInput" class="cab-input-field" placeholder="Destination Location" onfocus="showCabDropDropdown()" oninput="filterCabDrop()">
-          <div id="cabDropList" class="custom-dropdown-list"></div>
-        </div>
-        <input type="date" id="cabDateInput" class="cab-input-field">
-        <input type="time" id="cabTimeInput" class="cab-input-field">
-        <select id="cabVehicleSelect" class="cab-input-field">
-          <option value="Sedan">Sedan (Dzire/Etios)</option>
-          <option value="Innova">Innova</option>
-          <option value="Innova Crysta">Innova Crysta</option>
-          <option value="Urbania / Tempo">Urbania / Tempo Traveller</option>
-        </select>
-        <select id="cabPackSelect" class="cab-input-field">
-          <option value="Local (50 km)">Local Transfer (50 km)</option>
-          <option value="Local (100 km / 10 Hrs)">Local Full Day (100 km / 10 Hrs)</option>
-          <option value="Outstation 1-Day Pack (250 km)">Outstation 1-Day Pack (250 km)</option>
-        </select>
-      </div>
-      <button class="submit-btn gold" onclick="sendCabWhatsApp()">Book via WhatsApp</button>
-    </div>
-  </section>
-
-  <!-- Visa Assistance Form -->
-  <section id="visa" class="form-section">
-    <div class="compact-header">
-      <h2>🛂 Visa Assistance</h2>
-      <p>Get document guidance and processing support</p>
-    </div>
-    <div class="form-card">
-      <div class="form-grid">
-        <div class="custom-select-wrapper">
-          <input type="text" id="visaCountryInput" class="cab-input-field" placeholder="Select Destination Country" onfocus="showVisaDropdown()" oninput="filterVisaCountries()">
-          <div id="visaDropdownList" class="custom-dropdown-list"></div>
-        </div>
-        <input type="date" id="visaFromDate" class="cab-input-field" placeholder="Travel From">
-        <input type="date" id="visaToDate" class="cab-input-field" placeholder="Travel To">
-        <select id="visaPaxSelect" class="cab-input-field">
-          <option value="1 Person">1 Applicant</option>
-          <option value="2 Persons">2 Applicants</option>
-          <option value="3-5 Persons">3-5 Applicants</option>
-          <option value="Family / Group (5+)">Family / Group (5+)</option>
-        </select>
-      </div>
-      <textarea id="visaRemarksInput" class="visa-remarks-textarea" placeholder="Additional details or specific requirements..."></textarea>
-      <button class="submit-btn gold" onclick="sendVisaWhatsApp()">Request Visa Details</button>
-    </div>
-  </section>
-
-  <!-- Flight Ticket Booking Form -->
-  <section id="flights" class="form-section">
-    <div class="compact-header">
-      <h2>✈️ Flight Reservations</h2>
-      <p>Domestic & International flight deals</p>
-    </div>
-    <div class="form-card">
-      <div class="radio-group">
-        <label><input type="radio" name="flightScope" value="Domestic" checked> Domestic</label>
-        <label><input type="radio" name="flightScope" value="International"> International</label>
-        <span class="divider">|</span>
-        <label><input type="radio" name="flightType" value="One-Way" checked onclick="toggleReturnDate(false)"> One-Way</label>
-        <label><input type="radio" name="flightType" value="Round Trip" onclick="toggleReturnDate(true)"> Round Trip</label>
-      </div>
-      <div class="form-grid">
-        <input type="text" id="flightFromInput" class="flight-full-input" placeholder="Departure City / Airport">
-        <input type="text" id="flightToInput" class="flight-full-input" placeholder="Arrival City / Airport">
-        <input type="date" id="flightDepartDate" class="flight-full-input">
-        <input type="date" id="flightReturnDate" class="flight-full-input" style="display: none;" placeholder="Return Date">
-        <select id="flightTimeSelect" class="flight-full-input">
-          <option value="Any Time">Any Preferred Time</option>
-          <option value="Morning">Morning Flight</option>
-          <option value="Afternoon">Afternoon Flight</option>
-          <option value="Evening/Night">Evening / Night Flight</option>
-        </select>
-        <select id="flightPaxSelect" class="flight-full-input">
-          <option value="1 Passenger">1 Passenger</option>
-          <option value="2 Passengers">2 Passengers</option>
-          <option value="3-5 Passengers">3-5 Passengers</option>
-          <option value="Group (6+)">Group (6+)</option>
-        </select>
-      </div>
-      <button class="submit-btn gold" onclick="sendFlightWhatsApp()">Get Flight Quotes</button>
-    </div>
-  </section>
-
-  <!-- Dynamic Service Modal -->
+  <!-- Dynamic Interactive Enquiry Modal -->
   <div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
-    <div class="modal-content">
-      <button class="modal-close-btn" onclick="closeModal()">×</button>
-      <h3 id="modalTitle">Service Title</h3>
-      <p id="modalDescription" style="color: #64748b; margin-bottom: 15px;"></p>
-      
-      <!-- Sub Tabs Bar -->
-      <div id="modalSubTabs" class="sub-tab-container"></div>
-      
-      <!-- Dynamic Content Box -->
-      <div id="modalDynamicContent" class="modal-dynamic-body"></div>
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" type="button" onclick="closeModal()">&times;</button>
 
-      <!-- Quick Contact Form inside Modal -->
-      <div class="modal-contact-form">
-        <h4 style="margin-top: 15px; margin-bottom: 8px;">Direct Enquiry Form</h4>
-        <input type="text" id="userName" class="cab-input-field" placeholder="Your Full Name">
-        <input type="tel" id="userPhone" class="cab-input-field" placeholder="Your Phone Number" style="margin-top: 8px;">
-        <textarea id="userQuery" class="visa-remarks-textarea" placeholder="Specify dates or tour preferences..." style="margin-top: 8px; height: 60px;"></textarea>
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-          <button class="action-btn" style="flex: 1;" onclick="submitEnquiry('whatsapp')">WhatsApp Us</button>
-          <button class="action-btn gold" style="flex: 1;" onclick="submitEnquiry('email')">Email Us</button>
-        </div>
+      <div class="modal-header">
+        <h2 id="modalTitle">Plan Your Journey</h2>
+        <p id="modalDescription" class="modal-desc"></p>
       </div>
+
+      <!-- Dynamic Filter Tabs (ECR, Pilgrim, City, etc.) -->
+      <div id="modalSubTabs" class="sub-tab-container"></div>
+
+      <!-- Tariff Cards & Destination Image Gallery -->
+      <div id="modalDynamicContent" class="modal-body-wrapper"></div>
+
+      <!-- Quick Lead Generation Form -->
+      <form id="queryForm" onsubmit="event.preventDefault();">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="userName" placeholder="Enter full name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Travel Notes / Preferred Vehicle</label>
+          <textarea id="userQuery" rows="2" placeholder="Mention travel dates, group size, or custom preferences..."></textarea>
+        </div>
+
+        <div class="modal-actions-grid">
+          <button type="button" class="action-btn btn-wa" onclick="submitEnquiry('whatsapp')">
+            📱 Booking via WhatsApp
+          </button>
+          <button type="button" class="action-btn btn-email" onclick="submitEnquiry('email')">
+            ✉️ Send Email Query
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <!-- Lightbox Pan & Zoom Modal -->
-  <div id="pamphletLightbox" class="lightbox-overlay" onclick="closePamphletZoom(event)">
-    <button class="pamphlet-close" onclick="closePamphletZoom(event)">×</button>
-    <button class="pamphlet-prev" onclick="prevPamphlet(event)">‹</button>
-    <div class="lightbox-img-wrapper" onclick="event.stopPropagation()">
-      <img id="lightboxImage" src="" alt="Pamphlet Zoom Preview">
+  <!-- Interactive Lightbox Modal (With Controls) -->
+  <div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
+    <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
+
+    <!-- Lightbox Navigation Arrows -->
+    <button class="lightbox-nav prev-btn" onclick="navigateLightbox(-1, event)">&#10094;</button>
+    <button class="lightbox-nav next-btn" onclick="navigateLightbox(1, event)">&#10095;</button>
+
+    <!-- Image Container -->
+    <div class="lightbox-img-container" id="lightboxContainer" onclick="event.stopPropagation()">
+      <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
     </div>
-    <button class="pamphlet-next" onclick="nextPamphlet(event)">›</button>
+
+    <!-- Zoom Control Buttons -->
     <div class="zoom-controls" onclick="event.stopPropagation()">
-      <button onclick="zoomIn()">+</button>
-      <button onclick="zoomOut()">-</button>
-      <button onclick="resetZoom()">Reset</button>
+      <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
+      <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
+      <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
     </div>
   </div>
 
+  <!-- Pamphlet Zoom Modal View -->
+  <div id="imageModal" class="pamphlet-modal">
+    <span class="pamphlet-close">&times;</span>
+    <div class="pamphlet-modal-container">
+      <img class="pamphlet-modal-content" id="imgModalSrc" alt="Pamphlet Zoom View">
+    </div>
+    <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
+  </div>
+
+  <!-- JavaScript Execution at End of Body -->
   <script src="script.js"></script>
 </body>
 </html>
+~
