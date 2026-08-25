@@ -2,39 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Cogo Tours & Travels - Cabs, Sightseeing & Tour Packages</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top Navigation -->
+  <!-- =========================================================
+       1. TOP NAVIGATION
+  ========================================================= -->
   <nav id="mainNav">
     <div class="nav-container nav-center-aligned">
       <div id="navLinks">
-        <!-- Indian Flag Inspired Square Tabs -->
         <a href="tel:+919884066830" class="flag-tab tab-saffron">📞 Call Us</a>
-        <button class="flag-tab tab-white-blue" onclick="openCategoryModal('cabs')">🚖 Cab Booking </button>
-        <button class="flag-tab tab-green" onclick="openCategoryModal('journey')">Plan Your Journey</button>
+        <button type="button" class="flag-tab tab-white-blue" onclick="openCategoryModal('cabs')">🚖 Cab Booking</button>
+        <button type="button" class="flag-tab tab-green" onclick="openCategoryModal('journey')">Plan Your Journey</button>
       </div>
     </div>
   </nav>
 
-  <!-- Homepage Hero Section -->
+  <!-- =========================================================
+       2. HERO SECTION
+  ========================================================= -->
   <header class="hero">
     <div class="hero-actions">
-      <button class="hero-btn primary" onclick="openCategoryModal('journey')">Plan Your Journey</button>
-      <button class="hero-btn secondary" onclick="openCategoryModal('ticket')">🎟️ Book Tickets</button>
+      <button type="button" class="hero-btn primary" onclick="openCategoryModal('journey')">Plan Your Journey</button>
+      <button type="button" class="hero-btn secondary" onclick="openCategoryModal('ticket')">🎟️ Book Tickets</button>
     </div>
   </header>
 
-<!-- =========================================================
-       ONGOING TOURS SECTION
+  <!-- =========================================================
+       3. ONGOING TOURS SECTION
   ========================================================= -->
   <section class="ongoing-tours-section" id="ongoing-tours">
     <div class="ongoing-dual-grid">
 
-      <!-- DOMESTIC COLUMN -->
+      <!-- Domestic Tours Column -->
       <div class="ongoing-column">
         <div class="compact-header" style="text-align: center;">
           <h2 class="bold-column-title" style="text-align: center;">Ongoing Domestic Tours</h2>
@@ -86,7 +89,7 @@
         </div>
       </div>
 
-      <!-- INTERNATIONAL COLUMN -->
+      <!-- International Tours Column -->
       <div class="ongoing-column">
         <div class="compact-header" style="text-align: center;">
           <h2 class="bold-column-title" style="text-align: center;">Ongoing International Tours</h2>
@@ -141,267 +144,149 @@
     </div>
   </section>
 
-<!-- =========================================================
-       OUR SERVICES SECTION
-  ========================================================= -->
-<section class="services-section" id="services">
-  <div class="services-header-container">
-    <h2 class="services-main-title">Our Services</h2>
-    <p class="services-sub-title">Reliable travel support and hassle-free booking solutions</p>
-  </div>
-
-  <div class="services-grid">
-<div class="services-container">
-
-  <!-- 1. CAB SERVICES CARD -->
-  <div class="service-card cab-card">
-    <div class="service-card-header">
-      <div class="service-icon">🚕</div>
-      <h3 class="service-title">Cab Services</h3>
-      <p class="service-desc">Local, outstation, and airport transfers with premium comfort.</p>
-    </div>
-    <form class="service-form" onsubmit="event.preventDefault();">
-      <div class="form-group">
-        <input type="text" id="pickupLocation" name="pickupLocation" class="service-input pickup-input" placeholder="📍 Pickup Location..." required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="dropLocation" name="dropLocation" class="service-input drop-input" placeholder="📍 Destination / Drop" required>
-      </div>
-      <div class="form-row">
-        <input type="date" id="cabDate" name="cabDate" class="service-input cab-date" aria-label="Pickup Date" title="Pickup Date" required>
-        <input type="date" id="cabReturnDate" name="cabReturnDate" class="service-input cab-return-date" aria-label="Return Date" title="Return Date">
-      </div>
-      <div class="form-row">
-        <input type="time" id="cabTime" name="cabTime" class="service-input cab-time" aria-label="Pickup Time" title="Pickup Time" required>
-        <select id="cabVehicle" name="cabVehicle" class="service-input cab-vehicle" required>
-          <option value="">🚗 Vehicle</option>
-          <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
-          <option value="SUV (Innova/Ertiga)">SUV (Innova/Ertiga)</option>
-          <option value="Tempo Traveller">Tempo Traveller</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <select id="cabPackage" name="cabPackage" class="service-input cab-package" required>
-          <option value="">⏱️ Select Trip Pack</option>
-          <option value="Local Hourly">Local Hourly</option>
-          <option value="Outstation Roundtrip">Outstation Roundtrip</option>
-          <option value="Airport Transfer">Airport Transfer</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <input type="text" id="cabName" name="cabName" class="service-input" placeholder="👤 Your Name" required>
-        <input type="tel" id="cabMobile" name="cabMobile" class="service-input" placeholder="📞 Mobile No." required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="cabRemarks" name="cabRemarks" class="service-input cab-remarks" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
-      </div>
-      <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleCabBooking(this)">Book / Enquire Cab</button>
-    </form>
-  </div>
-
-  <!-- 2. FLIGHT BOOKING CARD -->
-  <div class="service-card flight-card">
-    <div class="service-card-header">
-      <div class="service-icon">✈️</div>
-      <h3 class="service-title">Flight Booking</h3>
-      <p class="service-desc">Hassle-free domestic and international flight reservations.</p>
-    </div>
-    <form class="service-form" onsubmit="event.preventDefault();">
-      <div class="toggle-row">
-        <label><input type="radio" name="flightType" value="Domestic" checked> Domestic</label>
-        <label><input type="radio" name="flightType" value="International"> International</label>
-      </div>
-      <div class="toggle-row">
-        <label><input type="radio" name="tripType" value="One-Way" checked> One-Way</label>
-        <label><input type="radio" name="tripType" value="Round Trip"> Round Trip</label>
-      </div>
-      <div class="form-group">
-        <input type="text" id="departureCity" name="departureCity" class="service-input flight-from" placeholder="🛫 From: Departure City / Airport / Country..." required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="destinationCity" name="destinationCity" class="service-input flight-to" placeholder="🛬 To: Destination City / Airport / Country..." required>
-      </div>
-      <div class="form-row">
-        <input type="date" id="flightDate" name="flightDate" class="service-input flight-date" aria-label="Departure Date" title="Departure Date" required>
-        <input type="date" id="flightReturnDate" name="flightReturnDate" class="service-input flight-return-date" aria-label="Return Date" title="Return Date">
-      </div>
-      <div class="form-group">
-        <select id="flightTimeBand" name="flightTimeBand" class="service-input flight-timeband" required>
-          <option value="">🕒 Preferred Time Band</option>
-          <option value="Morning (06:00 AM - 12:00 PM)">🌅 Morning (06:00 AM - 12:00 PM)</option>
-          <option value="Afternoon (12:00 PM - 06:00 PM)">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
-          <option value="Evening (06:00 PM - 00:00 AM)">🌆 Evening (06:00 PM - 00:00 AM)</option>
-          <option value="Night (00:00 AM - 06:00 AM)">🌙 Night (00:00 AM - 06:00 AM)</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <input type="text" id="flightName" name="flightName" class="service-input" placeholder="👤 Your Name" required>
-        <input type="tel" id="flightMobile" name="flightMobile" class="service-input" placeholder="📞 Mobile No." required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="flightRemarks" name="flightRemarks" class="service-input flight-remarks" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
-      </div>
-      <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleFlightBooking(this)">Enquire Flight Fares</button>
-    </form>
-  </div>
-
-  <!-- 3. VISA ASSISTANCE CARD -->
-<div class="service-card visa-card">
-  <div class="service-card-header">
-    <div class="service-icon">🛂</div>
-    <h3 class="service-title">Visa Assistance</h3>
-    <p class="service-desc">Expert guidance and end-to-end documentation support.</p>
-  </div>
-
-  <form class="service-form" onsubmit="event.preventDefault();">
-    <!-- Destination Country Field -->
-    <div class="form-group">
-      <input type="text" id="visaCountry" name="visaCountry" class="service-input visa-country" placeholder="🌐 Destination Country (e.g., Dubai, Singapore...)" required>
-    </div>
-    
-    <!-- Travel Date & Return Date -->
-    <div class="form-row">
-      <input type="date" id="visaTravelDate" name="visaTravelDate" class="service-input visa-date" aria-label="Travel Date" title="Travel Date" required>
-      <input type="date" id="visaReturnDate" name="visaReturnDate" class="service-input visa-return-date" aria-label="Return Date" title="Return Date">
-    </div>
-
-    <!-- Number of Pax / Applicants -->
-    <div class="form-group">
-      <select id="visaPax" name="visaPax" class="service-input visa-pax" required>
-        <option value="" disabled selected>👤 Select Applicants / Pax</option>
-        <option value="1 Person">1 Person</option>
-        <option value="2 People">2 People</option>
-        <option value="Family (3-5)">Family (3-5)</option>
-        <option value="Group (5+)">Group (5+)</option>
-      </select>
-    </div>
-
-    <!-- Contact Info (Name & Mobile) -->
-    <div class="form-row">
-      <input type="text" id="visaName" name="visaName" class="service-input" placeholder="👤 Your Name" required>
-      <input type="tel" id="visaMobile" name="visaMobile" class="service-input" placeholder="📞 Mobile No." required>
-    </div>
-
-    <!-- Remarks -->
-    <div class="form-group">
-      <input type="text" id="visaRemarks" name="visaRemarks" class="service-input visa-remarks" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
-    </div>
-    
-    <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleVisaBooking(this)">Enquire via WhatsApp</button>
-  </form>
-</div>
-
-<!-- STANDALONE JS HANDLERS & DATE RESTRICTIONS -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const todayStr = new Date().toISOString().split('T')[0];
-
-    // Restrict past dates across all service date pickers
-    document.querySelectorAll('.services-section input[type="date"]').forEach(function(field) {
-      field.min = todayStr;
-    });
-
-    // Dynamic return date minimum constraint
-    function linkDates(startClass, endClass) {
-      document.querySelectorAll('.service-card').forEach(function(card) {
-        const start = card.querySelector(startClass);
-        const end = card.querySelector(endClass);
-        if (start && end) {
-          start.addEventListener('change', function() {
-            if (this.value) {
-              end.min = this.value;
-              if (end.value && end.value < this.value) end.value = this.value;
-            } else {
-              end.min = todayStr;
-            }
-          });
-        }
-      });
-    }
-
-    linkDates('.cab-date', '.cab-return-date');
-    linkDates('.flight-date', '.flight-return-date');
-    linkDates('.visa-date', '.visa-return-date');
-  });
-
-  // SCOPED WHATSAPP SUBMISSION HANDLERS
-  function handleCabBooking(btn) {
-    const form = btn.closest('form');
-    const pickup = form.querySelector('.pickup-input')?.value.trim() || '';
-    const drop = form.querySelector('.drop-input')?.value.trim() || '';
-    const cabDate = form.querySelector('.cab-date')?.value || '';
-    const cabReturnDate = form.querySelector('.cab-return-date')?.value || '';
-    const cabTime = form.querySelector('.cab-time')?.value || '';
-    const vehicle = form.querySelector('.cab-vehicle')?.value || '';
-    const pack = form.querySelector('.cab-package')?.value || '';
-    const remarks = form.querySelector('.cab-remarks')?.value.trim() || '';
-    
-    if (!pickup || !drop) {
-      alert("Please enter both Pickup and Destination locations.");
-      return;
-    }
-
-    let msg = `*Cab Service Enquiry*\n📍 Pickup: ${pickup}\n📍 Drop: ${drop}`;
-    if (cabDate) msg += `\n📅 Travel Date: ${cabDate}`;
-    if (cabReturnDate) msg += `\n🔄 Return Date: ${cabReturnDate}`;
-    if (cabTime) msg += `\n⏰ Time: ${cabTime}`;
-    if (vehicle) msg += `\n🚗 Vehicle: ${vehicle}`;
-    if (pack) msg += `\n⏱️ Package: ${pack}`;
-    if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
-
-    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
-  }
-
-  function handleFlightBooking(btn) {
-    const form = btn.closest('form');
-    const flightType = form.querySelector('input[name="flightType"]:checked')?.value || 'Domestic';
-    const tripType = form.querySelector('input[name="tripType"]:checked')?.value || 'One-Way';
-    const departure = form.querySelector('.flight-from')?.value.trim() || '';
-    const destination = form.querySelector('.flight-to')?.value.trim() || '';
-    const flightDate = form.querySelector('.flight-date')?.value || '';
-    const returnDate = form.querySelector('.flight-return-date')?.value || '';
-    const timeBand = form.querySelector('.flight-timeband')?.value || '';
-    const remarks = form.querySelector('.flight-remarks')?.value.trim() || '';
-
-    if (!departure || !destination) {
-      alert("Please enter both Departure and Destination cities.");
-      return;
-    }
-
-    let msg = `*Flight Booking Enquiry*\n✈️ Type: ${flightType} (${tripType})\n🛫 From: ${departure}\n🛬 To: ${destination}`;
-    if (flightDate) msg += `\n📅 Departure Date: ${flightDate}`;
-    if (returnDate) msg += `\n🔄 Return Date: ${returnDate}`;
-    if (timeBand) msg += `\n🕒 Preferred Time: ${timeBand}`;
-    if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
-
-    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
-  }
-
-  function handleVisaBooking(btn) {
-    const form = btn.closest('form');
-    const country = form.querySelector('.visa-country')?.value.trim() || '';
-    const visaDate = form.querySelector('.visa-date')?.value || '';
-    const returnDate = form.querySelector('.visa-return-date')?.value || '';
-    const pax = form.querySelector('.visa-pax')?.value || '';
-    const remarks = form.querySelector('.visa-remarks')?.value.trim() || '';
-
-    if (!country) {
-      alert("Please select or type a destination country for Visa Assistance.");
-      return;
-    }
-
-    let msg = `*Visa Assistance Enquiry*\n🌍 Country: ${country}`;
-    if (visaDate) msg += `\n📅 Travel Date: ${visaDate}`;
-    if (returnDate) msg += `\n🔄 Return Date: ${returnDate}`;
-    if (pax) msg += `\n👤 Passengers: ${pax}`;
-    if (remarks) msg += `\n✏️ Remarks: ${remarks}`;
-
-    window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
-  }
-</script>
- 
   <!-- =========================================================
-       2. TOUR PACKAGES SECTION
+       4. OUR SERVICES SECTION
+  ========================================================= -->
+  <section class="services-section" id="services">
+    <div class="services-header-container">
+      <h2 class="services-main-title">Our Services</h2>
+      <p class="services-sub-title">Reliable travel support and hassle-free booking solutions</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Cab Services Card -->
+      <div class="service-card cab-card">
+        <div class="service-card-header">
+          <div class="service-icon">🚕</div>
+          <h3 class="service-title">Cab Services</h3>
+          <p class="service-desc">Local, outstation, and airport transfers with premium comfort.</p>
+        </div>
+        <form class="service-form" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <input type="text" id="pickupLocation" name="pickupLocation" class="service-input pickup-input" placeholder="📍 Pickup Location..." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="dropLocation" name="dropLocation" class="service-input drop-input" placeholder="📍 Destination / Drop" required>
+          </div>
+          <div class="form-row">
+            <input type="date" id="cabDate" name="cabDate" class="service-input cab-date" aria-label="Pickup Date" title="Pickup Date" required>
+            <input type="date" id="cabReturnDate" name="cabReturnDate" class="service-input cab-return-date" aria-label="Return Date" title="Return Date">
+          </div>
+          <div class="form-row">
+            <input type="time" id="cabTime" name="cabTime" class="service-input cab-time" aria-label="Pickup Time" title="Pickup Time" required>
+            <select id="cabVehicle" name="cabVehicle" class="service-input cab-vehicle" required>
+              <option value="">🚗 Vehicle</option>
+              <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
+              <option value="SUV (Innova/Ertiga)">SUV (Innova/Ertiga)</option>
+              <option value="Tempo Traveller">Tempo Traveller</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select id="cabPackage" name="cabPackage" class="service-input cab-package" required>
+              <option value="">⏱️ Select Trip Pack</option>
+              <option value="Local Hourly">Local Hourly</option>
+              <option value="Outstation Roundtrip">Outstation Roundtrip</option>
+              <option value="Airport Transfer">Airport Transfer</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input type="text" id="cabName" name="cabName" class="service-input" placeholder="👤 Your Name" required>
+            <input type="tel" id="cabMobile" name="cabMobile" class="service-input" placeholder="📞 Mobile No." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="cabRemarks" name="cabRemarks" class="service-input cab-remarks" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
+          </div>
+          <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleCabBooking(this)">Book / Enquire Cab</button>
+        </form>
+      </div>
+
+      <!-- Flight Booking Card -->
+      <div class="service-card flight-card">
+        <div class="service-card-header">
+          <div class="service-icon">✈️</div>
+          <h3 class="service-title">Flight Booking</h3>
+          <p class="service-desc">Hassle-free domestic and international flight reservations.</p>
+        </div>
+        <form class="service-form" onsubmit="event.preventDefault();">
+          <div class="toggle-row">
+            <label><input type="radio" name="flightType" value="Domestic" checked> Domestic</label>
+            <label><input type="radio" name="flightType" value="International"> International</label>
+          </div>
+          <div class="toggle-row">
+            <label><input type="radio" name="tripType" value="One-Way" checked> One-Way</label>
+            <label><input type="radio" name="tripType" value="Round Trip"> Round Trip</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="departureCity" name="departureCity" class="service-input flight-from" placeholder="🛫 From: Departure City / Airport / Country..." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="destinationCity" name="destinationCity" class="service-input flight-to" placeholder="🛬 To: Destination City / Airport / Country..." required>
+          </div>
+          <div class="form-row">
+            <input type="date" id="flightDate" name="flightDate" class="service-input flight-date" aria-label="Departure Date" title="Departure Date" required>
+            <input type="date" id="flightReturnDate" name="flightReturnDate" class="service-input flight-return-date" aria-label="Return Date" title="Return Date">
+          </div>
+          <div class="form-group">
+            <select id="flightTimeBand" name="flightTimeBand" class="service-input flight-timeband" required>
+              <option value="">🕒 Preferred Time Band</option>
+              <option value="Morning (06:00 AM - 12:00 PM)">🌅 Morning (06:00 AM - 12:00 PM)</option>
+              <option value="Afternoon (12:00 PM - 06:00 PM)">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
+              <option value="Evening (06:00 PM - 00:00 AM)">🌆 Evening (06:00 PM - 00:00 AM)</option>
+              <option value="Night (00:00 AM - 06:00 AM)">🌙 Night (00:00 AM - 06:00 AM)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input type="text" id="flightName" name="flightName" class="service-input" placeholder="👤 Your Name" required>
+            <input type="tel" id="flightMobile" name="flightMobile" class="service-input" placeholder="📞 Mobile No." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="flightRemarks" name="flightRemarks" class="service-input flight-remarks" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
+          </div>
+          <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleFlightBooking(this)">Enquire Flight Fares</button>
+        </form>
+      </div>
+
+      <!-- Visa Assistance Card -->
+      <div class="service-card visa-card">
+        <div class="service-card-header">
+          <div class="service-icon">🛂</div>
+          <h3 class="service-title">Visa Assistance</h3>
+          <p class="service-desc">Expert guidance and end-to-end documentation support.</p>
+        </div>
+        <form class="service-form" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <input type="text" id="visaCountry" name="visaCountry" class="service-input visa-country" placeholder="🌐 Destination Country (e.g., Dubai, Singapore...)" required>
+          </div>
+          <div class="form-row">
+            <input type="date" id="visaTravelDate" name="visaTravelDate" class="service-input visa-date" aria-label="Travel Date" title="Travel Date" required>
+            <input type="date" id="visaReturnDate" name="visaReturnDate" class="service-input visa-return-date" aria-label="Return Date" title="Return Date">
+          </div>
+          <div class="form-group">
+            <select id="visaPax" name="visaPax" class="service-input visa-pax" required>
+              <option value="" disabled selected>👤 Select Applicants / Pax</option>
+              <option value="1 Person">1 Person</option>
+              <option value="2 People">2 People</option>
+              <option value="Family (3-5)">Family (3-5)</option>
+              <option value="Group (5+)">Group (5+)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input type="text" id="visaName" name="visaName" class="service-input" placeholder="👤 Your Name" required>
+            <input type="tel" id="visaMobile" name="visaMobile" class="service-input" placeholder="📞 Mobile No." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="visaRemarks" name="visaRemarks" class="service-input visa-remarks" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
+          </div>
+          <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleVisaBooking(this)">Enquire via WhatsApp</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. TOUR PACKAGES HUB SECTION
   ========================================================= -->
   <section class="section" id="packages-section">
     <div class="hub-header text-center">
@@ -410,7 +295,6 @@
     </div>
 
     <div class="hub-grid">
-
       <!-- 1. Tour Chennai -->
       <article class="hub-card">
         <div class="hub-card-bg">
@@ -420,7 +304,7 @@
           <span class="hub-icon">🏛️</span>
           <h3>Tour Chennai</h3>
           <p>Explore heritage, temples, beaches, and local sights.</p>
-          <button class="hub-btn" onclick="openCategoryModal('chennai')">View Packages</button>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('chennai')">View Packages</button>
         </div>
       </article>
 
@@ -432,8 +316,8 @@
         <div class="hub-card-content">
           <span class="hub-icon">🛕</span>
           <h3>Tour Pilgrim</h3>
-          <p>Shirdi Sai Darshan, Tirupati, Kanchipuram & spiritual circuits.</p>
-          <button class="hub-btn" onclick="openCategoryModal('pilgrim')">View Packages</button>
+          <p>Shirdi Sai Darshan, Tirupati, Kanchipuram &amp; spiritual circuits.</p>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('pilgrim')">View Packages</button>
         </div>
       </article>
 
@@ -445,8 +329,8 @@
         <div class="hub-card-content">
           <span class="hub-icon">🌴</span>
           <h3>Tour South India</h3>
-          <p>Kodaikanal misty hills, Kerala backwaters & Coorg escapes.</p>
-          <button class="hub-btn" onclick="openCategoryModal('south-india')">View Packages</button>
+          <p>Kodaikanal misty hills, Kerala backwaters &amp; Coorg escapes.</p>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('south-india')">View Packages</button>
         </div>
       </article>
 
@@ -458,8 +342,8 @@
         <div class="hub-card-content">
           <span class="hub-icon">🏔️</span>
           <h3>Tour North India</h3>
-          <p>Royal palaces, Golden Triangle tours & snow peaks.</p>
-          <button class="hub-btn" onclick="openCategoryModal('north-india')">View Packages</button>
+          <p>Royal palaces, Golden Triangle tours &amp; snow peaks.</p>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('north-india')">View Packages</button>
         </div>
       </article>
 
@@ -471,8 +355,8 @@
         <div class="hub-card-content">
           <span class="hub-icon">🏞️</span>
           <h3>Tour North East</h3>
-          <p>Gangtok, Darjeeling, Meghalaya & pristine valleys.</p>
-          <button class="hub-btn" onclick="openCategoryModal('north-east')">View Packages</button>
+          <p>Gangtok, Darjeeling, Meghalaya &amp; pristine valleys.</p>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('north-east')">View Packages</button>
         </div>
       </article>
 
@@ -484,8 +368,8 @@
         <div class="hub-card-content">
           <span class="hub-icon">🧭</span>
           <h3>Tour Rest of India</h3>
-          <p>Explore unique destinations across all states & territories.</p>
-          <button class="hub-btn" onclick="openCategoryModal('rest-of-india')">View Packages</button>
+          <p>Explore unique destinations across all states &amp; territories.</p>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('rest-of-india')">View Packages</button>
         </div>
       </article>
 
@@ -497,10 +381,10 @@
         <div class="hub-card-content">
           <span class="hub-icon">✈️</span>
           <h3>Tour International</h3>
-          <p>Unforgettable foreign trips to Dubai, Singapore & Europe.</p>
-          <button class="hub-btn" onclick="openCategoryModal('international')">View Packages</button>
+          <p>Unforgettable foreign trips to Dubai, Singapore &amp; Europe.</p>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('international')">View Packages</button>
         </div>
-      </article> 
+      </article>
 
       <!-- 8. Corporate Tour -->
       <article class="hub-card">
@@ -511,7 +395,7 @@
           <span class="hub-icon">🏢</span>
           <h3>Corporate Tour</h3>
           <p>Tailored MICE, team retreats, and business outings.</p>
-          <button class="hub-btn" onclick="openCategoryModal('corporate')">View Packages</button>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('corporate')">View Packages</button>
         </div>
       </article>
 
@@ -524,7 +408,7 @@
           <span class="hub-icon">🎓</span>
           <h3>School College Tour</h3>
           <p>Educational field trips and safe student excursions.</p>
-          <button class="hub-btn" onclick="openCategoryModal('students')">View Packages</button>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('students')">View Packages</button>
         </div>
       </article>
 
@@ -537,7 +421,7 @@
           <span class="hub-icon">🏕️</span>
           <h3>Adventure Tour</h3>
           <p>Trekking, camping, wildlife, and thrill-seeking trips.</p>
-          <button class="hub-btn" onclick="openCategoryModal('adventure')">View Packages</button>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('adventure')">View Packages</button>
         </div>
       </article>
 
@@ -550,9 +434,9 @@
           <span class="hub-icon">💖</span>
           <h3>Honeymoon Tour</h3>
           <p>Romantic getaways and relaxing couples' retreats.</p>
-          <button class="hub-btn" onclick="openCategoryModal('honeymoon')">View Packages</button>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('honeymoon')">View Packages</button>
         </div>
-      </article>     
+      </article>
 
       <!-- 12. Cogo Cabs -->
       <article class="hub-card">
@@ -562,15 +446,16 @@
         <div class="hub-card-content">
           <span class="hub-icon">🚘</span>
           <h3>Cogo Cabs</h3>
-          <p>Dedicated outstation & intercity cab packages.</p>
-          <button class="hub-btn" onclick="openCategoryModal('cabs')">View Rates</button>
+          <p>Dedicated outstation &amp; intercity cab packages.</p>
+          <button type="button" class="hub-btn" onclick="openCategoryModal('cabs')">View Rates</button>
         </div>
-      </article>     
-
-    </div> <!-- Cleanly closes .hub-grid for packages -->
+      </article>
+    </div>
   </section>
 
-  <!-- ABOUT US SECTION -->
+  <!-- =========================================================
+       6. ABOUT US SECTION
+  ========================================================= -->
   <section id="about" class="about-section">
     <div class="section-container">
       <div class="about-content text-center">
@@ -583,7 +468,9 @@
     </div>
   </section>
 
-  <!-- CONTACT & LOCATION SECTION -->
+  <!-- =========================================================
+       7. CONTACT & LOCATION SECTION
+  ========================================================= -->
   <section id="contact" class="contact-section">
     <div class="section-container">
       <div class="text-center">
@@ -592,23 +479,22 @@
 
         <!-- Social Media Icons Bar -->
         <div class="social-links-bar">
-          <a href="#" class="social-btn facebook" target="_blank" title="Facebook">
+          <a href="#" class="social-btn facebook" target="_blank" title="Facebook" rel="noopener">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             <span>Facebook</span>
           </a>
-          <a href="#" class="social-btn instagram" target="_blank" title="Instagram">
+          <a href="#" class="social-btn instagram" target="_blank" title="Instagram" rel="noopener">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram</span>
           </a>
-          <a href="#" class="social-btn twitter" target="_blank" title="Twitter / X">
+          <a href="#" class="social-btn twitter" target="_blank" title="Twitter / X" rel="noopener">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span>Twitter</span>
           </a>
         </div>
-      </div> <!-- Closes .text-center correctly here so it doesn't wrap .contact-grid -->
+      </div>
 
       <div class="contact-grid">
-        <!-- Contact Details Card -->
         <div class="contact-card">
           <h3>Contact Details</h3>
           <div class="contact-item">
@@ -644,7 +530,6 @@
           </div>
         </div>
 
-        <!-- Embedded Google Map + Automatic Directions Button -->
         <div class="map-wrapper">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA4MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
@@ -655,7 +540,7 @@
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=13.093779,80.200738" target="_blank" class="map-directions-btn">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=13.093779,80.200738" target="_blank" class="map-directions-btn" rel="noopener">
             📍 Get Directions on Google Maps
           </a>
         </div>
@@ -663,6 +548,9 @@
     </div>
   </section>
 
+  <!-- =========================================================
+       8. MODALS & LIGHTBOX
+  ========================================================= -->
   <!-- Dynamic Interactive Enquiry Modal -->
   <div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
@@ -673,26 +561,22 @@
         <p id="modalDescription" class="modal-desc"></p>
       </div>
 
-      <!-- Dynamic Filter Tabs (ECR, Pilgrim, City, etc.) -->
       <div id="modalSubTabs" class="sub-tab-container"></div>
-
-      <!-- Tariff Cards & Destination Image Gallery -->
       <div id="modalDynamicContent" class="modal-body-wrapper"></div>
 
-      <!-- Quick Lead Generation Form -->
       <form id="queryForm" onsubmit="event.preventDefault();">
         <div class="form-grid">
           <div class="form-group">
-            <label>Your Name</label>
+            <label for="userName">Your Name</label>
             <input type="text" id="userName" placeholder="Enter full name" required>
           </div>
           <div class="form-group">
-            <label>Phone / WhatsApp</label>
+            <label for="userPhone">Phone / WhatsApp</label>
             <input type="tel" id="userPhone" placeholder="Enter mobile number" required>
           </div>
         </div>
         <div class="form-group">
-          <label>Travel Notes / Preferred Vehicle</label>
+          <label for="userQuery">Travel Notes / Preferred Vehicle</label>
           <textarea id="userQuery" rows="2" placeholder="Mention travel dates, group size, or custom preferences..."></textarea>
         </div>
 
@@ -708,24 +592,20 @@
     </div>
   </div>
 
-  <!-- Interactive Lightbox Modal (With Controls) -->
+  <!-- Interactive Lightbox Modal -->
   <div id="pamphletLightbox" class="pamphlet-lightbox" onclick="closePamphletZoom(event)">
     <span class="pamphlet-lightbox-close" onclick="closePamphletZoom(event)">&times;</span>
+    <button type="button" class="lightbox-nav prev-btn" onclick="navigateLightbox(-1, event)">&#10094;</button>
+    <button type="button" class="lightbox-nav next-btn" onclick="navigateLightbox(1, event)">&#10095;</button>
 
-    <!-- Lightbox Navigation Arrows -->
-    <button class="lightbox-nav prev-btn" onclick="navigateLightbox(-1, event)">&#10094;</button>
-    <button class="lightbox-nav next-btn" onclick="navigateLightbox(1, event)">&#10095;</button>
-
-    <!-- Image Container -->
     <div class="lightbox-img-container" id="lightboxContainer" onclick="event.stopPropagation()">
       <img id="lightboxImage" src="" alt="Zoomed Pamphlet">
     </div>
 
-    <!-- Zoom Control Buttons -->
     <div class="zoom-controls" onclick="event.stopPropagation()">
-      <button onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
-      <button onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
-      <button onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
+      <button type="button" onclick="changeZoom(0.25)" title="Zoom In">🔍 +</button>
+      <button type="button" onclick="changeZoom(-0.25)" title="Zoom Out">🔍 -</button>
+      <button type="button" onclick="resetZoom()" title="Reset Size">🔄 Reset</button>
     </div>
   </div>
 
@@ -742,4 +622,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-~
