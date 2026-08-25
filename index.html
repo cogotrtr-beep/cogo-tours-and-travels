@@ -174,7 +174,11 @@
             <input type="text" id="cabReturnDate" name="cabReturnDate" class="service-input cab-return-date" placeholder="📅 Return Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" aria-label="Return Date" title="Return Date">
           </div>
           <div class="form-row">
-            <input type="time" id="cabTime" name="cabTime" class="service-input cab-time" aria-label="Pickup Time" title="Pickup Time" required>
+           <!-- REPLACE THIS: -->
+<input type="time" id="cabTime" name="cabTime" class="service-input cab-time" aria-label="Pickup Time" title="Pickup Time" required>
+
+<!-- WITH THIS: -->
+<input type="text" id="cabTime" name="cabTime" class="service-input cab-time" placeholder="⏰ Pickup Time" onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'" aria-label="Pickup Time" title="Pickup Time" required>
             <select id="cabVehicle" name="cabVehicle" class="service-input cab-vehicle" required>
               <option value="">🚗 Vehicle</option>
               <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
