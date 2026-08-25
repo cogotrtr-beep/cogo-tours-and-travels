@@ -1525,3 +1525,19 @@ section,
     grid-template-columns: 1fr !important;
   }
 }
+/* =========================================================
+   7. CONTACT & LOCATION SECTION
+========================================================= */
+.contact-section {
+  padding-top: 10px;    /* Pulls the section higher up */
+  padding-bottom: 40px;
+  margin-top: 0;
+}
+
+.contact-section .text-center {
+  margin-bottom: 20px;  /* Keeps heading tight to the social buttons */
+}
+
+.contact-section h2 {
+  margin-bottom: 6px;
+}
