@@ -246,42 +246,50 @@
   </div>
 
   <!-- 3. VISA ASSISTANCE CARD -->
-  <div class="service-card visa-card">
-    <div class="service-card-header">
-      <div class="service-icon">🛂</div>
-      <h3 class="service-title">Visa Assistance</h3>
-      <p class="service-desc">Expert guidance and end-to-end documentation support.</p>
-    </div>
-    <form class="service-form" onsubmit="event.preventDefault();">
-      <div class="form-group">
-        <input type="text" id="visaCountry" name="visaCountry" class="service-input visa-country" placeholder="🌐 Type or select country..." required>
-      </div>
-      <div class="form-row">
-        <input type="date" id="visaTravelDate" name="visaTravelDate" class="service-input visa-date" aria-label="Travel Date" title="Travel Date" required>
-        <input type="date" id="visaReturnDate" name="visaReturnDate" class="service-input visa-return-date" aria-label="Return Date" title="Return Date">
-      </div>
-      <div class="form-group">
-        <select id="visaPax" name="visaPax" class="service-input visa-pax" required>
-          <option value="">👤 1 Pax / Applicant</option>
-          <option value="1 Person">1 Person</option>
-          <option value="2 People">2 People</option>
-          <option value="Family (3-5)">Family (3-5)</option>
-          <option value="Group (5+)">Group (5+)</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <input type="text" id="visaName" name="visaName" class="service-input" placeholder="👤 Your Name" required>
-        <input type="tel" id="visaMobile" name="visaMobile" class="service-input" placeholder="📞 Mobile No." required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="visaRemarks" name="visaRemarks" class="service-input visa-remarks" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
-      </div>
-      <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleVisaBooking(this)">Enquire via WhatsApp</button>
-    </form>
+<div class="service-card visa-card">
+  <div class="service-card-header">
+    <div class="service-icon">🛂</div>
+    <h3 class="service-title">Visa Assistance</h3>
+    <p class="service-desc">Expert guidance and end-to-end documentation support.</p>
   </div>
 
+  <form class="service-form" onsubmit="event.preventDefault();">
+    <!-- Destination Country Field -->
+    <div class="form-group">
+      <input type="text" id="visaCountry" name="visaCountry" class="service-input visa-country" placeholder="🌐 Destination Country (e.g., Dubai, Singapore...)" required>
+    </div>
+    
+    <!-- Travel Date & Return Date -->
+    <div class="form-row">
+      <input type="date" id="visaTravelDate" name="visaTravelDate" class="service-input visa-date" aria-label="Travel Date" title="Travel Date" required>
+      <input type="date" id="visaReturnDate" name="visaReturnDate" class="service-input visa-return-date" aria-label="Return Date" title="Return Date">
+    </div>
+
+    <!-- Number of Pax / Applicants -->
+    <div class="form-group">
+      <select id="visaPax" name="visaPax" class="service-input visa-pax" required>
+        <option value="" disabled selected>👤 Select Applicants / Pax</option>
+        <option value="1 Person">1 Person</option>
+        <option value="2 People">2 People</option>
+        <option value="Family (3-5)">Family (3-5)</option>
+        <option value="Group (5+)">Group (5+)</option>
+      </select>
+    </div>
+
+    <!-- Contact Info (Name & Mobile) -->
+    <div class="form-row">
+      <input type="text" id="visaName" name="visaName" class="service-input" placeholder="👤 Your Name" required>
+      <input type="tel" id="visaMobile" name="visaMobile" class="service-input" placeholder="📞 Mobile No." required>
+    </div>
+
+    <!-- Remarks -->
+    <div class="form-group">
+      <input type="text" id="visaRemarks" name="visaRemarks" class="service-input visa-remarks" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
+    </div>
+    
+    <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleVisaBooking(this)">Enquire via WhatsApp</button>
+  </form>
 </div>
-       
 
 <!-- STANDALONE JS HANDLERS & DATE RESTRICTIONS -->
 <script>
