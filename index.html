@@ -153,49 +153,56 @@
   <div class="services-grid">
 
     <!-- 1. CAB SERVICES CARD -->
-    <div class="service-card cab-card">
-      <div class="service-card-header">
-        <div class="service-icon">🚕</div>
-        <h3 class="service-title">Cab Services</h3>
-        <p class="service-desc">Local, outstation, and airport transfers with premium comfort.</p>
-      </div>
+<div class="service-card cab-card">
+  <div class="service-card-header">
+    <div class="service-icon">🚕</div>
+    <h3 class="service-title">Cab Services</h3>
+    <p class="service-desc">Local, outstation, and airport transfers with premium comfort.</p>
+  </div>
 
-      <form class="service-form" onsubmit="event.preventDefault();">
-        <div class="form-group">
-          <input type="text" id="pickupLocation" name="pickupLocation" class="service-input pickup-input" placeholder="📍 Pickup Location..." required>
-        </div>
-        <div class="form-group">
-          <input type="text" id="dropLocation" name="dropLocation" class="service-input drop-input" placeholder="📍 Destination / Drop" required>
-        </div>
-        <!-- Pickup Date & Return Date -->
-        <div class="form-row">
-          <input type="date" id="cabDate" name="cabDate" class="service-input cab-date" aria-label="Pickup Date" title="Pickup Date" required>
-          <input type="date" id="cabReturnDate" name="cabReturnDate" class="service-input cab-return-date" aria-label="Return Date" title="Return Date">
-        </div>
-        <!-- Pickup Time & Vehicle Choice -->
-        <div class="form-row">
-          <input type="time" id="cabTime" name="cabTime" class="service-input cab-time" aria-label="Pickup Time" title="Pickup Time" required>
-          <select id="cabVehicle" name="cabVehicle" class="service-input cab-vehicle" required>
-            <option value="">🚗 Vehicle</option>
-            <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
-            <option value="SUV (Innova/Ertiga)">SUV (Innova/Ertiga)</option>
-            <option value="Tempo Traveller">Tempo Traveller</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <select id="cabPackage" name="cabPackage" class="service-input cab-package" required>
-            <option value="">⏱️ Select Trip Pack</option>
-            <option value="Local Hourly">Local Hourly</option>
-            <option value="Outstation Roundtrip">Outstation Roundtrip</option>
-            <option value="Airport Transfer">Airport Transfer</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <input type="text" id="cabRemarks" name="cabRemarks" class="service-input cab-remarks" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
-        </div>
-        <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleCabBooking(this)">Book / Enquire Cab</button>
-      </form>
+  <form class="service-form" onsubmit="event.preventDefault();">
+    <div class="form-group">
+      <input type="text" id="pickupLocation" name="pickupLocation" class="service-input pickup-input" placeholder="📍 Pickup Location..." required>
     </div>
+    <div class="form-group">
+      <input type="text" id="dropLocation" name="dropLocation" class="service-input drop-input" placeholder="📍 Destination / Drop" required>
+    </div>
+    <!-- Pickup Date & Return Date -->
+    <div class="form-row">
+      <input type="date" id="cabDate" name="cabDate" class="service-input cab-date" aria-label="Pickup Date" title="Pickup Date" required>
+      <input type="date" id="cabReturnDate" name="cabReturnDate" class="service-input cab-return-date" aria-label="Return Date" title="Return Date">
+    </div>
+    <!-- Pickup Time & Vehicle Choice -->
+    <div class="form-row">
+      <input type="time" id="cabTime" name="cabTime" class="service-input cab-time" aria-label="Pickup Time" title="Pickup Time" required>
+      <select id="cabVehicle" name="cabVehicle" class="service-input cab-vehicle" required>
+        <option value="">🚗 Vehicle</option>
+        <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
+        <option value="SUV (Innova/Ertiga)">SUV (Innova/Ertiga)</option>
+        <option value="Tempo Traveller">Tempo Traveller</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select id="cabPackage" name="cabPackage" class="service-input cab-package" required>
+        <option value="">⏱️ Select Trip Pack</option>
+        <option value="Local Hourly">Local Hourly</option>
+        <option value="Outstation Roundtrip">Outstation Roundtrip</option>
+        <option value="Airport Transfer">Airport Transfer</option>
+      </select>
+    </div>
+
+    <!-- NEW CONTACT FIELDS (Name & Mobile) -->
+    <div class="form-row">
+      <input type="text" id="cabName" name="cabName" class="service-input" placeholder="👤 Your Name" required>
+      <input type="tel" id="cabMobile" name="cabMobile" class="service-input" placeholder="📞 Mobile No." required>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="cabRemarks" name="cabRemarks" class="service-input cab-remarks" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
+    </div>
+    <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleCabBooking(this)">Book / Enquire Cab</button>
+  </form>
+</div>
 
     <!-- 2. FLIGHT BOOKING CARD -->
     <div class="service-card flight-card">
