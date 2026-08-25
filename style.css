@@ -582,7 +582,24 @@ body {
   color: #64748b;
   text-align: center;
 }
+/* Fix Visa Card Height & Align Button with Other Cards */
+.visa-card .service-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
 
+/* Ensure the country wrapper doesn't inject extra bottom margin */
+.visa-country-selector {
+  margin-top: 0 !important;
+  margin-bottom: 10px;
+}
+
+/* Push the WhatsApp button smoothly to the bottom of the card */
+.visa-card .service-btn {
+  margin-top: auto;
+}
 /* =========================================================
    5. CATEGORY HUB GRID & CARDS
 ========================================================= */
