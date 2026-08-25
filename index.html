@@ -205,50 +205,57 @@
 </div>
 
     <!-- 2. FLIGHT BOOKING CARD -->
-    <div class="service-card flight-card">
-      <div class="service-card-header">
-        <div class="service-icon">✈️</div>
-        <h3 class="service-title">Flight Booking</h3>
-        <p class="service-desc">Hassle-free domestic and international flight reservations.</p>
-      </div>
+<div class="service-card flight-card">
+  <div class="service-card-header">
+    <div class="service-icon">✈️</div>
+    <h3 class="service-title">Flight Booking</h3>
+    <p class="service-desc">Hassle-free domestic and international flight reservations.</p>
+  </div>
 
-      <form class="service-form" onsubmit="event.preventDefault();">
-        <div class="toggle-row">
-          <label><input type="radio" name="flightType" value="Domestic" checked> Domestic</label>
-          <label><input type="radio" name="flightType" value="International"> International</label>
-        </div>
-        <div class="toggle-row">
-          <label><input type="radio" name="tripType" value="One-Way" checked> One-Way</label>
-          <label><input type="radio" name="tripType" value="Round Trip"> Round Trip</label>
-        </div>
-        <!-- Departure & Destination -->
-        <div class="form-group">
-          <input type="text" id="departureCity" name="departureCity" class="service-input flight-from" placeholder="🛫 From: Departure City / Airport / Country..." required>
-        </div>
-        <div class="form-group">
-          <input type="text" id="destinationCity" name="destinationCity" class="service-input flight-to" placeholder="🛬 To: Destination City / Airport / Country..." required>
-        </div>
-        <!-- Departure Date & Return Date -->
-        <div class="form-row">
-          <input type="date" id="flightDate" name="flightDate" class="service-input flight-date" aria-label="Departure Date" title="Departure Date" required>
-          <input type="date" id="flightReturnDate" name="flightReturnDate" class="service-input flight-return-date" aria-label="Return Date" title="Return Date">
-        </div>
-        <!-- Preferred Time Band -->
-        <div class="form-group">
-          <select id="flightTimeBand" name="flightTimeBand" class="service-input flight-timeband" required>
-            <option value="">🕒 Preferred Time Band</option>
-            <option value="Morning (06:00 AM - 12:00 PM)">🌅 Morning (06:00 AM - 12:00 PM)</option>
-            <option value="Afternoon (12:00 PM - 06:00 PM)">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
-            <option value="Evening (06:00 PM - 00:00 AM)">🌆 Evening (06:00 PM - 00:00 AM)</option>
-            <option value="Night (00:00 AM - 06:00 AM)">🌙 Night (00:00 AM - 06:00 AM)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <input type="text" id="flightRemarks" name="flightRemarks" class="service-input flight-remarks" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
-        </div>
-        <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleFlightBooking(this)">Enquire Flight Fares</button>
-      </form>
+  <form class="service-form" onsubmit="event.preventDefault();">
+    <div class="toggle-row">
+      <label><input type="radio" name="flightType" value="Domestic" checked> Domestic</label>
+      <label><input type="radio" name="flightType" value="International"> International</label>
     </div>
+    <div class="toggle-row">
+      <label><input type="radio" name="tripType" value="One-Way" checked> One-Way</label>
+      <label><input type="radio" name="tripType" value="Round Trip"> Round Trip</label>
+    </div>
+    <!-- Departure & Destination -->
+    <div class="form-group">
+      <input type="text" id="departureCity" name="departureCity" class="service-input flight-from" placeholder="🛫 From: Departure City / Airport / Country..." required>
+    </div>
+    <div class="form-group">
+      <input type="text" id="destinationCity" name="destinationCity" class="service-input flight-to" placeholder="🛬 To: Destination City / Airport / Country..." required>
+    </div>
+    <!-- Departure Date & Return Date -->
+    <div class="form-row">
+      <input type="date" id="flightDate" name="flightDate" class="service-input flight-date" aria-label="Departure Date" title="Departure Date" required>
+      <input type="date" id="flightReturnDate" name="flightReturnDate" class="service-input flight-return-date" aria-label="Return Date" title="Return Date">
+    </div>
+    <!-- Preferred Time Band -->
+    <div class="form-group">
+      <select id="flightTimeBand" name="flightTimeBand" class="service-input flight-timeband" required>
+        <option value="">🕒 Preferred Time Band</option>
+        <option value="Morning (06:00 AM - 12:00 PM)">🌅 Morning (06:00 AM - 12:00 PM)</option>
+        <option value="Afternoon (12:00 PM - 06:00 PM)">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
+        <option value="Evening (06:00 PM - 00:00 AM)">🌆 Evening (06:00 PM - 00:00 AM)</option>
+        <option value="Night (00:00 AM - 06:00 AM)">🌙 Night (00:00 AM - 06:00 AM)</option>
+      </select>
+    </div>
+
+    <!-- NEW CONTACT FIELDS (Name & Mobile) -->
+    <div class="form-row">
+      <input type="text" id="flightName" name="flightName" class="service-input" placeholder="👤 Your Name" required>
+      <input type="tel" id="flightMobile" name="flightMobile" class="service-input" placeholder="📞 Mobile No." required>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="flightRemarks" name="flightRemarks" class="service-input flight-remarks" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
+    </div>
+    <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleFlightBooking(this)">Enquire Flight Fares</button>
+  </form>
+</div>
 
     <!-- 3. VISA ASSISTANCE CARD -->
     <div class="service-card visa-card">
