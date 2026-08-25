@@ -1411,3 +1411,51 @@ body {
   width: 100% !important;
   box-sizing: border-box !important;
 }
+/* =========================================================
+   FIX FOR CONTAINER MAX-WIDTH & CENTER ALIGNMENT
+========================================================= */
+
+/* Align Tour Packages grid to match Services container width */
+#packages-section .hub-grid {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Align Header Titles centered to match Services */
+#packages-section .hub-header,
+#about .section-container,
+#contact .section-container {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Align About Us text block properly */
+.about-section {
+  padding: 40px 0 !important;
+}
+
+.about-content {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+
+/* Align Contact Details & Google Map Side-by-Side horizontally */
+.contact-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 30px !important;
+  align-items: start !important;
+  max-width: 1280px !important;
+  margin: 30px auto 0 auto !important;
+}
+
+/* Responsive fix for mobile devices */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
