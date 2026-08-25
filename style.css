@@ -583,6 +583,22 @@ body {
   text-align: center;
 }
 
+/* Mobile Safari Date Input Visibility Fix */
+input[type="date"] {
+  color: #475569;
+  min-height: 42px;
+  -webkit-appearance: none;
+}
+
+input[type="date"]:invalid {
+  color: #94a3b8;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.2em;
+}
+
 /* =========================================================
    5. TOUR PACKAGES HUB SECTION
 ========================================================= */
