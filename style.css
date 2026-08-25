@@ -307,300 +307,161 @@ body {
 
 .btn-primary-single.btn-intl { background: #0f172a; }
 
-/* =========================================================
-   4. OUR SERVICES SECTION
-========================================================= */
-.services-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 5px 20px 15px 20px; /* Top Right Bottom Left */
-}
+<!-- =========================================================
+       4. OUR SERVICES SECTION
+  ========================================================= -->
+  <section class="services-section" id="services">
+    <div class="services-header-container">
+      <h2 class="services-main-title">Our Services</h2>
+      <p class="services-sub-title">Reliable travel support and hassle-free booking solutions</p>
+    </div>
 
-.services-header-container {
-  text-align: center;
-  margin-bottom: 24px;
-}
+    <div class="services-grid">
 
-.services-main-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin: 0;
-  color: #0f172a;
-}
+      <!-- Cab Services Card -->
+      <div class="service-card cab-card">
+        <div class="service-card-header">
+          <div class="service-icon">🚕</div>
+          <h3 class="service-title">Cab Services</h3>
+          <p class="service-desc">Local, outstation, and airport transfers with premium comfort.</p>
+        </div>
+        <form class="service-form" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <input type="text" id="pickupLocation" name="pickupLocation" class="service-input pickup-input" placeholder="📍 Pickup Location..." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="dropLocation" name="dropLocation" class="service-input drop-input" placeholder="📍 Destination / Drop" required>
+          </div>
+          <div class="form-row">
+            <input type="text" id="cabDate" name="cabDate" class="service-input cab-date" placeholder="📅 Pickup Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" aria-label="Pickup Date" title="Pickup Date" required>
+            <input type="text" id="cabReturnDate" name="cabReturnDate" class="service-input cab-return-date" placeholder="📅 Return Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" aria-label="Return Date" title="Return Date">
+          </div>
+          <div class="form-row">
+            <input type="text" id="cabTime" name="cabTime" class="service-input cab-time" placeholder="⏰ Pickup Time" onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'" aria-label="Pickup Time" title="Pickup Time" required>
+            <select id="cabVehicle" name="cabVehicle" class="service-input cab-vehicle" required>
+              <option value="">🚗 Vehicle</option>
+              <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
+              <option value="SUV (Innova/Ertiga)">SUV (Innova/Ertiga)</option>
+              <option value="Tempo Traveller">Tempo Traveller</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select id="cabPackage" name="cabPackage" class="service-input cab-package" required>
+              <option value="">⏱️ Select Trip Pack</option>
+              <option value="Local Hourly">Local Hourly</option>
+              <option value="Outstation Roundtrip">Outstation Roundtrip</option>
+              <option value="Airport Transfer">Airport Transfer</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input type="text" id="cabName" name="cabName" class="service-input" placeholder="👤 Your Name" required>
+            <input type="tel" id="cabMobile" name="cabMobile" class="service-input" placeholder="📞 Mobile No." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="cabRemarks" name="cabRemarks" class="service-input cab-remarks" placeholder="✏️ Custom remarks / requirements (e.g., extra bags, child seat)">
+          </div>
+          <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleCabBooking(this)">Book / Enquire Cab</button>
+        </form>
+      </div>
 
-.services-sub-title {
-  font-size: 0.9rem;
-  color: #64748b;
-  margin-top: 5px;
-}
+      <!-- Flight Booking Card -->
+      <div class="service-card flight-card">
+        <div class="service-card-header">
+          <div class="service-icon">✈️</div>
+          <h3 class="service-title">Flight Booking</h3>
+          <p class="service-desc">Hassle-free domestic and international flight reservations.</p>
+        </div>
+        <form class="service-form" onsubmit="event.preventDefault();">
+          <div class="toggle-row">
+            <label><input type="radio" name="flightType" value="Domestic" checked> Domestic</label>
+            <label><input type="radio" name="flightType" value="International"> International</label>
+          </div>
+          <div class="toggle-row">
+            <label><input type="radio" name="tripType" value="One-Way" checked> One-Way</label>
+            <label><input type="radio" name="tripType" value="Round Trip"> Round Trip</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="departureCity" name="departureCity" class="service-input flight-from" placeholder="🛫 From: Departure City / Airport / Country..." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="destinationCity" name="destinationCity" class="service-input flight-to" placeholder="🛬 To: Destination City / Airport / Country..." required>
+          </div>
+          <div class="form-row">
+            <input type="text" id="flightDate" name="flightDate" class="service-input flight-date" placeholder="📅 Departure Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" aria-label="Departure Date" title="Departure Date" required>
+            <input type="text" id="flightReturnDate" name="flightReturnDate" class="service-input flight-return-date" placeholder="📅 Return Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" aria-label="Return Date" title="Return Date">
+          </div>
+          <div class="form-group">
+            <select id="flightTimeBand" name="flightTimeBand" class="service-input flight-timeband" required>
+              <option value="">🕒 Preferred Time Band</option>
+              <option value="Morning (06:00 AM - 12:00 PM)">🌅 Morning (06:00 AM - 12:00 PM)</option>
+              <option value="Afternoon (12:00 PM - 06:00 PM)">☀️ Afternoon (12:00 PM - 06:00 PM)</option>
+              <option value="Evening (06:00 PM - 00:00 AM)">🌆 Evening (06:00 PM - 00:00 AM)</option>
+              <option value="Night (00:00 AM - 06:00 AM)">🌙 Night (00:00 AM - 06:00 AM)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input type="text" id="flightName" name="flightName" class="service-input" placeholder="👤 Your Name" required>
+            <input type="tel" id="flightMobile" name="flightMobile" class="service-input" placeholder="📞 Mobile No." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="flightRemarks" name="flightRemarks" class="service-input flight-remarks" placeholder="✏️ Custom remarks / requirements (e.g., meal, airline preference)">
+          </div>
+          <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleFlightBooking(this)">Enquire Flight Fares</button>
+        </form>
+      </div>
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  width: 100%;
-}
+      <!-- Visa Assistance Card -->
+      <div class="service-card visa-card">
+        <div class="service-card-header">
+          <div class="service-icon">🛂</div>
+          <h3 class="service-title">Visa Assistance</h3>
+          <p class="service-desc">Expert guidance and end-to-end documentation support.</p>
+        </div>
+        <form class="service-form" onsubmit="event.preventDefault();">
+          
+          <!-- Custom Flag Country Selector -->
+          <div class="form-group visa-country-selector">
+            <div class="country-input-wrapper">
+              <div id="selectedFlag" class="flag-preview hidden"></div>
+              <input 
+                type="text" 
+                id="visaCountry" 
+                name="visaCountry" 
+                class="service-input visa-country" 
+                placeholder="🌐 Destination Country (e.g., Dubai, Singapore...)" 
+                autocomplete="off"
+                required
+              >
+            </div>
+            <div id="visaCountryDropdown" class="visa-dropdown-list"></div>
+          </div>
 
-.service-card {
-  background-size: cover;
-  background-position: center;
-  border-radius: 18px;
-  border-top: 4px solid #D4AF37;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-  padding: 24px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  box-sizing: border-box;
-}
+          <div class="form-row">
+            <input type="text" id="visaTravelDate" name="visaTravelDate" class="service-input visa-date" placeholder="📅 Travel Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" aria-label="Travel Date" title="Travel Date" required>
+            <input type="text" id="visaReturnDate" name="visaReturnDate" class="service-input visa-return-date" placeholder="📅 Return Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" aria-label="Return Date" title="Return Date">
+          </div>
+          <div class="form-group">
+            <select id="visaPax" name="visaPax" class="service-input visa-pax" required>
+              <option value="" disabled selected>👤 Select Applicants / Pax</option>
+              <option value="1 Person">1 Person</option>
+              <option value="2 People">2 People</option>
+              <option value="Family (3-5)">Family (3-5)</option>
+              <option value="Group (5+)">Group (5+)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input type="text" id="visaName" name="visaName" class="service-input" placeholder="👤 Your Name" required>
+            <input type="tel" id="visaMobile" name="visaMobile" class="service-input" placeholder="📞 Mobile No." required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="visaRemarks" name="visaRemarks" class="service-input visa-remarks" placeholder="✏️ Custom remarks / requirements (e.g., Tourist Visa, Express)">
+          </div>
+          <button type="button" class="service-btn" onclick="event.stopImmediatePropagation(); handleVisaBooking(this)">Enquire via WhatsApp</button>
+        </form>
+      </div>
 
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.78);
-  z-index: 1;
-}
-
-.service-card-header,
-.service-form {
-  position: relative;
-  z-index: 2;
-}
-
-.service-card-header {
-  text-align: center;
-  margin-bottom: 18px;
-}
-
-.service-icon { 
-  font-size: 1.8rem; 
-  text-align: center; 
-}
-
-.service-title {
-  text-align: center;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 6px 0 4px 0;
-}
-
-.service-desc {
-  text-align: center;
-  font-size: 0.82rem;
-  color: #d1d5db;
-  margin: 0;
-}
-
-.service-input,
-.service-form input[type="text"],
-.service-form input[type="date"],
-.service-form input[type="time"],
-.service-form select {
-  width: 100%;
-  height: 42px;
-  padding: 8px 12px;
-  font-size: 0.88rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.95);
-  color: #1e293b;
-  box-sizing: border-box;
-  transition: padding-left 0.2s ease, border-color 0.2s ease;
-}
-
-.service-input:focus,
-.service-form input:focus,
-.service-form select:focus {
-  outline: none;
-  border-color: #FF9933;
-}
-
-.form-group {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.form-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.form-row .service-input {
-  flex: 1;
-}
-
-.toggle-row {
-  display: flex;
-  justify-content: space-around;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 6px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  color: #fff;
-  font-size: 0.82rem;
-}
-
-.toggle-row label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.service-btn {
-  width: 100%;
-  height: 44px;
-  background-color: #22c55e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.92rem;
-  cursor: pointer;
-  margin-top: 6px;
-  transition: background-color 0.2s ease;
-}
-
-.service-btn:hover {
-  background-color: #16a34a;
-}
-
-/* Custom Input Modifications */
-.visa-remarks-textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 13px;
-  background-color: #ffffff;
-  color: #0f172a;
-  font-family: inherit;
-  resize: vertical;
-  outline: none;
-}
-
-.visa-remarks-textarea:focus { border-color: #0f172a; }
-
-/* Dynamic Visa Country Selector & Flag Component */
-.visa-country-selector {
-  position: relative;
-  width: 100%;
-}
-
-.country-input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-/* Overlaid Flag Icon Inside the Input */
-.flag-preview {
-  position: absolute;
-  left: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.flag-preview img {
-  width: 24px;
-  height: 16px;
-  object-fit: cover;
-  border-radius: 3px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-.flag-preview.hidden {
-  display: none;
-}
-
-/* Dynamically adjust left padding when a flag is active */
-.country-input-wrapper input.has-flag {
-  padding-left: 44px;
-}
-
-/* Dynamic Visa Search Dropdown Box */
-.visa-dropdown-list {
-  display: none;
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  max-height: 220px;
-  overflow-y: auto;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  scroll-behavior: smooth;
-}
-
-.visa-dropdown-list.show { 
-  display: block; 
-}
-
-/* Individual Dropdown Item */
-.visa-option {
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 14.5px;
-  color: #0f172a;
-  font-weight: 600;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.visa-option:hover { 
-  background-color: #f1f5f9; 
-  color: #138808;
-}
-
-.visa-option img {
-  width: 24px;
-  height: 16px;
-  object-fit: cover;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.no-match-option {
-  padding: 12px;
-  font-size: 13.5px;
-  color: #64748b;
-  text-align: center;
-}
-
-/* Mobile Safari Date & Time Input Visibility Fix */
-input[type="date"],
-input[type="time"] {
-  color: #475569;
-  min-height: 42px;
-  -webkit-appearance: none;
-}
-
-input[type="date"]:invalid,
-input[type="time"]:invalid {
-  color: #94a3b8;
-}
-
-input[type="date"]::-webkit-date-and-time-value,
-input[type="time"]::-webkit-date-and-time-value {
-  text-align: left;
-  min-height: 1.2em;
-}
+    </div>
+  </section>
 
 /* =========================================================
    5. TOUR PACKAGES HUB SECTION
