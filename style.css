@@ -1728,3 +1728,24 @@ body {
 .service-btn:hover {
   background-color: #16a34a;
 }
+/* FORCE THREE-COLUMN LAYOUT FOR SERVICES */
+.services-grid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.services-container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 20px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  align-items: stretch !important;
+}
+
+.service-card {
+  flex: 1 1 0px !important;
+  min-width: 0 !important;
+}
