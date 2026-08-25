@@ -853,3 +853,82 @@ function sendFlightWhatsApp() {
   const encodedMessage = encodeURIComponent(message);
   window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 }
+// 1. CAB BOOKING HANDLER
+function handleCabBooking(btn) {
+  const form = btn.closest('form');
+  const pickup = form.querySelector('#pickupLocation')?.value || '';
+  const drop = form.querySelector('#dropLocation')?.value || '';
+  const date = form.querySelector('#cabDate')?.value || '';
+  const returnDate = form.querySelector('#cabReturnDate')?.value || '';
+  const time = form.querySelector('#cabTime')?.value || '';
+  const vehicle = form.querySelector('#cabVehicle')?.value || '';
+  const pack = form.querySelector('#cabPackage')?.value || '';
+  const name = form.querySelector('#cabName')?.value || '';
+  const mobile = form.querySelector('#cabMobile')?.value || '';
+  const remarks = form.querySelector('#cabRemarks')?.value || '';
+
+  let msg = `*Cab Service Enquiry*\n`;
+  msg += ` Pickup: ${pickup}\n`;
+  msg += ` Drop: ${drop}\n`;
+  msg += ` Travel Date: ${date}\n`;
+  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
+  if (time) msg += `⏰ Pickup Time: ${time}\n`;
+  msg += ` Vehicle: ${vehicle}\n`;
+  msg += ` Package: ${pack}\n`;
+  if (name) msg += `👤 Name: ${name}\n`;
+  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
+  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
+
+  window.open(`https://wa.me/91YOUR_NUMBER_HERE?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// 2. FLIGHT BOOKING HANDLER
+function handleFlightBooking(btn) {
+  const form = btn.closest('form');
+  const flightType = form.querySelector('input[name="flightType"]:checked')?.value || 'Domestic';
+  const tripType = form.querySelector('input[name="tripType"]:checked')?.value || 'One-Way';
+  const from = form.querySelector('#departureCity')?.value || '';
+  const to = form.querySelector('#destinationCity')?.value || '';
+  const date = form.querySelector('#flightDate')?.value || '';
+  const returnDate = form.querySelector('#flightReturnDate')?.value || '';
+  const timeBand = form.querySelector('#flightTimeBand')?.value || '';
+  const name = form.querySelector('#flightName')?.value || '';
+  const mobile = form.querySelector('#flightMobile')?.value || '';
+  const remarks = form.querySelector('#flightRemarks')?.value || '';
+
+  let msg = `*Flight Booking Enquiry*\n`;
+  msg += ` Type: ${flightType} (${tripType})\n`;
+  msg += ` From: ${from}\n`;
+  msg += ` To: ${to}\n`;
+  msg += ` Departure Date: ${date}\n`;
+  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
+  if (timeBand) msg += ` Preferred Time: ${timeBand}\n`;
+  if (name) msg += `👤 Name: ${name}\n`;
+  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
+  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
+
+  window.open(`https://wa.me/91YOUR_NUMBER_HERE?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// 3. VISA ASSISTANCE HANDLER
+function handleVisaBooking(btn) {
+  const form = btn.closest('form');
+  const country = form.querySelector('#visaCountry')?.value || '';
+  const date = form.querySelector('#visaTravelDate')?.value || '';
+  const returnDate = form.querySelector('#visaReturnDate')?.value || '';
+  const pax = form.querySelector('#visaPax')?.value || '';
+  const name = form.querySelector('#visaName')?.value || '';
+  const mobile = form.querySelector('#visaMobile')?.value || '';
+  const remarks = form.querySelector('#visaRemarks')?.value || '';
+
+  let msg = `*Visa Assistance Enquiry*\n`;
+  msg += `🌐 Country: ${country}\n`;
+  msg += ` Travel Date: ${date}\n`;
+  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
+  msg += ` Applicants: ${pax}\n`;
+  if (name) msg += `👤 Name: ${name}\n`;
+  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
+  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
+
+  window.open(`https://wa.me/91YOUR_NUMBER_HERE?text=${encodeURIComponent(msg)}`, '_blank');
+}
