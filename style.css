@@ -1379,3 +1379,35 @@ body {
     border-radius: 8px;
   }
 }
+/* =========================================================
+   BOTTOM SECTION (TOUR PACKAGES, ABOUT, CONTACT) ALIGNMENT
+========================================================= */
+
+/* Ensure the main container wraps to the same max-width as Services */
+.tour-about-contact-section, 
+.info-grid-container,
+.bottom-content-grid {
+  max-width: 1280px !important;
+  width: 100% !important;
+  margin: 0 auto 50px auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Force the 3 columns below Services to align directly underneath the cards */
+.tour-about-contact-grid,
+.three-column-layout {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+
+/* Ensure inner cards stretch properly across their full column width */
+.tour-packages-card,
+.about-us-card,
+.contact-us-card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
