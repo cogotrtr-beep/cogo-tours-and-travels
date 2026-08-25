@@ -18,17 +18,17 @@ body {
   text-align: center; 
 }
 
-/* Header Brand Navigation - Fixed Sticky Top Ribbon */
+/* Header Brand Navigation - Fixed Top Ribbon */
 #mainNav {
-  position: -webkit-sticky; /* iOS Safari compatibility */
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 9999;           /* Keeps ribbon above all cards, overlays, and dropdowns */
+  left: 0;
+  width: 100%;
+  z-index: 9999;
   background: #0f172a;
   color: #ffffff;
   padding: 12px 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  width: 100%;
 }
 
 .nav-container.nav-center-aligned {
