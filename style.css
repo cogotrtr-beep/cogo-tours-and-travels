@@ -1,4 +1,4 @@
-/* ========================================================
+/* =========================================================
    1. GLOBAL BASE & BRAND STYLES
 ========================================================= */
 * {
@@ -18,15 +18,17 @@ body {
   text-align: center; 
 }
 
-/* Header Brand Navigation */
+/* Header Brand Navigation - Fixed Sticky Top Ribbon */
 #mainNav {
+  position: -webkit-sticky; /* iOS Safari compatibility */
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;           /* Keeps ribbon above all cards, overlays, and dropdowns */
   background: #0f172a;
   color: #ffffff;
   padding: 12px 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
 }
 
 .nav-container.nav-center-aligned {
