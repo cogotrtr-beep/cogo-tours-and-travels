@@ -584,41 +584,6 @@ body {
 }
 
 /* =========================================================
-   VISA CARD STRICT ALIGNMENT OVERRIDE
-========================================================= */
-
-/* Force uniform height across all grid cards */
-.services-grid .service-card {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  height: 100% !important;
-}
-
-/* Ensure form stretches properly */
-.service-card .service-form {
-  display: flex !important;
-  flex-direction: column !important;
-  flex-grow: 1 !important;
-  justify-content: space-between !important;
-}
-
-/* Remove extra margins injected by visa container wrapper */
-.visa-country-selector {
-  margin-top: 0 !important;
-  margin-bottom: 10px !important;
-}
-
-.visa-country-selector .form-group {
-  margin-bottom: 0 !important;
-}
-
-/* Force bottom action buttons to sit at identical heights */
-.service-card .service-btn {
-  margin-top: auto !important;
-}
-
-/* =========================================================
    5. CATEGORY HUB GRID & CARDS
 ========================================================= */
 .section {
