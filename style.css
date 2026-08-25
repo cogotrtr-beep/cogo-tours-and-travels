@@ -4,7 +4,7 @@
 * {
   margin: 0;
   padding: 0;
-     box-sizing: border-box;
+  box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -121,7 +121,411 @@ body {
 .hero-btn.secondary { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
 
 /* =========================================================
-   3. CATEGORY HUB GRID & CARDS
+   3. ONGOING TOURS SECTION
+========================================================= */
+.ongoing-tours-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.ongoing-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 992px) {
+  .ongoing-dual-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ongoing-column {
+  background-color: #fbf5ed;
+  border: 1px solid #ebd9c8;
+  border-radius: 18px;
+  padding: 24px 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.compact-header {
+  margin-bottom: 16px;
+  padding-left: 8px;
+}
+
+.live-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.live-badge.domestic { background-color: #fff3e0; color: #e65100; }
+.live-badge.intl { background-color: #e0f2fe; color: #0369a1; }
+
+.bold-column-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.compact-sub {
+  font-size: 13.5px;
+  color: #64748b;
+}
+
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.slider-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 4px;
+  scrollbar-width: none;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-track {
+  display: flex;
+  gap: 12px;
+}
+
+.slide-card {
+  position: relative;
+  flex: 0 0 calc(42% - 6px);
+  height: 250px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 480px) {
+  .slide-card { flex: 0 0 65%; }
+}
+
+.slide-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(212, 175, 55, 0.4);
+}
+
+.slide-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 20%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px;
+  color: #ffffff;
+}
+
+.status-tag {
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.status-tag.ongoing { background: #138808; color: #fff; }
+.status-tag.upcoming { background: #FF9933; color: #fff; }
+
+.slide-overlay h4 { font-size: 14.5px; font-weight: 800; margin-bottom: 2px; }
+.slide-overlay p { font-size: 11px; opacity: 0.85; }
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.85);
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.nav-arrow:hover { background: #0f172a; }
+.left-arrow { left: -10px; }
+.right-arrow { right: -10px; }
+
+.column-action-bar {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed #d6c5b3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.column-action-bar span { font-size: 13px; font-weight: 600; color: #475569; }
+
+.btn-primary-single {
+  background: #138808;
+  color: #ffffff;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary-single.btn-intl { background: #0f172a; }
+
+/* =========================================================
+   4. OUR SERVICES SECTION (RECTIFIED GRID LAYOUT)
+========================================================= */
+.services-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.services-header-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.services-main-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #0f172a;
+}
+
+.services-sub-title {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: 5px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.service-card {
+  background-size: cover;
+  background-position: center;
+  border-radius: 18px;
+  border-top: 4px solid #D4AF37;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.78);
+  z-index: 1;
+}
+
+.service-card-header,
+.service-form {
+  position: relative;
+  z-index: 2;
+}
+
+.service-card-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.service-icon { font-size: 1.8rem; text-align: center; }
+
+.service-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 6px 0 4px 0;
+}
+
+.service-desc {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #d1d5db;
+  margin: 0;
+}
+
+.service-input,
+.service-form input[type="text"],
+.service-form input[type="date"],
+.service-form input[type="time"],
+.service-form select {
+  width: 100%;
+  height: 42px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  box-sizing: border-box;
+}
+
+.service-input:focus,
+.service-form input:focus,
+.service-form select:focus {
+  outline: none;
+  border-color: #FF9933;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-row .service-input {
+  flex: 1;
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+.toggle-row label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.service-btn {
+  width: 100%;
+  height: 44px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.service-btn:hover {
+  background-color: #16a34a;
+}
+
+/* Custom Input Modifications */
+.visa-remarks-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+}
+
+.visa-remarks-textarea:focus { border-color: #0f172a; }
+
+/* Dynamic Visa Dropdown */
+.visa-country-selector {
+  margin-top: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.visa-dropdown-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 100;
+  margin-top: 4px;
+}
+
+.visa-dropdown-list.show { display: block; }
+
+.visa-option {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #334155;
+  transition: background 0.15s ease;
+}
+
+.visa-option:hover { background-color: #f1f5f9; }
+
+/* =========================================================
+   5. CATEGORY HUB GRID & CARDS
 ========================================================= */
 .section {
   max-width: 1280px;
@@ -132,55 +536,23 @@ body {
 .hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
 .section-sub { color: #64748b; margin-bottom: 25px; font-size: 16px; }
 
-/* Social Links Bar */
-.social-links-bar {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 35px;
-  flex-wrap: wrap;
-}
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 30px;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 13.5px;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.social-btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
-.social-btn.facebook { background-color: #1877F2; }
-.social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.social-btn.twitter { background-color: #000000; }
-
-/* Grid Layout */
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 26px;
-  align-items: stretch; /* Ensures all grid cards stay uniform in height */
+  align-items: stretch;
 }
 
 .hub-card {
   position: relative;
-  background: #0f172a; /* Dark base so text stands out */
+  background: #0f172a;
   border-radius: 18px;
-  overflow: hidden; /* CRITICAL: Keeps image overflow inside rounded borders */
+  overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 320px; /* Locks card height so content stays perfectly aligned */
+  min-height: 340px;
   border: 1px solid #e2e8f0;
 }
 
@@ -194,16 +566,14 @@ body {
   z-index: 1;
 }
 
-/* Image scaling fix */
 .hub-card-bg .card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fills the entire card background seamlessly */
+  object-fit: cover;
   object-position: center;
   display: block;
 }
 
-/* Dark overlay so text stays readable over the background image */
 .hub-card-bg::after {
   content: '';
   position: absolute;
@@ -213,13 +583,11 @@ body {
   z-index: 2;
 }
 
-.hub-card:hover .hub-card-bg { 
-  transform: scale(1.08); 
-}
+.hub-card:hover .hub-card-bg { transform: scale(1.08); }
 
 .hub-card-content {
   position: relative;
-  z-index: 3; /* Keeps text above the dark overlay */
+  z-index: 3;
   padding: 22px;
   color: #ffffff;
   display: flex;
@@ -244,22 +612,59 @@ body {
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.hub-btn:hover {
-  transform: translateY(-1px);
+.hub-btn:hover { transform: translateY(-1px); }
+
+/* Custom Hub Box Variations */
+.tour-card-box {
+  padding: 24px 20px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.tour-box-header { text-align: center; margin-bottom: 12px; }
+.tour-box-title { text-align: center; font-size: 1.35rem; font-weight: 700; margin: 0; }
+.tour-box-subtitle { text-align: center; font-size: 0.85rem; margin-top: 4px; color: #666; }
+
+.tour-box-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.tour-box-footer .btn-enquire {
+  text-align: center;
+  padding: 10px 22px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
 /* =========================================================
-   4. ABOUT US SECTION
+   6. ABOUT US SECTION
 ========================================================= */
 .about-section {
   background: #ffffff;
   padding: 60px 20px;
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .section-container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
 }
 
 .about-content h2 {
@@ -279,24 +684,50 @@ body {
 .about-body {
   font-size: 15.5px;
   color: #475569;
-  max-width: 850px;
-  margin: 0 auto;
   line-height: 1.8;
 }
 
 /* =========================================================
-   5. CONTACT & MAP SECTION
+   7. CONTACT & MAP SECTION
 ========================================================= */
 .contact-section {
   padding: 60px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+.social-links-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+.social-btn.facebook { background-color: #1877F2; }
+.social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-btn.twitter { background-color: #000000; }
 
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-top: 20px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .contact-card {
@@ -305,6 +736,8 @@ body {
   border-radius: 18px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
   border: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-card h3 {
@@ -333,6 +766,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.map-wrapper iframe {
+  height: 320px;
+  border-radius: 14px;
 }
 
 .map-directions-btn {
@@ -348,12 +788,10 @@ body {
   transition: background-color 0.2s ease;
 }
 
-.map-directions-btn:hover {
-  background: #FF9933;
-}
+.map-directions-btn:hover { background: #FF9933; }
 
 /* =========================================================
-   6. MODAL POPUP & INTERACTIVE TOP TABS
+   8. MODAL POPUP & INTERACTIVE TOP TABS
 ========================================================= */
 .modal-overlay {
   display: none;
@@ -406,23 +844,10 @@ body {
   transition: all 0.2s ease;
 }
 
-.modal-close:hover {
-  background: #e2e8f0;
-  color: #0f172a;
-}
+.modal-close:hover { background: #e2e8f0; color: #0f172a; }
 
-#modalTitle {
-  font-size: 22px;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 4px;
-}
-
-.modal-desc {
-  font-size: 14px;
-  color: #64748b;
-  margin-bottom: 16px;
-}
+#modalTitle { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+.modal-desc { font-size: 14px; color: #64748b; margin-bottom: 16px; }
 
 .sub-tab-container {
   display: flex;
@@ -456,11 +881,8 @@ body {
 .sub-tab-btn.tab-color-2 { background-color: #138808; border-color: #0f6e06; } 
 .sub-tab-btn.tab-color-3 { background-color: #D97706; border-color: #b46204; } 
 
-.sub-tab-btn.active {
-  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a;
-}
+.sub-tab-btn.active { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a; }
 
-.modal-body-wrapper.peach-theme,
 .modal-body-wrapper {
   background: #FFF5EE;
   border: 1.5px solid #FFE4E1;
@@ -471,11 +893,7 @@ body {
   color: #0f172a;
 }
 
-/* Form Layout & Actions */
-.form-group {
-  margin-bottom: 14px;
-}
-
+/* Modal Form Layout & Actions */
 .form-group label {
   display: block;
   font-size: 13.5px;
@@ -496,21 +914,13 @@ body {
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
-  border-color: #FF9933;
-}
+.form-group textarea:focus { border-color: #FF9933; }
 
 .modal-actions-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-top: 18px;
-}
-
-@media (max-width: 480px) {
-  .modal-actions-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .action-btn {
@@ -527,19 +937,12 @@ body {
   transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
-.action-btn:active {
-  transform: scale(0.98);
-}
-
+.action-btn:active { transform: scale(0.98); }
 .btn-wa { background-color: #138808; color: #ffffff; }
 .btn-email { background-color: #0F172A; color: #ffffff; }
 
-/* =========================================================
-   7. BULLETIN-STYLE PACKAGE & TARIFF DETAILS
-========================================================= */
-.tariff-box {
-  margin-top: 10px;
-}
+/* Tariff & Bulletin Layout */
+.tariff-box { margin-top: 10px; }
 
 .tariff-box h4 {
   font-size: 18px;
@@ -550,11 +953,7 @@ body {
   padding-bottom: 4px;
 }
 
-.tariff-box p {
-  font-size: 15px;
-  color: #475569;
-  margin-bottom: 14px;
-}
+.tariff-box p { font-size: 15px; color: #475569; margin-bottom: 14px; }
 
 .bulletin-list {
   list-style: none;
@@ -578,18 +977,8 @@ body {
   color: #1e293b;
 }
 
-.bulletin-item .bullet-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.bulletin-item .bullet-label::before {
-  content: "•";
-  color: #2563eb;
-  font-size: 1.4rem;
-  line-height: 1;
-}
+.bulletin-item .bullet-label { display: flex; align-items: center; gap: 8px; }
+.bulletin-item .bullet-label::before { content: "•"; color: #2563eb; font-size: 1.4rem; line-height: 1; }
 
 .bulletin-item .bullet-price {
   font-weight: 800;
@@ -601,7 +990,7 @@ body {
 }
 
 /* =========================================================
-   8. PAMPHLET SWIPER PREVIEW CARDS (FULL PAMPHLET PREVIEW)
+   9. PAMPHLET LIGHTBOX MODAL & INTERACTIVE ZOOM ENGINE
 ========================================================= */
 .pamphlet-swiper {
   display: flex;
@@ -616,11 +1005,8 @@ body {
   scroll-snap-type: x mandatory;
 }
 
-.pamphlet-swiper::-webkit-scrollbar {
-  display: none;
-}
+.pamphlet-swiper::-webkit-scrollbar { display: none; }
 
-/* Updated to Portrait dimensions so the entire pamphlet fits nicely */
 .pamphlet-card {
   flex: 0 0 130px;
   height: 180px;
@@ -638,133 +1024,9 @@ body {
   padding: 4px;
 }
 
-.pamphlet-card:hover {
-  transform: scale(1.04);
-  border-color: #FF9933;
-}
+.pamphlet-card:hover { transform: scale(1.04); border-color: #FF9933; }
+.pamphlet-card img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 6px; }
 
-/* Set object-fit to contain so the top, middle, and bottom are 100% visible */
-.pamphlet-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  border-radius: 6px;
-}
-
-/* =========================================================
-   9. RESPONSIVE BREAKPOINTS (DESKTOP & MOBILE)
-========================================================= */
-@media (min-width: 769px) {
-  .hub-grid {
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 32px;
-  }
-
-  .hub-card {
-    min-height: 380px;
-    border-radius: 22px;
-  }
-
-  .hub-card-content {
-    padding: 30px;
-  }
-
-  .hub-icon { 
-    font-size: 42px; 
-    margin-bottom: 10px; 
-  }
-
-  .hub-card-content h3 { 
-    font-size: 28px; 
-    margin-bottom: 6px; 
-  }
-
-  .hub-card-content p { 
-    font-size: 16.5px; 
-    margin-bottom: 20px; 
-    line-height: 1.5; 
-  }
-
-  .hub-btn {
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 10px;
-  }
-
-  .modal-box {
-    max-width: 880px;
-    padding: 36px;
-  }
-
-  /* FORCES ABOUT & CONTACT TO SPREAD OUT FULLY ON DESKTOP */
-  .section-container {
-    max-width: 1200px !important;
-    width: 100% !important;
-  }
-
-  .about-content {
-    max-width: 1000px !important;
-    margin: 0 auto !important;
-  }
-
-  .contact-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 32px !important;
-    align-items: stretch !important;
-  }
-}
-
-@media (max-width: 768px) {
-  #navLinks {
-    flex-direction: row;
-    gap: 6px;
-  }
-
-  .flag-tab {
-    padding: 0 4px;
-    font-size: 11px;
-    flex: 1;
-    min-width: auto;
-    height: 38px;
-  }
-
-  .hero {
-    min-height: 42vh;
-    padding-bottom: 20px;
-  }
-
-  .hero-actions {
-    gap: 8px;
-  }
-
-  .hero-btn {
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .prev-btn, .pamphlet-prev, #prevBtn { left: 8px; }
-  .next-btn, .pamphlet-next, #nextBtn { right: 8px; }
-
-  .zoom-controls {
-    bottom: 15px;
-    padding: 6px 12px;
-  }
-
-  .zoom-controls button {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-}
-
-/* =========================================================
-   10. PAMPHLET LIGHTBOX MODAL & INTERACTIVE ZOOM ENGINE
-========================================================= */
 #pamphletLightbox,
 #imageModal,
 .pamphlet-lightbox,
@@ -842,9 +1104,7 @@ body {
 
 .pamphlet-close:hover,
 .pamphlet-lightbox-close:hover,
-.lightbox-close:hover {
-  background: #ff5a00;
-}
+.lightbox-close:hover { background: #ff5a00; }
 
 .lightbox-nav,
 .pamphlet-prev,
@@ -921,831 +1181,142 @@ body {
   z-index: 1000001;
   pointer-events: none;
 }
-/* =========================================================
-   DESKTOP ALIGNMENT FIX FOR ABOUT & CONTACT SECTIONS
-========================================================= */
 
-/* 1. Ensure full-width section containers on desktop */
-.about-section, 
-.contact-section {
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 50px 20px !important;
-  box-sizing: border-box !important;
-}
-
-.section-container {
-  max-width: 1200px !important; /* Expands section across desktop screens */
-  margin: 0 auto !important;
-  width: 100% !important;
-}
-
-/* 2. Prevent About text from narrowing into a column */
-.about-content {
-  max-width: 900px !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-}
-
-.about-content p {
-  line-height: 1.7 !important;
-}
-
-/* 3. Arrange Contact Details & Map side-by-side on desktop */
-@media (min-width: 768px) {
-  .contact-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important; /* Splits 50% left, 50% right */
-    gap: 30px !important;
-    align-items: start !important;
-  }
-
-  .contact-card, 
-  .map-wrapper {
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  .map-wrapper iframe {
-    height: 320px !important; /* Gives the map adequate breathing room */
-  }
-}
-/* =========================================================
-   ONGOING TOURS SECTION STYLES
-========================================================= */
-.ongoing-tours-section {
-  max-width: 1200px; /* Aligns with the 3 boxes below */
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.ongoing-dual-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 992px) {
-  .ongoing-dual-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.ongoing-column {
-  background-color: #fbf5ed; /* Peach background matching page tone */
-  border: 1px solid #ebd9c8;
-  border-radius: 18px;
-  padding: 24px 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.compact-header {
-  margin-bottom: 16px;
-  padding-left: 8px;
-}
-
-.live-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.live-badge.domestic {
-  background-color: #fff3e0;
-  color: #e65100;
-}
-
-.live-badge.intl {
-  background-color: #e0f2fe;
-  color: #0369a1;
-}
-
-.bold-column-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.2;
-}
-
-.compact-sub {
-  font-size: 13.5px;
-  color: #64748b;
-}
-
-/* Slider Controls & Container */
-.slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.slider-wrapper {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 8px 4px;
-  scrollbar-width: none; /* Hide scrollbar for clean look */
-}
-
-.slider-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.slider-track {
-  display: flex;
-  gap: 12px;
-}
-
-/* Slide Cards: Gold border & sizing for 2 full cards + 3rd peek */
-.slide-card {
-  position: relative;
-  flex: 0 0 calc(42% - 6px); /* Shows ~2.2 cards across the container */
-  height: 250px;
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 2px solid #D4AF37; /* Elegant Gold Outline */
-  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-@media (max-width: 480px) {
-  .slide-card {
-    flex: 0 0 65%; /* Shows 1 full + peek on mobile screens */
-  }
-}
-
-.slide-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(212, 175, 55, 0.4);
-}
-
-.slide-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.slide-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 20%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 12px;
-  color: #ffffff;
-}
-
-.status-tag {
-  align-self: flex-start;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-
-.status-tag.ongoing {
-  background: #138808;
-  color: #fff;
-}
-
-.status-tag.upcoming {
-  background: #FF9933;
-  color: #fff;
-}
-
-.slide-overlay h4 {
-  font-size: 14.5px;
-  font-weight: 800;
-  margin-bottom: 2px;
-}
-
-.slide-overlay p {
-  font-size: 11px;
-  opacity: 0.85;
-}
-
-/* Scroll Arrows */
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(15, 23, 42, 0.85);
-  color: #D4AF37;
-  border: 1px solid #D4AF37;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-
-.nav-arrow:hover {
-  background: #0f172a;
-}
-
-.left-arrow {
-  left: -10px;
-}
-
-.right-arrow {
-  right: -10px;
-}
-
-.column-action-bar {
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px dashed #d6c5b3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.column-action-bar span {
-  font-size: 13px;
-  font-weight: 600;
-  color: #475569;
-}
-
-.btn-primary-single {
-  background: #138808;
-  color: #ffffff;
-  border: none;
-  padding: 9px 14px;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 12.5px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.btn-primary-single.btn-intl {
-  background: #0f172a;
-}
-/* Custom A4 Pamphlet Lightbox View */
-#pamphletZoomModal .modal-content,
-.pamphlet-modal-content {
-  max-width: 90vw !important;
-  max-height: 85vh !important;
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-  aspect-ratio: 1 / 1.414; /* Standard A4 aspect ratio */
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  margin: auto;
-  display: block;
-}
-
-/* Mobile specific tuning for maximum readability */
-@media (max-width: 768px) {
-  #pamphletZoomModal .modal-content,
-  .pamphlet-modal-content {
-    max-width: 95vw !important;
-    max-height: 80vh !important;
-    aspect-ratio: 1 / 1.414;
-    object-fit: contain !important;
-  }
-}
-/* Visa Country Dropdown Styling */
-.visa-country-selector {
-  margin-top: 15px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.visa-country-selector label {
-  font-size: 13px;
-  font-weight: 700;
-  color: #1e293b;
-}
-
-.custom-select-wrapper {
-  position: relative;
-}
-
-#visaCountryInput {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  background-color: #ffffff;
-}
-
-#visaCountryInput:focus {
-  border-color: #0f172a;
-}
-
-.visa-dropdown-list {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  max-height: 200px;
-  overflow-y: auto;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  z-index: 100;
-  margin-top: 4px;
-}
-
-.visa-dropdown-list.show {
-  display: block;
-}
-
-.visa-option {
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #334155;
-  transition: background 0.15s ease;
-}
-
-.visa-option:hover {
-  background-color: #f1f5f9;
-}
-
-.visa-option .flag {
-  font-size: 18px;
-}
-
-.btn-whatsapp-visa {
-  background-color: #25D366;
-  color: #ffffff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: background 0.2s ease;
-}
-
-.btn-whatsapp-visa:hover {
-  background-color: #1eb855;
-}
-/* Date & Time Row Styling */
-.cab-datetime-row {
-  display: flex;
-  gap: 8px;
-}
-
-.cab-datetime-row .cab-input-field {
-  flex: 1;
-  width: 50%;
-  padding: 8px 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #1e293b;
-  background-color: #ffffff;
-  outline: none;
-}
-
-.cab-datetime-row .cab-input-field:focus {
-  border-color: #0f172a;
-}
-/* Flight Radio Toggles */
-.flight-route-selector {
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.flight-toggle-group {
-  display: flex;
-  justify-content: space-around;
-  background-color: #f1f5f9;
-  padding: 6px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #334155;
-}
-
-.flight-toggle-group label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-/* Fix Flight Header Visibility */
-.flight-header {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 10px;
-}
-
-.flight-title {
-  color: #ffffff !important;
-  font-size: 22px !important;
-  font-weight: 800 !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.flight-subtext {
-  color: #f1f5f9 !important;
-  font-size: 13px !important;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8) !important;
-}
-
-/* Fix Input Field Widths */
-.flight-full-input {
-  width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 10px 12px !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: 8px !important;
-  font-size: 14px !important;
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-}
-/* Card Height & Padding Fix */
-.hub-card {
-  height: auto !important;
-  min-height: max-content !important;
-  padding: 24px 18px !important;
-  overflow: visible !important;
-}
-
-/* Ensure background image covers expanded height */
-.hub-card-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.hub-card-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Dark overlay gradient to make text stand out sharply */
-.hub-card-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
-  z-index: 1;
-}
-
-/* Bring all inputs and titles above overlay */
-.hub-card-content {
-  position: relative;
-  z-index: 2;
-}
-
-/* Full Width Controls for Mobile */
-.cab-route-selector,
-.flight-route-selector {
-  width: 100% !important;
-}
-
-.custom-select-wrapper input,
-.cab-dropdown-select,
-.flight-full-input {
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-/* Visa Custom Remarks Styling */
-.visa-remarks-textarea {
-  width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 10px 12px !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: 8px !important;
-  font-size: 13px !important;
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  font-family: inherit;
-  resize: vertical;
-  outline: none;
-}
-
-.visa-remarks-textarea:focus {
-  border-color: #0f172a !important;
-}
-/* Center Titles and Subtitles */
-.tour-box-header {
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-.tour-box-title {
-  text-align: center;
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.tour-box-subtitle {
-  text-align: center;
-  font-size: 0.85rem;
-  margin-top: 4px;
-  color: #666;
-}
-
-/* Card Box Spacing and Vertical Stretch */
-.tour-card-box {
-  padding: 24px 20px;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Center Buttons in Footer */
-.tour-box-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 18px;
-}
-
-.tour-box-footer .btn-enquire {
-  text-align: center;
-  padding: 10px 22px;
-  font-weight: 600;
-  border-radius: 6px;
-}
-/* HORIZONTAL A4 PAMPHLET MODAL DISPLAY */
+/* Horizontal Pamphlet Swiper Container */
 .pamphlet-modal-content,
 .pamphlet-list,
 .pamphlet-container {
-  display: flex !important;
-  flex-direction: row !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   gap: 24px;
   padding: 20px;
-  width: 90vw !important;
+  width: 90vw;
   max-width: 1100px;
   max-height: 85vh;
-  aspect-ratio: 1.414 / 1; /* A4 Landscape aspect ratio */
   align-items: center;
   justify-content: flex-start;
   border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* A4 Horizontal Card & Image Styling */
 .pamphlet-modal-content img,
 .pamphlet-list img,
 .pamphlet-item {
   scroll-snap-align: center;
-  flex: 0 0 auto !important;
-  height: 100% !important;
-  max-height: 75vh !important;
-  width: auto !important;
+  flex: 0 0 auto;
+  height: 100%;
+  max-height: 75vh;
+  width: auto;
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Enable smooth swipe on touchscreen devices */
-.pamphlet-modal-content {
-  -webkit-overflow-scrolling: touch;
+/* =========================================================
+   10. DESKTOP MEDIA QUERIES (MIN-WIDTH: 769PX)
+========================================================= */
+@media (min-width: 769px) {
+  .hub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+  }
+
+  .hub-card {
+    min-height: 380px;
+    border-radius: 22px;
+  }
+
+  .hub-card-content { padding: 30px; }
+  .hub-icon { font-size: 42px; margin-bottom: 10px; }
+  .hub-card-content h3 { font-size: 28px; margin-bottom: 6px; }
+  .hub-card-content p { font-size: 16.5px; margin-bottom: 20px; line-height: 1.5; }
+
+  .hub-btn {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .modal-box {
+    max-width: 880px;
+    padding: 36px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
 }
-/* UNIVERSAL MOBILE VIEW FOR BOTH HORIZONTAL & VERTICAL PAMPHLETS */
+
+/* =========================================================
+   11. MOBILE MEDIA QUERIES (MAX-WIDTH: 768PX)
+========================================================= */
 @media (max-width: 768px) {
+  #navLinks {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .flag-tab {
+    padding: 0 4px;
+    font-size: 11px;
+    flex: 1;
+    min-width: auto;
+    height: 38px;
+  }
+
+  .hero {
+    min-height: 42vh;
+    padding-bottom: 20px;
+  }
+
+  .hero-actions { gap: 8px; }
+  .hero-btn { padding: 10px 14px; font-size: 13px; }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prev-btn, .pamphlet-prev, #prevBtn { left: 8px; }
+  .next-btn, .pamphlet-next, #nextBtn { right: 8px; }
+
+  .zoom-controls {
+    bottom: 15px;
+    padding: 6px 12px;
+  }
+
+  .zoom-controls button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
   .pamphlet-modal-content,
   .pamphlet-list,
   .pamphlet-container {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    padding: 10px 0 !important;
-    aspect-ratio: auto !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 10px 0;
+    aspect-ratio: auto;
+    justify-content: center;
+    align-items: center;
   }
 
   .pamphlet-modal-content img,
   .pamphlet-list img,
   .pamphlet-item {
-    max-width: 96vw !important;  /* Fits edge-to-edge horizontally */
-    max-height: 80vh !important; /* Prevents tall vertical cards from overflowing screen */
-    width: auto !important;
-    height: auto !important;
-    object-fit: contain !important;
+    max-width: 96vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     margin: 0 auto;
     border-radius: 8px;
   }
-}
-/* =========================================================
-   OUR SERVICES - UNIFORM STYLING & GOLD ACCENT
-   ========================================================= */
-
-/* Main Section Title Centering */
-.services-header-container {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.services-main-title {
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.services-sub-title {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 5px;
-}
-
-/* Service Card Container Grid */
-.services-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px; /* Equal spacing between all three cards */
-  max-width: 1250px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-/* Individual Card Blunt Edges & Gold Accent Line */
-.service-card {
-  flex: 1 1 340px;
-  max-width: 380px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 18px !important; /* Blunt edges on rounded corners */
-  border-top: 4px solid #D4AF37 !important; /* Gold Top Line */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-  padding: 24px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  box-sizing: border-box;
-}
-
-/* Increase Background Image Brightness by ~20% */
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  /* Reduced dark overlay opacity so background graphics show through better */
-  background: rgba(15, 23, 42, 0.72) !important; 
-  z-index: 1;
-}
-
-.service-card-header,
-.service-form {
-  position: relative;
-  z-index: 2; /* Keeps inputs and text sharp above background */
-}
-
-/* Center Align Card Headers */
-.service-card-header {
-  text-align: center !important;
-  margin-bottom: 18px;
-}
-
-.service-title {
-  text-align: center !important;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 6px 0 4px 0;
-}
-
-.service-desc {
-  text-align: center !important;
-  font-size: 0.82rem;
-  color: #d1d5db;
-  margin: 0;
-}
-
-.service-icon {
-  font-size: 1.8rem;
-  text-align: center;
-}
-
-/* Uniform Input Fields & Increased Height */
-.service-input,
-.service-form input[type="text"],
-.service-form input[type="date"],
-.service-form input[type="time"],
-.service-form select {
-  width: 100% !important;
-  height: 42px !important; /* Taller, uniform height for easy reading */
-  padding: 8px 12px !important;
-  font-size: 0.88rem !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius: 8px !important;
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  color: #1e293b !important;
-  box-sizing: border-box !important;
-}
-
-.form-group {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.form-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.form-row .service-input {
-  flex: 1;
-}
-
-/* Toggle Radio Buttons Styling */
-.toggle-row {
-  display: flex;
-  justify-content: space-around;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 6px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  color: #fff;
-  font-size: 0.82rem;
-}
-
-/* Action Button Alignment */
-.service-btn {
-  width: 100%;
-  height: 44px;
-  background-color: #22c55e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.92rem;
-  cursor: pointer;
-  margin-top: 6px;
-  transition: background-color 0.2s ease;
-}
-
-.service-btn:hover {
-  background-color: #16a34a;
-}
-/* FORCE THREE-COLUMN LAYOUT FOR SERVICES */
-.services-grid {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.services-container {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  gap: 20px !important;
-  width: 100% !important;
-  max-width: 1200px !important;
-  align-items: stretch !important;
-}
-
-.service-card {
-  flex: 1 1 0px !important;
-  min-width: 0 !important;
 }
