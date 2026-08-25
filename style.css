@@ -704,10 +704,9 @@ body {
    6. ABOUT US SECTION
 ========================================================= */
 .about-section {
-  background-color: #fff7f0; /* Peach tone matching your theme */
-  padding: 30px 20px;       /* Reduced from 60px to tighten top/bottom empty space */
-  border-top: 1px solid #ebd9c8;
-  border-bottom: 1px solid #ebd9c8;
+  background-color: #fbf5ed; /* Exact color match to the rest of the site */
+  padding: 30px 20px;
+  border: none;              /* Removes the visible top/bottom border lines */
   width: 100%;
   box-sizing: border-box;
 }
