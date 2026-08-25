@@ -1459,3 +1459,70 @@ body {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* =========================================================
+   GLOBAL LAYOUT & CONTAINER WIDTH FIX
+========================================================= */
+
+/* Ensure parent containers allow full width */
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
+/* Force all top-level sections to occupy full width */
+section, 
+.ongoing-tours-section, 
+.services-section, 
+.about-section, 
+.contact-section, 
+#packages-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Set standard container width (1280px) for inner grids */
+.ongoing-dual-grid,
+.services-grid,
+.hub-grid,
+.section-container,
+.contact-grid {
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Tour Packages Hub 3-Column Layout */
+.hub-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+}
+
+/* Contact & Map 2-Column Side-by-Side Layout */
+.contact-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 30px !important;
+  align-items: start !important;
+}
+
+/* Responsive adjustment for screens under 992px */
+@media (max-width: 992px) {
+  .hub-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hub-grid, 
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
