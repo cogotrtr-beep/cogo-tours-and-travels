@@ -126,7 +126,7 @@ body {
 .ongoing-tours-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 20px 15px 20px; /* Top Right Bottom Left */
 }
 
 .ongoing-dual-grid {
@@ -308,17 +308,18 @@ body {
 .btn-primary-single.btn-intl { background: #0f172a; }
 
 /* =========================================================
-   4. OUR SERVICES SECTION (RECTIFIED GRID LAYOUT)
+   4. OUR SERVICES SECTION
 ========================================================= */
 .services-section {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 50px 20px;
+  padding-top: 15px;    /* Pulls services up closer to ongoing tours */
+  padding-bottom: 15px; /* Pulls tour packages up closer to services */
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .services-header-container {
-  text-align: center;
-  margin-bottom: 25px;
+  margin-top: 0;
+  margin-bottom: 16px;  /* Keeps spacing tight between header and cards */
 }
 
 .services-main-title {
@@ -584,12 +585,11 @@ body {
 }
 
 /* =========================================================
-   5. CATEGORY HUB GRID & CARDS
+   5. TOUR PACKAGES HUB SECTION
 ========================================================= */
-.section {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 50px 20px;
+#packages-section {
+  padding-top: 15px;
+  margin-top: 0;
 }
 
 .hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
