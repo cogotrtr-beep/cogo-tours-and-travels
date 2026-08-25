@@ -538,7 +538,7 @@ function selectVisaCountry(countryObj) {
 }
 
 function sendVisaWhatsApp() {
-  const phoneNumber = "919840330088"; 
+  const phoneNumber = "919884066830"; 
 
   let countryName = selectedVisaCountry ? selectedVisaCountry.name : document.getElementById("visaCountryInput")?.value;
   const fromDate = document.getElementById("visaFromDate")?.value;
@@ -586,7 +586,7 @@ function handleVisaBooking(btn) {
   if (mobile) msg += `📞 Mobile: ${mobile}\n`;
   if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
 
-  window.open(`https://wa.me/919840330088?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 /* =========================================================
@@ -736,7 +736,7 @@ function toggleReturnDate(isRoundTrip) {
 }
 
 function sendFlightWhatsApp() {
-  const phoneNumber = "919840330088"; 
+  const phoneNumber = "919884066830"; 
 
   const scope = document.querySelector('input[name="flightScope"]:checked')?.value || "Domestic";
   const type = document.querySelector('input[name="flightType"]:checked')?.value || "One-Way";
@@ -787,7 +787,7 @@ function handleFlightBooking(btn) {
   if (mobile) msg += `📞 Mobile: ${mobile}\n`;
   if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
 
-  window.open(`https://wa.me/919840330088?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 /* =========================================================
