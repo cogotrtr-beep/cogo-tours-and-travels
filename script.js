@@ -912,3 +912,79 @@ document.addEventListener("click", function(e) {
     document.getElementById("cabDropList")?.classList.remove("show");
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const visaCountries = [
+    { name: "Australia", code: "au" },
+    { name: "Canada", code: "ca" },
+    { name: "Dubai (UAE)", code: "ae" },
+    { name: "France", code: "fr" },
+    { name: "Germany", code: "de" },
+    { name: "Indonesia (Bali)", code: "id" },
+    { name: "Italy", code: "it" },
+    { name: "Japan", code: "jp" },
+    { name: "Malaysia", code: "my" },
+    { name: "Singapore", code: "sg" },
+    { name: "Switzerland", code: "ch" },
+    { name: "Thailand", code: "th" },
+    { name: "United Kingdom", code: "gb" },
+    { name: "United States", code: "us" },
+    { name: "Vietnam", code: "vn" }
+  ];
+
+  const countryInput = document.getElementById("visaCountry");
+  const dropdownList = document.getElementById("visaCountryDropdown");
+  const flagPreview = document.getElementById("selectedFlag");
+
+  if (!countryInput || !dropdownList || !flagPreview) return;
+
+  function renderOptions(filterText = "") {
+    dropdownList.innerHTML = "";
+    const filtered = visaCountries.filter(c => 
+      c.name.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    if (filtered.length === 0) {
+      dropdownList.innerHTML = `<div class="no-match-option">No matching countries found</div>`;
+      dropdownList.classList.add("show");
+      return;
+    }
+
+    filtered.forEach(country => {
+      const option = document.createElement("div");
+      option.className = "visa-option";
+      option.innerHTML = `
+        <img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">
+        <span>${country.name}</span>
+      `;
+
+      option.addEventListener("click", () => {
+        countryInput.value = country.name;
+        flagPreview.innerHTML = `<img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">`;
+        flagPreview.classList.remove("hidden");
+        countryInput.classList.add("has-flag");
+        dropdownList.classList.remove("show");
+      });
+
+      dropdownList.appendChild(option);
+    });
+
+    dropdownList.classList.add("show");
+  }
+
+  countryInput.addEventListener("input", (e) => {
+    flagPreview.classList.add("hidden");
+    flagPreview.innerHTML = "";
+    countryInput.classList.remove("has-flag");
+    renderOptions(e.target.value.trim());
+  });
+
+  countryInput.addEventListener("focus", () => {
+    renderOptions(countryInput.value.trim());
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".visa-country-selector")) {
+      dropdownList.classList.remove("show");
+    }
+  });
+});
