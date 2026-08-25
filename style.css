@@ -83,11 +83,11 @@ body {
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   min-height: 60vh;
-  background: url('hero-banner.png') center center / cover no-repeat;
+  background: url('hero-banner.png') center top / cover no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 20px 40px 20px;
+  padding: 50px 20px 40px 20px; /* Added 50px top padding to push banner graphics below top bar */
   box-sizing: border-box;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -121,6 +121,22 @@ body {
 
 .hero-btn.primary { background: #138808; color: #ffffff; }
 .hero-btn.secondary { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
+
+/* Desktop Widescreen Fix for Banner Alignment */
+@media (min-width: 1200px) {
+  .hero {
+    padding-top: 75px; /* Ensures Cogo logo remains fully visible on large monitors */
+    min-height: 65vh;
+  }
+}
+
+/* Mobile & Split Screen Spacing */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 20px;
+    min-height: 50vh;
+  }
+}
 
 /* =========================================================
    3. ONGOING TOURS SECTION
