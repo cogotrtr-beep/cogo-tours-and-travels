@@ -145,7 +145,7 @@ body {
   background-color: #fbf5ed;
   border: 1px solid #ebd9c8;
   border-radius: 18px;
-  padding: 24px 16px;
+  padding: 16px 16px; /* Tightened from 24px to reduce container top/bottom padding */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
@@ -153,7 +153,7 @@ body {
 }
 
 .compact-header {
-  margin-bottom: 16px;
+  margin-bottom: 8px; /* Tightened from 16px */
   padding-left: 8px;
 }
 
@@ -207,7 +207,7 @@ body {
 .slide-card {
   position: relative;
   flex: 0 0 calc(42% - 6px);
-  height: 250px;
+  height: 310px; /* Stretched card height vertically from 250px to 310px */
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
@@ -282,8 +282,8 @@ body {
 .right-arrow { right: -10px; }
 
 .column-action-bar {
-  margin-top: 16px;
-  padding-top: 14px;
+  margin-top: 10px; /* Reduced gap above button from 16px to 10px */
+  padding-top: 10px; /* Reduced top border padding from 14px to 10px */
   border-top: 1px dashed #d6c5b3;
   display: flex;
   align-items: center;
