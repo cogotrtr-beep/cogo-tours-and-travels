@@ -936,6 +936,7 @@ input[type="time"]::-webkit-date-and-time-value {
 /* =========================================================
    8. MODAL POPUP & INTERACTIVE TOP TABS
 ========================================================= */
+#enquiryModal,
 .modal-overlay {
   display: none;
   position: fixed;
@@ -950,12 +951,12 @@ input[type="time"]::-webkit-date-and-time-value {
   transition: opacity 0.25s ease-in-out;
 }
 
+#enquiryModal.show,
 .modal-overlay.show { 
   display: flex !important; 
   opacity: 1 !important;
   pointer-events: auto !important;
 }
-
 .modal-box {
   background: #ffffff;
   width: 100%;
