@@ -8,7 +8,12 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-body {
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
   background: linear-gradient(180deg, #FFF5EE 0%, #FAF0E6 40%, #F8FAFC 100%);
   color: #0f172a;
   line-height: 1.6;
@@ -87,7 +92,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 50px 20px 40px 20px; /* Added 50px top padding to push banner graphics below top bar */
+  padding: 50px 20px 40px 20px;
   box-sizing: border-box;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -125,7 +130,7 @@ body {
 /* Desktop Widescreen Fix for Banner Alignment */
 @media (min-width: 1200px) {
   .hero {
-    padding-top: 75px; /* Ensures Cogo logo remains fully visible on large monitors */
+    padding-top: 75px;
     min-height: 65vh;
   }
 }
@@ -139,24 +144,25 @@ body {
 }
 
 /* =========================================================
-   3. ONGOING TOURS SECTION
+   3. ONGOING TOURS SECTION (SIDE-BY-SIDE FIXED)
 ========================================================= */
 .ongoing-tours-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px 5px 20px; /* Reduced bottom padding to 5px to close gap */
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 40px 20px 5px 20px;
 }
 
 .ongoing-dual-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 992px) {
-  .ongoing-dual-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+  align-items: stretch;
 }
 
 .ongoing-column {
@@ -168,6 +174,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 }
 
 .compact-header {
@@ -211,6 +218,7 @@ body {
   scroll-behavior: smooth;
   padding: 8px 4px;
   scrollbar-width: none;
+  width: 100%;
 }
 
 .slider-wrapper::-webkit-scrollbar {
@@ -225,7 +233,7 @@ body {
 .slide-card {
   position: relative;
   flex: 0 0 calc(42% - 6px);
-  height: 350px; /* Expanded height vertically from 310px to 350px */
+  height: 350px;
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
@@ -326,609 +334,332 @@ body {
 .btn-primary-single.btn-intl { background: #0f172a; }
 
 /* =========================================================
-
    4. OUR SERVICES SECTION
-
 ========================================================= */
-
 .services-section {
-
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-  padding: 5px 20px 15px 20px; /* Top Right Bottom Left */
-
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 5px 20px 15px 20px;
 }
-
-
 
 .services-header-container {
-
   text-align: center;
-
   margin-bottom: 24px;
-
 }
-
-
 
 .services-main-title {
-
   font-size: 1.8rem;
-
   font-weight: 700;
-
   margin: 0;
-
   color: #0f172a;
-
 }
-
-
 
 .services-sub-title {
-
   font-size: 0.9rem;
-
   color: #64748b;
-
   margin-top: 5px;
-
 }
-
-
 
 .services-grid {
-
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-
-  gap: 24px;
-
-  width: 100%;
-
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
 }
-
-
 
 .service-card {
-
   background-size: cover;
-
   background-position: center;
-
   border-radius: 18px;
-
   border-top: 4px solid #D4AF37;
-
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-
   overflow: hidden;
-
   padding: 24px 20px;
-
   display: flex;
-
   flex-direction: column;
-
   justify-content: space-between;
-
   position: relative;
-
   box-sizing: border-box;
-
 }
-
-
 
 .service-card::before {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   background: rgba(15, 23, 42, 0.78);
-
   z-index: 1;
-
 }
-
-
 
 .service-card-header,
-
 .service-form {
-
   position: relative;
-
   z-index: 2;
-
 }
-
-
 
 .service-card-header {
-
   text-align: center;
-
   margin-bottom: 18px;
-
 }
-
-
 
 .service-icon { 
-
   font-size: 1.8rem; 
-
   text-align: center; 
-
 }
-
-
 
 .service-title {
-
   text-align: center;
-
   font-size: 1.35rem;
-
   font-weight: 700;
-
   color: #ffffff;
-
   margin: 6px 0 4px 0;
-
 }
-
-
 
 .service-desc {
-
   text-align: center;
-
   font-size: 0.82rem;
-
   color: #d1d5db;
-
   margin: 0;
-
 }
-
-
 
 .service-input,
-
 .service-form input[type="text"],
-
 .service-form input[type="date"],
-
 .service-form input[type="time"],
-
 .service-form select {
-
   width: 100%;
-
   height: 42px;
-
   padding: 8px 12px;
-
   font-size: 0.88rem;
-
   border: 1px solid rgba(255, 255, 255, 0.2);
-
   border-radius: 8px;
-
   background-color: rgba(255, 255, 255, 0.95);
-
   color: #1e293b;
-
   box-sizing: border-box;
-
   transition: padding-left 0.2s ease, border-color 0.2s ease;
-
 }
-
-
 
 .service-input:focus,
-
 .service-form input:focus,
-
 .service-form select:focus {
-
   outline: none;
-
   border-color: #FF9933;
-
 }
-
-
 
 .form-group {
-
   margin-bottom: 10px;
-
   width: 100%;
-
 }
-
-
 
 .form-row {
-
   display: flex;
-
   gap: 10px;
-
   margin-bottom: 10px;
-
   width: 100%;
-
 }
-
-
 
 .form-row .service-input {
-
   flex: 1;
-
 }
-
-
 
 .toggle-row {
-
   display: flex;
-
   justify-content: space-around;
-
   background: rgba(255, 255, 255, 0.15);
-
   padding: 6px;
-
   border-radius: 8px;
-
   margin-bottom: 10px;
-
   color: #fff;
-
   font-size: 0.82rem;
-
 }
-
-
 
 .toggle-row label {
-
   cursor: pointer;
-
   display: flex;
-
   align-items: center;
-
   gap: 4px;
-
 }
-
-
 
 .service-btn {
-
   width: 100%;
-
   height: 44px;
-
   background-color: #22c55e;
-
   color: white;
-
   border: none;
-
   border-radius: 8px;
-
   font-weight: 600;
-
   font-size: 0.92rem;
-
   cursor: pointer;
-
   margin-top: 6px;
-
   transition: background-color 0.2s ease;
-
 }
-
-
 
 .service-btn:hover {
-
   background-color: #16a34a;
-
 }
-
-
 
 /* Custom Input Modifications */
-
 .visa-remarks-textarea {
-
   width: 100%;
-
   box-sizing: border-box;
-
   padding: 10px 12px;
-
   border: 1px solid #cbd5e1;
-
   border-radius: 8px;
-
   font-size: 13px;
-
   background-color: #ffffff;
-
   color: #0f172a;
-
   font-family: inherit;
-
   resize: vertical;
-
   outline: none;
-
 }
-
-
 
 .visa-remarks-textarea:focus { border-color: #0f172a; }
 
-
-
 /* Dynamic Visa Country Selector & Flag Component */
-
 .visa-country-selector {
-
   position: relative;
-
   width: 100%;
-
 }
-
-
 
 .country-input-wrapper {
-
   position: relative;
-
   display: flex;
-
   align-items: center;
-
   width: 100%;
-
 }
-
-
-
-/* Overlaid Flag Icon Inside the Input */
 
 .flag-preview {
-
   position: absolute;
-
   left: 12px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   pointer-events: none;
-
   z-index: 5;
-
 }
-
-
 
 .flag-preview img {
-
   width: 24px;
-
   height: 16px;
-
   object-fit: cover;
-
   border-radius: 3px;
-
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-
 }
-
-
 
 .flag-preview.hidden {
-
   display: none;
-
 }
-
-
-
-/* Dynamically adjust left padding when a flag is active */
 
 .country-input-wrapper input.has-flag {
-
   padding-left: 44px;
-
 }
-
-
-
-/* Dynamic Visa Search Dropdown Box */
 
 .visa-dropdown-list {
-
   display: none;
-
   position: absolute;
-
   top: calc(100% + 4px);
-
   left: 0;
-
   right: 0;
-
   max-height: 220px;
-
   overflow-y: auto;
-
   background: #ffffff;
-
   border: 1px solid #cbd5e1;
-
   border-radius: 10px;
-
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-
   z-index: 1000;
-
   scroll-behavior: smooth;
-
 }
-
-
 
 .visa-dropdown-list.show { 
-
   display: block; 
-
 }
-
-
-
-/* Individual Dropdown Item */
 
 .visa-option {
-
   padding: 10px 14px;
-
   display: flex;
-
   align-items: center;
-
   gap: 12px;
-
   cursor: pointer;
-
   font-size: 14.5px;
-
   color: #0f172a;
-
   font-weight: 600;
-
   transition: background 0.15s ease, color 0.15s ease;
-
 }
-
-
 
 .visa-option:hover { 
-
   background-color: #f1f5f9; 
-
   color: #138808;
-
 }
-
-
 
 .visa-option img {
-
   width: 24px;
-
   height: 16px;
-
   object-fit: cover;
-
   border-radius: 3px;
-
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-
 }
-
-
 
 .no-match-option {
-
   padding: 12px;
-
   font-size: 13.5px;
-
   color: #64748b;
-
   text-align: center;
-
 }
-
-
 
 /* Mobile Safari Date & Time Input Visibility Fix */
-
 input[type="date"],
-
 input[type="time"] {
-
   color: #475569;
-
   min-height: 42px;
-
   -webkit-appearance: none;
-
 }
-
-
 
 input[type="date"]:invalid,
-
 input[type="time"]:invalid {
-
   color: #94a3b8;
-
 }
 
-
-
 input[type="date"]::-webkit-date-and-time-value,
-
 input[type="time"]::-webkit-date-and-time-value {
-
   text-align: left;
-
   min-height: 1.2em;
-
 } 
-
 
 /* =========================================================
    5. TOUR PACKAGES HUB SECTION
 ========================================================= */
 #packages-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
   padding-top: 15px;
   margin-top: 0;
+}
+
+#packages-section .hub-header {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
 }
 
 .hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
 .section-sub { color: #64748b; margin-bottom: 25px; font-size: 16px; }
 
 .hub-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 26px;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
   align-items: stretch;
 }
 
@@ -1035,22 +766,25 @@ input[type="time"]::-webkit-date-and-time-value {
    6. ABOUT US SECTION
 ========================================================= */
 .about-section {
-  background-color: #fbf5ed; /* Exact color match to the rest of the site */
-  padding: 30px 20px;
-  border: none;              /* Removes the visible top/bottom border lines */
-  width: 100%;
-  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  background-color: #fbf5ed;
+  padding: 40px 0 !important;
+  border: none;
 }
 
-.section-container {
-  max-width: 1200px;
-  margin: 0 auto;
+#about .section-container {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
   width: 100%;
 }
 
 .about-content {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 900px !important;
+  margin: 0 auto !important;
   width: 100%;
   text-align: center;
 }
@@ -1079,9 +813,27 @@ input[type="time"]::-webkit-date-and-time-value {
    7. CONTACT & MAP SECTION
 ========================================================= */
 .contact-section {
-  padding: 60px 20px;
-  width: 100%;
-  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  margin-top: 0;
+}
+
+#contact .section-container {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+.contact-section .text-center {
+  margin-bottom: 20px;
+}
+
+.contact-section h2 {
+  margin-bottom: 6px;
 }
 
 .social-links-bar {
@@ -1111,11 +863,14 @@ input[type="time"]::-webkit-date-and-time-value {
 .social-btn.twitter { background-color: #000000; }
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 20px;
-  align-items: start;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 30px !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin: 30px auto 0 auto !important;
+  box-sizing: border-box !important;
 }
 
 .contact-card {
@@ -1570,7 +1325,6 @@ input[type="time"]::-webkit-date-and-time-value {
   pointer-events: none;
 }
 
-/* Horizontal Pamphlet Swiper Container */
 .pamphlet-modal-content,
 .pamphlet-list,
 .pamphlet-container {
@@ -1607,11 +1361,6 @@ input[type="time"]::-webkit-date-and-time-value {
    10. DESKTOP MEDIA QUERIES (MIN-WIDTH: 769PX)
 ========================================================= */
 @media (min-width: 769px) {
-  .hub-grid {
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 32px;
-  }
-
   .hub-card {
     min-height: 380px;
     border-radius: 22px;
@@ -1632,16 +1381,17 @@ input[type="time"]::-webkit-date-and-time-value {
     max-width: 880px;
     padding: 36px;
   }
-
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
 }
 
 /* =========================================================
-   11. MOBILE MEDIA QUERIES (MAX-WIDTH: 768PX)
+   11. RESPONSIVE MEDIA QUERIES (BREAKPOINTS)
 ========================================================= */
+@media (max-width: 992px) {
+  .hub-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
 @media (max-width: 768px) {
   #navLinks {
     flex-direction: row;
@@ -1665,7 +1415,7 @@ input[type="time"]::-webkit-date-and-time-value {
   .hero-btn { padding: 10px 14px; font-size: 13px; }
 
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .modal-actions-grid {
@@ -1708,166 +1458,9 @@ input[type="time"]::-webkit-date-and-time-value {
     border-radius: 8px;
   }
 }
-/* =========================================================
-   BOTTOM SECTION (TOUR PACKAGES, ABOUT, CONTACT) ALIGNMENT
-========================================================= */
-
-/* Ensure the main container wraps to the same max-width as Services */
-.tour-about-contact-section, 
-.info-grid-container,
-.bottom-content-grid {
-  max-width: 1280px !important;
-  width: 100% !important;
-  margin: 0 auto 50px auto !important;
-  padding: 0 20px !important;
-  box-sizing: border-box !important;
-}
-
-/* Force the 3 columns below Services to align directly underneath the cards */
-.tour-about-contact-grid,
-.three-column-layout {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-  gap: 24px !important;
-  align-items: start !important;
-  width: 100% !important;
-}
-
-/* Ensure inner cards stretch properly across their full column width */
-.tour-packages-card,
-.about-us-card,
-.contact-us-card {
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-/* =========================================================
-   FIX FOR CONTAINER MAX-WIDTH & CENTER ALIGNMENT
-========================================================= */
-
-/* Align Tour Packages grid to match Services container width */
-#packages-section .hub-grid {
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-  box-sizing: border-box !important;
-}
-
-/* Align Header Titles centered to match Services */
-#packages-section .hub-header,
-#about .section-container,
-#contact .section-container {
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-  box-sizing: border-box !important;
-}
-
-/* Align About Us text block properly */
-.about-section {
-  padding: 40px 0 !important;
-}
-
-.about-content {
-  max-width: 900px !important;
-  margin: 0 auto !important;
-}
-
-/* Align Contact Details & Google Map Side-by-Side horizontally */
-.contact-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 30px !important;
-  align-items: start !important;
-  max-width: 1280px !important;
-  margin: 30px auto 0 auto !important;
-}
-
-/* Responsive fix for mobile devices */
-@media (max-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* =========================================================
-   GLOBAL LAYOUT & CONTAINER WIDTH FIX
-========================================================= */
-
-/* Ensure parent containers allow full width */
-html, body {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow-x: hidden !important;
-}
-
-/* Force all top-level sections to occupy full width */
-section, 
-.ongoing-tours-section, 
-.services-section, 
-.about-section, 
-.contact-section, 
-#packages-section {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Set standard container width (1280px) for inner grids */
-.ongoing-dual-grid,
-.services-grid,
-.hub-grid,
-.section-container,
-.contact-grid {
-  width: 100% !important;
-  max-width: 1280px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-}
-
-/* Tour Packages Hub 3-Column Layout */
-.hub-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 24px !important;
-}
-
-/* Contact & Map 2-Column Side-by-Side Layout */
-.contact-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 30px !important;
-  align-items: start !important;
-}
-
-/* Responsive adjustment for screens under 992px */
-@media (max-width: 992px) {
-  .hub-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
 
 @media (max-width: 600px) {
-  .hub-grid, 
-  .contact-grid {
+  .hub-grid {
     grid-template-columns: 1fr !important;
   }
-}
-/* =========================================================
-   7. CONTACT & LOCATION SECTION
-========================================================= */
-.contact-section {
-  padding-top: 10px;    /* Pulls the section higher up */
-  padding-bottom: 40px;
-  margin-top: 0;
-}
-
-.contact-section .text-center {
-  margin-bottom: 20px;  /* Keeps heading tight to the social buttons */
-}
-
-.contact-section h2 {
-  margin-bottom: 6px;
 }
