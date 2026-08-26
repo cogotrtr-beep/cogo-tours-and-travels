@@ -144,7 +144,7 @@
     </div>
   </section>
 
-<!-- =========================================================
+  <!-- =========================================================
        4. OUR SERVICES SECTION
   ========================================================= -->
   <section class="services-section" id="services">
@@ -299,6 +299,92 @@
 
     </div>
   </section>
+
+  <!-- =========================================================
+       NEW FEATURED TOURS SECTION (COMPACT CARDS & DIGITAL BROCHURE)
+  ========================================================= -->
+  <section class="ft-section" id="featured-tours-section">
+    <div class="ft-container">
+      <h2 class="ft-title">Featured Tours</h2>
+      <p class="ft-subtitle">Click on any card to explore the interactive digital brochure</p>
+
+      <!-- Cards Grid -->
+      <div class="ft-grid" id="ft-cards-container"></div>
+    </div>
+  </section>
+
+  <!-- ==================== DIGITAL BROCHURE MODAL ==================== -->
+  <div class="ft-modal-overlay" id="ft-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="ft-modal-content">
+      
+      <!-- Header Controls -->
+      <button class="ft-modal-close" id="ft-modal-close" aria-label="Close Brochure">&times;</button>
+      
+      <div class="ft-modal-header">
+        <h3 class="ft-modal-tour-title" id="ft-modal-tour-title">Tour Name</h3>
+        <div class="ft-tabs-wrapper">
+          <div class="ft-tabs-container" id="ft-tabs-container"></div>
+        </div>
+      </div>
+
+      <!-- Brochure Viewer Area -->
+      <div class="ft-brochure-body">
+        
+        <!-- Left Arrow -->
+        <button class="ft-nav-btn ft-prev-btn" id="ft-prev-btn" aria-label="Previous Page">
+          &#10094;
+        </button>
+
+        <!-- A4 Page Container -->
+        <div class="ft-a4-wrapper">
+          <div class="ft-a4-page" id="ft-a4-page">
+            <img id="ft-page-image" src="" alt="Tour Brochure Page" />
+            
+            <!-- Integrated Enquire Button inside A4 Page -->
+            <button class="ft-enquire-btn" id="ft-page-enquire-btn">
+              <span class="ft-btn-icon">💬</span> Enquire Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Arrow -->
+        <button class="ft-nav-btn ft-next-btn" id="ft-next-btn" aria-label="Next Page">
+          &#10095;
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ENQUIRY MODAL ==================== -->
+  <div class="ft-enquiry-overlay" id="ft-enquiry-overlay" aria-hidden="true">
+    <div class="ft-enquiry-card">
+      <button class="ft-enquiry-close" id="ft-enquiry-close">&times;</button>
+      <h3 id="ft-enquiry-heading">Tour Enquiry</h3>
+      <p class="ft-enquiry-subtext" id="ft-enquiry-subtext">Selected Page: Page 1</p>
+      
+      <form id="ft-enquiry-form" onsubmit="return false;">
+        <div class="ft-form-group">
+          <label for="ft-user-name">Full Name *</label>
+          <input type="text" id="ft-user-name" required placeholder="Enter your full name" />
+        </div>
+        
+        <div class="ft-form-group">
+          <label for="ft-user-phone">Phone Number *</label>
+          <input type="tel" id="ft-user-phone" required placeholder="Enter 10-digit mobile number" />
+        </div>
+
+        <div class="ft-form-group">
+          <label for="ft-user-notes">Travel Notes / Requirements</label>
+          <textarea id="ft-user-notes" rows="3" placeholder="Number of travelers, preferred dates, etc."></textarea>
+        </div>
+
+        <button type="submit" class="ft-whatsapp-submit-btn" id="ft-whatsapp-submit-btn">
+          <span>Send via WhatsApp</span>
+        </button>
+      </form>
+    </div>
+  </div>
   
   <!-- =========================================================
        5. TOUR PACKAGES HUB SECTION
@@ -483,7 +569,7 @@
     </div>
   </section>
 
-<!-- =========================================================
+  <!-- =========================================================
        7. CONTACT & LOCATION SECTION
   ========================================================= -->
   <section id="contact" class="contact-section">
