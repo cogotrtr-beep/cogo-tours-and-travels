@@ -301,61 +301,61 @@
   </section>
 
   <!-- =========================================================
-       NEW FEATURED TOURS SECTION (COMPACT CARDS & DIGITAL BROCHURE)
-  ========================================================= -->
-  <section class="ft-section" id="featured-tours-section">
-    <div class="ft-container">
-      <h2 class="ft-title">Featured Tours</h2>
-      <p class="ft-subtitle">Click on any card to explore the interactive digital brochure</p>
+     NEW FEATURED TOURS SECTION (COMPACT CARDS & DIGITAL BROCHURE)
+========================================================= -->
+<section class="ft-section" id="featured-tours-section">
+  <div class="ft-container">
+    <h2 class="ft-title">Featured Tours</h2>
+    <p class="ft-subtitle">Click on any card to explore the interactive digital brochure</p>
 
-      <!-- Cards Grid -->
-      <div class="ft-grid" id="ft-cards-container"></div>
+    <!-- Cards Grid -->
+    <div class="ft-grid" id="ft-cards-container"></div>
+  </div>
+</section>
+
+<!-- ==================== DIGITAL BROCHURE MODAL ==================== -->
+<div class="ft-modal-overlay" id="ft-modal-overlay" aria-hidden="true" role="dialog" style="display: none; visibility: hidden;">
+  <div class="ft-modal-content">
+    
+    <!-- Header Controls -->
+    <button class="ft-modal-close" id="ft-modal-close" aria-label="Close Brochure">&times;</button>
+    
+    <div class="ft-modal-header">
+      <h3 class="ft-modal-tour-title" id="ft-modal-tour-title"></h3>
+      <div class="ft-tabs-wrapper">
+        <div class="ft-tabs-container" id="ft-tabs-container"></div>
+      </div>
     </div>
-  </section>
 
-  <!-- ==================== DIGITAL BROCHURE MODAL ==================== -->
-  <div class="ft-modal-overlay" id="ft-modal-overlay" aria-hidden="true" role="dialog">
-    <div class="ft-modal-content">
+    <!-- Brochure Viewer Area -->
+    <div class="ft-brochure-body">
       
-      <!-- Header Controls -->
-      <button class="ft-modal-close" id="ft-modal-close" aria-label="Close Brochure">&times;</button>
-      
-      <div class="ft-modal-header">
-        <h3 class="ft-modal-tour-title" id="ft-modal-tour-title">Tour Name</h3>
-        <div class="ft-tabs-wrapper">
-          <div class="ft-tabs-container" id="ft-tabs-container"></div>
+      <!-- Left Arrow -->
+      <button class="ft-nav-btn ft-prev-btn" id="ft-prev-btn" aria-label="Previous Page">
+        &#10094;
+      </button>
+
+      <!-- A4 Page Container -->
+      <div class="ft-a4-wrapper">
+        <div class="ft-a4-page" id="ft-a4-page">
+          <img id="ft-page-image" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz4=" alt="" />
+          
+          <!-- Integrated Enquire Button inside A4 Page -->
+          <button class="ft-enquire-btn" id="ft-page-enquire-btn">
+            <span class="ft-btn-icon">💬</span> Enquire Now
+          </button>
         </div>
       </div>
 
-      <!-- Brochure Viewer Area -->
-      <div class="ft-brochure-body">
-        
-        <!-- Left Arrow -->
-        <button class="ft-nav-btn ft-prev-btn" id="ft-prev-btn" aria-label="Previous Page">
-          &#10094;
-        </button>
+      <!-- Right Arrow -->
+      <button class="ft-nav-btn ft-next-btn" id="ft-next-btn" aria-label="Next Page">
+        &#10095;
+      </button>
 
-        <!-- A4 Page Container -->
-        <div class="ft-a4-wrapper">
-          <div class="ft-a4-page" id="ft-a4-page">
-            <img id="ft-page-image" src="" alt="Tour Brochure Page" />
-            
-            <!-- Integrated Enquire Button inside A4 Page -->
-            <button class="ft-enquire-btn" id="ft-page-enquire-btn">
-              <span class="ft-btn-icon">💬</span> Enquire Now
-            </button>
-          </div>
-        </div>
-
-        <!-- Right Arrow -->
-        <button class="ft-nav-btn ft-next-btn" id="ft-next-btn" aria-label="Next Page">
-          &#10095;
-        </button>
-
-      </div>
     </div>
   </div>
-
+</div>
+  
   <!-- ==================== ENQUIRY MODAL ==================== -->
   <div class="ft-enquiry-overlay" id="ft-enquiry-overlay" aria-hidden="true">
     <div class="ft-enquiry-card">
