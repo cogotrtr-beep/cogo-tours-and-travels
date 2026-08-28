@@ -229,7 +229,7 @@ const categoryData = {
               <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
             <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
-              訪 Luxury Cabs, Urbania, Tempo Travellers & Buses are available for long-distance South India tours.
+              Luxury Cabs, Urbania, Tempo Travellers & Buses are available for long-distance South India tours.
             </p>
           </div>
         `
@@ -791,10 +791,49 @@ function handleFlightBooking(btn) {
 }
 
 /* =========================================================
+   CARD CLICK ENGINE
+========================================================= */
+
+function initCardClicks() {
+  document.querySelectorAll('.hub-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('a, button, input, select, textarea')) return;
+
+      const onclickAttr = this.getAttribute('onclick');
+      if (onclickAttr && !this.dataset.bound) {
+        return; 
+      }
+
+      const catKey = this.getAttribute('data-category') || 
+                     this.getAttribute('data-cat') || 
+                     this.id;
+
+      if (catKey) {
+        openCategoryModal(catKey);
+      } else {
+        const titleElem = this.querySelector('h3, h4, .card-title');
+        if (titleElem) {
+          const titleText = titleElem.textContent.trim().toLowerCase();
+          const matchedKey = Object.keys(categoryData).find(k => titleText.includes(k)) ||
+                             Object.keys(defaultCategoryInfo).find(k => titleText.includes(k));
+          if (matchedKey) {
+            openCategoryModal(matchedKey);
+          }
+        }
+      }
+    });
+  });
+}
+
+/* =========================================================
    GLOBAL EVENT LISTENERS
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+  initCardClicks();
+
   const { lightbox, img } = getLightboxElements();
 
   if (lightbox) {
@@ -912,6 +951,7 @@ document.addEventListener("click", function(e) {
     document.getElementById("cabDropList")?.classList.remove("show");
   }
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const visaCountries = [
     { name: "Australia", code: "au" },
@@ -988,4 +1028,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
