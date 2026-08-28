@@ -1,1874 +1,991 @@
-/* ========================================================
-   1. GLOBAL BASE & BRAND STYLES
-========================================================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+// Force page to scroll to top on mobile load/refresh
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
 }
 
-body {
-  background: linear-gradient(180deg, #FFF5EE 0%, #FAF0E6 40%, #F8FAFC 100%);
-  color: #0f172a;
-  line-height: 1.6;
-}
+window.addEventListener('beforeunload', function() {
+  window.scrollTo(0, 0);
+});
 
-.text-center { 
-  text-align: center; 
-}
-
-/* Header Brand Navigation - Fixed Top Ribbon */
-#mainNav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  background: #0f172a;
-  color: #ffffff;
-  padding: 12px 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.nav-container.nav-center-aligned {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1240px;
-  margin: 0 auto;
-}
-
-#navLinks {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
-}
-
-/* Header Navigation Buttons */
-.flag-tab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 42px;
-  padding: 0 20px;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 14px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
-  min-width: 140px;
-}
-
-.flag-tab:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.tab-saffron { background-color: #FF9933; color: #ffffff !important; }
-.tab-white-blue { background-color: #ffffff; color: #000080 !important; border: 1px solid #cbd5e1; }
-.tab-green { background-color: #138808; color: #ffffff !important; }
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 10);
+});
 
 /* =========================================================
-   2. HERO BANNER SECTION
+   COGO TOURS & CABS - DYNAMIC ENGINE & SIGHTSEEING TABS
 ========================================================= */
-.hero {
-  position: relative;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  min-height: 60vh;
-  background: url('hero-banner.png') center top / cover no-repeat;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 50px 20px 40px 20px; /* Added 50px top padding to push banner graphics below top bar */
-  box-sizing: border-box;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+// Global State
+let activeServiceTitle = "General Journey Enquiry";
+let currentPamphletList = [];
+let currentPamphletIndex = 0;
+
+// Drag-to-Pan & Zoom State
+let currentZoomScale = 1;
+let isDragging = false;
+let startX = 0, startY = 0;
+let translateX = 0, translateY = 0;
+
+// Helper function to build slidable pamphlet / destination gallery
+function createPamphletGallery(images) {
+  if (!images || images.length === 0) return '';
+
+  const cardsHtml = images.map((imgUrl, idx) => `
+    <div class="pamphlet-card" onclick="openPamphletZoom(${idx})">
+      <img src="${imgUrl}" alt="Destination Preview ${idx + 1}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop';" loading="lazy">
+    </div>
+  `).join('');
+
+  return `
+    <div class="pamphlet-swiper">
+      ${cardsHtml}
+    </div>
+    <p style="text-align: center; font-size: 14px; color: #94a3b8; margin-top: 6px; margin-bottom: 12px;">
+      👉 Tap image to zoom | Swipe for more previews
+    </p>
+  `;
 }
 
-.hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  z-index: 10;
-  width: 100%;
-  max-width: 480px;
-}
+// Data for Cogo Cabs & Cab Services
+const cogoCabsData = {
+  title: "🚕 Cogo Cabs Tariff",
+  desc: "Fixed tariffs for Sedan, Innova, Crysta, Urbania & Luxury Vehicles.",
+  tabs: [
+    {
+      name: "Standard & Luxury Rates",
+      images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"],
+      content: `
+        <div class="tariff-box">
+          <h4 style="font-size: 19px;">⚡ Standard Local & Day Rental Rates</h4>
+          <ul class="bulletin-list">
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack (250 km)</span> <span class="bullet-price">₹4,500</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack (250 km)</span> <span class="bullet-price">₹6,000</span></li>
+            <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack (250 km)</span> <span class="bullet-price">₹6,750</span></li>
+          </ul>
+          <p style="margin-top: 15px; font-weight: 700; color: #0f172a;">
+            🚐 <em>All other luxury cars, Urbania, Tempo Traveller & Buses are available at highly competitive rates.</em>
+          </p>
+        </div>
+      `
+    }
+  ]
+};
 
-.hero-btn {
-  padding: 13px 26px;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 15px;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  flex: 1;
-  text-align: center;
-}
-
-.hero-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-}
-
-.hero-btn.primary { background: #138808; color: #ffffff; }
-.hero-btn.secondary { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
-
-/* Desktop Widescreen Fix for Banner Alignment */
-@media (min-width: 1200px) {
-  .hero {
-    padding-top: 75px; /* Ensures Cogo logo remains fully visible on large monitors */
-    min-height: 65vh;
+// Category Data Engine
+const categoryData = {
+  cabs: {
+    title: "🚖 Cab Booking & Cogo Cabs",
+    desc: "Transparent tariffs for local hourly rides, full-day packages & outstation trips.",
+    tabs: [
+      {
+        name: "Local Hourly Rates",
+        images: [
+          "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">📍 City Local Packages</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        name: "One Day Pack (250 km)",
+        images: [
+          "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🛣️ One Day Outstation / Long Pack (250 km included)</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+            <p style="margin-top: 12px; font-weight: 700; color: #0f172a;">
+              🚍 All other luxury cars, Urbania, Tempo Traveller & Buses are also available with competitive rates.
+            </p>
+          </div>
+        `
+      }
+    ]
+  },
+  "cogo-cabs": cogoCabsData,
+  cabservices: cogoCabsData,
+  chennai: {
+    title: "🏛️ Tour Chennai Packages",
+    desc: "Explore heritage, temple circuits, coastal ECR, and entertainment hubs.",
+    tabs: [
+      {
+        name: "Vehicle Tariffs",
+        images: [
+          "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🚗 Chennai Tour Vehicle Tariffs</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan (50 km)</span> <span class="bullet-price">₹1,400</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova (50 km)</span> <span class="bullet-price">₹2,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta (10 Hrs / 100 km)</span> <span class="bullet-price">₹4,600</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan 1-Day Pack (250 km)</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova 1-Day Pack (250 km)</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta 1-Day Pack (250 km)</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+            <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
+              ✨ All other luxury cars, Urbania, Tempo Travellers & Buses are available at competitive rates!
+            </p>
+          </div>
+        `
+      },
+      {
+        name: "Custom One Day Circuits",
+        images: [
+          "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1609946782200-d3a39e763137?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">📍 Custom-Made / Recommended One-Day Tours</h4>
+            <p style="font-size: 15px; color: #64748b; margin-bottom: 10px;">Choose any circuit below with vehicle charges based on the reference tariff:</p>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Mahabalipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Periyapalayam & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Putlur, Thiruvallur, Sriperumbudur, Thirumazhisai & Thiruverkadu</span></li>
+              <li class="bulletin-item"><span class="bullet-label">ECR Heritage Circuit: DakshinaChitra, Muttukadu Boating, Kovalam Beach, Crocodile Park, Tiger Cave & Mahabalipuram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Theme Park & Fun: VGP, DakshinaChitra, Muttukadu Boating / Kovalam Beach</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Theme Park & Fun: MGM Dizzee World, DakshinaChitra, Muttukadu Boating / Kovalam Beach</span></li>
+            </ul>
+          </div>
+        `
+      }
+    ]
+  },
+  pilgrim: {
+    title: "🛕 Tour Pilgrim Circuits",
+    desc: "Sacred temple tours, heritage shrines, and spiritual one-day packages.",
+    tabs: [
+      {
+        name: "Heritage & Sakthi Circuits",
+        images: [
+          "Images/images/domestic-flyer.png", 
+          "Images/images/domestic-flyer2.png"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🛕 Popular One-Day Divine Packages</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item"><span class="bullet-label">Mahabalipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thirukazhukundram</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Periyapalayam & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Kanchipuram & Thiruthani</span></li>
+              <li class="bulletin-item"><span class="bullet-label">Putlur, Thiruvallur, Sriperumbudur, Thirumazhisai & Thiruverkadu</span></li>
+            </ul>
+          </div>
+        `
+      }
+    ]
+  },
+  "south-india": {
+    title: "🌴 Tour South India",
+    desc: "Misty hill stations, pristine beaches, spiritual temples & scenic escapes across South India.",
+    tabs: [
+      {
+        name: "Hill Stations & Nature",
+        images: [
+          "https://images.unsplash.com/photo-1600100397608-f010e423b971?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🏔️ South India Popular Getaways</h4>
+            <p style="font-size: 16px;">• Kodaikanal, Ooty, Coonoor, Munnar, Wayanad & Coorg Escapes.</p>
+            <p style="font-size: 16px; margin-top: 6px;">• Kerala Backwaters, Alleppey Houseboats & Thekkady Wildlife tours.</p>
+          </div>
+        `
+      },
+      {
+        name: "Outstation Cab Tariffs",
+        images: [
+          "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop"
+        ],
+        content: `
+          <div class="tariff-box">
+            <h4 style="font-size: 19px;">🚗 Outstation Vehicle Rates (250 km / Day Base)</h4>
+            <ul class="bulletin-list">
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Sedan One Day Pack</span> <span class="bullet-price">₹4,500</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova One Day Pack</span> <span class="bullet-price">₹6,000</span></li>
+              <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
+            </ul>
+            <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
+              訪 Luxury Cabs, Urbania, Tempo Travellers & Buses are available for long-distance South India tours.
+            </p>
+          </div>
+        `
+      }
+    ]
   }
-}
+};
 
-/* Mobile & Split Screen Spacing */
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 20px;
-    min-height: 50vh;
-  }
-}
-
-/* =========================================================
-   3. ONGOING TOURS SECTION
-========================================================= */
-.ongoing-tours-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px 5px 20px; /* Reduced bottom padding to 5px to close gap */
-}
-
-.ongoing-dual-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 992px) {
-  .ongoing-dual-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.ongoing-column {
-  background-color: #fbf5ed;
-  border: 1px solid #ebd9c8;
-  border-radius: 18px;
-  padding: 16px 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.compact-header {
-  margin-bottom: 8px;
-  padding-left: 8px;
-}
-
-.live-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.live-badge.domestic { background-color: #fff3e0; color: #e65100; }
-.live-badge.intl { background-color: #e0f2fe; color: #0369a1; }
-
-.bold-column-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.2;
-}
-
-.compact-sub {
-  font-size: 13.5px;
-  color: #64748b;
-}
-
-.slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.slider-wrapper {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 8px 4px;
-  scrollbar-width: none;
-}
-
-.slider-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.slider-track {
-  display: flex;
-  gap: 12px;
-}
-
-.slide-card {
-  position: relative;
-  flex: 0 0 calc(42% - 6px);
-  height: 350px; /* Expanded height vertically from 310px to 350px */
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 2px solid #D4AF37;
-  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-@media (max-width: 480px) {
-  .slide-card { flex: 0 0 65%; }
-}
-
-.slide-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(212, 175, 55, 0.4);
-}
-
-.slide-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.slide-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 20%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 12px;
-  color: #ffffff;
-}
-
-.status-tag {
-  align-self: flex-start;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-
-.status-tag.ongoing { background: #138808; color: #fff; }
-.status-tag.upcoming { background: #FF9933; color: #fff; }
-
-.slide-overlay h4 { font-size: 14.5px; font-weight: 800; margin-bottom: 2px; }
-.slide-overlay p { font-size: 11px; opacity: 0.85; }
-
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(15, 23, 42, 0.85);
-  color: #D4AF37;
-  border: 1px solid #D4AF37;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-
-.nav-arrow:hover { background: #0f172a; }
-.left-arrow { left: -10px; }
-.right-arrow { right: -10px; }
-
-.column-action-bar {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed #d6c5b3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.column-action-bar span { font-size: 13px; font-weight: 600; color: #475569; }
-
-.btn-primary-single {
-  background: #138808;
-  color: #ffffff;
-  border: none;
-  padding: 9px 14px;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 12.5px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.btn-primary-single.btn-intl { background: #0f172a; }
+const defaultCategoryInfo = {
+  tickets: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
+  journey: { title: "✈️ Plan Your Journey", desc: "Tailor-made itineraries for your next dream vacation.", content: "Share your travel dates and requirements for custom quotes." },
+  ticket: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
+  visa: { title: "🛂 Visa Assistance", desc: "Documentation & Processing Support.", content: "End-to-end visa guidance for all international destinations." },
+  "north-india": { title: "🏔️ Tour North India", desc: "Golden Triangle, Kashmir, Himachal & Rajasthan.", content: "Customized holiday packages across North India." },
+  "north-east": { title: "🏞️ Tour North East", desc: "Gangtok, Darjeeling, Assam & Meghalaya.", content: "Scenic tour packages across the North Eastern states." },
+  "rest-of-india": { title: "🧭 Tour Rest of India", desc: "Goa, Gujarat, Odisha & Pan-India Destinations.", content: "Unique tour plans for all Indian states and union territories." },
+  international: { title: "✈️ Tour International", desc: "Dubai, Singapore, Thailand, Bali & Europe.", content: "Comprehensive international vacation packages with flight and visa support." },
+  corporate: { title: "🏢 Corporate Tour", desc: "MICE, Team Outings & Business Conferences.", content: "Custom corporate packages and transport arrangements." },
+  students: { title: "🎓 School & College Tour", desc: "Educational Trips & Student Excursions.", content: "Safe and budget-friendly tours for educational institutions." },
+  adventure: { title: "🏕️ Adventure Tour", desc: "Trekking, Camping & Thrill Activities.", content: "Action-packed itineraries for outdoor enthusiasts." },
+  honeymoon: { title: "💖 Honeymoon Tour", desc: "Romantic Getaways & Couples' Retreats.", content: "Special honeymoon arrangements with luxury stays and private cabs." }
+};
 
 /* =========================================================
-
-   4. OUR SERVICES SECTION
-
+   MODAL OPEN / CLOSE HANDLERS
 ========================================================= */
 
-.services-section {
-
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-  padding: 5px 20px 15px 20px; /* Top Right Bottom Left */
-
-}
-
-
-
-.services-header-container {
-
-  text-align: center;
-
-  margin-bottom: 24px;
-
-}
-
-
-
-.services-main-title {
-
-  font-size: 1.8rem;
-
-  font-weight: 700;
-
-  margin: 0;
-
-  color: #0f172a;
-
-}
-
-
-
-.services-sub-title {
-
-  font-size: 0.9rem;
-
-  color: #64748b;
-
-  margin-top: 5px;
-
-}
-
-
-
-.services-grid {
-
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-
-  gap: 24px;
-
-  width: 100%;
-
-}
-
-
-
-.service-card {
-
-  background-size: cover;
-
-  background-position: center;
-
-  border-radius: 18px;
-
-  border-top: 4px solid #D4AF37;
-
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-
-  overflow: hidden;
-
-  padding: 24px 20px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  position: relative;
-
-  box-sizing: border-box;
-
-}
-
-
-
-.service-card::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background: rgba(15, 23, 42, 0.78);
-
-  z-index: 1;
-
-}
-
-
-
-.service-card-header,
-
-.service-form {
-
-  position: relative;
-
-  z-index: 2;
-
-}
-
-
-
-.service-card-header {
-
-  text-align: center;
-
-  margin-bottom: 18px;
-
-}
-
-
-
-.service-icon { 
-
-  font-size: 1.8rem; 
-
-  text-align: center; 
-
-}
-
-
-
-.service-title {
-
-  text-align: center;
-
-  font-size: 1.35rem;
-
-  font-weight: 700;
-
-  color: #ffffff;
-
-  margin: 6px 0 4px 0;
-
-}
-
-
-
-.service-desc {
-
-  text-align: center;
-
-  font-size: 0.82rem;
-
-  color: #d1d5db;
-
-  margin: 0;
-
-}
-
-
-
-.service-input,
-
-.service-form input[type="text"],
-
-.service-form input[type="date"],
-
-.service-form input[type="time"],
-
-.service-form select {
-
-  width: 100%;
-
-  height: 42px;
-
-  padding: 8px 12px;
-
-  font-size: 0.88rem;
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  border-radius: 8px;
-
-  background-color: rgba(255, 255, 255, 0.95);
-
-  color: #1e293b;
-
-  box-sizing: border-box;
-
-  transition: padding-left 0.2s ease, border-color 0.2s ease;
-
-}
-
-
-
-.service-input:focus,
-
-.service-form input:focus,
-
-.service-form select:focus {
-
-  outline: none;
-
-  border-color: #FF9933;
-
-}
-
-
-
-.form-group {
-
-  margin-bottom: 10px;
-
-  width: 100%;
-
-}
-
-
-
-.form-row {
-
-  display: flex;
-
-  gap: 10px;
-
-  margin-bottom: 10px;
-
-  width: 100%;
-
-}
-
-
-
-.form-row .service-input {
-
-  flex: 1;
-
-}
-
-
-
-.toggle-row {
-
-  display: flex;
-
-  justify-content: space-around;
-
-  background: rgba(255, 255, 255, 0.15);
-
-  padding: 6px;
-
-  border-radius: 8px;
-
-  margin-bottom: 10px;
-
-  color: #fff;
-
-  font-size: 0.82rem;
-
-}
-
-
-
-.toggle-row label {
-
-  cursor: pointer;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 4px;
-
-}
-
-
-
-.service-btn {
-
-  width: 100%;
-
-  height: 44px;
-
-  background-color: #22c55e;
-
-  color: white;
-
-  border: none;
-
-  border-radius: 8px;
-
-  font-weight: 600;
-
-  font-size: 0.92rem;
-
-  cursor: pointer;
-
-  margin-top: 6px;
-
-  transition: background-color 0.2s ease;
-
-}
-
-
-
-.service-btn:hover {
-
-  background-color: #16a34a;
-
-}
-
-
-
-/* Custom Input Modifications */
-
-.visa-remarks-textarea {
-
-  width: 100%;
-
-  box-sizing: border-box;
-
-  padding: 10px 12px;
-
-  border: 1px solid #cbd5e1;
-
-  border-radius: 8px;
-
-  font-size: 13px;
-
-  background-color: #ffffff;
-
-  color: #0f172a;
-
-  font-family: inherit;
-
-  resize: vertical;
-
-  outline: none;
-
-}
-
-
-
-.visa-remarks-textarea:focus { border-color: #0f172a; }
-
-
-
-/* Dynamic Visa Country Selector & Flag Component */
-
-.visa-country-selector {
-
-  position: relative;
-
-  width: 100%;
-
-}
-
-
-
-.country-input-wrapper {
-
-  position: relative;
-
-  display: flex;
-
-  align-items: center;
-
-  width: 100%;
-
-}
-
-
-
-/* Overlaid Flag Icon Inside the Input */
-
-.flag-preview {
-
-  position: absolute;
-
-  left: 12px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  pointer-events: none;
-
-  z-index: 5;
-
-}
-
-
-
-.flag-preview img {
-
-  width: 24px;
-
-  height: 16px;
-
-  object-fit: cover;
-
-  border-radius: 3px;
-
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-
-}
-
-
-
-.flag-preview.hidden {
-
-  display: none;
-
-}
-
-
-
-/* Dynamically adjust left padding when a flag is active */
-
-.country-input-wrapper input.has-flag {
-
-  padding-left: 44px;
-
-}
-
-
-
-/* Dynamic Visa Search Dropdown Box */
-
-.visa-dropdown-list {
-
-  display: none;
-
-  position: absolute;
-
-  top: calc(100% + 4px);
-
-  left: 0;
-
-  right: 0;
-
-  max-height: 220px;
-
-  overflow-y: auto;
-
-  background: #ffffff;
-
-  border: 1px solid #cbd5e1;
-
-  border-radius: 10px;
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-
-  z-index: 1000;
-
-  scroll-behavior: smooth;
-
-}
-
-
-
-.visa-dropdown-list.show { 
-
-  display: block; 
-
-}
-
-
-
-/* Individual Dropdown Item */
-
-.visa-option {
-
-  padding: 10px 14px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  cursor: pointer;
-
-  font-size: 14.5px;
-
-  color: #0f172a;
-
-  font-weight: 600;
-
-  transition: background 0.15s ease, color 0.15s ease;
-
-}
-
-
-
-.visa-option:hover { 
-
-  background-color: #f1f5f9; 
-
-  color: #138808;
-
-}
-
-
-
-.visa-option img {
-
-  width: 24px;
-
-  height: 16px;
-
-  object-fit: cover;
-
-  border-radius: 3px;
-
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-
-}
-
-
-
-.no-match-option {
-
-  padding: 12px;
-
-  font-size: 13.5px;
-
-  color: #64748b;
-
-  text-align: center;
-
-}
-
-
-
-/* Mobile Safari Date & Time Input Visibility Fix */
-
-input[type="date"],
-
-input[type="time"] {
-
-  color: #475569;
-
-  min-height: 42px;
-
-  -webkit-appearance: none;
-
-}
-
-
-
-input[type="date"]:invalid,
-
-input[type="time"]:invalid {
-
-  color: #94a3b8;
-
-}
-
-
-
-input[type="date"]::-webkit-date-and-time-value,
-
-input[type="time"]::-webkit-date-and-time-value {
-
-  text-align: left;
-
-  min-height: 1.2em;
-
-} 
-
-
-/* =========================================================
-   5. TOUR PACKAGES HUB SECTION
-========================================================= */
-#packages-section {
-  padding-top: 15px;
-  margin-top: 0;
-}
-
-.hub-header h2 { font-size: 34px; color: #0f172a; font-weight: 900; }
-.section-sub { color: #64748b; margin-bottom: 25px; font-size: 16px; }
-
-.hub-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 26px;
-  align-items: stretch;
-}
-
-.hub-card {
-  position: relative;
-  background: #0f172a;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 340px;
-  border: 1px solid #e2e8f0;
-}
-
-.hub-card-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.4s ease;
-  background-color: #0f172a;
-  z-index: 1;
-}
-
-.hub-card-bg .card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-.hub-card-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 10%, rgba(15, 23, 42, 0.3) 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.hub-card:hover .hub-card-bg { transform: scale(1.08); }
-
-.hub-card-content {
-  position: relative;
-  z-index: 3;
-  padding: 22px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.hub-icon { font-size: 30px; display: block; margin-bottom: 6px; }
-.hub-card-content h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-.hub-card-content p { font-size: 14px; opacity: 0.9; margin-bottom: 16px; line-height: 1.4; }
-
-.hub-btn {
-  width: 100%;
-  padding: 11px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 800;
-  font-size: 14px;
-  background: linear-gradient(90deg, #FF9933, #ff5a00);
-  color: #ffffff;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.hub-btn:hover { transform: translateY(-1px); }
-
-/* Custom Hub Box Variations */
-.tour-card-box {
-  padding: 24px 20px;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.tour-box-header { text-align: center; margin-bottom: 12px; }
-.tour-box-title { text-align: center; font-size: 1.35rem; font-weight: 700; margin: 0; }
-.tour-box-subtitle { text-align: center; font-size: 0.85rem; margin-top: 4px; color: #666; }
-
-.tour-box-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 18px;
-}
-
-.tour-box-footer .btn-enquire {
-  text-align: center;
-  padding: 10px 22px;
-  font-weight: 600;
-  border-radius: 6px;
-}
-
-/* =========================================================
-   6. ABOUT US SECTION
-========================================================= */
-.about-section {
-  background-color: #fbf5ed; /* Exact color match to the rest of the site */
-  padding: 30px 20px;
-  border: none;              /* Removes the visible top/bottom border lines */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.about-content {
-  max-width: 900px;
-  margin: 0 auto;
-  width: 100%;
-  text-align: center;
-}
-
-.about-content h2 {
-  font-size: 32px;
-  font-weight: 900;
-  margin-bottom: 12px;
-  color: #0f172a;
-}
-
-.about-lead {
-  font-size: 18px;
-  font-weight: 600;
-  color: #FF9933;
-  margin-bottom: 16px;
-}
-
-.about-body {
-  font-size: 15.5px;
-  color: #475569;
-  line-height: 1.8;
-}
-
-/* =========================================================
-   7. CONTACT & MAP SECTION
-========================================================= */
-.contact-section {
-  padding: 60px 20px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.social-links-bar {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 35px;
-  flex-wrap: wrap;
-}
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 30px;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 13.5px;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.social-btn:hover { transform: translateY(-2px); opacity: 0.9; }
-.social-btn.facebook { background-color: #1877F2; }
-.social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.social-btn.twitter { background-color: #000000; }
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 20px;
-  align-items: start;
-}
-
-.contact-card {
-  background: #ffffff;
-  padding: 28px;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.contact-card h3 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 20px;
-  color: #0f172a;
-}
-
-.contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 16px;
-}
-
-.contact-icon { font-size: 22px; }
-
-.contact-item a {
-  color: #138808;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.map-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.map-wrapper iframe {
-  height: 320px;
-  border-radius: 14px;
-}
-
-.map-directions-btn {
-  display: block;
-  text-align: center;
-  background: #0f172a;
-  color: #ffffff;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 800;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-}
-
-.map-directions-btn:hover { background: #FF9933; }
-
-/* =========================================================
-   8. MODAL POPUP & INTERACTIVE TOP TABS
-========================================================= */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(4px);
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
-}
-
-.modal-overlay.show { 
-  display: flex !important; 
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-
-.modal-box {
-  background: #ffffff;
-  width: 100%;
-  max-width: 680px;
-  border-radius: 20px;
-  padding: 28px;
-  position: relative;
-  max-height: 92vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-}
-
-.modal-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: #f1f5f9;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 18px;
-  color: #475569;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.modal-close:hover { background: #e2e8f0; color: #0f172a; }
-
-#modalTitle { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
-.modal-desc { font-size: 14px; color: #64748b; margin-bottom: 16px; }
-
-.sub-tab-container {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  margin-bottom: 18px;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 12px;
-}
-
-.sub-tab-btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-  color: #ffffff;
-  border: 2px solid transparent;
-}
-
-.sub-tab-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  opacity: 0.95;
-}
-
-.sub-tab-btn.tab-color-0 { background-color: #FF9933; border-color: #e68a2e; } 
-.sub-tab-btn.tab-color-1 { background-color: #0F172A; border-color: #050b14; } 
-.sub-tab-btn.tab-color-2 { background-color: #138808; border-color: #0f6e06; } 
-.sub-tab-btn.tab-color-3 { background-color: #D97706; border-color: #b46204; } 
-
-.sub-tab-btn.active { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a; }
-
-.modal-body-wrapper {
-  background: #FFF5EE;
-  border: 1.5px solid #FFE4E1;
-  padding: 22px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #0f172a;
-}
-
-/* Modal Form Layout & Actions */
-.form-group label {
-  display: block;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #334155;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus { border-color: #FF9933; }
-
-.modal-actions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.action-btn {
-  padding: 14px;
-  border-radius: 10px;
-  border: none;
-  font-weight: 800;
-  font-size: 15px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: opacity 0.2s ease, transform 0.1s ease;
-}
-
-.action-btn:active { transform: scale(0.98); }
-.btn-wa { background-color: #138808; color: #ffffff; }
-.btn-email { background-color: #0F172A; color: #ffffff; }
-
-/* Tariff & Bulletin Layout */
-.tariff-box { margin-top: 10px; }
-
-.tariff-box h4 {
-  font-size: 18px;
-  font-weight: 800;
-  color: #9a3412;
-  margin-bottom: 8px;
-  border-bottom: 1px dashed #fdba74;
-  padding-bottom: 4px;
-}
-
-.tariff-box p { font-size: 15px; color: #475569; margin-bottom: 14px; }
-
-.bulletin-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0;
-  margin: 10px 0;
-}
-
-.bulletin-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background-color: #f1f5f9;
-  border-left: 4px solid #2563eb;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #1e293b;
-}
-
-.bulletin-item .bullet-label { display: flex; align-items: center; gap: 8px; }
-.bulletin-item .bullet-label::before { content: "•"; color: #2563eb; font-size: 1.4rem; line-height: 1; }
-
-.bulletin-item .bullet-price {
-  font-weight: 800;
-  color: #138808;
-  background: #dcfce7;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-/* =========================================================
-   9. PAMPHLET LIGHTBOX MODAL & INTERACTIVE ZOOM ENGINE
-========================================================= */
-.pamphlet-swiper {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  padding: 12px 5px;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
-  user-select: none;
-  scrollbar-width: none;
-  margin: 15px 0;
-  scroll-snap-type: x mandatory;
-}
-
-.pamphlet-swiper::-webkit-scrollbar { display: none; }
-
-.pamphlet-card {
-  flex: 0 0 130px;
-  height: 180px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 2px solid #cbd5e1;
-  cursor: pointer;
-  scroll-snap-align: start;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-  background: #f8fafc;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-}
-
-.pamphlet-card:hover { transform: scale(1.04); border-color: #FF9933; }
-.pamphlet-card img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 6px; }
-
-#pamphletLightbox,
-#imageModal,
-.pamphlet-lightbox,
-.pamphlet-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.94);
-  z-index: 999999 !important;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease-in-out;
-  touch-action: none;
-}
-
-#pamphletLightbox.show,
-#imageModal.show,
-.pamphlet-lightbox.show,
-.pamphlet-modal.show {
-  display: flex !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-
-.lightbox-img-container,
-.pamphlet-modal-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
-#lightboxImage,
-#imgModalSrc,
-.pamphlet-modal-content {
-  max-width: 90vw;
-  max-height: 85vh;
-  object-fit: contain;
-  transition: transform 0.2s ease-in-out;
-  cursor: zoom-in;
-  transform-origin: center center;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-}
-
-.pamphlet-close,
-.pamphlet-lightbox-close,
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: #ffffff;
-  font-size: 36px;
-  font-weight: bold;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.2);
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000001;
-  transition: background 0.2s ease;
-}
-
-.pamphlet-close:hover,
-.pamphlet-lightbox-close:hover,
-.lightbox-close:hover { background: #ff5a00; }
-
-.lightbox-nav,
-.pamphlet-prev,
-.pamphlet-next,
-.prev-btn,
-.next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  border: none;
-  font-size: 28px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1000001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease, transform 0.2s ease;
-  user-select: none;
-}
-
-.lightbox-nav:hover,
-.pamphlet-prev:hover,
-.pamphlet-next:hover,
-.prev-btn:hover,
-.next-btn:hover {
-  background: #ff5a00;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.prev-btn, .pamphlet-prev, #prevBtn { left: 20px; }
-.next-btn, .pamphlet-next, #nextBtn { right: 20px; }
-
-.zoom-controls {
-  position: absolute;
-  bottom: 25px;
-  display: flex;
-  gap: 12px;
-  z-index: 1000001;
-  background: rgba(15, 23, 42, 0.85);
-  padding: 8px 18px;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-.zoom-controls button {
-  background: #ff5a00;
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.zoom-controls button:hover {
-  background: #e65100;
-  transform: scale(1.05);
-}
-
-.pamphlet-modal-hint {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #cbd5e1;
-  font-size: 13px;
-  z-index: 1000001;
-  pointer-events: none;
-}
-
-/* Horizontal Pamphlet Swiper Container */
-.pamphlet-modal-content,
-.pamphlet-list,
-.pamphlet-container {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  gap: 24px;
-  padding: 20px;
-  width: 90vw;
-  max-width: 1100px;
-  max-height: 85vh;
-  align-items: center;
-  justify-content: flex-start;
-  border-radius: 12px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.pamphlet-modal-content img,
-.pamphlet-list img,
-.pamphlet-item {
-  scroll-snap-align: center;
-  flex: 0 0 auto;
-  height: 100%;
-  max-height: 75vh;
-  width: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-}
-
-/* =========================================================
-   10. DESKTOP MEDIA QUERIES (MIN-WIDTH: 769PX)
-========================================================= */
-@media (min-width: 769px) {
-  .hub-grid {
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 32px;
+function openCategoryModal(catKey) {
+  if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
+
+  const data = categoryData[catKey];
+  const subTabContainer = document.getElementById("modalSubTabs");
+  if (subTabContainer) subTabContainer.innerHTML = "";
+
+  if (data && data.tabs) {
+    activeServiceTitle = data.title;
+    const titleElem = document.getElementById("modalTitle");
+    const descElem = document.getElementById("modalDescription");
+
+    if (titleElem) titleElem.textContent = data.title;
+    if (descElem) descElem.textContent = data.desc;
+
+    data.tabs.forEach((tab, index) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `sub-tab-btn tab-color-${index % 4} ${index === 0 ? 'active' : ''}`;
+      btn.textContent = tab.name;
+      btn.onclick = () => {
+        document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTabContent(tab);
+      };
+      if (subTabContainer) subTabContainer.appendChild(btn);
+    });
+
+    renderTabContent(data.tabs[0]);
+  } else {
+    const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "Custom Travel Package", content: "Contact us directly for custom pricing." };
+    activeServiceTitle = fallback.title;
+    const titleElem = document.getElementById("modalTitle");
+    const descElem = document.getElementById("modalDescription");
+
+    if (titleElem) titleElem.textContent = fallback.title;
+    if (descElem) descElem.textContent = fallback.desc;
+
+    currentPamphletList = fallback.images || [];
+    renderTabContent({ content: `<div class="tariff-box"><p>${fallback.content}</p></div>`, images: currentPamphletList });
   }
 
-  .hub-card {
-    min-height: 380px;
-    border-radius: 22px;
+  showModalElement("enquiryModal");
+}
+
+function renderTabContent(tab) {
+  const contentBody = document.getElementById("modalDynamicContent");
+  currentPamphletList = tab.images || [];
+  const galleryHtml = createPamphletGallery(currentPamphletList);
+  if (contentBody) contentBody.innerHTML = tab.content + galleryHtml;
+}
+
+function showModalElement(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.add("show");
+    modal.style.display = "flex";
+    modal.style.opacity = "1";
+    modal.style.pointerEvents = "auto";
+  }
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  const modal = document.getElementById("enquiryModal");
+  if (modal) {
+    modal.classList.remove("show");
+    modal.style.display = "none";
+  }
+  document.body.style.overflow = "";
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target.id === "enquiryModal") closeModal();
+}
+
+/* =========================================================
+   FORM SUBMISSION ENGINE (WHATSAPP & EMAIL)
+========================================================= */
+
+function submitEnquiry(type) {
+  const name = document.getElementById("userName") ? document.getElementById("userName").value.trim() : "";
+  const phone = document.getElementById("userPhone") ? document.getElementById("userPhone").value.trim() : "";
+  const query = document.getElementById("userQuery") ? document.getElementById("userQuery").value.trim() : "";
+
+  if (!name || !phone) {
+    alert("Please enter your name and contact phone number to continue.");
+    return;
   }
 
-  .hub-card-content { padding: 30px; }
-  .hub-icon { font-size: 42px; margin-bottom: 10px; }
-  .hub-card-content h3 { font-size: 28px; margin-bottom: 6px; }
-  .hub-card-content p { font-size: 16.5px; margin-bottom: 20px; line-height: 1.5; }
+  const messageText = `*New Travel Enquiry - Cogo Tours*\n` +
+                      `-------------------------------\n` +
+                      `*Service/Package:* ${activeServiceTitle}\n` +
+                      `*Customer Name:* ${name}\n` +
+                      `*Contact Number:* ${phone}\n` +
+                      `*Notes/Preferences:* ${query || 'N/A'}`;
 
-  .hub-btn {
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 10px;
-  }
-
-  .modal-box {
-    max-width: 880px;
-    padding: 36px;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+  if (type === 'whatsapp') {
+    const waUrl = `https://wa.me/919884066830?text=${encodeURIComponent(messageText)}`;
+    window.open(waUrl, '_blank');
+  } else if (type === 'email') {
+    const mailtoUrl = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent("Enquiry: " + activeServiceTitle)}&body=${encodeURIComponent(messageText)}`;
+    window.location.href = mailtoUrl;
   }
 }
 
 /* =========================================================
-   11. MOBILE MEDIA QUERIES (MAX-WIDTH: 768PX)
-========================================================= */
-@media (max-width: 768px) {
-  #navLinks {
-    flex-direction: row;
-    gap: 6px;
-  }
-
-  .flag-tab {
-    padding: 0 4px;
-    font-size: 11px;
-    flex: 1;
-    min-width: auto;
-    height: 38px;
-  }
-
-  .hero {
-    min-height: 42vh;
-    padding-bottom: 20px;
-  }
-
-  .hero-actions { gap: 8px; }
-  .hero-btn { padding: 10px 14px; font-size: 13px; }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-actions-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .prev-btn, .pamphlet-prev, #prevBtn { left: 8px; }
-  .next-btn, .pamphlet-next, #nextBtn { right: 8px; }
-
-  .zoom-controls {
-    bottom: 15px;
-    padding: 6px 12px;
-  }
-
-  .zoom-controls button {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  .pamphlet-modal-content,
-  .pamphlet-list,
-  .pamphlet-container {
-    width: 100vw;
-    max-width: 100vw;
-    padding: 10px 0;
-    aspect-ratio: auto;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .pamphlet-modal-content img,
-  .pamphlet-list img,
-  .pamphlet-item {
-    max-width: 96vw;
-    max-height: 80vh;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    margin: 0 auto;
-    border-radius: 8px;
-  }
-}
-/* =========================================================
-   BOTTOM SECTION (TOUR PACKAGES, ABOUT, CONTACT) ALIGNMENT
+   LIGHTBOX ZOOM & DRAG ENGINE
 ========================================================= */
 
-/* Ensure the main container wraps to the same max-width as Services */
-.tour-about-contact-section, 
-.info-grid-container,
-.bottom-content-grid {
-  max-width: 1280px !important;
-  width: 100% !important;
-  margin: 0 auto 50px auto !important;
-  padding: 0 20px !important;
-  box-sizing: border-box !important;
+function getLightboxElements() {
+  const lightbox = document.getElementById("pamphletLightbox") || document.getElementById("imageModal");
+  const img = document.getElementById("lightboxImage") || document.getElementById("imgModalSrc");
+  return { lightbox, img };
 }
 
-/* Force the 3 columns below Services to align directly underneath the cards */
-.tour-about-contact-grid,
-.three-column-layout {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-  gap: 24px !important;
-  align-items: start !important;
-  width: 100% !important;
-}
+function applyZoomTransform() {
+  const { img } = getLightboxElements();
+  if (!img) return;
 
-/* Ensure inner cards stretch properly across their full column width */
-.tour-packages-card,
-.about-us-card,
-.contact-us-card {
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-/* =========================================================
-   FIX FOR CONTAINER MAX-WIDTH & CENTER ALIGNMENT
-========================================================= */
-
-/* Align Tour Packages grid to match Services container width */
-#packages-section .hub-grid {
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-  box-sizing: border-box !important;
-}
-
-/* Align Header Titles centered to match Services */
-#packages-section .hub-header,
-#about .section-container,
-#contact .section-container {
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-  box-sizing: border-box !important;
-}
-
-/* Align About Us text block properly */
-.about-section {
-  padding: 40px 0 !important;
-}
-
-.about-content {
-  max-width: 900px !important;
-  margin: 0 auto !important;
-}
-
-/* Align Contact Details & Google Map Side-by-Side horizontally */
-.contact-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 30px !important;
-  align-items: start !important;
-  max-width: 1280px !important;
-  margin: 30px auto 0 auto !important;
-}
-
-/* Responsive fix for mobile devices */
-@media (max-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr !important;
+  if (currentZoomScale <= 1) {
+    translateX = 0;
+    translateY = 0;
+    img.style.cursor = "zoom-in";
+  } else {
+    img.style.cursor = isDragging ? "grabbing" : "grab";
   }
+
+  img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoomScale})`;
+  img.style.transition = isDragging ? "none" : "transform 0.15s ease-out";
+}
+
+function resetZoom() {
+  currentZoomScale = 1;
+  translateX = 0;
+  translateY = 0;
+  applyZoomTransform();
+}
+
+function zoomIn() {
+  currentZoomScale = Math.min(currentZoomScale + 0.5, 3.5);
+  applyZoomTransform();
+}
+
+function zoomOut() {
+  currentZoomScale = Math.max(currentZoomScale - 0.5, 1);
+  if (currentZoomScale === 1) {
+    translateX = 0;
+    translateY = 0;
+  }
+  applyZoomTransform();
+}
+
+function changeZoom(delta) {
+  if (delta > 0) zoomIn();
+  else zoomOut();
+}
+
+function openPamphletZoom(index) {
+  if (!currentPamphletList || currentPamphletList.length === 0) return;
+
+  currentPamphletIndex = index;
+  const { lightbox, img } = getLightboxElements();
+
+  if (lightbox && img) {
+    img.src = currentPamphletList[currentPamphletIndex];
+    resetZoom();
+    lightbox.classList.add("show");
+    lightbox.style.display = "flex";
+    lightbox.style.opacity = "1";
+    lightbox.style.pointerEvents = "auto";
+  }
+}
+
+function closePamphletZoom(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  const { lightbox } = getLightboxElements();
+  if (lightbox) {
+    lightbox.classList.remove("show");
+    lightbox.style.display = "none";
+    lightbox.style.opacity = "0";
+    lightbox.style.pointerEvents = "none";
+    resetZoom();
+  }
+}
+
+function prevPamphlet(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  if (!currentPamphletList || currentPamphletList.length <= 1) return;
+  currentPamphletIndex = (currentPamphletIndex - 1 + currentPamphletList.length) % currentPamphletList.length;
+  openPamphletZoom(currentPamphletIndex);
+}
+
+function nextPamphlet(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  if (!currentPamphletList || currentPamphletList.length <= 1) return;
+  currentPamphletIndex = (currentPamphletIndex + 1) % currentPamphletList.length;
+  openPamphletZoom(currentPamphletIndex);
+}
+
+function navigateLightbox(direction, e) {
+  if (direction === -1) prevPamphlet(e);
+  else if (direction === 1) nextPamphlet(e);
+}
+
+function openPamphletList(imageList, index) {
+  if (!imageList || imageList.length === 0) return;
+  currentPamphletList = imageList;
+  openPamphletZoom(index);
+}
+
+function scrollTrack(trackId, direction) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+  const scrollAmount = track.clientWidth * 0.5;
+  track.parentElement.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
 }
 
 /* =========================================================
-   GLOBAL LAYOUT & CONTAINER WIDTH FIX
+   VISA ASSISTANCE ENGINE
 ========================================================= */
 
-/* Ensure parent containers allow full width */
-html, body {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow-x: hidden !important;
-}
+const visaCountries = [
+  { name: "United States (USA)", flag: "🇺🇸" },
+  { name: "United Kingdom (UK)", flag: "🇬🇧" },
+  { name: "Schengen / Europe", flag: "🇪🇺" },
+  { name: "United Arab Emirates (Dubai)", flag: "🇦🇪" },
+  { name: "Singapore", flag: "🇸🇬" },
+  { name: "Malaysia", flag: "🇲🇾" },
+  { name: "Thailand", flag: "🇹🇭" },
+  { name: "Australia", flag: "🇦🇺" },
+  { name: "Canada", flag: "🇨🇦" },
+  { name: "Japan", flag: "🇯🇵" },
+  { name: "Vietnam", flag: "🇻🇳" },
+  { name: "Saudi Arabia", flag: "🇸🇦" }
+];
 
-/* Force all top-level sections to occupy full width */
-section, 
-.ongoing-tours-section, 
-.services-section, 
-.about-section, 
-.contact-section, 
-#packages-section {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
+let selectedVisaCountry = null;
 
-/* Set standard container width (1280px) for inner grids */
-.ongoing-dual-grid,
-.services-grid,
-.hub-grid,
-.section-container,
-.contact-grid {
-  width: 100% !important;
-  max-width: 1280px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-}
+function populateVisaCountries(list = visaCountries) {
+  const container = document.getElementById("visaDropdownList");
+  if (!container) return;
 
-/* Tour Packages Hub 3-Column Layout */
-.hub-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 24px !important;
-}
-
-/* Contact & Map 2-Column Side-by-Side Layout */
-.contact-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 30px !important;
-  align-items: start !important;
-}
-
-/* Responsive adjustment for screens under 992px */
-@media (max-width: 992px) {
-  .hub-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+  container.innerHTML = "";
+  if (list.length === 0) {
+    container.innerHTML = '<div class="visa-option">No country found</div>';
+    return;
   }
+
+  list.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "visa-option";
+    div.innerHTML = `<span class="flag">${item.flag}</span> <span>${item.name}</span>`;
+    div.onclick = () => selectVisaCountry(item);
+    container.appendChild(div);
+  });
 }
 
-@media (max-width: 600px) {
-  .hub-grid, 
-  .contact-grid {
-    grid-template-columns: 1fr !important;
-  }
+function showVisaDropdown() {
+  populateVisaCountries();
+  document.getElementById("visaDropdownList")?.classList.add("show");
 }
+
+function filterVisaCountries() {
+  const query = document.getElementById("visaCountryInput").value.toLowerCase();
+  const filtered = visaCountries.filter(c => c.name.toLowerCase().includes(query));
+  populateVisaCountries(filtered);
+  document.getElementById("visaDropdownList")?.classList.add("show");
+}
+
+function selectVisaCountry(countryObj) {
+  selectedVisaCountry = countryObj;
+  const input = document.getElementById("visaCountryInput");
+  if (input) input.value = `${countryObj.flag} ${countryObj.name}`;
+  document.getElementById("visaDropdownList")?.classList.remove("show");
+}
+
+function sendVisaWhatsApp() {
+  const phoneNumber = "919884066830"; 
+
+  let countryName = selectedVisaCountry ? selectedVisaCountry.name : document.getElementById("visaCountryInput")?.value;
+  const fromDate = document.getElementById("visaFromDate")?.value;
+  const toDate = document.getElementById("visaToDate")?.value;
+  const pax = document.getElementById("visaPaxSelect")?.value || "1 Person";
+  const remarks = document.getElementById("visaRemarksInput")?.value.trim();
+
+  if (!countryName || !countryName.trim()) {
+    alert("Please select or type a destination country for Visa Assistance.");
+    return;
+  }
+
+  let message = `Hello Cogo Tours, I am interested in Visa Assistance.\n\n🌐 *Destination Country:* ${countryName}`;
+  if (fromDate && toDate) {
+    message += `\n📅 *Travel Period:* ${fromDate} to ${toDate}`;
+  } else if (fromDate) {
+    message += `\n📅 *Travel Date:* ${fromDate}`;
+  }
+  message += `\n👥 *Applicants (Pax):* ${pax}`;
+  if (remarks) {
+    message += `\n📝 *Remarks:* ${remarks}`;
+  }
+  message += `\n\nPlease share the required document checklist and visa process.`;
+
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
+
+function handleVisaBooking(btn) {
+  const form = btn.closest('form');
+  const country = form.querySelector('#visaCountry')?.value || '';
+  const date = form.querySelector('#visaTravelDate')?.value || '';
+  const returnDate = form.querySelector('#visaReturnDate')?.value || '';
+  const pax = form.querySelector('#visaPax')?.value || '';
+  const name = form.querySelector('#visaName')?.value || '';
+  const mobile = form.querySelector('#visaMobile')?.value || '';
+  const remarks = form.querySelector('#visaRemarks')?.value || '';
+
+  let msg = `*Visa Assistance Enquiry*\n`;
+  if (country) msg += `🌐 Country: ${country}\n`;
+  if (date) msg += ` Travel Date: ${date}\n`;
+  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
+  if (pax) msg += ` Applicants: ${pax}\n`;
+  if (name) msg += `👤 Name: ${name}\n`;
+  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
+  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
+
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
 /* =========================================================
-   7. CONTACT & LOCATION SECTION
+   CAB SERVICES ENGINE
 ========================================================= */
-.contact-section {
-  padding-top: 10px;    /* Pulls the section higher up */
-  padding-bottom: 40px;
-  margin-top: 0;
+
+const cabPickupLocations = [
+  "Chennai Airport (MAA)",
+  "Chennai Central Railway Station",
+  "Chennai Egmore Station",
+  "T. Nagar / Kodambakkam",
+  "OMR / Sholinganallur (IT Corridor)",
+  "Velachery / Guindy",
+  "Koyambedu (CMBT)",
+  "ECR / Neelankarai"
+];
+
+const cabDropLocations = [
+  "Pondicherry / Puducherry",
+  "Tirupati / Tirumala",
+  "Mahabalipuram / ECR Beach Resorts",
+  "Kanchipuram Heritage Town",
+  "Vellore / Golden Temple",
+  "Bengaluru City",
+  "Local Chennai Full Day Sightseeing",
+  "Local Airport Drop / Transfer"
+];
+
+function populateCabList(containerId, list, selectFunc) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = "";
+
+  if (list.length === 0) {
+    container.innerHTML = '<div class="visa-option">Type custom location...</div>';
+    return;
+  }
+
+  list.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "visa-option";
+    div.innerHTML = `<span>📍 ${item}</span>`;
+    div.onclick = () => selectFunc(item);
+    container.appendChild(div);
+  });
 }
 
-.contact-section .text-center {
-  margin-bottom: 20px;  /* Keeps heading tight to the social buttons */
+function showCabPickupDropdown() {
+  populateCabList("cabPickupList", cabPickupLocations, selectCabPickup);
+  document.getElementById("cabPickupList")?.classList.add("show");
 }
 
-.contact-section h2 {
-  margin-bottom: 6px;
+function filterCabPickup() {
+  const q = document.getElementById("cabPickupInput").value.toLowerCase();
+  const filtered = cabPickupLocations.filter(loc => loc.toLowerCase().includes(q));
+  populateCabList("cabPickupList", filtered, selectCabPickup);
+  document.getElementById("cabPickupList")?.classList.add("show");
 }
+
+function selectCabPickup(val) {
+  const input = document.getElementById("cabPickupInput");
+  if (input) input.value = val;
+  document.getElementById("cabPickupList")?.classList.remove("show");
+}
+
+function showCabDropDropdown() {
+  populateCabList("cabDropList", cabDropLocations, selectCabDrop);
+  document.getElementById("cabDropList")?.classList.add("show");
+}
+
+function filterCabDrop() {
+  const q = document.getElementById("cabDropInput").value.toLowerCase();
+  const filtered = cabDropLocations.filter(loc => loc.toLowerCase().includes(q));
+  populateCabList("cabDropList", filtered, selectCabDrop);
+  document.getElementById("cabDropList")?.classList.add("show");
+}
+
+function selectCabDrop(val) {
+  const input = document.getElementById("cabDropInput");
+  if (input) input.value = val;
+  document.getElementById("cabDropList")?.classList.remove("show");
+}
+
+function sendCabWhatsApp() {
+  const phoneNumber = "919884066830";
+
+  const pickup = document.getElementById("cabPickupInput")?.value.trim();
+  const drop = document.getElementById("cabDropInput")?.value.trim();
+  const travelDate = document.getElementById("cabDateInput")?.value;
+  const travelTime = document.getElementById("cabTimeInput")?.value;
+  const vehicle = document.getElementById("cabVehicleSelect")?.value;
+  const pack = document.getElementById("cabPackSelect")?.value;
+
+  if (!pickup || !drop) {
+    alert("Please enter or select both Pickup and Destination locations.");
+    return;
+  }
+
+  let message = `Hello Cogo Tours, I want to book/enquire a cab.\n\n📍 *Pickup:* ${pickup}\n🎯 *Destination:* ${drop}`;
+  if (travelDate) message += `\n📅 *Date:* ${travelDate}`;
+  if (travelTime) message += `\n⏰ *Time:* ${travelTime}`;
+  if (vehicle) message += `\n🚗 *Vehicle:* ${vehicle}`;
+  if (pack) message += `\n⏱️ *Trip Pack:* ${pack}`;
+  message += `\n\nPlease share availability and fare details.`;
+
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
+
+function handleCabBooking(btn) {
+  const form = btn.closest('form');
+  const pickup = form.querySelector('#pickupLocation')?.value || '';
+  const drop = form.querySelector('#dropLocation')?.value || '';
+  const date = form.querySelector('#cabDate')?.value || '';
+  const returnDate = form.querySelector('#cabReturnDate')?.value || '';
+  const time = form.querySelector('#cabTime')?.value || '';
+  const vehicle = form.querySelector('#cabVehicle')?.value || '';
+  const pack = form.querySelector('#cabPackage')?.value || '';
+  const name = form.querySelector('#cabName')?.value || '';
+  const mobile = form.querySelector('#cabMobile')?.value || '';
+  const remarks = form.querySelector('#cabRemarks')?.value || '';
+
+  let msg = `*Cab Service Enquiry*\n`;
+  if (pickup) msg += ` Pickup: ${pickup}\n`;
+  if (drop) msg += ` Drop: ${drop}\n`;
+  if (date) msg += ` Travel Date: ${date}\n`;
+  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
+  if (time) msg += `⏰ Pickup Time: ${time}\n`;
+  if (vehicle) msg += ` Vehicle: ${vehicle}\n`;
+  if (pack) msg += ` Package: ${pack}\n`;
+  if (name) msg += `👤 Name: ${name}\n`;
+  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
+  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
+
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+/* =========================================================
+   FLIGHT BOOKING ENGINE
+========================================================= */
+
+function toggleReturnDate(isRoundTrip) {
+  const returnInput = document.getElementById("flightReturnDate");
+  if (returnInput) {
+    returnInput.style.display = isRoundTrip ? "block" : "none";
+  }
+}
+
+function sendFlightWhatsApp() {
+  const phoneNumber = "919884066830"; 
+
+  const scope = document.querySelector('input[name="flightScope"]:checked')?.value || "Domestic";
+  const type = document.querySelector('input[name="flightType"]:checked')?.value || "One-Way";
+  const fromCity = document.getElementById("flightFromInput")?.value.trim();
+  const toCity = document.getElementById("flightToInput")?.value.trim();
+  const departDate = document.getElementById("flightDepartDate")?.value;
+  const returnDate = document.getElementById("flightReturnDate")?.value;
+  const preferredTime = document.getElementById("flightTimeSelect")?.value;
+  const passengers = document.getElementById("flightPaxSelect")?.value || "1 Passenger";
+
+  if (!fromCity || !toCity) {
+    alert("Please enter both Departure and Destination cities.");
+    return;
+  }
+
+  let message = `Hello Cogo Tours, I want to book/enquire a flight ticket.\n\n🌐 *Type:* ${scope} (${type})\n🛫 *From:* ${fromCity}\n🛬 *To:* ${toCity}`;
+  if (departDate) message += `\n📅 *Departure Date:* ${departDate}`;
+  if (type === "Round Trip" && returnDate) message += `\n📅 *Return Date:* ${returnDate}`;
+  if (preferredTime) message += `\n⏰ *Preferred Time:* ${preferredTime}`;
+  message += `\n👥 *Passengers:* ${passengers}`;
+  message += `\n\nPlease check for available flights and best fare deals.`;
+
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
+
+function handleFlightBooking(btn) {
+  const form = btn.closest('form');
+  const flightType = form.querySelector('input[name="flightType"]:checked')?.value || 'Domestic';
+  const tripType = form.querySelector('input[name="tripType"]:checked')?.value || 'One-Way';
+  const from = form.querySelector('#departureCity')?.value || '';
+  const to = form.querySelector('#destinationCity')?.value || '';
+  const date = form.querySelector('#flightDate')?.value || '';
+  const returnDate = form.querySelector('#flightReturnDate')?.value || '';
+  const timeBand = form.querySelector('#flightTimeBand')?.value || '';
+  const name = form.querySelector('#flightName')?.value || '';
+  const mobile = form.querySelector('#flightMobile')?.value || '';
+  const remarks = form.querySelector('#flightRemarks')?.value || '';
+
+  let msg = `*Flight Booking Enquiry*\n`;
+  if (flightType) msg += ` Type: ${flightType} (${tripType})\n`;
+  if (from) msg += ` From: ${from}\n`;
+  if (to) msg += ` To: ${to}\n`;
+  if (date) msg += ` Departure Date: ${date}\n`;
+  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
+  if (timeBand) msg += ` Preferred Time: ${timeBand}\n`;
+  if (name) msg += `👤 Name: ${name}\n`;
+  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
+  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
+
+  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+/* =========================================================
+   GLOBAL EVENT LISTENERS
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const { lightbox, img } = getLightboxElements();
+
+  if (lightbox) {
+    lightbox.addEventListener("wheel", function (e) {
+      if (lightbox.style.display === "flex" || lightbox.classList.contains("show")) {
+        e.preventDefault();
+        if (e.deltaY < 0) zoomIn();
+        else zoomOut();
+      }
+    }, { passive: false });
+  }
+
+  if (img) {
+    img.addEventListener("click", function (e) {
+      if (isDragging) return;
+      e.stopPropagation();
+      currentZoomScale = currentZoomScale === 1 ? 2 : 1;
+      applyZoomTransform();
+    });
+
+    img.addEventListener("mousedown", (e) => {
+      if (currentZoomScale > 1) {
+        isDragging = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        img.style.cursor = "grabbing";
+        e.preventDefault();
+      }
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      applyZoomTransform();
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (isDragging) {
+        setTimeout(() => { isDragging = false; }, 50);
+        applyZoomTransform();
+      }
+    });
+
+    img.addEventListener("touchstart", (e) => {
+      if (currentZoomScale > 1 && e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - translateX;
+        startY = e.touches[0].clientY - translateY;
+      }
+    });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      translateX = e.touches[0].clientX - startX;
+      translateY = e.touches[0].clientY - startY;
+      applyZoomTransform();
+    });
+
+    window.addEventListener("touchend", () => {
+      isDragging = false;
+    });
+  }
+
+  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => {
+    btn.onclick = prevPamphlet;
+  });
+  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => {
+    btn.onclick = nextPamphlet;
+  });
+  document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => {
+    btn.onclick = zoomIn;
+  });
+  document.querySelectorAll(".zoom-out, #zoomOutBtn").forEach(btn => {
+    btn.onclick = zoomOut;
+  });
+  document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => {
+    btn.onclick = closePamphletZoom;
+  });
+});
+
+/* Keyboard Navigation (Left/Right Arrows & Esc) */
+document.addEventListener("keydown", function(e) {
+  const { lightbox } = getLightboxElements();
+  const isLightboxActive = lightbox && (lightbox.style.display === "flex" || lightbox.classList.contains("show"));
+
+  if (e.key === "Escape") {
+    if (isLightboxActive) {
+      closePamphletZoom(e);
+    } else {
+      closeModal();
+    }
+  } else if (isLightboxActive) {
+    if (e.key === "ArrowLeft") prevPamphlet(e);
+    if (e.key === "ArrowRight") nextPamphlet(e);
+    if (e.key === "+" || e.key === "=") zoomIn();
+    if (e.key === "-") zoomOut();
+  }
+});
+
+/* Hide Dropdowns When Clicking Outside */
+document.addEventListener("click", function(e) {
+  const visaWrapper = document.querySelector(".custom-select-wrapper");
+  if (visaWrapper && !visaWrapper.contains(e.target)) {
+    document.getElementById("visaDropdownList")?.classList.remove("show");
+  }
+
+  const pickupWrap = document.getElementById("cabPickupInput")?.parentElement;
+  const dropWrap = document.getElementById("cabDropInput")?.parentElement;
+
+  if (pickupWrap && !pickupWrap.contains(e.target)) {
+    document.getElementById("cabPickupList")?.classList.remove("show");
+  }
+  if (dropWrap && !dropWrap.contains(e.target)) {
+    document.getElementById("cabDropList")?.classList.remove("show");
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const visaCountries = [
+    { name: "Australia", code: "au" },
+    { name: "Canada", code: "ca" },
+    { name: "Dubai (UAE)", code: "ae" },
+    { name: "France", code: "fr" },
+    { name: "Germany", code: "de" },
+    { name: "Indonesia (Bali)", code: "id" },
+    { name: "Italy", code: "it" },
+    { name: "Japan", code: "jp" },
+    { name: "Malaysia", code: "my" },
+    { name: "Singapore", code: "sg" },
+    { name: "Switzerland", code: "ch" },
+    { name: "Thailand", code: "th" },
+    { name: "United Kingdom", code: "gb" },
+    { name: "United States", code: "us" },
+    { name: "Vietnam", code: "vn" }
+  ];
+
+  const countryInput = document.getElementById("visaCountry");
+  const dropdownList = document.getElementById("visaCountryDropdown");
+  const flagPreview = document.getElementById("selectedFlag");
+
+  if (!countryInput || !dropdownList || !flagPreview) return;
+
+  function renderOptions(filterText = "") {
+    dropdownList.innerHTML = "";
+    const filtered = visaCountries.filter(c => 
+      c.name.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    if (filtered.length === 0) {
+      dropdownList.innerHTML = `<div class="no-match-option">No matching countries found</div>`;
+      dropdownList.classList.add("show");
+      return;
+    }
+
+    filtered.forEach(country => {
+      const option = document.createElement("div");
+      option.className = "visa-option";
+      option.innerHTML = `
+        <img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">
+        <span>${country.name}</span>
+      `;
+
+      option.addEventListener("click", () => {
+        countryInput.value = country.name;
+        flagPreview.innerHTML = `<img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">`;
+        flagPreview.classList.remove("hidden");
+        countryInput.classList.add("has-flag");
+        dropdownList.classList.remove("show");
+      });
+
+      dropdownList.appendChild(option);
+    });
+
+    dropdownList.classList.add("show");
+  }
+
+  countryInput.addEventListener("input", (e) => {
+    flagPreview.classList.add("hidden");
+    flagPreview.innerHTML = "";
+    countryInput.classList.remove("has-flag");
+    renderOptions(e.target.value.trim());
+  });
+
+  countryInput.addEventListener("focus", () => {
+    renderOptions(countryInput.value.trim());
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".visa-country-selector")) {
+      dropdownList.classList.remove("show");
+    }
+  });
+});
 
