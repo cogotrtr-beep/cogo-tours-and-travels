@@ -1883,3 +1883,48 @@ section,
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
+/* Modal Slider Layout */
+.modal-card-container {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 850px;
+  width: 90%;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header-simple {
+  margin-bottom: 16px;
+}
+
+.modal-slider-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 8px;
+}
+
+.modal-slider-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.modal-slider-container .slider-track {
+  display: flex;
+  gap: 16px;
+  padding: 8px 4px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
