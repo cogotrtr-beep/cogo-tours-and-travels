@@ -634,3 +634,19 @@
 </body>
 </html>
 
+<!-- CATEGORY POPUP MODAL -->
+  <div id="enquiryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal-card-container">
+      <button type="button" class="modal-close-btn" onclick="closeModal()" aria-label="Close">&times;</button>
+      
+      <div class="modal-header-simple text-center">
+        <h3 id="modalTitle">Tour Packages</h3>
+        <p id="modalDescription" class="modal-sub"></p>
+      </div>
+
+      <div id="modalSubTabs" class="sub-tabs-bar"></div>
+
+      <!-- This is where the 6 cards render -->
+      <div id="modalDynamicContent"></div>
+    </div>
+  </div>
