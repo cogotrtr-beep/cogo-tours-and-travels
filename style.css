@@ -1872,21 +1872,3 @@ section,
   margin-bottom: 6px;
 }
 
-/* =========================================================
-   12. CARD CLICK & TOUCH INTERACTION ENHANCEMENTS
-========================================================= */
-.hub-card {
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hub-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-.hub-card:active {
-  transform: translateY(-2px);
-}
