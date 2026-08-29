@@ -260,7 +260,8 @@ const defaultCategoryInfo = {
 function openCategoryModal(catKey) {
   if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
 
-  const data = categoryData[catKey];
+  // 1. Check if category has structured data (e.g. Cabs or custom tabs)
+  const data = typeof categoryData !== 'undefined' ? categoryData[catKey] : null;
   const subTabContainer = document.getElementById("modalSubTabs");
   if (subTabContainer) subTabContainer.innerHTML = "";
 
@@ -286,27 +287,87 @@ function openCategoryModal(catKey) {
     });
 
     renderTabContent(data.tabs[0]);
-  } else {
-    const fallback = defaultCategoryInfo[catKey] || { title: "Enquiry", desc: "Custom Travel Package", content: "Contact us directly for custom pricing." };
-    activeServiceTitle = fallback.title;
-    const titleElem = document.getElementById("modalTitle");
-    const descElem = document.getElementById("modalDescription");
-
-    if (titleElem) titleElem.textContent = fallback.title;
-    if (descElem) descElem.textContent = fallback.desc;
-
-    currentPamphletList = fallback.images || [];
-    renderTabContent({ content: `<div class="tariff-box"><p>${fallback.content}</p></div>`, images: currentPamphletList });
+    showModalElement("enquiryModal");
+    return;
   }
 
-  showModalElement("enquiryModal");
+  // 2. Default 6-card slider rendering for tour categories
+  const categoryTitles = {
+    'chennai': 'Tour Chennai Packages',
+    'pilgrim': 'Tour Pilgrim Packages',
+    'south-india': 'Tour South India Packages',
+    'north-india': 'Tour North India Packages',
+    'north-east': 'Tour North East Packages',
+    'rest-of-india': 'Tour Rest of India Packages',
+    'international': 'Tour International Packages',
+    'corporate': 'Corporate Tour Packages',
+    'students': 'School & College Tour Packages',
+    'adventure': 'Adventure Tour Packages',
+    'honeymoon': 'Honeymoon Tour Packages',
+    'journey': 'Plan Your Journey'
+  };
+
+  const titleText = categoryTitles[catKey] || (catKey.replace('-', ' ').toUpperCase() + " PACKAGES");
+  
+  const titleElem = document.getElementById("modalTitle") || document.getElementById("modalCategoryTitle");
+  if (titleElem) titleElem.textContent = titleText;
+
+  // Build the 6-card horizontal slider dynamically into the modal content container
+  const contentBody = document.getElementById("modalDynamicContent");
+  if (contentBody) {
+    const defaultImages = [
+      'Images/images/chennai-main.png',
+      'Images/images/pilgrim-main.png',
+      'Images/images/south-main.png',
+      'Images/images/tournorthindia.png',
+      'Images/images/tournortheast.png',
+      'Images/images/tourinternational.png'
+    ];
+
+    let sliderHTML = `
+      <div class="modal-slider-wrapper">
+        <button type="button" class="nav-arrow left-arrow" onclick="scrollTrack('modalTrack', -1)" aria-label="Scroll Left">❮</button>
+        <div class="modal-slider-container">
+          <div id="modalTrack" class="slider-track">
+    `;
+
+    for (let i = 1; i <= 6; i++) {
+      const imgSrc = defaultImages[i - 1];
+      sliderHTML += `
+        <div class="slide-card full-card-link" onclick="openPamphletList(['${imgSrc}'], 0)">
+          <img src="${imgSrc}" alt="Package ${i}" loading="lazy">
+          <div class="slide-overlay">
+            <span class="status-tag ongoing">Ref #${i}</span>
+            <h4>Package ${i}</h4>
+            <p>Explore Package ${i} Details</p>
+          </div>
+        </div>
+      `;
+    }
+
+    sliderHTML += `
+          </div>
+        </div>
+        <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('modalTrack', 1)" aria-label="Scroll Right">❯</button>
+      </div>
+    `;
+
+    contentBody.innerHTML = sliderHTML;
+  }
+
+  // Open the target modal element (checks for categoryModal or enquiryModal)
+  if (document.getElementById("categoryModal")) {
+    showModalElement("categoryModal");
+  } else {
+    showModalElement("enquiryModal");
+  }
 }
 
 function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
   currentPamphletList = tab.images || [];
-  const galleryHtml = createPamphletGallery(currentPamphletList);
-  if (contentBody) contentBody.innerHTML = tab.content + galleryHtml;
+  const galleryHtml = typeof createPamphletGallery === 'function' ? createPamphletGallery(currentPamphletList) : '';
+  if (contentBody) contentBody.innerHTML = (tab.content || '') + galleryHtml;
 }
 
 function showModalElement(modalId) {
@@ -321,16 +382,28 @@ function showModalElement(modalId) {
 }
 
 function closeModal() {
-  const modal = document.getElementById("enquiryModal");
-  if (modal) {
-    modal.classList.remove("show");
-    modal.style.display = "none";
+  const modalEnquiry = document.getElementById("enquiryModal");
+  const modalCategory = document.getElementById("categoryModal");
+  
+  if (modalEnquiry) {
+    modalEnquiry.classList.remove("show");
+    modalEnquiry.style.display = "none";
+  }
+  if (modalCategory) {
+    modalCategory.classList.remove("show");
+    modalCategory.style.display = "none";
   }
   document.body.style.overflow = "";
 }
 
+function closeCategoryModal() {
+  closeModal();
+}
+
 function closeModalOnOverlay(e) {
-  if (e.target.id === "enquiryModal") closeModal();
+  if (e.target.id === "enquiryModal" || e.target.id === "categoryModal") {
+    closeModal();
+  }
 }
 
 /* =========================================================
