@@ -304,13 +304,19 @@ function openCategoryModal(catKey) {
     'students': 'School & College Tour Packages',
     'adventure': 'Adventure Tour Packages',
     'honeymoon': 'Honeymoon Tour Packages',
-    'journey': 'Plan Your Journey'
+    'journey': 'Plan Your Journey',
+    'cabs': 'Cogo Cab Booking',
+    'ticket': 'Flight & Bus Ticket Booking'
   };
 
   const titleText = categoryTitles[catKey] || (catKey.replace('-', ' ').toUpperCase() + " PACKAGES");
+  activeServiceTitle = titleText;
   
   const titleElem = document.getElementById("modalTitle") || document.getElementById("modalCategoryTitle");
   if (titleElem) titleElem.textContent = titleText;
+
+  const descElem = document.getElementById("modalDescription");
+  if (descElem) descElem.textContent = "Browse available packages below or send us an enquiry directly.";
 
   // Build the 6-card horizontal slider dynamically into the modal content container
   const contentBody = document.getElementById("modalDynamicContent");
@@ -355,12 +361,8 @@ function openCategoryModal(catKey) {
     contentBody.innerHTML = sliderHTML;
   }
 
-  // Open the target modal element (checks for categoryModal or enquiryModal)
-  if (document.getElementById("categoryModal")) {
-    showModalElement("categoryModal");
-  } else {
-    showModalElement("enquiryModal");
-  }
+  // Always target enquiryModal where all dynamic elements are populated
+  showModalElement("enquiryModal");
 }
 
 function renderTabContent(tab) {
