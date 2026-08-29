@@ -1928,3 +1928,106 @@ section,
   cursor: pointer;
   color: #333;
 }
+
+/* =========================================================
+   MODAL DYNAMIC SLIDER & CONTENT LAYOUT FIXES
+========================================================= */
+
+/* Ensure the modal content container expands correctly */
+#modalDynamicContent {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Modal slider structure alignment */
+.modal-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.modal-slider-container {
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  padding: 10px 0;
+}
+
+.modal-slider-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+/* Force horizontal track layout inside modal */
+.modal-slider-container .slider-track {
+  display: flex !important;
+  gap: 16px !important;
+  width: max-content;
+}
+
+/* Modal Slide Card Sizing Fix */
+.modal-slider-container .slide-card {
+  flex: 0 0 220px !important;
+  height: 320px !important;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-slider-container .slide-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+}
+
+.modal-slider-container .slide-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Navigation Arrow Overlays for Modal Slider */
+.modal-slider-wrapper .nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  width: 36px;
+  height: 36px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modal-slider-wrapper .nav-arrow:hover {
+  background: #FF9933;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.modal-slider-wrapper .left-arrow { left: -12px; }
+.modal-slider-wrapper .right-arrow { right: -12px; }
+
+/* Responsive adjustments for Mobile Modals */
+@media (max-width: 600px) {
+  .modal-slider-container .slide-card {
+    flex: 0 0 78vw !important;
+    height: 280px !important;
+  }
+
+  .modal-slider-wrapper .left-arrow { left: 0px; }
+  .modal-slider-wrapper .right-arrow { right: 0px; }
+}
