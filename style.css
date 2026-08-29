@@ -1871,13 +1871,15 @@ section,
 .contact-section h2 {
   margin-bottom: 6px;
 }
-/* Styling to show the full slide card is clickable */
-.slide-card.full-card-link {
+/* Full card click hover effect for both Ongoing Tours & Tour Packages */
+.slide-card.full-card-link,
+.clickable-card {
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.slide-card.full-card-link:hover {
+.slide-card.full-card-link:hover,
+.clickable-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
