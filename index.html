@@ -298,7 +298,7 @@
     </div>
   </section>
   
-  <!-- =========================================================
+<!-- =========================================================
         5. TOUR PACKAGES HUB SECTION
   ========================================================= -->
   <section class="section" id="packages-section">
@@ -451,6 +451,58 @@
           <p>Dedicated outstation &amp; intercity cab packages.</p>
         </div>
       </article>
+    </div>
+
+    <!-- Interactive Full-Screen Tour Poster Modal -->
+    <div id="categoryModal" class="package-modal-overlay" style="display: none;">
+      <div class="interactive-poster-card">
+        
+        <!-- Close Button -->
+        <button class="modal-close-btn" onclick="closeCategoryModal()">&times;</button>
+        
+        <!-- Top Sub-Destination Quick Tabs Bar -->
+        <div class="poster-tabs-bar" id="posterTabsBar">
+          <button class="poster-tab active" onclick="selectSubTour('pondy')">
+            <span class="tab-icon">🏖️</span>
+            <span class="tab-label">PONDY</span>
+          </button>
+          <button class="poster-tab" onclick="selectSubTour('ecr')">
+            <span class="tab-icon">🛣️</span>
+            <span class="tab-label">ECR</span>
+          </button>
+          <button class="poster-tab" onclick="selectSubTour('kanchi')">
+            <span class="tab-icon">🛕</span>
+            <span class="tab-label">KANCHI</span>
+          </button>
+          <button class="poster-tab" onclick="selectSubTour('marina')">
+            <span class="tab-icon">🗼</span>
+            <span class="tab-label">MARINA</span>
+          </button>
+          <button class="poster-tab" onclick="selectSubTour('mount')">
+            <span class="tab-icon">⛰️</span>
+            <span class="tab-label">MOUNT</span>
+          </button>
+          <button class="poster-tab" onclick="selectSubTour('omr')">
+            <span class="tab-icon">🏢</span>
+            <span class="tab-label">OMR</span>
+          </button>
+        </div>
+
+        <!-- Main Scenic Poster Body -->
+        <div class="poster-body" id="posterBody">
+          <div class="poster-header-text">
+            <h2 class="poster-title" id="posterTitle">Chennai <br><span>tours</span></h2>
+          </div>
+
+          <!-- Bottom Yellow Enquiry Button -->
+          <div class="poster-footer">
+            <a id="posterEnquiryBtn" href="https://wa.me/919884066830?text=Hi%20Cogo%20Tours,%20I%20want%20to%20enquire%20about%20Chennai%20Tours" target="_blank" class="yellow-enquiry-btn" rel="noopener noreferrer">
+              <span class="arrow-circle">&rarr;</span> ENQUIRY
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
