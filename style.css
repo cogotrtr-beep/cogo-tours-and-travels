@@ -1750,3 +1750,46 @@ input[type="time"]::-webkit-date-and-time-value {
   .modal-slider-wrapper .left-arrow { left: 0px; }
   .modal-slider-wrapper .right-arrow { right: 0px; }
 }
+/* =========================================================
+   FIX FOR POSTER MODAL TAB BAR (HORIZONTAL LAYOUT)
+========================================================= */
+/* Force the tab container to align horizontally */
+.poster-tabs-bar,
+#categoryModal .poster-tabs-bar,
+#categoryModal .modal-header {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding-right: 40px !important; /* Prevents close button overlap */
+}
+
+/* Fix individual tab item layout */
+.poster-tab,
+#categoryModal .poster-tab {
+  flex: 0 0 auto !important; /* Prevents tabs from shrinking or stacking */
+  min-width: 60px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px 8px !important;
+  margin-right: 4px !important;
+}
+
+/* Ensure tab icons and text scale cleanly */
+.poster-tab .tab-icon {
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+.poster-tab .tab-label {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  margin-top: 2px !important;
+}
