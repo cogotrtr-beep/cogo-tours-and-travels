@@ -383,7 +383,21 @@ function openCategoryModal(catKey) {
     }
 
     selectSubTab(0);
+
+    // Apply fixed modal overlay styles dynamically
+    posterModal.style.position = 'fixed';
+    posterModal.style.top = '0';
+    posterModal.style.left = '0';
+    posterModal.style.width = '100vw';
+    posterModal.style.height = '100vh';
+    posterModal.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+    posterModal.style.zIndex = '99999';
     posterModal.style.display = 'flex';
+    posterModal.style.justifyContent = 'center';
+    posterModal.style.alignItems = 'center';
+    posterModal.style.opacity = '1';
+    posterModal.style.pointerEvents = 'auto';
+
     posterModal.classList.add('show');
     document.body.style.overflow = "hidden";
     return;
@@ -526,8 +540,17 @@ function renderTabContent(tab) {
 function showModalElement(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100vw";
+    modal.style.height = "100vh";
+    modal.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+    modal.style.zIndex = "99999";
     modal.classList.add("show");
     modal.style.display = "flex";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
     modal.style.opacity = "1";
     modal.style.pointerEvents = "auto";
   }
