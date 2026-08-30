@@ -298,7 +298,7 @@
     </div>
   </section>
   
-<!-- =========================================================
+  <!-- =========================================================
         5. TOUR PACKAGES HUB SECTION
   ========================================================= -->
   <section class="section" id="packages-section">
@@ -454,39 +454,14 @@
     </div>
 
     <!-- Interactive Full-Screen Tour Poster Modal -->
-    <div id="categoryModal" class="package-modal-overlay" style="display: none;">
-      <div class="interactive-poster-card">
+    <div id="categoryModal" class="package-modal-overlay" style="display: none;" onclick="closeModalOnOverlay(event)">
+      <div class="interactive-poster-card" onclick="event.stopPropagation()">
         
         <!-- Close Button -->
         <button class="modal-close-btn" onclick="closeCategoryModal()">&times;</button>
         
         <!-- Top Sub-Destination Quick Tabs Bar -->
-        <div class="poster-tabs-bar" id="posterTabsBar">
-          <button class="poster-tab active" onclick="selectSubTour('pondy')">
-            <span class="tab-icon">🏖️</span>
-            <span class="tab-label">PONDY</span>
-          </button>
-          <button class="poster-tab" onclick="selectSubTour('ecr')">
-            <span class="tab-icon">🛣️</span>
-            <span class="tab-label">ECR</span>
-          </button>
-          <button class="poster-tab" onclick="selectSubTour('kanchi')">
-            <span class="tab-icon">🛕</span>
-            <span class="tab-label">KANCHI</span>
-          </button>
-          <button class="poster-tab" onclick="selectSubTour('marina')">
-            <span class="tab-icon">🗼</span>
-            <span class="tab-label">MARINA</span>
-          </button>
-          <button class="poster-tab" onclick="selectSubTour('mount')">
-            <span class="tab-icon">⛰️</span>
-            <span class="tab-label">MOUNT</span>
-          </button>
-          <button class="poster-tab" onclick="selectSubTour('omr')">
-            <span class="tab-icon">🏢</span>
-            <span class="tab-label">OMR</span>
-          </button>
-        </div>
+        <div class="poster-tabs-bar" id="posterTabsBar"></div>
 
         <!-- Main Scenic Poster Body -->
         <div class="poster-body" id="posterBody">
@@ -639,21 +614,6 @@
           </button>
         </div>
       </form>
-    </div>
-  </div>
-
-  <!-- Category Slider Popup Modal -->
-  <div id="categoryModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
-    <div class="modal-card-container">
-      <button type="button" class="modal-close-btn" onclick="closeCategoryModal()" aria-label="Close">&times;</button>
-      
-      <div class="modal-header-simple text-center">
-        <h3 id="modalCategoryTitle">Tour Packages</h3>
-        <p id="categoryModalDescription" class="modal-sub"></p>
-      </div>
-
-      <div id="categorySubTabs" class="sub-tabs-bar"></div>
-      <div id="categoryDynamicContent"></div>
     </div>
   </div>
 
