@@ -1224,3 +1224,26 @@ document.addEventListener("click", function(e) {
     document.getElementById("cabDropList")?.classList.remove("show");
   }
 });
+function switchCategoryTab(imageUrl, tabElement) {
+  // 1. Highlight active tab
+  const tabs = document.querySelectorAll('.category-tab-btn');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  if (tabElement) tabElement.classList.add('active');
+
+  // 2. Set image directly on posterBody background
+  const posterBody = document.getElementById('posterBody');
+  if (posterBody) {
+    posterBody.style.backgroundImage = `url('${imageUrl}')`;
+  }
+}
+function closeCategoryModal(event) {
+  if (event) {
+    event.stopPropagation(); // Stops click from triggering the 6th tab
+    event.preventDefault();
+  }
+  const modal = document.getElementById('categoryModal');
+  if (modal) {
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+  }
+}
