@@ -642,6 +642,40 @@
     </div>
     <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
   </div>
+  <!-- WHATSAPP MINI ENQUIRY MODAL -->
+<div id="waFormModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:100001; justify-content:center; align-items:center;">
+  <div style="background:#fff; width:90%; max-width:380px; padding:20px; border-radius:12px; position:relative; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+    <button type="button" onclick="closeWhatsAppForm()" style="position:absolute; top:10px; right:12px; border:none; background:none; font-size:20px; cursor:pointer;">✕</button>
+    
+    <h3 style="margin-top:0; color:#111; font-size:18px; text-align:center;">Quick Package Enquiry</h3>
+    
+    <form onsubmit="sendWhatsAppEnquiry(event)">
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px; font-weight:bold; color:#555;">Selected Tour</label>
+        <input type="text" id="waPackageName" readonly style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; background:#f5f5f5; font-weight:600;">
+      </div>
+      
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px; font-weight:bold; color:#555;">Your Name *</label>
+        <input type="text" id="waGuestName" required placeholder="Enter full name" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;">
+      </div>
+      
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px; font-weight:bold; color:#555;">Phone Number *</label>
+        <input type="tel" id="waGuestPhone" required placeholder="Enter mobile number" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;">
+      </div>
+      
+      <div style="margin-bottom:15px;">
+        <label style="font-size:12px; font-weight:bold; color:#555;">Message (Optional)</label>
+        <textarea id="waGuestMsg" rows="2" placeholder="Dates, group size, etc." style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;"></textarea>
+      </div>
+
+      <button type="submit" style="width:100%; padding:10px; background:#25D366; color:#fff; font-weight:bold; border:none; border-radius:6px; cursor:pointer; font-size:15px;">
+        📲 Send via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
 
   <!-- JavaScript Execution at End of Body -->
   <script src="script.js"></script>
