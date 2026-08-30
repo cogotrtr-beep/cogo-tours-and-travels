@@ -1793,3 +1793,62 @@ input[type="time"]::-webkit-date-and-time-value {
   white-space: nowrap !important;
   margin-top: 2px !important;
 }
+/* =========================================================
+   OVERRIDE: FORCE MODAL TABS HORIZONTAL
+========================================================= */
+/* Target every possible container element holding these tabs */
+#categoryModal .poster-card,
+#categoryModal .poster-tabs-bar,
+#categoryModal .modal-header,
+#categoryModal div[class*="tab"],
+#categoryModal ul,
+#categoryModal nav {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
+
+/* Force child tab buttons to stay inline horizontal blocks */
+#categoryModal .poster-tab,
+#categoryModal .tab,
+#categoryModal li,
+#categoryModal button[class*="tab"] {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 65px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 6px !important;
+  margin-bottom: 0 !important;
+  float: none !important;
+}
+
+/* Force images/icons inside tabs to display correctly */
+#categoryModal .poster-tab img,
+#categoryModal .tab img,
+#categoryModal li img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto 2px auto !important;
+}
+
+/* Ensure poster image container stays below the horizontal tabs */
+#categoryModal #posterBody,
+#categoryModal .poster-body {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  clear: both !important;
+}
