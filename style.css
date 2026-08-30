@@ -1882,3 +1882,48 @@ input[type="time"]::-webkit-date-and-time-value {
   transform: scale(0.85) !important;
   transform-origin: bottom center !important;
 }
+/* =========================================================
+   GOLD COLOR SCHEME FOR CATEGORY TABS & ENQUIRY BUTTON
+========================================================= */
+/* Change background of the 6 tabs to Gold */
+.poster-tab,
+#categoryModal .poster-tab,
+#categoryModal .tab,
+#categoryModal button[class*="tab"] {
+  background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%) !important;
+  color: #0b2545 !important;
+  border: 1px solid #B8860B !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Tab active/selected state */
+.poster-tab.active,
+#categoryModal .poster-tab.active {
+  background: #D4AF37 !important;
+  border-bottom: 3px solid #8B6508 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Ensure tab text labels stay crisp on gold */
+.poster-tab .tab-label,
+#categoryModal .poster-tab .tab-label {
+  color: #0b2545 !important;
+  font-weight: 900 !important;
+}
+
+/* Change the Enquiry button to Gold */
+#posterEnquiryBtn, 
+.poster-enquiry-btn,
+#categoryModal .yellow-enquiry-btn,
+#categoryModal a[class*="enquiry"] {
+  background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%) !important;
+  color: #0b2545 !important;
+  border: 1px solid #B8860B !important;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Arrow circle inside the Enquiry button */
+#categoryModal .arrow-circle {
+  background: #0b2545 !important;
+  color: #FFD700 !important;
+}
