@@ -14,7 +14,7 @@ window.addEventListener('load', function() {
 });
 
 /* =========================================================
-   COGO TOURS & CABS - DYNAMIC ENGINE & SIGHTSEEING TABS
+   COGO TOURS & CABS - DYNAMIC ENGINE & DATA
 ========================================================= */
 
 // Global State
@@ -245,7 +245,7 @@ const categoryData = {
 
 const tourCategoryData = {
   'chennai': {
-    title: 'Chennai <br><span>tours</span>',
+    title: 'Chennai Tours',
     tabs: [
       { id: 'pondy', label: 'PONDY', icon: '🏖️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Pondy Tour' },
       { id: 'ecr', label: 'ECR', icon: '🛣️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about ECR Tour' },
@@ -256,7 +256,7 @@ const tourCategoryData = {
     ]
   },
   'pilgrim': {
-    title: 'Pilgrim <br><span>tours</span>',
+    title: 'Pilgrim Tours',
     tabs: [
       { id: 'shirdi', label: 'SHIRDI', icon: '🛕', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Shirdi Tour' },
       { id: 'tirupati', label: 'TIRUPATI', icon: '🚩', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Tirupati Tour' },
@@ -265,7 +265,7 @@ const tourCategoryData = {
     ]
   },
   'south-india': {
-    title: 'South India <br><span>tours</span>',
+    title: 'South India Tours',
     tabs: [
       { id: 'kodai', label: 'KODAIKANAL', icon: '⛰️', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kodaikanal Tour' },
       { id: 'kerala', label: 'KERALA', icon: '🌴', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kerala Tour' },
@@ -274,7 +274,7 @@ const tourCategoryData = {
     ]
   },
   'north-india': {
-    title: 'North India <br><span>tours</span>',
+    title: 'North India Tours',
     tabs: [
       { id: 'delhi', label: 'DELHI', icon: '🕌', bg: 'Images/images/tournorthindia.png', msg: 'Hi Cogo Tours, I want to enquire about Delhi Agra Tour' },
       { id: 'manali', label: 'MANALI', icon: '🏔️', bg: 'Images/images/tournorthindia.png', msg: 'Hi Cogo Tours, I want to enquire about Manali Tour' },
@@ -282,7 +282,7 @@ const tourCategoryData = {
     ]
   },
   'north-east': {
-    title: 'North East <br><span>tours</span>',
+    title: 'North East Tours',
     tabs: [
       { id: 'gangtok', label: 'GANGTOK', icon: '🏞️', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Gangtok Tour' },
       { id: 'darjeeling', label: 'DARJEELING', icon: '🍃', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Darjeeling Tour' },
@@ -290,14 +290,14 @@ const tourCategoryData = {
     ]
   },
   'rest-of-india': {
-    title: 'Rest of India <br><span>tours</span>',
+    title: 'Rest of India Tours',
     tabs: [
       { id: 'goa', label: 'GOA', icon: '🏖️', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Goa Package' },
       { id: 'gujarat', label: 'GUJARAT', icon: '🦁', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Gujarat Package' }
     ]
   },
   'international': {
-    title: 'International <br><span>tours</span>',
+    title: 'International Tours',
     tabs: [
       { id: 'dubai', label: 'DUBAI', icon: '🏙️', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Dubai Package' },
       { id: 'singapore', label: 'SINGAPORE', icon: '🦁', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Singapore Package' },
@@ -305,36 +305,30 @@ const tourCategoryData = {
     ]
   },
   'corporate': {
-    title: 'Corporate <br><span>tours</span>',
+    title: 'Corporate Tours',
     tabs: [
       { id: 'mice', label: 'MICE', icon: '🏢', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Corporate MICE Trips' },
       { id: 'retreat', label: 'TEAM OUTING', icon: '👔', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Team Outings' }
     ]
   },
   'students': {
-    title: 'Student <br><span>tours</span>',
+    title: 'Student Tours',
     tabs: [
       { id: 'school', label: 'SCHOOL TRIPS', icon: '🎒', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about School Educational Trips' },
       { id: 'college', label: 'COLLEGE IV', icon: '🎓', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about College Industrial Visits' }
     ]
   },
   'adventure': {
-    title: 'Adventure <br><span>tours</span>',
+    title: 'Adventure Tours',
     tabs: [
       { id: 'trekking', label: 'TREKKING', icon: '🥾', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Trekking Packages' },
       { id: 'camping', label: 'CAMPING', icon: '🏕️', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Camping Trips' }
     ]
   },
   'honeymoon': {
-    title: 'Honeymoon <br><span>tours</span>',
+    title: 'Honeymoon Tours',
     tabs: [
       { id: 'couples', label: 'ROMANTIC', icon: '💖', bg: 'Images/images/tourhoneymoon.png', msg: 'Hi Cogo Tours, I want to enquire about Honeymoon Packages' }
-    ]
-  },
-  'cabs': {
-    title: 'Cogo <br><span>cabs</span>',
-    tabs: [
-      { id: 'outstation', label: 'OUTSTATION', icon: '🚘', bg: 'Images/images/cogocabs.png', msg: 'Hi Cogo Tours, I want to enquire about Outstation Cab Services' }
     ]
   }
 };
@@ -346,12 +340,15 @@ const tourCategoryData = {
 function openCategoryModal(catKey) {
   if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
 
-  const categoryPoster = typeof tourCategoryData !== 'undefined' ? tourCategoryData[catKey] : null;
+  const categoryPoster = tourCategoryData[catKey];
   const posterModal = document.getElementById('categoryModal');
 
   if (categoryPoster && posterModal) {
     const posterTitle = document.getElementById('posterTitle');
-    if (posterTitle) posterTitle.style.display = 'none';
+    if (posterTitle) {
+      posterTitle.innerHTML = categoryPoster.title;
+      posterTitle.style.display = 'block';
+    }
 
     currentActiveTabs = categoryPoster.tabs;
     currentSubTabIndex = 0;
@@ -363,53 +360,50 @@ function openCategoryModal(catKey) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = `poster-tab ${index === 0 ? 'active active-tab' : ''}`;
-        btn.onclick = () => selectSubTab(index);
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          selectSubTab(index);
+        };
         btn.innerHTML = `<span class="tab-icon">${tab.icon || ''}</span> <span class="tab-label">${tab.label}</span>`;
         tabsBar.appendChild(btn);
       });
     }
 
     // Dynamic Navigation Arrows Insertion
-    const posterCard = posterModal.querySelector('.poster-card') || posterModal.querySelector('> div') || posterModal;
-    if (posterCard && !posterCard.querySelector('.modal-nav-arrow')) {
-      const leftArrow = document.createElement('button');
+    let posterCard = posterModal.querySelector('.poster-card');
+    if (!posterCard) posterCard = posterModal;
+
+    let leftArrow = posterCard.querySelector('.modal-nav-arrow.left');
+    let rightArrow = posterCard.querySelector('.modal-nav-arrow.right');
+
+    if (!leftArrow) {
+      leftArrow = document.createElement('button');
       leftArrow.className = 'modal-nav-arrow left';
       leftArrow.type = 'button';
       leftArrow.innerHTML = '&#10094;';
-      leftArrow.onclick = (e) => { e.stopPropagation(); navigatePoster('prev'); };
+      posterCard.appendChild(leftArrow);
+    }
+    leftArrow.onclick = (e) => { e.stopPropagation(); navigatePoster('prev'); };
 
-      const rightArrow = document.createElement('button');
+    if (!rightArrow) {
+      rightArrow = document.createElement('button');
       rightArrow.className = 'modal-nav-arrow right';
       rightArrow.type = 'button';
       rightArrow.innerHTML = '&#10095;';
-      rightArrow.onclick = (e) => { e.stopPropagation(); navigatePoster('next'); };
-
-      posterCard.appendChild(leftArrow);
       posterCard.appendChild(rightArrow);
     }
+    rightArrow.onclick = (e) => { e.stopPropagation(); navigatePoster('next'); };
 
     selectSubTab(0);
 
-    posterModal.style.position = 'fixed';
-    posterModal.style.top = '0';
-    posterModal.style.left = '0';
-    posterModal.style.width = '100vw';
-    posterModal.style.height = '100vh';
-    posterModal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    posterModal.style.zIndex = '99999';
     posterModal.style.display = 'flex';
-    posterModal.style.justifyContent = 'center';
-    posterModal.style.alignItems = 'center';
-    posterModal.style.opacity = '1';
-    posterModal.style.pointerEvents = 'auto';
-
     posterModal.classList.add('show');
     document.body.style.overflow = "hidden";
     return;
   }
 
-  // Fallback structure handler for standard categories
-  const data = typeof categoryData !== 'undefined' ? categoryData[catKey] : null;
+  // Standard category fallback logic
+  const data = categoryData[catKey];
   const subTabContainer = document.getElementById("modalSubTabs");
   if (subTabContainer) subTabContainer.innerHTML = "";
 
@@ -463,7 +457,7 @@ function selectSubTab(index) {
 
   resetPosterZoom();
 
-  const tabs = document.querySelectorAll('#categoryModal .poster-tab');
+  const tabs = document.querySelectorAll('#posterTabsBar .poster-tab');
   tabs.forEach((t, i) => {
     if (i === index) {
       t.classList.add('active', 'active-tab');
@@ -475,11 +469,12 @@ function selectSubTab(index) {
 
   const posterBody = document.getElementById('posterBody');
   if (posterBody) {
-    posterBody.style.backgroundImage = `url('${tabData.bg}')`;
-    posterBody.style.backgroundSize = 'contain';
-    posterBody.style.backgroundPosition = 'center';
-    posterBody.style.backgroundRepeat = 'no-repeat';
-    posterBody.style.backgroundColor = '#ffffff';
+    if (tabData.bg) {
+      posterBody.style.backgroundImage = `url('${tabData.bg}')`;
+      posterBody.style.backgroundSize = 'contain';
+      posterBody.style.backgroundPosition = 'center';
+      posterBody.style.backgroundRepeat = 'no-repeat';
+    }
   }
 
   currentSelectedPackageLabel = tabData.label || 'Tour Package';
@@ -494,7 +489,6 @@ function selectSubTab(index) {
   }
 }
 
-// Left/Right Nav
 function navigatePoster(direction) {
   if (!currentActiveTabs || currentActiveTabs.length === 0) return;
 
@@ -510,26 +504,15 @@ function navigatePoster(direction) {
 function renderTabContent(tab) {
   const contentBody = document.getElementById("modalDynamicContent");
   currentPamphletList = tab.images || [];
-  const galleryHtml = typeof createPamphletGallery === 'function' ? createPamphletGallery(currentPamphletList) : '';
+  const galleryHtml = createPamphletGallery(currentPamphletList);
   if (contentBody) contentBody.innerHTML = (tab.content || '') + galleryHtml;
 }
 
 function showModalElement(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
-    modal.style.position = "fixed";
-    modal.style.top = "0";
-    modal.style.left = "0";
-    modal.style.width = "100vw";
-    modal.style.height = "100vh";
-    modal.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
-    modal.style.zIndex = "99999";
     modal.classList.add("show");
     modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.alignItems = "center";
-    modal.style.opacity = "1";
-    modal.style.pointerEvents = "auto";
   }
   document.body.style.overflow = "hidden";
 }
@@ -659,8 +642,6 @@ function openPamphletZoom(index) {
     resetZoom();
     lightbox.classList.add("show");
     lightbox.style.display = "flex";
-    lightbox.style.opacity = "1";
-    lightbox.style.pointerEvents = "auto";
   }
 }
 
@@ -670,8 +651,6 @@ function closePamphletZoom(e) {
   if (lightbox) {
     lightbox.classList.remove("show");
     lightbox.style.display = "none";
-    lightbox.style.opacity = "0";
-    lightbox.style.pointerEvents = "none";
     resetZoom();
   }
 }
@@ -691,15 +670,14 @@ function nextPamphlet(e) {
 }
 
 /* =========================================================
-   GLOBAL EVENT LISTENERS & POSTER ZOOM ENGINE
+   GLOBAL EVENT LISTENERS
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Poster Click Zoom Toggle Handler
   const posterBody = document.getElementById('posterBody');
   if (posterBody) {
     posterBody.addEventListener('click', function (e) {
-      if (e.target.closest('#posterEnquiryBtn') || e.target.closest('.modal-nav-arrow') || e.target.closest('.poster-tabs-bar')) {
+      if (e.target.closest('#posterEnquiryBtn') || e.target.closest('.modal-nav-arrow') || e.target.closest('#posterTabsBar')) {
         return;
       }
 
@@ -766,10 +744,11 @@ document.addEventListener("DOMContentLoaded", function () {
 /* Keyboard Navigation (Left/Right Arrows & Esc) */
 document.addEventListener("keydown", function(e) {
   const categoryModal = document.getElementById("categoryModal");
-  const isPosterActive = categoryModal && categoryModal.classList.contains("show");
+  const isPosterActive = categoryModal && (categoryModal.classList.contains("show") || categoryModal.style.display === "flex");
 
   if (e.key === "Escape") {
     closeModal();
+    closeWhatsAppForm();
   } else if (isPosterActive) {
     if (e.key === "ArrowLeft") navigatePoster('prev');
     if (e.key === "ArrowRight") navigatePoster('next');
