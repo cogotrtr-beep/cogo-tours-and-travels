@@ -1056,11 +1056,174 @@ document.addEventListener("DOMContentLoaded", () => {
   countryInput.addEventListener("focus", () => {
     renderOptions(countryInput.value.trim());
   });
+// Data configuration for all 12 main categories and their sub-destination tabs
+const tourCategoryData = {
+  'chennai': {
+    title: 'Chennai <br><span>tours</span>',
+    tabs: [
+      { id: 'pondy', label: 'PONDY', icon: '🏖️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Pondy Tour' },
+      { id: 'ecr', label: 'ECR', icon: '🛣️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about ECR Tour' },
+      { id: 'kanchi', label: 'KANCHI', icon: '🛕', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kanchi Tour' },
+      { id: 'marina', label: 'MARINA', icon: '🗼', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Marina Tour' },
+      { id: 'mount', label: 'MOUNT', icon: '⛰️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about St Thomas Mount Tour' },
+      { id: 'omr', label: 'OMR', icon: '🏢', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about OMR Tour' }
+    ]
+  },
+  'pilgrim': {
+    title: 'Pilgrim <br><span>tours</span>',
+    tabs: [
+      { id: 'shirdi', label: 'SHIRDI', icon: '🛕', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Shirdi Tour' },
+      { id: 'tirupati', label: 'TIRUPATI', icon: '🚩', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Tirupati Tour' },
+      { id: 'kanchipuram', label: 'KANCHI', icon: '⛩️', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kanchipuram Temple Tour' },
+      { id: 'navagraha', label: 'NAVAGRAHA', icon: '🌟', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Navagraha Tour' }
+    ]
+  },
+  'south-india': {
+    title: 'South India <br><span>tours</span>',
+    tabs: [
+      { id: 'kodai', label: 'KODAIKANAL', icon: '⛰️', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kodaikanal Tour' },
+      { id: 'kerala', label: 'KERALA', icon: '🌴', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kerala Tour' },
+      { id: 'coorg', label: 'COORG', icon: '☕', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Coorg Tour' },
+      { id: 'ooty', label: 'OOTY', icon: '🌲', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Ooty Tour' }
+    ]
+  },
+  'north-india': {
+    title: 'North India <br><span>tours</span>',
+    tabs: [
+      { id: 'delhi', label: 'DELHI', icon: '🕌', bg: 'Images/images/tour%20north%20india.png', msg: 'Hi Cogo Tours, I want to enquire about Delhi Agra Tour' },
+      { id: 'manali', label: 'MANALI', icon: '🏔️', bg: 'Images/images/tour%20north%20india.png', msg: 'Hi Cogo Tours, I want to enquire about Manali Tour' },
+      { id: 'kashmir', label: 'KASHMIR', icon: '❄️', bg: 'Images/images/tour%20north%20india.png', msg: 'Hi Cogo Tours, I want to enquire about Kashmir Tour' }
+    ]
+  },
+  'north-east': {
+    title: 'North East <br><span>tours</span>',
+    tabs: [
+      { id: 'gangtok', label: 'GANGTOK', icon: '🏞️', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Gangtok Tour' },
+      { id: 'darjeeling', label: 'DARJEELING', icon: '🍃', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Darjeeling Tour' },
+      { id: 'meghalaya', label: 'MEGHALAYA', icon: '🌧️', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Meghalaya Tour' }
+    ]
+  },
+  'rest-of-india': {
+    title: 'Rest of India <br><span>tours</span>',
+    tabs: [
+      { id: 'goa', label: 'GOA', icon: '🏖️', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Goa Package' },
+      { id: 'gujarat', label: 'GUJARAT', icon: '🦁', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Gujarat Package' }
+    ]
+  },
+  'international': {
+    title: 'International <br><span>tours</span>',
+    tabs: [
+      { id: 'dubai', label: 'DUBAI', icon: '🏙️', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Dubai Package' },
+      { id: 'singapore', label: 'SINGAPORE', icon: '🦁', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Singapore Package' },
+      { id: 'thailand', label: 'THAILAND', icon: '🏝️', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Thailand Package' }
+    ]
+  },
+  'corporate': {
+    title: 'Corporate <br><span>tours</span>',
+    tabs: [
+      { id: 'mice', label: 'MICE', icon: '🏢', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Corporate MICE Trips' },
+      { id: 'retreat', label: 'TEAM OUTING', icon: '👔', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Team Outings' }
+    ]
+  },
+  'students': {
+    title: 'Student <br><span>tours</span>',
+    tabs: [
+      { id: 'school', label: 'SCHOOL TRIPS', icon: '🎒', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about School Educational Trips' },
+      { id: 'college', label: 'COLLEGE IV', icon: '🎓', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about College Industrial Visits' }
+    ]
+  },
+  'adventure': {
+    title: 'Adventure <br><span>tours</span>',
+    tabs: [
+      { id: 'trekking', label: 'TREKKING', icon: '🥾', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Trekking Packages' },
+      { id: 'camping', label: 'CAMPING', icon: '🏕️', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Camping Trips' }
+    ]
+  },
+  'honeymoon': {
+    title: 'Honeymoon <br><span>tours</span>',
+    tabs: [
+      { id: 'couples', label: 'ROMANTIC', icon: '💖', bg: 'Images/images/tourhoneymoon.png', msg: 'Hi Cogo Tours, I want to enquire about Honeymoon Packages' }
+    ]
+  },
+  'cabs': {
+    title: 'Cogo <br><span>cabs</span>',
+    tabs: [
+      { id: 'outstation', label: 'OUTSTATION', icon: '🚘', bg: 'Images/images/cogocabs.png', msg: 'Hi Cogo Tours, I want to enquire about Outstation Cab Services' }
+    ]
+  }
+};
 
+let currentActiveTabs = [];
+
+// Function called when any package card is clicked
+function openCategoryModal(categoryKey) {
+  const modal = document.getElementById('categoryModal');
+  const category = tourCategoryData[categoryKey];
+  
+  if (!category) return;
+
+  // Set main title
+  document.getElementById('posterTitle').innerHTML = category.title;
+  currentActiveTabs = category.tabs;
+
+  // Render sub-destination tabs dynamically
+  const tabsBar = document.getElementById('posterTabsBar');
+  tabsBar.innerHTML = '';
+
+  category.tabs.forEach((tab, index) => {
+    const btn = document.createElement('button');
+    btn.className = `poster-tab ${index === 0 ? 'active' : ''}`;
+    btn.onclick = () => selectSubTab(index);
+    btn.innerHTML = `
+      <span class="tab-icon">${tab.icon}</span>
+      <span class="tab-label">${tab.label}</span>
+    `;
+    tabsBar.appendChild(btn);
+  });
+
+  // Activate the first sub-tab by default
+  selectSubTab(0);
+
+  // Show the overlay
+  modal.style.display = 'flex';
+}
+
+// Function triggered when tapping top destination tabs inside the modal
+function selectSubTab(index) {
+  const tabData = currentActiveTabs[index];
+  if (!tabData) return;
+
+  // Update active tab styling
+  const tabs = document.querySelectorAll('.poster-tab');
+  tabs.forEach((t, i) => {
+    if (i === index) {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
+  });
+
+  // Update background image
+  const posterBody = document.getElementById('posterBody');
+  posterBody.style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(0, 0, 0, 0.4) 100%), url('${tabData.bg}')`;
+
+  // Update WhatsApp Enquiry button link
+  const enquiryBtn = document.getElementById('posterEnquiryBtn');
+  enquiryBtn.href = `https://wa.me/919884066830?text=${encodeURIComponent(tabData.msg)}`;
+}
+
+// Function to close the modal
+function closeCategoryModal() {
+  const modal = document.getElementById('categoryModal');
+  modal.style.display = 'none';
+}
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".visa-country-selector")) {
       dropdownList.classList.remove("show");
     }
   });
 });
+
+
+
 
