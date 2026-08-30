@@ -2031,3 +2031,121 @@ section,
   .modal-slider-wrapper .left-arrow { left: 0px; }
   .modal-slider-wrapper .right-arrow { right: 0px; }
 }
+/* Card Container */
+.interactive-poster-card {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  font-family: system-ui, sans-serif;
+}
+
+/* 1. Top Sub-Destination Quick Tabs Bar */
+.poster-tabs-bar {
+  display: flex;
+  background-color: #0b2545; /* Navy Blue Header */
+  padding: 6px;
+  gap: 4px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.poster-tab {
+  flex: 1;
+  min-width: 65px;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.poster-tab .tab-icon {
+  font-size: 16px;
+}
+
+.poster-tab .tab-label {
+  font-size: 10px;
+  font-weight: 900;
+  color: #0b2545;
+  margin-top: 2px;
+}
+
+.poster-tab.active {
+  background-color: #ffffff;
+  box-shadow: inset 0 -3px 0 #ff9933; /* Highlight line */
+  transform: translateY(-1px);
+}
+
+/* 2. Main Scenic Poster Body */
+.poster-body {
+  height: 520px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 0.3) 100%), 
+              url('chennai-ecr-bg.jpg') center center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.poster-title {
+  font-size: 42px;
+  color: #0b2545;
+  font-weight: 900;
+  line-height: 0.9;
+  margin-top: 10px;
+}
+
+.poster-title span {
+  font-family: 'Brush Script MT', cursive, sans-serif;
+  font-size: 55px;
+  color: #ffaa00; /* Vibrant Yellow/Orange */
+  font-weight: 400;
+}
+
+/* 3. Bottom Yellow Enquiry Action Button */
+.poster-footer {
+  margin-bottom: 10px;
+}
+
+.yellow-enquiry-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ffb703; /* Bright Yellow */
+  color: #0b2545;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  padding: 12px 32px;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.yellow-enquiry-btn:hover {
+  transform: scale(1.04);
+}
+
+.arrow-circle {
+  background: #0b2545;
+  color: #ffffff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
