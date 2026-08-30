@@ -353,23 +353,26 @@ const tourCategoryData = {
 let currentActiveTabs = [];
 
 /* =========================================================
-   MODAL OPEN / CLOSE HANDLERS
+   MODAL OPEN / CLOSE HANDLERS & WHATSAPP ENQUIRY SYSTEM
 ========================================================= */
+
+let currentSelectedPackageLabel = '';
 
 function openCategoryModal(catKey) {
   if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
 
   // Check if target is a poster-based category modal
-  const categoryPoster = tourCategoryData[catKey];
+  const categoryPoster = typeof tourCategoryData !== 'undefined' ? tourCategoryData[catKey] : null;
   const posterModal = document.getElementById('categoryModal');
 
   if (categoryPoster && posterModal) {
+    // Hide default text overlay title to keep the pamphlet image clean
     const posterTitle = document.getElementById('posterTitle');
-    const tabsBar = document.getElementById('posterTabsBar');
+    if (posterTitle) posterTitle.style.display = 'none';
 
-    if (posterTitle) posterTitle.innerHTML = categoryPoster.title;
     currentActiveTabs = categoryPoster.tabs;
 
+    const tabsBar = document.getElementById('posterTabsBar');
     if (tabsBar) {
       tabsBar.innerHTML = '';
       categoryPoster.tabs.forEach((tab, index) => {
@@ -377,20 +380,20 @@ function openCategoryModal(catKey) {
         btn.type = 'button';
         btn.className = `poster-tab ${index === 0 ? 'active' : ''}`;
         btn.onclick = () => selectSubTab(index);
-        btn.innerHTML = `<span class="tab-icon">${tab.icon}</span> <span class="tab-label">${tab.label}</span>`;
+        btn.innerHTML = `<span class="tab-icon">${tab.icon || ''}</span> <span class="tab-label">${tab.label}</span>`;
         tabsBar.appendChild(btn);
       });
     }
 
     selectSubTab(0);
 
-    // Apply fixed modal overlay styles dynamically
+    // Apply fixed overlay styles
     posterModal.style.position = 'fixed';
     posterModal.style.top = '0';
     posterModal.style.left = '0';
     posterModal.style.width = '100vw';
     posterModal.style.height = '100vh';
-    posterModal.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+    posterModal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
     posterModal.style.zIndex = '99999';
     posterModal.style.display = 'flex';
     posterModal.style.justifyContent = 'center';
@@ -521,12 +524,24 @@ function selectSubTab(index) {
 
   const posterBody = document.getElementById('posterBody');
   if (posterBody) {
-    posterBody.style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(0, 0, 0, 0.4) 100%), url('${tabData.bg}')`;
+    // Clear dark gradients to show crisp, full-visibility image
+    posterBody.style.backgroundImage = `url('${tabData.bg}')`;
+    posterBody.style.backgroundSize = 'contain';
+    posterBody.style.backgroundPosition = 'center';
+    posterBody.style.backgroundRepeat = 'no-repeat';
+    posterBody.style.backgroundColor = '#ffffff';
   }
 
+  // Save selected tab label for WhatsApp message context
+  currentSelectedPackageLabel = tabData.label || 'Tour Package';
+
+  // Attach button directly to open mini WhatsApp form
   const enquiryBtn = document.getElementById('posterEnquiryBtn');
   if (enquiryBtn) {
-    enquiryBtn.href = `https://wa.me/919884066830?text=${encodeURIComponent(tabData.msg)}`;
+    enquiryBtn.onclick = (e) => {
+      e.preventDefault();
+      openWhatsAppForm();
+    };
   }
 }
 
@@ -580,6 +595,43 @@ function closeModalOnOverlay(e) {
   if (e.target.id === "enquiryModal" || e.target.id === "categoryModal") {
     closeModal();
   }
+}
+
+/* =========================================================
+   MINI WHATSAPP FORM HANDLERS
+========================================================= */
+
+function openWhatsAppForm() {
+  const formModal = document.getElementById('waFormModal');
+  const pkgInput = document.getElementById('waPackageName');
+  if (pkgInput) pkgInput.value = currentSelectedPackageLabel;
+  if (formModal) formModal.style.display = 'flex';
+}
+
+function closeWhatsAppForm() {
+  const formModal = document.getElementById('waFormModal');
+  if (formModal) formModal.style.display = 'none';
+}
+
+function sendWhatsAppEnquiry(e) {
+  if (e) e.preventDefault();
+  
+  const name = document.getElementById('waGuestName')?.value.trim();
+  const phone = document.getElementById('waGuestPhone')?.value.trim();
+  const message = document.getElementById('waGuestMsg')?.value.trim();
+  const packageName = currentSelectedPackageLabel || "Tour Package";
+
+  if (!name || !phone) {
+    alert("Please enter both your Name and Phone Number.");
+    return;
+  }
+
+  const fullText = `Hello Cogo Tours!\n\nI am interested in: *${packageName}*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Note:* ${message || 'Please send details and quote.'}`;
+  
+  const waUrl = `https://wa.me/919884066830?text=${encodeURIComponent(fullText)}`;
+  window.open(waUrl, '_blank');
+  
+  closeWhatsAppForm();
 }
 
 /* =========================================================
