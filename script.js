@@ -28,6 +28,11 @@ let isDragging = false;
 let startX = 0, startY = 0;
 let translateX = 0, translateY = 0;
 
+// Current Active Poster Sub-Tabs State
+let currentActiveTabs = [];
+let currentSubTabIndex = 0;
+let currentSelectedPackageLabel = '';
+
 // Helper function to build slidable pamphlet / destination gallery
 function createPamphletGallery(images) {
   if (!images || images.length === 0) return '';
@@ -238,22 +243,6 @@ const categoryData = {
   }
 };
 
-const defaultCategoryInfo = {
-  tickets: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
-  journey: { title: "✈️ Plan Your Journey", desc: "Tailor-made itineraries for your next dream vacation.", content: "Share your travel dates and requirements for custom quotes." },
-  ticket: { title: "🎟️ Ticket Booking", desc: "Flight, Train & Bus Reservations.", content: "Instant ticketing assistance." },
-  visa: { title: "🛂 Visa Assistance", desc: "Documentation & Processing Support.", content: "End-to-end visa guidance for all international destinations." },
-  "north-india": { title: "🏔️ Tour North India", desc: "Golden Triangle, Kashmir, Himachal & Rajasthan.", content: "Customized holiday packages across North India." },
-  "north-east": { title: "🏞️ Tour North East", desc: "Gangtok, Darjeeling, Assam & Meghalaya.", content: "Scenic tour packages across the North Eastern states." },
-  "rest-of-india": { title: "🧭 Tour Rest of India", desc: "Goa, Gujarat, Odisha & Pan-India Destinations.", content: "Unique tour plans for all Indian states and union territories." },
-  international: { title: "✈️ Tour International", desc: "Dubai, Singapore, Thailand, Bali & Europe.", content: "Comprehensive international vacation packages with flight and visa support." },
-  corporate: { title: "🏢 Corporate Tour", desc: "MICE, Team Outings & Business Conferences.", content: "Custom corporate packages and transport arrangements." },
-  students: { title: "🎓 School & College Tour", desc: "Educational Trips & Student Excursions.", content: "Safe and budget-friendly tours for educational institutions." },
-  adventure: { title: "🏕️ Adventure Tour", desc: "Trekking, Camping & Thrill Activities.", content: "Action-packed itineraries for outdoor enthusiasts." },
-  honeymoon: { title: "💖 Honeymoon Tour", desc: "Romantic Getaways & Couples' Retreats.", content: "Special honeymoon arrangements with luxury stays and private cabs." }
-};
-
-// Main Data configuration for all 12 main categories and their sub-destination tabs
 const tourCategoryData = {
   'chennai': {
     title: 'Chennai <br><span>tours</span>',
@@ -350,27 +339,22 @@ const tourCategoryData = {
   }
 };
 
-let currentActiveTabs = [];
-
 /* =========================================================
    MODAL OPEN / CLOSE HANDLERS & WHATSAPP ENQUIRY SYSTEM
 ========================================================= */
 
-let currentSelectedPackageLabel = '';
-
 function openCategoryModal(catKey) {
   if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
 
-  // Check if target is a poster-based category modal
   const categoryPoster = typeof tourCategoryData !== 'undefined' ? tourCategoryData[catKey] : null;
   const posterModal = document.getElementById('categoryModal');
 
   if (categoryPoster && posterModal) {
-    // Hide default text overlay title to keep the pamphlet image clean
     const posterTitle = document.getElementById('posterTitle');
     if (posterTitle) posterTitle.style.display = 'none';
 
     currentActiveTabs = categoryPoster.tabs;
+    currentSubTabIndex = 0;
 
     const tabsBar = document.getElementById('posterTabsBar');
     if (tabsBar) {
@@ -378,16 +362,34 @@ function openCategoryModal(catKey) {
       categoryPoster.tabs.forEach((tab, index) => {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = `poster-tab ${index === 0 ? 'active' : ''}`;
+        btn.className = `poster-tab ${index === 0 ? 'active active-tab' : ''}`;
         btn.onclick = () => selectSubTab(index);
         btn.innerHTML = `<span class="tab-icon">${tab.icon || ''}</span> <span class="tab-label">${tab.label}</span>`;
         tabsBar.appendChild(btn);
       });
     }
 
+    // Dynamic Navigation Arrows Insertion
+    const posterCard = posterModal.querySelector('.poster-card') || posterModal.querySelector('> div') || posterModal;
+    if (posterCard && !posterCard.querySelector('.modal-nav-arrow')) {
+      const leftArrow = document.createElement('button');
+      leftArrow.className = 'modal-nav-arrow left';
+      leftArrow.type = 'button';
+      leftArrow.innerHTML = '&#10094;';
+      leftArrow.onclick = (e) => { e.stopPropagation(); navigatePoster('prev'); };
+
+      const rightArrow = document.createElement('button');
+      rightArrow.className = 'modal-nav-arrow right';
+      rightArrow.type = 'button';
+      rightArrow.innerHTML = '&#10095;';
+      rightArrow.onclick = (e) => { e.stopPropagation(); navigatePoster('next'); };
+
+      posterCard.appendChild(leftArrow);
+      posterCard.appendChild(rightArrow);
+    }
+
     selectSubTab(0);
 
-    // Apply fixed overlay styles
     posterModal.style.position = 'fixed';
     posterModal.style.top = '0';
     posterModal.style.left = '0';
@@ -406,7 +408,7 @@ function openCategoryModal(catKey) {
     return;
   }
 
-  // Fallback to structure-based category modal
+  // Fallback structure handler for standard categories
   const data = typeof categoryData !== 'undefined' ? categoryData[catKey] : null;
   const subTabContainer = document.getElementById("modalSubTabs");
   if (subTabContainer) subTabContainer.innerHTML = "";
@@ -437,94 +439,42 @@ function openCategoryModal(catKey) {
     return;
   }
 
-  // Default slider-based rendering fallback
-  const categoryTitles = {
-    'chennai': 'Tour Chennai Packages',
-    'pilgrim': 'Tour Pilgrim Packages',
-    'south-india': 'Tour South India Packages',
-    'north-india': 'Tour North India Packages',
-    'north-east': 'Tour North East Packages',
-    'rest-of-india': 'Tour Rest of India Packages',
-    'international': 'Tour International Packages',
-    'corporate': 'Corporate Tour Packages',
-    'students': 'School & College Tour Packages',
-    'adventure': 'Adventure Tour Packages',
-    'honeymoon': 'Honeymoon Tour Packages',
-    'journey': 'Plan Your Journey',
-    'cabs': 'Cogo Cab Booking',
-    'ticket': 'Flight & Bus Ticket Booking'
-  };
-
-  const titleText = categoryTitles[catKey] || (catKey.replace('-', ' ').toUpperCase() + " PACKAGES");
-  activeServiceTitle = titleText;
-  
-  const titleElem = document.getElementById("modalTitle") || document.getElementById("modalCategoryTitle");
-  if (titleElem) titleElem.textContent = titleText;
-
-  const descElem = document.getElementById("modalDescription");
-  if (descElem) descElem.textContent = "Browse available packages below or send us an enquiry directly.";
-
-  const contentBody = document.getElementById("modalDynamicContent");
-  if (contentBody) {
-    const defaultImages = [
-      'Images/images/chennai-main.png',
-      'Images/images/pilgrim-main.png',
-      'Images/images/south-main.png',
-      'Images/images/tournorthindia.png',
-      'Images/images/tournortheast.png',
-      'Images/images/tourinternational.png'
-    ];
-
-    let sliderHTML = `
-      <div class="modal-slider-wrapper">
-        <button type="button" class="nav-arrow left-arrow" onclick="scrollTrack('modalTrack', -1)" aria-label="Scroll Left">❮</button>
-        <div class="modal-slider-container">
-          <div id="modalTrack" class="slider-track">
-    `;
-
-    for (let i = 1; i <= 6; i++) {
-      const imgSrc = defaultImages[i - 1];
-      sliderHTML += `
-        <div class="slide-card full-card-link" onclick="openPamphletList(['${imgSrc}'], 0)">
-          <img src="${imgSrc}" alt="Package ${i}" loading="lazy">
-          <div class="slide-overlay">
-            <span class="status-tag ongoing">Ref #${i}</span>
-            <h4>Package ${i}</h4>
-            <p>Explore Package ${i} Details</p>
-          </div>
-        </div>
-      `;
-    }
-
-    sliderHTML += `
-          </div>
-        </div>
-        <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('modalTrack', 1)" aria-label="Scroll Right">❯</button>
-      </div>
-    `;
-
-    contentBody.innerHTML = sliderHTML;
-  }
-
   showModalElement("enquiryModal");
 }
 
+function resetPosterZoom() {
+  const posterBody = document.getElementById('posterBody');
+  if (posterBody) {
+    posterBody.classList.remove('is-zoomed');
+    posterBody.style.transform = 'scale(1)';
+    posterBody.style.transformOrigin = 'center center';
+    currentZoomScale = 1;
+    translateX = 0;
+    translateY = 0;
+  }
+}
+
 function selectSubTab(index) {
+  if (!currentActiveTabs || currentActiveTabs.length === 0) return;
+  
+  currentSubTabIndex = index;
   const tabData = currentActiveTabs[index];
   if (!tabData) return;
 
-  const tabs = document.querySelectorAll('.poster-tab');
+  resetPosterZoom();
+
+  const tabs = document.querySelectorAll('#categoryModal .poster-tab');
   tabs.forEach((t, i) => {
     if (i === index) {
-      t.classList.add('active');
+      t.classList.add('active', 'active-tab');
+      t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     } else {
-      t.classList.remove('active');
+      t.classList.remove('active', 'active-tab');
     }
   });
 
   const posterBody = document.getElementById('posterBody');
   if (posterBody) {
-    // Clear dark gradients to show crisp, full-visibility image
     posterBody.style.backgroundImage = `url('${tabData.bg}')`;
     posterBody.style.backgroundSize = 'contain';
     posterBody.style.backgroundPosition = 'center';
@@ -532,17 +482,29 @@ function selectSubTab(index) {
     posterBody.style.backgroundColor = '#ffffff';
   }
 
-  // Save selected tab label for WhatsApp message context
   currentSelectedPackageLabel = tabData.label || 'Tour Package';
 
-  // Attach button directly to open mini WhatsApp form
   const enquiryBtn = document.getElementById('posterEnquiryBtn');
   if (enquiryBtn) {
     enquiryBtn.onclick = (e) => {
       e.preventDefault();
+      e.stopPropagation();
       openWhatsAppForm();
     };
   }
+}
+
+// Left/Right Nav
+function navigatePoster(direction) {
+  if (!currentActiveTabs || currentActiveTabs.length === 0) return;
+
+  if (direction === 'next' || direction === 1) {
+    currentSubTabIndex = (currentSubTabIndex + 1) % currentActiveTabs.length;
+  } else if (direction === 'prev' || direction === -1) {
+    currentSubTabIndex = (currentSubTabIndex - 1 + currentActiveTabs.length) % currentActiveTabs.length;
+  }
+
+  selectSubTab(currentSubTabIndex);
 }
 
 function renderTabContent(tab) {
@@ -583,6 +545,7 @@ function closeModal() {
   if (modalCategory) {
     modalCategory.classList.remove("show");
     modalCategory.style.display = "none";
+    resetPosterZoom();
   }
   document.body.style.overflow = "";
 }
@@ -639,36 +602,6 @@ function sendWhatsAppEnquiry(e) {
 }
 
 /* =========================================================
-   FORM SUBMISSION ENGINE (WHATSAPP & EMAIL)
-========================================================= */
-
-function submitEnquiry(type) {
-  const name = document.getElementById("userName") ? document.getElementById("userName").value.trim() : "";
-  const phone = document.getElementById("userPhone") ? document.getElementById("userPhone").value.trim() : "";
-  const query = document.getElementById("userQuery") ? document.getElementById("userQuery").value.trim() : "";
-
-  if (!name || !phone) {
-    alert("Please enter your name and contact phone number to continue.");
-    return;
-  }
-
-  const messageText = `*New Travel Enquiry - Cogo Tours*\n` +
-                      `-------------------------------\n` +
-                      `*Service/Package:* ${activeServiceTitle}\n` +
-                      `*Customer Name:* ${name}\n` +
-                      `*Contact Number:* ${phone}\n` +
-                      `*Notes/Preferences:* ${query || 'N/A'}`;
-
-  if (type === 'whatsapp') {
-    const waUrl = `https://wa.me/919884066830?text=${encodeURIComponent(messageText)}`;
-    window.open(waUrl, '_blank');
-  } else if (type === 'email') {
-    const mailtoUrl = `mailto:cogotrtr@gmail.com?subject=${encodeURIComponent("Enquiry: " + activeServiceTitle)}&body=${encodeURIComponent(messageText)}`;
-    window.location.href = mailtoUrl;
-  }
-}
-
-/* =========================================================
    LIGHTBOX ZOOM & DRAG ENGINE
 ========================================================= */
 
@@ -715,11 +648,6 @@ function zoomOut() {
   applyZoomTransform();
 }
 
-function changeZoom(delta) {
-  if (delta > 0) zoomIn();
-  else zoomOut();
-}
-
 function openPamphletZoom(index) {
   if (!currentPamphletList || currentPamphletList.length === 0) return;
 
@@ -762,305 +690,33 @@ function nextPamphlet(e) {
   openPamphletZoom(currentPamphletIndex);
 }
 
-function navigateLightbox(direction, e) {
-  if (direction === -1) prevPamphlet(e);
-  else if (direction === 1) nextPamphlet(e);
-}
-
-function openPamphletList(imageList, index) {
-  if (!imageList || imageList.length === 0) return;
-  currentPamphletList = imageList;
-  openPamphletZoom(index);
-}
-
-function scrollTrack(trackId, direction) {
-  const track = document.getElementById(trackId);
-  if (!track) return;
-  const scrollAmount = track.clientWidth * 0.5;
-  track.parentElement.scrollBy({
-    left: direction * scrollAmount,
-    behavior: 'smooth'
-  });
-}
-
 /* =========================================================
-   VISA ASSISTANCE ENGINE
-========================================================= */
-
-const visaCountries = [
-  { name: "United States (USA)", flag: "🇺🇸", code: "us" },
-  { name: "United Kingdom (UK)", flag: "🇬🇧", code: "gb" },
-  { name: "Schengen / Europe", flag: "🇪🇺", code: "eu" },
-  { name: "United Arab Emirates (Dubai)", flag: "🇦🇪", code: "ae" },
-  { name: "Singapore", flag: "🇸🇬", code: "sg" },
-  { name: "Malaysia", flag: "🇲🇾", code: "my" },
-  { name: "Thailand", flag: "🇹🇭", code: "th" },
-  { name: "Australia", flag: "🇦🇺", code: "au" },
-  { name: "Canada", flag: "🇨🇦", code: "ca" },
-  { name: "Japan", flag: "🇯🇵", code: "jp" },
-  { name: "Vietnam", flag: "🇻🇳", code: "vn" },
-  { name: "Saudi Arabia", flag: "🇸🇦", code: "sa" },
-  { name: "France", flag: "🇫🇷", code: "fr" },
-  { name: "Germany", flag: "🇩🇪", code: "de" },
-  { name: "Indonesia (Bali)", flag: "🇮🇩", code: "id" },
-  { name: "Italy", flag: "🇮🇹", code: "it" },
-  { name: "Switzerland", flag: "🇨🇭", code: "ch" }
-];
-
-let selectedVisaCountry = null;
-
-function populateVisaCountries(list = visaCountries) {
-  const container = document.getElementById("visaDropdownList");
-  if (!container) return;
-
-  container.innerHTML = "";
-  if (list.length === 0) {
-    container.innerHTML = '<div class="visa-option">No country found</div>';
-    return;
-  }
-
-  list.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "visa-option";
-    div.innerHTML = `<span class="flag">${item.flag}</span> <span>${item.name}</span>`;
-    div.onclick = () => selectVisaCountry(item);
-    container.appendChild(div);
-  });
-}
-
-function showVisaDropdown() {
-  populateVisaCountries();
-  document.getElementById("visaDropdownList")?.classList.add("show");
-}
-
-function filterVisaCountries() {
-  const query = document.getElementById("visaCountryInput")?.value.toLowerCase() || "";
-  const filtered = visaCountries.filter(c => c.name.toLowerCase().includes(query));
-  populateVisaCountries(filtered);
-  document.getElementById("visaDropdownList")?.classList.add("show");
-}
-
-function selectVisaCountry(countryObj) {
-  selectedVisaCountry = countryObj;
-  const input = document.getElementById("visaCountryInput") || document.getElementById("visaCountry");
-  if (input) input.value = countryObj.name;
-  document.getElementById("visaDropdownList")?.classList.remove("show");
-}
-
-function sendVisaWhatsApp() {
-  const phoneNumber = "919884066830"; 
-
-  let countryName = selectedVisaCountry ? selectedVisaCountry.name : (document.getElementById("visaCountryInput")?.value || document.getElementById("visaCountry")?.value);
-  const fromDate = document.getElementById("visaFromDate")?.value || document.getElementById("visaTravelDate")?.value;
-  const toDate = document.getElementById("visaToDate")?.value || document.getElementById("visaReturnDate")?.value;
-  const pax = document.getElementById("visaPaxSelect")?.value || document.getElementById("visaPax")?.value || "1 Person";
-  const remarks = document.getElementById("visaRemarksInput")?.value.trim() || document.getElementById("visaRemarks")?.value.trim();
-
-  if (!countryName || !countryName.trim()) {
-    alert("Please select or type a destination country for Visa Assistance.");
-    return;
-  }
-
-  let message = `Hello Cogo Tours, I am interested in Visa Assistance.\n\n🌐 *Destination Country:* ${countryName}`;
-  if (fromDate && toDate) {
-    message += `\n📅 *Travel Period:* ${fromDate} to ${toDate}`;
-  } else if (fromDate) {
-    message += `\n📅 *Travel Date:* ${fromDate}`;
-  }
-  message += `\n👥 *Applicants (Pax):* ${pax}`;
-  if (remarks) {
-    message += `\n📝 *Remarks:* ${remarks}`;
-  }
-  message += `\n\nPlease share the required document checklist and visa process.`;
-
-  const encodedMessage = encodeURIComponent(message);
-  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-}
-
-function handleVisaBooking(btn) {
-  sendVisaWhatsApp();
-}
-
-/* =========================================================
-   CAB SERVICES ENGINE
-========================================================= */
-
-const cabPickupLocations = [
-  "Chennai Airport (MAA)",
-  "Chennai Central Railway Station",
-  "Chennai Egmore Station",
-  "T. Nagar / Kodambakkam",
-  "OMR / Sholinganallur (IT Corridor)",
-  "Velachery / Guindy",
-  "Koyambedu (CMBT)",
-  "ECR / Neelankarai"
-];
-
-const cabDropLocations = [
-  "Pondicherry / Puducherry",
-  "Tirupati / Tirumala",
-  "Mahabalipuram / ECR Beach Resorts",
-  "Kanchipuram Heritage Town",
-  "Vellore / Golden Temple",
-  "Bengaluru City",
-  "Local Chennai Full Day Sightseeing",
-  "Local Airport Drop / Transfer"
-];
-
-function populateCabList(containerId, list, selectFunc) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  container.innerHTML = "";
-
-  if (list.length === 0) {
-    container.innerHTML = '<div class="visa-option">Type custom location...</div>';
-    return;
-  }
-
-  list.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "visa-option";
-    div.innerHTML = `<span>📍 ${item}</span>`;
-    div.onclick = () => selectFunc(item);
-    container.appendChild(div);
-  });
-}
-
-function showCabPickupDropdown() {
-  populateCabList("cabPickupList", cabPickupLocations, selectCabPickup);
-  document.getElementById("cabPickupList")?.classList.add("show");
-}
-
-function filterCabPickup() {
-  const q = document.getElementById("cabPickupInput")?.value.toLowerCase() || "";
-  const filtered = cabPickupLocations.filter(loc => loc.toLowerCase().includes(q));
-  populateCabList("cabPickupList", filtered, selectCabPickup);
-  document.getElementById("cabPickupList")?.classList.add("show");
-}
-
-function selectCabPickup(val) {
-  const input = document.getElementById("cabPickupInput") || document.getElementById("pickupLocation");
-  if (input) input.value = val;
-  document.getElementById("cabPickupList")?.classList.remove("show");
-}
-
-function showCabDropDropdown() {
-  populateCabList("cabDropList", cabDropLocations, selectCabDrop);
-  document.getElementById("cabDropList")?.classList.add("show");
-}
-
-function filterCabDrop() {
-  const q = document.getElementById("cabDropInput")?.value.toLowerCase() || "";
-  const filtered = cabDropLocations.filter(loc => loc.toLowerCase().includes(q));
-  populateCabList("cabDropList", filtered, selectCabDrop);
-  document.getElementById("cabDropList")?.classList.add("show");
-}
-
-function selectCabDrop(val) {
-  const input = document.getElementById("cabDropInput") || document.getElementById("dropLocation");
-  if (input) input.value = val;
-  document.getElementById("cabDropList")?.classList.remove("show");
-}
-
-function sendCabWhatsApp() {
-  const phoneNumber = "919884066830";
-
-  const pickup = document.getElementById("cabPickupInput")?.value.trim() || document.getElementById("pickupLocation")?.value.trim();
-  const drop = document.getElementById("cabDropInput")?.value.trim() || document.getElementById("dropLocation")?.value.trim();
-  const travelDate = document.getElementById("cabDateInput")?.value || document.getElementById("cabDate")?.value;
-  const travelTime = document.getElementById("cabTimeInput")?.value || document.getElementById("cabTime")?.value;
-  const vehicle = document.getElementById("cabVehicleSelect")?.value || document.getElementById("cabVehicle")?.value;
-  const pack = document.getElementById("cabPackSelect")?.value || document.getElementById("cabPackage")?.value;
-  const name = document.getElementById("cabName")?.value || "";
-  const mobile = document.getElementById("cabMobile")?.value || "";
-
-  if (!pickup || !drop) {
-    alert("Please enter or select both Pickup and Destination locations.");
-    return;
-  }
-
-  let message = `Hello Cogo Tours, I want to book/enquire a cab.\n\n📍 *Pickup:* ${pickup}\n🎯 *Destination:* ${drop}`;
-  if (travelDate) message += `\n📅 *Date:* ${travelDate}`;
-  if (travelTime) message += `\n⏰ *Time:* ${travelTime}`;
-  if (vehicle) message += `\n🚗 *Vehicle:* ${vehicle}`;
-  if (pack) message += `\n⏱️ *Trip Pack:* ${pack}`;
-  if (name) message += `\n👤 *Name:* ${name}`;
-  if (mobile) message += `\n📞 *Mobile:* ${mobile}`;
-  message += `\n\nPlease share availability and fare details.`;
-
-  const encodedMessage = encodeURIComponent(message);
-  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-}
-
-function handleCabBooking(btn) {
-  sendCabWhatsApp();
-}
-
-/* =========================================================
-   FLIGHT BOOKING ENGINE
-========================================================= */
-
-function toggleReturnDate(isRoundTrip) {
-  const returnInput = document.getElementById("flightReturnDate");
-  if (returnInput) {
-    returnInput.style.display = isRoundTrip ? "block" : "none";
-  }
-}
-
-function sendFlightWhatsApp() {
-  const phoneNumber = "919884066830"; 
-
-  const scope = document.querySelector('input[name="flightScope"]:checked')?.value || document.querySelector('input[name="flightType"]:checked')?.value || "Domestic";
-  const type = document.querySelector('input[name="flightType"]:checked')?.value || document.querySelector('input[name="tripType"]:checked')?.value || "One-Way";
-  const fromCity = document.getElementById("flightFromInput")?.value.trim() || document.getElementById("departureCity")?.value.trim();
-  const toCity = document.getElementById("flightToInput")?.value.trim() || document.getElementById("destinationCity")?.value.trim();
-  const departDate = document.getElementById("flightDepartDate")?.value || document.getElementById("flightDate")?.value;
-  const returnDate = document.getElementById("flightReturnDate")?.value;
-  const preferredTime = document.getElementById("flightTimeSelect")?.value || document.getElementById("flightTimeBand")?.value;
-  const passengers = document.getElementById("flightPaxSelect")?.value || "1 Passenger";
-  const name = document.getElementById("flightName")?.value || "";
-  const mobile = document.getElementById("flightMobile")?.value || "";
-
-  if (!fromCity || !toCity) {
-    alert("Please enter both Departure and Destination cities.");
-    return;
-  }
-
-  let message = `Hello Cogo Tours, I want to book/enquire a flight ticket.\n\n🌐 *Type:* ${scope} (${type})\n🛫 *From:* ${fromCity}\n🛬 *To:* ${toCity}`;
-  if (departDate) message += `\n📅 *Departure Date:* ${departDate}`;
-  if (type.toLowerCase().includes("round") && returnDate) message += `\n📅 *Return Date:* ${returnDate}`;
-  if (preferredTime) message += `\n⏰ *Preferred Time:* ${preferredTime}`;
-  if (passengers) message += `\n👥 *Passengers:* ${passengers}`;
-  if (name) message += `\n👤 *Name:* ${name}`;
-  if (mobile) message += `\n📞 *Mobile:* ${mobile}`;
-  message += `\n\nPlease check for available flights and best fare deals.`;
-
-  const encodedMessage = encodeURIComponent(message);
-  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-}
-
-function handleFlightBooking(btn) {
-  sendFlightWhatsApp();
-}
-
-function switchCategoryTab(imageUrl, tabElement) {
-  // 1. Highlight active tab
-  const tabs = document.querySelectorAll('.category-tab-btn');
-  tabs.forEach(tab => tab.classList.remove('active'));
-  if (tabElement) tabElement.classList.add('active');
-
-  // 2. Set image directly on posterBody background
-  const posterBody = document.getElementById('posterBody');
-  if (posterBody) {
-    posterBody.style.backgroundImage = `url('${imageUrl}')`;
-  }
-}
-
-/* =========================================================
-   GLOBAL EVENT LISTENERS
+   GLOBAL EVENT LISTENERS & POSTER ZOOM ENGINE
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Poster Click Zoom Toggle Handler
+  const posterBody = document.getElementById('posterBody');
+  if (posterBody) {
+    posterBody.addEventListener('click', function (e) {
+      if (e.target.closest('#posterEnquiryBtn') || e.target.closest('.modal-nav-arrow') || e.target.closest('.poster-tabs-bar')) {
+        return;
+      }
+
+      posterBody.classList.toggle('is-zoomed');
+      if (posterBody.classList.contains('is-zoomed')) {
+        const rect = posterBody.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        posterBody.style.transformOrigin = `${x}% ${y}%`;
+        posterBody.style.transform = 'scale(2)';
+      } else {
+        posterBody.style.transformOrigin = 'center center';
+        posterBody.style.transform = 'scale(1)';
+      }
+    });
+  }
+
   const { lightbox, img } = getLightboxElements();
 
   if (lightbox) {
@@ -1104,140 +760,18 @@ document.addEventListener("DOMContentLoaded", function () {
         applyZoomTransform();
       }
     });
-
-    img.addEventListener("touchstart", (e) => {
-      if (currentZoomScale > 1 && e.touches.length === 1) {
-        isDragging = true;
-        startX = e.touches[0].clientX - translateX;
-        startY = e.touches[0].clientY - translateY;
-      }
-    });
-
-    window.addEventListener("touchmove", (e) => {
-      if (!isDragging || e.touches.length !== 1) return;
-      translateX = e.touches[0].clientX - startX;
-      translateY = e.touches[0].clientY - startY;
-      applyZoomTransform();
-    });
-
-    window.addEventListener("touchend", () => {
-      isDragging = false;
-    });
   }
-
-  document.querySelectorAll(".pamphlet-prev, .prev-btn, #prevBtn").forEach(btn => {
-    btn.onclick = prevPamphlet;
-  });
-  document.querySelectorAll(".pamphlet-next, .next-btn, #nextBtn").forEach(btn => {
-    btn.onclick = nextPamphlet;
-  });
-  document.querySelectorAll(".zoom-in, #zoomInBtn").forEach(btn => {
-    btn.onclick = zoomIn;
-  });
-  document.querySelectorAll(".zoom-out, #zoomOutBtn").forEach(btn => {
-    btn.onclick = zoomOut;
-  });
-  document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => {
-    btn.onclick = closePamphletZoom;
-  });
-
-  // Flag and Auto-Complete Integration for Visa Country Input
-  const countryInput = document.getElementById("visaCountry") || document.getElementById("visaCountryInput");
-  const dropdownList = document.getElementById("visaCountryDropdown") || document.getElementById("visaDropdownList");
-  const flagPreview = document.getElementById("selectedFlag");
-
-  if (countryInput && dropdownList) {
-    function renderVisaOptions(filterText = "") {
-      dropdownList.innerHTML = "";
-      const filtered = visaCountries.filter(c => 
-        c.name.toLowerCase().includes(filterText.toLowerCase())
-      );
-
-      if (filtered.length === 0) {
-        dropdownList.innerHTML = `<div class="no-match-option">No matching countries found</div>`;
-        dropdownList.classList.add("show");
-        return;
-      }
-
-      filtered.forEach(country => {
-        const option = document.createElement("div");
-        option.className = "visa-option";
-        option.innerHTML = `
-          <img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag" onerror="this.style.display='none';">
-          <span>${country.flag || ''} ${country.name}</span>
-        `;
-
-        option.addEventListener("click", () => {
-          selectVisaCountry(country);
-          countryInput.value = country.name;
-          if (flagPreview) {
-            flagPreview.innerHTML = `<img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">`;
-            flagPreview.classList.remove("hidden");
-          }
-          countryInput.classList.add("has-flag");
-          dropdownList.classList.remove("show");
-        });
-
-        dropdownList.appendChild(option);
-      });
-
-      dropdownList.classList.add("show");
-    }
-
-    countryInput.addEventListener("input", (e) => {
-      if (flagPreview) {
-        flagPreview.classList.add("hidden");
-        flagPreview.innerHTML = "";
-      }
-      countryInput.classList.remove("has-flag");
-      renderVisaOptions(e.target.value.trim());
-    });
-
-    countryInput.addEventListener("focus", () => {
-      renderVisaOptions(countryInput.value.trim());
-    });
-  }
-
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".visa-country-selector") && !e.target.closest(".custom-select-wrapper")) {
-      dropdownList?.classList.remove("show");
-    }
-  });
 });
 
 /* Keyboard Navigation (Left/Right Arrows & Esc) */
 document.addEventListener("keydown", function(e) {
-  const { lightbox } = getLightboxElements();
-  const isLightboxActive = lightbox && (lightbox.style.display === "flex" || lightbox.classList.contains("show"));
+  const categoryModal = document.getElementById("categoryModal");
+  const isPosterActive = categoryModal && categoryModal.classList.contains("show");
 
   if (e.key === "Escape") {
-    if (isLightboxActive) {
-      closePamphletZoom(e);
-    } else {
-      closeModal();
-    }
-  } else if (isLightboxActive) {
-    if (e.key === "ArrowLeft") prevPamphlet(e);
-    if (e.key === "ArrowRight") nextPamphlet(e);
-    if (e.key === "+" || e.key === "=") zoomIn();
-    if (e.key === "-") zoomOut();
-  }
-});
-
-/* Hide Dropdowns When Clicking Outside */
-document.addEventListener("click", function(e) {
-  const visaWrapper = document.querySelector(".custom-select-wrapper");
-  if (visaWrapper && !visaWrapper.contains(e.target)) {
-    document.getElementById("visaDropdownList")?.classList.remove("show");
-  }
-
-  const pickupWrap = document.getElementById("cabPickupInput")?.parentElement || document.getElementById("pickupLocation")?.parentElement;
-  const dropWrap = document.getElementById("cabDropInput")?.parentElement || document.getElementById("dropLocation")?.parentElement;
-
-  if (pickupWrap && !pickupWrap.contains(e.target)) {
-    document.getElementById("cabPickupList")?.classList.remove("show");
-  }
-  if (dropWrap && !dropWrap.contains(e.target)) {
-    document.getElementById("cabDropList")?.classList.remove("show");
+    closeModal();
+  } else if (isPosterActive) {
+    if (e.key === "ArrowLeft") navigatePoster('prev');
+    if (e.key === "ArrowRight") navigatePoster('next');
   }
 });
