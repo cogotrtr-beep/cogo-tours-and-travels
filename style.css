@@ -1525,7 +1525,110 @@ input[type="time"]::-webkit-date-and-time-value {
 }
 
 /* =========================================================
-   13. MEDIA QUERIES (DESKTOP & MOBILE RESPONSIVENESS)
+   13. CATEGORY & ENQUIRY MODAL OVERLAYS
+========================================================= */
+#categoryModal,
+#enquiryModal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  z-index: 99999 !important;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#categoryModal.show,
+#enquiryModal.show {
+  display: flex !important;
+}
+
+#categoryModal .poster-card,
+#categoryModal > div,
+#enquiryModal > div {
+  max-width: 480px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  position: relative;
+  z-index: 100000;
+}
+
+/* Dedicated space & positioning for Modal Header Close Button */
+#categoryModal .modal-header,
+.category-modal-header {
+  position: relative !important;
+  padding-right: 45px !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow-x: auto !important;
+}
+
+#categoryModal .close-btn,
+#categoryModal .modal-close,
+.category-modal-close-x {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 28px !important;
+  height: 28px !important;
+  z-index: 100010 !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  border-radius: 50% !important;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  color: #333 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: auto !important;
+}
+
+#categoryModal .close-btn:hover {
+  background: rgba(0, 0, 0, 0.2) !important;
+  color: #000 !important;
+}
+
+/* Poster Image Container & Enquiry Button Sizing */
+#posterBody {
+  width: 100% !important;
+  min-height: 320px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  background-color: #ffffff !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  padding-bottom: 20px !important;
+}
+
+#posterBody img,
+.poster-banner-img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 420px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+#posterEnquiryBtn, 
+.poster-enquiry-btn {
+  transform: scale(0.75) !important;
+  transform-origin: bottom center;
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   14. MEDIA QUERIES (DESKTOP & MOBILE RESPONSIVENESS)
 ========================================================= */
 @media (min-width: 1200px) {
   .hero {
@@ -1646,154 +1749,4 @@ input[type="time"]::-webkit-date-and-time-value {
 
   .modal-slider-wrapper .left-arrow { left: 0px; }
   .modal-slider-wrapper .right-arrow { right: 0px; }
-}
-/* =========================================================
-   CATEGORY & ENQUIRY MODAL OVERLAY STYLES
-========================================================= */
-
-#categoryModal,
-#enquiryModal {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background-color: rgba(0, 0, 0, 0.75) !important;
-  z-index: 99999 !important;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-#categoryModal.show,
-#enquiryModal.show {
-  display: flex !important;
-}
-
-/* Modal inner content box centering */
-#categoryModal .poster-card,
-#categoryModal > div,
-#enquiryModal > div {
-  max-width: 480px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 12px;
-  position: relative;
-  z-index: 100000;
-}
-
-/* =========================================================
-   CATEGORY & ENQUIRY MODAL OVERLAY STYLES
-========================================================= */
-
-#categoryModal,
-#enquiryModal {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background-color: rgba(0, 0, 0, 0.75) !important;
-  z-index: 99999 !important;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-#categoryModal.show,
-#enquiryModal.show {
-  display: flex !important;
-}
-
-/* Modal inner content box centering */
-#categoryModal .poster-card,
-#categoryModal > div,
-#enquiryModal > div {
-  max-width: 480px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 12px;
-  position: relative;
-  z-index: 100000;
-}
-
-/* Ensure Clean Image Visibility */
-#posterBody {
-  background-color: #ffffff !important;
-  background-size: contain !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  min-height: 400px;
-  position: relative;
-}
-
-/* 25% Smaller Enquiry Button */
-#posterEnquiryBtn, 
-.poster-enquiry-btn {
-  transform: scale(0.75) !important;
-  transform-origin: bottom center;
-  margin-bottom: 10px;
-}
-/* Ensure Modal Body and Banner Image Display Properly */
-#posterBody {
-  width: 100% !important;
-  min-height: 320px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  background-size: contain !important;
-  background-repeat: no-repeat !important;
-  background-position: center top !important;
-  padding-bottom: 20px !important;
-}
-
-/* Ensure banner image fills and shows properly if using <img> tags */
-#posterBody img,
-.poster-banner-img {
-  width: 100% !important;
-  height: auto !important;
-  max-height: 420px !important;
-  object-fit: contain !important;
-  display: block !important;
-}
-/* DEDICATED SPACE FOR CLOSE (X) BUTTON IN MODAL HEADER */
-#categoryModal .modal-header,
-.category-modal-header {
-  position: relative !important;
-  padding-right: 45px !important; /* Creates dedicated gap for X button */
-  display: flex !important;
-  align-items: center !important;
-  overflow-x: auto !important;
-}
-
-/* FIX CLOSE BUTTON POSITIONING */
-#categoryModal .close-btn,
-#categoryModal .modal-close,
-.category-modal-close-x {
-  position: absolute !important;
-  right: 12px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 28px !important;
-  height: 28px !important;
-  z-index: 100010 !important; /* Keeps X above tabs */
-  background: rgba(0, 0, 0, 0.08) !important;
-  border-radius: 50% !important;
-  border: none !important;
-  font-size: 16px !important;
-  font-weight: bold !important;
-  color: #333 !important;
-  cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  pointer-events: auto !important;
-}
-
-#categoryModal .close-btn:hover {
-  background: rgba(0, 0, 0, 0.2) !important;
-  color: #000 !important;
 }
