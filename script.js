@@ -229,7 +229,7 @@ const categoryData = {
               <li class="bulletin-item" style="font-size: 17px;"><span class="bullet-label">Innova Crysta One Day Pack</span> <span class="bullet-price">₹6,750</span></li>
             </ul>
             <p style="margin-top: 10px; font-weight: bold; color: #1e293b;">
-              訪 Luxury Cabs, Urbania, Tempo Travellers & Buses are available for long-distance South India tours.
+              🚘 Luxury Cabs, Urbania, Tempo Travellers & Buses are available for long-distance South India tours.
             </p>
           </div>
         `
@@ -253,6 +253,105 @@ const defaultCategoryInfo = {
   honeymoon: { title: "💖 Honeymoon Tour", desc: "Romantic Getaways & Couples' Retreats.", content: "Special honeymoon arrangements with luxury stays and private cabs." }
 };
 
+// Main Data configuration for all 12 main categories and their sub-destination tabs
+const tourCategoryData = {
+  'chennai': {
+    title: 'Chennai <br><span>tours</span>',
+    tabs: [
+      { id: 'pondy', label: 'PONDY', icon: '🏖️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Pondy Tour' },
+      { id: 'ecr', label: 'ECR', icon: '🛣️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about ECR Tour' },
+      { id: 'kanchi', label: 'KANCHI', icon: '🛕', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kanchi Tour' },
+      { id: 'marina', label: 'MARINA', icon: '🗼', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Marina Tour' },
+      { id: 'mount', label: 'MOUNT', icon: '⛰️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about St Thomas Mount Tour' },
+      { id: 'omr', label: 'OMR', icon: '🏢', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about OMR Tour' }
+    ]
+  },
+  'pilgrim': {
+    title: 'Pilgrim <br><span>tours</span>',
+    tabs: [
+      { id: 'shirdi', label: 'SHIRDI', icon: '🛕', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Shirdi Tour' },
+      { id: 'tirupati', label: 'TIRUPATI', icon: '🚩', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Tirupati Tour' },
+      { id: 'kanchipuram', label: 'KANCHI', icon: '⛩️', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kanchipuram Temple Tour' },
+      { id: 'navagraha', label: 'NAVAGRAHA', icon: '🌟', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Navagraha Tour' }
+    ]
+  },
+  'south-india': {
+    title: 'South India <br><span>tours</span>',
+    tabs: [
+      { id: 'kodai', label: 'KODAIKANAL', icon: '⛰️', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kodaikanal Tour' },
+      { id: 'kerala', label: 'KERALA', icon: '🌴', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kerala Tour' },
+      { id: 'coorg', label: 'COORG', icon: '☕', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Coorg Tour' },
+      { id: 'ooty', label: 'OOTY', icon: '🌲', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Ooty Tour' }
+    ]
+  },
+  'north-india': {
+    title: 'North India <br><span>tours</span>',
+    tabs: [
+      { id: 'delhi', label: 'DELHI', icon: '🕌', bg: 'Images/images/tournorthindia.png', msg: 'Hi Cogo Tours, I want to enquire about Delhi Agra Tour' },
+      { id: 'manali', label: 'MANALI', icon: '🏔️', bg: 'Images/images/tournorthindia.png', msg: 'Hi Cogo Tours, I want to enquire about Manali Tour' },
+      { id: 'kashmir', label: 'KASHMIR', icon: '❄️', bg: 'Images/images/tournorthindia.png', msg: 'Hi Cogo Tours, I want to enquire about Kashmir Tour' }
+    ]
+  },
+  'north-east': {
+    title: 'North East <br><span>tours</span>',
+    tabs: [
+      { id: 'gangtok', label: 'GANGTOK', icon: '🏞️', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Gangtok Tour' },
+      { id: 'darjeeling', label: 'DARJEELING', icon: '🍃', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Darjeeling Tour' },
+      { id: 'meghalaya', label: 'MEGHALAYA', icon: '🌧️', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Meghalaya Tour' }
+    ]
+  },
+  'rest-of-india': {
+    title: 'Rest of India <br><span>tours</span>',
+    tabs: [
+      { id: 'goa', label: 'GOA', icon: '🏖️', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Goa Package' },
+      { id: 'gujarat', label: 'GUJARAT', icon: '🦁', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Gujarat Package' }
+    ]
+  },
+  'international': {
+    title: 'International <br><span>tours</span>',
+    tabs: [
+      { id: 'dubai', label: 'DUBAI', icon: '🏙️', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Dubai Package' },
+      { id: 'singapore', label: 'SINGAPORE', icon: '🦁', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Singapore Package' },
+      { id: 'thailand', label: 'THAILAND', icon: '🏝️', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Thailand Package' }
+    ]
+  },
+  'corporate': {
+    title: 'Corporate <br><span>tours</span>',
+    tabs: [
+      { id: 'mice', label: 'MICE', icon: '🏢', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Corporate MICE Trips' },
+      { id: 'retreat', label: 'TEAM OUTING', icon: '👔', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Team Outings' }
+    ]
+  },
+  'students': {
+    title: 'Student <br><span>tours</span>',
+    tabs: [
+      { id: 'school', label: 'SCHOOL TRIPS', icon: '🎒', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about School Educational Trips' },
+      { id: 'college', label: 'COLLEGE IV', icon: '🎓', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about College Industrial Visits' }
+    ]
+  },
+  'adventure': {
+    title: 'Adventure <br><span>tours</span>',
+    tabs: [
+      { id: 'trekking', label: 'TREKKING', icon: '🥾', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Trekking Packages' },
+      { id: 'camping', label: 'CAMPING', icon: '🏕️', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Camping Trips' }
+    ]
+  },
+  'honeymoon': {
+    title: 'Honeymoon <br><span>tours</span>',
+    tabs: [
+      { id: 'couples', label: 'ROMANTIC', icon: '💖', bg: 'Images/images/tourhoneymoon.png', msg: 'Hi Cogo Tours, I want to enquire about Honeymoon Packages' }
+    ]
+  },
+  'cabs': {
+    title: 'Cogo <br><span>cabs</span>',
+    tabs: [
+      { id: 'outstation', label: 'OUTSTATION', icon: '🚘', bg: 'Images/images/cogocabs.png', msg: 'Hi Cogo Tours, I want to enquire about Outstation Cab Services' }
+    ]
+  }
+};
+
+let currentActiveTabs = [];
+
 /* =========================================================
    MODAL OPEN / CLOSE HANDLERS
 ========================================================= */
@@ -260,7 +359,37 @@ const defaultCategoryInfo = {
 function openCategoryModal(catKey) {
   if (catKey === 'plan-your-journey' || catKey === 'journey-planning') catKey = 'journey';
 
-  // 1. Check if category has structured data (e.g. Cabs or custom tabs)
+  // Check if target is a poster-based category modal
+  const categoryPoster = tourCategoryData[catKey];
+  const posterModal = document.getElementById('categoryModal');
+
+  if (categoryPoster && posterModal) {
+    const posterTitle = document.getElementById('posterTitle');
+    const tabsBar = document.getElementById('posterTabsBar');
+
+    if (posterTitle) posterTitle.innerHTML = categoryPoster.title;
+    currentActiveTabs = categoryPoster.tabs;
+
+    if (tabsBar) {
+      tabsBar.innerHTML = '';
+      categoryPoster.tabs.forEach((tab, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `poster-tab ${index === 0 ? 'active' : ''}`;
+        btn.onclick = () => selectSubTab(index);
+        btn.innerHTML = `<span class="tab-icon">${tab.icon}</span> <span class="tab-label">${tab.label}</span>`;
+        tabsBar.appendChild(btn);
+      });
+    }
+
+    selectSubTab(0);
+    posterModal.style.display = 'flex';
+    posterModal.classList.add('show');
+    document.body.style.overflow = "hidden";
+    return;
+  }
+
+  // Fallback to structure-based category modal
   const data = typeof categoryData !== 'undefined' ? categoryData[catKey] : null;
   const subTabContainer = document.getElementById("modalSubTabs");
   if (subTabContainer) subTabContainer.innerHTML = "";
@@ -291,7 +420,7 @@ function openCategoryModal(catKey) {
     return;
   }
 
-  // 2. Default 6-card slider rendering for tour categories
+  // Default slider-based rendering fallback
   const categoryTitles = {
     'chennai': 'Tour Chennai Packages',
     'pilgrim': 'Tour Pilgrim Packages',
@@ -318,7 +447,6 @@ function openCategoryModal(catKey) {
   const descElem = document.getElementById("modalDescription");
   if (descElem) descElem.textContent = "Browse available packages below or send us an enquiry directly.";
 
-  // Build the 6-card horizontal slider dynamically into the modal content container
   const contentBody = document.getElementById("modalDynamicContent");
   if (contentBody) {
     const defaultImages = [
@@ -361,8 +489,31 @@ function openCategoryModal(catKey) {
     contentBody.innerHTML = sliderHTML;
   }
 
-  // Always target enquiryModal where all dynamic elements are populated
   showModalElement("enquiryModal");
+}
+
+function selectSubTab(index) {
+  const tabData = currentActiveTabs[index];
+  if (!tabData) return;
+
+  const tabs = document.querySelectorAll('.poster-tab');
+  tabs.forEach((t, i) => {
+    if (i === index) {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
+  });
+
+  const posterBody = document.getElementById('posterBody');
+  if (posterBody) {
+    posterBody.style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(0, 0, 0, 0.4) 100%), url('${tabData.bg}')`;
+  }
+
+  const enquiryBtn = document.getElementById('posterEnquiryBtn');
+  if (enquiryBtn) {
+    enquiryBtn.href = `https://wa.me/919884066830?text=${encodeURIComponent(tabData.msg)}`;
+  }
 }
 
 function renderTabContent(tab) {
@@ -558,18 +709,23 @@ function scrollTrack(trackId, direction) {
 ========================================================= */
 
 const visaCountries = [
-  { name: "United States (USA)", flag: "🇺🇸" },
-  { name: "United Kingdom (UK)", flag: "🇬🇧" },
-  { name: "Schengen / Europe", flag: "🇪🇺" },
-  { name: "United Arab Emirates (Dubai)", flag: "🇦🇪" },
-  { name: "Singapore", flag: "🇸🇬" },
-  { name: "Malaysia", flag: "🇲🇾" },
-  { name: "Thailand", flag: "🇹🇭" },
-  { name: "Australia", flag: "🇦🇺" },
-  { name: "Canada", flag: "🇨🇦" },
-  { name: "Japan", flag: "🇯🇵" },
-  { name: "Vietnam", flag: "🇻🇳" },
-  { name: "Saudi Arabia", flag: "🇸🇦" }
+  { name: "United States (USA)", flag: "🇺🇸", code: "us" },
+  { name: "United Kingdom (UK)", flag: "🇬🇧", code: "gb" },
+  { name: "Schengen / Europe", flag: "🇪🇺", code: "eu" },
+  { name: "United Arab Emirates (Dubai)", flag: "🇦🇪", code: "ae" },
+  { name: "Singapore", flag: "🇸🇬", code: "sg" },
+  { name: "Malaysia", flag: "🇲🇾", code: "my" },
+  { name: "Thailand", flag: "🇹🇭", code: "th" },
+  { name: "Australia", flag: "🇦🇺", code: "au" },
+  { name: "Canada", flag: "🇨🇦", code: "ca" },
+  { name: "Japan", flag: "🇯🇵", code: "jp" },
+  { name: "Vietnam", flag: "🇻🇳", code: "vn" },
+  { name: "Saudi Arabia", flag: "🇸🇦", code: "sa" },
+  { name: "France", flag: "🇫🇷", code: "fr" },
+  { name: "Germany", flag: "🇩🇪", code: "de" },
+  { name: "Indonesia (Bali)", flag: "🇮🇩", code: "id" },
+  { name: "Italy", flag: "🇮🇹", code: "it" },
+  { name: "Switzerland", flag: "🇨🇭", code: "ch" }
 ];
 
 let selectedVisaCountry = null;
@@ -599,7 +755,7 @@ function showVisaDropdown() {
 }
 
 function filterVisaCountries() {
-  const query = document.getElementById("visaCountryInput").value.toLowerCase();
+  const query = document.getElementById("visaCountryInput")?.value.toLowerCase() || "";
   const filtered = visaCountries.filter(c => c.name.toLowerCase().includes(query));
   populateVisaCountries(filtered);
   document.getElementById("visaDropdownList")?.classList.add("show");
@@ -607,19 +763,19 @@ function filterVisaCountries() {
 
 function selectVisaCountry(countryObj) {
   selectedVisaCountry = countryObj;
-  const input = document.getElementById("visaCountryInput");
-  if (input) input.value = `${countryObj.flag} ${countryObj.name}`;
+  const input = document.getElementById("visaCountryInput") || document.getElementById("visaCountry");
+  if (input) input.value = countryObj.name;
   document.getElementById("visaDropdownList")?.classList.remove("show");
 }
 
 function sendVisaWhatsApp() {
   const phoneNumber = "919884066830"; 
 
-  let countryName = selectedVisaCountry ? selectedVisaCountry.name : document.getElementById("visaCountryInput")?.value;
-  const fromDate = document.getElementById("visaFromDate")?.value;
-  const toDate = document.getElementById("visaToDate")?.value;
-  const pax = document.getElementById("visaPaxSelect")?.value || "1 Person";
-  const remarks = document.getElementById("visaRemarksInput")?.value.trim();
+  let countryName = selectedVisaCountry ? selectedVisaCountry.name : (document.getElementById("visaCountryInput")?.value || document.getElementById("visaCountry")?.value);
+  const fromDate = document.getElementById("visaFromDate")?.value || document.getElementById("visaTravelDate")?.value;
+  const toDate = document.getElementById("visaToDate")?.value || document.getElementById("visaReturnDate")?.value;
+  const pax = document.getElementById("visaPaxSelect")?.value || document.getElementById("visaPax")?.value || "1 Person";
+  const remarks = document.getElementById("visaRemarksInput")?.value.trim() || document.getElementById("visaRemarks")?.value.trim();
 
   if (!countryName || !countryName.trim()) {
     alert("Please select or type a destination country for Visa Assistance.");
@@ -643,25 +799,7 @@ function sendVisaWhatsApp() {
 }
 
 function handleVisaBooking(btn) {
-  const form = btn.closest('form');
-  const country = form.querySelector('#visaCountry')?.value || '';
-  const date = form.querySelector('#visaTravelDate')?.value || '';
-  const returnDate = form.querySelector('#visaReturnDate')?.value || '';
-  const pax = form.querySelector('#visaPax')?.value || '';
-  const name = form.querySelector('#visaName')?.value || '';
-  const mobile = form.querySelector('#visaMobile')?.value || '';
-  const remarks = form.querySelector('#visaRemarks')?.value || '';
-
-  let msg = `*Visa Assistance Enquiry*\n`;
-  if (country) msg += `🌐 Country: ${country}\n`;
-  if (date) msg += ` Travel Date: ${date}\n`;
-  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
-  if (pax) msg += ` Applicants: ${pax}\n`;
-  if (name) msg += `👤 Name: ${name}\n`;
-  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
-  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
-
-  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+  sendVisaWhatsApp();
 }
 
 /* =========================================================
@@ -715,14 +853,14 @@ function showCabPickupDropdown() {
 }
 
 function filterCabPickup() {
-  const q = document.getElementById("cabPickupInput").value.toLowerCase();
+  const q = document.getElementById("cabPickupInput")?.value.toLowerCase() || "";
   const filtered = cabPickupLocations.filter(loc => loc.toLowerCase().includes(q));
   populateCabList("cabPickupList", filtered, selectCabPickup);
   document.getElementById("cabPickupList")?.classList.add("show");
 }
 
 function selectCabPickup(val) {
-  const input = document.getElementById("cabPickupInput");
+  const input = document.getElementById("cabPickupInput") || document.getElementById("pickupLocation");
   if (input) input.value = val;
   document.getElementById("cabPickupList")?.classList.remove("show");
 }
@@ -733,14 +871,14 @@ function showCabDropDropdown() {
 }
 
 function filterCabDrop() {
-  const q = document.getElementById("cabDropInput").value.toLowerCase();
+  const q = document.getElementById("cabDropInput")?.value.toLowerCase() || "";
   const filtered = cabDropLocations.filter(loc => loc.toLowerCase().includes(q));
   populateCabList("cabDropList", filtered, selectCabDrop);
   document.getElementById("cabDropList")?.classList.add("show");
 }
 
 function selectCabDrop(val) {
-  const input = document.getElementById("cabDropInput");
+  const input = document.getElementById("cabDropInput") || document.getElementById("dropLocation");
   if (input) input.value = val;
   document.getElementById("cabDropList")?.classList.remove("show");
 }
@@ -748,12 +886,14 @@ function selectCabDrop(val) {
 function sendCabWhatsApp() {
   const phoneNumber = "919884066830";
 
-  const pickup = document.getElementById("cabPickupInput")?.value.trim();
-  const drop = document.getElementById("cabDropInput")?.value.trim();
-  const travelDate = document.getElementById("cabDateInput")?.value;
-  const travelTime = document.getElementById("cabTimeInput")?.value;
-  const vehicle = document.getElementById("cabVehicleSelect")?.value;
-  const pack = document.getElementById("cabPackSelect")?.value;
+  const pickup = document.getElementById("cabPickupInput")?.value.trim() || document.getElementById("pickupLocation")?.value.trim();
+  const drop = document.getElementById("cabDropInput")?.value.trim() || document.getElementById("dropLocation")?.value.trim();
+  const travelDate = document.getElementById("cabDateInput")?.value || document.getElementById("cabDate")?.value;
+  const travelTime = document.getElementById("cabTimeInput")?.value || document.getElementById("cabTime")?.value;
+  const vehicle = document.getElementById("cabVehicleSelect")?.value || document.getElementById("cabVehicle")?.value;
+  const pack = document.getElementById("cabPackSelect")?.value || document.getElementById("cabPackage")?.value;
+  const name = document.getElementById("cabName")?.value || "";
+  const mobile = document.getElementById("cabMobile")?.value || "";
 
   if (!pickup || !drop) {
     alert("Please enter or select both Pickup and Destination locations.");
@@ -765,6 +905,8 @@ function sendCabWhatsApp() {
   if (travelTime) message += `\n⏰ *Time:* ${travelTime}`;
   if (vehicle) message += `\n🚗 *Vehicle:* ${vehicle}`;
   if (pack) message += `\n⏱️ *Trip Pack:* ${pack}`;
+  if (name) message += `\n👤 *Name:* ${name}`;
+  if (mobile) message += `\n📞 *Mobile:* ${mobile}`;
   message += `\n\nPlease share availability and fare details.`;
 
   const encodedMessage = encodeURIComponent(message);
@@ -772,31 +914,7 @@ function sendCabWhatsApp() {
 }
 
 function handleCabBooking(btn) {
-  const form = btn.closest('form');
-  const pickup = form.querySelector('#pickupLocation')?.value || '';
-  const drop = form.querySelector('#dropLocation')?.value || '';
-  const date = form.querySelector('#cabDate')?.value || '';
-  const returnDate = form.querySelector('#cabReturnDate')?.value || '';
-  const time = form.querySelector('#cabTime')?.value || '';
-  const vehicle = form.querySelector('#cabVehicle')?.value || '';
-  const pack = form.querySelector('#cabPackage')?.value || '';
-  const name = form.querySelector('#cabName')?.value || '';
-  const mobile = form.querySelector('#cabMobile')?.value || '';
-  const remarks = form.querySelector('#cabRemarks')?.value || '';
-
-  let msg = `*Cab Service Enquiry*\n`;
-  if (pickup) msg += ` Pickup: ${pickup}\n`;
-  if (drop) msg += ` Drop: ${drop}\n`;
-  if (date) msg += ` Travel Date: ${date}\n`;
-  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
-  if (time) msg += `⏰ Pickup Time: ${time}\n`;
-  if (vehicle) msg += ` Vehicle: ${vehicle}\n`;
-  if (pack) msg += ` Package: ${pack}\n`;
-  if (name) msg += `👤 Name: ${name}\n`;
-  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
-  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
-
-  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+  sendCabWhatsApp();
 }
 
 /* =========================================================
@@ -813,14 +931,16 @@ function toggleReturnDate(isRoundTrip) {
 function sendFlightWhatsApp() {
   const phoneNumber = "919884066830"; 
 
-  const scope = document.querySelector('input[name="flightScope"]:checked')?.value || "Domestic";
-  const type = document.querySelector('input[name="flightType"]:checked')?.value || "One-Way";
-  const fromCity = document.getElementById("flightFromInput")?.value.trim();
-  const toCity = document.getElementById("flightToInput")?.value.trim();
-  const departDate = document.getElementById("flightDepartDate")?.value;
+  const scope = document.querySelector('input[name="flightScope"]:checked')?.value || document.querySelector('input[name="flightType"]:checked')?.value || "Domestic";
+  const type = document.querySelector('input[name="flightType"]:checked')?.value || document.querySelector('input[name="tripType"]:checked')?.value || "One-Way";
+  const fromCity = document.getElementById("flightFromInput")?.value.trim() || document.getElementById("departureCity")?.value.trim();
+  const toCity = document.getElementById("flightToInput")?.value.trim() || document.getElementById("destinationCity")?.value.trim();
+  const departDate = document.getElementById("flightDepartDate")?.value || document.getElementById("flightDate")?.value;
   const returnDate = document.getElementById("flightReturnDate")?.value;
-  const preferredTime = document.getElementById("flightTimeSelect")?.value;
+  const preferredTime = document.getElementById("flightTimeSelect")?.value || document.getElementById("flightTimeBand")?.value;
   const passengers = document.getElementById("flightPaxSelect")?.value || "1 Passenger";
+  const name = document.getElementById("flightName")?.value || "";
+  const mobile = document.getElementById("flightMobile")?.value || "";
 
   if (!fromCity || !toCity) {
     alert("Please enter both Departure and Destination cities.");
@@ -829,9 +949,11 @@ function sendFlightWhatsApp() {
 
   let message = `Hello Cogo Tours, I want to book/enquire a flight ticket.\n\n🌐 *Type:* ${scope} (${type})\n🛫 *From:* ${fromCity}\n🛬 *To:* ${toCity}`;
   if (departDate) message += `\n📅 *Departure Date:* ${departDate}`;
-  if (type === "Round Trip" && returnDate) message += `\n📅 *Return Date:* ${returnDate}`;
+  if (type.toLowerCase().includes("round") && returnDate) message += `\n📅 *Return Date:* ${returnDate}`;
   if (preferredTime) message += `\n⏰ *Preferred Time:* ${preferredTime}`;
-  message += `\n👥 *Passengers:* ${passengers}`;
+  if (passengers) message += `\n👥 *Passengers:* ${passengers}`;
+  if (name) message += `\n👤 *Name:* ${name}`;
+  if (mobile) message += `\n📞 *Mobile:* ${mobile}`;
   message += `\n\nPlease check for available flights and best fare deals.`;
 
   const encodedMessage = encodeURIComponent(message);
@@ -839,30 +961,7 @@ function sendFlightWhatsApp() {
 }
 
 function handleFlightBooking(btn) {
-  const form = btn.closest('form');
-  const flightType = form.querySelector('input[name="flightType"]:checked')?.value || 'Domestic';
-  const tripType = form.querySelector('input[name="tripType"]:checked')?.value || 'One-Way';
-  const from = form.querySelector('#departureCity')?.value || '';
-  const to = form.querySelector('#destinationCity')?.value || '';
-  const date = form.querySelector('#flightDate')?.value || '';
-  const returnDate = form.querySelector('#flightReturnDate')?.value || '';
-  const timeBand = form.querySelector('#flightTimeBand')?.value || '';
-  const name = form.querySelector('#flightName')?.value || '';
-  const mobile = form.querySelector('#flightMobile')?.value || '';
-  const remarks = form.querySelector('#flightRemarks')?.value || '';
-
-  let msg = `*Flight Booking Enquiry*\n`;
-  if (flightType) msg += ` Type: ${flightType} (${tripType})\n`;
-  if (from) msg += ` From: ${from}\n`;
-  if (to) msg += ` To: ${to}\n`;
-  if (date) msg += ` Departure Date: ${date}\n`;
-  if (returnDate) msg += ` Return Date: ${returnDate}\n`;
-  if (timeBand) msg += ` Preferred Time: ${timeBand}\n`;
-  if (name) msg += `👤 Name: ${name}\n`;
-  if (mobile) msg += `📞 Mobile: ${mobile}\n`;
-  if (remarks) msg += `✏️ Remarks: ${remarks}\n`;
-
-  window.open(`https://wa.me/919884066830?text=${encodeURIComponent(msg)}`, '_blank');
+  sendFlightWhatsApp();
 }
 
 /* =========================================================
@@ -949,6 +1048,69 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".pamphlet-close, .close-btn, #closeBtn").forEach(btn => {
     btn.onclick = closePamphletZoom;
   });
+
+  // Flag and Auto-Complete Integration for Visa Country Input
+  const countryInput = document.getElementById("visaCountry") || document.getElementById("visaCountryInput");
+  const dropdownList = document.getElementById("visaCountryDropdown") || document.getElementById("visaDropdownList");
+  const flagPreview = document.getElementById("selectedFlag");
+
+  if (countryInput && dropdownList) {
+    function renderVisaOptions(filterText = "") {
+      dropdownList.innerHTML = "";
+      const filtered = visaCountries.filter(c => 
+        c.name.toLowerCase().includes(filterText.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        dropdownList.innerHTML = `<div class="no-match-option">No matching countries found</div>`;
+        dropdownList.classList.add("show");
+        return;
+      }
+
+      filtered.forEach(country => {
+        const option = document.createElement("div");
+        option.className = "visa-option";
+        option.innerHTML = `
+          <img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag" onerror="this.style.display='none';">
+          <span>${country.flag || ''} ${country.name}</span>
+        `;
+
+        option.addEventListener("click", () => {
+          selectVisaCountry(country);
+          countryInput.value = country.name;
+          if (flagPreview) {
+            flagPreview.innerHTML = `<img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">`;
+            flagPreview.classList.remove("hidden");
+          }
+          countryInput.classList.add("has-flag");
+          dropdownList.classList.remove("show");
+        });
+
+        dropdownList.appendChild(option);
+      });
+
+      dropdownList.classList.add("show");
+    }
+
+    countryInput.addEventListener("input", (e) => {
+      if (flagPreview) {
+        flagPreview.classList.add("hidden");
+        flagPreview.innerHTML = "";
+      }
+      countryInput.classList.remove("has-flag");
+      renderVisaOptions(e.target.value.trim());
+    });
+
+    countryInput.addEventListener("focus", () => {
+      renderVisaOptions(countryInput.value.trim());
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".visa-country-selector") && !e.target.closest(".custom-select-wrapper")) {
+      dropdownList?.classList.remove("show");
+    }
+  });
 });
 
 /* Keyboard Navigation (Left/Right Arrows & Esc) */
@@ -977,8 +1139,8 @@ document.addEventListener("click", function(e) {
     document.getElementById("visaDropdownList")?.classList.remove("show");
   }
 
-  const pickupWrap = document.getElementById("cabPickupInput")?.parentElement;
-  const dropWrap = document.getElementById("cabDropInput")?.parentElement;
+  const pickupWrap = document.getElementById("cabPickupInput")?.parentElement || document.getElementById("pickupLocation")?.parentElement;
+  const dropWrap = document.getElementById("cabDropInput")?.parentElement || document.getElementById("dropLocation")?.parentElement;
 
   if (pickupWrap && !pickupWrap.contains(e.target)) {
     document.getElementById("cabPickupList")?.classList.remove("show");
@@ -987,243 +1149,3 @@ document.addEventListener("click", function(e) {
     document.getElementById("cabDropList")?.classList.remove("show");
   }
 });
-document.addEventListener("DOMContentLoaded", () => {
-  const visaCountries = [
-    { name: "Australia", code: "au" },
-    { name: "Canada", code: "ca" },
-    { name: "Dubai (UAE)", code: "ae" },
-    { name: "France", code: "fr" },
-    { name: "Germany", code: "de" },
-    { name: "Indonesia (Bali)", code: "id" },
-    { name: "Italy", code: "it" },
-    { name: "Japan", code: "jp" },
-    { name: "Malaysia", code: "my" },
-    { name: "Singapore", code: "sg" },
-    { name: "Switzerland", code: "ch" },
-    { name: "Thailand", code: "th" },
-    { name: "United Kingdom", code: "gb" },
-    { name: "United States", code: "us" },
-    { name: "Vietnam", code: "vn" }
-  ];
-
-  const countryInput = document.getElementById("visaCountry");
-  const dropdownList = document.getElementById("visaCountryDropdown");
-  const flagPreview = document.getElementById("selectedFlag");
-
-  if (!countryInput || !dropdownList || !flagPreview) return;
-
-  function renderOptions(filterText = "") {
-    dropdownList.innerHTML = "";
-    const filtered = visaCountries.filter(c => 
-      c.name.toLowerCase().includes(filterText.toLowerCase())
-    );
-
-    if (filtered.length === 0) {
-      dropdownList.innerHTML = `<div class="no-match-option">No matching countries found</div>`;
-      dropdownList.classList.add("show");
-      return;
-    }
-
-    filtered.forEach(country => {
-      const option = document.createElement("div");
-      option.className = "visa-option";
-      option.innerHTML = `
-        <img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">
-        <span>${country.name}</span>
-      `;
-
-      option.addEventListener("click", () => {
-        countryInput.value = country.name;
-        flagPreview.innerHTML = `<img src="https://flagcdn.com/w40/${country.code}.png" alt="${country.name} Flag">`;
-        flagPreview.classList.remove("hidden");
-        countryInput.classList.add("has-flag");
-        dropdownList.classList.remove("show");
-      });
-
-      dropdownList.appendChild(option);
-    });
-
-    dropdownList.classList.add("show");
-  }
-
-  countryInput.addEventListener("input", (e) => {
-    flagPreview.classList.add("hidden");
-    flagPreview.innerHTML = "";
-    countryInput.classList.remove("has-flag");
-    renderOptions(e.target.value.trim());
-  });
-
-  countryInput.addEventListener("focus", () => {
-    renderOptions(countryInput.value.trim());
-  });
-// Data configuration for all 12 main categories and their sub-destination tabs
-const tourCategoryData = {
-  'chennai': {
-    title: 'Chennai <br><span>tours</span>',
-    tabs: [
-      { id: 'pondy', label: 'PONDY', icon: '🏖️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Pondy Tour' },
-      { id: 'ecr', label: 'ECR', icon: '🛣️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about ECR Tour' },
-      { id: 'kanchi', label: 'KANCHI', icon: '🛕', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kanchi Tour' },
-      { id: 'marina', label: 'MARINA', icon: '🗼', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about Marina Tour' },
-      { id: 'mount', label: 'MOUNT', icon: '⛰️', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about St Thomas Mount Tour' },
-      { id: 'omr', label: 'OMR', icon: '🏢', bg: 'Images/images/chennai-main.png', msg: 'Hi Cogo Tours, I want to enquire about OMR Tour' }
-    ]
-  },
-  'pilgrim': {
-    title: 'Pilgrim <br><span>tours</span>',
-    tabs: [
-      { id: 'shirdi', label: 'SHIRDI', icon: '🛕', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Shirdi Tour' },
-      { id: 'tirupati', label: 'TIRUPATI', icon: '🚩', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Tirupati Tour' },
-      { id: 'kanchipuram', label: 'KANCHI', icon: '⛩️', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kanchipuram Temple Tour' },
-      { id: 'navagraha', label: 'NAVAGRAHA', icon: '🌟', bg: 'Images/images/pilgrim-main.png', msg: 'Hi Cogo Tours, I want to enquire about Navagraha Tour' }
-    ]
-  },
-  'south-india': {
-    title: 'South India <br><span>tours</span>',
-    tabs: [
-      { id: 'kodai', label: 'KODAIKANAL', icon: '⛰️', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kodaikanal Tour' },
-      { id: 'kerala', label: 'KERALA', icon: '🌴', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Kerala Tour' },
-      { id: 'coorg', label: 'COORG', icon: '☕', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Coorg Tour' },
-      { id: 'ooty', label: 'OOTY', icon: '🌲', bg: 'Images/images/south-main.png', msg: 'Hi Cogo Tours, I want to enquire about Ooty Tour' }
-    ]
-  },
-  'north-india': {
-    title: 'North India <br><span>tours</span>',
-    tabs: [
-      { id: 'delhi', label: 'DELHI', icon: '🕌', bg: 'Images/images/tour%20north%20india.png', msg: 'Hi Cogo Tours, I want to enquire about Delhi Agra Tour' },
-      { id: 'manali', label: 'MANALI', icon: '🏔️', bg: 'Images/images/tour%20north%20india.png', msg: 'Hi Cogo Tours, I want to enquire about Manali Tour' },
-      { id: 'kashmir', label: 'KASHMIR', icon: '❄️', bg: 'Images/images/tour%20north%20india.png', msg: 'Hi Cogo Tours, I want to enquire about Kashmir Tour' }
-    ]
-  },
-  'north-east': {
-    title: 'North East <br><span>tours</span>',
-    tabs: [
-      { id: 'gangtok', label: 'GANGTOK', icon: '🏞️', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Gangtok Tour' },
-      { id: 'darjeeling', label: 'DARJEELING', icon: '🍃', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Darjeeling Tour' },
-      { id: 'meghalaya', label: 'MEGHALAYA', icon: '🌧️', bg: 'Images/images/tournortheast.png', msg: 'Hi Cogo Tours, I want to enquire about Meghalaya Tour' }
-    ]
-  },
-  'rest-of-india': {
-    title: 'Rest of India <br><span>tours</span>',
-    tabs: [
-      { id: 'goa', label: 'GOA', icon: '🏖️', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Goa Package' },
-      { id: 'gujarat', label: 'GUJARAT', icon: '🦁', bg: 'Images/images/tourrestofindia.png', msg: 'Hi Cogo Tours, I want to enquire about Gujarat Package' }
-    ]
-  },
-  'international': {
-    title: 'International <br><span>tours</span>',
-    tabs: [
-      { id: 'dubai', label: 'DUBAI', icon: '🏙️', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Dubai Package' },
-      { id: 'singapore', label: 'SINGAPORE', icon: '🦁', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Singapore Package' },
-      { id: 'thailand', label: 'THAILAND', icon: '🏝️', bg: 'Images/images/tourinternational.png', msg: 'Hi Cogo Tours, I want to enquire about Thailand Package' }
-    ]
-  },
-  'corporate': {
-    title: 'Corporate <br><span>tours</span>',
-    tabs: [
-      { id: 'mice', label: 'MICE', icon: '🏢', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Corporate MICE Trips' },
-      { id: 'retreat', label: 'TEAM OUTING', icon: '👔', bg: 'Images/images/tourcorporate.png', msg: 'Hi Cogo Tours, I want to enquire about Team Outings' }
-    ]
-  },
-  'students': {
-    title: 'Student <br><span>tours</span>',
-    tabs: [
-      { id: 'school', label: 'SCHOOL TRIPS', icon: '🎒', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about School Educational Trips' },
-      { id: 'college', label: 'COLLEGE IV', icon: '🎓', bg: 'Images/images/tourschoolcollege.png', msg: 'Hi Cogo Tours, I want to enquire about College Industrial Visits' }
-    ]
-  },
-  'adventure': {
-    title: 'Adventure <br><span>tours</span>',
-    tabs: [
-      { id: 'trekking', label: 'TREKKING', icon: '🥾', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Trekking Packages' },
-      { id: 'camping', label: 'CAMPING', icon: '🏕️', bg: 'Images/images/touradventure.png', msg: 'Hi Cogo Tours, I want to enquire about Camping Trips' }
-    ]
-  },
-  'honeymoon': {
-    title: 'Honeymoon <br><span>tours</span>',
-    tabs: [
-      { id: 'couples', label: 'ROMANTIC', icon: '💖', bg: 'Images/images/tourhoneymoon.png', msg: 'Hi Cogo Tours, I want to enquire about Honeymoon Packages' }
-    ]
-  },
-  'cabs': {
-    title: 'Cogo <br><span>cabs</span>',
-    tabs: [
-      { id: 'outstation', label: 'OUTSTATION', icon: '🚘', bg: 'Images/images/cogocabs.png', msg: 'Hi Cogo Tours, I want to enquire about Outstation Cab Services' }
-    ]
-  }
-};
-
-let currentActiveTabs = [];
-
-// Function called when any package card is clicked
-function openCategoryModal(categoryKey) {
-  const modal = document.getElementById('categoryModal');
-  const category = tourCategoryData[categoryKey];
-  
-  if (!category) return;
-
-  // Set main title
-  document.getElementById('posterTitle').innerHTML = category.title;
-  currentActiveTabs = category.tabs;
-
-  // Render sub-destination tabs dynamically
-  const tabsBar = document.getElementById('posterTabsBar');
-  tabsBar.innerHTML = '';
-
-  category.tabs.forEach((tab, index) => {
-    const btn = document.createElement('button');
-    btn.className = `poster-tab ${index === 0 ? 'active' : ''}`;
-    btn.onclick = () => selectSubTab(index);
-    btn.innerHTML = `
-      <span class="tab-icon">${tab.icon}</span>
-      <span class="tab-label">${tab.label}</span>
-    `;
-    tabsBar.appendChild(btn);
-  });
-
-  // Activate the first sub-tab by default
-  selectSubTab(0);
-
-  // Show the overlay
-  modal.style.display = 'flex';
-}
-
-// Function triggered when tapping top destination tabs inside the modal
-function selectSubTab(index) {
-  const tabData = currentActiveTabs[index];
-  if (!tabData) return;
-
-  // Update active tab styling
-  const tabs = document.querySelectorAll('.poster-tab');
-  tabs.forEach((t, i) => {
-    if (i === index) {
-      t.classList.add('active');
-    } else {
-      t.classList.remove('active');
-    }
-  });
-
-  // Update background image
-  const posterBody = document.getElementById('posterBody');
-  posterBody.style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(0, 0, 0, 0.4) 100%), url('${tabData.bg}')`;
-
-  // Update WhatsApp Enquiry button link
-  const enquiryBtn = document.getElementById('posterEnquiryBtn');
-  enquiryBtn.href = `https://wa.me/919884066830?text=${encodeURIComponent(tabData.msg)}`;
-}
-
-// Function to close the modal
-function closeCategoryModal() {
-  const modal = document.getElementById('categoryModal');
-  modal.style.display = 'none';
-}
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".visa-country-selector")) {
-      dropdownList.classList.remove("show");
-    }
-  });
-});
-
-
-
-
