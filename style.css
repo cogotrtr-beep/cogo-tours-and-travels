@@ -1927,3 +1927,85 @@ input[type="time"]::-webkit-date-and-time-value {
   background: #0b2545 !important;
   color: #FFD700 !important;
 }
+/* =========================================================
+   LARGE A4-RATIO MODAL & SIDE NAVIGATION STYLES
+========================================================= */
+/* Expand category modal to full desktop view (A4 aspect scale) */
+#categoryModal .poster-card,
+#categoryModal > div {
+  max-width: 820px !important;
+  width: 92vw !important;
+  height: 88vh !important;
+  max-height: 900px !important;
+  background: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Tab indicator highlight scaling */
+.poster-tab.active-tab,
+#categoryModal .poster-tab.active,
+#categoryModal .poster-tab.is-active {
+  transform: scale(1.12) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  border-bottom: 3px solid #0b2545 !important;
+  z-index: 10 !important;
+}
+
+/* Image container with pan & zoom support */
+#posterBody {
+  flex: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: zoom-in;
+}
+
+#posterBody img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  transition: transform 0.25s ease;
+  transform-origin: center center;
+}
+
+#posterBody.is-zoomed img {
+  transform: scale(2);
+  cursor: grab;
+}
+
+/* Left/Right middle navigation arrows */
+.modal-nav-arrow {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 44px !important;
+  height: 44px !important;
+  background: rgba(11, 37, 69, 0.85) !important;
+  color: #FFD700 !important;
+  border: 1.5px solid #FFD700 !important;
+  border-radius: 50% !important;
+  font-size: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 1000 !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+  user-select: none !important;
+}
+
+.modal-nav-arrow:hover {
+  background: #0b2545 !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.modal-nav-arrow.left { left: 12px !important; }
+.modal-nav-arrow.right { right: 12px !important; }
