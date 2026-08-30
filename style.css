@@ -1852,3 +1852,33 @@ input[type="time"]::-webkit-date-and-time-value {
   width: 100% !important;
   clear: both !important;
 }
+/* =========================================================
+   FIX FOR ENQUIRY BUTTON POSITIONING (BOTTOM CENTER)
+========================================================= */
+/* Ensure the poster container uses full vertical flex alignment */
+#posterBody,
+#categoryModal #posterBody,
+.poster-body,
+#categoryModal .poster-body {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important; /* Pushes content/button to bottom */
+  align-items: center !important;      /* Centers button horizontally */
+  padding-bottom: 20px !important;    /* Spacing from the bottom edge */
+}
+
+/* Position and scale the Enquiry button cleanly at the bottom */
+#posterEnquiryBtn, 
+.poster-enquiry-btn,
+#categoryModal .yellow-enquiry-btn,
+#categoryModal a[class*="enquiry"] {
+  position: relative !important;
+  top: auto !important;
+  bottom: 0 !important;
+  margin-top: auto !important;
+  margin-bottom: 10px !important;
+  z-index: 100 !important;
+  transform: scale(0.85) !important;
+  transform-origin: bottom center !important;
+}
