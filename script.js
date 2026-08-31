@@ -27,6 +27,7 @@ let currentZoomScale = 1;
 let isDragging = false;
 let startX = 0, startY = 0;
 let translateX = 0, translateY = 0;
+let isPanning = false;
 
 // Helper function to build slidable pamphlet / destination gallery
 function createPamphletGallery(images) {
@@ -340,20 +341,22 @@ const tourCategoryDatabase = {
 ========================================================= */
 
 function openCategoryModal(categoryKey) {
-  const modal = document.getElementById('enquiryModal');
+  const modal = document.getElementById('enquiryModal') || document.getElementById('categoryModal');
+  if (!modal) return;
+
   const modalTitle = document.getElementById('modalTitle');
-  const modalDesc = document.getElementById('modalDescription');
-  const subTabsContainer = document.getElementById('modalSubTabs');
-  const dynamicContent = document.getElementById('modalDynamicContent');
+  const modalDesc = document.getElementById('modalDescription') || document.querySelector('.modal-desc');
+  const subTabsContainer = document.getElementById('modalSubTabs') || document.querySelector('.sub-tab-container');
+  const dynamicContent = document.getElementById('modalDynamicContent') || document.querySelector('.modal-body-wrapper');
 
   const category = tourCategoryDatabase[categoryKey] || tourCategoryDatabase['journey'];
 
-  modalTitle.innerText = category.title;
-  modalDesc.innerText = category.desc;
+  if (modalTitle) modalTitle.innerText = category.title;
+  if (modalDesc) modalDesc.innerText = category.desc;
   activeServiceTitle = category.title;
 
-  subTabsContainer.innerHTML = '';
-  dynamicContent.innerHTML = '';
+  if (subTabsContainer) subTabsContainer.innerHTML = '';
+  if (dynamicContent) dynamicContent.innerHTML = '';
 
   if (category.tabs && category.tabs.length > 0) {
     category.tabs.forEach((tab, index) => {
@@ -364,12 +367,12 @@ function openCategoryModal(categoryKey) {
       btn.onclick = () => {
         document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        dynamicContent.innerHTML = tab.content;
+        if (dynamicContent) dynamicContent.innerHTML = tab.content;
       };
-      subTabsContainer.appendChild(btn);
+      if (subTabsContainer) subTabsContainer.appendChild(btn);
     });
 
-    dynamicContent.innerHTML = category.tabs[0].content;
+    if (dynamicContent) dynamicContent.innerHTML = category.tabs[0].content;
   }
 
   modal.classList.add('show');
@@ -379,6 +382,7 @@ function openCategoryModal(categoryKey) {
 function closeModal() {
   const modal = document.getElementById('enquiryModal');
   const categoryModal = document.getElementById('categoryModal');
+  const imageModal = document.getElementById('imageModal');
   
   if (modal) {
     modal.classList.remove('show');
@@ -388,6 +392,11 @@ function closeModal() {
     categoryModal.classList.remove('show');
     categoryModal.style.display = 'none';
   }
+  if (imageModal) {
+    imageModal.classList.remove('show');
+    imageModal.style.display = 'none';
+  }
+  resetZoom();
 }
 
 function closeCategoryModal(event) {
@@ -405,14 +414,38 @@ function closeModalOnOverlay(event) {
    SLIDER SCROLL ENGINE
 ========================================================= */
 
+const slideIndices = {};
+
 function scrollTrack(trackId, direction) {
   const track = document.getElementById(trackId);
   if (!track) return;
-  const scrollAmount = track.clientWidth * 0.75;
-  track.parentElement.scrollBy({
-    left: direction * scrollAmount,
-    behavior: 'smooth'
-  });
+
+  const slides = track.querySelectorAll('.tour-card');
+  const totalSlides = slides.length;
+  
+  if (totalSlides > 0) {
+    if (slideIndices[trackId] === undefined) {
+      slideIndices[trackId] = 0;
+    }
+
+    slideIndices[trackId] += direction;
+
+    if (slideIndices[trackId] < 0) {
+      slideIndices[trackId] = totalSlides - 1;
+    } else if (slideIndices[trackId] >= totalSlides) {
+      slideIndices[trackId] = 0;
+    }
+
+    track.style.transition = 'transform 0.4s ease-in-out';
+    const percentage = slideIndices[trackId] * 100;
+    track.style.transform = `translateX(-${percentage}%)`;
+  } else {
+    const scrollAmount = track.clientWidth * 0.75;
+    track.parentElement.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+  }
 }
 
 /* =========================================================
@@ -438,7 +471,7 @@ function openPamphletList(images, startIndex = 0) {
 function openPamphletZoom(index) {
   currentPamphletIndex = index;
   const modal = document.getElementById('imageModal');
-  const imgModalSrc = document.getElementById('imgModalSrc');
+  const imgModalSrc = document.getElementById('imgModalSrc') || document.getElementById('modalImage');
 
   if (modal && imgModalSrc && currentPamphletList.length > 0) {
     imgModalSrc.src = currentPamphletList[currentPamphletIndex];
@@ -449,18 +482,7 @@ function openPamphletZoom(index) {
 
 function closePamphletZoom(event) {
   if (event) event.stopPropagation();
-  const lightbox = document.getElementById('pamphletLightbox');
-  const imageModal = document.getElementById('imageModal');
-
-  if (lightbox) {
-    lightbox.classList.remove('show');
-    lightbox.style.display = 'none';
-  }
-  if (imageModal) {
-    imageModal.classList.remove('show');
-    imageModal.style.display = 'none';
-  }
-  resetZoom();
+  closeModal();
 }
 
 function navigateLightbox(direction, event) {
@@ -489,7 +511,7 @@ function resetZoom() {
 }
 
 function applyZoomTransform() {
-  const imgElement = document.getElementById('lightboxImage');
+  const imgElement = document.getElementById('lightboxImage') || document.getElementById('modalImage');
   if (imgElement) {
     imgElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoomScale})`;
   }
@@ -556,6 +578,77 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.visa-country-selector')) {
         dropdown.classList.remove('show');
+      }
+    });
+  }
+
+  // Bind Image Wrapper Modal Expand
+  const modalImg = document.getElementById("modalImage");
+  if (modalImg) {
+    document.querySelectorAll(".image-wrapper").forEach(wrapper => {
+      wrapper.addEventListener("click", function () {
+        const img = this.querySelector("img");
+        const modal = document.getElementById("imageModal");
+        if (modal && img) {
+          modal.style.display = "flex";
+          modalImg.src = img.src;
+          resetZoom();
+        }
+      });
+    });
+
+    // Mouse Wheel Zooming
+    modalImg.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.2 : 0.8;
+      currentZoomScale = Math.min(Math.max(1, currentZoomScale * zoomFactor), 5);
+      applyZoomTransform();
+    });
+
+    // Drag to Pan when Zoomed
+    modalImg.addEventListener("mousedown", (e) => {
+      if (currentZoomScale > 1) {
+        isPanning = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        modalImg.style.cursor = "grabbing";
+      }
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isPanning) return;
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      applyZoomTransform();
+    });
+
+    window.addEventListener("mouseup", () => {
+      isPanning = false;
+      if (modalImg) modalImg.style.cursor = "grab";
+    });
+
+    // Touch Pinch-to-Zoom for Mobile Devices
+    let initialDistance = 0;
+
+    modalImg.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 2) {
+        initialDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+      }
+    });
+
+    modalImg.addEventListener("touchmove", (e) => {
+      if (e.touches.length === 2) {
+        const currentDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+        const zoomFactor = currentDistance / initialDistance;
+        currentZoomScale = Math.min(Math.max(1, currentZoomScale * zoomFactor), 5);
+        applyZoomTransform();
+        initialDistance = currentDistance;
       }
     });
   }
@@ -714,134 +807,4 @@ function sendWhatsAppEnquiry(event) {
   const waUrl = `https://wa.me/919884066830?text=${encodeURIComponent(text)}`;
   window.open(waUrl, '_blank');
   closeWhatsAppForm();
-}
-// Image Modal Expand & Pan/Zoom Functionality
-const modal = document.getElementById("imageModal");
-const modalImg = document.getElementById("modalImage");
-let scale = 1;
-let isPanning = false;
-let startX = 0, startY = 0, translateX = 0, translateY = 0;
-
-// Expand image to full screen on click
-document.querySelectorAll(".image-wrapper").forEach(wrapper => {
-  wrapper.addEventListener("click", function () {
-    const img = this.querySelector("img");
-    modal.style.display = "flex";
-    modalImg.src = img.src;
-    resetZoom();
-  });
-});
-
-function closeModal() {
-  modal.style.display = "none";
-  resetZoom();
-}
-
-function resetZoom() {
-  scale = 1;
-  translateX = 0;
-  translateY = 0;
-  updateTransform();
-}
-
-function updateTransform() {
-  modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-}
-
-// Mouse Wheel Zooming
-modalImg.addEventListener("wheel", (e) => {
-  e.preventDefault();
-  const zoomFactor = e.deltaY < 0 ? 1.2 : 0.8;
-  scale = Math.min(Math.max(1, scale * zoomFactor), 5);
-  updateTransform();
-});
-
-// Drag to Pan when Zoomed
-modalImg.addEventListener("mousedown", (e) => {
-  if (scale > 1) {
-    isPanning = true;
-    startX = e.clientX - translateX;
-    startY = e.clientY - translateY;
-    modalImg.style.cursor = "grabbing";
-  }
-});
-
-window.addEventListener("mousemove", (e) => {
-  if (!isPanning) return;
-  translateX = e.clientX - startX;
-  translateY = e.clientY - startY;
-  updateTransform();
-});
-
-window.addEventListener("mouseup", () => {
-  isPanning = false;
-  modalImg.style.cursor = "grab";
-});
-
-// Touch Pinch-to-Zoom for Mobile Devices
-let initialDistance = 0;
-
-modalImg.addEventListener("touchstart", (e) => {
-  if (e.touches.length === 2) {
-    initialDistance = Math.hypot(
-      e.touches[0].pageX - e.touches[1].pageX,
-      e.touches[0].pageY - e.touches[1].pageY
-    );
-  }
-});
-
-modalImg.addEventListener("touchmove", (e) => {
-  if (e.touches.length === 2) {
-    const currentDistance = Math.hypot(
-      e.touches[0].pageX - e.touches[1].pageX,
-      e.touches[0].pageY - e.touches[1].pageY
-    );
-    const zoomFactor = currentDistance / initialDistance;
-    scale = Math.min(Math.max(1, scale * zoomFactor), 5);
-    updateTransform();
-    initialDistance = currentDistance;
-  }
-});
-
-// Enquire Button Action
-function openCategoryModal(category) {
-  // If you have an existing modal with ID "categoryModal" or "journeyModal", it will open here
-  const modal = document.getElementById('categoryModal') || document.getElementById('journeyModal');
-  if (modal) {
-    modal.style.display = 'flex';
-  } else {
-    // Fallback alert if no modal is found
-    alert("Enquiry requested for this tour package.");
-  }
-}
-
-// Object to track current slide index for each slider track
-const slideIndices = {};
-
-function scrollTrack(trackId, direction) {
-  const track = document.getElementById(trackId);
-  if (!track) return;
-
-  const slides = track.querySelectorAll('.tour-card');
-  const totalSlides = slides.length;
-  if (totalSlides === 0) return;
-
-  if (slideIndices[trackId] === undefined) {
-    slideIndices[trackId] = 0;
-  }
-
-  // Update index based on left (-1) or right (1) arrow click
-  slideIndices[trackId] += direction;
-
-  // Loop back if index goes past bounds
-  if (slideIndices[trackId] < 0) {
-    slideIndices[trackId] = totalSlides - 1;
-  } else if (slideIndices[trackId] >= totalSlides) {
-    slideIndices[trackId] = 0;
-  }
-
-  // Ensure transition effect and translate track
-  track.style.transition = 'transform 0.4s ease-in-out';
-  const percentage = slideIndices[trackId] * 100;
-  track.style.transform = `translateX(-${percentage}%)`;
 }
