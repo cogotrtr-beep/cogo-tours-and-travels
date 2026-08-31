@@ -59,33 +59,30 @@
     <button class="enquire-btn" onclick="openEnquiry(this)">Enquire</button>
   </div>
 </div>
-              <!-- Slide 2 -->
-              <div class="slide-card full-card-link" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
-                <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" loading="lazy">
-                <div class="slide-overlay">
-                  <span class="status-tag upcoming">Filling Fast</span>
-                  <h4>Tirupati &amp; Kanchi</h4>
-                  <p>2 Days • Weekend</p>
+
+<!-- Slide 2 -->
+              <div class="tour-card">
+                <div class="image-wrapper">
+                  <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" class="tour-image" loading="lazy">
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="enquire-btn" onclick="openCategoryModal('journey')">Enquire</button>
                 </div>
               </div>
 
               <!-- Slide 3 -->
-              <div class="slide-card full-card-link" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 2)">
-                <img src="Images/images/south-main.png" alt="Misty Munnar Tour" loading="lazy">
-                <div class="slide-overlay">
-                  <span class="status-tag upcoming">Upcoming</span>
-                  <h4>Misty Munnar</h4>
-                  <p>5 Days • Booking Open</p>
+              <div class="tour-card">
+                <div class="image-wrapper">
+                  <img src="Images/images/south-main.png" alt="Misty Munnar Tour" class="tour-image" loading="lazy">
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="enquire-btn" onclick="openCategoryModal('journey')">Enquire</button>
                 </div>
               </div>
             </div>
           </div>
 
           <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('domesticTrack', 1)" aria-label="Scroll Right">❯</button>
-        </div>
-
-        <div class="column-action-bar" style="justify-content: center; text-align: center;">
-          <button type="button" class="btn-primary-single" onclick="openCategoryModal('journey')">Enquire ongoing Domestic Tours</button>
         </div>
       </div>
 
@@ -102,32 +99,32 @@
           <div class="slider-wrapper">
             <div id="intlTrack" class="slider-track">
               <!-- Slide 1 -->
-              <div class="slide-card full-card-link" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 0)">
-                <img src="Images/images/tourinternational.png" alt="Dubai Express" loading="lazy">
-                <div class="slide-overlay">
-                  <span class="status-tag ongoing">Ongoing</span>
-                  <h4>Dubai Extravaganza</h4>
-                  <p>5 Days • Special Deal</p>
+              <div class="tour-card">
+                <div class="image-wrapper">
+                  <img src="Images/images/tourinternational.png" alt="Dubai Express" class="tour-image" loading="lazy">
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="enquire-btn" onclick="openCategoryModal('journey')">Enquire</button>
                 </div>
               </div>
 
               <!-- Slide 2 -->
-              <div class="slide-card full-card-link" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 1)">
-                <img src="Images/images/tourinternational.png" alt="Singapore Tour" loading="lazy">
-                <div class="slide-overlay">
-                  <span class="status-tag upcoming">Upcoming</span>
-                  <h4>Singapore Escape</h4>
-                  <p>6 Days • Booking Open</p>
+              <div class="tour-card">
+                <div class="image-wrapper">
+                  <img src="Images/images/tourinternational.png" alt="Singapore Tour" class="tour-image" loading="lazy">
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="enquire-btn" onclick="openCategoryModal('journey')">Enquire</button>
                 </div>
               </div>
 
               <!-- Slide 3 -->
-              <div class="slide-card full-card-link" onclick="openPamphletList(['Images/images/tourinternational.png', 'Images/images/tourinternational.png', 'Images/images/tourinternational.png'], 2)">
-                <img src="Images/images/tourinternational.png" alt="European Highlights" loading="lazy">
-                <div class="slide-overlay">
-                  <span class="status-tag upcoming">Upcoming</span>
-                  <h4>European Highlights</h4>
-                  <p>10 Days • Group Tour</p>
+              <div class="tour-card">
+                <div class="image-wrapper">
+                  <img src="Images/images/tourinternational.png" alt="European Highlights" class="tour-image" loading="lazy">
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="enquire-btn" onclick="openCategoryModal('journey')">Enquire</button>
                 </div>
               </div>
             </div>
@@ -135,12 +132,8 @@
 
           <button type="button" class="nav-arrow right-arrow" onclick="scrollTrack('intlTrack', 1)" aria-label="Scroll Right">❯</button>
         </div>
-
-        <div class="column-action-bar" style="justify-content: center; text-align: center;">
-          <button type="button" class="btn-primary-single btn-intl" onclick="openCategoryModal('journey')">Enquire ongoing International Tours</button>
-        </div>
       </div>
-      
+
 <!-- Full-Page Modal Viewer for A4 Stretch & Zoom -->
 <div id="imageModal" class="modal">
   <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -149,7 +142,7 @@
   </div>
 </div>
     </div>
-  </section>
+  </section>              
 
   <!-- =========================================================
        4. OUR SERVICES SECTION
