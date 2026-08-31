@@ -804,10 +804,17 @@ modalImg.addEventListener("touchmove", (e) => {
 });
 
 // Enquire Button Action
-function openEnquiry(button) {
-  // Action logic for individual card enquiry
-  alert("Enquiry requested for this tour package.");
+function openCategoryModal(category) {
+  // If you have an existing modal with ID "categoryModal" or "journeyModal", it will open here
+  const modal = document.getElementById('categoryModal') || document.getElementById('journeyModal');
+  if (modal) {
+    modal.style.display = 'flex';
+  } else {
+    // Fallback alert if no modal is found
+    alert("Enquiry requested for this tour package.");
+  }
 }
+
 // Object to track current slide index for each slider track
 const slideIndices = {};
 
@@ -817,6 +824,7 @@ function scrollTrack(trackId, direction) {
 
   const slides = track.querySelectorAll('.tour-card');
   const totalSlides = slides.length;
+  if (totalSlides === 0) return;
 
   if (slideIndices[trackId] === undefined) {
     slideIndices[trackId] = 0;
@@ -832,7 +840,8 @@ function scrollTrack(trackId, direction) {
     slideIndices[trackId] = 0;
   }
 
-  // Translate track by 100% per card
+  // Ensure transition effect and translate track
+  track.style.transition = 'transform 0.4s ease-in-out';
   const percentage = slideIndices[trackId] * 100;
   track.style.transform = `translateX(-${percentage}%)`;
 }
