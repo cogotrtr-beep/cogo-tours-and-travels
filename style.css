@@ -1750,10 +1750,10 @@ input[type="time"]::-webkit-date-and-time-value {
   .modal-slider-wrapper .left-arrow { left: 0px; }
   .modal-slider-wrapper .right-arrow { right: 0px; }
 }
+
 /* =========================================================
    FIX FOR POSTER MODAL TAB BAR (HORIZONTAL LAYOUT)
 ========================================================= */
-/* Force the tab container to align horizontally */
 .poster-tabs-bar,
 #categoryModal .poster-tabs-bar,
 #categoryModal .modal-header {
@@ -1765,13 +1765,12 @@ input[type="time"]::-webkit-date-and-time-value {
   width: 100% !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
-  padding-right: 40px !important; /* Prevents close button overlap */
+  padding-right: 40px !important;
 }
 
-/* Fix individual tab item layout */
 .poster-tab,
 #categoryModal .poster-tab {
-  flex: 0 0 auto !important; /* Prevents tabs from shrinking or stacking */
+  flex: 0 0 auto !important;
   min-width: 60px !important;
   display: flex !important;
   flex-direction: column !important;
@@ -1781,7 +1780,6 @@ input[type="time"]::-webkit-date-and-time-value {
   margin-right: 4px !important;
 }
 
-/* Ensure tab icons and text scale cleanly */
 .poster-tab .tab-icon {
   font-size: 16px !important;
   line-height: 1 !important;
@@ -1793,10 +1791,8 @@ input[type="time"]::-webkit-date-and-time-value {
   white-space: nowrap !important;
   margin-top: 2px !important;
 }
-/* =========================================================
-   OVERRIDE: FORCE MODAL TABS HORIZONTAL
-========================================================= */
-/* Target every possible container element holding these tabs */
+
+/* OVERRIDE: FORCE MODAL TABS HORIZONTAL */
 #categoryModal .poster-card,
 #categoryModal .poster-tabs-bar,
 #categoryModal .modal-header,
@@ -1816,7 +1812,6 @@ input[type="time"]::-webkit-date-and-time-value {
   box-sizing: border-box !important;
 }
 
-/* Force child tab buttons to stay inline horizontal blocks */
 #categoryModal .poster-tab,
 #categoryModal .tab,
 #categoryModal li,
@@ -1833,7 +1828,6 @@ input[type="time"]::-webkit-date-and-time-value {
   float: none !important;
 }
 
-/* Force images/icons inside tabs to display correctly */
 #categoryModal .poster-tab img,
 #categoryModal .tab img,
 #categoryModal li img {
@@ -1844,7 +1838,6 @@ input[type="time"]::-webkit-date-and-time-value {
   margin: 0 auto 2px auto !important;
 }
 
-/* Ensure poster image container stays below the horizontal tabs */
 #categoryModal #posterBody,
 #categoryModal .poster-body {
   display: flex !important;
@@ -1852,10 +1845,8 @@ input[type="time"]::-webkit-date-and-time-value {
   width: 100% !important;
   clear: both !important;
 }
-/* =========================================================
-   FIX FOR ENQUIRY BUTTON POSITIONING (BOTTOM CENTER)
-========================================================= */
-/* Ensure the poster container uses full vertical flex alignment */
+
+/* ENQUIRY BUTTON POSITIONING */
 #posterBody,
 #categoryModal #posterBody,
 .poster-body,
@@ -1863,12 +1854,11 @@ input[type="time"]::-webkit-date-and-time-value {
   position: relative !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-end !important; /* Pushes content/button to bottom */
-  align-items: center !important;      /* Centers button horizontally */
-  padding-bottom: 20px !important;    /* Spacing from the bottom edge */
+  justify-content: flex-end !important;
+  align-items: center !important;
+  padding-bottom: 20px !important;
 }
 
-/* Position and scale the Enquiry button cleanly at the bottom */
 #posterEnquiryBtn, 
 .poster-enquiry-btn,
 #categoryModal .yellow-enquiry-btn,
@@ -1882,10 +1872,8 @@ input[type="time"]::-webkit-date-and-time-value {
   transform: scale(0.85) !important;
   transform-origin: bottom center !important;
 }
-/* =========================================================
-   GOLD COLOR SCHEME FOR CATEGORY TABS & ENQUIRY BUTTON
-========================================================= */
-/* Change background of the 6 tabs to Gold */
+
+/* GOLD COLOR SCHEME */
 .poster-tab,
 #categoryModal .poster-tab,
 #categoryModal .tab,
@@ -1896,7 +1884,6 @@ input[type="time"]::-webkit-date-and-time-value {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Tab active/selected state */
 .poster-tab.active,
 #categoryModal .poster-tab.active {
   background: #D4AF37 !important;
@@ -1904,14 +1891,12 @@ input[type="time"]::-webkit-date-and-time-value {
   transform: translateY(-1px) !important;
 }
 
-/* Ensure tab text labels stay crisp on gold */
 .poster-tab .tab-label,
 #categoryModal .poster-tab .tab-label {
   color: #0b2545 !important;
   font-weight: 900 !important;
 }
 
-/* Change the Enquiry button to Gold */
 #posterEnquiryBtn, 
 .poster-enquiry-btn,
 #categoryModal .yellow-enquiry-btn,
@@ -1922,15 +1907,12 @@ input[type="time"]::-webkit-date-and-time-value {
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
 }
 
-/* Arrow circle inside the Enquiry button */
 #categoryModal .arrow-circle {
   background: #0b2545 !important;
   color: #FFD700 !important;
 }
-/* =========================================================
-   LARGE A4-RATIO MODAL & SIDE NAVIGATION STYLES
-========================================================= */
-/* Expand category modal to full desktop view (A4 aspect scale) */
+
+/* LARGE A4-RATIO MODAL & SIDE NAVIGATION STYLES */
 #categoryModal .poster-card,
 #categoryModal > div {
   max-width: 820px !important;
@@ -1945,7 +1927,6 @@ input[type="time"]::-webkit-date-and-time-value {
   position: relative !important;
 }
 
-/* Tab indicator highlight scaling */
 .poster-tab.active-tab,
 #categoryModal .poster-tab.active,
 #categoryModal .poster-tab.is-active {
@@ -1955,7 +1936,6 @@ input[type="time"]::-webkit-date-and-time-value {
   z-index: 10 !important;
 }
 
-/* Image container with pan & zoom support */
 #posterBody {
   flex: 1 !important;
   width: 100% !important;
@@ -1981,7 +1961,6 @@ input[type="time"]::-webkit-date-and-time-value {
   cursor: grab;
 }
 
-/* Left/Right middle navigation arrows */
 .modal-nav-arrow {
   position: absolute !important;
   top: 50% !important;
