@@ -155,7 +155,7 @@ section,
 }
 
 /* =========================================================
-   4. ONGOING TOURS SECTION (Mobile-Optimized)
+   4. ONGOING TOURS SECTION (Mobile-Optimized & Stretched)
 ========================================================= */
 .ongoing-tours-section {
   padding: 20px 10px;
@@ -218,64 +218,83 @@ section,
   width: 100%;
   overflow: hidden;
   position: relative;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .slider-track {
   display: flex;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.4s ease-in-out;
   width: 100%;
+  touch-action: pan-y;
 }
 
-/* Single A4 Card Mobile Setup */
+/* Stretched Tour Card Mobile Setup */
 .tour-card {
   flex: 0 0 100%;
   width: 100%;
   max-width: 100%;
-  background-color: #ffffff;
-  border-radius: 10px;
+  background-color: #000000;
+  border-radius: 12px;
   border: 1.5px solid #D4AF37;
-  box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
   display: flex;
   flex-direction: column;
+  position: relative;
   overflow: hidden;
   box-sizing: border-box;
 }
 
 .image-wrapper {
   width: 100%;
-  aspect-ratio: 1 / 1.414; /* Single A4 Aspect Ratio */
-  max-height: 65vh;        /* Keeps height manageable on phone screens */
+  height: 480px;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   cursor: pointer;
-  background-color: #000;
+  background-color: #000000;
+  position: relative;
 }
 
 .tour-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  filter: brightness(1.15);
+  object-fit: cover;
+  display: block;
 }
 
-/* Compact Enquire Button Footer */
+/* Embedded Enquire Button Overlay inside Card Bottom */
 .card-footer {
-  padding: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 12px 12px 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+  z-index: 5;
 }
 
 .enquire-btn {
-  padding: 4px 12px;
-  font-size: 11px;
-  font-weight: 700;
-  background-color: #138808;
+  width: 90%;
+  max-width: 280px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  background-color: #ff5722;
   color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.enquire-btn:active {
+  transform: scale(0.97);
+  background-color: #e64a19;
 }
 
 /* Mobile Friendly Slider Arrows */
@@ -284,28 +303,30 @@ section,
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(15, 23, 42, 0.85);
   color: #D4AF37;
   border: 1px solid #D4AF37;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.left-arrow { left: 4px; }
-.right-arrow { right: 4px; }
+.left-arrow { left: 6px; }
+.right-arrow { right: 6px; }
 
 @media (min-width: 768px) {
   .ongoing-tours-section { padding: 40px 20px 5px 20px; }
   .ongoing-column { padding: 16px; }
   .bold-column-title { font-size: 22px; }
   .compact-sub { font-size: 13.5px; }
-  .nav-arrow { width: 32px; height: 32px; font-size: 14px; }
+  .image-wrapper { height: 520px; }
+  .nav-arrow { width: 36px; height: 36px; font-size: 16px; }
   .left-arrow { left: -10px; }
   .right-arrow { right: -10px; }
 }
