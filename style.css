@@ -189,19 +189,6 @@ section,
   padding-left: 8px;
 }
 
-.live-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.live-badge.domestic { background-color: #fff3e0; color: #e65100; }
-.live-badge.intl { background-color: #e0f2fe; color: #0369a1; }
-
 .bold-column-title {
   font-size: 22px;
   font-weight: 800;
@@ -214,6 +201,7 @@ section,
   color: #64748b;
 }
 
+/* Slider Layout (Shows exactly 1 card at a time) */
 .slider-container {
   position: relative;
   display: flex;
@@ -221,73 +209,78 @@ section,
 }
 
 .slider-wrapper {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 8px 4px;
-  scrollbar-width: none;
-}
-
-.slider-wrapper::-webkit-scrollbar {
-  display: none;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .slider-track {
   display: flex;
-  gap: 12px;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
 }
 
-.slide-card {
-  position: relative;
-  flex: 0 0 calc(42% - 6px);
-  height: 350px;
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
+/* Single A4 Card Styles */
+.tour-card {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  background-color: #ffffff;
+  border-radius: 12px;
   border: 2px solid #D4AF37;
   box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.slide-card:hover,
-.slide-card.full-card-link:hover,
-.clickable-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(212, 175, 55, 0.4);
-}
-
-.slide-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.slide-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 20%, transparent 100%);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1.414; /* Single A4 Aspect Ratio */
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #000;
+}
+
+.tour-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(1.15); /* Enhances brightness */
+  transition: transform 0.3s ease;
+}
+
+.tour-image:hover {
+  transform: scale(1.02);
+}
+
+/* Card Footer & Compact Enquire Button */
+.card-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.enquire-btn {
+  padding: 5px 14px;       /* Reduced button size (~25%) */
+  font-size: 11.5px;
+  font-weight: 700;
+  background-color: #138808;
   color: #ffffff;
-}
-
-.status-tag {
-  align-self: flex-start;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 3px 8px;
+  border: none;
   border-radius: 6px;
-  margin-bottom: 6px;
-  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.status-tag.ongoing { background: #138808; color: #fff; }
-.status-tag.upcoming { background: #FF9933; color: #fff; }
+.enquire-btn:hover {
+  background-color: #0e6b06;
+}
 
-.slide-overlay h4 { font-size: 14.5px; font-weight: 800; margin-bottom: 2px; }
-.slide-overlay p { font-size: 11px; opacity: 0.85; }
-
+/* Slider Arrow Controls */
 .nav-arrow {
   position: absolute;
   top: 50%;
@@ -307,35 +300,12 @@ section,
   transition: background 0.2s ease;
 }
 
-.nav-arrow:hover { background: #0f172a; }
+.nav-arrow:hover { 
+  background: #0f172a; 
+}
+
 .left-arrow { left: -10px; }
 .right-arrow { right: -10px; }
-
-.column-action-bar {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed #d6c5b3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.column-action-bar span { font-size: 13px; font-weight: 600; color: #475569; }
-
-.btn-primary-single {
-  background: #138808;
-  color: #ffffff;
-  border: none;
-  padding: 9px 14px;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 12.5px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.btn-primary-single.btn-intl { background: #0f172a; }
 
 /* =========================================================
    5. OUR SERVICES SECTION
