@@ -155,63 +155,70 @@ section,
 }
 
 /* =========================================================
-   4. ONGOING TOURS SECTION
+   4. ONGOING TOURS SECTION (Mobile-Optimized)
 ========================================================= */
 .ongoing-tours-section {
-  padding: 40px 20px 5px 20px;
+  padding: 20px 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .ongoing-dual-grid {
   display: grid;         
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 20px;
+  width: 100%;
 }
 
 @media (min-width: 992px) {
   .ongoing-dual-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
 }
 
 .ongoing-column {
   background-color: #fbf5ed;
   border: 1px solid #ebd9c8;
-  border-radius: 18px;
-  padding: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 14px;
+  padding: 12px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .compact-header {
   margin-bottom: 8px;
-  padding-left: 8px;
+  text-align: center;
 }
 
 .bold-column-title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   color: #0f172a;
   line-height: 1.2;
 }
 
 .compact-sub {
-  font-size: 13.5px;
+  font-size: 12px;
   color: #64748b;
 }
 
-/* Slider Layout (Shows exactly 1 card at a time) */
+/* Slider Layout */
 .slider-container {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .slider-wrapper {
   width: 100%;
   overflow: hidden;
   position: relative;
+  border-radius: 10px;
 }
 
 .slider-track {
@@ -220,15 +227,15 @@ section,
   width: 100%;
 }
 
-/* Single A4 Card Styles */
+/* Single A4 Card Mobile Setup */
 .tour-card {
   flex: 0 0 100%;
   width: 100%;
   max-width: 100%;
   background-color: #ffffff;
-  border-radius: 12px;
-  border: 2px solid #D4AF37;
-  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+  border-radius: 10px;
+  border: 1.5px solid #D4AF37;
+  box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -238,6 +245,7 @@ section,
 .image-wrapper {
   width: 100%;
   aspect-ratio: 1 / 1.414; /* Single A4 Aspect Ratio */
+  max-height: 65vh;        /* Keeps height manageable on phone screens */
   overflow: hidden;
   cursor: pointer;
   background-color: #000;
@@ -247,17 +255,12 @@ section,
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: brightness(1.15); /* Enhances brightness */
-  transition: transform 0.3s ease;
+  filter: brightness(1.15);
 }
 
-.tour-image:hover {
-  transform: scale(1.02);
-}
-
-/* Card Footer & Compact Enquire Button */
+/* Compact Enquire Button Footer */
 .card-footer {
-  padding: 10px;
+  padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -265,47 +268,47 @@ section,
 }
 
 .enquire-btn {
-  padding: 5px 14px;       /* Reduced button size (~25%) */
-  font-size: 11.5px;
+  padding: 4px 12px;
+  font-size: 11px;
   font-weight: 700;
   background-color: #138808;
   color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
 }
 
-.enquire-btn:hover {
-  background-color: #0e6b06;
-}
-
-/* Slider Arrow Controls */
+/* Mobile Friendly Slider Arrows */
 .nav-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: rgba(15, 23, 42, 0.85);
   color: #D4AF37;
   border: 1px solid #D4AF37;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;
 }
 
-.nav-arrow:hover { 
-  background: #0f172a; 
-}
+.left-arrow { left: 4px; }
+.right-arrow { right: 4px; }
 
-.left-arrow { left: -10px; }
-.right-arrow { right: -10px; }
+@media (min-width: 768px) {
+  .ongoing-tours-section { padding: 40px 20px 5px 20px; }
+  .ongoing-column { padding: 16px; }
+  .bold-column-title { font-size: 22px; }
+  .compact-sub { font-size: 13.5px; }
+  .nav-arrow { width: 32px; height: 32px; font-size: 14px; }
+  .left-arrow { left: -10px; }
+  .right-arrow { right: -10px; }
+}
 
 /* =========================================================
    5. OUR SERVICES SECTION
