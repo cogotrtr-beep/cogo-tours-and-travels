@@ -140,7 +140,26 @@
           <button type="button" class="btn-primary-single btn-intl" onclick="openCategoryModal('journey')">Enquire ongoing International Tours</button>
         </div>
       </div>
+      
+<!-- Example HTML Structure for Tour Cards Section -->
+<div class="tours-container">
+  <div class="tour-card">
+    <div class="image-wrapper">
+      <img src="your-tour-pamphlet.jpg" alt="Tour Pamphlet" class="tour-image">
+    </div>
+    <div class="card-footer">
+      <button class="enquire-btn" onclick="openEnquiry(this)">Enquire</button>
+    </div>
+  </div>
+</div>
 
+<!-- Full-Page Modal Viewer for A4 Stretch & Zoom -->
+<div id="imageModal" class="modal">
+  <span class="close-btn" onclick="closeModal()">&times;</span>
+  <div class="modal-content-wrapper" id="zoomContainer">
+    <img id="modalImage" class="modal-image" src="" alt="A4 View">
+  </div>
+</div>
     </div>
   </section>
 
