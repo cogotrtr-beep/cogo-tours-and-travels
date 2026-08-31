@@ -49,16 +49,16 @@
 
           <div class="slider-wrapper">
             <div id="domesticTrack" class="slider-track">
-              <!-- Slide 1 -->
-              <div class="slide-card full-card-link" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 0)">
-                <img src="Images/images/chennai-main.png" alt="Chennai Heritage Trail" loading="lazy">
-                <div class="slide-overlay">
-                  <span class="status-tag ongoing">Ongoing</span>
-                  <h4>Chennai Heritage Trail</h4>
-                  <p>3 Days • March 2026</p>
-                </div>
-              </div>
-
+             
+<!-- Slide 1 -->
+<div class="tour-card">
+  <div class="image-wrapper">
+    <img src="Images/images/chennai-main.png" alt="Chennai Heritage Trail" class="tour-image" loading="lazy">
+  </div>
+  <div class="card-footer">
+    <button class="enquire-btn" onclick="openEnquiry(this)">Enquire</button>
+  </div>
+</div>
               <!-- Slide 2 -->
               <div class="slide-card full-card-link" onclick="openPamphletList(['Images/images/chennai-main.png', 'Images/images/pilgrim-main.png', 'Images/images/south-main.png'], 1)">
                 <img src="Images/images/pilgrim-main.png" alt="Tirupati and Kanchipuram Tour" loading="lazy">
@@ -141,18 +141,6 @@
         </div>
       </div>
       
-<!-- Example HTML Structure for Tour Cards Section -->
-<div class="tours-container">
-  <div class="tour-card">
-    <div class="image-wrapper">
-      <img src="your-tour-pamphlet.jpg" alt="Tour Pamphlet" class="tour-image">
-    </div>
-    <div class="card-footer">
-      <button class="enquire-btn" onclick="openEnquiry(this)">Enquire</button>
-    </div>
-  </div>
-</div>
-
 <!-- Full-Page Modal Viewer for A4 Stretch & Zoom -->
 <div id="imageModal" class="modal">
   <span class="close-btn" onclick="closeModal()">&times;</span>
