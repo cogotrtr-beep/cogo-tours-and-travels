@@ -808,3 +808,31 @@ function openEnquiry(button) {
   // Action logic for individual card enquiry
   alert("Enquiry requested for this tour package.");
 }
+// Object to track current slide index for each slider track
+const slideIndices = {};
+
+function scrollTrack(trackId, direction) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.tour-card');
+  const totalSlides = slides.length;
+
+  if (slideIndices[trackId] === undefined) {
+    slideIndices[trackId] = 0;
+  }
+
+  // Update index based on left (-1) or right (1) arrow click
+  slideIndices[trackId] += direction;
+
+  // Loop back if index goes past bounds
+  if (slideIndices[trackId] < 0) {
+    slideIndices[trackId] = totalSlides - 1;
+  } else if (slideIndices[trackId] >= totalSlides) {
+    slideIndices[trackId] = 0;
+  }
+
+  // Translate track by 100% per card
+  const percentage = slideIndices[trackId] * 100;
+  track.style.transform = `translateX(-${percentage}%)`;
+}
