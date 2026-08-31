@@ -447,7 +447,7 @@
       
         <!-- Top Navigation Bar Header -->
         <div class="category-modal-header">
-          <div class="tabs-scroll-container" id="posterTabsBar">
+          <div class="tabs-scroll-container poster-tabs-bar" id="posterTabsBar">
             <!-- Dynamic Tab Buttons Generated Here -->
           </div>
           <button type="button" class="category-modal-close-x" onclick="closeCategoryModal(event)">✕</button>
@@ -546,7 +546,7 @@
 
         <div class="map-wrapper">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA4MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0028247953255!2d80.200738!3d13.093779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzM3LjYiTiA8MMKwMTInMDIuNyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
             width="100%" 
             height="300" 
             style="border:0; border-radius:14px;" 
@@ -621,9 +621,9 @@
     </div>
   </div>
 
-  <div id="imageModal" class="pamphlet-modal">
-    <span class="pamphlet-close">&times;</span>
-    <div class="pamphlet-modal-container">
+  <div id="imageModal" class="pamphlet-modal" onclick="closePamphletZoom(event)">
+    <span class="pamphlet-close" onclick="closePamphletZoom(event)">&times;</span>
+    <div class="pamphlet-modal-container" onclick="event.stopPropagation()">
       <img class="pamphlet-modal-content" id="imgModalSrc" alt="Pamphlet Zoom View">
     </div>
     <p class="pamphlet-modal-hint">Click image to toggle 2x Zoom</p>
