@@ -715,3 +715,96 @@ function sendWhatsAppEnquiry(event) {
   window.open(waUrl, '_blank');
   closeWhatsAppForm();
 }
+// Image Modal Expand & Pan/Zoom Functionality
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+let scale = 1;
+let isPanning = false;
+let startX = 0, startY = 0, translateX = 0, translateY = 0;
+
+// Expand image to full screen on click
+document.querySelectorAll(".image-wrapper").forEach(wrapper => {
+  wrapper.addEventListener("click", function () {
+    const img = this.querySelector("img");
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+    resetZoom();
+  });
+});
+
+function closeModal() {
+  modal.style.display = "none";
+  resetZoom();
+}
+
+function resetZoom() {
+  scale = 1;
+  translateX = 0;
+  translateY = 0;
+  updateTransform();
+}
+
+function updateTransform() {
+  modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+}
+
+// Mouse Wheel Zooming
+modalImg.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const zoomFactor = e.deltaY < 0 ? 1.2 : 0.8;
+  scale = Math.min(Math.max(1, scale * zoomFactor), 5);
+  updateTransform();
+});
+
+// Drag to Pan when Zoomed
+modalImg.addEventListener("mousedown", (e) => {
+  if (scale > 1) {
+    isPanning = true;
+    startX = e.clientX - translateX;
+    startY = e.clientY - translateY;
+    modalImg.style.cursor = "grabbing";
+  }
+});
+
+window.addEventListener("mousemove", (e) => {
+  if (!isPanning) return;
+  translateX = e.clientX - startX;
+  translateY = e.clientY - startY;
+  updateTransform();
+});
+
+window.addEventListener("mouseup", () => {
+  isPanning = false;
+  modalImg.style.cursor = "grab";
+});
+
+// Touch Pinch-to-Zoom for Mobile Devices
+let initialDistance = 0;
+
+modalImg.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 2) {
+    initialDistance = Math.hypot(
+      e.touches[0].pageX - e.touches[1].pageX,
+      e.touches[0].pageY - e.touches[1].pageY
+    );
+  }
+});
+
+modalImg.addEventListener("touchmove", (e) => {
+  if (e.touches.length === 2) {
+    const currentDistance = Math.hypot(
+      e.touches[0].pageX - e.touches[1].pageX,
+      e.touches[0].pageY - e.touches[1].pageY
+    );
+    const zoomFactor = currentDistance / initialDistance;
+    scale = Math.min(Math.max(1, scale * zoomFactor), 5);
+    updateTransform();
+    initialDistance = currentDistance;
+  }
+});
+
+// Enquire Button Action
+function openEnquiry(button) {
+  // Action logic for individual card enquiry
+  alert("Enquiry requested for this tour package.");
+}
