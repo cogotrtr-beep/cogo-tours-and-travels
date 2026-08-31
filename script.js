@@ -411,7 +411,7 @@ function closeModalOnOverlay(event) {
 }
 
 /* =========================================================
-   SLIDER SCROLL ENGINE
+   SLIDER SCROLL ENGINE (TOUCH + INFINITE LOOP)
 ========================================================= */
 
 const slideIndices = {};
@@ -422,31 +422,51 @@ function scrollTrack(trackId, direction) {
 
   const slides = track.querySelectorAll('.tour-card');
   const totalSlides = slides.length;
-  
-  if (totalSlides > 0) {
-    if (slideIndices[trackId] === undefined) {
-      slideIndices[trackId] = 0;
-    }
+  if (totalSlides === 0) return;
 
-    slideIndices[trackId] += direction;
-
-    if (slideIndices[trackId] < 0) {
-      slideIndices[trackId] = totalSlides - 1;
-    } else if (slideIndices[trackId] >= totalSlides) {
-      slideIndices[trackId] = 0;
-    }
-
-    track.style.transition = 'transform 0.4s ease-in-out';
-    const percentage = slideIndices[trackId] * 100;
-    track.style.transform = `translateX(-${percentage}%)`;
-  } else {
-    const scrollAmount = track.clientWidth * 0.75;
-    track.parentElement.scrollBy({
-      left: direction * scrollAmount,
-      behavior: 'smooth'
-    });
+  if (slideIndices[trackId] === undefined) {
+    slideIndices[trackId] = 0;
   }
+
+  // Infinite Loop Math
+  slideIndices[trackId] = (slideIndices[trackId] + direction + totalSlides) % totalSlides;
+
+  track.style.transition = 'transform 0.4s ease-in-out';
+  const percentage = slideIndices[trackId] * 100;
+  track.style.transform = `translateX(-${percentage}%)`;
 }
+
+// Attach Touch Swipe Events to All Slider Tracks
+document.addEventListener('DOMContentLoaded', () => {
+  const sliderTracks = document.querySelectorAll('.tour-track, .slider-track');
+
+  sliderTracks.forEach((track) => {
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeDistance = touchStartX - touchEndX;
+      const minSwipeDistance = 40; // Minimum distance in px to register swipe
+
+      if (swipeDistance > minSwipeDistance) {
+        // Swiped Left -> Next Card
+        scrollTrack(track.id, 1);
+      } else if (swipeDistance < -minSwipeDistance) {
+        // Swiped Right -> Previous Card
+        scrollTrack(track.id, -1);
+      }
+    }
+  });
+});
 
 /* =========================================================
    PAMPHLET LIGHTBOX & ZOOM ENGINE
