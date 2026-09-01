@@ -155,102 +155,101 @@ section,
 }
 
 /* =========================================================
-   4. ONGOING TOURS SECTION (Mobile-Optimized & Stretched)
+   4. ONGOING TOURS SECTION (Conveyor Belt & Glass Look)
 ========================================================= */
 .ongoing-tours-section {
-  padding: 20px 10px;
+  padding: 30px 12px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .ongoing-dual-grid {
-  display: grid;         
+  display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 28px;
   width: 100%;
 }
 
 @media (min-width: 992px) {
   .ongoing-dual-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 28px;
   }
 }
 
 .ongoing-column {
-  background-color: #fbf5ed;
-  border: 1px solid #ebd9c8;
-  border-radius: 14px;
-  padding: 12px 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 18px;
+  padding: 16px 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow: hidden;
 }
 
 .compact-header {
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   text-align: center;
 }
 
 .bold-column-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
-  color: #0f172a;
-  line-height: 1.2;
+  color: #f8fafc;
+  letter-spacing: 0.5px;
 }
 
 .compact-sub {
   font-size: 12px;
-  color: #64748b;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Slider Layout */
+/* Conveyor Belt Wrapper */
 .slider-container {
   position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.slider-wrapper {
   width: 100%;
   overflow: hidden;
-  position: relative;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .slider-track {
   display: flex;
-  transition: transform 0.4s ease-in-out;
-  width: 100%;
-  touch-action: pan-y;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: auto;
+  scrollbar-width: none; /* Hide scrollbars */
+  -ms-overflow-style: none;
 }
 
-/* Stretched Tour Card Mobile Setup */
+.slider-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Classy Mobile & Desktop Tour Cards */
 .tour-card {
-  flex: 0 0 100%;
-  width: 100%;
-  max-width: 100%;
-  background-color: #000000;
-  border-radius: 12px;
-  border: 1.5px solid #D4AF37;
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
-  display: flex;
-  flex-direction: column;
+  flex: 0 0 280px;
   position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  background-color: #0b1329;
   overflow: hidden;
-  box-sizing: border-box;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.tour-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(212, 175, 55, 0.3);
 }
 
 .image-wrapper {
   width: 100%;
-  height: 480px;
-  aspect-ratio: 3 / 4;
+  height: 420px;
   overflow: hidden;
-  cursor: pointer;
-  background-color: #000000;
   position: relative;
 }
 
@@ -258,77 +257,85 @@ section,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  transition: transform 0.5s ease, filter 0.3s ease;
 }
 
-/* Embedded Enquire Button Overlay inside Card Bottom */
+/* Image Projection / Lift Effect on Touch/Hover */
+.tour-card:hover .tour-image,
+.tour-card:active .tour-image {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+/* Embedded Floating Enquire Button */
 .card-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px 12px 12px 12px;
+  padding: 16px 12px;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 70%, transparent 100%);
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
   z-index: 5;
 }
 
 .enquire-btn {
-  width: 90%;
-  max-width: 280px;
-  padding: 10px 16px;
+  width: 100%;
+  padding: 10px 0;
   font-size: 13px;
   font-weight: 800;
-  background-color: #ff5722;
+  background: linear-gradient(135deg, #ff5722, #e64a19);
   color: #ffffff;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 25px;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: transform 0.15s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(255, 87, 34, 0.4);
 }
 
-.enquire-btn:active {
-  transform: scale(0.97);
-  background-color: #e64a19;
-}
-
-/* Mobile Friendly Slider Arrows */
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(15, 23, 42, 0.85);
-  color: #D4AF37;
-  border: 1px solid #D4AF37;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+/* =========================================================
+   LIGHTBOX FULL-PAGE POPUP (ZOOM & GESTURES)
+========================================================= */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  align-items: center;
+  touch-action: none;
 }
 
-.left-arrow { left: 6px; }
-.right-arrow { right: 6px; }
+.lightbox-modal.active {
+  display: flex;
+}
 
-@media (min-width: 768px) {
-  .ongoing-tours-section { padding: 40px 20px 5px 20px; }
-  .ongoing-column { padding: 16px; }
-  .bold-column-title { font-size: 22px; }
-  .compact-sub { font-size: 13.5px; }
-  .image-wrapper { height: 520px; }
-  .nav-arrow { width: 36px; height: 36px; font-size: 16px; }
-  .left-arrow { left: -10px; }
-  .right-arrow { right: -10px; }
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 36px;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 10000;
+  line-height: 1;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  transition: transform 0.1s linear;
 }
 
 /* =========================================================
