@@ -337,6 +337,150 @@ const tourCategoryDatabase = {
 };
 
 /* =========================================================
+   CORE UI & TAB RENDERING FUNCTIONS
+========================================================= */
+
+// Render selected category data into DOM
+function loadTourCategory(categoryKey) {
+  const data = tourCategoryDatabase[categoryKey];
+  if (!data) return;
+
+  activeServiceTitle = data.title;
+
+  const headerTitle = document.getElementById('category-title');
+  const headerDesc = document.getElementById('category-desc');
+  const tabButtonsContainer = document.getElementById('tab-buttons');
+
+  if (headerTitle) headerTitle.textContent = data.title;
+  if (headerDesc) headerDesc.textContent = data.desc;
+
+  if (tabButtonsContainer && data.tabs) {
+    tabButtonsContainer.innerHTML = data.tabs.map((tab, idx) => `
+      <button class="tab-btn ${idx === 0 ? 'active' : ''}" onclick="switchCategoryTab(${idx}, '${categoryKey}')">
+        ${tab.name}
+      </button>
+    `).join('');
+
+    switchCategoryTab(0, categoryKey);
+  }
+}
+
+// Switch between tabs inside a category
+function switchCategoryTab(tabIndex, categoryKey) {
+  const data = tourCategoryDatabase[categoryKey];
+  if (!data || !data.tabs[tabIndex]) return;
+
+  const buttons = document.querySelectorAll('.tab-btn');
+  buttons.forEach((btn, idx) => {
+    btn.classList.toggle('active', idx === tabIndex);
+  });
+
+  const tabContentContainer = document.getElementById('tab-content');
+  if (tabContentContainer) {
+    tabContentContainer.innerHTML = data.tabs[tabIndex].content;
+  }
+}
+
+/* =========================================================
+   PAMPHLET ZOOM & DRAG-TO-PAN LIGHTBOX CONTROLS
+========================================================= */
+
+function openPamphletZoom(index) {
+  if (!currentPamphletList || !currentPamphletList[index]) return;
+
+  currentPamphletIndex = index;
+  const modal = document.getElementById('pamphlet-modal');
+  const modalImg = document.getElementById('pamphlet-img');
+
+  if (modal && modalImg) {
+    modalImg.src = currentPamphletList[index];
+    modal.classList.add('active');
+    resetZoomAndPan();
+  }
+}
+
+function closePamphletModal() {
+  const modal = document.getElementById('pamphlet-modal');
+  if (modal) modal.classList.remove('active');
+  resetZoomAndPan();
+}
+
+function resetZoomAndPan() {
+  currentZoomScale = 1;
+  translateX = 0;
+  translateY = 0;
+  updateImageTransform();
+}
+
+function updateImageTransform() {
+  const img = document.getElementById('pamphlet-img');
+  if (img) {
+    img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoomScale})`;
+  }
+}
+
+// Initialize Pan and Zoom listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const modalImg = document.getElementById('pamphlet-img');
+  const modal = document.getElementById('pamphlet-modal');
+
+  if (modalImg) {
+    // Mouse drag setup
+    modalImg.addEventListener('mousedown', (e) => {
+      if (currentZoomScale > 1) {
+        isDragging = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        modalImg.style.cursor = 'grabbing';
+      }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      updateImageTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      if (modalImg) modalImg.style.cursor = 'grab';
+    });
+
+    // Desktop Wheel Zoom
+    modalImg.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (e.deltaY < 0) {
+        currentZoomScale = Math.min(currentZoomScale + 0.2, 4);
+      } else {
+        currentZoomScale = Math.max(currentZoomScale - 0.2, 1);
+        if (currentZoomScale === 1) {
+          translateX = 0;
+          translateY = 0;
+        }
+      }
+      updateImageTransform();
+    }, { passive: false });
+  }
+
+  // Auto-load default category if container exists
+  if (document.getElementById('category-title')) {
+    loadTourCategory('chennai');
+  }
+});
+
+/* =========================================================
+   ENQUIRY & WHATSAPP ROUTING
+========================================================= */
+
+function triggerWhatsAppEnquiry(customText) {
+  const phoneNumber = "919840000000"; // Replace with your target business phone number
+  const textMessage = encodeURIComponent(customText || `Hello, I would like to enquire about: ${activeServiceTitle}`);
+  window.open(`https://wa.me/${phoneNumber}?text=${textMessage}`, '_blank');
+}
+
+/* =========================================================
    CATEGORY MODAL & TABS MANAGEMENT
 ========================================================= */
 
