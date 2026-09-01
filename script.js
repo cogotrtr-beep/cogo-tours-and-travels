@@ -555,62 +555,167 @@ function closeModalOnOverlay(event) {
 }
 
 /* =========================================================
-   SLIDER SCROLL ENGINE (TOUCH + INFINITE LOOP)
+   4. ONGOING TOURS SECTION (STRETCHED & INFINITE LOOP)
 ========================================================= */
-
-const slideIndices = {};
-
-function scrollTrack(trackId, direction) {
-  const track = document.getElementById(trackId);
-  if (!track) return;
-
-  const slides = track.querySelectorAll('.tour-card');
-  const totalSlides = slides.length;
-  if (totalSlides === 0) return;
-
-  if (slideIndices[trackId] === undefined) {
-    slideIndices[trackId] = 0;
-  }
-
-  // Infinite Loop Math
-  slideIndices[trackId] = (slideIndices[trackId] + direction + totalSlides) % totalSlides;
-
-  track.style.transition = 'transform 0.4s ease-in-out';
-  const percentage = slideIndices[trackId] * 100;
-  track.style.transform = `translateX(-${percentage}%)`;
+.ongoing-tours-section {
+  padding: 20px 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-// Attach Touch Swipe Events to All Slider Tracks
-document.addEventListener('DOMContentLoaded', () => {
-  const sliderTracks = document.querySelectorAll('.tour-track, .slider-track');
+.ongoing-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+}
 
-  sliderTracks.forEach((track) => {
-    let touchStartX = 0;
-    let touchEndX = 0;
+@media (min-width: 992px) {
+  .ongoing-dual-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
 
-    track.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].clientX;
-    }, { passive: true });
+.ongoing-column {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 18px;
+  padding: 16px 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-    track.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].clientX;
-      handleSwipe();
-    }, { passive: true });
+.compact-header {
+  margin-bottom: 12px;
+  text-align: center;
+}
 
-    function handleSwipe() {
-      const swipeDistance = touchStartX - touchEndX;
-      const minSwipeDistance = 40; // Minimum distance in px to register swipe
+.bold-column-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1.2;
+}
 
-      if (swipeDistance > minSwipeDistance) {
-        // Swiped Left -> Next Card
-        scrollTrack(track.id, 1);
-      } else if (swipeDistance < -minSwipeDistance) {
-        // Swiped Right -> Previous Card
-        scrollTrack(track.id, -1);
-      }
-    }
-  });
-});
+.compact-sub {
+  font-size: 11px;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Slider Layout Container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+}
+
+.slider-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.4s ease-in-out;
+  touch-action: pan-y;
+}
+
+/* Single Full Card Setup */
+.tour-card {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  background-color: #000000;
+  border-radius: 12px;
+  border: 1.5px solid #D4AF37;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background-color: #000000;
+}
+
+.tour-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Card Overlay Footer */
+.card-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 12px 12px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+  z-index: 5;
+}
+
+.enquire-btn {
+  width: 90%;
+  max-width: 280px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  background-color: #ff5722;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Nav Arrows */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.85);
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-arrow { left: 6px; }
+.right-arrow { right: 6px; }
+
+@media (min-width: 768px) {
+  .image-wrapper { height: 520px; }
+}
 
 /* =========================================================
    PAMPHLET LIGHTBOX & ZOOM ENGINE
