@@ -8,14 +8,6 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-html, body {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
 body {
   background: linear-gradient(180deg, #FFF5EE 0%, #FAF0E6 40%, #F8FAFC 100%);
   color: #0f172a;
@@ -43,7 +35,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
@@ -87,13 +79,15 @@ body {
 ========================================================= */
 .hero {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   min-height: 60vh;
   background: url('hero-banner.png') center top / cover no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 50px 20px 40px 20px;
+  padding: 50px 20px 40px 20px; /* Added 50px top padding to push banner graphics below top bar */
   box-sizing: border-box;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -128,170 +122,160 @@ body {
 .hero-btn.primary { background: #138808; color: #ffffff; }
 .hero-btn.secondary { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
 
-/* =========================================================
-   3. GLOBAL SECTION CONTAINER ALIGNMENT
-========================================================= */
-section, 
-.ongoing-tours-section, 
-.services-section, 
-.about-section, 
-.contact-section, 
-#packages-section {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+/* Desktop Widescreen Fix for Banner Alignment */
+@media (min-width: 1200px) {
+  .hero {
+    padding-top: 75px; /* Ensures Cogo logo remains fully visible on large monitors */
+    min-height: 65vh;
+  }
 }
 
-.ongoing-dual-grid,
-.services-grid,
-.hub-grid,
-.section-container,
-.contact-grid {
-  width: 100%;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
+/* Mobile & Split Screen Spacing */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 20px;
+    min-height: 50vh;
+  }
 }
 
 /* =========================================================
-   4. ONGOING TOURS SECTION (STRETCHED & INFINITE LOOP)
+   3. ONGOING TOURS SECTION
 ========================================================= */
 .ongoing-tours-section {
-  padding: 20px 10px;
-  width: 100%;
-  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 5px 20px; /* Reduced bottom padding to 5px to close gap */
 }
 
 .ongoing-dual-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  width: 100%;
 }
 
 @media (min-width: 992px) {
   .ongoing-dual-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
   }
 }
 
 .ongoing-column {
-  background: linear-gradient(145deg, #1e293b, #0f172a);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  background-color: #fbf5ed;
+  border: 1px solid #ebd9c8;
   border-radius: 18px;
-  padding: 16px 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 16px 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  justify-content: space-between;
 }
 
 .compact-header {
-  margin-bottom: 12px;
-  text-align: center;
+  margin-bottom: 8px;
+  padding-left: 8px;
 }
 
-.bold-column-title {
-  font-size: 20px;
+.live-badge {
+  display: inline-block;
+  font-size: 11px;
   font-weight: 800;
-  color: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.live-badge.domestic { background-color: #fff3e0; color: #e65100; }
+.live-badge.intl { background-color: #e0f2fe; color: #0369a1; }
+
+.bold-column-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
   line-height: 1.2;
 }
 
 .compact-sub {
-  font-size: 11px;
-  color: #D4AF37;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
+  font-size: 13.5px;
+  color: #64748b;
 }
 
-/* Slider Layout Container */
 .slider-container {
   position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 12px;
+  display: flex;
+  align-items: center;
 }
 
 .slider-wrapper {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  border-radius: 12px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 4px;
+  scrollbar-width: none;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .slider-track {
   display: flex;
-  width: 100%;
-  transition: transform 0.4s ease-in-out;
-  touch-action: pan-y;
+  gap: 12px;
 }
 
-/* Single Full Card Setup */
-.tour-card {
-  flex: 0 0 100%;
-  width: 100%;
-  max-width: 100%;
-  background-color: #000000;
-  border-radius: 12px;
-  border: 1.5px solid #D4AF37;
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
-  display: flex;
-  flex-direction: column;
+.slide-card {
   position: relative;
+  flex: 0 0 calc(42% - 6px);
+  height: 350px; /* Expanded height vertically from 310px to 350px */
+  border-radius: 14px;
   overflow: hidden;
-  box-sizing: border-box;
-}
-
-.image-wrapper {
-  width: 100%;
-  height: 480px;
-  overflow: hidden;
-  position: relative;
   cursor: pointer;
-  background-color: #000000;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.tour-image {
+@media (max-width: 480px) {
+  .slide-card { flex: 0 0 65%; }
+}
+
+.slide-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(212, 175, 55, 0.4);
+}
+
+.slide-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-/* Card Overlay Footer */
-.card-footer {
+.slide-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px 12px 12px 12px;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 20%, transparent 100%);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
-  z-index: 5;
-}
-
-.enquire-btn {
-  width: 90%;
-  max-width: 280px;
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 800;
-  background-color: #ff5722;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px;
   color: #ffffff;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* Nav Arrows */
+.status-tag {
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.status-tag.ongoing { background: #138808; color: #fff; }
+.status-tag.upcoming { background: #FF9933; color: #fff; }
+
+.slide-overlay h4 { font-size: 14.5px; font-weight: 800; margin-bottom: 2px; }
+.slide-overlay p { font-size: 11px; opacity: 0.85; }
+
 .nav-arrow {
   position: absolute;
   top: 50%;
@@ -308,301 +292,630 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s ease;
 }
 
-.left-arrow { left: 6px; }
-.right-arrow { right: 6px; }
+.nav-arrow:hover { background: #0f172a; }
+.left-arrow { left: -10px; }
+.right-arrow { right: -10px; }
 
-@media (min-width: 768px) {
-  .image-wrapper { height: 520px; }
-}
-
-/* =========================================================
-   5. OUR SERVICES SECTION
-========================================================= */
-.services-section {
-  padding: 5px 20px 15px 20px;
-}
-
-.services-header-container {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.services-main-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin: 0;
-  color: #0f172a;
-}
-
-.services-sub-title {
-  font-size: 0.9rem;
-  color: #64748b;
-  margin-top: 5px;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-.service-card {
-  background-size: cover;
-  background-position: center;
-  border-radius: 18px;
-  border-top: 4px solid #D4AF37;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-  padding: 24px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.78);
-  z-index: 1;
-}
-
-.service-card-header,
-.service-form {
-  position: relative;
-  z-index: 2;
-}
-
-.service-card-header {
-  text-align: center;
-  margin-bottom: 18px;
-}
-
-.service-icon { 
-  font-size: 1.8rem; 
-  text-align: center; 
-}
-
-.service-title {
-  text-align: center;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 6px 0 4px 0;
-}
-
-.service-desc {
-  text-align: center;
-  font-size: 0.82rem;
-  color: #d1d5db;
-  margin: 0;
-}
-
-.service-input,
-.service-form input[type="text"],
-.service-form input[type="date"],
-.service-form input[type="time"],
-.service-form select {
-  width: 100%;
-  height: 42px;
-  padding: 8px 12px;
-  font-size: 0.88rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.95);
-  color: #1e293b;
-  transition: padding-left 0.2s ease, border-color 0.2s ease;
-}
-
-.service-input:focus,
-.service-form input:focus,
-.service-form select:focus {
-  outline: none;
-  border-color: #FF9933;
-}
-
-.form-group {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.form-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.form-row .service-input {
-  flex: 1;
-}
-
-.toggle-row {
-  display: flex;
-  justify-content: space-around;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 6px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  color: #fff;
-  font-size: 0.82rem;
-}
-
-.toggle-row label {
-  cursor: pointer;
+.column-action-bar {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #d6c5b3;
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between;
+  gap: 10px;
 }
+
+.column-action-bar span { font-size: 13px; font-weight: 600; color: #475569; }
+
+.btn-primary-single {
+  background: #138808;
+  color: #ffffff;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary-single.btn-intl { background: #0f172a; }
+
+/* =========================================================
+
+   4. OUR SERVICES SECTION
+
+========================================================= */
+
+.services-section {
+
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 5px 20px 15px 20px; /* Top Right Bottom Left */
+
+}
+
+
+
+.services-header-container {
+
+  text-align: center;
+
+  margin-bottom: 24px;
+
+}
+
+
+
+.services-main-title {
+
+  font-size: 1.8rem;
+
+  font-weight: 700;
+
+  margin: 0;
+
+  color: #0f172a;
+
+}
+
+
+
+.services-sub-title {
+
+  font-size: 0.9rem;
+
+  color: #64748b;
+
+  margin-top: 5px;
+
+}
+
+
+
+.services-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 24px;
+
+  width: 100%;
+
+}
+
+
+
+.service-card {
+
+  background-size: cover;
+
+  background-position: center;
+
+  border-radius: 18px;
+
+  border-top: 4px solid #D4AF37;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+
+  overflow: hidden;
+
+  padding: 24px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  position: relative;
+
+  box-sizing: border-box;
+
+}
+
+
+
+.service-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.78);
+
+  z-index: 1;
+
+}
+
+
+
+.service-card-header,
+
+.service-form {
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+
+.service-card-header {
+
+  text-align: center;
+
+  margin-bottom: 18px;
+
+}
+
+
+
+.service-icon { 
+
+  font-size: 1.8rem; 
+
+  text-align: center; 
+
+}
+
+
+
+.service-title {
+
+  text-align: center;
+
+  font-size: 1.35rem;
+
+  font-weight: 700;
+
+  color: #ffffff;
+
+  margin: 6px 0 4px 0;
+
+}
+
+
+
+.service-desc {
+
+  text-align: center;
+
+  font-size: 0.82rem;
+
+  color: #d1d5db;
+
+  margin: 0;
+
+}
+
+
+
+.service-input,
+
+.service-form input[type="text"],
+
+.service-form input[type="date"],
+
+.service-form input[type="time"],
+
+.service-form select {
+
+  width: 100%;
+
+  height: 42px;
+
+  padding: 8px 12px;
+
+  font-size: 0.88rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 8px;
+
+  background-color: rgba(255, 255, 255, 0.95);
+
+  color: #1e293b;
+
+  box-sizing: border-box;
+
+  transition: padding-left 0.2s ease, border-color 0.2s ease;
+
+}
+
+
+
+.service-input:focus,
+
+.service-form input:focus,
+
+.service-form select:focus {
+
+  outline: none;
+
+  border-color: #FF9933;
+
+}
+
+
+
+.form-group {
+
+  margin-bottom: 10px;
+
+  width: 100%;
+
+}
+
+
+
+.form-row {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+  width: 100%;
+
+}
+
+
+
+.form-row .service-input {
+
+  flex: 1;
+
+}
+
+
+
+.toggle-row {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  padding: 6px;
+
+  border-radius: 8px;
+
+  margin-bottom: 10px;
+
+  color: #fff;
+
+  font-size: 0.82rem;
+
+}
+
+
+
+.toggle-row label {
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+}
+
+
 
 .service-btn {
+
   width: 100%;
+
   height: 44px;
+
   background-color: #22c55e;
+
   color: white;
+
   border: none;
+
   border-radius: 8px;
+
   font-weight: 600;
+
   font-size: 0.92rem;
+
   cursor: pointer;
+
   margin-top: 6px;
+
   transition: background-color 0.2s ease;
+
 }
+
+
 
 .service-btn:hover {
+
   background-color: #16a34a;
+
 }
 
+
+
+/* Custom Input Modifications */
+
 .visa-remarks-textarea {
+
   width: 100%;
+
+  box-sizing: border-box;
+
   padding: 10px 12px;
+
   border: 1px solid #cbd5e1;
+
   border-radius: 8px;
+
   font-size: 13px;
+
   background-color: #ffffff;
+
   color: #0f172a;
+
   font-family: inherit;
+
   resize: vertical;
+
   outline: none;
+
 }
+
+
 
 .visa-remarks-textarea:focus { border-color: #0f172a; }
 
+
+
 /* Dynamic Visa Country Selector & Flag Component */
+
 .visa-country-selector {
+
   position: relative;
+
   width: 100%;
+
 }
+
+
 
 .country-input-wrapper {
+
   position: relative;
+
   display: flex;
+
   align-items: center;
+
   width: 100%;
+
 }
+
+
+
+/* Overlaid Flag Icon Inside the Input */
 
 .flag-preview {
+
   position: absolute;
+
   left: 12px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   pointer-events: none;
+
   z-index: 5;
+
 }
+
+
 
 .flag-preview img {
+
   width: 24px;
+
   height: 16px;
+
   object-fit: cover;
+
   border-radius: 3px;
+
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+
 }
+
+
 
 .flag-preview.hidden {
+
   display: none;
+
 }
+
+
+
+/* Dynamically adjust left padding when a flag is active */
 
 .country-input-wrapper input.has-flag {
+
   padding-left: 44px;
+
 }
+
+
+
+/* Dynamic Visa Search Dropdown Box */
 
 .visa-dropdown-list {
+
   display: none;
+
   position: absolute;
+
   top: calc(100% + 4px);
+
   left: 0;
+
   right: 0;
+
   max-height: 220px;
+
   overflow-y: auto;
+
   background: #ffffff;
+
   border: 1px solid #cbd5e1;
+
   border-radius: 10px;
+
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+
   z-index: 1000;
+
   scroll-behavior: smooth;
+
 }
+
+
 
 .visa-dropdown-list.show { 
+
   display: block; 
+
 }
+
+
+
+/* Individual Dropdown Item */
 
 .visa-option {
+
   padding: 10px 14px;
+
   display: flex;
+
   align-items: center;
+
   gap: 12px;
+
   cursor: pointer;
+
   font-size: 14.5px;
+
   color: #0f172a;
+
   font-weight: 600;
+
   transition: background 0.15s ease, color 0.15s ease;
+
 }
+
+
 
 .visa-option:hover { 
+
   background-color: #f1f5f9; 
+
   color: #138808;
+
 }
+
+
 
 .visa-option img {
+
   width: 24px;
+
   height: 16px;
+
   object-fit: cover;
+
   border-radius: 3px;
+
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
 }
+
+
 
 .no-match-option {
+
   padding: 12px;
+
   font-size: 13.5px;
+
   color: #64748b;
+
   text-align: center;
+
 }
 
-/* Safari Input Fixes */
+
+
+/* Mobile Safari Date & Time Input Visibility Fix */
+
 input[type="date"],
+
 input[type="time"] {
+
   color: #475569;
+
   min-height: 42px;
+
   -webkit-appearance: none;
+
 }
+
+
 
 input[type="date"]:invalid,
+
 input[type="time"]:invalid {
+
   color: #94a3b8;
+
 }
 
+
+
 input[type="date"]::-webkit-date-and-time-value,
+
 input[type="time"]::-webkit-date-and-time-value {
+
   text-align: left;
+
   min-height: 1.2em;
+
 } 
 
+
 /* =========================================================
-   6. TOUR PACKAGES HUB SECTION
+   5. TOUR PACKAGES HUB SECTION
 ========================================================= */
 #packages-section {
   padding-top: 15px;
@@ -614,8 +927,8 @@ input[type="time"]::-webkit-date-and-time-value {
 
 .hub-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 26px;
   align-items: stretch;
 }
 
@@ -690,6 +1003,7 @@ input[type="time"]::-webkit-date-and-time-value {
 
 .hub-btn:hover { transform: translateY(-1px); }
 
+/* Custom Hub Box Variations */
 .tour-card-box {
   padding: 24px 20px;
   min-height: 480px;
@@ -718,17 +1032,26 @@ input[type="time"]::-webkit-date-and-time-value {
 }
 
 /* =========================================================
-   7. ABOUT US SECTION
+   6. ABOUT US SECTION
 ========================================================= */
 .about-section {
-  background-color: #fbf5ed;
-  padding: 40px 20px;
-  border: none;
+  background-color: #fbf5ed; /* Exact color match to the rest of the site */
+  padding: 30px 20px;
+  border: none;              /* Removes the visible top/bottom border lines */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .about-content {
   max-width: 900px;
   margin: 0 auto;
+  width: 100%;
   text-align: center;
 }
 
@@ -753,18 +1076,12 @@ input[type="time"]::-webkit-date-and-time-value {
 }
 
 /* =========================================================
-   8. CONTACT & MAP SECTION
+   7. CONTACT & MAP SECTION
 ========================================================= */
 .contact-section {
-  padding: 10px 20px 40px 20px;
-}
-
-.contact-section .text-center {
-  margin-bottom: 20px;
-}
-
-.contact-section h2 {
-  margin-bottom: 6px;
+  padding: 60px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .social-links-bar {
@@ -797,8 +1114,8 @@ input[type="time"]::-webkit-date-and-time-value {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  align-items: start;
   margin-top: 20px;
+  align-items: start;
 }
 
 .contact-card {
@@ -808,6 +1125,7 @@ input[type="time"]::-webkit-date-and-time-value {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
   border: 1px solid #e2e8f0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-card h3 {
@@ -837,6 +1155,7 @@ input[type="time"]::-webkit-date-and-time-value {
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .map-wrapper iframe {
@@ -860,7 +1179,7 @@ input[type="time"]::-webkit-date-and-time-value {
 .map-directions-btn:hover { background: #FF9933; }
 
 /* =========================================================
-   9. MODAL POPUP & INTERACTIVE TOP TABS
+   8. MODAL POPUP & INTERACTIVE TOP TABS
 ========================================================= */
 .modal-overlay {
   display: none;
@@ -962,6 +1281,7 @@ input[type="time"]::-webkit-date-and-time-value {
   color: #0f172a;
 }
 
+/* Modal Form Layout & Actions */
 .form-group label {
   display: block;
   font-size: 13.5px;
@@ -1009,6 +1329,7 @@ input[type="time"]::-webkit-date-and-time-value {
 .btn-wa { background-color: #138808; color: #ffffff; }
 .btn-email { background-color: #0F172A; color: #ffffff; }
 
+/* Tariff & Bulletin Layout */
 .tariff-box { margin-top: 10px; }
 
 .tariff-box h4 {
@@ -1057,268 +1378,8 @@ input[type="time"]::-webkit-date-and-time-value {
 }
 
 /* =========================================================
-   9. MODAL POPUP & INTERACTIVE TOP TABS
+   9. PAMPHLET LIGHTBOX MODAL & INTERACTIVE ZOOM ENGINE
 ========================================================= */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(4px);
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
-}
-
-.modal-overlay.show { 
-  display: flex !important; 
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-
-.modal-box {
-  background: #ffffff;
-  width: 100%;
-  max-width: 680px;
-  border-radius: 20px;
-  padding: 28px;
-  position: relative;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
-}
-
-.modal-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: #f1f5f9;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 18px;
-  color: #475569;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  z-index: 10;
-}
-
-.modal-close:hover { 
-  background: #e2e8f0; 
-  color: #0f172a; 
-}
-
-#modalTitle { 
-  font-size: 22px; 
-  font-weight: 800; 
-  color: #0f172a; 
-  margin-bottom: 4px; 
-}
-
-.modal-desc { 
-  font-size: 14px; 
-  color: #64748b; 
-  margin-bottom: 16px; 
-}
-
-/* Sub-Tab Navigation inside Modal */
-.sub-tab-container {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  margin-bottom: 18px;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 12px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.sub-tab-btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-  color: #ffffff;
-  border: 2px solid transparent;
-}
-
-.sub-tab-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  opacity: 0.95;
-}
-
-.sub-tab-btn.tab-color-0 { background-color: #FF9933; border-color: #e68a2e; } 
-.sub-tab-btn.tab-color-1 { background-color: #0F172A; border-color: #050b14; } 
-.sub-tab-btn.tab-color-2 { background-color: #138808; border-color: #0f6e06; } 
-.sub-tab-btn.tab-color-3 { background-color: #D97706; border-color: #b46204; } 
-
-.sub-tab-btn.active { 
-  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #0f172a; 
-}
-
-/* Modal Body Content Area */
-.modal-body-wrapper {
-  background: #FFF5EE;
-  border: 1.5px solid #FFE4E1;
-  padding: 22px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #0f172a;
-}
-
-.form-group {
-  margin-bottom: 14px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #334155;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 15px;
-  outline: none;
-  box-sizing: border-box;
-  transition: border-color 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus { 
-  border-color: #FF9933; 
-}
-
-/* Modal Action Buttons */
-.modal-actions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.action-btn {
-  padding: 14px;
-  border-radius: 10px;
-  border: none;
-  font-weight: 800;
-  font-size: 15px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: opacity 0.2s ease, transform 0.1s ease;
-}
-
-.action-btn:active { transform: scale(0.98); }
-.btn-wa { background-color: #138808; color: #ffffff; }
-.btn-email { background-color: #0F172A; color: #ffffff; }
-
-/* Tariff & Bulletins */
-.tariff-box { margin-top: 10px; }
-
-.tariff-box h4 {
-  font-size: 18px;
-  font-weight: 800;
-  color: #9a3412;
-  margin-bottom: 8px;
-  border-bottom: 1px dashed #fdba74;
-  padding-bottom: 4px;
-}
-
-.tariff-box p { 
-  font-size: 15px; 
-  color: #475569; 
-  margin-bottom: 14px; 
-}
-
-.bulletin-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0;
-  margin: 10px 0;
-}
-
-.bulletin-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background-color: #f1f5f9;
-  border-left: 4px solid #2563eb;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #1e293b;
-}
-
-.bulletin-item .bullet-label { 
-  display: flex; 
-  align-items: center; 
-  gap: 8px; 
-}
-
-.bulletin-item .bullet-label::before { 
-  content: "•"; 
-  color: #2563eb; 
-  font-size: 1.4rem; 
-  line-height: 1; 
-}
-
-.bulletin-item .bullet-price {
-  font-weight: 800;
-  color: #138808;
-  background: #dcfce7;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-/* Mobile Optimizations */
-@media (max-width: 576px) {
-  .modal-box {
-    padding: 18px 14px;
-    border-radius: 14px;
-  }
-  
-  .modal-actions-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .bulletin-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-}
-
-/* =========================================================
-   11. PAMPHLET LIGHTBOX MODAL & INTERACTIVE ZOOM ENGINE
-========================================================= */
-
-/* Swiper Thumbnail Cards */
 .pamphlet-swiper {
   display: flex;
   gap: 15px;
@@ -1332,9 +1393,7 @@ input[type="time"]::-webkit-date-and-time-value {
   scroll-snap-type: x mandatory;
 }
 
-.pamphlet-swiper::-webkit-scrollbar { 
-  display: none; 
-}
+.pamphlet-swiper::-webkit-scrollbar { display: none; }
 
 .pamphlet-card {
   flex: 0 0 130px;
@@ -1353,20 +1412,9 @@ input[type="time"]::-webkit-date-and-time-value {
   padding: 4px;
 }
 
-.pamphlet-card:hover { 
-  transform: scale(1.04); 
-  border-color: #FF9933; 
-}
+.pamphlet-card:hover { transform: scale(1.04); border-color: #FF9933; }
+.pamphlet-card img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 6px; }
 
-.pamphlet-card img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: contain; 
-  display: block; 
-  border-radius: 6px; 
-}
-
-/* Lightbox Modal Base */
 #pamphletLightbox,
 #imageModal,
 .pamphlet-lightbox,
@@ -1408,34 +1456,32 @@ input[type="time"]::-webkit-date-and-time-value {
   position: relative;
 }
 
-/* Lightbox Single Active Image */
 #lightboxImage,
-#imgModalSrc {
+#imgModalSrc,
+.pamphlet-modal-content {
   max-width: 90vw;
-  max-height: 82vh;
+  max-height: 85vh;
   object-fit: contain;
   transition: transform 0.2s ease-in-out;
   cursor: zoom-in;
   transform-origin: center center;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-  touch-action: manipulation;
 }
 
-/* Close Button */
 .pamphlet-close,
 .pamphlet-lightbox-close,
 .lightbox-close {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 25px;
   color: #ffffff;
-  font-size: 30px;
+  font-size: 36px;
   font-weight: bold;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.2);
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1446,11 +1492,8 @@ input[type="time"]::-webkit-date-and-time-value {
 
 .pamphlet-close:hover,
 .pamphlet-lightbox-close:hover,
-.lightbox-close:hover { 
-  background: #ff5a00; 
-}
+.lightbox-close:hover { background: #ff5a00; }
 
-/* Nav Arrows */
 .lightbox-nav,
 .pamphlet-prev,
 .pamphlet-next,
@@ -1462,9 +1505,9 @@ input[type="time"]::-webkit-date-and-time-value {
   background: rgba(255, 255, 255, 0.25);
   color: #ffffff;
   border: none;
-  font-size: 24px;
-  width: 44px;
-  height: 44px;
+  font-size: 28px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 1000001;
@@ -1484,18 +1527,17 @@ input[type="time"]::-webkit-date-and-time-value {
   transform: translateY(-50%) scale(1.1);
 }
 
-.prev-btn, .pamphlet-prev, #prevBtn { left: 15px; }
-.next-btn, .pamphlet-next, #nextBtn { right: 15px; }
+.prev-btn, .pamphlet-prev, #prevBtn { left: 20px; }
+.next-btn, .pamphlet-next, #nextBtn { right: 20px; }
 
-/* Zoom Controls Bar */
 .zoom-controls {
   position: absolute;
-  bottom: 20px;
+  bottom: 25px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   z-index: 1000001;
   background: rgba(15, 23, 42, 0.85);
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
@@ -1504,10 +1546,10 @@ input[type="time"]::-webkit-date-and-time-value {
   background: #ff5a00;
   color: #ffffff;
   border: none;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.1s ease;
 }
@@ -1523,13 +1565,13 @@ input[type="time"]::-webkit-date-and-time-value {
   left: 50%;
   transform: translateX(-50%);
   color: #cbd5e1;
-  font-size: 12px;
+  font-size: 13px;
   z-index: 1000001;
   pointer-events: none;
-  white-space: nowrap;
 }
 
-/* Horizontal Pamphlet Gallery Container */
+/* Horizontal Pamphlet Swiper Container */
+.pamphlet-modal-content,
 .pamphlet-list,
 .pamphlet-container {
   display: flex;
@@ -1537,17 +1579,18 @@ input[type="time"]::-webkit-date-and-time-value {
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  gap: 20px;
-  padding: 15px;
+  gap: 24px;
+  padding: 20px;
   width: 90vw;
   max-width: 1100px;
-  max-height: 80vh;
+  max-height: 85vh;
   align-items: center;
   justify-content: flex-start;
   border-radius: 12px;
   -webkit-overflow-scrolling: touch;
 }
 
+.pamphlet-modal-content img,
 .pamphlet-list img,
 .pamphlet-item {
   scroll-snap-align: center;
@@ -1560,262 +1603,15 @@ input[type="time"]::-webkit-date-and-time-value {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Mobile Adjustments */
-@media (max-width: 576px) {
-  .lightbox-nav, .prev-btn, .next-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
-  
-  .prev-btn, .pamphlet-prev, #prevBtn { left: 8px; }
-  .next-btn, .pamphlet-next, #nextBtn { right: 8px; }
-  
-  .pamphlet-close {
-    top: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    font-size: 24px;
-  }
-  
-  .zoom-controls {
-    bottom: 15px;
-    padding: 4px 10px;
-  }
-  
-  .zoom-controls button {
-    padding: 5px 10px;
-    font-size: 11px;
-  }
-}
-
 /* =========================================================
-   12. INTERACTIVE POSTER CARD
+   10. DESKTOP MEDIA QUERIES (MIN-WIDTH: 769PX)
 ========================================================= */
-.interactive-poster-card {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-  background: #ffffff;
-  font-family: system-ui, sans-serif;
-}
-
-.poster-tabs-bar {
-  display: flex;
-  background-color: #0b2545;
-  padding: 6px;
-  gap: 4px;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.poster-tab {
-  flex: 1;
-  min-width: 65px;
-  background: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 6px 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.poster-tab .tab-icon { font-size: 16px; }
-
-.poster-tab .tab-label {
-  font-size: 10px;
-  font-weight: 900;
-  color: #0b2545;
-  margin-top: 2px;
-}
-
-.poster-tab.active {
-  background-color: #ffffff;
-  box-shadow: inset 0 -3px 0 #ff9933;
-  transform: translateY(-1px);
-}
-
-.poster-body {
-  height: 520px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 0.3) 100%), 
-              url('chennai-ecr-bg.jpg') center center / cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-}
-
-.poster-title {
-  font-size: 42px;
-  color: #0b2545;
-  font-weight: 900;
-  line-height: 0.9;
-  margin-top: 10px;
-}
-
-.poster-title span {
-  font-family: 'Brush Script MT', cursive, sans-serif;
-  font-size: 55px;
-  color: #ffaa00;
-  font-weight: 400;
-}
-
-.poster-footer { margin-bottom: 10px; }
-
-.yellow-enquiry-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: #ffb703;
-  color: #0b2545;
-  font-weight: 900;
-  font-size: 18px;
-  letter-spacing: 0.5px;
-  padding: 12px 32px;
-  border-radius: 30px;
-  text-decoration: none;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease;
-}
-
-.yellow-enquiry-btn:hover { transform: scale(1.04); }
-
-.arrow-circle {
-  background: #0b2545;
-  color: #ffffff;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
-
-/* =========================================================
-   13. CATEGORY & ENQUIRY MODAL OVERLAYS
-========================================================= */
-#categoryModal,
-#enquiryModal {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background-color: rgba(0, 0, 0, 0.75) !important;
-  z-index: 99999 !important;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-#categoryModal.show,
-#enquiryModal.show {
-  display: flex !important;
-}
-
-#categoryModal .poster-card,
-#categoryModal > div,
-#enquiryModal > div {
-  max-width: 480px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 12px;
-  position: relative;
-  z-index: 100000;
-}
-
-/* Dedicated space & positioning for Modal Header Close Button */
-#categoryModal .modal-header,
-.category-modal-header {
-  position: relative !important;
-  padding-right: 45px !important;
-  display: flex !important;
-  align-items: center !important;
-  overflow-x: auto !important;
-}
-
-#categoryModal .close-btn,
-#categoryModal .modal-close,
-.category-modal-close-x {
-  position: absolute !important;
-  right: 12px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 28px !important;
-  height: 28px !important;
-  z-index: 100010 !important;
-  background: rgba(0, 0, 0, 0.08) !important;
-  border-radius: 50% !important;
-  border: none !important;
-  font-size: 16px !important;
-  font-weight: bold !important;
-  color: #333 !important;
-  cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  pointer-events: auto !important;
-}
-
-#categoryModal .close-btn:hover {
-  background: rgba(0, 0, 0, 0.2) !important;
-  color: #000 !important;
-}
-
-/* Poster Image Container & Enquiry Button Sizing */
-#posterBody {
-  width: 100% !important;
-  min-height: 320px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  background-color: #ffffff !important;
-  background-size: contain !important;
-  background-repeat: no-repeat !important;
-  background-position: center top !important;
-  padding-bottom: 20px !important;
-}
-
-#posterBody img,
-.poster-banner-img {
-  width: 100% !important;
-  height: auto !important;
-  max-height: 420px !important;
-  object-fit: contain !important;
-  display: block !important;
-}
-
-#posterEnquiryBtn, 
-.poster-enquiry-btn {
-  transform: scale(0.75) !important;
-  transform-origin: bottom center;
-  margin-bottom: 10px;
-}
-
-/* =========================================================
-   14. MEDIA QUERIES (DESKTOP & MOBILE RESPONSIVENESS)
-========================================================= */
-@media (min-width: 1200px) {
-  .hero {
-    padding-top: 75px;
-    min-height: 65vh;
-  }
-}
-
 @media (min-width: 769px) {
+  .hub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
+  }
+
   .hub-card {
     min-height: 380px;
     border-radius: 22px;
@@ -1836,14 +1632,16 @@ input[type="time"]::-webkit-date-and-time-value {
     max-width: 880px;
     padding: 36px;
   }
-}
 
-@media (max-width: 992px) {
-  .hub-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
 }
 
+/* =========================================================
+   11. MOBILE MEDIA QUERIES (MAX-WIDTH: 768PX)
+========================================================= */
 @media (max-width: 768px) {
   #navLinks {
     flex-direction: row;
@@ -1860,7 +1658,6 @@ input[type="time"]::-webkit-date-and-time-value {
 
   .hero {
     min-height: 42vh;
-    padding-top: 20px;
     padding-bottom: 20px;
   }
 
@@ -1894,6 +1691,7 @@ input[type="time"]::-webkit-date-and-time-value {
     width: 100vw;
     max-width: 100vw;
     padding: 10px 0;
+    aspect-ratio: auto;
     justify-content: center;
     align-items: center;
   }
@@ -1910,388 +1708,167 @@ input[type="time"]::-webkit-date-and-time-value {
     border-radius: 8px;
   }
 }
-
-@media (max-width: 600px) {
-  .hub-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .slide-card { 
-    flex: 0 0 65%; 
-  }
-
-  .modal-slider-container .slide-card {
-    flex: 0 0 78vw;
-    height: 280px;
-  }
-
-  .modal-slider-wrapper .left-arrow { left: 0px; }
-  .modal-slider-wrapper .right-arrow { right: 0px; }
-}
-
 /* =========================================================
-   FIX FOR POSTER MODAL TAB BAR (HORIZONTAL LAYOUT)
+   BOTTOM SECTION (TOUR PACKAGES, ABOUT, CONTACT) ALIGNMENT
 ========================================================= */
-.poster-tabs-bar,
-#categoryModal .poster-tabs-bar,
-#categoryModal .modal-header {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
+
+/* Ensure the main container wraps to the same max-width as Services */
+.tour-about-contact-section, 
+.info-grid-container,
+.bottom-content-grid {
+  max-width: 1280px !important;
   width: 100% !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  padding-right: 40px !important;
-}
-
-.poster-tab,
-#categoryModal .poster-tab {
-  flex: 0 0 auto !important;
-  min-width: 60px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 6px 8px !important;
-  margin-right: 4px !important;
-}
-
-.poster-tab .tab-icon {
-  font-size: 16px !important;
-  line-height: 1 !important;
-}
-
-.poster-tab .tab-label {
-  font-size: 10px !important;
-  font-weight: 800 !important;
-  white-space: nowrap !important;
-  margin-top: 2px !important;
-}
-
-/* OVERRIDE: FORCE MODAL TABS HORIZONTAL */
-#categoryModal .poster-card,
-#categoryModal .poster-tabs-bar,
-#categoryModal .modal-header,
-#categoryModal div[class*="tab"],
-#categoryModal ul,
-#categoryModal nav {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  white-space: nowrap !important;
+  margin: 0 auto 50px auto !important;
+  padding: 0 20px !important;
   box-sizing: border-box !important;
 }
 
-#categoryModal .poster-tab,
-#categoryModal .tab,
-#categoryModal li,
-#categoryModal button[class*="tab"] {
-  display: inline-flex !important;
-  flex-direction: column !important;
-  flex: 0 0 auto !important;
-  width: auto !important;
-  min-width: 65px !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin-right: 6px !important;
-  margin-bottom: 0 !important;
-  float: none !important;
-}
-
-#categoryModal .poster-tab img,
-#categoryModal .tab img,
-#categoryModal li img {
-  width: 20px !important;
-  height: 20px !important;
-  object-fit: contain !important;
-  display: block !important;
-  margin: 0 auto 2px auto !important;
-}
-
-#categoryModal #posterBody,
-#categoryModal .poster-body {
-  display: flex !important;
-  flex-direction: column !important;
+/* Force the 3 columns below Services to align directly underneath the cards */
+.tour-about-contact-grid,
+.three-column-layout {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+  align-items: start !important;
   width: 100% !important;
-  clear: both !important;
 }
 
-/* ENQUIRY BUTTON POSITIONING */
-#posterBody,
-#categoryModal #posterBody,
-.poster-body,
-#categoryModal .poster-body {
-  position: relative !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  padding-bottom: 20px !important;
-}
-
-#posterEnquiryBtn, 
-.poster-enquiry-btn,
-#categoryModal .yellow-enquiry-btn,
-#categoryModal a[class*="enquiry"] {
-  position: relative !important;
-  top: auto !important;
-  bottom: 0 !important;
-  margin-top: auto !important;
-  margin-bottom: 10px !important;
-  z-index: 100 !important;
-  transform: scale(0.85) !important;
-  transform-origin: bottom center !important;
-}
-
-/* GOLD COLOR SCHEME */
-.poster-tab,
-#categoryModal .poster-tab,
-#categoryModal .tab,
-#categoryModal button[class*="tab"] {
-  background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%) !important;
-  color: #0b2545 !important;
-  border: 1px solid #B8860B !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
-}
-
-.poster-tab.active,
-#categoryModal .poster-tab.active {
-  background: #D4AF37 !important;
-  border-bottom: 3px solid #8B6508 !important;
-  transform: translateY(-1px) !important;
-}
-
-.poster-tab .tab-label,
-#categoryModal .poster-tab .tab-label {
-  color: #0b2545 !important;
-  font-weight: 900 !important;
-}
-
-#posterEnquiryBtn, 
-.poster-enquiry-btn,
-#categoryModal .yellow-enquiry-btn,
-#categoryModal a[class*="enquiry"] {
-  background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%) !important;
-  color: #0b2545 !important;
-  border: 1px solid #B8860B !important;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
-}
-
-#categoryModal .arrow-circle {
-  background: #0b2545 !important;
-  color: #FFD700 !important;
-}
-
-/* LARGE A4-RATIO MODAL & SIDE NAVIGATION STYLES */
-#categoryModal .poster-card,
-#categoryModal > div {
-  max-width: 820px !important;
-  width: 92vw !important;
-  height: 88vh !important;
-  max-height: 900px !important;
-  background: #ffffff !important;
-  display: flex !important;
-  flex-direction: column !important;
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  position: relative !important;
-}
-
-.poster-tab.active-tab,
-#categoryModal .poster-tab.active,
-#categoryModal .poster-tab.is-active {
-  transform: scale(1.12) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-  border-bottom: 3px solid #0b2545 !important;
-  z-index: 10 !important;
-}
-
-#posterBody {
-  flex: 1 !important;
+/* Ensure inner cards stretch properly across their full column width */
+.tour-packages-card,
+.about-us-card,
+.contact-us-card {
   width: 100% !important;
-  height: 100% !important;
-  position: relative !important;
-  overflow: hidden !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: zoom-in;
+  box-sizing: border-box !important;
+}
+/* =========================================================
+   FIX FOR CONTAINER MAX-WIDTH & CENTER ALIGNMENT
+========================================================= */
+
+/* Align Tour Packages grid to match Services container width */
+#packages-section .hub-grid {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
 }
 
-#posterBody img {
+/* Align Header Titles centered to match Services */
+#packages-section .hub-header,
+#about .section-container,
+#contact .section-container {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Align About Us text block properly */
+.about-section {
+  padding: 40px 0 !important;
+}
+
+.about-content {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+
+/* Align Contact Details & Google Map Side-by-Side horizontally */
+.contact-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 30px !important;
+  align-items: start !important;
+  max-width: 1280px !important;
+  margin: 30px auto 0 auto !important;
+}
+
+/* Responsive fix for mobile devices */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================================
+   GLOBAL LAYOUT & CONTAINER WIDTH FIX
+========================================================= */
+
+/* Ensure parent containers allow full width */
+html, body {
+  width: 100% !important;
   max-width: 100% !important;
-  max-height: 100% !important;
-  object-fit: contain !important;
-  transition: transform 0.25s ease;
-  transform-origin: center center;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
 }
 
-#posterBody.is-zoomed img {
-  transform: scale(2);
-  cursor: grab;
+/* Force all top-level sections to occupy full width */
+section, 
+.ongoing-tours-section, 
+.services-section, 
+.about-section, 
+.contact-section, 
+#packages-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-.modal-nav-arrow {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  width: 44px !important;
-  height: 44px !important;
-  background: rgba(11, 37, 69, 0.85) !important;
-  color: #FFD700 !important;
-  border: 1.5px solid #FFD700 !important;
-  border-radius: 50% !important;
-  font-size: 22px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  z-index: 1000 !important;
-  transition: background 0.2s ease, transform 0.2s ease !important;
-  user-select: none !important;
+/* Set standard container width (1280px) for inner grids */
+.ongoing-dual-grid,
+.services-grid,
+.hub-grid,
+.section-container,
+.contact-grid {
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
 }
 
-.modal-nav-arrow:hover {
-  background: #0b2545 !important;
-  transform: translateY(-50%) scale(1.1) !important;
+/* Tour Packages Hub 3-Column Layout */
+.hub-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
 }
 
-.modal-nav-arrow.left { left: 12px !important; }
-.modal-nav-arrow.right { right: 12px !important; }
-/* Card Container Layout */
-.tours-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 20px;
+/* Contact & Map 2-Column Side-by-Side Layout */
+.contact-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 30px !important;
+  align-items: start !important;
 }
 
-/* Single A4 Proportion Tour Card */
-.tour-card {
-  width: 100%;
-  max-width: 400px;
-  /* Maintain standard A4 aspect ratio (1 : 1.414) */
-  aspect-ratio: 1 / 1.414; 
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
+/* Responsive adjustment for screens under 992px */
+@media (max-width: 992px) {
+  .hub-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
-/* Image Styling: Brighter Top & Full A4 Coverage */
-.image-wrapper {
-  flex: 1;
-  width: 100%;
-  height: calc(100% - 50px);
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.tour-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Increased brightness by 15% */
-  filter: brightness(1.15); 
-  transition: filter 0.3s ease, transform 0.3s ease;
-}
-
-.tour-image:hover {
-  filter: brightness(1.25);
-}
-
-/* Card Footer & Centered Enquire Button */
-.card-footer {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  padding: 5px 0;
-}
-
-.enquire-btn {
-  padding: 8px 24px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.enquire-btn:hover {
-  background-color: #0056b3;
-}
-
-/* Full-Page Interactive Modal Viewer */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  overflow: hidden;
-  touch-action: none;
-}
-
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  color: #fff;
-  font-size: 35px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10000;
-}
-
-.modal-content-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
-}
-
-/* Stretched Full-Page A4 Image inside Modal */
-.modal-image {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-  filter: brightness(1.15);
-  transition: transform 0.1s ease-out;
-  transform-origin: center center;
-  cursor: grab;
-}
-
-/* Mobile Responsiveness Adjustments */
 @media (max-width: 600px) {
-  .tour-card {
-    max-width: 100%;
-    /* Maintains single A4 proportion on mobile devices */
-    aspect-ratio: 1 / 1.414; 
-  }
-
-  .modal-image {
-    max-width: 100vw;
-    max-height: 100vh;
+  .hub-grid, 
+  .contact-grid {
+    grid-template-columns: 1fr !important;
   }
 }
+/* =========================================================
+   7. CONTACT & LOCATION SECTION
+========================================================= */
+.contact-section {
+  padding-top: 10px;    /* Pulls the section higher up */
+  padding-bottom: 40px;
+  margin-top: 0;
+}
+
+.contact-section .text-center {
+  margin-bottom: 20px;  /* Keeps heading tight to the social buttons */
+}
+
+.contact-section h2 {
+  margin-bottom: 6px;
+}
+
